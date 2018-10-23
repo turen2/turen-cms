@@ -11,7 +11,7 @@ $params = array_merge(
 return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
-    'name' => 'turen8.cn',
+    'name' => 'turen2.com',
     'version' => '1.2.2',
     'charset' => 'UTF-8',
     'sourceLanguage' => 'en-US', // 默认源语言

@@ -2,4 +2,4 @@ vendor/*
 .settings
 .buildpath
 .project
-turen.zip
+*.zip
