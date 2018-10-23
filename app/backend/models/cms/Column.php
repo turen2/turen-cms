@@ -14,6 +14,9 @@ use yii\behaviors\TimestampBehavior;
 use yii\behaviors\AttributeBehavior;
 use yii\db\ActiveRecord;
 use app\models\base\Cms;
+use yii\base\UnknownMethodException;
+use yii\base\InvalidArgumentException;
+use app\models\shop\Product;
 
 /**
  * This is the model class for table "{{%cms_column}}".
@@ -189,26 +192,85 @@ class Column extends \app\models\base\Cms
     }
     
     /**
+     * 转换器
+     * 负责模型、栏目、ID、名称、标记之间的转换
+     * @param string $type
+     * 'id2name' ID对应名称
+     * 'mask2id' 标记对应ID
+     * 'id2mask' ID对应标记
+     * 'model2id' 模型对应ID
+     * @param $key 转化后获取其中一个值的时候所使用的键
+     * return [] | int | string
+     */
+    public static function ColumnConvert($type, $key = null, $default = '')
+    {
+        $data = [
+            self::COLUMN_TYPE_INFO => [
+                'id' => self::COLUMN_TYPE_INFO,
+                'model' => Info::class,
+                'name' => '单页',
+                'mask' => 'info',
+            ],
+            self::COLUMN_TYPE_ARTICLE => [
+                'id' => self::COLUMN_TYPE_ARTICLE,
+                'model' => Article::class,
+                'name' => '列表',
+                'mask' => 'article',
+            ],
+            self::COLUMN_TYPE_PHOTO => [
+                'id' => self::COLUMN_TYPE_PHOTO,
+                'model' => Photo::class,
+                'name' => '图片',
+                'mask' => 'photo',
+            ],
+            self::COLUMN_TYPE_FILE => [
+                'id' => self::COLUMN_TYPE_FILE,
+                'model' => File::class,
+                'name' => '下载',
+                'mask' => 'file',
+            ],
+            self::COLUMN_TYPE_PRODUCT => [
+                'id' => self::COLUMN_TYPE_PRODUCT,
+                'model' => Product::class,
+                'name' => '产品',
+                'mask' => 'product',
+            ],
+            self::COLUMN_TYPE_VIDEO => [
+                'id' => self::COLUMN_TYPE_VIDEO,
+                'model' => Video::class,
+                'name' => '视频',
+                'mask' => 'video',
+            ],
+        ];
+        
+        //匹配需要的类型数组
+        list($k, $v) = explode('2', strtolower($type));
+        if(in_array($k, ['id', 'model', 'name', 'mask']) && in_array($v, ['id', 'model', 'name', 'mask'])) {
+            $list = [];
+            foreach ($data as $dd) {
+                $list[$dd[$k]] = $dd[$v];
+            }
+            
+            //是否获取一个元素，否则返回整个数组
+            if(is_null($key)) {
+                return $list;
+            } else {
+                return isset($list[$key])?$list[$key]:$default;
+            }
+        } else {
+            //异常
+            throw new InvalidArgumentException(Column::class.'参数错误，参数为：'.$type);
+        }
+    }
+    
+    /**
      * 获取所有模型列表，或者指定列表名称
      * @param unknown $type
      * @return string[]|string
      */
-    public static function ColumnTypeNameList($type = null)
+    public static function ColumnTypeNameList($key = null)
     {
-        $types = [
-            self::COLUMN_TYPE_INFO => '单页',
-            self::COLUMN_TYPE_ARTICLE => '列表',
-            self::COLUMN_TYPE_PHOTO => '图片',
-            self::COLUMN_TYPE_FILE=> '下载',
-            self::COLUMN_TYPE_PRODUCT => '产品',
-            self::COLUMN_TYPE_VIDEO=> '视频',
-        ];
-        
-        if(is_null($type)) {
-            return $types;
-        } else {
-            return isset($types[$type])?$types[$type]:'未定义';
-        }
+        return self::ColumnConvert('id2name', $key, '未定义');
     }
     
     /**
@@ -216,46 +278,28 @@ class Column extends \app\models\base\Cms
      * @param string $modelName
      * @return string[]|string
      */
-    public static function ColumnTypeIdList($modelName = null)
+    public static function ColumnTypeIdList($key= null)
     {
-        $modelName = strtolower($modelName);
-        
-        $types = [
-            'info' => self::COLUMN_TYPE_INFO,
-            'article' => self::COLUMN_TYPE_ARTICLE,
-            'photo' => self::COLUMN_TYPE_PHOTO,
-            'file' => self::COLUMN_TYPE_FILE,
-            'product' => self::COLUMN_TYPE_PRODUCT,
-            'video' => self::COLUMN_TYPE_VIDEO,
-        ];
-        
-        if(is_null($modelName)) {
-            return $types;
-        } else {
-            return isset($types[$modelName])?$types[$modelName]:'未定义';
-        }
+        return self::ColumnConvert('mask2id', $key, '未定义');
     }
     
     /**
      * 获取栏目路由链接
-     * @param integer $type
-     * @return string
+     * @param integer $key columnid值
+     * @return string link | ''
      */
-    public static function ColumnLinkList($type, Column $model)
+    public static function ColumnLinkList($key, Column $model)
     {
-        $types = [
-            self::COLUMN_TYPE_INFO => 'info',
-            self::COLUMN_TYPE_ARTICLE => 'article',
-            self::COLUMN_TYPE_PHOTO => 'photo',
-            self::COLUMN_TYPE_FILE=> 'file',
-            self::COLUMN_TYPE_PRODUCT => 'product',
-            self::COLUMN_TYPE_VIDEO => 'video',
-        ];
+        $mask = self::ColumnConvert('id2mask', $key, '');
         
-        if($type == self::COLUMN_TYPE_INFO) {
-            return Url::to(['info/update', 'id' => $model->id]);
+        if(!empty($mask)) {
+            if($key == self::COLUMN_TYPE_INFO) {
+                return Url::to(['info/update', 'id' => $model->id]);
+            } else {
+                return Url::to([$mask.'/create', 'columnid' => $model->id]);
+            }
         } else {
-            return Url::to([$types[$type].'/create', 'columnid' => $model->id]);
+            return '';
         }
     }
     
@@ -264,18 +308,9 @@ class Column extends \app\models\base\Cms
      * @param string $className
      * @return string
      */
-    public static function ColumnIdByClassName($className)
+    public static function ColumnIdByClassName($key)
     {
-        $types = [
-            'app/cms/Info' => self::COLUMN_TYPE_INFO,
-            'app/cms/Article' => self::COLUMN_TYPE_ARTICLE,
-            'app/cms/Photo' => self::COLUMN_TYPE_PHOTO,
-            'app/cms/File' => self::COLUMN_TYPE_FILE,
-            'app/shop/Product' => self::COLUMN_TYPE_PRODUCT,
-            'app/cms/Video' => self::COLUMN_TYPE_VIDEO,
-        ];
-        
-        return isset($types[$className])?$types[$className]:false;
+        return self::ColumnConvert('model2id', $key, false);
     }
     
     /**
