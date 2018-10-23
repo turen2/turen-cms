@@ -55,10 +55,15 @@ class ConfigController extends \app\components\Controller
      */
     public function actionBatch()
     {
+//         if(Yii::$app->request->isPost) {
+//             var_dump(Yii::$app->request->post());
+//             exit;
+//         }
+        
         //批量更新
         if (Yii::$app->request->isPost && Config::batchSave(Yii::$app->request->post())) {
             //更新缓存
-            Config::updateCache();
+            Config::UpdateCache();
             Yii::$app->getSession()->setFlash('success', '站点配置保存成功。');
         }
         
@@ -79,7 +84,7 @@ class ConfigController extends \app\components\Controller
                 //修改配置名
                 Config::updateAll(['varname' => 'config_'.$model->varname], ['varname' => $model->varname]);
                 //更新缓存
-                Config::updateCache();
+                Config::UpdateCache();
                 
                 Yii::$app->getSession()->setFlash('success', $model->varinfo.' 已经添加成功！');
                 return $this->redirect(['setting']);

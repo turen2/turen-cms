@@ -144,7 +144,7 @@ echo Tips::widget([
     					        $row['varvalue'] = [$row['varvalue']];
     					    }
     					    
-    					    echo Html::checkboxList($row['varname'], $row['varvalue'], $default, ['separator' => '&nbsp;&nbsp;&nbsp;']);
+    					    echo Html::checkboxList($row['varname'], $row['varvalue'], $default, ['id' => $row['varname'], 'separator' => '&nbsp;&nbsp;&nbsp;']);
 					    break;
     					    
     					case 'radio':
@@ -162,7 +162,7 @@ echo Tips::widget([
     					        $default[$row['vardefault'] = $row['vardefault']];
     					    }
     					    
-    					    echo Html::radioList($row['varname'], $row['varvalue'], $default, ['separator' => '&nbsp;&nbsp;&nbsp;']);
+    					    echo Html::radioList($row['varname'], $row['varvalue'], $default, ['id' => $row['varname'], 'separator' => '&nbsp;&nbsp;&nbsp;']);
 					    break;
 					    
     					case 'select':
@@ -180,11 +180,11 @@ echo Tips::widget([
     					        $default[$row['vardefault'] = $row['vardefault']];
     					    }
     					    
-    					    echo Html::dropDownList($row['varname'], $row['varvalue'], $default);
+    					    echo Html::dropDownList($row['varname'], $row['varvalue'], $default, ['id' => $row['varname']]);
     					    break;
     
     					case 'textarea':
-    					    echo Html::textarea($row['varname'], htmlspecialchars($row['varvalue']), ['class' => 'textarea']);
+    					    echo Html::textarea($row['varname'], htmlspecialchars($row['varvalue']), ['id' => $row['varname'], 'class' => 'textarea']);
     					break;
     
     					default:

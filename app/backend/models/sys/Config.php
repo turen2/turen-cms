@@ -125,11 +125,13 @@ class Config extends \app\models\base\Sys
         
         $models = self::find()->current()->all();
         foreach ($models as $model) {
-            if(isset($data[$model->varname])) {
-                $model->setAttribute('varvalue', $data[$model->varname]);
-                if($model->getOldAttribute('varvalue') != $model->getAttribute('varvalue')) {
-                    $model->save(false);//不验证保存
-                }
+            if(isset($data[$model->varname]) && $model->varvalue != $data[$model->varname]) {
+                self::updateAll(['varvalue' => $data[$model->varname]], ['varname' => $model->varname]);
+                //$model->setAttribute('varvalue', $data[$model->varname]);
+                //if($model->getOldAttribute('varvalue') != $model->getAttribute('varvalue')) {
+                    //$model->save(false);//不验证保存
+                    //self::updateAll(['varvalue' => $data[$model->varname]], ['varname' => $model->varname]);
+                //}
             } else {
                 //throw new InvalidArgumentException('无法查询出配置为“'.$model->varname.'”的参数，请先创建！');
             }
@@ -142,7 +144,7 @@ class Config extends \app\models\base\Sys
      * 更新配置缓存
      * @return boolean
      */
-    public static function updateCache()
+    public static function UpdateCache()
     {
         $cache = Yii::$app->getCache();
         $models = self::find()->current()->all();//缓存网站的配置参数
@@ -165,13 +167,13 @@ class Config extends \app\models\base\Sys
      * 获取配置缓存
      * @return string
      */
-    public static function getCache()
+    public static function CacheList()
     {
         $cache = Yii::$app->getCache();
         if($cache->exists(CONFIG_CACHE_KEY)) {
             return Json::decode($cache->get(CONFIG_CACHE_KEY));//返回数组
         } else {
-            if(self::updateCache()) {//就地更新
+            if(self::UpdateCache()) {//就地更新
                 return Json::decode($cache->get(CONFIG_CACHE_KEY));//返回数组
             } else {
                 //更新失败
@@ -184,7 +186,7 @@ class Config extends \app\models\base\Sys
      * 删除本站点配置缓存
      * @return boolean
      */
-    public static function deleteCache()
+    public static function DeleteCache()
     {
         Yii::$app->getCache()->delete(CONFIG_CACHE_KEY);
         return true;
