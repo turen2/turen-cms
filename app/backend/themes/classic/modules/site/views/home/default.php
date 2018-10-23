@@ -1,7 +1,7 @@
 <?php
 /**
- * @link http://www.juwanfang.com/
- * @copyright Copyright (c) 聚万方CMS
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
 use yii\helpers\Url;
@@ -151,4 +151,4 @@ $baseUrl = Yii::getAlias('@web');
 	</div>
 	<div class="cl"></div>
 </div>
-<div class="home-copy"> 敬请您将在使用中发现的问题或者有好的建议告诉我们，以便改进。 <a href="http://www.juwanfang.com/feedback.html" target="_blank" class="feedback"><i class="fa fa-envelope-o"></i> 点击告诉我</a> | <a href="" class="doc">开发帮助</a> </div>
+<div class="home-copy"> 敬请您将在使用中发现的问题或者有好的建议告诉我们，以便改进。 <a href="http://www.turen2.com/feedback.html" target="_blank" class="feedback"><i class="fa fa-envelope-o"></i> 点击告诉我</a> | <a href="" class="doc">开发帮助</a> </div>

@@ -1,7 +1,7 @@
 <?php
 /**
- * @link http://www.juwanfang.com/
- * @copyright Copyright (c) 聚万方CMS
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
 namespace app\models\sys;
@@ -192,13 +192,13 @@ class Template extends \app\models\base\Sys
         //配置数据
         //数据结构为：['varname', 'varinfo', 'vargroup', 'vartype', 'varvalue', 'orderid', 'visible']
         $configData = [
-            ['config_site_name', '站点名称', '0', 'string', '聚万方营销系统', '97', '1'],
-            ['config_site_url', '网站地址', '0', 'string', 'http://www.juwanfang.com', '96', '1'],
+            ['config_site_name', '站点名称', '0', 'string', '土人开源营销系统', '97', '1'],
+            ['config_site_url', '网站地址', '0', 'string', 'http://www.turen2.com', '96', '1'],
             ['config_author', '网站作者', '0', 'string', 'jorry', '95', '1'],
-            ['config_seo_title', 'SEO标题', '0', 'string', '聚万方营销系统', '94', '1'],
-            ['config_seo_keyword', '关键字设置', '0', 'string', '聚万方,营销系统,建站,Yii,yiicms', '93', '1'],
+            ['config_seo_title', 'SEO标题', '0', 'string', '土人开源营销系统', '94', '1'],
+            ['config_seo_keyword', '关键字设置', '0', 'string', '土人开源,营销系统,建站,Yii,yiicms', '93', '1'],
             ['config_seo_description', '网站描述', '0', 'bstring', '412412', '92', '1'],
-            ['config_copyright', '版权信息', '0', 'string', 'Copyright © 2016 - 2018 juwanfang.com All Rights Reserved', '91', '1'],
+            ['config_copyright', '版权信息', '0', 'string', 'Copyright © 2016 - 2018 turen2.com All Rights Reserved', '91', '1'],
             ['config_hotline', '客服热线', '0', 'string', '400-800-8888', '90', '1'],
             ['config_icp_code', '备案编号', '0', 'string', '442525', '89', '1'],
             ['config_open_site', '启用站点', '0', 'bool', '1', '88', '1'],

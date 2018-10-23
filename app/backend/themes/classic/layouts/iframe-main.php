@@ -1,7 +1,7 @@
 <?php
 /**
- * @link http://www.juwanfang.com/
- * @copyright Copyright (c) 聚万方CMS
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
 use yii\helpers\Html;
@@ -96,7 +96,7 @@ $adminModel = Yii::$app->user->identity;
         		
         		<?= $this->render('//layouts/_nav.php', [], $this->context) //alias、//主题路径、当前模块路径、相对路径 ?>
         		
-        		<a href="http://www.juwanfang.com/" target="_blank" class="web-link df" title="官方网站"><i class="fa fa-life-ring"></i></a>
+        		<a href="http://www.turen2.com/" target="_blank" class="web-link df" title="官方网站"><i class="fa fa-life-ring"></i></a>
         	</div>
         </div>
         

@@ -1,7 +1,7 @@
 <?php
 /**
- * @link http://www.juwanfang.com/
- * @copyright Copyright (c) 聚万方CMS
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
 use yii\helpers\Html;
@@ -17,7 +17,7 @@ $this->title = '系统开发日志';
 ?>
 
 <div class="dev-log">
-    <p class="upgradelog"><i class="fa fa-code"></i> 聚万方系统历史开发日志</p>
+    <p class="upgradelog"><i class="fa fa-code"></i> 土人开源系统历史开发日志</p>
     
 	<?php foreach ($dataProvider->getModels() as $key => $model) { ?>
 	<div class="panel">
