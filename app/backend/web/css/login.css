@@ -1,0 +1,349 @@
+/*全局控制*/
+*{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+:after,:before{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "Microsoft Yahei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+	font-size: 12px;
+}
+
+html, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td, p {
+	margin: 0;
+	padding: 0;
+}
+
+img {
+	border: 0;
+}
+
+ul, li {
+	list-style-type: none;
+}
+
+a {
+	color: #62a8ea;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus {
+	outline: none;
+}
+
+.clearfix:before, .clearfix:after, .cl:before, .cl:after {
+	content: ".";
+	display: block;
+	height: 0;
+	overflow: hidden;
+}
+
+.clearfix:after, .cl:after {
+	clear: both;
+}
+
+input:-webkit-autofill {
+    background-color: #FFF;
+    background-image: none;
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+.form-control {
+	display: block;
+	width: 100%;
+	height: 32px;
+	padding: 4px 12px;
+    margin-top: 3px;
+	font-size: 14px;
+	line-height: 1.6;
+	color: #76838f;
+	background-color: #fff;
+	border: 1px solid #e4eaec;
+	border-radius: 3px;
+	-webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.form-control:focus {
+	border-color: #62a8ea;
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(98, 168, 234, .6);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(98, 168, 234, .6);
+}
+
+.form-control.focus, .form-control:focus {
+	border-color: #62a8ea;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.form-control::-moz-placeholder {
+	color: #a3afb7;
+	opacity: 1;
+}
+
+.form-control:-ms-input-placeholder {
+	color: #a3afb7;
+}
+
+.form-control::-webkit-input-placeholder {
+	color: #a3afb7;
+}
+
+.form-control::-ms-expand {
+	background-color: transparent;
+	border: 0;
+}
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control
+{
+	background-color: #f3f7f9;
+	opacity: 1;
+}
+
+.form-control[disabled], fieldset[disabled] .form-control {
+	cursor: not-allowed;
+}
+
+textarea.form-control {
+	height: auto;
+}
+
+input[type=search] {
+	-webkit-appearance: none;
+}
+
+.form-group {
+	margin-bottom: 12px;
+}
+
+.checkbox, .radio {
+	position: relative;
+	display: block;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.checkbox label, .radio label {
+	min-height: 22px;
+	padding-left: 20px;
+	margin-bottom: 0;
+	font-weight: 400;
+	cursor: pointer;
+}
+
+.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
+	position: absolute;
+	margin-left: -20px;
+}
+
+.checkbox+.checkbox, .radio+.radio {
+	margin-top: -5px;
+}
+
+.checkbox-inline, .radio-inline {
+	position: relative;
+	display: inline-block;
+	padding-left: 20px;
+	margin-bottom: 0;
+	font-weight: 400;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.checkbox-inline+.checkbox-inline, .radio-inline+.radio-inline {
+	margin-top: 0;
+	margin-left: 10px;
+}
+
+fieldset[disabled] input[type=checkbox], fieldset[disabled] input[type=radio], input[type=checkbox].disabled, input[type=checkbox][disabled], input[type=radio].disabled, input[type=radio][disabled] {
+	cursor: not-allowed;
+}
+
+.checkbox-inline.disabled, .radio-inline.disabled, fieldset[disabled] .checkbox-inline, fieldset[disabled] .radio-inline {
+	cursor: not-allowed;
+}
+
+.checkbox.disabled label, .radio.disabled label, fieldset[disabled] .checkbox label, fieldset[disabled] .radio label {
+	cursor: not-allowed;
+}
+
+.has-success .form-control {
+    border-color: #62a8ea;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.has-success .form-control:focus {
+    border-color: #62a8ea;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(98, 168, 234, .6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(98, 168, 234, .6);
+}
+
+.has-error .form-control {
+	border-color: #f96868;
+	-webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.has-error .form-control:focus {
+    border-color: #f96868;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+}
+
+.help-block {
+	display: block;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	color: #bcc2c8;
+}
+
+.has-error .checkbox, .has-error .checkbox-inline, .has-error .control-label, .has-error .help-block, .has-error .radio, .has-error .radio-inline, .has-error.checkbox label, .has-error.checkbox-inline label, .has-error.radio label, .has-error.radio-inline label {
+    color: #f96868;
+}
+
+.btn {
+    display: inline-block;
+    padding: 7px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    -webkit-transition: border .2s linear,color .2s linear,width .2s linear,background-color .2s linear;
+    -o-transition: border .2s linear,color .2s linear,width .2s linear,background-color .2s linear;
+    transition: border .2s linear,color .2s linear,width .2s linear,background-color .2s linear;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #62a8ea;
+    border-color: #62a8ea;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+.alert {
+    padding: 10px;
+    padding-right: 30px;
+    padding-left: 10px;
+    margin-bottom: 22px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+}
+
+.alert-warning {
+    color: #f2a654;
+    background-color: rgba(255,243,230,.8);
+    border-color: #fff3e6;
+}
+
+/*登录页面*/
+.admin-login {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background: url(../images/login.jpg) no-repeat center top;
+}
+
+.login-box, .login-foot {
+	width: 470px;
+	margin: 0 auto;
+}
+
+.login-foot {
+	margin: 10px auto;
+}
+
+.login-box {
+	min-height: 580px;
+	padding: 25px 60px;
+    margin-top: 3%;
+    color: #76838f;
+    background: #fff;
+}
+
+.login-box .login-head {
+	text-align: center;
+}
+
+.login-head p {
+	line-height: 34px;
+	font-size: 16px;
+	overflow: hidden;
+}
+
+.login-form .form-group {
+    margin-top: 15px;
+}
+
+.login-form .control-label {
+	color: #76838f;
+	font-size: 12px;
+	line-height: 14px;
+}
+
+.login-form .form-control {
+    height: 42px;
+}
+
+.login-form .field-login-verifycode {
+	position: relative;
+}
+
+#login-verifycode-image {
+	padding: 0;
+	position: absolute;
+	background-color: #f3f7f9;
+    border: none;
+	right: 0;
+	top: 17px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,109 @@
+/* ph */
+.pb a, .pb a:hover {
+    text-decoration: none;
+}
+.pb {
+    position: fixed;
+    text-align:left;
+    background: #fff;
+    border: 1px solid #8e8e8e;
+    background-clip: padding-box;
+    z-index: 2209;
+    left: 50px; 
+    top: 40px; 
+    width: 300px;
+    font-size: 13px;
+    color: #515151;
+}
+.pb:after {
+    content: ' ';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: -5px;
+    top: -5px;
+    border: 5px solid transparent;
+    border-color: rgba(51, 51, 51, 0.1);
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    z-index: -1;
+}
+.pb .pb-hd {
+    font-size: 14px;
+    cursor: move;
+    height: 25px;
+    line-height:24px;
+    font-weight:bold;
+    padding-left:5px;
+    border-bottom: 1px solid #ccc;
+}
+.pb .pb-x {
+    text-indent : -999em;
+    height:12px;
+    width:12px;
+    margin: 7px 7px 0 0;
+    float:right;
+    background: url(../images/closeBg.png) no-repeat 0 100%;
+    -webkit-transition: -webkit-transform 0.4s ease-out;
+    -moz-transition: -moz-transform 0.4s ease-out;
+    transition: transform 0.4s ease-out;
+}
+.pb .pb-x:hover {
+    cursor:pointer;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+/*body*/
+.pb .pb-bd {
+    width:100%;
+    height:100%;
+}
+/*content*/
+.pb .pb-ct {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 15px;
+}
+/*foot*/
+.pb .pb-ft {
+    height: 30px;
+    line-height: 30px;
+    margin-top: 12px;
+    padding: 0 6px;
+    background: #f2f2f2;
+    border-top: 1px solid #ccc;
+    text-align: right;
+    overflow: hidden;
+}
+.pb a.pb-btn {
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 10px;
+    margin: 2px 3px;
+    
+    float: right;
+    height: 22px;
+    line-height: 22px;
+    margin-top: 4px;
+    padding: 0 11px;
+    background: #3d566d;
+    font-size: 13px;
+    color: #fff;
+}
+.pb a.pb-ok {
+    
+}
+.pb a.pb-ok:hover {
+    background: #4f6880;
+}
+.pb a.pb-cl {
+    background-color: #ddd;
+    color: #000000;
+}
+.pb a.pb-cl:hover {
+    background-color: #aaa;
+    color: #515151;
+}

@@ -1,0 +1,439 @@
+@charset "utf-8";
+/*全局设置*/
+body {
+	font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "Microsoft Yahei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+	line-height: 22px;
+	font-size: 12px;
+	color: #333;
+	overflow: hidden;
+}
+
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre,
+	form, fieldset, input, textarea, p, blockquote, th, td, p {
+	margin: 0;
+	padding: 0;
+}
+
+input {
+	font-size: 12px;
+	font-family: Arial;
+	vertical-align: middle;
+}
+
+input[type="password"]:focus {
+	box-shadow: 0 0 1px #09f;
+	outline: none;
+}
+
+img {
+	border: 0;
+}
+
+ul, li {
+	list-style-type: none;
+}
+
+a {
+	color: #333;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus {
+	outline: none;
+}
+
+.cl {
+	clear: both;
+}
+
+/*布局样式*/
+.left {
+	width: 218px;
+	position: absolute;
+	top: 61px;
+	left: 0px;
+	bottom: 0px;
+	border-right: 1px solid #f2f2f2;
+	background: #fafafa;
+}
+
+.left {
+	*height: 100%;
+	*top: 0;
+	*bottom: 0;
+	*border-top: 61px solid #fff;
+	*border-bottom: 0px solid #fff;
+	*z-index: 1;
+}
+
+.left .menu {
+	height: 100%;
+}
+
+.left .menu iframe {
+	height: 100%;
+	width: 99.99%;
+}
+
+.right {
+	position: absolute;
+	top: 61px;
+	left: 219px;
+	right: 0;
+	bottom: 0px;
+}
+
+.right {
+	*height: 100%;
+	*top: 0;
+	*bottom: 0;
+	*border-top: 61px solid #fff;
+	*border-bottom: 0px solid #fff;
+	*z-index: 1;
+}
+
+.right .main {
+	height: 100%;
+}
+
+.right .main iframe {
+	height: 100%;
+	width: 99.99%;
+}
+
+/*头部样式*/
+.header {
+	height: 60px;
+	border-bottom: 1px solid #1b5983;
+	background: #509ee1;
+	position: relative;
+	z-index: 2;
+}
+
+.header a {
+	transition-duration: 300ms;
+}
+
+.header .logo {
+	background: url(./images/logoiHover.png) no-repeat;
+}
+
+.header .logo {
+	background: url(./images/logoiOn.png) no-repeat;
+}
+
+.header .logo {
+	display: block;
+	width: 60px;
+	height: 60px;
+	background: url(./images/logoi.png) no-repeat;
+	position: absolute;
+	top: 11px;
+	left: 10px;
+}
+
+.header .logoOn {
+	background: url(./images/logoiOn.png) no-repeat;
+}
+
+.header .logo:hover {
+	background: url(./images/logoiHover.png) no-repeat;
+}
+
+.header .logo {
+	transition-duration: 300ms;
+}
+
+.header .user {
+	position: absolute;
+	left: 85px;
+	top: 24px;
+}
+
+.header .user .user-panel {
+	float: left;
+	display: block;
+	margin: 3px 0 0 10px;
+}
+
+.header .user .user-panel .arrow {
+	display: block;
+	height: 16px;
+	font-size: 20px;
+    color: #fff;
+}
+
+.header .user .user-panel .arrow .i1 {
+	display: inline;
+}
+.header .user .user-panel .arrow .i2 {
+    display: none;
+}
+.header .user .user-panel .on .i1 {
+    display: none;
+}
+.header .user .user-panel .on .i2 {
+    display: inline;
+}
+
+.header .user .user-panel .arrow:hover {
+	text-decoration: none;
+}
+
+.header .user .user-panel .panel {
+	width: 244px;
+	min-height: 159px;
+	line-height: 20px;
+	position: absolute;
+	top: 29px;
+	left: 0;
+	background: #fff;
+	box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+	border: 1px solid #f5f5f5;
+	display: none;
+}
+
+.header .user .user-panel .panel .warp {
+	padding: 11px 11px 0;
+}
+
+.header .user .user-panel .panel .txt {
+	color: #d30000;
+	margin-bottom: 7px;
+}
+
+.header .user .user-panel .panel .priv {
+	margin-bottom: 5px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #edecec;
+}
+
+.header .user .user-panel .panel .priv a {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.header .user .user-panel .panel .info {
+	margin-bottom: 5px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #edecec;
+}
+
+.header .user .user-panel .panel .actbtn {
+	width: 222px;
+	height: 30px;
+	line-height: 30px;
+}
+
+.header .user .user-panel .panel .actbtn a {
+	position: absolute;
+	bottom: 5px;
+	color: #509ee1;
+}
+
+.header .user .user-panel .panel .actbtn a.edit {
+	left: 11px;
+}
+
+.header .user .user-panel .panel .actbtn a.logout {
+	right: 11px;
+}
+
+.header .user .auth-user {
+	display: none;
+	width: 14px;
+	height: 13px;
+	float: left;
+	margin: 5px 0 0 15px;
+	background: url(./images/authBg.png) no-repeat;
+}
+
+.header .fun {
+	position: absolute;
+	top: 23px;
+	right: 20px;
+	line-height: 18px;
+}
+
+.header .fun a.df {
+	float: left;
+	margin-left: 20px;
+    font-size: 16px;
+    color: #FFF;
+}
+
+.header .fun a.df:hover {
+	color: #666;
+}
+
+/*锁屏样式*/
+.lock-screen-bg {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background: #f1fbff;
+	display: none;
+	z-index: 998;
+}
+
+.lock-screen-bg {
+	*height: expression(document.body.scrollHeight > document.body.offsetHeight ? 
+		document.body.scrollHeight : document.body.offsetHeight + 'px');
+	*width: expression(document.body.scrollWidth > document.body.offsetWidth ? 
+		document.body.scrollWidth : document.body.offsetWidth + 'px');
+}
+
+.lock-screen-bg .win-box {
+	width: 320px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -300px 0 0 -170px;
+	padding-top: 200px;
+	background: url(./images/lock-screenIco.png) no-repeat center center;
+	z-index: 999;
+}
+
+.lock-screen-bg .win-box .pwd {
+	line-height: 35px;
+	font-size: 14px;
+}
+
+.lock-screen-bg .win-box .pwd .btn {
+	display: inline-block;
+	width: 60px;
+	height: 30px;
+	background: #09f;
+	line-height: 28px;
+	text-align: center;
+	color: #fff;
+	cursor: pointer;
+}
+
+.lock-screen-bg .win-box input {
+	width: 240px;
+	height: 28px;
+	padding: 0 3px;
+	line-height: 28px;
+	border: 1px solid #d0d0d0;
+	*height: 30px;
+	*margin-top: -1px;
+	*margin-top: -2px !important;
+	_margin-top: 0;
+}
+
+.lock-screen-bg .note {
+	font-size: 12px;
+	color: red;
+}
+
+.lock-screen-bg .copyright {
+	width: 100%;
+	position: absolute;
+	bottom: 100px;
+	text-align: center;
+	font-family: Verdana;
+	font-size: 14px;
+	color: #c4c4c4;
+	z-index: 999;
+}
+
+/*站点列表*/
+.site-list {
+	display: inline;
+}
+
+.site-list a {
+	display: block;
+	margin-left: 18px;
+	float: left;
+	text-decoration: none;
+	font-size: 13px;
+	color: #fff;
+}
+
+.site-list a:hover {
+	color: #333;
+}
+
+.site-list a.on {
+	border-bottom: 2px solid #fff;
+}
+
+/*快捷菜单*/
+.quick {
+	display: inline;
+}
+
+.quick .quickmenu {
+	width: 550px;
+	height: 449px;
+	position: absolute;
+	top: 27px;
+	right: 0;
+	background: #fff;
+	border: 1px solid #f5f5f5;
+	display: none;
+}
+
+.quick .quickmenu .warp {
+	padding: 6px;
+	box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+}
+
+.quick .quickmenu .col {
+	float: left;
+}
+
+.quick .quickmenu .mapitem {
+	width: 127px;
+	*width: 135px;
+	margin-right: -1px;
+	padding: 3px;
+	border: 1px solid #eee;
+	border-bottom: 0;
+	overflow: hidden;
+}
+
+.quick .quickmenu .mapitem strong {
+	display: block;
+	padding: 2px 2px 2px 5px;
+	line-height: 18px;
+	color: #b87500;
+}
+
+.quick .quickmenu .mapitem dl {
+	padding-left: 4px;
+}
+
+.quick .quickmenu .mapitem dl dt {
+	margin: 3px 0;
+	_padding-left: 1px;
+	line-height: 20px;
+	color: #006a92;
+}
+
+.quick .quickmenu .mapitem dl dd {
+	line-height: 20px;
+}
+
+.quick .quickmenu .mapitem dl dd a {
+	padding: 3px 2px;
+	text-decoration: none;
+	color: #333;
+}
+
+.quick .quickmenu .mapitem dl dd a:hover {
+	background: #408ac9;
+	color: #fff;
+}
+
+.quick .quickmenu .mapitem dl dd a.bom {
+	font-family: Verdana;
+}
