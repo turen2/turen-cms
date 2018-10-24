@@ -82,20 +82,19 @@ if(empty($dataProvider->count))
 
 <div class="bottom-toolbar">
 	<?= "<?= " ?>Html::a('添加新开发日志', ['create'], ['class' => 'data-btn']) ?>
-</div>
-
-<div class="page">
-	<?= "<?= " ?>LinkPager::widget([
-	    'pagination' => $dataProvider->getPagination(),
-	    'options' => ['class' => 'page-list', 'tag' => 'div'],
-	    'activePageCssClass' => 'on',
-	    'firstPageLabel' => '首页',
-	    'lastPageLabel' => '尾页',
-	    'nextPageLabel' => '下页',
-	    'prevPageLabel' => '上页',
-	    'linkContainerOptions' => ['tag' => 'span'],
-	]);
-	?>
+	<div class="page">
+    	<?= "<?= " ?>LinkPager::widget([
+    	    'pagination' => $dataProvider->getPagination(),
+    	    'options' => ['class' => 'page-list', 'tag' => 'div'],
+    	    'activePageCssClass' => 'on',
+    	    'firstPageLabel' => '首页',
+    	    'lastPageLabel' => '尾页',
+    	    'nextPageLabel' => '下页',
+    	    'prevPageLabel' => '上页',
+    	    'linkContainerOptions' => ['tag' => 'span'],
+    	]);
+    	?>
+    </div>
 </div>
 
 <div class="quick-toolbar">
@@ -119,4 +118,5 @@ if(empty($dataProvider->count))
 		<div class="quick-area-bg"></div>
 	</div>
 </div>
+<p class="cp tc"><?= "<?= " ?>Yii::$app->params['config_copyright'] ?></p>
 <?= "\n" ?>
