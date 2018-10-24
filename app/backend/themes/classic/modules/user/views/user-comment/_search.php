@@ -8,12 +8,7 @@ use app\components\ActiveRecord;
 /* @var $model app\models\user\UserCommentSearch */
 /* @var $form yii\widgets\ActiveForm */
 
-$isAll = true;
-foreach ($model->attributes as $key => $value) {
-    if(!is_null($value)) {
-        $isAll = false;
-    }
-}
+$isAll = is_null($model->status);
 ?>
 
 <div class="user-comment-search toolbar-tab">

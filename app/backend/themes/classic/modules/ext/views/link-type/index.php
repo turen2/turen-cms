@@ -86,7 +86,7 @@ if(empty($dataProvider->count))
 }
 ?>
 
-<div class="bottom-toolbar">
+<div class="bottom-toolbar clearfix">
 	<span class="sel-area">
     	<span>选择：</span> 
     	<a href="javascript:jwf.com.checkAll(true);">全部</a> - 
@@ -98,10 +98,6 @@ if(empty($dataProvider->count))
     	<a href="javascript:jwf.com.hideAllRows();">隐藏</a>
 	</span>
 	<?= Html::a('添加新链接组', ['create'], ['class' => 'data-btn']) ?>
-</div>
-
-<div class="page">
-	<div class="page-text">共有<span><?=$dataProvider->getTotalCount()?></span>条记录</div>
 </div>
 
 <div class="quick-toolbar">
@@ -119,9 +115,10 @@ if(empty($dataProvider->count))
     		</span> 
 			<?= Html::a('添加新链接组', ['create'], ['class' => 'data-btn']) ?>
 			<div class="page-small">
-    			<div class="page-text">共有<span><?=$dataProvider->getTotalCount()?></span>条记录</div>
+    			<div class="page-text">共 <?=$dataProvider->getTotalCount()?> 条记录</div>
     		</div>
 		</div>
 		<div class="quick-area-bg"></div>
 	</div>
 </div>
+<p class="cp tc"><?= Yii::$app->params['config_copyright'] ?></p>

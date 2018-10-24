@@ -74,7 +74,7 @@ if(empty($dataProvider->count))
 }
 ?>
 
-<div class="bottom-toolbar">
+<div class="bottom-toolbar clearfix">
 	<span class="sel-area">
     	<span>选择：</span> 
     	<a href="javascript:jwf.com.checkAll(true);">全部</a> - 
@@ -82,20 +82,19 @@ if(empty($dataProvider->count))
     	<a href="javascript:jwf.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>　
 	</span>
 	<?= Html::a('添加新广告', ['create'], ['class' => 'data-btn']) ?>
-</div>
-
-<div class="page">
-	<?= LinkPager::widget([
-	    'pagination' => $dataProvider->getPagination(),
-	    'options' => ['class' => 'page-list', 'tag' => 'div'],
-	    'activePageCssClass' => 'on',
-	    'firstPageLabel' => '首页',
-	    'lastPageLabel' => '尾页',
-	    'nextPageLabel' => '下页',
-	    'prevPageLabel' => '上页',
-	    'linkContainerOptions' => ['tag' => 'span'],
-	]);
-	?>
+	<div class="page">
+    	<?= LinkPager::widget([
+    	    'pagination' => $dataProvider->getPagination(),
+    	    'options' => ['class' => 'page-list', 'tag' => 'div'],
+    	    'activePageCssClass' => 'on',
+    	    'firstPageLabel' => '首页',
+    	    'lastPageLabel' => '尾页',
+    	    'nextPageLabel' => '下页',
+    	    'prevPageLabel' => '上页',
+    	    'linkContainerOptions' => ['tag' => 'span'],
+    	]);
+    	?>
+    </div>
 </div>
 
 <div class="quick-toolbar">
@@ -105,7 +104,8 @@ if(empty($dataProvider->count))
         	<span>选择：</span> 
         	<a href="javascript:jwf.com.checkAll(true);">全部</a> - 
         	<a href="javascript:jwf.com.checkAll(false);">无</a> - 
-        	<a href="javascript:jwf.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>　
+        	<a href="javascript:jwf.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a> - 
+        	<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
     	</span>
 			<?= Html::a('添加新广告', ['create'], ['class' => 'data-btn']) ?>
 			<div class="page-small">
@@ -125,4 +125,4 @@ if(empty($dataProvider->count))
 		<div class="quick-area-bg"></div>
 	</div>
 </div>
-
+<p class="cp tc"><?= Yii::$app->params['config_copyright'] ?></p>

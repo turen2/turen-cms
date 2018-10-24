@@ -9,6 +9,7 @@ use app\assets\ValidationAsset;
 use app\models\user\UserComment;
 use app\widgets\laydate\LaydateWidget;
 use app\widgets\ueditor\UEditorWidget;
+use app\models\cms\Column;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\user\UserComment */
@@ -19,12 +20,11 @@ ValidationAsset::register($this);
 $this->registerJs('
 var validator = $("#createform").validate({
 	rules: {
-		"'.Html::getInputName($model, 'xxxxx').'": {
+		"'.Html::getInputName($model, 'uc_typeid').'": {
 			required: true,
 		},
-        "'.Html::getInputName($model, 'xxxxx').'": {
+        "'.Html::getInputName($model, 'uc_model_id').'": {
 			required: true,
-            digits:true,
 		}
 	},
     errorElement: "p",
@@ -47,16 +47,10 @@ var validator = $("#createform").validate({
 ]); ?>
     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user-comment-form form-table">
     	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('uc_class_name')?><?php if($model->isAttributeRequired('uc_class_name')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'uc_class_name', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('uc_model_id')?><?php if($model->isAttributeRequired('uc_model_id')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
     			<?= Html::activeInput('text', $model, 'uc_model_id', ['class' => 'input']) ?>
+    			<?= Html::activeDropDownList($model, 'uc_typeid', Column::ColumnConvert('id2name'), ['class' => '']) ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>

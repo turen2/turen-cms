@@ -17,7 +17,7 @@ $this->title = '系统开发日志';
 ?>
 
 <div class="dev-log">
-    <p class="upgradelog"><i class="fa fa-code"></i> 土人开源系统历史开发日志</p>
+    <p class="upgradelog"><i class="fa fa-code"></i> <?= Yii::$app->params['config_site_name'] ?>历史开发日志</p>
     
 	<?php foreach ($dataProvider->getModels() as $key => $model) { ?>
 	<div class="panel">
@@ -35,21 +35,48 @@ $this->title = '系统开发日志';
     ?>
 </div>
 
-<div class="bottom-toolbar" style="max-width: 900px;">
-	<?= Html::a('添加新开发日志', ['create'], ['class' => 'data-btn']) ?>
+<div class="bottom-toolbar clearfix">
+	<span class="sel-area">
+    	<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
+	</span>
+	<div style="max-width: 950px;"><?= Html::a('添加文章信息', ['create'], ['class' => 'data-btn']) ?></div>
+	<div class="page">
+    	<?= LinkPager::widget([
+    	    'pagination' => $dataProvider->getPagination(),
+    	    'options' => ['class' => 'page-list', 'tag' => 'div'],
+    	    'activePageCssClass' => 'on',
+    	    'firstPageLabel' => '首页',
+    	    'lastPageLabel' => '尾页',
+    	    'nextPageLabel' => '下页',
+    	    'prevPageLabel' => '上页',
+    	    'linkContainerOptions' => ['tag' => 'span'],
+    	]);
+    	?>
+    </div>
 </div>
 
-<div class="page">
-	<?= LinkPager::widget([
-	    'pagination' => $dataProvider->getPagination(),
-	    'options' => ['class' => 'page-list', 'tag' => 'div'],
-	    'activePageCssClass' => 'on',
-	    'firstPageLabel' => '首页',
-	    'lastPageLabel' => '尾页',
-	    'nextPageLabel' => '下页',
-	    'prevPageLabel' => '上页',
-	    'linkContainerOptions' => ['tag' => 'span'],
-	]);
-	?>
+<div class="quick-toolbar">
+	<div class="qiuck-warp">
+		<div class="quick-area">
+    		<span class="sel-area">
+            	<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
+        	</span>
+			<?= Html::a('添加新文章', ['create'], ['class' => 'data-btn']) ?>
+			<div class="page-small">
+			<?= LinkPager::widget([
+			    'pagination' => $dataProvider->getPagination(),
+			    'options' => ['class' => 'page-list', 'tag' => 'div'],
+			    'activePageCssClass' => 'on',
+			    'firstPageLabel' => '首页',
+			    'lastPageLabel' => '尾页',
+			    'nextPageLabel' => '下页',
+			    'prevPageLabel' => '上页',
+			    'linkContainerOptions' => ['tag' => 'span'],
+			]);
+			?>
+			</div>
+		</div>
+		<div class="quick-area-bg"></div>
+	</div>
 </div>
-
+<p class="cp tc"><?= Yii::$app->params['config_copyright'] ?></p>

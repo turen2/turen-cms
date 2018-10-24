@@ -39,7 +39,9 @@ if(empty($dataProvider->count))
 }
 ?>
 
-<div class="bottom-toolbar"> <a href="<?= Url::to(['column/index'])?>" class="data-btn">返回栏目管理</a> </div>
+<div class="bottom-toolbar clearfix">
+	<a href="<?= Url::to(['column/index'])?>" class="data-btn">返回栏目管理</a>
+</div>
 
 <div class="page">
 	<?= LinkPager::widget([
@@ -58,6 +60,10 @@ if(empty($dataProvider->count))
 <div class="quick-toolbar">
 	<div class="qiuck-warp">
 		<div class="quick-area">
+			<span class="sel-area">
+				<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
+			</span>
+			<a href="<?= Url::to(['column/index'])?>" class="data-btn">返回栏目管理</a>
 			<div class="page-small">
 			<?= LinkPager::widget([
 			    'pagination' => $dataProvider->getPagination(),
@@ -75,4 +81,4 @@ if(empty($dataProvider->count))
 		<div class="quick-area-bg"></div>
 	</div>
 </div>
-
+<p class="cp tc"><?= Yii::$app->params['config_copyright'] ?></p>

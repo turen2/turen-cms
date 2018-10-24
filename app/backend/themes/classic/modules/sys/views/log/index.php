@@ -67,3 +67,4 @@ if(empty($dataProvider->count))
 	]);
 	?>
 </div>
+<p class="cp tc"><?= Yii::$app->params['config_copyright'] ?></p>

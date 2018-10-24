@@ -129,6 +129,25 @@ class BlockController extends Controller
         Yii::$app->getSession()->setFlash('success', $model->title.' 已经成功删除！');
         return $this->redirect($returnUrl);
     }
+    
+    /**
+     * 批量提交并处理
+     * @param string $type delete | order
+     * @return \yii\web\Response
+     */
+    public function actionBatch($type)
+    {
+        if($type == 'delete') {
+            $tips = '';
+            foreach (Block::find()->current()->andWhere(['id' => Yii::$app->getRequest()->post('checkid', [])])->all() as $model) {
+                $model->delete();
+                $tips .= '<li>'.$model->title.' 删除成功！</li>';
+            }
+            Yii::$app->getSession()->setFlash('success', '<ul>'.$tips.'</ul>');
+        }
+        
+        return $this->redirect(['index']);
+    }
 
     /**
      * Finds the Block model based on its primary key value.

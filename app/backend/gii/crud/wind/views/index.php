@@ -80,7 +80,7 @@ if(empty($dataProvider->count))
 }
 ?>
 
-<div class="bottom-toolbar">
+<div class="bottom-toolbar clearfix">
 	<?= "<?= " ?>Html::a('添加新开发日志', ['create'], ['class' => 'data-btn']) ?>
 	<div class="page">
     	<?= "<?= " ?>LinkPager::widget([
@@ -100,6 +100,9 @@ if(empty($dataProvider->count))
 <div class="quick-toolbar">
 	<div class="qiuck-warp">
 		<div class="quick-area">
+			<span class="sel-area">
+				<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
+			</span>
 			<?= "<?= " ?>Html::a('添加新开发日志', ['create'], ['class' => 'data-btn']) ?>
 			<span class="page-small">
 			<?= "<?= " ?>LinkPager::widget([

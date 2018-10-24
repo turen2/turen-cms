@@ -9,6 +9,7 @@ use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use app\models\cms\Src;
 use app\models\user\UserLevel;
+use yii\widgets\LinkPager;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\user\UserLevelSearch */
@@ -87,7 +88,7 @@ $this->title = '用户等级管理';
 </table>
 <?php ActiveForm::end(); ?>
 
-<div class="bottom-toolbar">
+<div class="bottom-toolbar clearfix">
 	<span class="sel-area"><span>选择：</span>
     	<a href="javascript:jwf.com.checkAll(true);">全部</a> - 
     	<a href="javascript:jwf.com.checkAll(false);">无</a> - 
@@ -96,9 +97,19 @@ $this->title = '用户等级管理';
     	<a href="javascript:jwf.com.batchSubmit('<?=Url::to(['batch', 'type' => 'order'])?>', 'batchform');">排序</a>
 	</span>
 	<a href="#" onclick="batchform.submit();" class="data-btn">更新全部</a>
-</div>
-<div class="page">
-	<div class="page-text">共有<span><?= $dataProvider->count; ?></span>条记录</div>
+	<div class="page">
+    	<?= LinkPager::widget([
+    	    'pagination' => $dataProvider->getPagination(),
+    	    'options' => ['class' => 'page-list', 'tag' => 'div'],
+    	    'activePageCssClass' => 'on',
+    	    'firstPageLabel' => '首页',
+    	    'lastPageLabel' => '尾页',
+    	    'nextPageLabel' => '下页',
+    	    'prevPageLabel' => '上页',
+    	    'linkContainerOptions' => ['tag' => 'span'],
+    	]);
+    	?>
+    </div>
 </div>
 
 <div class="quick-toolbar">
@@ -109,13 +120,25 @@ $this->title = '用户等级管理';
 				<a href="javascript:jwf.com.checkAll(false);">无</a> - 
 				<a href="javascript:jwf.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>
 				<span>操作：</span>
-				<a href="javascript:jwf.com.batchSubmit('<?=Url::to(['batch', 'type' => 'order'])?>', 'batchform');">排序</a>
+				<a href="javascript:jwf.com.batchSubmit('<?=Url::to(['batch', 'type' => 'order'])?>', 'batchform');">排序</a> - 
+				<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
 			</span>
 			<a href="#" onclick="batchform.submit();" class="data-btn">更新全部</a>
 			<div class="page-small">
-				<div class="page-text">共有<span><?= $dataProvider->count; ?></span>条记录</div>
+			<?= LinkPager::widget([
+			    'pagination' => $dataProvider->getPagination(),
+			    'options' => ['class' => 'page-list', 'tag' => 'div'],
+			    'activePageCssClass' => 'on',
+			    'firstPageLabel' => '首页',
+			    'lastPageLabel' => '尾页',
+			    'nextPageLabel' => '下页',
+			    'prevPageLabel' => '上页',
+			    'linkContainerOptions' => ['tag' => 'span'],
+			]);
+			?>
 			</div>
 		</div>
 		<div class="quick-area-bg"></div>
 	</div>
 </div>
+<p class="cp tc"><?= Yii::$app->params['config_copyright'] ?></p>

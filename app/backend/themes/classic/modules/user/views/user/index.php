@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\user\UserSearch */
@@ -14,9 +15,14 @@ $this->title = 'Users';
 
 <?= $this->render('_search', ['model' => $searchModel]); ?>
 
+<?php $form = ActiveForm::begin([
+    'enableClientScript' => false,
+    'options' => ['id' => 'batchform'],
+]); ?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="data-table">
 	<tr align="left" class="head">
-		<td width="4%" class="first-column">ID</td>
+		<td width="4%" class="first-column"><input type="checkbox" name="checkid" id="checkid" onclick="jwf.com.checkAll(this.checked);"></td>
+		<td width="4%">ID</td>
 		
 				
 		<td width="10%">添加日期</td>
@@ -37,7 +43,10 @@ $this->title = 'Users';
 		$delstr = Html::a('删除', 'javascript:;', $options);
 	?>
 	<tr align="left" class="data-tr">
-		<td class="first-column"><?= $model->id; ?></td>
+		<td  class="first-column">
+			<input type="checkbox" name="checkid[]" id="checkid[]" value="<?= $model->id; ?>">
+		</td>
+		<td><?= $model->id; ?></td>
 		
 				
 		<td><?= Yii::$app->getFormatter()->asDate($model->updated_at); ?></td>
@@ -45,6 +54,8 @@ $this->title = 'Users';
 	</tr>
 	<?php } ?>
 </table>
+<?php ActiveForm::end(); ?>
+
 <?php //判断无记录样式
 if(empty($dataProvider->count))
 {
@@ -52,28 +63,40 @@ if(empty($dataProvider->count))
 }
 ?>
 
-<div class="bottom-toolbar">
-	<?= Html::a('添加新开发日志', ['create'], ['class' => 'data-btn']) ?>
-</div>
-
-<div class="page">
-	<?= LinkPager::widget([
-	    'pagination' => $dataProvider->getPagination(),
-	    'options' => ['class' => 'page-list', 'tag' => 'div'],
-	    'activePageCssClass' => 'on',
-	    'firstPageLabel' => '首页',
-	    'lastPageLabel' => '尾页',
-	    'nextPageLabel' => '下页',
-	    'prevPageLabel' => '上页',
-	    'linkContainerOptions' => ['tag' => 'span'],
-	]);
-	?>
+<div class="bottom-toolbar clearfix">
+	<span class="sel-area">
+    	<span>选择：</span> 
+    	<a href="javascript:jwf.com.checkAll(true);">全部</a> - 
+    	<a href="javascript:jwf.com.checkAll(false);">无</a> - 
+    	<a href="javascript:jwf.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>　
+	</span>
+	<?= Html::a('添加新用户', ['create'], ['class' => 'data-btn']) ?>
+	<div class="page">
+    	<?= LinkPager::widget([
+    	    'pagination' => $dataProvider->getPagination(),
+    	    'options' => ['class' => 'page-list', 'tag' => 'div'],
+    	    'activePageCssClass' => 'on',
+    	    'firstPageLabel' => '首页',
+    	    'lastPageLabel' => '尾页',
+    	    'nextPageLabel' => '下页',
+    	    'prevPageLabel' => '上页',
+    	    'linkContainerOptions' => ['tag' => 'span'],
+    	]);
+    	?>
+    </div>
 </div>
 
 <div class="quick-toolbar">
 	<div class="qiuck-warp">
 		<div class="quick-area">
-			<?= Html::a('添加新开发日志', ['create'], ['class' => 'data-btn']) ?>
+			<span class="sel-area">
+            	<span>选择：</span> 
+            	<a href="javascript:jwf.com.checkAll(true);">全部</a> - 
+            	<a href="javascript:jwf.com.checkAll(false);">无</a> - 
+            	<a href="javascript:jwf.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a> - 
+            	<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
+        	</span>
+			<?= Html::a('添加新用户', ['create'], ['class' => 'data-btn']) ?>
 			<span class="page-small">
 			<?= LinkPager::widget([
 			    'pagination' => $dataProvider->getPagination(),

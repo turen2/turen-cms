@@ -62,27 +62,29 @@ if(empty($models))
 }
 ?>
 
-<div class="bottom-toolbar">
+<div class="bottom-toolbar clearfix">
 	<?= Html::a('添加管理员', ['/sys/admin/create'], ['class' => 'data-btn']) ?>
-</div>
-
-<div class="page">
-	<?= LinkPager::widget([
-	    'pagination' => $dataProvider->getPagination(),
-	    'options' => ['class' => 'page-list', 'tag' => 'div'],
-	    'activePageCssClass' => 'on',
-	    'firstPageLabel' => '首页',
-	    'lastPageLabel' => '尾页',
-	    'nextPageLabel' => '下页',
-	    'prevPageLabel' => '上页',
-	    'linkContainerOptions' => ['tag' => 'span'],
-	]);
-	?>
+	<div class="page">
+    	<?= LinkPager::widget([
+    	    'pagination' => $dataProvider->getPagination(),
+    	    'options' => ['class' => 'page-list', 'tag' => 'div'],
+    	    'activePageCssClass' => 'on',
+    	    'firstPageLabel' => '首页',
+    	    'lastPageLabel' => '尾页',
+    	    'nextPageLabel' => '下页',
+    	    'prevPageLabel' => '上页',
+    	    'linkContainerOptions' => ['tag' => 'span'],
+    	]);
+    	?>
+    </div>
 </div>
 
 <div class="quick-toolbar">
 	<div class="qiuck-warp">
 		<div class="quick-area">
+			<span class="sel-area">
+				<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
+			</span>
 			<?= Html::a('添加新管理者', ['/sys/admin/create'], ['class' => 'data-btn']) ?>
 			<div class="page-small">
 			<?= LinkPager::widget([
@@ -101,3 +103,4 @@ if(empty($models))
 		<div class="quick-area-bg"></div>
 	</div>
 </div>
+<p class="cp tc"><?= Yii::$app->params['config_copyright'] ?></p>

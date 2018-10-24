@@ -31,7 +31,7 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel]);
 		<td width="6%">售价</td>
 		<td width="4%"><?= $dataProvider->sort->link('stock', ['label' => '库存']) ?></td>
 		<td width="10%">快捷操作</td>
-		<td width="4%"><?= $dataProvider->sort->link('hits', ['label' => '点击']) ?></td>
+		<td width="5%"><?= $dataProvider->sort->link('hits', ['label' => '点击']) ?></td>
 		<td width="4%"><?= $dataProvider->sort->link('orderid', ['label' => '排序']) ?></td>
 		<td width="6%"><?= $dataProvider->sort->link('updated_at', ['label' => '更新日期']) ?></td>
 		<td class="end-column">操作</td>
@@ -85,7 +85,7 @@ if(empty($dataProvider->count))
 }
 ?>
 
-<div class="bottom-toolbar">
+<div class="bottom-toolbar clearfix">
 	<span class="sel-area">
     	<span>选择：</span> 
     	<a href="javascript:jwf.com.checkAll(true);">全部</a> - 
@@ -93,20 +93,19 @@ if(empty($dataProvider->count))
     	<a href="javascript:jwf.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>　
 	</span>
 	<?= Html::a('添加新产品', ['create'], ['class' => 'data-btn']) ?>
-</div>
-
-<div class="page">
-	<?= LinkPager::widget([
-	    'pagination' => $dataProvider->getPagination(),
-	    'options' => ['class' => 'page-list', 'tag' => 'div'],
-	    'activePageCssClass' => 'on',
-	    'firstPageLabel' => '首页',
-	    'lastPageLabel' => '尾页',
-	    'nextPageLabel' => '下页',
-	    'prevPageLabel' => '上页',
-	    'linkContainerOptions' => ['tag' => 'span'],
-	]);
-	?>
+	<div class="page">
+    	<?= LinkPager::widget([
+    	    'pagination' => $dataProvider->getPagination(),
+    	    'options' => ['class' => 'page-list', 'tag' => 'div'],
+    	    'activePageCssClass' => 'on',
+    	    'firstPageLabel' => '首页',
+    	    'lastPageLabel' => '尾页',
+    	    'nextPageLabel' => '下页',
+    	    'prevPageLabel' => '上页',
+    	    'linkContainerOptions' => ['tag' => 'span'],
+    	]);
+    	?>
+    </div>
 </div>
 
 <div class="quick-toolbar">
@@ -116,7 +115,8 @@ if(empty($dataProvider->count))
         	<span>选择：</span> 
         	<a href="javascript:jwf.com.checkAll(true);">全部</a> - 
         	<a href="javascript:jwf.com.checkAll(false);">无</a> - 
-        	<a href="javascript:jwf.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>　
+        	<a href="javascript:jwf.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a> - 
+        	<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
     	</span>
 			<?= Html::a('添加新文章', ['create'], ['class' => 'data-btn']) ?>
 			<div class="page-small">
@@ -136,3 +136,4 @@ if(empty($dataProvider->count))
 		<div class="quick-area-bg"></div>
 	</div>
 </div>
+<p class="cp tc"><?= Yii::$app->params['config_copyright'] ?></p>
