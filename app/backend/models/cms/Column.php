@@ -14,7 +14,6 @@ use yii\behaviors\TimestampBehavior;
 use yii\behaviors\AttributeBehavior;
 use yii\db\ActiveRecord;
 use app\models\base\Cms;
-use yii\base\UnknownMethodException;
 use yii\base\InvalidArgumentException;
 use app\models\shop\Product;
 
@@ -183,15 +182,6 @@ class Column extends \app\models\base\Cms
     }
     
     /**
-     * 获取模型的类型名
-     * @return \app\models\cms\string[]|string
-     */
-    public function getColumnTypeName()
-    {
-        return self::ColumnTypeNameList($this->type);
-    }
-    
-    /**
      * 转换器
      * 负责模型、栏目、ID、名称、标记之间的转换
      * @param string $type
@@ -264,33 +254,13 @@ class Column extends \app\models\base\Cms
     }
     
     /**
-     * 获取所有模型列表，或者指定列表名称
-     * @param unknown $type
-     * @return string[]|string
-     */
-    public static function ColumnTypeNameList($key = null)
-    {
-        return self::ColumnConvert('id2name', $key, '未定义');
-    }
-    
-    /**
-     * 获取栏目id
-     * @param string $modelName
-     * @return string[]|string
-     */
-    public static function ColumnTypeIdList($key= null)
-    {
-        return self::ColumnConvert('mask2id', $key, '未定义');
-    }
-    
-    /**
      * 获取栏目路由链接
      * @param integer $key columnid值
      * @return string link | ''
      */
     public static function ColumnLinkList($key, Column $model)
     {
-        $mask = self::ColumnConvert('id2mask', $key, '');
+        $mask = self::ColumnConvert('id2mask', $key);
         
         if(!empty($mask)) {
             if($key == self::COLUMN_TYPE_INFO) {
@@ -301,16 +271,6 @@ class Column extends \app\models\base\Cms
         } else {
             return '';
         }
-    }
-    
-    /**
-     * 获取栏目id
-     * @param string $className
-     * @return string
-     */
-    public static function ColumnIdByClassName($key)
-    {
-        return self::ColumnConvert('model2id', $key, false);
     }
     
     /**

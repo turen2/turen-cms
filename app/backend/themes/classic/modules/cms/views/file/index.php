@@ -59,7 +59,7 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel, 'type' => 
 			<input type="checkbox" name="checkid[]" id="checkid[]" value="<?= $model->id; ?>">
 		</td>
 		<td><?= $model->id; ?></td>
-		<td><span class="title" style="color:<?= $model->colorval; ?>;font-weight:<?= $model->boldval; ?>"><?= $model->title; ?><span class="title-flag"><?= implode('&nbsp;', $model->getAllFlag(Column::ColumnTypeIdList('file'))); ?></span><?=empty($model->picurl)?'':' <span class="titpic"><i class="fa fa-picture-o"></i></span>'?></span></td>
+		<td><span class="title" style="color:<?= $model->colorval; ?>;font-weight:<?= $model->boldval; ?>"><?= $model->title; ?><span class="title-flag"><?= implode('&nbsp;', $model->getAllFlag(Column::COLUMN_TYPE_FILE)); ?></span><?=empty($model->picurl)?'':' <span class="titpic"><i class="fa fa-picture-o"></i></span>'?></span></td>
 		<td><?= $model->getAllColumn().' ['.$model->columnid.']'; ?></td>
 		<?php if(Yii::$app->params['config_init_open_cate']) { ?>
 		<td><?= $model->getAllCate(); ?></td>

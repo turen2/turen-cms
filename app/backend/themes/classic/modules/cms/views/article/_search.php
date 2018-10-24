@@ -33,7 +33,7 @@ foreach ($model->attributes as $key => $value) {
         <li class="<?= (!is_null($model->status) && $model->status == Article::STATUS_OFF)?'on':''?>"><?= Html::a('隐藏', ['index', Html::getInputName($model, 'status') => Article::STATUS_OFF]) ?></li>
         <li class="line">-</li>
         
-        <?php foreach ($model->getAllFlag(Column::ColumnTypeIdList('article'), true, true) as $key => $name) { ?>
+        <?php foreach ($model->getAllFlag(Column::COLUMN_TYPE_ARTICLE, true, true) as $key => $name) { ?>
         <li class="<?= (!is_null($model->flag) && $model->flag == $key)?'on':''?>"><?= Html::a($name, ['index', Html::getInputName($model, 'flag') => $key]) ?></li>
         <li class="line">-</li>
         <?php } ?>

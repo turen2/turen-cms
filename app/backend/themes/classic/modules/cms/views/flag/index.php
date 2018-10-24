@@ -55,7 +55,7 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel]);
 		</td>
 		<td><?= $model->flagname; ?></td>
 		<td><?= $model->flag; ?></td>
-		<td><?= Column::ColumnTypeNameList($model->type); ?></td>
+		<td><?= Column::ColumnConvert('id2name', $model->type, '未定义'); ?></td>
 		<td align="center">
 			<a href="<?=Url::to(['simple-move', 'type' => Flag::ORDER_UP_TYPE, 'id' => $model->id, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>
 			<input type="text" name="orderid[]" id="orderid[]" class="inputls" value="<?= $model->orderid; ?>">

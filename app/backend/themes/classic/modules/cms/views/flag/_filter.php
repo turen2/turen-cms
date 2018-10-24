@@ -7,8 +7,8 @@
 use yii\helpers\Url;
 use app\models\cms\Column;
 
-$columTypes = Column::ColumnTypeNameList();
-$typeName = Column::ColumnTypeNameList($model->type);
+$columTypes = Column::ColumnConvert('id2name');
+$typeName = Column::ColumnConvert('id2name', $model->type, '未定义');
 
 $title = is_string($typeName)?$typeName:'全部类型';
 

@@ -68,7 +68,7 @@ $this->title = '栏目管理';
 						<?=str_repeat('<span class="blank"></span>', $model->level-1)?>
 						<span class="sub-type"><a href="<?=$link?>" title="点击添加内容"><?= $model->cname?></a></span>
 					<?php } ?>
-					<span class="info-type-txt"> <i title="栏目属于[<?=$model->getColumnTypeName()?>]类型">[<?=$model->getColumnTypeName()?>]</i></span>
+					<span class="info-type-txt"> <i title="栏目属于[<?=Column::ColumnConvert('id2name', $model->type, '未定义')?>]类型">[<?=Column::ColumnConvert('id2name', $model->type, '未定义')?>]</i></span>
 				</td>
 				<td width="20%" align="center">
 					<a href="<?=Url::to(['move', 'type' => Column::ORDER_UP_TYPE, 'id' => $model->id, 'pid' => $model->parentid, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>

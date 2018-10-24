@@ -60,7 +60,7 @@ var validator = $("#createform").validate({
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('type')?><?php if($model->isAttributeRequired('type')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<?= Html::activeDropDownList($model, 'type', Column::ColumnTypeNameList(), ['encode' => false, 'class' => '']) ?>
+    			<?= Html::activeDropDownList($model, 'type', Column::ColumnConvert('id2name', null), ['encode' => false, 'class' => '']) ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>

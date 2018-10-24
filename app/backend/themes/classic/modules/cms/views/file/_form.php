@@ -95,8 +95,8 @@ $srcModels = Src::find()->current()->orderBy(['orderid' => SORT_DESC])->all();
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('flag')?><?php if($model->isAttributeRequired('flag')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column attr-area">
-    			<?php $model->flag = array_keys($model->getAllFlag(Column::ColumnTypeIdList('file')))//获取选择的标签数组?>
-    			<?= Html::activeCheckboxList($model, 'flag', $model->getAllFlag(Column::ColumnTypeIdList('file'), true, true), ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']) ?>
+    			<?php $model->flag = array_keys($model->getAllFlag(Column::COLUMN_TYPE_FILE))//获取选择的标签数组?>
+    			<?= Html::activeCheckboxList($model, 'flag', $model->getAllFlag(Column::COLUMN_TYPE_FILE, true, true), ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']) ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>

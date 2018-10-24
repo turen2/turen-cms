@@ -49,7 +49,7 @@ var validator = $("#submitform").validate({
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('type')?><?php if($model->isAttributeRequired('type')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<?= Html::activeDropDownList($model, 'type', Column::ColumnTypeNameList(), ['class' => '']) ?>
+    			<?= Html::activeDropDownList($model, 'type', Column::ColumnConvert('id2name'), ['class' => '']) ?>
     			<span class="cnote">带<span class="maroon">*</span>号表示为必填项</span>
     		</td>
     	</tr>
