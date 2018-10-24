@@ -53,7 +53,7 @@ class UserLevelSearch extends UserLevel
             'query' => $query,
             'pagination' => [
                 //'class' => Pagination::class,
-                'defaultPageSize' => Yii::$app->params['config_page_size'],//'defaultPageSize' => 300,//一次性全部查出
+                'defaultPageSize' => Yii::$app->params['config_page_size'],
             ],
             'sort' => [
                 //'class' => Sort::class,

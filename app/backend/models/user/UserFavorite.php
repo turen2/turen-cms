@@ -8,12 +8,13 @@ use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\AttributeBehavior;
 use app\behaviors\InsertLangBehavior;
+use app\models\cms\Column;
 
 /**
  * This is the model class for table "ss_user_favorite".
  *
- * @property string $ufid 收藏id
- * @property string $uf_class_name 信息类型：article、file、photo、video、product
+ * @property string $uf_id 收藏id
+ * @property string $uf_typeid 信息类型：article、file、photo、video、product
  * @property string $uf_model_id 信息id
  * @property string $uf_data 附加数据，如：产品降价至多少提醒
  * @property int $uid 用户id
@@ -94,9 +95,8 @@ class UserFavorite extends \app\models\base\User
         //[['status'], 'default', 'value' => self::STATUS_ON],
         //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return [
-            [['uf_class_name', 'uf_model_id', 'uf_data', 'uf_link', 'uf_ip', 'lang', 'created_at'], 'required'],
+            [['uf_typeid', 'uf_model_id', 'uid'], 'required'],
             [['uf_model_id', 'uid', 'uf_star', 'created_at'], 'integer'],
-            [['uf_class_name'], 'string', 'max' => 60],
             [['uf_data'], 'string', 'max' => 255],
             [['uf_link'], 'string', 'max' => 200],
             [['uf_ip'], 'string', 'max' => 30],
@@ -110,19 +110,62 @@ class UserFavorite extends \app\models\base\User
     public function attributeLabels()
     {
         return [
-            'ufid' => '收藏id',
-            'uf_class_name' => '信息类型：article、file、photo、video、product',
-            'uf_model_id' => '信息id',
-            'uf_data' => '附加数据，如：产品降价至多少提醒',
-            'uid' => '用户id',
-            'uf_link' => '当前收藏时的网址',
-            'uf_star' => '收藏的星期：1~5星',
-            'uf_ip' => 'ip地址',
+            'uf_id' => '收藏id',
+            'uf_typeid' => '对象类型',
+            'uf_model_id' => '收藏对象',
+            'uf_data' => '附加数据',
+            'uid' => '用户',
+            'uf_link' => '当前网址',
+            'uf_star' => '星级',
+            'uf_ip' => 'IP',
             'lang' => '多语言',
-            'created_at' => '评论时间',
+            'created_at' => '收藏时间',
         ];
     }
+    
+    /**
+     * 关联收藏对象名
+     * @return string
+     */
+    public function getObjectName()
+    {
+        if(in_array($this->uf_typeid, Column::ColumnConvert('id2id'))) {
+            $className = Column::ColumnConvert('id2class', $this->uf_typeid);
+            $typeName = Column::ColumnConvert('id2name', $this->uf_typeid);
+            
+            $id = $this->uf_model_id;
+            $primaryKey = $className::primaryKey()[0];
+            
+            $model = $className::find()->current()->andWhere([$primaryKey => $id])->one();
+            
+            return empty($model)?'':$model->title.' ['.$typeName.']';
+        } else {
+            return '';
+        }
+    }
 
+    /**
+     * 附加数据
+     */
+    public function getMoreData()
+    {
+        if(!empty($this->uf_data)) {
+            if($this->uf_typeid == Column::COLUMN_TYPE_PRODUCT) {
+                return '待价:'.$this->uf_data;
+            }
+        }
+        
+        return '未定义';
+    }
+    
+    /**
+     * 一对一联表
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::class, ['user_id' => 'uid']);
+    }
+    
     /**
      * @inheritdoc
      * @return UserFavoriteQuery the active query used by this AR class.

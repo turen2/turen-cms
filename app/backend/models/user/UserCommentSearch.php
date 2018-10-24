@@ -19,7 +19,7 @@ class UserCommentSearch extends UserComment
     {
         return [
             [['uc_id', 'uc_pid', 'uc_model_id', 'uid', 'status', 'reply_time', 'created_at'], 'integer'],
-            [['uc_class_name', 'username', 'uc_note', 'uc_reply', 'uc_link', 'uc_ip', 'lang'], 'safe'],
+            [['uc_typeid', 'username', 'uc_note', 'uc_reply', 'uc_link', 'uc_ip', 'lang'], 'safe'],
         ];
     }
 
@@ -53,7 +53,7 @@ class UserCommentSearch extends UserComment
             'query' => $query,
             'pagination' => [
                 //'class' => Pagination::class,
-                'defaultPageSize' => Yii::$app->params['config_page_size'],//'defaultPageSize' => 300,//一次性全部查出
+                'defaultPageSize' => Yii::$app->params['config_page_size'],
             ],
             'sort' => [
                 //'class' => Sort::class,
@@ -74,22 +74,19 @@ class UserCommentSearch extends UserComment
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'uc_id' => $this->uc_id,
             'uc_pid' => $this->uc_pid,
+            'uc_typeid' => $this->uc_typeid,
             'uc_model_id' => $this->uc_model_id,
             'uid' => $this->uid,
             'status' => $this->status,
-            'reply_time' => $this->reply_time,
-            'created_at' => $this->created_at,
         ]);
 
-        $query->andFilterWhere(['like', 'uc_class_name', $this->uc_class_name])
-            ->andFilterWhere(['like', 'username', $this->username])
+        $query->andFilterWhere(['like', 'username', $this->username])
             ->andFilterWhere(['like', 'uc_note', $this->uc_note])
             ->andFilterWhere(['like', 'uc_reply', $this->uc_reply])
             ->andFilterWhere(['like', 'uc_link', $this->uc_link])
-            ->andFilterWhere(['like', 'uc_ip', $this->uc_ip])
-            ->andFilterWhere(['like', 'lang', $this->lang]);
+            ->andFilterWhere(['like', 'uc_ip', $this->uc_ip]);
+        
         //echo $dataProvider->query->createCommand()->rawSql;
 
         return $dataProvider;

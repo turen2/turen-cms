@@ -7,13 +7,16 @@ use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
 use app\behaviors\InsertLangBehavior;
 use app\widgets\laydate\LaydateBehavior;
+use app\models\cms\Column;
+use yii\helpers\Url;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "ss_user_comment".
  *
  * @property string $uc_id 评论id
  * @property int $uc_pid 回复的主评论id，自己是主评论时，值为-1
- * @property string $uc_class_name 信息类型
+ * @property string $uc_typeid 信息类型
  * @property string $uc_model_id 信息id
  * @property int $uid 用户id
  * @property string $username 用户名
@@ -75,9 +78,8 @@ class UserComment extends \app\models\base\User
         //[['status'], 'default', 'value' => self::STATUS_ON],
         //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return [
-            [['uc_note'], 'required'],
-            [['uc_pid', 'uc_model_id', 'uid', 'status'], 'integer'],
-            [['uc_class_name'], 'string', 'max' => 60],
+            [['uc_typeid', 'uc_model_id' ,'uc_note'], 'required'],
+            [['uc_pid', 'uid', 'status'], 'integer'],
             [['username', 'uc_ip'], 'string', 'max' => 30],
             [['uc_note', 'uc_reply'], 'string', 'max' => 255],
             [['uc_link'], 'string', 'max' => 130],
@@ -93,10 +95,10 @@ class UserComment extends \app\models\base\User
     {
         return [
             'uc_id' => 'ID',
-            'uc_pid' => '父级ID',
-            'uc_class_name' => '信息类型',
-            'uc_model_id' => '信息ID',
-            'uid' => '用户ID',
+            'uc_pid' => '父评论',
+            'uc_typeid' => '对象类型',
+            'uc_model_id' => '评论对象',
+            'uid' => '用户',
             'username' => '用户名',
             'uc_note' => '评论内容',
             'uc_reply' => '回复内容',
@@ -109,15 +111,21 @@ class UserComment extends \app\models\base\User
         ];
     }
     
-    public function objectLink()
+    public function getObjectLink()
     {
-        $className = $this->uc_class_name;
-        $id = $this->uc_model_id;
-        $primaryKey = $className::primaryKey()[0];
-        
-        $model = $className::find()->current()->andWhere([$primaryKey => $id])->one();
-        
-        return empty($model)?'未找到':$model->title;
+        if(in_array($this->uc_typeid, Column::ColumnConvert('id2id'))) {
+            $className = Column::ColumnConvert('id2class', $this->uc_typeid);
+            $typeName = Column::ColumnConvert('id2name', $this->uc_typeid);
+            
+            $id = $this->uc_model_id;
+            $primaryKey = $className::primaryKey()[0];
+            
+            $model = $className::find()->current()->andWhere([$primaryKey => $id])->one();
+            
+            return empty($model)?'':$model->title.' ['.$typeName.']';
+        } else {
+            return '';
+        }
     }
 
     /**
