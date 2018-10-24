@@ -55,7 +55,7 @@ $this->title = '评论列表';
 		<td><?= ($model->uc_pid == ActiveRecord::DEFAULT_NULL)?$model->uc_note:$model->uc_reply; ?></td>
 		<td><?= ($model->uc_pid == ActiveRecord::DEFAULT_NULL)?'主评':'回评'; ?></td>
 		<td><?= $model->getObjectLink(); ?></td>
-		<td><?= $model->username; ?></td>
+		<td><?= empty($model->user)?'未定义':$model->user->username; ?></td>
 		<td><?= $model->uc_ip; ?></td>
 		<td><?= Yii::$app->getFormatter()->asDate($model->created_at); ?></td>
 		<td class="action end-column"><span><?= $checkstr; ?></span> | <span><a href="<?= Url::to(['update', 'id' => $model->uc_id]) ?>">修改</a></span> | <span class="nb"><?= $delstr; ?></span></td>

@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
 /* @var $searchModel app\models\user\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Users';
+$this->title = '用户管理';
 ?>
 
 <?= $this->render('_search', ['model' => $searchModel]); ?>
@@ -25,32 +25,33 @@ $this->title = 'Users';
 		<td width="4%">ID</td>
 		
 				
-		<td width="10%">添加日期</td>
+		<td width="10%"><?= $dataProvider->sort->link('reg_time', ['label' => '注册日期']) ?></td>
+		<td width="10%"><?= $dataProvider->sort->link('login_time', ['label' => '登录日期']) ?></td>
 		<td width="25%" class="end-column">操作</td>
 	</tr>
 	<?php foreach ($dataProvider->getModels() as $key => $model) {
 		$options = [
 	        'title' => '点击进行显示和隐藏操作',
-	        'data-url' => Url::to(['check', 'id' => $model->id]),
+	        'data-url' => Url::to(['check', 'id' => $model->user_id]),
 	        'onclick' => 'jwf.com.updateStatus(this)',
         ];
 		$checkstr = Html::a(($model->status?'显示':'隐藏'), 'javascript:;', $options);
 		
 		$options = [
-    		'data-url' => Url::to(['delete', 'id' => $model->id, 'returnUrl' => Url::current()]),
-		    'onclick' => 'jwf.com.deleteItem(this, \''.$model->xxxxx.'\')',
+    		'data-url' => Url::to(['delete', 'id' => $model->user_id, 'returnUrl' => Url::current()]),
+		    'onclick' => 'jwf.com.deleteItem(this, \''.$model->username.'\')',
 		];
 		$delstr = Html::a('删除', 'javascript:;', $options);
 	?>
 	<tr align="left" class="data-tr">
 		<td  class="first-column">
-			<input type="checkbox" name="checkid[]" id="checkid[]" value="<?= $model->id; ?>">
+			<input type="checkbox" name="checkid[]" id="checkid[]" value="<?= $model->user_id; ?>">
 		</td>
-		<td><?= $model->id; ?></td>
-		
+		<td><?= $model->user_id; ?></td>
 				
-		<td><?= Yii::$app->getFormatter()->asDate($model->updated_at); ?></td>
-		<td class="action end-column"><span><?= $checkstr; ?></span> | <span><a href="<?= Url::to(['update', 'id' => $model->id]) ?>">修改</a></span> | <span class="nb"><?= $delstr; ?></span></td>
+		<td><?= Yii::$app->getFormatter()->asDate($model->reg_time); ?></td>
+		<td><?= Yii::$app->getFormatter()->asDate($model->login_time); ?></td>
+		<td class="action end-column"><span><?= $checkstr; ?></span> | <span><a href="<?= Url::to(['update', 'id' => $model->user_id]) ?>">修改</a></span> | <span class="nb"><?= $delstr; ?></span></td>
 	</tr>
 	<?php } ?>
 </table>

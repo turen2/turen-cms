@@ -127,6 +127,14 @@ class UserComment extends \app\models\base\User
             return '';
         }
     }
+    
+    /**
+     * 一对一联表
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::class, ['user_id' => 'uid']);
+    }
 
     /**
      * @inheritdoc

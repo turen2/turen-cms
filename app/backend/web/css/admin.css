@@ -473,8 +473,14 @@ input[type="button"]:focus, input[type="submit"]:focus {
 	_color: #fdab36;
 }
 
+.bottom-toolbar {
+	height: 57px;
+	position: relative;
+}
+
 .bottom-toolbar a.data-btn {
-	float: right;
+	position: absolute;
+	right: 0;
 	height: 30px;
 	line-height: 30px;
 	margin-top: 10px;
@@ -488,13 +494,9 @@ input[type="button"]:focus, input[type="submit"]:focus {
 	text-decoration: none;
 }
 
-.bottom-toolbar a.data-back {
-	float: right;
-	margin: 5px 20px 0 0;
-}
-
 .bottom-toolbar span.sel-area {
-	float: left;
+	position: absolute;
+    left: 0;
 	margin-top: 10px;
 }
 
@@ -1592,6 +1594,7 @@ input[type="button"]:focus, input[type="submit"]:focus {
 
 /*分页样式*/
 .page {
+	height: 32px;
 	padding: 15px 0 10px;
 	text-align: center;
 }

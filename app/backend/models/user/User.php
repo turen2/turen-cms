@@ -37,6 +37,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $qq_id 绑定QQ
  * @property string $weibo_id 绑定微博
  * @property string $wx_id 绑定微信
+ * @property string $status 用户状态
  */
 class User extends \app\models\base\User
 {
@@ -81,7 +82,7 @@ class User extends \app\models\base\User
         //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return [
             [['username', 'email', 'mobile', 'password'], 'required'],
-            [['level_id', 'ug_id', 'sex', 'point', 'reg_time', 'login_time'], 'integer'],
+            [['level_id', 'ug_id', 'sex', 'point', 'reg_time', 'login_time', 'status'], 'integer'],
             [['intro'], 'string'],
             [['username', 'password', 'qq_id', 'weibo_id', 'wx_id'], 'string', 'max' => 32],
             [['email'], 'string', 'max' => 40],
@@ -124,6 +125,7 @@ class User extends \app\models\base\User
             'qq_id' => '绑定QQ',
             'weibo_id' => '绑定微博',
             'wx_id' => '绑定微信',
+            'status' => '用户状态',
             'login_time' => '登录时间',
             'reg_time' => '注册时间',
         ];
