@@ -929,6 +929,14 @@ input[type="button"]:focus, input[type="submit"]:focus {
 	overflow: hidden;
 }
 
+.recycle .data-table td {
+	padding: 0;
+}
+
+.recycle .data-table .end-col {
+	text-align: right;
+}
+
 /*会员合作*/
 .data-table .qqico, .data-table .weiboico {
 	display: inline-block;

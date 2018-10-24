@@ -101,12 +101,12 @@ class RecycleAction extends Action
                 $title = '删除日期：'.$deltime."\n".'所属栏目：'.$classname;
                 
                 $str .= <<<EOF
-<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="dataTable">
-    <tr align="left" class="dataTr" onmouseover="this.className='dataTrOn'" onmouseout="this.className='dataTr'">
-        <td width="30" height="28" class="firstCol"><input type="checkbox" name="checkid[]" id="checkid[]" value="{$model->id}" /></td>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="data-table">
+    <tr align="left" class="data-tr" onmouseover="this.className='data-tr-on'" onmouseout="this.className='data-tr'">
+        <td width="30" height="28" class="first-col"><input type="checkbox" name="checkid[]" id="checkid[]" value="{$model->id}" /></td>
         <td width="30">{$model->id}</td>
         <td><span class="title" title="{$title}">{$model->title}</span></td>
-        <td width="90" class="action endCol"><span><a href="javascript:;" data-id="{$model->id}" onclick="Recycle('{$reset}', this)">还原</a></span><span class="nb"><a href="javascript:;" data-id="{$model->id}" onclick="Recycle('{$del}', this)">删除</a></span></td>
+        <td width="70" class="action end-col"><span><a href="javascript:;" data-id="{$model->id}" onclick="Recycle('{$reset}', this)">还原</a></span><span class="nb"><a href="javascript:;" data-id="{$model->id}" onclick="Recycle('{$del}', this)">删除</a></span></td>
     </tr>
 </table>
 EOF;
