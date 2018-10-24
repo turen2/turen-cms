@@ -45,7 +45,7 @@ class UserSearch extends User
         //$query = Admin::findBySql($sql);
         //$query = Admin::find()->alias('a')->select(['a.*', 's.company as company', 's.domain as domain', 's.username as merchant'])->leftJoin(Site::tableName().' as s', ' a.test_id = s.testid');
         
-        $query = User::find();//
+        $query = User::find()->with('userGroup', 'userLevel');
 
         // add conditions that should always apply here
 
@@ -100,7 +100,7 @@ class UserSearch extends User
             ->andFilterWhere(['like', 'weibo_id', $this->weibo_id])
             ->andFilterWhere(['like', 'wx_id', $this->wx_id]);
         
-        //echo $dataProvider->query->createCommand()->rawSql;
+//         echo $dataProvider->query->createCommand()->rawSql;exit;
 
         return $dataProvider;
     }

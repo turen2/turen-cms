@@ -49,6 +49,7 @@ class UserCommentController extends Controller
             ],
         ];
     }
+    
     /**
      * Lists all UserComment models.
      * @return mixed

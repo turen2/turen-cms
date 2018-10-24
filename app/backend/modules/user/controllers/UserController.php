@@ -8,6 +8,9 @@ use app\models\user\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\actions\CheckAction;
+use app\widgets\fileupload\FileUploadAction;
+use common\components\aliyunoss\AliyunOss;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -26,6 +29,25 @@ class UserController extends Controller
                 'actions' => [
                     'delete' => ['POST'],
                 ],
+            ],
+        ];
+    }
+    
+    public function actions()
+    {
+        $request = Yii::$app->getRequest();
+        return [
+            'check' => [
+                'class' => CheckAction::class,
+                'className' => User::class,
+                'id' => $request->get('id'),
+                'openName' => '正常',
+                'closeName' => '禁止',
+            ],
+            'fileupload' => [
+                'class' => FileUploadAction::class,
+                'uploadName' => 'avatar',
+                'folder' => AliyunOss::OSS_CMS,
             ],
         ];
     }
@@ -53,9 +75,10 @@ class UserController extends Controller
     public function actionCreate()
     {
         $model = new User();
+        $model->loadDefaultValues();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-        	Yii::$app->getSession()->setFlash('success', $model->xxxxx.' 添加成功，结果将展示在列表。');
+        	Yii::$app->getSession()->setFlash('success', $model->username.' 添加成功，结果将展示在列表。');
             return $this->redirect(['index']);
         } else {
             return $this->render('create', [
@@ -75,7 +98,7 @@ class UserController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-        	Yii::$app->getSession()->setFlash('success', $model->xxxxx.' 已经修改成功！');
+        	Yii::$app->getSession()->setFlash('success', $model->username.' 已经修改成功！');
             return $this->redirect(['index']);
         } else {
             return $this->render('update', [
@@ -113,11 +136,11 @@ class UserController extends Controller
         if(Yii::$app->getRequest()->isAjax) {
             return $this->asJson([
                 'state' => true,
-                'msg' => $model->xxxxx.' 已经成功删除！',
+                'msg' => $model->username.' 已经成功删除！',
             ]);
         }
         
-        Yii::$app->getSession()->setFlash('success', $model->xxxxx.' 已经成功删除！');
+        Yii::$app->getSession()->setFlash('success', $model->username.' 已经成功删除！');
         return $this->redirect($returnUrl);
     }
 

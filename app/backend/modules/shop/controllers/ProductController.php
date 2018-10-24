@@ -167,16 +167,17 @@ class ProductController extends Controller
     public function actionDelete($id, $returnUrl = ['index'])
     {
         $model = $this->findModel($id);
-        $model->delete();
+        $model->touch('deltime');
+        $model->updateAttributes(['delstate' => Product::IS_DEL]);//标记为垃圾
         
         if(Yii::$app->getRequest()->isAjax) {
             return $this->asJson([
                 'state' => true,
-                'msg' => $model->title.' 已经成功删除！',
+                'msg' => $model->title.' 已经移到垃圾桶！',
             ]);
         }
         
-        Yii::$app->getSession()->setFlash('success', $model->title.' 已经成功删除！');
+        Yii::$app->getSession()->setFlash('success', $model->title.' 已经移到垃圾桶！');
         return $this->redirect($returnUrl);
     }
     

@@ -9,6 +9,7 @@ use common\components\aliyunoss\AliyunOss;
 use app\models\cms\Column;
 use app\widgets\edititem\EditItemWidget;
 use yii\base\Widget;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\shop\ProductSearch */
@@ -20,6 +21,10 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel]);
 
 <?= $this->render('_search', ['model' => $searchModel]); ?>
 
+<?php $form = ActiveForm::begin([
+    'enableClientScript' => false,
+    'options' => ['id' => 'batchform'],
+]); ?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="data-table">
 	<tr align="left" class="head">
 		<td width="4%" class="first-column"><input type="checkbox" name="checkid" id="checkid" onclick="jwf.com.checkAll(this.checked);"></td>
@@ -33,7 +38,7 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel]);
 		<td width="10%">快捷操作</td>
 		<td width="5%"><?= $dataProvider->sort->link('hits', ['label' => '点击']) ?></td>
 		<td width="4%"><?= $dataProvider->sort->link('orderid', ['label' => '排序']) ?></td>
-		<td width="6%"><?= $dataProvider->sort->link('updated_at', ['label' => '更新日期']) ?></td>
+		<td width="10%"><?= $dataProvider->sort->link('updated_at', ['label' => '更新日期']) ?></td>
 		<td class="end-column">操作</td>
 	</tr>
 	<?php foreach ($dataProvider->getModels() as $key => $model) {
@@ -77,6 +82,7 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel]);
 	</tr>
 	<?php } ?>
 </table>
+<?php ActiveForm::end(); ?>
 
 <?php //判断无记录样式
 if(empty($dataProvider->count))

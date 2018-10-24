@@ -1,6 +1,6 @@
 var marqueeString = new Array();
-	marqueeString[0] = '<span>[聚万方系统]</span><a href="http://baidu.com/" target="_blank">亲爱的客户您好，外贸系统经典功能“内容抓取”上线啦...</a><br />';
-	marqueeString[1] = '<span>[聚万方系统]</span>亲爱客户您好，为提高我们的服务质量，您可以通过我们的 <a href="http://baidu.com" target="_blank">官网论坛</a>反馈问题了 <br />';
+	marqueeString[0] = '<span>[土人开源系统]</span><a href="http://turen2.com/" target="_blank">亲爱的客户您好，外贸系统经典功能“内容抓取”上线啦...</a><br />';
+	marqueeString[1] = '<span>[土人开源系统]</span>亲爱客户您好，为提高我们的服务质量，您可以通过我们的 <a href="http://baidu.com" target="_blank">官网论坛</a>反馈问题了 <br />';
 
 var marqueeInterval = new Array();
 var marqueeId       = 0;

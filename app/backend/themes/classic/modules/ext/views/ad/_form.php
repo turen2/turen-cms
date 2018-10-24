@@ -62,7 +62,7 @@ var validator = $("#submitform").validate({
     		<td class="first-column"><?= $model->getAttributeLabel('title')?><?php if($model->isAttributeRequired('title')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
     			<?= Html::activeInput('text', $model, 'title', ['class' => 'input']) ?>
-    			<span class="cnote">例如：某某推广第三期</span>
+    			<span class="cnote">例如：某某推广第9期</span>
     		</td>
     	</tr>
     	<tr>

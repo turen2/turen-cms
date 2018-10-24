@@ -5,6 +5,8 @@ use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use yii\widgets\ActiveForm;
+use common\helpers\ImageHelper;
+use common\components\aliyunoss\AliyunOss;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\user\UserSearch */
@@ -22,12 +24,16 @@ $this->title = '用户管理';
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="data-table">
 	<tr align="left" class="head">
 		<td width="4%" class="first-column"><input type="checkbox" name="checkid" id="checkid" onclick="jwf.com.checkAll(this.checked);"></td>
-		<td width="4%">ID</td>
-		
-				
+		<td width="10%">头像</td>
+		<td width="8%">用户名</td>
+		<td width="10%">手机/邮箱</td>
+		<td width="7%">等级/组</td>
+		<td width="5%">积分</td>
+		<td width="7%">登录IP</td>
+		<td width="6%">三方登录</td>
 		<td width="10%"><?= $dataProvider->sort->link('reg_time', ['label' => '注册日期']) ?></td>
 		<td width="10%"><?= $dataProvider->sort->link('login_time', ['label' => '登录日期']) ?></td>
-		<td width="25%" class="end-column">操作</td>
+		<td width="30%" class="end-column">操作</td>
 	</tr>
 	<?php foreach ($dataProvider->getModels() as $key => $model) {
 		$options = [
@@ -35,7 +41,7 @@ $this->title = '用户管理';
 	        'data-url' => Url::to(['check', 'id' => $model->user_id]),
 	        'onclick' => 'jwf.com.updateStatus(this)',
         ];
-		$checkstr = Html::a(($model->status?'显示':'隐藏'), 'javascript:;', $options);
+		$checkstr = Html::a(($model->status?'正常':'禁止'), 'javascript:;', $options);
 		
 		$options = [
     		'data-url' => Url::to(['delete', 'id' => $model->user_id, 'returnUrl' => Url::current()]),
@@ -47,8 +53,15 @@ $this->title = '用户管理';
 		<td  class="first-column">
 			<input type="checkbox" name="checkid[]" id="checkid[]" value="<?= $model->user_id; ?>">
 		</td>
-		<td><?= $model->user_id; ?></td>
-				
+		<td><span class="thumbs">
+		<img alt="" src="<?= empty($model->avatar)?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($model->avatar, true, AliyunOss::OSS_STYLE_NAME180X180) ?>" style="height: 60px;">
+		</span></td>
+		<td><?= $model->username; ?><br /><?= $model->sex?'帅哥':'美女'; ?> [<?= $model->user_id; ?>]</td>
+		<td><?= $model->mobile; ?><br /><?= $model->email; ?></td>
+		<td><?= empty($model->userLevel)?'未指定':$model->userLevel->level_name; ?><br /><?= empty($model->userGroup)?'未指定':$model->userGroup->ug_name; ?></td>
+		<td><?= $model->point; ?></td>
+		<td><?= $model->login_ip; ?></td>
+		<td>qq_id<br />weibo_id<br />wx_id</td>
 		<td><?= Yii::$app->getFormatter()->asDate($model->reg_time); ?></td>
 		<td><?= Yii::$app->getFormatter()->asDate($model->login_time); ?></td>
 		<td class="action end-column"><span><?= $checkstr; ?></span> | <span><a href="<?= Url::to(['update', 'id' => $model->user_id]) ?>">修改</a></span> | <span class="nb"><?= $delstr; ?></span></td>

@@ -40,7 +40,7 @@ jwf.com = (function($) {
     var pub = {
 		//快捷工具栏动态显隐
 		quickToolbar: function () {
-			if($(window).scrollTop() < $(document).height() - $(window).height()) {
+			if($(window).scrollTop() < $(document).height() - $(window).height() - 30) {
 				$(".quick-toolbar").show();
 			} else {
 				$(".quick-toolbar").fadeOut(300);

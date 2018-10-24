@@ -6,6 +6,7 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
+use app\widgets\laydate\LaydateBehavior;
 
 /**
  * This is the model class for table "{{%user}}".
@@ -46,10 +47,9 @@ class User extends \app\models\base\User
 	public function behaviors()
 	{
 	    return [
-	        'timemap' => [
-	            'class' => TimestampBehavior::class,
-	            'createdAtAttribute' => 'reg_time',
-	            'updatedAtAttribute' => 'login_time'
+	        'regtime' => [
+	            'class' => LaydateBehavior::class,
+	            'timeAttribute' => 'reg_time',
 	        ],
 	    ];
 	}
@@ -81,16 +81,9 @@ class User extends \app\models\base\User
         //[['status'], 'default', 'value' => self::STATUS_ON],
         //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return [
-            [['username', 'email', 'mobile', 'password'], 'required'],
-            [['level_id', 'ug_id', 'sex', 'point', 'reg_time', 'login_time', 'status'], 'integer'],
-            [['intro'], 'string'],
-            [['username', 'password', 'qq_id', 'weibo_id', 'wx_id'], 'string', 'max' => 32],
-            [['email'], 'string', 'max' => 40],
-            [['mobile', 'telephone', 'reg_ip', 'login_ip'], 'string', 'max' => 20],
-            [['avatar', 'company', 'address'], 'string', 'max' => 100],
-            [['trade', 'address_prov', 'address_city', 'zipcode'], 'string', 'max' => 10],
-            [['license'], 'string', 'max' => 150],
-            [['address_country'], 'string', 'max' => 15],
+            [['username'], 'required'],
+            [['level_id', 'ug_id', 'sex', 'point', 'login_time', 'status'], 'integer'],
+            [['intro', 'username', 'password', 'qq_id', 'weibo_id', 'wx_id', 'email', 'mobile', 'telephone', 'reg_ip', 'login_ip', 'avatar', 'company', 'address', 'trade', 'address_prov', 'address_city', 'zipcode', 'license', 'address_country'], 'string'],
         ];
     }
 
@@ -129,6 +122,22 @@ class User extends \app\models\base\User
             'login_time' => '登录时间',
             'reg_time' => '注册时间',
         ];
+    }
+    
+    /**
+     * 一对一，对应会员组
+     */
+    public function getUserGroup()
+    {
+        return $this->hasOne(UserGroup::class, ['ug_id' => 'ug_id']);
+    }
+    
+    /**
+     * 一对一，对应会员等级
+     */
+    public function getUserLevel()
+    {
+        return $this->hasOne(UserLevel::class, ['level_id' => 'level_id']);
     }
 
     /**

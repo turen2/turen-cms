@@ -6,6 +6,13 @@ use yii\helpers\Url;
 use app\widgets\Tips;
 use app\components\ActiveRecord;
 use app\assets\ValidationAsset;
+use app\models\user\UserGroup;
+use yii\helpers\ArrayHelper;
+use app\models\user\UserLevel;
+use app\widgets\fileupload\JQueryFileUploadWidget;
+use yii\web\JsExpression;
+use app\models\user\User;
+use app\widgets\laydate\LaydateWidget;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\user\User */
@@ -16,12 +23,20 @@ ValidationAsset::register($this);
 $this->registerJs('
 var validator = $("#createform").validate({
 	rules: {
-		"'.Html::getInputName($model, 'xxxxx').'": {
+		"'.Html::getInputName($model, 'username').'": {
 			required: true,
 		},
-        "'.Html::getInputName($model, 'xxxxx').'": {
-			required: true,
-            digits:true,
+        "'.Html::getInputName($model, 'point').'": {
+			digits: true,
+		},
+        "'.Html::getInputName($model, 'email').'": {
+			email: true,
+		},
+        "'.Html::getInputName($model, 'zipcode').'": {
+			isZipCode: true,
+		},
+        "'.Html::getInputName($model, 'mobile').'": {
+			isPhone: true,
 		}
 	},
     errorElement: "p",
@@ -44,16 +59,52 @@ var validator = $("#createform").validate({
 ]); ?>
     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user-form form-table">
     	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('user_id')?><?php if($model->isAttributeRequired('user_id')) { ?><span class="maroon">*</span><?php } ?></td>
+    		<td class="first-column"><?= $model->getAttributeLabel('username')?><?php if($model->isAttributeRequired('username')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'user_id', ['class' => 'input']) ?>
+    			<?= Html::activeInput('text', $model, 'username', ['class' => 'input']) ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>
     	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('username')?><?php if($model->isAttributeRequired('username')) { ?><span class="maroon">*</span><?php } ?></td>
+    		<td class="first-column"><?= $model->getAttributeLabel('avatar')?><?php if($model->isAttributeRequired('avatar')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'username', ['class' => 'input']) ?>
+    			<?= JQueryFileUploadWidget::widget([
+                    'model' => $model,
+                    'attribute' => 'avatar',
+                    'options' => ['class' => 'input', 'readonly' => true],
+                    'url' => ['fileupload', 'param' => 'value'],
+                    'uploadName' => 'avatar',
+                    'fileOptions' => [
+                        'accept' => '*',//选择文件时的windows过滤器
+                        'multiple' => false,//单图
+                        'isImage' => true,//图片文件
+                    ],//单图
+                    'clientOptions' => [
+                        'acceptFileTypes' => new JsExpression('/(\.|\/)(gif|jpe?g|png|ai|txt|xls|xlsx|docx|doc|pdf|zip|rar|tar)$/i'),//限制上传的后缀名
+                    ],
+                ]) ?>
+    			<span class="cnote"></span>
+    		</td>
+    	</tr>
+    	<tr>
+    		<td class="first-column"><?= $model->getAttributeLabel('sex')?><?php if($model->isAttributeRequired('sex')) { ?><span class="maroon">*</span><?php } ?></td>
+    		<td class="second-column">
+    			<?= Html::activeRadioList($model, 'sex', [
+			        User::STATUS_ON => '帅哥',
+    			    User::STATUS_OFF => '美女',
+				], ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']);
+				?>
+    			<span class="cnote"></span>
+    		</td>
+    	</tr>
+    	<tr>
+    		<td class="first-column"><?= $model->getAttributeLabel('level_id')?><?php if($model->isAttributeRequired('level_id')) { ?><span class="maroon">*</span><?php } ?></td>
+    		<td class="second-column">
+    			<?= Html::activeDropDownList($model, 'level_id', ArrayHelper::map(UserLevel::find()->current()->all(), 'level_id', 'level_name'), ['class' => '']) ?>
+    			<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    			<?= $model->getAttributeLabel('ug_id')?>
+    			<span>&nbsp;&nbsp;</span>
+    			<?= Html::activeDropDownList($model, 'ug_id', ArrayHelper::map(UserGroup::find()->current()->all(), 'ug_id', 'ug_name'), ['class' => '']) ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>
@@ -79,33 +130,24 @@ var validator = $("#createform").validate({
     		</td>
     	</tr>
     	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('level_id')?><?php if($model->isAttributeRequired('level_id')) { ?><span class="maroon">*</span><?php } ?></td>
+    		<td class="first-column"><?= $model->getAttributeLabel('point')?><?php if($model->isAttributeRequired('point')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'level_id', ['class' => 'input']) ?>
+    			<?= Html::activeInput('text', $model, 'point', ['class' => 'inputs']) ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('ug_id')?><?php if($model->isAttributeRequired('ug_id')) { ?><span class="maroon">*</span><?php } ?></td>
+    	<tr class="nb">
+    		<td class="first-column"><?= $model->getAttributeLabel('intro')?><?php if($model->isAttributeRequired('intro')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'ug_id', ['class' => 'input']) ?>
+    			<?= Html::activeTextarea($model, 'intro', ['class' => 'textdesc']) ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('avatar')?><?php if($model->isAttributeRequired('avatar')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'avatar', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('sex')?><?php if($model->isAttributeRequired('sex')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'sex', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
+    	
+    	<tr class="nb">
+			<td colspan="2" class="td-line"><div class="line"> </div></td>
+		</tr>
+    	
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('company')?><?php if($model->isAttributeRequired('company')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
@@ -127,20 +169,18 @@ var validator = $("#createform").validate({
     			<span class="cnote"></span>
     		</td>
     	</tr>
-    	<tr>
+    	<tr class="nb">
     		<td class="first-column"><?= $model->getAttributeLabel('telephone')?><?php if($model->isAttributeRequired('telephone')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
     			<?= Html::activeInput('text', $model, 'telephone', ['class' => 'input']) ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('intro')?><?php if($model->isAttributeRequired('intro')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'intro', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
+    	
+    	<tr class="nb">
+			<td colspan="2" class="td-line"><div class="line"> </div></td>
+		</tr>
+    	
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('address_prov')?><?php if($model->isAttributeRequired('address_prov')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
@@ -172,63 +212,18 @@ var validator = $("#createform").validate({
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('zipcode')?><?php if($model->isAttributeRequired('zipcode')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'zipcode', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('point')?><?php if($model->isAttributeRequired('point')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'point', ['class' => 'input']) ?>
+    			<?= Html::activeInput('text', $model, 'zipcode', ['class' => 'inputs']) ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('reg_time')?><?php if($model->isAttributeRequired('reg_time')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'reg_time', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('reg_ip')?><?php if($model->isAttributeRequired('reg_ip')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'reg_ip', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('login_time')?><?php if($model->isAttributeRequired('login_time')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'login_time', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('login_ip')?><?php if($model->isAttributeRequired('login_ip')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'login_ip', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('qq_id')?><?php if($model->isAttributeRequired('qq_id')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'qq_id', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('weibo_id')?><?php if($model->isAttributeRequired('weibo_id')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'weibo_id', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('wx_id')?><?php if($model->isAttributeRequired('wx_id')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'wx_id', ['class' => 'input']) ?>
+    			<?= LaydateWidget::widget([
+    			    'model' => $model,
+    			    'attribute' => 'reg_time',
+    			    'options' => ['class' => 'inputms'],
+    			]) ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>
