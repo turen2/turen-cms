@@ -183,12 +183,14 @@ class Column extends \app\models\base\Cms
     
     /**
      * 转换器
-     * 负责模型、栏目、ID、名称、标记之间的转换
+     * 负责模型类、栏目、ID、名称、标记之间的转换
      * @param string $type
      * 'id2name' ID对应名称
-     * 'mask2id' 标记对应ID
      * 'id2mask' ID对应标记
-     * 'model2id' 模型对应ID
+     * 'id2class' ID对应模型类
+     * 'mask2id' 标记对应ID
+     * 'class2id' 模型类对应ID
+     * .....
      * @param $key 转化后获取其中一个值的时候所使用的键
      * return [] | int | string
      */
@@ -197,37 +199,37 @@ class Column extends \app\models\base\Cms
         $data = [
             self::COLUMN_TYPE_INFO => [
                 'id' => self::COLUMN_TYPE_INFO,
-                'model' => Info::class,
+                'class' => Info::class,
                 'name' => '单页',
                 'mask' => 'info',
             ],
             self::COLUMN_TYPE_ARTICLE => [
                 'id' => self::COLUMN_TYPE_ARTICLE,
-                'model' => Article::class,
+                'class' => Article::class,
                 'name' => '列表',
                 'mask' => 'article',
             ],
             self::COLUMN_TYPE_PHOTO => [
                 'id' => self::COLUMN_TYPE_PHOTO,
-                'model' => Photo::class,
+                'class' => Photo::class,
                 'name' => '图片',
                 'mask' => 'photo',
             ],
             self::COLUMN_TYPE_FILE => [
                 'id' => self::COLUMN_TYPE_FILE,
-                'model' => File::class,
+                'class' => File::class,
                 'name' => '下载',
                 'mask' => 'file',
             ],
             self::COLUMN_TYPE_PRODUCT => [
                 'id' => self::COLUMN_TYPE_PRODUCT,
-                'model' => Product::class,
+                'class' => Product::class,
                 'name' => '产品',
                 'mask' => 'product',
             ],
             self::COLUMN_TYPE_VIDEO => [
                 'id' => self::COLUMN_TYPE_VIDEO,
-                'model' => Video::class,
+                'class' => Video::class,
                 'name' => '视频',
                 'mask' => 'video',
             ],
@@ -235,7 +237,7 @@ class Column extends \app\models\base\Cms
         
         //匹配需要的类型数组
         list($k, $v) = explode('2', strtolower($type));
-        if(in_array($k, ['id', 'model', 'name', 'mask']) && in_array($v, ['id', 'model', 'name', 'mask'])) {
+        if(in_array($k, ['id', 'class', 'name', 'mask']) && in_array($v, ['id', 'class', 'name', 'mask'])) {
             $list = [];
             foreach ($data as $dd) {
                 $list[$dd[$k]] = $dd[$v];
