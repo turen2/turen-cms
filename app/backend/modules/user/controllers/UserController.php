@@ -11,6 +11,8 @@ use yii\filters\VerbFilter;
 use app\actions\CheckAction;
 use app\widgets\fileupload\FileUploadAction;
 use common\components\aliyunoss\AliyunOss;
+use app\actions\BatchAction;
+use app\actions\RecycleAction;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -43,6 +45,22 @@ class UserController extends Controller
                 'id' => $request->get('id'),
                 'openName' => '正常',
                 'closeName' => '禁止',
+            ],
+            'batch' => [
+                'class' => BatchAction::class,
+                'className' => User::class,
+                'type' => $request->get('type'),
+                'stateFeild' => 'delstate',
+                'timeFeild' => 'deltime',
+            ],
+            //垃圾管理
+            'recycle' => [
+                'class' => RecycleAction::class,
+                'className' => User::class,
+                'fieldName' => 'username',
+                'isCurrent' => false,
+                'type' => $request->get('type'),
+                'feild' => 'delstate',
             ],
             'fileupload' => [
                 'class' => FileUploadAction::class,
@@ -131,16 +149,17 @@ class UserController extends Controller
     public function actionDelete($id, $returnUrl = ['index'])
     {
         $model = $this->findModel($id);
-        $model->delete();
+        //$model->touch('deltime');
+        $model->updateAttributes(['deltime' => time(), 'delstate' => User::IS_DEL]);//标记为垃圾
         
         if(Yii::$app->getRequest()->isAjax) {
             return $this->asJson([
                 'state' => true,
-                'msg' => $model->username.' 已经成功删除！',
+                'msg' => $model->username.' 已经移到垃圾桶！',
             ]);
         }
         
-        Yii::$app->getSession()->setFlash('success', $model->username.' 已经成功删除！');
+        Yii::$app->getSession()->setFlash('success', $model->username.' 已经移到垃圾桶！');
         return $this->redirect($returnUrl);
     }
 

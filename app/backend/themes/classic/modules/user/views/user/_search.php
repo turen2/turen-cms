@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\components\ActiveRecord;
+use yii\helpers\Url;
+use app\actions\RecycleAction;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\user\UserSearch */
@@ -24,23 +26,24 @@ foreach ($model->attributes as $key => $value) {
         <li class="line">-</li>
         <li class="<?= (!is_null($model->status) && $model->status == ActiveRecord::STATUS_OFF)?'on':''?>"><?= Html::a('隐藏', ['index', Html::getInputName($model, 'status') => ActiveRecord::STATUS_OFF]) ?></li>
         <li class="line">-</li>
-        <li><a id="recycle-bin" href="javascript:;">内容回收站</a></li>
+        <li><a id="recycle-bin" href="javascript:;" onclick="RecycleShow('<?=Url::to(['recycle', 'type' => RecycleAction::RECYCLE_TYPE_LIST])?>');">内容回收站</a></li>
 	</ul>
 	<div id="search" class="search">
-    <?php $form = ActiveForm::begin([
-        'action' => ['index'],
-        'method' => 'get',
-        'id' => 'searchform',
-    ]); ?>
-
-		<span class="s">
-			<?= Html::activeInput('text', $model, 'keyword', ['class' => 'input']) ?>
-		</span>
-		<span class="b">
-			<a href="javascript:;" onclick="searchform.submit();"></a>
-		</span>
-
-    <?php ActiveForm::end(); ?>
+        <?php $form = ActiveForm::begin([
+            'action' => ['index'],
+            'method' => 'get',
+            'id' => 'searchform',
+        ]); ?>
+    
+    	<span class="s">
+    		<?= Html::activeInput('text', $model, 'keyword', ['class' => 'input']) ?>
+    	</span>
+    	<span class="b">
+    		<a href="javascript:;" onclick="searchform.submit();"></a>
+    	</span>
+    
+        <?php ActiveForm::end(); ?>
     </div>
 	<div class="cl"></div>
 </div>
+<?= $this->render('_recycle'); ?>

@@ -156,6 +156,7 @@ class Product extends \app\models\base\Shop
             
             //静态默认值由规则来赋值
             [['status'], 'default', 'value' => self::STATUS_ON],
+            [['picarr'], 'default', 'value' => ''],
             [['weight', 'market_price'], 'default', 'value' => 0],
             [['stock'], 'default', 'value' => Yii::$app->params['config_stock_warning']],
             [['hits'], 'default', 'value' => Yii::$app->params['config.hits']],

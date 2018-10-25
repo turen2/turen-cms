@@ -46,6 +46,9 @@ var validator = $("#createform").validate({
 		},
         "'.Html::getInputName($model, 'content').'": {
 			required: true,
+		},
+        "'.Html::getInputName($model, 'picurl').'": {
+			required: true,
 		}
 	},
     errorElement: "p",

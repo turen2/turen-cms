@@ -29,8 +29,10 @@ class RecycleAction extends Action
     
     public $className;//要切换的模型
     public $type;//操作类型 'list'垃圾列表、'reset'恢复指定id垃圾、'del'删除指定id垃圾、'resetall'恢复批量id垃圾、'delall'删除批量id垃圾、'empty'删除所有当前的垃圾
+    public $fieldName = 'title';
     
     public $feild = 'delstate';//垃圾标记字段
+    public $isCurrent = true;//是否当前，多语言，多站点
     
     public function run()
     {
@@ -47,36 +49,41 @@ class RecycleAction extends Action
         $className = $this->className;
         $primayKey = $className::primaryKey()[0];
         
+        $query = $className::find();
+        if($this->isCurrent) {
+            $query = $query->current();
+        }
+        
         // 选择执行操作
         switch ($this->type) {
             case self::RECYCLE_TYPE_RESET:
                 $id = Yii::$app->getRequest()->post('id');
-                $model = $className::find()->current()->andWhere([$primayKey => $id])->one();
+                $model = $query->andWhere([$primayKey => $id])->one();
                 if($model) {
                     $model->updateAttributes([$this->feild => ActiveRecord::IS_NOT_DEL]);
                 }
                 break;
             case self::RECYCLE_TYPE_RESETALL:
                 $ids = Yii::$app->getRequest()->post('ids');
-                foreach ($className::find()->current()->andWhere([$primayKey => explode(',', $ids)])->all() as $model) {
+                foreach ($query->andWhere([$primayKey => explode(',', $ids)])->all() as $model) {
                     $model->updateAttributes([$this->feild => ActiveRecord::IS_NOT_DEL]);
                 }
                 break;
             case self::RECYCLE_TYPE_DEL:
                 $id = Yii::$app->getRequest()->post('id');
-                $model = $className::find()->current()->andWhere([$primayKey => $id])->one();
+                $model = $query->andWhere([$primayKey => $id])->one();
                 if($model) {
                     $model->delete();
                 }
                 break;
             case self::RECYCLE_TYPE_DELALL:
                 $ids = Yii::$app->getRequest()->post('ids');
-                foreach ($className::find()->current()->andWhere([$primayKey => explode(',', $ids)])->all() as $model) {
+                foreach ($query->andWhere([$primayKey => explode(',', $ids)])->all() as $model) {
                     $model->delete();
                 }
                 break;
             case self::RECYCLE_TYPE_EMPTY:
-                $models = $className::find()->current()->andWhere([$this->feild => ActiveRecord::IS_DEL])->all();
+                $models = $query->andWhere([$this->feild => ActiveRecord::IS_DEL])->all();
                 foreach ($models as $model) {
                     $model->delete();
                 }
@@ -84,14 +91,18 @@ class RecycleAction extends Action
         }
         
         $str = '';
-        $models = $className::find()->current()->andWhere([$this->feild => ActiveRecord::IS_DEL])->all();
+        $models = $query->andWhere([$this->feild => ActiveRecord::IS_DEL])->all();
         if($models) {
             foreach ($models as $model) {
-                $columns = $model->getAllColumn(true);
-                if(isset($columns[$model->columnid])) {
-                    $classname = $columns[$model->columnid].' ['.$model->columnid.']';
+                if(method_exists($model, 'getAllColumn')) {
+                    $columns = $model->getAllColumn(true);
+                    if(isset($columns[$model->columnid])) {
+                        $classname = $columns[$model->columnid].' ['.$model->columnid.']';
+                    } else {
+                        $classname = '栏目已删除 ['.$model->columnid.']';
+                    }
                 } else {
-                    $classname = '栏目已删除 ['.$model->columnid.']';
+                    $classname = '无栏目';
                 }
                 
                 $deltime = Yii::$app->getFormatter()->asDate($model->deltime);
@@ -103,10 +114,10 @@ class RecycleAction extends Action
                 $str .= <<<EOF
 <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="data-table">
     <tr align="left" class="data-tr" onmouseover="this.className='data-tr-on'" onmouseout="this.className='data-tr'">
-        <td width="30" height="28" class="first-col"><input type="checkbox" name="checkid[]" id="checkid[]" value="{$model->id}" /></td>
-        <td width="30">{$model->id}</td>
-        <td><span class="title" title="{$title}">{$model->title}</span></td>
-        <td width="70" class="action end-col"><span><a href="javascript:;" data-id="{$model->id}" onclick="Recycle('{$reset}', this)">还原</a></span><span class="nb"><a href="javascript:;" data-id="{$model->id}" onclick="Recycle('{$del}', this)">删除</a></span></td>
+        <td width="30" height="28" class="first-col"><input type="checkbox" name="checkid[]" id="checkid[]" value="{$model->{$primayKey}}" /></td>
+        <td width="30">{$model->{$primayKey}}</td>
+        <td><span class="title" title="{$title}">{$model->{$this->fieldName}}</span></td>
+        <td width="70" class="action end-col"><span><a href="javascript:;" data-id="{$model->{$primayKey}}" onclick="Recycle('{$reset}', this)">还原</a></span><span class="nb"><a href="javascript:;" data-id="{$model->{$primayKey}}" onclick="Recycle('{$del}', this)">删除</a></span></td>
     </tr>
 </table>
 EOF;

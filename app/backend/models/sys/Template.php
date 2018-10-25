@@ -104,6 +104,8 @@ class Template extends \app\models\base\Sys
             [['developer_name', 'design_name'], 'string', 'max' => 30],
             [['open_cate'], 'default', 'value' => Template::STATUS_ON],
             
+            //默认值
+            [['picarr'], 'default', 'value' => ''],
             [['langs'], 'safe'],
         ];
     }

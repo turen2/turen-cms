@@ -136,6 +136,7 @@ class Photo extends \app\models\base\Cms
             [['author'], 'default', 'value' => $this->getAdmin()->username],
             //静态默认值由规则来赋值
             [['status'], 'default', 'value' => self::STATUS_ON],
+            [['picarr'], 'default', 'value' => ''],
             [['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
             [['flag', 'tagNames', 'picarr'], 'safe'],
         ];

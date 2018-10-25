@@ -18,7 +18,7 @@ class UserSearch extends User
     public function rules()
     {
         return [
-            [['user_id', 'level_id', 'ug_id', 'sex', 'point', 'reg_time', 'login_time', 'status'], 'integer'],
+            [['user_id', 'level_id', 'ug_id', 'sex', 'point', 'reg_time', 'login_time', 'status', 'deltime', 'delstate'], 'integer'],
             [['username', 'email', 'mobile', 'password', 'avatar', 'company', 'trade', 'license', 'telephone', 'intro', 'address_prov', 'address_city', 'address_country', 'address', 'zipcode', 'reg_ip', 'login_ip', 'qq_id', 'weibo_id', 'wx_id'], 'safe'],
         ];
     }
@@ -45,7 +45,7 @@ class UserSearch extends User
         //$query = Admin::findBySql($sql);
         //$query = Admin::find()->alias('a')->select(['a.*', 's.company as company', 's.domain as domain', 's.username as merchant'])->leftJoin(Site::tableName().' as s', ' a.test_id = s.testid');
         
-        $query = User::find()->with('group', 'level');
+        $query = User::find()->delstate(User::IS_NOT_DEL)->with('group', 'level');
 
         // add conditions that should always apply here
 

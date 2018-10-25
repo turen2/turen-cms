@@ -78,12 +78,14 @@ class User extends \app\models\base\User
     public function rules()
     {
         //静态默认值由规则来赋值
-        //[['status'], 'default', 'value' => self::STATUS_ON],
         //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return [
             [['username'], 'required'],
-            [['level_id', 'ug_id', 'sex', 'point', 'login_time', 'status'], 'integer'],
+            [['level_id', 'ug_id', 'sex', 'point', 'login_time', 'status', 'deltime', 'delstate'], 'integer'],
             [['intro', 'username', 'password', 'qq_id', 'weibo_id', 'wx_id', 'email', 'mobile', 'telephone', 'reg_ip', 'login_ip', 'avatar', 'company', 'address', 'trade', 'address_prov', 'address_city', 'zipcode', 'license', 'address_country'], 'string'],
+            [['sex', 'point'], 'default', 'value' => 0],
+            [['status'], 'default', 'value' => self::STATUS_ON],
+            [['delstate'], 'default', 'value' => self::STATUS_OFF],
         ];
     }
 
@@ -121,6 +123,8 @@ class User extends \app\models\base\User
             'status' => '用户状态',
             'login_time' => '登录时间',
             'reg_time' => '注册时间',
+            'delstate' => '删除状态',
+            'deltime' => '删除时间',
         ];
     }
     

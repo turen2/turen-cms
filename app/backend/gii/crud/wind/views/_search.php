@@ -42,11 +42,11 @@ foreach ($model->attributes as $key => $value) {
         <li><a id="recycle-bin" href="javascript:;">内容回收站</a></li>
 	</ul>
 	<div id="search" class="search">
-    <?= "<?php " ?>$form = ActiveForm::begin([
-        'action' => ['index'],
-        'method' => 'get',
-        'id' => 'searchform',
-    ]); ?>
+        <?= "<?php " ?>$form = ActiveForm::begin([
+            'action' => ['index'],
+            'method' => 'get',
+            'id' => 'searchform',
+        ]); ?>
 
 		<span class="s">
 			<?= "<?= " ?>Html::activeInput('text', $model, 'keyword', ['class' => 'input']) ?>
@@ -55,7 +55,7 @@ foreach ($model->attributes as $key => $value) {
 			<a href="javascript:;" onclick="searchform.submit();"></a>
 		</span>
 
-    <?= "<?php " ?>ActiveForm::end(); ?>
+    	<?= "<?php " ?>ActiveForm::end(); ?>
     </div>
 	<div class="cl"></div>
 </div>
