@@ -606,7 +606,7 @@ input[type="button"]:focus, input[type="submit"]:focus {
 
 .data-table td {
 	border-bottom: 1px solid #ebebeb;
-	padding: 10px 5px;
+	padding: 10px 3px;
 }
 
 .data-table .first-column {

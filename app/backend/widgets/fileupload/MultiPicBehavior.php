@@ -47,7 +47,7 @@ class MultiPicBehavior extends \yii\base\Behavior
         $value = $this->owner->{$this->picsAttribute};
         //是数组则为新上传的内容，否则
         $this->_pics = is_array($value)?$value:[];
-        $this->owner->{$this->picsAttribute} = '土人开源营销方案';
+        $this->owner->{$this->picsAttribute} = null;
     }
 
     public function afterSaveMultiPic()
