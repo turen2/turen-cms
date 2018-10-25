@@ -54,6 +54,8 @@ class RecycleAction extends Action
             $query = $query->current();
         }
         
+        $selectQuery = clone $query;
+        
         // 选择执行操作
         switch ($this->type) {
             case self::RECYCLE_TYPE_RESET:
@@ -91,7 +93,7 @@ class RecycleAction extends Action
         }
         
         $str = '';
-        $models = $query->andWhere([$this->feild => ActiveRecord::IS_DEL])->all();
+        $models = $selectQuery->andWhere([$this->feild => ActiveRecord::IS_DEL])->all();
         if($models) {
             foreach ($models as $model) {
                 if(method_exists($model, 'getAllColumn')) {
