@@ -7,17 +7,17 @@
 namespace app\modules\user\controllers;
 
 use Yii;
-use app\models\user\UserLevel;
-use app\models\user\UserLevelSearch;
+use app\models\user\Level;
+use app\models\user\LevelSearch;
 use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\actions\SimpleMoveAction;
 
 /**
- * UserLevelController implements the CRUD actions for UserLevel model.
+ * LevelController implements the CRUD actions for Level model.
  */
-class UserLevelController extends Controller
+class LevelController extends Controller
 {
     
     public function actions()
@@ -27,7 +27,7 @@ class UserLevelController extends Controller
             //简单排序
             'simple-move' => [
                 'class' => SimpleMoveAction::class,
-                'className' => UserLevel::class,
+                'className' => Level::class,
                 'id' => $request->get('id'),
                 'type' => $request->get('type'),
                 'orderid' => $request->get('orderid'),
@@ -54,7 +54,7 @@ class UserLevelController extends Controller
     }
 
     /**
-     * Lists all UserLevel models.
+     * Lists all Level models.
      * @return mixed
      */
     public function actionIndex()
@@ -73,7 +73,7 @@ class UserLevelController extends Controller
                 for ($i = 0; $i < count($ids); $i++) {
                     if(isset($level_names[$i]) && isset($level_expval_mins[$i]) && isset($level_expval_maxs[$i])&& isset($orderids[$i])) {
                         //修改
-                        $model = UserLevel::find()->current()->andWhere(['level_id' => $ids[$i]])->one();
+                        $model = Level::find()->current()->andWhere(['level_id' => $ids[$i]])->one();
                         $model && $model->updateAttributes([
                             'level_name' => $level_names[$i],
                             'level_expval_min' => $level_expval_mins[$i],
@@ -91,7 +91,7 @@ class UserLevelController extends Controller
             $orderidadd = $post['orderidadd'];
             if($level_nameadd && $level_expval_minadd && $level_expval_maxadd) {
                 //新建
-                $model = new UserLevel();
+                $model = new Level();
                 $model->level_name = $level_nameadd;
                 $model->level_expval_min = $level_expval_minadd;
                 $model->level_expval_max = $level_expval_maxadd;
@@ -106,7 +106,7 @@ class UserLevelController extends Controller
             
             return $this->redirect(['index']);
         } else {
-            $searchModel = new UserLevelSearch();
+            $searchModel = new LevelSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
             
             return $this->render('index', [
@@ -115,7 +115,7 @@ class UserLevelController extends Controller
             ]);
         }
         
-        $searchModel = new UserLevelSearch();
+        $searchModel = new LevelSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -125,7 +125,7 @@ class UserLevelController extends Controller
     }
     
     /**
-     * Deletes an existing UserLevel model.
+     * Deletes an existing Level model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
      * @return mixed
@@ -156,9 +156,9 @@ class UserLevelController extends Controller
     {
         $model = $this->findModel($id);
         
-        UserLevel::updateAll(['is_default' => UserLevel::STATUS_OFF], ['lang' => GLOBAL_LANG]);
+        Level::updateAll(['is_default' => Level::STATUS_OFF], ['lang' => GLOBAL_LANG]);
         
-        $model->is_default = UserLevel::STATUS_ON;
+        $model->is_default = Level::STATUS_ON;
         $model->save(false);
         
         Yii::$app->getSession()->setFlash('success', $model->level_name.' 已经设为默认！');
@@ -174,7 +174,7 @@ class UserLevelController extends Controller
     {
         if($type == 'delete') {
             $tips = '';
-            foreach (UserLevel::find()->current()->andWhere(['level_id' => Yii::$app->getRequest()->post('checkid', [])])->all() as $model) {
+            foreach (Level::find()->current()->andWhere(['level_id' => Yii::$app->getRequest()->post('checkid', [])])->all() as $model) {
                 $model->delete();
                 $tips .= '<li>'.$model->level_name.' 删除成功！</li>';
             }
@@ -183,7 +183,7 @@ class UserLevelController extends Controller
             $ids = Yii::$app->getRequest()->post('id', []);
             $orders = Yii::$app->getRequest()->post('orderid', []);
             foreach ($ids as $key => $id) {
-                if($model = UserLevel::find()->current()->andWhere(['level_id' => $id])->one()) {
+                if($model = Level::find()->current()->andWhere(['level_id' => $id])->one()) {
                     $model->orderid = $orders[$key];
                     $model->save(false);
                 }
@@ -195,15 +195,15 @@ class UserLevelController extends Controller
     }
 
     /**
-     * Finds the UserLevel model based on its primary key value.
+     * Finds the Level model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param string $id
-     * @return UserLevel the loaded model
+     * @return Level the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = UserLevel::findOne($id)) !== null) {
+        if (($model = Level::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('请求页面不存在！');

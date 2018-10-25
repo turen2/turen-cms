@@ -5,12 +5,12 @@ namespace app\models\user;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\user\UserLevel;
+use app\models\user\Level;
 
 /**
- * UserLevelSearch represents the model behind the search form about `app\models\user\UserLevel`.
+ * LevelSearch represents the model behind the search form about `app\models\user\Level`.
  */
-class UserLevelSearch extends UserLevel
+class LevelSearch extends Level
 {
     /**
      * @inheritdoc
@@ -45,7 +45,7 @@ class UserLevelSearch extends UserLevel
         //$query = Admin::findBySql($sql);
         //$query = Admin::find()->alias('a')->select(['a.*', 's.company as company', 's.domain as domain', 's.username as merchant'])->leftJoin(Site::tableName().' as s', ' a.test_id = s.testid');
         
-        $query = UserLevel::find()->current();
+        $query = Level::find()->current();
 
         // add conditions that should always apply here
 

@@ -5,12 +5,12 @@ namespace app\models\user;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\user\UserComment;
+use app\models\user\Favorite;
 
 /**
- * UserCommentSearch represents the model behind the search form about `app\models\user\UserComment`.
+ * FavoriteSearch represents the model behind the search form about `app\models\user\Favorite`.
  */
-class UserCommentSearch extends UserComment
+class FavoriteSearch extends Favorite
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class UserCommentSearch extends UserComment
     public function rules()
     {
         return [
-            [['uc_id', 'uc_pid', 'uc_model_id', 'uid', 'status', 'reply_time', 'created_at'], 'integer'],
-            [['uc_typeid', 'username', 'uc_note', 'uc_reply', 'uc_link', 'uc_ip', 'lang'], 'safe'],
+            [['uf_id', 'uf_model_id', 'uid', 'uf_star', 'created_at'], 'integer'],
+            [['uf_typeid', 'uf_data', 'uf_link', 'uf_ip', 'lang'], 'safe'],
         ];
     }
 
@@ -45,7 +45,7 @@ class UserCommentSearch extends UserComment
         //$query = Admin::findBySql($sql);
         //$query = Admin::find()->alias('a')->select(['a.*', 's.company as company', 's.domain as domain', 's.username as merchant'])->leftJoin(Site::tableName().' as s', ' a.test_id = s.testid');
         
-        $query = UserComment::find()->with('user')->current();
+        $query = Favorite::find()->with('user')->current();
 
         // add conditions that should always apply here
 
@@ -59,7 +59,6 @@ class UserCommentSearch extends UserComment
                 //'class' => Sort::class,
                 'defaultOrder' => [
                     'created_at' => SORT_DESC,
-                    'reply_time' => SORT_DESC,
                 ],
             ],
         ]);
@@ -74,18 +73,16 @@ class UserCommentSearch extends UserComment
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'uc_pid' => $this->uc_pid,
-            'uc_typeid' => $this->uc_typeid,
-            'uc_model_id' => $this->uc_model_id,
+            'uf_id' => $this->uf_id,
+            'uf_model_id' => $this->uf_model_id,
             'uid' => $this->uid,
-            'status' => $this->status,
+            'uf_star' => $this->uf_star,
+            'uf_typeid' => $this->uf_typeid,
         ]);
 
-        $query->andFilterWhere(['like', 'username', $this->username])
-            ->andFilterWhere(['like', 'uc_note', $this->uc_note])
-            ->andFilterWhere(['like', 'uc_reply', $this->uc_reply])
-            ->andFilterWhere(['like', 'uc_link', $this->uc_link])
-            ->andFilterWhere(['like', 'uc_ip', $this->uc_ip]);
+        $query->andFilterWhere(['like', 'uf_data', $this->uf_data])
+            ->andFilterWhere(['like', 'uf_link', $this->uf_link])
+            ->andFilterWhere(['like', 'uf_ip', $this->uf_ip]);
         
         //echo $dataProvider->query->createCommand()->rawSql;
 

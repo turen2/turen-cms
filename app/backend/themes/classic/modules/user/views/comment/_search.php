@@ -5,13 +5,13 @@ use yii\widgets\ActiveForm;
 use app\components\ActiveRecord;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\user\UserCommentSearch */
+/* @var $model app\models\user\CommentSearch */
 /* @var $form yii\widgets\ActiveForm */
 
 $isAll = is_null($model->status);
 ?>
 
-<div class="user-comment-search toolbar-tab">
+<div class="comment-search toolbar-tab">
 	<ul>
         <li class="<?= $isAll?'on':''?>"><?= Html::a('全部', ['index']) ?></li>
         <li class="line">-</li>

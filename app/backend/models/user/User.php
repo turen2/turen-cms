@@ -127,17 +127,17 @@ class User extends \app\models\base\User
     /**
      * 一对一，对应会员组
      */
-    public function getUserGroup()
+    public function getGroup()
     {
-        return $this->hasOne(UserGroup::class, ['ug_id' => 'ug_id']);
+        return $this->hasOne(Group::class, ['ug_id' => 'ug_id']);
     }
     
     /**
      * 一对一，对应会员等级
      */
-    public function getUserLevel()
+    public function getLevel()
     {
-        return $this->hasOne(UserLevel::class, ['level_id' => 'level_id']);
+        return $this->hasOne(Level::class, ['level_id' => 'level_id']);
     }
 
     /**

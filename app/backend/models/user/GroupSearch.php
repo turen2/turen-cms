@@ -5,12 +5,12 @@ namespace app\models\user;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\user\UserFavorite;
+use app\models\user\Group;
 
 /**
- * UserFavoriteSearch represents the model behind the search form about `app\models\user\UserFavorite`.
+ * GroupSearch represents the model behind the search form about `app\models\user\Group`.
  */
-class UserFavoriteSearch extends UserFavorite
+class GroupSearch extends Group
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class UserFavoriteSearch extends UserFavorite
     public function rules()
     {
         return [
-            [['uf_id', 'uf_model_id', 'uid', 'uf_star', 'created_at'], 'integer'],
-            [['uf_typeid', 'uf_data', 'uf_link', 'uf_ip', 'lang'], 'safe'],
+            [['ug_id', 'orderid'], 'integer'],
+            [['ug_name', 'is_default', 'lang'], 'safe'],
         ];
     }
 
@@ -45,7 +45,7 @@ class UserFavoriteSearch extends UserFavorite
         //$query = Admin::findBySql($sql);
         //$query = Admin::find()->alias('a')->select(['a.*', 's.company as company', 's.domain as domain', 's.username as merchant'])->leftJoin(Site::tableName().' as s', ' a.test_id = s.testid');
         
-        $query = UserFavorite::find()->with('user')->current();
+        $query = Group::find()->current();
 
         // add conditions that should always apply here
 
@@ -58,7 +58,7 @@ class UserFavoriteSearch extends UserFavorite
             'sort' => [
                 //'class' => Sort::class,
                 'defaultOrder' => [
-                    'created_at' => SORT_DESC,
+                    'orderid' => SORT_DESC,
                 ],
             ],
         ]);
@@ -73,16 +73,10 @@ class UserFavoriteSearch extends UserFavorite
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'uf_id' => $this->uf_id,
-            'uf_model_id' => $this->uf_model_id,
-            'uid' => $this->uid,
-            'uf_star' => $this->uf_star,
-            'uf_typeid' => $this->uf_typeid,
+            'is_default' => $this->is_default,
         ]);
 
-        $query->andFilterWhere(['like', 'uf_data', $this->uf_data])
-            ->andFilterWhere(['like', 'uf_link', $this->uf_link])
-            ->andFilterWhere(['like', 'uf_ip', $this->uf_ip]);
+        $query->andFilterWhere(['like', 'ug_name', $this->ug_name]);
         
         //echo $dataProvider->query->createCommand()->rawSql;
 

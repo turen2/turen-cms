@@ -6,11 +6,11 @@ use yii\helpers\Url;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\user\UserComment */
+/* @var $model app\models\user\Comment */
 
 $this->title = '添加新评论';
 ?>
-<div class="user-comment-create">
+<div class="comment-create">
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>

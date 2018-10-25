@@ -6,9 +6,9 @@ use yii\helpers\Url;
 use app\widgets\Tips;
 use app\components\ActiveRecord;
 use app\assets\ValidationAsset;
-use app\models\user\UserGroup;
+use app\models\user\Group;
 use yii\helpers\ArrayHelper;
-use app\models\user\UserLevel;
+use app\models\user\Level;
 use app\widgets\fileupload\JQueryFileUploadWidget;
 use yii\web\JsExpression;
 use app\models\user\User;
@@ -100,11 +100,11 @@ var validator = $("#createform").validate({
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('level_id')?><?php if($model->isAttributeRequired('level_id')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<?= Html::activeDropDownList($model, 'level_id', ArrayHelper::map(UserLevel::find()->current()->all(), 'level_id', 'level_name'), ['class' => '']) ?>
+    			<?= Html::activeDropDownList($model, 'level_id', ArrayHelper::map(Level::find()->current()->all(), 'level_id', 'level_name'), ['class' => '']) ?>
     			<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
     			<?= $model->getAttributeLabel('ug_id')?>
     			<span>&nbsp;&nbsp;</span>
-    			<?= Html::activeDropDownList($model, 'ug_id', ArrayHelper::map(UserGroup::find()->current()->all(), 'ug_id', 'ug_name'), ['class' => '']) ?>
+    			<?= Html::activeDropDownList($model, 'ug_id', ArrayHelper::map(Group::find()->current()->all(), 'ug_id', 'ug_name'), ['class' => '']) ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>

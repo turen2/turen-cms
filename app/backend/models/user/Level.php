@@ -9,15 +9,17 @@ use yii\behaviors\AttributeBehavior;
 use app\behaviors\InsertLangBehavior;
 
 /**
- * This is the model class for table "{{%user_group}}".
+ * This is the model class for table "{{%user_level}}".
  *
- * @property int $ug_id 用户组id
- * @property string $ug_name 用户组名称
+ * @property int $level_id 用户组id
+ * @property string $level_name 用户组名称
+ * @property string $level_expval_min 用户组经验介于a
+ * @property string $level_expval_max 用户组经验介于b
  * @property string $orderid 排序
  * @property string $lang 多语言
- * @property int $is_default 默认
+ * @property int $is_default 是否默认
  */
-class UserGroup extends \app\models\base\User
+class Level extends \app\models\base\User
 {
 	public $keyword;
 	
@@ -37,11 +39,11 @@ class UserGroup extends \app\models\base\User
 	            'value' => function ($event) {
     	            if(empty($this->orderid)) {
     	                $maxModel = self::find()->current()->orderBy(['orderid' => SORT_DESC])->one();
-    	                if($maxModel) {
-    	                    return $maxModel->orderid + 1;
-    	                } else {
-    	                    return Yii::$app->params['config.orderid'];//配置默认值
-    	                }
+        	            if($maxModel) {
+        	                return $maxModel->orderid + 1;
+        	            } else {
+        	                return Yii::$app->params['config.orderid'];//配置默认值
+        	            }
     	            }
     	            
     	            return $this->orderid;
@@ -55,7 +57,7 @@ class UserGroup extends \app\models\base\User
      */
     public static function tableName()
     {
-        return '{{%user_group}}';
+        return '{{%user_level}}';
     }
     
     /**
@@ -77,9 +79,9 @@ class UserGroup extends \app\models\base\User
         //[['status'], 'default', 'value' => self::STATUS_ON],
         //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return [
-            [['ug_name'], 'required'],
+            [['level_name'], 'required'],
+            [['level_expval_min', 'level_expval_max'], 'integer'],
             [['orderid'], 'integer'],
-            [['ug_name'], 'string', 'max' => 50],
             [['is_default'], 'string', 'max' => 1],
             [['lang'], 'string', 'max' => 8],
         ];
@@ -91,8 +93,10 @@ class UserGroup extends \app\models\base\User
     public function attributeLabels()
     {
         return [
-            'ug_id' => 'ID',
-            'ug_name' => '用户组名称',
+            'level_id' => 'ID',
+            'level_name' => '用户组名称',
+            'level_expval_min' => '最小经验',
+            'level_expval_max' => '最大经验',
             'orderid' => '排序',
             'lang' => '多语言',
             'is_default' => '是否默认',
@@ -101,10 +105,10 @@ class UserGroup extends \app\models\base\User
 
     /**
      * @inheritdoc
-     * @return UserGroupQuery the active query used by this AR class.
+     * @return LevelQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new UserGroupQuery(get_called_class());
+        return new LevelQuery(get_called_class());
     }
 }

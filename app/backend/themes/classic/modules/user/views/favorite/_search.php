@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 use app\components\ActiveRecord;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\user\UserFavoriteSearch */
+/* @var $model app\models\user\FavoriteSearch */
 /* @var $form yii\widgets\ActiveForm */
 
 $isAll = true;
@@ -16,7 +16,7 @@ foreach ($model->attributes as $key => $value) {
 }
 ?>
 
-<div class="user-favorite-search toolbar-tab">
+<div class="favorite-search toolbar-tab">
 	<ul>
         <li class="<?= $isAll?'on':''?>"><?= Html::a('全部', ['index']) ?></li>
 	</ul>

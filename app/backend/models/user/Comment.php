@@ -8,8 +8,6 @@ use yii\db\ActiveRecord;
 use app\behaviors\InsertLangBehavior;
 use app\widgets\laydate\LaydateBehavior;
 use app\models\cms\Column;
-use yii\helpers\Url;
-use yii\helpers\Html;
 
 /**
  * This is the model class for table "ss_user_comment".
@@ -29,7 +27,7 @@ use yii\helpers\Html;
  * @property string $reply_time 回复时间
  * @property string $created_at 发表评论的时间
  */
-class UserComment extends \app\models\base\User
+class Comment extends \app\models\base\User
 {
 	public $keyword;
 	
@@ -138,10 +136,10 @@ class UserComment extends \app\models\base\User
 
     /**
      * @inheritdoc
-     * @return UserCommentQuery the active query used by this AR class.
+     * @return CommentQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new UserCommentQuery(get_called_class());
+        return new CommentQuery(get_called_class());
     }
 }

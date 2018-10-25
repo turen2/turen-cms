@@ -8,7 +8,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\StringHelper;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\user\UserFavoriteSearch */
+/* @var $searchModel app\models\user\FavoriteSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '用户收藏';

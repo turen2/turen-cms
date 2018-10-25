@@ -6,13 +6,13 @@ use yii\helpers\Url;
 use app\widgets\Tips;
 use app\components\ActiveRecord;
 use app\assets\ValidationAsset;
-use app\models\user\UserComment;
+use app\models\user\Comment;
 use app\widgets\laydate\LaydateWidget;
 use app\widgets\ueditor\UEditorWidget;
 use app\models\cms\Column;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\user\UserComment */
+/* @var $model app\models\user\Comment */
 /* @var $form yii\widgets\ActiveForm */
 
 ValidationAsset::register($this);
@@ -45,7 +45,7 @@ var validator = $("#createform").validate({
     'enableClientScript' => false,
     'options' => ['id' => 'createform'],
 ]); ?>
-    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="user-comment-form form-table">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="comment-form form-table">
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('uc_model_id')?><?php if($model->isAttributeRequired('uc_model_id')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
@@ -146,8 +146,8 @@ var validator = $("#createform").validate({
 			<td class="first-column"><?= $model->getAttributeLabel('status')?><?php if($model->isAttributeRequired('status')) { ?><span class="maroon">*</span><?php } ?></td>
 			<td class="second-column">
 				<?= Html::activeRadioList($model, 'status', [
-				    UserComment::STATUS_ON => '显示',
-				    UserComment::STATUS_OFF => '隐藏',
+				    Comment::STATUS_ON => '显示',
+				    Comment::STATUS_OFF => '隐藏',
 				], ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']);
 				?>
 				<span class="cnote"></span>

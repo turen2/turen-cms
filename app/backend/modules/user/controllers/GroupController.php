@@ -7,17 +7,17 @@
 namespace app\modules\user\controllers;
 
 use Yii;
-use app\models\user\UserGroup;
-use app\models\user\UserGroupSearch;
+use app\models\user\Group;
+use app\models\user\GroupSearch;
 use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\actions\SimpleMoveAction;
 
 /**
- * UserGroupController implements the CRUD actions for UserGroup model.
+ * GroupController implements the CRUD actions for Group model.
  */
-class UserGroupController extends Controller
+class GroupController extends Controller
 {
     
     public function actions()
@@ -27,7 +27,7 @@ class UserGroupController extends Controller
             //简单排序
             'simple-move' => [
                 'class' => SimpleMoveAction::class,
-                'className' => UserGroup::class,
+                'className' => Group::class,
                 'id' => $request->get('id'),
                 'type' => $request->get('type'),
                 'orderid' => $request->get('orderid'),
@@ -54,7 +54,7 @@ class UserGroupController extends Controller
     }
 
     /**
-     * Lists all UserGroup models.
+     * Lists all Group models.
      * @return mixed
      */
     public function actionIndex()
@@ -71,7 +71,7 @@ class UserGroupController extends Controller
                 for ($i = 0; $i < count($ids); $i++) {
                     if(isset($ug_names[$i]) && isset($orderids[$i])) {
                         //修改
-                        $model = UserGroup::find()->current()->andWhere(['ug_id' => $ids[$i]])->one();
+                        $model = Group::find()->current()->andWhere(['ug_id' => $ids[$i]])->one();
                         $model && $model->updateAttributes([
                             'ug_name' => $ug_names[$i],
                             'orderid' => $orderids[$i],
@@ -85,7 +85,7 @@ class UserGroupController extends Controller
             $orderidadd = $post['orderidadd'];
             if($ug_nameadd) {
                 //新建
-                $model = new UserGroup();
+                $model = new Group();
                 $model->ug_name = $ug_nameadd;
                 $model->orderid = $orderidadd;
                 $model->save(false);
@@ -97,7 +97,7 @@ class UserGroupController extends Controller
             
             return $this->redirect(['index']);
         } else {
-            $searchModel = new UserGroupSearch();
+            $searchModel = new GroupSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
             
             return $this->render('index', [
@@ -106,7 +106,7 @@ class UserGroupController extends Controller
             ]);
         }
         
-        $searchModel = new UserGroupSearch();
+        $searchModel = new GroupSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -116,7 +116,7 @@ class UserGroupController extends Controller
     }
     
     /**
-     * Deletes an existing UserGroup model.
+     * Deletes an existing Group model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
      * @return mixed
@@ -147,9 +147,9 @@ class UserGroupController extends Controller
     {
         $model = $this->findModel($id);
         
-        UserGroup::updateAll(['is_default' => UserGroup::STATUS_OFF], ['lang' => GLOBAL_LANG]);
+        Group::updateAll(['is_default' => Group::STATUS_OFF], ['lang' => GLOBAL_LANG]);
         
-        $model->is_default = UserGroup::STATUS_ON;
+        $model->is_default = Group::STATUS_ON;
         $model->save(false);
         
         Yii::$app->getSession()->setFlash('success', $model->ug_name.' 已经设为默认！');
@@ -165,7 +165,7 @@ class UserGroupController extends Controller
     {
         if($type == 'delete') {
             $tips = '';
-            foreach (UserGroup::find()->current()->andWhere(['ug_id' => Yii::$app->getRequest()->post('checkid', [])])->all() as $model) {
+            foreach (Group::find()->current()->andWhere(['ug_id' => Yii::$app->getRequest()->post('checkid', [])])->all() as $model) {
                 $model->delete();
                 $tips .= '<li>'.$model->ug_name.' 删除成功！</li>';
             }
@@ -174,7 +174,7 @@ class UserGroupController extends Controller
             $ids = Yii::$app->getRequest()->post('id', []);
             $orders = Yii::$app->getRequest()->post('orderid', []);
             foreach ($ids as $key => $id) {
-                if($model = UserGroup::find()->current()->andWhere(['ug_id' => $id])->one()) {
+                if($model = Group::find()->current()->andWhere(['ug_id' => $id])->one()) {
                     $model->orderid = $orders[$key];
                     $model->save(false);
                 }
@@ -186,15 +186,15 @@ class UserGroupController extends Controller
     }
 
     /**
-     * Finds the UserGroup model based on its primary key value.
+     * Finds the Group model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param string $id
-     * @return UserGroup the loaded model
+     * @return Group the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = UserGroup::findOne($id)) !== null) {
+        if (($model = Group::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('请求页面不存在！');

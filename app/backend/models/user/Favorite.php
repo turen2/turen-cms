@@ -24,7 +24,7 @@ use app\models\cms\Column;
  * @property string $lang 多语言
  * @property string $created_at 评论时间
  */
-class UserFavorite extends \app\models\base\User
+class Favorite extends \app\models\base\User
 {
 	public $keyword;
 	
@@ -168,10 +168,10 @@ class UserFavorite extends \app\models\base\User
     
     /**
      * @inheritdoc
-     * @return UserFavoriteQuery the active query used by this AR class.
+     * @return FavoriteQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new UserFavoriteQuery(get_called_class());
+        return new FavoriteQuery(get_called_class());
     }
 }

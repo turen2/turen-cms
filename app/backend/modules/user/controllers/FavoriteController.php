@@ -3,16 +3,16 @@
 namespace app\modules\user\controllers;
 
 use Yii;
-use app\models\user\UserFavorite;
-use app\models\user\UserFavoriteSearch;
+use app\models\user\Favorite;
+use app\models\user\FavoriteSearch;
 use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * UserFavoriteController implements the CRUD actions for UserFavorite model.
+ * FavoriteController implements the CRUD actions for Favorite model.
  */
-class UserFavoriteController extends Controller
+class FavoriteController extends Controller
 {
     /**
      * @inheritdoc
@@ -31,12 +31,12 @@ class UserFavoriteController extends Controller
     }
 
     /**
-     * Lists all UserFavorite models.
+     * Lists all Favorite models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new UserFavoriteSearch();
+        $searchModel = new FavoriteSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -46,7 +46,7 @@ class UserFavoriteController extends Controller
     }
     
     /**
-     * Deletes an existing UserFavorite model.
+     * Deletes an existing Favorite model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
      * @return mixed
@@ -76,7 +76,7 @@ class UserFavoriteController extends Controller
     {
         if($type == 'delete') {
             $tips = '';
-            foreach (UserFavorite::find()->current()->andWhere(['uf_id' => Yii::$app->getRequest()->post('checkid', [])])->all() as $model) {
+            foreach (Favorite::find()->current()->andWhere(['uf_id' => Yii::$app->getRequest()->post('checkid', [])])->all() as $model) {
                 $model->delete();
                 $tips .= '<li>'.$model->objectName.' 删除成功！</li>';
             }
@@ -87,15 +87,15 @@ class UserFavoriteController extends Controller
     }
 
     /**
-     * Finds the UserFavorite model based on its primary key value.
+     * Finds the Favorite model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param string $id
-     * @return UserFavorite the loaded model
+     * @return Favorite the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = UserFavorite::findOne($id)) !== null) {
+        if (($model = Favorite::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('此请求页面不存在。');

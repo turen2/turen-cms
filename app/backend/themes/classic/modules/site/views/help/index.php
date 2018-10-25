@@ -83,7 +83,7 @@ if(empty($dataProvider->count))
     	<a href="javascript:jwf.com.checkAll(false);">无</a> - 
     	<a href="javascript:jwf.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>　
 	</span>
-	<?= Html::a('添加文章信息', ['create'], ['class' => 'data-btn']) ?>
+	<?= Html::a('添加新帮助信息', ['create'], ['class' => 'data-btn']) ?>
 	<div class="page">
     	<?= LinkPager::widget([
     	    'pagination' => $dataProvider->getPagination(),
@@ -109,7 +109,7 @@ if(empty($dataProvider->count))
             	<a href="javascript:jwf.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a> - 
             	<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
         	</span>
-			<?= Html::a('添加新文章', ['create'], ['class' => 'data-btn']) ?>
+			<?= Html::a('添加新帮助信息', ['create'], ['class' => 'data-btn']) ?>
 			<div class="page-small">
 			<?= LinkPager::widget([
 			    'pagination' => $dataProvider->getPagination(),

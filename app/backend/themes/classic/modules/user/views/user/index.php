@@ -58,7 +58,7 @@ $this->title = '用户管理';
 		</span></td>
 		<td><?= $model->username; ?><br /><?= $model->sex?'帅哥':'美女'; ?> [<?= $model->user_id; ?>]</td>
 		<td><?= $model->mobile; ?><br /><?= $model->email; ?></td>
-		<td><?= empty($model->userLevel)?'未指定':$model->userLevel->level_name; ?><br /><?= empty($model->userGroup)?'未指定':$model->userGroup->ug_name; ?></td>
+		<td><?= empty($model->level)?'未指定':$model->level->level_name; ?><br /><?= empty($model->group)?'未指定':$model->group->ug_name; ?></td>
 		<td><?= $model->point; ?></td>
 		<td><?= $model->login_ip; ?></td>
 		<td>qq_id<br />weibo_id<br />wx_id</td>

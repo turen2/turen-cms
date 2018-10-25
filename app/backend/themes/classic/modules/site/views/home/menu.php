@@ -79,13 +79,13 @@ $this->title = '菜单栏';
 				<div class="title" onclick="DisplayMenu('leftmenu09');" title="点击切换显示或隐藏"><i class="fa fa-angle-right i1"></i><i class="fa fa-angle-down i2"></i> 用户与咨询</div>
 				<div id="leftmenu09" style="display:none">
 					<?= Html::a('用户管理', ['/user/user/index'], ['target' => 'main'])?>
-					<?= Html::a('用户收藏', ['/user/user-favorite/index'], ['target' => 'main'])?>
-					<?= Html::a('用户评论', ['/user/user-comment/index'], ['target' => 'main'])?>
-					<?= Html::a('投诉建议', ['/user/user-message/index'], ['target' => 'main'])?>
+					<?= Html::a('用户收藏', ['/user/favorite/index'], ['target' => 'main'])?>
+					<?= Html::a('用户评论', ['/user/comment/index'], ['target' => 'main'])?>
+					<?= Html::a('投诉建议', ['/user/message/index'], ['target' => 'main'])?>
 					<div class="hr_1"> </div>
-					<?= Html::a('线上咨询', ['/user/user-inquiry/index'], ['target' => 'main'])?>
-					<?= Html::a('<i class="fa fa-wrench"></i>', ['/user/user-group/index'], ['target' => 'main', 'title' => '用户组管理', 'class' => 'menu-wrench group'])?>
-					<?= Html::a('<i class="fa fa-wrench"></i>', ['/user/user-level/index'], ['target' => 'main', 'title' => '用户等级管理', 'class' => 'menu-wrench level'])?>
+					<?= Html::a('线上咨询', ['/user/inquiry/index'], ['target' => 'main'])?>
+					<?= Html::a('<i class="fa fa-wrench"></i>', ['/user/group/index'], ['target' => 'main', 'title' => '用户组管理', 'class' => 'menu-wrench group'])?>
+					<?= Html::a('<i class="fa fa-wrench"></i>', ['/user/level/index'], ['target' => 'main', 'title' => '用户等级管理', 'class' => 'menu-wrench level'])?>
 				</div>
 			</div>
 			<div class="hr_5"></div>

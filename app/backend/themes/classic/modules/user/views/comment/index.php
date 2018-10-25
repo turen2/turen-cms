@@ -9,7 +9,7 @@ use app\models\cms\Column;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\user\UserCommentSearch */
+/* @var $searchModel app\models\user\CommentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '评论列表';

@@ -3,8 +3,8 @@
 namespace app\modules\user\controllers;
 
 use Yii;
-use app\models\user\UserComment;
-use app\models\user\UserCommentSearch;
+use app\models\user\Comment;
+use app\models\user\CommentSearch;
 use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -13,9 +13,9 @@ use app\widgets\ueditor\UEditorAction;
 use common\components\aliyunoss\AliyunOss;
 
 /**
- * UserCommentController implements the CRUD actions for UserComment model.
+ * CommentController implements the CRUD actions for Comment model.
  */
-class UserCommentController extends Controller
+class CommentController extends Controller
 {
     /**
      * @inheritdoc
@@ -39,7 +39,7 @@ class UserCommentController extends Controller
         return [
             'check' => [
                 'class' => CheckAction::class,
-                'className' => UserComment::class,
+                'className' => Comment::class,
                 'id' => $request->get('id'),
             ],
             'ueditor' => [
@@ -51,12 +51,12 @@ class UserCommentController extends Controller
     }
     
     /**
-     * Lists all UserComment models.
+     * Lists all Comment models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new UserCommentSearch();
+        $searchModel = new CommentSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -66,13 +66,13 @@ class UserCommentController extends Controller
     }
 
     /**
-     * Creates a new UserComment model.
+     * Creates a new Comment model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new UserComment();
+        $model = new Comment();
         $model->loadDefaultValues();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -86,7 +86,7 @@ class UserCommentController extends Controller
     }
 
     /**
-     * Updates an existing UserComment model.
+     * Updates an existing Comment model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param string $id
      * @return mixed
@@ -114,7 +114,7 @@ class UserCommentController extends Controller
     {
         if($type == 'delete') {
             $tips = '';
-            foreach (UserComment::find()->current()->andWhere(['uc_id' => Yii::$app->getRequest()->post('checkid', [])])->all() as $model) {
+            foreach (Comment::find()->current()->andWhere(['uc_id' => Yii::$app->getRequest()->post('checkid', [])])->all() as $model) {
                 $model->delete();
                 $tips .= '<li>'.'评论ID为'.$model->uc_id.' 删除成功！</li>';
             }
@@ -125,7 +125,7 @@ class UserCommentController extends Controller
     }
 
     /**
-     * Deletes an existing UserComment model.
+     * Deletes an existing Comment model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
      * @return mixed
@@ -147,15 +147,15 @@ class UserCommentController extends Controller
     }
 
     /**
-     * Finds the UserComment model based on its primary key value.
+     * Finds the Comment model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param string $id
-     * @return UserComment the loaded model
+     * @return Comment the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = UserComment::findOne($id)) !== null) {
+        if (($model = Comment::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('此请求页面不存在。');

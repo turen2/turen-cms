@@ -39,7 +39,7 @@ $this->title = '系统开发日志';
 	<span class="sel-area">
     	<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
 	</span>
-	<div style="max-width: 950px;"><?= Html::a('添加文章信息', ['create'], ['class' => 'data-btn']) ?></div>
+	<div style="max-width: 950px;"><?= Html::a('添加开发日志', ['create'], ['class' => 'data-btn']) ?></div>
 	<div class="page">
     	<?= LinkPager::widget([
     	    'pagination' => $dataProvider->getPagination(),
@@ -61,7 +61,7 @@ $this->title = '系统开发日志';
     		<span class="sel-area">
             	<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
         	</span>
-			<?= Html::a('添加新文章', ['create'], ['class' => 'data-btn']) ?>
+			<?= Html::a('添加新开发日志', ['create'], ['class' => 'data-btn']) ?>
 			<div class="page-small">
 			<?= LinkPager::widget([
 			    'pagination' => $dataProvider->getPagination(),
