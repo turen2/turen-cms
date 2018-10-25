@@ -16,6 +16,9 @@ use app\widgets\fileupload\FileUploadAction;
 use common\components\aliyunoss\AliyunOss;
 use app\widgets\ueditor\UEditorAction;
 use app\models\sys\Admin;
+use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
+use app\models\sys\MultilangTpl;
 
 /**
  * TemplateController implements the CRUD actions for Template model.
@@ -128,7 +131,7 @@ class TemplateController extends Controller
         $state = true;
         $msg = $model->temp_name.' 已经成功删除！';
         
-        if($state && ($id == Yii::$app->params['template_id'])) {
+        if(in_array($model->temp_id, ArrayHelper::map(MultilangTpl::find()->all(), 'id', 'template_id'))) {
             $state = false;
             $msg = $model->temp_name.' 已经被系统占用。';
         }
@@ -189,6 +192,32 @@ class TemplateController extends Controller
             'msg' => $results,
             'total_count' => $count,
             //'incomplete_results' => true,
+        ]);
+    }
+    
+    /**
+     * 创建站点时，需要从模板中获取语言
+     */
+    public function actionTemplateSelect()
+    {
+        $tempid = Yii::$app->getRequest()->post('tempid', null);
+        
+        $items = [];
+        if(!is_null($tempid)) {
+            $model = Template::findOne(['temp_id' => $tempid]);
+            if($model) {
+                $items = $model->tempLangList();
+            }
+        }
+        
+        $str = '<option value="">--请选择--</option>';
+        foreach ($items as $k => $v) {
+            $str .= '<option value="'.$k.'">'.$v.'</option>';
+        }
+        
+        return $this->asJson([
+            'state' => true,
+            'msg' => $str,
         ]);
     }
 

@@ -16,7 +16,7 @@ if(!empty($buildFilter)) {
     echo '<span class="alltype"><a href="'.Url::to(['index']).'" title="点击查看全部栏目" class="btn">'.$title.' <i class="fa fa-angle-down"></i></a><span class="drop">'.$buildFilter.'</span></span>';
 }
 
-if(Yii::$app->params['config_init_open_cate']) {//是否开启分类
+if(Yii::$app->params['config.openCate']) {//是否开启分类
     $cateModel = Cate::findOne($model->cateid);
     $buildFilter = BuildHelper::buildFilter(Cate::find()->current()->orderBy(['orderid' => SORT_DESC])->all(), Cate::class, 'id', 'parentid', 'catename', true, null, 'ArticleSearch', 'cateid');
     if(!empty($buildFilter)) {

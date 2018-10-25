@@ -10,6 +10,8 @@ use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use common\helpers\ImageHelper;
 use common\components\aliyunoss\AliyunOss;
+use yii\helpers\ArrayHelper;
+use app\models\sys\MultilangTpl;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\sys\TemplateSearch */
@@ -26,11 +28,9 @@ $this->title = '模板管理';
 		<td width="10%">缩略图</td>
 		<td width="10%"><?= $dataProvider->sort->link('temp_name', ['label' => '模板名称']) ?></td>
 		<td width="7%">模板编码</td>
-		<td width="5%">是否开启类别</td>
 		<td width="6%"><?= $dataProvider->sort->link('developer_name', ['label' => '开发者']) ?></td>
 		<td width="6%"><?= $dataProvider->sort->link('design_name', ['label' => '设计师']) ?></td>
 		<td width="6%">开通语言</td>
-		<td width="6%">默认语言</td>
 		<td width="6%">是否启用</td>
 		<td width="10%"><?= $dataProvider->sort->link('posttime', ['label' => '发布时间']) ?></td>
 		<td width="10%"><?= $dataProvider->sort->link('created_at', ['label' => '添加日期']) ?></td>
@@ -48,12 +48,10 @@ $this->title = '模板管理';
 		<td><span class="thumbs"><img alt="" src="<?= empty($model->picurl)?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($model->picurl, true, AliyunOss::OSS_STYLE_NAME180X180) ?>" style="height: 60px;"></span></td>
 		<td><?= $model->temp_name; ?></td>
 		<td><?= $model->temp_code; ?></td>
-		<td><?= $model->open_cate?'支持':'不支持'; ?></td>
 		<td><?= $model->developer_name; ?></td>
 		<td><?= $model->design_name; ?></td>
 		<td><?= $model->langStr; ?></td>
-		<td><?= $model->defaultLangStr; ?></td>
-		<td><span class="status <?= ($model->temp_id == Yii::$app->params['config.templateId'])?'on':'off' ?>"></span></td>
+		<td><span class="status <?= (in_array($model->temp_id, ArrayHelper::map(MultilangTpl::find()->all(), 'id', 'template_id')))?'on':'off' ?>"></span></td>
 		<td><?= Yii::$app->getFormatter()->asDate($model->posttime); ?></td>
 		<td><?= Yii::$app->getFormatter()->asDate($model->created_at); ?></td>
 		<td class="action end-column"><span><a href="<?= Url::to(['update', 'id' => $model->temp_id]) ?>">修改</a></span> | <span class="nb"><?= $delstr; ?></span></td>

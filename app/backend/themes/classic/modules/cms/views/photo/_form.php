@@ -66,7 +66,7 @@ $srcModels = Src::find()->current()->orderBy(['orderid' => SORT_DESC])->all();
     			<span class="cnote">带<span class="maroon">*</span>号表示为必填项</span>
     		</td>
     	</tr>
-    	<?php if(Yii::$app->params['config_init_open_cate']) { ?>
+    	<?php if(Yii::$app->params['config.openCate']) { ?>
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('cateid')?><?php if($model->isAttributeRequired('cateid')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">

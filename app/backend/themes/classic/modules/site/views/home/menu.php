@@ -108,9 +108,10 @@ $this->title = '菜单栏';
     				<?= Html::a('管理员管理', ['/sys/admin/index'], ['target' => 'main'])?>
     				<?= Html::a('角色配置', ['/sys/role/index'], ['target' => 'main'])?>
     				<?= Html::a('模板管理', ['/sys/template/index'], ['target' => 'main'])?>
+    				<?= Html::a('多语言管理', ['/sys/multilang-tpl/index'], ['target' => 'main'])?>
     				<?= Html::a('系统设置', ['/sys/config/setting'], ['target' => 'main'])?>
-    				<?= Html::a('媒体中心', ['/sys/media/index'], ['target' => 'main'])?>
     				<div class="hr_1"> </div>
+    				<?= Html::a('媒体中心', ['/sys/media/index'], ['target' => 'main'])?>
 					<?= Html::a('数据库管理', ['/sys/db/index'], ['target' => 'main'])?>
     				<?= Html::a('级联数据', ['/sys/cascade/index'], ['target' => 'main'])?>
     				<?= Html::a('<i class="fa fa-wrench"></i>', ['/cms/flag/index'], ['target' => 'main', 'title' => '信息标记管理', 'class' => 'menu-wrench flag'])?>
@@ -124,6 +125,9 @@ $this->title = '菜单栏';
 					<?= Html::a('文章抓取', ['/tool/spider/index'], ['target' => 'main'])?>
     				<?= Html::a('批量SEO优化', ['/tool/seo/index'], ['target' => 'main'])?>
     				<?= Html::a('通知与营销', ['/tool/notify/index'], ['target' => 'main'])?>
+    				<div class="hr_1"> </div>
+    				<?= Html::a('手机版', ['/tool/mobile/index'], ['target' => 'main'])?>
+    				<?= Html::a('公众号版', ['/tool/mp/index'], ['target' => 'main'])?>
 				</div>
 			</div>
 			<div class="menubox">

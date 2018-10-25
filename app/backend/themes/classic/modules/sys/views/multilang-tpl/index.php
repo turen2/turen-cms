@@ -1,22 +1,20 @@
 <?php
-/**
- * @link http://www.turen2.com/
- * @copyright Copyright (c) 土人开源CMS
- * @author developer qq:980522557
- */
+
 use yii\helpers\Html;
+use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
-use yii\widgets\ActiveForm;
-use app\models\cms\Src;
-use app\models\user\Group;
 use yii\widgets\LinkPager;
+use app\models\sys\MultilangTpl;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\user\GroupSearch */
+/* @var $searchModel app\models\sys\MultilangTplSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = '用户组列表';
+$this->title = '多站点管理';
 ?>
+
+<?= $this->render('_search', ['model' => $searchModel]); ?>
 
 <?php $form = ActiveForm::begin([
     'enableClientScript' => false,
@@ -25,69 +23,66 @@ $this->title = '用户组列表';
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="data-table">
 	<tr align="left" class="head">
 		<td width="4%"  class="first-column"><input type="checkbox" name="checkid" id="checkid" onclick="turen.com.checkAll(this.checked);"></td>
-		<td width="20%"><?= $dataProvider->sort->link('ug_name', ['label' => '来源名称']) ?></td>
+		<td width="4%">ID</td>
+		<td width="10%"><?= $dataProvider->sort->link('lang_name', ['label' => '站点名称']) ?></td>
+		<td width="13%">指定模板</td>
+		<td width="6%"><?= $dataProvider->sort->link('lang', ['label' => '语言包']) ?></td>
+		<td width="6%"><?= $dataProvider->sort->link('key', ['label' => 'Url Key']) ?></td>
+		<td width="7%"><?= $dataProvider->sort->link('back_defautl', ['label' => '后台默认']) ?></td>
+		<td width="7%"><?= $dataProvider->sort->link('front_default', ['label' => '前台默认']) ?></td>
 		<td width="10%" align="center"><?= $dataProvider->sort->link('orderid', ['label' => '排序']) ?></td>
-		<td class="end-column">操作</td>
+		<td width="25%" class="end-column">操作</td>
 	</tr>
-	
-	<?php if(empty($dataProvider->count)) { ?>
-	<tr align="center">
-		<td colspan="5" class="data-empty">暂时没有相关的记录</td>
-	</tr>
-	<?php } ?>
-	
 	<?php foreach ($dataProvider->getModels() as $key => $model) {
 	    $options = [
-	        'data-method' => 'post',
+	        'title' => '点击进行控制前台显示和隐藏',
+	        'data-url' => Url::to(['check', 'id' => $model->id]),
+	        'onclick' => 'turen.com.updateStatus(this)',
 	    ];
-	    $url = Url::to(['set-default', 'id' => $model->ug_id, 'returnUrl' => Url::current()]);
-	    $default = ($model->is_default)?Html::a('默认', 'javascript:;'):Html::a('设为默认', $url, $options);
+	    $checkstr = Html::a(($model->is_visible?'前台显示':'前台隐藏'), 'javascript:;', $options);
 	    
 		$options = [
-    		'data-url' => Url::to(['delete', 'id' => $model->ug_id, 'returnUrl' => Url::current()]),
-		    'onclick' => 'turen.com.deleteItem(this, \''.$model->ug_name.'\')',
+    		'data-url' => Url::to(['delete', 'id' => $model->id, 'returnUrl' => Url::current()]),
+		    'onclick' => 'turen.com.deleteItem(this, \''.$model->lang_name.'\')',
 		];
 		$delstr = Html::a('删除', 'javascript:;', $options);
 	?>
 	<tr align="left" class="data-tr">
 		<td  class="first-column">
-			<input type="checkbox" name="checkid[]" id="checkid[]" value="<?= $model->ug_id; ?>">
+			<input type="checkbox" name="checkid[]" id="checkid[]" value="<?= $model->id; ?>">
 		</td>
-		<td>
-			<input type="text" name="ug_name[]" id="ug_name[]" class="inputd" value="<?= $model->ug_name; ?>" />
-			<input type="hidden" name="id[]" id="id[]" value="<?= $model->ug_id; ?>">
-		</td>
+		<td><?= $model->id; ?></td>
+		<td><?= $model->lang_name; ?></td>
+		<td><?= isset($model->template)?$model->template->temp_name:'未定义'; ?></td>
+		<td><?= $model->lang; ?></td>
+		<td><?= $model->key; ?></td>
+		<td><?= $model->back_defautl?'<span class="badge badge-success">是</span>':'<span class="badge">否</span>'; ?></td>
+		<td><?= $model->front_default?'<span class="badge badge-success">是</span>':'<span class="badge">否</span>'; ?></td>
 		<td align="center">
-			<a href="<?=Url::to(['simple-move', 'type' => Group::ORDER_UP_TYPE, 'id' => $model->ug_id, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>
+			<a href="<?=Url::to(['simple-move', 'type' => MultilangTpl::ORDER_UP_TYPE, 'id' => $model->id, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>
 			<input type="text" name="orderid[]" id="orderid[]" class="inputls" value="<?= $model->orderid; ?>">
-			<a href="<?=Url::to(['simple-move', 'type' => Group::ORDER_DOWN_TYPE, 'id' => $model->ug_id, 'orderid' => $model->orderid])?>" class="right-arrow" title="下降排序"></a>
+			<a href="<?=Url::to(['simple-move', 'type' => MultilangTpl::ORDER_DOWN_TYPE, 'id' => $model->id, 'orderid' => $model->orderid])?>" class="right-arrow" title="下降排序"></a>
 		</td>
-		<td class="action end-column">
-			<span class="nb"><?=$default?> | <?=$delstr?></span>
-		</td>
+		<td class="action end-column"><span><?= $checkstr ?></span> | <span><a href="<?= Url::to(['update', 'id' => $model->id]) ?>">修改</a></span> | <span class="nb"><?= $delstr; ?></span></td>
 	</tr>
 	<?php } ?>
-	<tr align="center">
-		<td colspan="5"><strong>新增一个用户组</strong></td>
-	</tr>
-	<tr align="left" class="data-tr-on">
-		<td  class="first-column">&nbsp;</td>
-		<td><input type="text" name="ug_nameadd" id="ug_nameadd" class="input" /></td>
-		<td align="center"><input type="text" name="orderidadd" id="orderidadd" class="inputls" value="" /></td>
-		<td>&nbsp;</td>
-	</tr>
 </table>
 <?php ActiveForm::end(); ?>
+
+<?php //判断无记录样式
+if(empty($dataProvider->count))
+{
+	echo '<div class="data-empty">暂时没有相关的记录</div>';
+}
+?>
 
 <div class="bottom-toolbar clearfix">
 	<span class="sel-area"><span>选择：</span>
     	<a href="javascript:turen.com.checkAll(true);">全部</a> - 
     	<a href="javascript:turen.com.checkAll(false);">无</a> - 
-    	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>
-    	<span>&nbsp;&nbsp;操作：</span>
     	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'order'])?>', 'batchform');">排序</a>
 	</span>
-	<a href="#" onclick="batchform.submit();" class="data-btn">更新全部</a>
+	<?= Html::a('添加新站点', ['create'], ['class' => 'data-btn']) ?>
 	<div class="page">
     	<?= LinkPager::widget([
     	    'pagination' => $dataProvider->getPagination(),
@@ -109,13 +104,11 @@ $this->title = '用户组列表';
 			<span class="sel-area">
 				<span>选择：</span> <a href="javascript:turen.com.checkAll(true);">全部</a> - 
 				<a href="javascript:turen.com.checkAll(false);">无</a> - 
-				<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>
-				<span>操作：</span>
 				<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'order'])?>', 'batchform');">排序</a> - 
 				<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
 			</span>
-			<a href="#" onclick="batchform.submit();" class="data-btn">更新全部</a>
-			<div class="page-small">
+			<?= Html::a('添加新站点', ['create'], ['class' => 'data-btn']) ?>
+			<span class="page-small">
 			<?= LinkPager::widget([
 			    'pagination' => $dataProvider->getPagination(),
 			    'options' => ['class' => 'page-list', 'tag' => 'div'],
@@ -127,7 +120,7 @@ $this->title = '用户组列表';
 			    'linkContainerOptions' => ['tag' => 'span'],
 			]);
 			?>
-			</div>
+			</span>
 		</div>
 		<div class="quick-area-bg"></div>
 	</div>

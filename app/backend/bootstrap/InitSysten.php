@@ -13,6 +13,7 @@ use yii\helpers\ArrayHelper;
 use yii\db\Query;
 use yii\helpers\Json;
 use app\filters\ReturnUrlFilter;
+use app\models\sys\MultilangTpl;
 
 /**
  * 系统初始化生成了全局参数以"config_init_"为前缀
@@ -22,6 +23,10 @@ class InitSysten extends \yii\base\Component implements \yii\base\BootstrapInter
 {
     const INIT_PARAMS = '__init_params';
     const INIT_LAGN = '__init_lang';//切换后的语言session
+    
+    //默认值
+    const DEFAULT_ON = 1;
+    const DEFAULT_OFF = 0;
     
     public function bootstrap($app)
     {
@@ -41,25 +46,35 @@ class InitSysten extends \yii\base\Component implements \yii\base\BootstrapInter
         //读取历史记录
         if($session->has(self::INIT_PARAMS)) {
             $params = $session->get(self::INIT_PARAMS);
-            Yii::$app->params = ArrayHelper::merge(Yii::$app->params, $params);//$params['config_init_langs'];//$params['config_init_default_lang'];//$params['config_init_open_cate'];
+            Yii::$app->params = ArrayHelper::merge(Yii::$app->params, $params);//$params['config_init_langs'];//$params['config_init_default_lang'];
         } else {
-            if(isset(Yii::$app->params['config.templateId'])) {
-                $template = (new Query())->from(Template::tableName())->where(['temp_id' => Yii::$app->params['config.templateId']])->one();
-                if($template) {
-                    $params = [
-                        'config_init_langs' => Json::decode($template['langs']),
-                        'config_init_default_lang' => $session->has(self::INIT_LAGN)?$session->get(self::INIT_LAGN):$template['default_lang'],//优先使用动手切换的值
-                        'config_init_open_cate' => $template['open_cate'],
-                    ];
-                    
-                    $session->set(self::INIT_PARAMS, $params);
-                    Yii::$app->params = ArrayHelper::merge(Yii::$app->params, $params);
-                } else {
-                    throw new InvalidConfigException('Yii::$app->params[\'config.templateId\']找不到对应的模板。');
+            $multilangTpls = (new Query())->from(MultilangTpl::tableName())->all();
+            $allLang = [];
+            $defaultLang = '';
+            
+            foreach ($multilangTpls as $multilangTpl) {
+                if($multilangTpl['back_defautl']) {
+                    $defaultLang = $multilangTpl['lang'];
                 }
-            } else {
-                throw new InvalidConfigException('系统config/params.php配置项"config.templateId"未定义。');
+                $allLang[] = $multilangTpl['lang'];
             }
+            
+            if(empty($allLang)) {
+                throw new InvalidConfigException('系统管理/多语言管理：未设置语言。');
+            }
+            
+            if(empty($defaultLang)) {
+                throw new InvalidConfigException('系统管理/多语言管理：未设置默认语言。');
+            }
+            
+            //所有语言+后台默认语言
+            $params = [
+                'config_init_langs' => $allLang,
+                'config_init_default_lang' => $session->has(self::INIT_LAGN)?$session->get(self::INIT_LAGN):$defaultLang,//优先使用动手切换的值
+            ];
+            
+            $session->set(self::INIT_PARAMS, $params);
+            Yii::$app->params = ArrayHelper::merge(Yii::$app->params, $params);
         }
         
         define('GLOBAL_LANG', Yii::$app->params['config_init_default_lang']);

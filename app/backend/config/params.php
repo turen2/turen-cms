@@ -49,13 +49,6 @@ return [
         'en-US' => 'English'
     ],
     
-    // 伪静态的语言对应关系
-    'config.languageRewrite' => [
-        'zh-CN' => 'zh',
-        'zh-TW' => 'tw',
-        'en-US' => 'en'
-    ],
-    
     //登录安全问题
     'config.safeQuestion' => [
         null => '无安全提问',
@@ -68,5 +61,6 @@ return [
         8 => '驾驶执照最后四位数字'
     ],
     
-    'config.templateId' => 4,//模板手动配置，后台不允许随意切换
+    //此配置与整个系统有关
+    'config.openCate' => true,//是否开启类别管理
 ];

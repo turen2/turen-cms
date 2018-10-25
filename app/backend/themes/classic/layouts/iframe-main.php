@@ -14,6 +14,7 @@ use yii\helpers\Json;
 use app\models\sys\Template;
 use app\filters\ReturnUrlFilter;
 use app\assets\FontAwesomeAsset;
+use app\models\sys\MultilangTpl;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -72,22 +73,19 @@ $adminModel = Yii::$app->user->identity;
         	<div class="fun">
                 <div class="site-list">
                     <?php 
-                    $templateModel = Template::findOne(['temp_id' => Yii::$app->params['config.templateId']]);
-                    if($templateModel) {
-                        $langs = !empty($templateModel->langs)?Json::decode($templateModel->langs):[];
-                        if(count($langs) > 1) {
-                            foreach ($langs as $lang) {
-                                $options = [
-                                    'data-params' => ['lang' => $lang],//此参数是用来构造表单的post参数
-                                    'data-method' => 'post',
-                                    'class' => (GLOBAL_LANG == $lang)?'on':'',
-                                    'title' => '切换到',
-                                ];
-                                echo Html::a(Template::Lang2Str($lang), Url::current(), $options);
-                            }
-                            
-                            echo Html::a(' | ', 'javascript:;');
+                    $multilangTplModels = MultilangTpl::find()->all();
+                    if($multilangTplModels) {
+                        foreach ($multilangTplModels as $multilangTplModel) {
+                            $options = [
+                                'data-params' => ['lang' => $multilangTplModel->lang],//此参数是用来构造表单的post参数
+                                'data-method' => 'post',
+                                'class' => (GLOBAL_LANG == $multilangTplModel->lang)?'on':'',
+                                'title' => '切换到',
+                            ];
+                            echo Html::a($multilangTplModel->lang_name, Url::current(), $options);
                         }
+                        
+                        echo Html::a(' | ', 'javascript:;');
                     }
                     ?>
             	</div>

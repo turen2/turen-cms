@@ -25,8 +25,7 @@ $this->title = '管理者列表';
 	</tr>
 	<?php
 	$models = $dataProvider->getModels();
-	foreach ($models as $key => $model)
-	{
+	foreach ($models as $key => $model) {
 		$options = [
 		    'title' => '点击进行显示和隐藏操作',
 		    'data-url' => Url::to(['check', 'id' => $model->id]),

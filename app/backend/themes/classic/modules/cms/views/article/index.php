@@ -36,7 +36,7 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel, 'type' => 
 		<td width="5%">ID</td>
 		<td width="30%"><?= $dataProvider->sort->link('title', ['label' => '标题']) ?></td>
 		<td width="8%">所属栏目</td>
-		<?php if(Yii::$app->params['config_init_open_cate']) { ?>
+		<?php if(Yii::$app->params['config.openCate']) { ?>
 		<td width="8%">所属类别</td>
 		<?php } ?>
 		<td width="6%">发布人</td>
@@ -66,7 +66,7 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel, 'type' => 
 		<td><?= $model->id; ?></td>
 		<td><span class="title" style="color:<?= $model->colorval; ?>;font-weight:<?= $model->boldval; ?>"><?= $model->title; ?><span class="title-flag"><?= implode('&nbsp;', $model->getAllFlag(Column::COLUMN_TYPE_ARTICLE)); ?></span><?=empty($model->picurl)?'':' <span class="titpic"><i class="fa fa-picture-o"></i></span>'?></span></td>
 		<td><?= $model->getAllColumn().' ['.$model->columnid.']'; ?></td>
-		<?php if(Yii::$app->params['config_init_open_cate']) { ?>
+		<?php if(Yii::$app->params['config.openCate']) { ?>
 		<td><?= $model->getAllCate(); ?></td>
 		<?php } ?>
 		<td><?= $model->author; ?></td>

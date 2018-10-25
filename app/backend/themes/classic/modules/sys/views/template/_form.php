@@ -32,13 +32,9 @@ var validator = $("#submitform").validate({
 		},
         "'.Html::getInputName($model, 'temp_code').'": {
 			required: true,
-            //digits:true,
 		},
         "'.Html::getInputName($model, 'langs').'[]": {
 			required: true,
-		},
-        "'.Html::getInputName($model, 'default_lang').'": {
-			required: true
 		}
 	},
     errorElement: "p",
@@ -87,38 +83,9 @@ var validator = $("#submitform").validate({
     			    'tag' => 'span',
     			    'separator' => '&nbsp;&nbsp;&nbsp;',
     			]); ?>
-    			<span class="cnote">带<span class="maroon">*</span>可以到配置文件中增加没有的语言</span>
+    			<span class="cnote">选中的语言必须是模板所支持的，否则前台切换语言无效果</span>
     		</td>
     	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('default_lang')?><?php if($model->isAttributeRequired('default_lang')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeRadioList($model, 'default_lang', Yii::$app->params['config.languages'], [
-    			    'tag' => 'span',
-    			    'separator' => '&nbsp;&nbsp;&nbsp;',
-    			]); ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr class="nb">
-    		<td class="first-column"><?= $model->getAttributeLabel('open_cate')?><?php if($model->isAttributeRequired('open_cate')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?=
-    			Html::activeRadioList($model, 'open_cate', [
-    			    Template::STATUS_ON => '支持',
-    			    Template::STATUS_OFF => '不支持',
-			    ], [
-			        'separator' => '&nbsp;&nbsp;&nbsp;',
-			        'tag' => 'span',
-			    ]) ?>
-			    <span class="cnote">由模板自身的特性决定，且影响后台操作</span>
-    		</td>
-    	</tr>
-    	
-    	<tr class="nb">
-			<td colspan="2" class="td-line"><div class="line"> </div></td>
-		</tr>
-    	
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('design_name')?><?php if($model->isAttributeRequired('design_name')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">

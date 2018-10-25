@@ -19,20 +19,6 @@ use app\actions\CheckAction;
  */
 class AdminController extends Controller
 {
-    public function actions()
-    {
-        $request = Yii::$app->getRequest();
-        return [
-            'check' => [
-                'class' => CheckAction::class,
-                'className' => Admin::class,
-                'id' => $request->get('id'),
-                'openName' => '已审',
-                'closeName' => '未审',
-            ],
-        ];
-    }
-            
     /**
      * @inheritdoc
      */
@@ -44,6 +30,20 @@ class AdminController extends Controller
                 'actions' => [
                     'delete' => ['POST'],
                 ],
+            ],
+        ];
+    }
+    
+    public function actions()
+    {
+        $request = Yii::$app->getRequest();
+        return [
+            'check' => [
+                'class' => CheckAction::class,
+                'className' => Admin::class,
+                'id' => $request->get('id'),
+                'openName' => '已审',
+                'closeName' => '未审',
             ],
         ];
     }

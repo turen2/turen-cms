@@ -1,20 +1,16 @@
 <?php
-/**
- * @link http://www.turen2.com/
- * @copyright Copyright (c) 土人开源CMS
- * @author developer qq:980522557
- */
+
 namespace app\models\sys;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\sys\Template;
+use app\models\sys\MultilangTpl;
 
 /**
- * TemplateSearch represents the model behind the search form about `app\models\sys\Template`.
+ * MultilangTplSearch represents the model behind the search form about `app\models\sys\MultilangTpl`.
  */
-class TemplateSearch extends Template
+class MultilangTplSearch extends MultilangTpl
 {
     /**
      * @inheritdoc
@@ -22,8 +18,8 @@ class TemplateSearch extends Template
     public function rules()
     {
         return [
-            [['temp_id', 'posttime', 'created_at', 'updated_at'], 'integer'],
-            [['temp_name', 'temp_code', 'picurl', 'picarr', 'developer_name', 'design_name', 'note', 'langs'], 'safe'],
+            [['id', 'template_id', 'back_defautl', 'front_default', 'is_visible', 'orderid'], 'integer'],
+            [['lang', 'key'], 'safe'],
         ];
     }
 
@@ -49,7 +45,7 @@ class TemplateSearch extends Template
         //$query = Admin::findBySql($sql);
         //$query = Admin::find()->alias('a')->select(['a.*', 's.company as company', 's.domain as domain', 's.username as merchant'])->leftJoin(Site::tableName().' as s', ' a.test_id = s.testid');
         
-        $query = Template::find();
+        $query = MultilangTpl::find()->with('template');
 
         // add conditions that should always apply here
 
@@ -62,7 +58,7 @@ class TemplateSearch extends Template
             'sort' => [
                 //'class' => Sort::class,
                 'defaultOrder' => [
-                    //'parent_id' => SORT_ASC,
+                    'orderid' => SORT_DESC,
                 ],
             ],
         ]);
@@ -76,16 +72,18 @@ class TemplateSearch extends Template
         }
 
         // grid filtering conditions
-        $query->andFilterWhere(['like', 'temp_code', $this->temp_code]);
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'template_id' => $this->template_id,
+            'back_defautl' => $this->back_defautl,
+            'front_default' => $this->front_default,
+            'is_visible' => $this->is_visible,
+        ]);
 
-        $query->andFilterWhere(['like', 'temp_name', $this->temp_name])
-            ->andFilterWhere(['like', 'picurl', $this->picurl])
-            ->andFilterWhere(['like', 'note', $this->note])
-            ->andFilterWhere(['like', 'developer_name', $this->developer_name])
-            ->andFilterWhere(['like', 'design_name', $this->design_name])
-            ->andFilterWhere(['like', 'langs', $this->langs]);
+        $query->andFilterWhere(['like', 'lang', $this->lang])
+            ->andFilterWhere(['like', 'key', $this->key]);
         
-//         echo $dataProvider->query->createCommand()->rawSql;exit;
+        //echo $dataProvider->query->createCommand()->rawSql;
 
         return $dataProvider;
     }

@@ -18,6 +18,7 @@ class CheckAction extends Action
     public $openName = '显示';
     public $closeName = '隐藏';
     
+    public $isCurrent = false;
     public $feild = 'status';//指定要修改的字段名
     
     public function run()
@@ -31,7 +32,12 @@ class CheckAction extends Action
         $className = $this->className;
         $primayKey = $className::primaryKey()[0];
         
-        $model = $className::find()->current()->where([$primayKey => $this->id])->one();
+        $query = $className::find();
+        if($this->isCurrent) {
+            $query = $query->current();
+        }
+        
+        $model = $query->where([$primayKey => $this->id])->one();
         $model->{$this->feild} = !$model->{$this->feild};
         $model->save(false);//效果在界面上有显示
         

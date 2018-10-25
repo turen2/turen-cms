@@ -32,4 +32,8 @@ CONFIG.shop = {
 CONFIG.tool = {
 		
 };
+
+CONFIG.sys = {
+	'templateSelectUrl': '<?= Url::to(['/sys/template/template-select']) ?>'
+};
 </script>

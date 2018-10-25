@@ -101,7 +101,7 @@ if(empty($dataProvider->count))
 	<div class="qiuck-warp">
 		<div class="quick-area">
 			<span class="sel-area">
-				<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
+				<span class="total">共 <?= "<?= " ?>$dataProvider->getTotalCount() ?> 条记录</span>
 			</span>
 			<?= "<?= " ?>Html::a('添加新开发日志', ['create'], ['class' => 'data-btn']) ?>
 			<span class="page-small">
