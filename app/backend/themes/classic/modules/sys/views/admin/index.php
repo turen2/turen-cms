@@ -30,13 +30,13 @@ $this->title = '管理者列表';
 		$options = [
 		    'title' => '点击进行显示和隐藏操作',
 		    'data-url' => Url::to(['check', 'id' => $model->id]),
-		    'onclick' => ($model->isFounder())?'$.notify(\'创始人不允许审核\', \'warn\')':'jwf.com.updateStatus(this)',
+		    'onclick' => ($model->isFounder())?'$.notify(\'创始人不允许审核\', \'warn\')':'turen.com.updateStatus(this)',
 		];
 		$checkstr = Html::a(($model->status?'已审':'未审'), 'javascript:;', $options);
 		
 		$options = [
 		    'data-url' => Url::to(['delete', 'id' => $model->id, 'returnUrl' => Url::current()]),
-		    'onclick' => 'jwf.com.deleteItem(this, \''.$model->username.'\')',
+		    'onclick' => 'turen.com.deleteItem(this, \''.$model->username.'\')',
 		];
 		$delstr = Html::a('删除', 'javascript:;', $options);
 	?>

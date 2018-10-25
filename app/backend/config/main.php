@@ -97,7 +97,7 @@ return [
         ],
         'session' => [// session配置
             'class' => 'yii\web\DbSession',//也可以转移到memcache缓存，CacheSession
-            'name' => 'jwfsession',//session name
+            'name' => 'turensession',//session name
             'sessionTable' => '{{%session}}',
             'timeout' => 3600, // 超时设置
             /*

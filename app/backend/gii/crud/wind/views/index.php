@@ -48,13 +48,13 @@ $this->title = <?= $generator->generateString(Inflector::pluralize(Inflector::ca
 		$options = [
 	        'title' => '点击进行显示和隐藏操作',
 	        'data-url' => Url::to(['check', 'id' => $model->id]),
-	        'onclick' => 'jwf.com.updateStatus(this)',
+	        'onclick' => 'turen.com.updateStatus(this)',
         ];
 		$checkstr = Html::a(($model->status?'显示':'隐藏'), 'javascript:;', $options);
 		
 		$options = [
     		'data-url' => Url::to(['delete', 'id' => $model->id, 'returnUrl' => Url::current()]),
-		    'onclick' => 'jwf.com.deleteItem(this, \''.$model->xxxxx.'\')',
+		    'onclick' => 'turen.com.deleteItem(this, \''.$model->xxxxx.'\')',
 		];
 		$delstr = Html::a('删除', 'javascript:;', $options);
 	?>

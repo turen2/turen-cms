@@ -77,7 +77,7 @@ var validator = $("#createform").validate({
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('pcateid')?><?php if($model->isAttributeRequired('pcateid')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<?= BuildHelper::buildSelector($model, 'pcateid', ProductCate::find()->current()->orderBy(['orderid' => SORT_DESC])->all(), ProductCate::class, 'id', 'parentid', 'cname', true, null, ['onchange' => 'jwf.shop.getAttrForm(this);'])?>
+    			<?= BuildHelper::buildSelector($model, 'pcateid', ProductCate::find()->current()->orderBy(['orderid' => SORT_DESC])->all(), ProductCate::class, 'id', 'parentid', 'cname', true, null, ['onchange' => 'turen.shop.getAttrForm(this);'])?>
     			<span class="cnote"></span>
     		</td>
     	</tr>

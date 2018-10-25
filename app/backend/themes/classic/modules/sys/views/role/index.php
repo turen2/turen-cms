@@ -29,13 +29,13 @@ $this->title = '角色管理';
 		$options = [
 	        'title' => '点击设置为有效和无效操作',
 		    'data-url' => Url::to(['check', 'id' => $model->role_id]),
-	        'onclick' => 'jwf.com.updateStatus(this)',
+	        'onclick' => 'turen.com.updateStatus(this)',
         ];
 		$checkstr = Html::a(($model->status?'有效':'无效'), 'javascript:;', $options);
 		
 		$options = [
 		    'data-url' => Url::to(['delete', 'id' => $model->role_id, 'returnUrl' => Url::current()]),
-		    'onclick' => 'jwf.com.deleteItem(this, \''.$model->role_name.'\')',
+		    'onclick' => 'turen.com.deleteItem(this, \''.$model->role_name.'\')',
 		];
 		$delstr = Html::a('删除', 'javascript:;', $options);
 	?>

@@ -39,7 +39,7 @@ $this->title = '模板管理';
 	<?php foreach ($dataProvider->getModels() as $key => $model) {
 		$options = [
 		    'data-url' => Url::to(['delete', 'id' => $model->temp_id, 'returnUrl' => Url::current()]),
-		    'onclick' => 'jwf.com.deleteItem(this, \''.$model->temp_name.'\')',
+		    'onclick' => 'turen.com.deleteItem(this, \''.$model->temp_name.'\')',
 		];
 		$delstr = Html::a('删除', 'javascript:;', $options);
 	?>

@@ -26,7 +26,7 @@ $this->title = '链接组管理';
 ]); ?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="data-table">
 	<tr align="left" class="head">
-		<td width="4%" class="first-column"><input type="checkbox" name="checkid" id="checkid" onclick="jwf.com.checkAll(this.checked);"></td>
+		<td width="4%" class="first-column"><input type="checkbox" name="checkid" id="checkid" onclick="turen.com.checkAll(this.checked);"></td>
 		<td width="3%">ID</td>
 		<td width="32%"><?= $dataProvider->sort->link('typename', ['label' => '链接组名称']) ?></td>
 		<td align="center"><?= $dataProvider->sort->link('orderid', ['label' => '排序']) ?></td>
@@ -36,13 +36,13 @@ $this->title = '链接组管理';
 		$options = [
 	        'title' => '点击进行显示和隐藏操作',
 	        'data-url' => Url::to(['check', 'id' => $model->id]),
-	        'onclick' => 'jwf.com.updateStatus(this)',
+	        'onclick' => 'turen.com.updateStatus(this)',
         ];
 		$checkstr = Html::a(($model->status?'显示':'隐藏'), 'javascript:;', $options);
 		
 		$options = [
     		'data-url' => Url::to(['delete', 'id' => $model->id, 'returnUrl' => Url::current()]),
-    		'onclick' => 'jwf.com.deleteItem(this, \''.$model->typename.'\')',
+    		'onclick' => 'turen.com.deleteItem(this, \''.$model->typename.'\')',
 		];
 		$delstr = Html::a('删除', 'javascript:;', $options);
 	?>
@@ -55,7 +55,7 @@ $this->title = '链接组管理';
 		</td>
 		<td width="27%">
 			<?php if($model->level == 1) { ?>
-			<span class="minus-sign" id="rowid_<?= $model->id; ?>" onclick="jwf.com.displayRows(<?= $model->id; ?>);">
+			<span class="minus-sign" id="rowid_<?= $model->id; ?>" onclick="turen.com.displayRows(<?= $model->id; ?>);">
 				<?= $model->typename?>
 			</span>
 			<?php } else { ?>
@@ -89,13 +89,13 @@ if(empty($dataProvider->count))
 <div class="bottom-toolbar clearfix">
 	<span class="sel-area">
     	<span>选择：</span> 
-    	<a href="javascript:jwf.com.checkAll(true);">全部</a> - 
-    	<a href="javascript:jwf.com.checkAll(false);">无</a> - 
-    	<a href="javascript:jwf.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>　
+    	<a href="javascript:turen.com.checkAll(true);">全部</a> - 
+    	<a href="javascript:turen.com.checkAll(false);">无</a> - 
+    	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>　
     	<span>操作：</span>
-    	<a href="javascript:jwf.com.batchSubmit('<?=Url::to(['batch', 'type' => 'order'])?>', 'batchform');">排序</a> - 
-    	<a href="javascript:jwf.com.showAllRows();">展开</a> - 
-    	<a href="javascript:jwf.com.hideAllRows();">隐藏</a>
+    	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'order'])?>', 'batchform');">排序</a> - 
+    	<a href="javascript:turen.com.showAllRows();">展开</a> - 
+    	<a href="javascript:turen.com.hideAllRows();">隐藏</a>
 	</span>
 	<?= Html::a('添加新链接组', ['create'], ['class' => 'data-btn']) ?>
 </div>
@@ -105,13 +105,13 @@ if(empty($dataProvider->count))
 		<div class="quick-area">
 			<span class="sel-area">
         		<span>选择：</span> 
-        		<a href="javascript:jwf.com.checkAll(true);">全部</a> - 
-        		<a href="javascript:jwf.com.checkAll(false);">无</a> - 
-        		<a href="javascript:jwf.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>　
+        		<a href="javascript:turen.com.checkAll(true);">全部</a> - 
+        		<a href="javascript:turen.com.checkAll(false);">无</a> - 
+        		<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>　
         		<span>操作：</span>
-        		<a href="javascript:jwf.com.batchSubmit('<?=Url::to(['batch', 'type' => 'order'])?>', 'batchform');">排序</a> - 
-        		<a href="javascript:jwf.com.showAllRows();">展开</a> - 
-        		<a href="javascript:jwf.com.hideAllRows();">隐藏</a>
+        		<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'order'])?>', 'batchform');">排序</a> - 
+        		<a href="javascript:turen.com.showAllRows();">展开</a> - 
+        		<a href="javascript:turen.com.hideAllRows();">隐藏</a>
     		</span> 
 			<?= Html::a('添加新链接组', ['create'], ['class' => 'data-btn']) ?>
 			<div class="page-small">

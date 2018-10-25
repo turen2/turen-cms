@@ -78,18 +78,18 @@ $this->registerJs($js);
         		<td class="first-column">投票项目：</td>
         		<td class="second-column">
         			<?= Html::input('text', 'options[new][]', $optionModel->options, ['class' => 'input']) ?>
-        			<span class="cnote"><a href="javascript:;" class="addNewTr" onclick="jwf.ext.addNewOption()" title="新增一行"></a></span>
+        			<span class="cnote"><a href="javascript:;" class="addNewTr" onclick="turen.ext.addNewOption()" title="新增一行"></a></span>
         		</td>
         	</tr>
     	<?php } else { ?>
     		<?php $ii = 0 ?>
         	<?php foreach ($optionModels as $optionModel) { ?>
         	<tr class="option-item">
-        		<td class="first-column"><?php if(empty($ii)) { ?>投票项目：<?php } else { ?><span class="del-vote-txt"><a href="javascript:;" onclick="jwf.ext.delOption(this)">删</a></span>：<?php } ?></td>
+        		<td class="first-column"><?php if(empty($ii)) { ?>投票项目：<?php } else { ?><span class="del-vote-txt"><a href="javascript:;" onclick="turen.ext.delOption(this)">删</a></span>：<?php } ?></td>
         		<td class="second-column">
         			<?= Html::input('text', 'options[old]['.$optionModel->id.']', $optionModel->options, ['class' => 'input']) ?>
         			<?php if(empty($ii)) { ?>
-        			<span class="cnote"><a href="javascript:;" class="addNewTr" onclick="jwf.ext.addNewOption(this)" title="新增一行"></a></span>
+        			<span class="cnote"><a href="javascript:;" class="addNewTr" onclick="turen.ext.addNewOption(this)" title="新增一行"></a></span>
         			<?php } ?>
         		</td>
         	</tr>

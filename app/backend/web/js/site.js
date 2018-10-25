@@ -29,14 +29,14 @@ $(function() {
 	}
 });
 
-window.jwf = yii;
-var csrfParam = jwf.getCsrfParam();
-var csrfToken = jwf.getCsrfToken();
+window.turen = yii;
+var csrfParam = turen.getCsrfParam();
+var csrfToken = turen.getCsrfToken();
 
 /*
-对应后台，创建以下模块jwf.com、jwf.cms、jwf.ext、jwf.shop、jwf.sys、jwf.tool
+对应后台，创建以下模块turen.com、turen.cms、turen.ext、turen.shop、turen.sys、turen.tool
 */
-jwf.com = (function($) {
+turen.com = (function($) {
     var pub = {
 		//快捷工具栏动态显隐
 		quickToolbar: function () {
@@ -49,14 +49,14 @@ jwf.com = (function($) {
 		//立刻执行
 		autoDeal: function() {
 			//快捷工具栏
-			jwf.com.quickToolbar();
+			turen.com.quickToolbar();
 			
 			$(window).resize(function() {
-				jwf.com.quickToolbar();
+				turen.com.quickToolbar();
 			});
 
 			$(window).scroll(function() {
-				jwf.com.quickToolbar();
+				turen.com.quickToolbar();
 			});
 			
 			//快捷退出Esc
@@ -150,13 +150,13 @@ jwf.com = (function($) {
         showAllRows: function() {
         	$("div[rel^='rowpid'][rel!='rowpid_0']").slideDown(200);
         	$("span[id^='rowid']").attr("class","minus-sign");
-        	setTimeout("jwf.com.quickToolbar()",200);
+        	setTimeout("turen.com.quickToolbar()",200);
         },
         //隐藏
         hideAllRows: function() {
-        	$("div[rel^='rowpid'][rel!='rowpid_0']").slideUp(200, jwf.com.quickToolbar());
+        	$("div[rel^='rowpid'][rel!='rowpid_0']").slideUp(200, turen.com.quickToolbar());
         	$("span[id^='rowid']").attr("class","plus-sign");
-        	setTimeout("jwf.com.quickToolbar()",200);
+        	setTimeout("turen.com.quickToolbar()",200);
         },
     	//展开合并下级
         displayRows: function(id) {
@@ -245,7 +245,7 @@ jwf.com = (function($) {
 })(jQuery);
 
 
-jwf.ext = (function($) {
+turen.ext = (function($) {
     var pub = {
         //投票增加
         addNewOption: function() {
@@ -283,7 +283,7 @@ jwf.ext = (function($) {
     return pub;
 })(jQuery);
 
-jwf.shop = (function($) {
+turen.shop = (function($) {
     var pub = {
         getAttrForm: function(_this) {
         	var _this = $(_this);
@@ -330,7 +330,7 @@ jwf.shop = (function($) {
 })(jQuery);
 
 //立刻执行
-jwf.com.autoDeal();
+turen.com.autoDeal();
 
 
 

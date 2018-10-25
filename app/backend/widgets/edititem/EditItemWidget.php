@@ -42,9 +42,9 @@ class EditItemWidget extends \yii\widgets\InputWidget
         $id = $this->model->{$this->primaryKey};
         $value = $this->model->{$this->attribute};
         if ($this->hasModel()) {
-            return '<div class="edit-box"><span class="origin">'.$value.'</span>'.Html::activeTextInput($this->model, $this->attribute, $this->options).'<a class="edit-btn" href="javascript:;" data-url="'.$this->url.'" data-id="'.$id.'" onclick="jwf.com.editItem(this);"><i class="fa fa-edit"></i></a></div>';
+            return '<div class="edit-box"><span class="origin">'.$value.'</span>'.Html::activeTextInput($this->model, $this->attribute, $this->options).'<a class="edit-btn" href="javascript:;" data-url="'.$this->url.'" data-id="'.$id.'" onclick="turen.com.editItem(this);"><i class="fa fa-edit"></i></a></div>';
         } else {
-            return '<div class="edit-box"><span class="origin">'.$value.'</span>'.Html::textInput($this->id, $this->value, $this->options).'</div><a class="edit-btn" href="javascript:;" data-url="'.$this->url.'" data-id="'.$id.'" onclick="jwf.com.editItem(this);"><i class="fa fa-edit"></i></a>';
+            return '<div class="edit-box"><span class="origin">'.$value.'</span>'.Html::textInput($this->id, $this->value, $this->options).'</div><a class="edit-btn" href="javascript:;" data-url="'.$this->url.'" data-id="'.$id.'" onclick="turen.com.editItem(this);"><i class="fa fa-edit"></i></a>';
         }
     }
     
