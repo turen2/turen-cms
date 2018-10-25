@@ -216,6 +216,13 @@ turen.com = (function($) {
         		box.addClass('active');
             	box.find('.edit-btn').html('<i class="fa fa-check-square-o"></i>');
         	}
+        },
+        //隐藏alert
+        hideAlert(_this, boxClass = 'alert') {
+        	var _this = $(_this);
+        	
+        	boxClass = '.'+boxClass;
+        	_this.parents(boxClass).hide('slow');
         }
     };
 
@@ -299,6 +306,51 @@ turen.shop = (function($) {
                 }
             };
             commonRemote(CONFIG.shop.attrFormUrl, {pcateid: pcateid}, callback, _this);
+        }
+    };
+
+    // 私有方法
+    function commonRemote(url ,data, callback, _this, type = 'POST') {
+        data[csrfParam] = csrfToken;
+        $.ajax({
+            url: url,
+            type: type,
+            dataType: 'json',
+            context: _this,
+            cache: false,
+            data: data,
+            success: function(res) {
+                if(callback) {
+                    callback(res, _this);
+                } else {
+                	if (res['state']) {
+                    	$.notify(res['msg'], 'success');
+                    } else {
+                    	$.notify(res['msg'], 'warn');
+                    }
+                }
+           }
+        });
+    }
+
+    return pub;
+})(jQuery);
+
+turen.sys = (function($) {
+    var pub = {
+		getTemplate: function(_this) {
+        	var _this = $(_this);
+        	
+        	var tempid = _this.val();
+            var callback = function(res, _this) {
+                if(res.state) {
+                	$.notify('当前模板支持的语言已获取', 'success');
+                	$('#multilangtpl-lang').html(res.msg);
+                } else {
+                	$.notify(res.msg, 'error');
+                }
+            };
+            commonRemote(CONFIG.sys.templateSelectUrl, {tempid: tempid}, callback, _this);
         }
     };
 

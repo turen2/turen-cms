@@ -37,7 +37,7 @@ class Alert extends Widget
 
                     $str = '<div id="'.$id.'" class="alert '.$className.' alert-dismissable">';
                     if($this->closeBtn) {
-                        $str .= '<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>';
+                        $str .= '<button aria-hidden="true" data-dismiss="alert" class="close" type="button" onclick="turen.com.hideAlert(this)">×</button>';
                     }
                     $str .= $message;
                     $str .= '</div>';
