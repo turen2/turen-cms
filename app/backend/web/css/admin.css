@@ -1493,7 +1493,6 @@ input[type="button"]:focus, input[type="submit"]:focus {
 	margin: 0 3px 0 0;
 	border: 1px solid #ccc;
 	padding: 0 3px;
-	background: white;
 }
 
 .input {
