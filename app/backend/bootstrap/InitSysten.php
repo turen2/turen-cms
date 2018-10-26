@@ -8,10 +8,8 @@ namespace app\bootstrap;
 
 use Yii;
 use yii\base\InvalidConfigException;
-use app\models\sys\Template;
 use yii\helpers\ArrayHelper;
 use yii\db\Query;
-use yii\helpers\Json;
 use app\filters\ReturnUrlFilter;
 use app\models\sys\MultilangTpl;
 
@@ -34,19 +32,24 @@ class InitSysten extends \yii\base\Component implements \yii\base\BootstrapInter
         
         //手动切换
         if($lang = Yii::$app->request->post('lang')) {
-            $session->set(self::INIT_LAGN, $lang);
+            $session->set(self::INIT_LAGN, $lang);//提交语言
             $session->remove(self::INIT_PARAMS);
+            
             //内容+构架，整体刷新
-            Yii::$app->getSession()->remove(ReturnUrlFilter::RETURN_RUL_ROUTE);
+            $session->remove(ReturnUrlFilter::RETURN_RUL_ROUTE);
             Yii::$app->getResponse()->refresh('#lang');
-        } else {
-            $session->remove(self::INIT_LAGN);
         }
+        
+        //var_dump($session->get(self::INIT_LAGN));//只负责切换的时候有效，切换完成就删除
+        //var_dump($session->get(self::INIT_PARAMS));//用来保存记录，它决定系统的语言数据
         
         //读取历史记录
         if($session->has(self::INIT_PARAMS)) {
             $params = $session->get(self::INIT_PARAMS);
-            Yii::$app->params = ArrayHelper::merge(Yii::$app->params, $params);//$params['config_init_langs'];//$params['config_init_default_lang'];
+            
+            //$params['config_init_langs'];
+            //$params['config_init_default_lang'];//保存最终确认的语言
+            Yii::$app->params = ArrayHelper::merge(Yii::$app->params, $params);
         } else {
             $multilangTpls = (new Query())->from(MultilangTpl::tableName())->all();
             $allLang = [];
@@ -75,9 +78,21 @@ class InitSysten extends \yii\base\Component implements \yii\base\BootstrapInter
             
             $session->set(self::INIT_PARAMS, $params);
             Yii::$app->params = ArrayHelper::merge(Yii::$app->params, $params);
+            
+            //==============
+            
+            //切换完成，切换临时语言清空处理
+            $session->remove(self::INIT_LAGN);
+            
+            //临时生成
+            define('GLOBAL_LANG', Yii::$app->params['config_init_default_lang']);
+            define('CONFIG_CACHE_KEY', 'sys.cache.'.GLOBAL_LANG);
+            
+            //清空缓存
+            Yii::$app->cache->delete(CONFIG_CACHE_KEY);
         }
         
-        define('GLOBAL_LANG', Yii::$app->params['config_init_default_lang']);
-        define('CONFIG_CACHE_KEY', 'sys.cache.'.GLOBAL_LANG);
+        defined('GLOBAL_LANG') || define('GLOBAL_LANG', Yii::$app->params['config_init_default_lang']);
+        defined('CONFIG_CACHE_KEY') || define('CONFIG_CACHE_KEY', 'sys.cache.'.GLOBAL_LANG);
     }
 }

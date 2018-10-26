@@ -126,7 +126,7 @@ class Config extends \app\models\base\Sys
         $models = self::find()->current()->all();
         foreach ($models as $model) {
             if(isset($data[$model->varname]) && $model->varvalue != $data[$model->varname]) {
-                self::updateAll(['varvalue' => $data[$model->varname]], ['varname' => $model->varname]);
+                self::updateAll(['varvalue' => $data[$model->varname]], ['varname' => $model->varname, 'lang' => GLOBAL_LANG]);
                 //$model->setAttribute('varvalue', $data[$model->varname]);
                 //if($model->getOldAttribute('varvalue') != $model->getAttribute('varvalue')) {
                     //$model->save(false);//不验证保存
@@ -170,8 +170,8 @@ class Config extends \app\models\base\Sys
     public static function CacheList()
     {
         $cache = Yii::$app->getCache();
-        if($cache->exists(CONFIG_CACHE_KEY)) {
-            return Json::decode($cache->get(CONFIG_CACHE_KEY));//返回数组
+        if($cacheData = $cache->get(CONFIG_CACHE_KEY)) {
+            return Json::decode($cacheData);//返回数组
         } else {
             if(self::UpdateCache()) {//就地更新
                 return Json::decode($cache->get(CONFIG_CACHE_KEY));//返回数组
