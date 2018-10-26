@@ -18,7 +18,7 @@ class MultilangTplSearch extends MultilangTpl
     public function rules()
     {
         return [
-            [['id', 'template_id', 'back_defautl', 'front_default', 'is_visible', 'orderid'], 'integer'],
+            [['id', 'template_id', 'back_default', 'front_default', 'is_visible', 'orderid'], 'integer'],
             [['lang', 'key'], 'safe'],
         ];
     }
@@ -75,7 +75,7 @@ class MultilangTplSearch extends MultilangTpl
         $query->andFilterWhere([
             'id' => $this->id,
             'template_id' => $this->template_id,
-            'back_defautl' => $this->back_defautl,
+            'back_default' => $this->back_default,
             'front_default' => $this->front_default,
             'is_visible' => $this->is_visible,
         ]);

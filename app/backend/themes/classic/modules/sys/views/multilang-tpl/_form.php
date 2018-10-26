@@ -80,9 +80,9 @@ var validator = $("#createform").validate({
     		</td>
     	</tr>
     	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('back_defautl')?><?php if($model->isAttributeRequired('back_defautl')) { ?><span class="maroon">*</span><?php } ?></td>
+    		<td class="first-column"><?= $model->getAttributeLabel('back_default')?><?php if($model->isAttributeRequired('back_default')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<?= Html::activeRadioList($model, 'back_defautl', [
+    			<?= Html::activeRadioList($model, 'back_default', [
     			    MultilangTpl::STATUS_ON => '是',
     			    MultilangTpl::STATUS_OFF => '否',
 				], ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']);

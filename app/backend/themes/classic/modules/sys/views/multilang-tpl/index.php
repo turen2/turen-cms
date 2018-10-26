@@ -28,7 +28,7 @@ $this->title = '多语言管理';
 		<td width="13%">指定模板</td>
 		<td width="6%"><?= $dataProvider->sort->link('lang', ['label' => '语言包']) ?></td>
 		<td width="6%"><?= $dataProvider->sort->link('key', ['label' => 'Url Key']) ?></td>
-		<td width="7%"><?= $dataProvider->sort->link('back_defautl', ['label' => '后台默认']) ?></td>
+		<td width="7%"><?= $dataProvider->sort->link('back_default', ['label' => '后台默认']) ?></td>
 		<td width="7%"><?= $dataProvider->sort->link('front_default', ['label' => '前台默认']) ?></td>
 		<td width="10%" align="center"><?= $dataProvider->sort->link('orderid', ['label' => '排序']) ?></td>
 		<td width="25%" class="end-column">操作</td>
@@ -56,7 +56,7 @@ $this->title = '多语言管理';
 		<td><?= isset($model->template)?$model->template->temp_name:'未定义'; ?></td>
 		<td><?= $model->lang; ?></td>
 		<td><?= $model->key; ?></td>
-		<td><?= $model->back_defautl?'<span class="badge badge-success">是</span>':'<span class="badge">否</span>'; ?></td>
+		<td><?= $model->back_default?'<span class="badge badge-success">是</span>':'<span class="badge">否</span>'; ?></td>
 		<td><?= $model->front_default?'<span class="badge badge-success">是</span>':'<span class="badge">否</span>'; ?></td>
 		<td align="center">
 			<a href="<?=Url::to(['simple-move', 'type' => MultilangTpl::ORDER_UP_TYPE, 'id' => $model->id, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>

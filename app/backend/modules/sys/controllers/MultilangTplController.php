@@ -126,7 +126,7 @@ class MultilangTplController extends Controller
         $state = true;
         $msg = $model->lang_name.' 已经成功删除！';
         
-        if(!empty($model->back_defautl)) {
+        if(!empty($model->back_default)) {
             $state = false;
             $msg = $model->lang_name.' 被指定后台默认不能删！';
         }
