@@ -1,5 +1,8 @@
 <?php
 
+use app\bootstrap\InitSysten;
+use app\bootstrap\InitConfig;
+
 $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
     require __DIR__ . '/../../common/config/params-local.php',
@@ -26,8 +29,15 @@ return [
     'bootstrap' => [
         'log',
         //'queue',//队列
-        'app\bootstrap\initSysten',//初始化环境：模板、语言、缓存
-        'app\bootstrap\initConfig',//依据语言进行配置初始化
+        //'app\bootstrap\initSysten',//php 7.2不支持
+        //'app\bootstrap\initConfig',
+        
+        [
+            'class' => InitSysten::class,//初始化环境：模板、语言、缓存
+        ],
+        [
+            'class' => InitConfig::class,//依据语言进行配置初始化
+        ]
     ],
     'modules' => [
         'site' => [//主要解决公共页面的展示，iframe主框架、404、503、首页等
