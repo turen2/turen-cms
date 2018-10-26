@@ -67,10 +67,11 @@ if(empty($dataProvider->count))
 
 <div class="bottom-toolbar clearfix">
 	<span class="sel-area">
-		<span>选择：</span> 
-    	<a href="javascript:turen.com.checkAll(true);">全部</a> - 
-    	<a href="javascript:turen.com.checkAll(false);">无</a> - 
-    	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>　
+		<span class="sel-name">选择：</span> 
+    	<a href="javascript:turen.com.checkAll(true);">全选</a> - 
+    	<a href="javascript:turen.com.checkAll(false);">反选</a>
+    	<span class="op-name">操作：</span>
+    	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>
 	</span>
 	<div class="page">
     	<?= LinkPager::widget([
@@ -91,25 +92,26 @@ if(empty($dataProvider->count))
 	<div class="qiuck-warp">
 		<div class="quick-area">
     		<span class="sel-area">
-        	<span>选择：</span> 
-        	<a href="javascript:turen.com.checkAll(true);">全部</a> - 
-        	<a href="javascript:turen.com.checkAll(false);">无</a> - 
-        	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a> - 
-        	<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
-    	</span>
-			<div class="page-small">
-			<?= LinkPager::widget([
-			    'pagination' => $dataProvider->getPagination(),
-			    'options' => ['class' => 'page-list', 'tag' => 'div'],
-			    'activePageCssClass' => 'on',
-			    'firstPageLabel' => '首页',
-			    'lastPageLabel' => '尾页',
-			    'nextPageLabel' => '下页',
-			    'prevPageLabel' => '上页',
-			    'linkContainerOptions' => ['tag' => 'span'],
-			]);
-			?>
-			</div>
+            	<span class="sel-name">选择：</span> 
+            	<a href="javascript:turen.com.checkAll(true);">全选</a> - 
+            	<a href="javascript:turen.com.checkAll(false);">反选</a>
+            	<span class="op-name">操作：</span>
+            	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>
+            	<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
+        	</span>
+    		<div class="page-small">
+    		<?= LinkPager::widget([
+    		    'pagination' => $dataProvider->getPagination(),
+    		    'options' => ['class' => 'page-list', 'tag' => 'div'],
+    		    'activePageCssClass' => 'on',
+    		    'firstPageLabel' => '首页',
+    		    'lastPageLabel' => '尾页',
+    		    'nextPageLabel' => '下页',
+    		    'prevPageLabel' => '上页',
+    		    'linkContainerOptions' => ['tag' => 'span'],
+    		]);
+    		?>
+    		</div>
 		</div>
 		<div class="quick-area-bg"></div>
 	</div>

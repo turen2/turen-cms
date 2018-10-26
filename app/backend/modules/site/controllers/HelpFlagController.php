@@ -86,7 +86,7 @@ class HelpFlagController extends Controller
             $flagnameadd = $post['flagnameadd'];
             $flagadd = $post['flagadd'];
             $orderidadd = $post['orderidadd'];
-            if($flagnameadd && $flagadd) {
+            if(!empty($flagnameadd) && !empty($flagadd)) {
                 //新建
                 $model = new HelpFlag();
                 $model->flagname = $flagnameadd;
@@ -148,7 +148,7 @@ class HelpFlagController extends Controller
             }
             Yii::$app->getSession()->setFlash('success', '<ul>'.$tips.'</ul>');
         } elseif($type == 'order') {//全局提交
-            $ids = Yii::$app->getRequest()->post('id', []);
+            $ids = Yii::$app->getRequest()->post('checkid', []);
             $orders = Yii::$app->getRequest()->post('orderid', []);
             foreach ($ids as $key => $id) {
                 if($model = HelpFlag::find()->andWhere(['id' => $id])->one()) {

@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
 /* @var $searchModel app\models\sys\MultilangTplSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = '多站点管理';
+$this->title = '多语言管理';
 ?>
 
 <?= $this->render('_search', ['model' => $searchModel]); ?>
@@ -24,7 +24,7 @@ $this->title = '多站点管理';
 	<tr align="left" class="head">
 		<td width="4%"  class="first-column"><input type="checkbox" name="checkid" id="checkid" onclick="turen.com.checkAll(this.checked);"></td>
 		<td width="4%">ID</td>
-		<td width="10%"><?= $dataProvider->sort->link('lang_name', ['label' => '站点名称']) ?></td>
+		<td width="10%"><?= $dataProvider->sort->link('lang_name', ['label' => '多语言站名']) ?></td>
 		<td width="13%">指定模板</td>
 		<td width="6%"><?= $dataProvider->sort->link('lang', ['label' => '语言包']) ?></td>
 		<td width="6%"><?= $dataProvider->sort->link('key', ['label' => 'Url Key']) ?></td>
@@ -78,11 +78,11 @@ if(empty($dataProvider->count))
 
 <div class="bottom-toolbar clearfix">
 	<span class="sel-area"><span>选择：</span>
-    	<a href="javascript:turen.com.checkAll(true);">全部</a> - 
-    	<a href="javascript:turen.com.checkAll(false);">无</a> - 
+    	<a href="javascript:turen.com.checkAll(true);">全选</a> - 
+    	<a href="javascript:turen.com.checkAll(false);">反选</a>
     	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'order'])?>', 'batchform');">排序</a>
 	</span>
-	<?= Html::a('添加新站点', ['create'], ['class' => 'data-btn']) ?>
+	<?= Html::a('添加新语言站', ['create'], ['class' => 'data-btn']) ?>
 	<div class="page">
     	<?= LinkPager::widget([
     	    'pagination' => $dataProvider->getPagination(),
@@ -102,12 +102,12 @@ if(empty($dataProvider->count))
 	<div class="qiuck-warp">
 		<div class="quick-area">
 			<span class="sel-area">
-				<span>选择：</span> <a href="javascript:turen.com.checkAll(true);">全部</a> - 
-				<a href="javascript:turen.com.checkAll(false);">无</a> - 
+				<span class="sel-name">选择：</span> <a href="javascript:turen.com.checkAll(true);">全选</a> - 
+				<a href="javascript:turen.com.checkAll(false);">反选</a>
 				<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'order'])?>', 'batchform');">排序</a> - 
 				<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
 			</span>
-			<?= Html::a('添加新站点', ['create'], ['class' => 'data-btn']) ?>
+			<?= Html::a('添加新语言站', ['create'], ['class' => 'data-btn']) ?>
 			<span class="page-small">
 			<?= LinkPager::widget([
 			    'pagination' => $dataProvider->getPagination(),

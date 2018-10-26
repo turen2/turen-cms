@@ -71,7 +71,7 @@ class LevelController extends Controller
                 $orderids = $post['orderid'];
                 
                 for ($i = 0; $i < count($ids); $i++) {
-                    if(isset($level_names[$i]) && isset($level_expval_mins[$i]) && isset($level_expval_maxs[$i])&& isset($orderids[$i])) {
+                    if(isset($level_names[$i]) && isset($level_expval_mins[$i]) && isset($level_expval_maxs[$i]) && isset($orderids[$i])) {
                         //修改
                         $model = Level::find()->current()->andWhere(['level_id' => $ids[$i]])->one();
                         $model && $model->updateAttributes([
@@ -89,7 +89,7 @@ class LevelController extends Controller
             $level_expval_minadd = $post['level_expval_minadd'];
             $level_expval_maxadd = $post['level_expval_maxadd'];
             $orderidadd = $post['orderidadd'];
-            if($level_nameadd && $level_expval_minadd && $level_expval_maxadd) {
+            if(!empty($level_nameadd) && $level_expval_minadd && $level_expval_maxadd) {
                 //新建
                 $model = new Level();
                 $model->level_name = $level_nameadd;
@@ -135,14 +135,22 @@ class LevelController extends Controller
         $model = $this->findModel($id);
         $model->delete();
         
+        $state = true;
+        $msg = $model->level_name.' 已经成功删除！';
+        
+        if($state && !empty($model->is_default)) {
+            $state = false;
+            $msg = $model->level_name.' 为默认等级不能删除！';
+        }
+        
         if(Yii::$app->getRequest()->isAjax) {
             return $this->asJson([
-                'state' => true,
-                'msg' => $model->level_name.' 已经成功删除！',
+                'state' => $state,
+                'msg' => $msg,
             ]);
         }
         
-        Yii::$app->getSession()->setFlash('success', $model->level_name.' 已经成功删除！');
+        Yii::$app->getSession()->setFlash($state?'success':'warning', $msg);
         return $this->redirect($returnUrl);
     }
     
@@ -180,7 +188,7 @@ class LevelController extends Controller
             }
             Yii::$app->getSession()->setFlash('success', '<ul>'.$tips.'</ul>');
         } elseif($type == 'order') {//全局提交
-            $ids = Yii::$app->getRequest()->post('id', []);
+            $ids = Yii::$app->getRequest()->post('checkid', []);
             $orders = Yii::$app->getRequest()->post('orderid', []);
             foreach ($ids as $key => $id) {
                 if($model = Level::find()->current()->andWhere(['level_id' => $id])->one()) {

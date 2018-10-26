@@ -144,7 +144,7 @@ class ProductCateController extends Controller
             }
             Yii::$app->getSession()->setFlash('success', '<ul>'.$tips.'</ul>');
         } elseif($type == 'order') {//全局提交
-            $ids = Yii::$app->getRequest()->post('id', []);
+            $ids = Yii::$app->getRequest()->post('checkid', []);
             $orders = Yii::$app->getRequest()->post('orderid', []);
             foreach ($ids as $key => $id) {
                 if($model = ProductCate::find()->current()->andWhere(['id' => $id])->one()) {

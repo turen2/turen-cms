@@ -136,6 +136,8 @@ turen.com = (function($) {
         	var patten = /order/g;
         	if(patten.test(url)) {
         		if($("input[type='checkbox'][name!='checkid'][name^='checkid']:checked").size() > 0) {
+        			//禁用未选中的行//注意，不提交未选择的行，保证数据的一一对应，后台无需单独处理
+        			$("input[type='checkbox'][name!='checkid'][name^='checkid']:not(:checked)").parents('tr').find("input[type='text']").attr('disabled', 'disabled');
     				$('#'+formId).attr('action', url).submit();
         		} else {
         			$.notify('没有任何选中信息！', 'warn');

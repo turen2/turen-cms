@@ -98,7 +98,7 @@ var validator = $("#createform").validate({
     			    MultilangTpl::STATUS_OFF => '否',
 				], ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']);
 				?>
-    			<span class="cnote">&nbsp;&nbsp;注意：默认站点为主站点，不会显示url的网站标识。</span>
+    			<span class="cnote">&nbsp;&nbsp;注意：默认站点为主语言站点，不会显示url的网站标识。</span>
     		</td>
     	</tr>
     	<tr>

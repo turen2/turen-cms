@@ -83,7 +83,7 @@ class GroupController extends Controller
             
             $ug_nameadd = $post['ug_nameadd'];
             $orderidadd = $post['orderidadd'];
-            if($ug_nameadd) {
+            if(!empty($ug_nameadd)) {
                 //新建
                 $model = new Group();
                 $model->ug_name = $ug_nameadd;
@@ -126,14 +126,22 @@ class GroupController extends Controller
         $model = $this->findModel($id);
         $model->delete();
         
+        $state = true;
+        $msg = $model->ug_name.' 已经成功删除！';
+        
+        if($state && !empty($model->is_default)) {
+            $state = false;
+            $msg = $model->ug_name.' 为默认用户组不能删除！';
+        }
+        
         if(Yii::$app->getRequest()->isAjax) {
             return $this->asJson([
-                'state' => true,
-                'msg' => $model->ug_name.' 已经成功删除！',
+                'state' => $state,
+                'msg' => $msg,
             ]);
         }
         
-        Yii::$app->getSession()->setFlash('success', $model->ug_name.' 已经成功删除！');
+        Yii::$app->getSession()->setFlash($state?'success':'warning', $msg);
         return $this->redirect($returnUrl);
     }
     
@@ -171,7 +179,7 @@ class GroupController extends Controller
             }
             Yii::$app->getSession()->setFlash('success', '<ul>'.$tips.'</ul>');
         } elseif($type == 'order') {//全局提交
-            $ids = Yii::$app->getRequest()->post('id', []);
+            $ids = Yii::$app->getRequest()->post('checkid', []);
             $orders = Yii::$app->getRequest()->post('orderid', []);
             foreach ($ids as $key => $id) {
                 if($model = Group::find()->current()->andWhere(['ug_id' => $id])->one()) {

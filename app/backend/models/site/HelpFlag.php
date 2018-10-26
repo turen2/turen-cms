@@ -42,7 +42,7 @@ class HelpFlag extends \app\models\base\Site
 	            ],
 	            'value' => function ($event) {
     	            if(empty($this->orderid)) {
-    	                $maxModel = self::find()->current()->orderBy(['orderid' => SORT_DESC])->one();
+    	                $maxModel = self::find()->orderBy(['orderid' => SORT_DESC])->one();
     	                if($maxModel) {
     	                    return $maxModel->orderid + 1;
     	                } else {

@@ -86,7 +86,7 @@ class SrcController extends Controller
             $srcnameadd = $post['srcnameadd'];
             $linkurladd = $post['linkurladd'];
             $orderidadd = $post['orderidadd'];
-            if($srcnameadd && $linkurladd) {
+            if(!empty($srcnameadd) && !empty($linkurladd)) {
                 //新建
                 $model = new Src();
                 $model->srcname = $srcnameadd;
@@ -156,7 +156,7 @@ class SrcController extends Controller
             }
             Yii::$app->getSession()->setFlash('success', '<ul>'.$tips.'</ul>');
         } elseif($type == 'order') {//全局提交
-            $ids = Yii::$app->getRequest()->post('id', []);
+            $ids = Yii::$app->getRequest()->post('checkid', []);
             $orders = Yii::$app->getRequest()->post('orderid', []);
             foreach ($ids as $key => $id) {
                 if($model = Src::find()->current()->andWhere(['id' => $id])->one()) {

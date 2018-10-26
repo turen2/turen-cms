@@ -72,9 +72,10 @@ if(empty($dataProvider->count))
 
 <div class="bottom-toolbar clearfix">
 	<span class="sel-area">
-    	<span>选择：</span> 
-    	<a href="javascript:turen.com.checkAll(true);">全部</a> - 
-    	<a href="javascript:turen.com.checkAll(false);">无</a> - 
+    	<span class="sel-name">选择：</span> 
+    	<a href="javascript:turen.com.checkAll(true);">全选</a> - 
+    	<a href="javascript:turen.com.checkAll(false);">反选</a>
+    	<span class="op-name">操作：</span>
     	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>　
 	</span>
 	<?= Html::a('添加新属性', ['create'], ['class' => 'data-btn']) ?>
@@ -93,15 +94,14 @@ if(empty($dataProvider->count))
     </div>
 </div>
 
-
-
 <div class="quick-toolbar">
 	<div class="qiuck-warp">
 		<div class="quick-area">
     		<span class="sel-area">
-        	<span>选择：</span> 
-        	<a href="javascript:turen.com.checkAll(true);">全部</a> - 
-        	<a href="javascript:turen.com.checkAll(false);">无</a> - 
+        	<span class="sel-name">选择：</span> 
+        	<a href="javascript:turen.com.checkAll(true);">全选</a> - 
+        	<a href="javascript:turen.com.checkAll(false);">反选</a>
+        	<span class="op-name">操作：</span>
         	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a> - 
         	<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
     	</span>

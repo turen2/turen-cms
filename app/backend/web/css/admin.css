@@ -804,6 +804,14 @@ input[type="button"]:focus, input[type="submit"]:focus {
     background: url(../images/state.png) no-repeat 50% 100%;
 }
 
+.sel-area .sel-name {
+	
+}
+
+.sel-area .op-name {
+	margin-left: 10px;
+}
+
 /*切换搜索*/
 .toolbar-tab {
 	height: 38px;
