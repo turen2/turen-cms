@@ -10,6 +10,7 @@ use Yii;
 use yii\base\Action;
 use yii\base\InvalidArgumentException;
 use yii\helpers\Json;
+use app\models\cms\Article;
 
 /**
  * 批量操作
@@ -34,11 +35,7 @@ class EditItemAction extends Action
         $className = $this->className;
         $primayKey = $className::primaryKey()[0];
         
-        $model = $className::find()->current()->andWhere([$primayKey => $this->id])->one();
-        if($model) {
-            $model->{$this->field} = $this->value;
-            $model->save(false);
-            
+        if($className::updateAll([$this->field => $this->value], [$primayKey => $this->id])) {
             return Json::encode([
                 'state' => true,
                 'msg' => '修改成功',
