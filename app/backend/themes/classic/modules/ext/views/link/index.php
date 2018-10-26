@@ -10,6 +10,7 @@ use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use yii\widgets\ActiveForm;
 use common\components\aliyunoss\AliyunOss;
+use app\widgets\edititem\EditItemWidget;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ext\LinkSearch */
@@ -33,6 +34,7 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel]);
 		<td width="20%"><?= $dataProvider->sort->link('webname', ['label' => '站点名称']) ?></td>
 		<td width="25%">站点URL</td>
 		<td width="10%">所属分类</td>
+		<td><?= $dataProvider->sort->link('orderid', ['label' => '排序']) ?></td>
 		<td width="20%" class="end-column">操作</td>
 	</tr>
 	<?php foreach ($dataProvider->getModels() as $key => $model) {
@@ -58,6 +60,13 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel]);
 		<td><?= $model->webname; ?></td>
 		<td><a href="<?= $model->linkurl; ?>" target="_blank" title="点击访问"><?= $model->linkurl; ?></a></td>
 		<td><?= $model->getLinkTypeName().' ['.$model->link_type_id.']'; ?></td>
+		<td><?= EditItemWidget::widget([
+		    'model' => $model,
+		    'primaryKey' => 'id',
+		    'attribute' => 'orderid',
+		    'url' => Url::to(['/ext/link/edit-item']),
+		    'options' => [],
+		]); ?></td>
 		<td class="action end-column"><span><?= $checkstr; ?></span> | <span><a href="<?= Url::to(['update', 'id' => $model->id]) ?>">编辑</a></span> | <span class="nb"><?= $delstr; ?></span></td>
 	</tr>
 	<?php } ?>
@@ -77,7 +86,7 @@ if(empty($dataProvider->count))
     	<a href="javascript:turen.com.checkAll(true);">全选</a> - 
     	<a href="javascript:turen.com.checkAll(false);">反选</a>
     	<span class="op-name">操作：</span>
-    	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>　
+    	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>
 	</span>
 	<?= Html::a('添加新友链', ['create'], ['class' => 'data-btn']) ?>
 	<div class="page">

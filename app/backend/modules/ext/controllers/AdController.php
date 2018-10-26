@@ -15,6 +15,7 @@ use yii\filters\VerbFilter;
 use app\actions\CheckAction;
 use app\widgets\fileupload\FileUploadAction;
 use common\components\aliyunoss\AliyunOss;
+use app\widgets\edititem\EditItemAction;
 
 /**
  * AdController implements the CRUD actions for Ad model.
@@ -25,6 +26,13 @@ class AdController extends Controller
     {
         $request = Yii::$app->getRequest();
         return [
+            'edit-item' => [
+                'class' => EditItemAction::class,
+                'className' => Ad::class,
+                'id' => $request->post('id'),
+                'field' => 'orderid',
+                'value' => $request->post('value'),
+            ],
             'check' => [
                 'class' => CheckAction::class,
                 'className' => Ad::class,

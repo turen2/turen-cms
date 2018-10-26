@@ -28,8 +28,8 @@ $this->title = '链接组管理';
 	<tr align="left" class="head">
 		<td width="4%" class="first-column"><input type="checkbox" name="checkid" id="checkid" onclick="turen.com.checkAll(this.checked);"></td>
 		<td width="3%">ID</td>
-		<td width="32%"><?= $dataProvider->sort->link('typename', ['label' => '链接组名称']) ?></td>
-		<td align="center"><?= $dataProvider->sort->link('orderid', ['label' => '排序']) ?></td>
+		<td width="32%">链接组名称</td>
+		<td align="center">排序</td>
 		<td width="30%" class="end-column">操作</td>
 	</tr>
 	<?php foreach ($dataProvider->getModels() as $key => $model) {
@@ -109,7 +109,7 @@ if(empty($dataProvider->count))
         		<a href="javascript:turen.com.checkAll(false);">反选</a>
         		<span class="op-name">操作：</span>
     			<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a> - 
-        		<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'order'])?>', 'batchform');">排序</a> - 
+        		<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'order'])?>', 'batchform');">排序</a>
         		<a href="javascript:turen.com.showAllRows();">展开</a> - 
         		<a href="javascript:turen.com.hideAllRows();">隐藏</a>
     		</span> 

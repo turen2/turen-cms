@@ -9,6 +9,7 @@ use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use yii\widgets\ActiveForm;
+use app\widgets\edititem\EditItemWidget;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ext\VoteSearch */
@@ -33,6 +34,7 @@ $this->title = '投票信息管理';
 		<td width="10%">游客投票</td>
 		<td width="10%">查看投票</td>
 		<td><?= $dataProvider->sort->link('posttime', ['label' => '发布时间']) ?></td>
+		<td><?= $dataProvider->sort->link('orderid', ['label' => '排序']) ?></td>
 		<td class="end-column">操作</td>
 	</tr>
 	<?php foreach ($dataProvider->getModels() as $key => $model) {
@@ -60,6 +62,13 @@ $this->title = '投票信息管理';
 		<td><?= $model->isguest?'允许':'不允许'; ?></td>
 		<td><?= $model->isview?'允许':'不允许'; ?>允许</td>
 		<td><?= Yii::$app->getFormatter()->asDate($model->posttime); ?></td>
+		<td><?= EditItemWidget::widget([
+		    'model' => $model,
+		    'primaryKey' => 'id',
+		    'attribute' => 'orderid',
+		    'url' => Url::to(['/ext/vote/edit-item']),
+		    'options' => [],
+		]); ?></td>
 		<td class="action end-column"><span><?= $checkstr; ?></span> | <span><a href="<?= Url::to(['update', 'id' => $model->id]) ?>">编辑</a></span> | <span class="nb"><?= $delstr; ?></span></td>
 	</tr>
 	<?php } ?>
@@ -79,7 +88,7 @@ if(empty($dataProvider->count))
     	<a href="javascript:turen.com.checkAll(true);">全选</a> - 
     	<a href="javascript:turen.com.checkAll(false);">反选</a>
     	<span class="op-name">操作：</span>
-    	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>　
+    	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>
 	</span>
 	<?= Html::a('添加新投票', ['create'], ['class' => 'data-btn']) ?>
 	<div class="page">
@@ -105,7 +114,7 @@ if(empty($dataProvider->count))
         	<a href="javascript:turen.com.checkAll(true);">全选</a> - 
         	<a href="javascript:turen.com.checkAll(false);">反选</a>
         	<span class="op-name">操作：</span>
-        	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a> - 
+        	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>
         	<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
     	</span>
 			<?= Html::a('添加新投票', ['create'], ['class' => 'data-btn']) ?>

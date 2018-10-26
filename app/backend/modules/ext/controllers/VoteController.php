@@ -16,6 +16,7 @@ use app\models\ext\VoteOption;
 use app\actions\CheckAction;
 use common\components\aliyunoss\AliyunOss;
 use app\widgets\ueditor\UEditorAction;
+use app\widgets\edititem\EditItemAction;
 
 /**
  * VoteController implements the CRUD actions for Vote model.
@@ -26,6 +27,13 @@ class VoteController extends Controller
     {
         $request = Yii::$app->getRequest();
         return [
+            'edit-item' => [
+                'class' => EditItemAction::class,
+                'className' => Vote::class,
+                'id' => $request->post('id'),
+                'field' => 'orderid',
+                'value' => $request->post('value'),
+            ],
             'check' => [
                 'class' => CheckAction::class,
                 'className' => Vote::class,

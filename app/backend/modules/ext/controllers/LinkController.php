@@ -15,6 +15,7 @@ use yii\filters\VerbFilter;
 use app\actions\CheckAction;
 use app\widgets\fileupload\FileUploadAction;
 use common\components\aliyunoss\AliyunOss;
+use app\widgets\edititem\EditItemAction;
 
 /**
  * LinkController implements the CRUD actions for Link model.
@@ -25,6 +26,13 @@ class LinkController extends Controller
     {
         $request = Yii::$app->getRequest();
         return [
+            'edit-item' => [
+                'class' => EditItemAction::class,
+                'className' => Link::class,
+                'id' => $request->post('id'),
+                'field' => 'orderid',
+                'value' => $request->post('value'),
+            ],
             'check' => [
                 'class' => CheckAction::class,
                 'className' => Link::class,

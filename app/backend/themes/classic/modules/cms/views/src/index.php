@@ -77,7 +77,8 @@ $this->title = '信息来源管理';
 <?php ActiveForm::end(); ?>
 
 <div class="bottom-toolbar clearfix">
-	<span class="sel-area"><span>选择：</span>
+	<span class="sel-area">
+		<span class="sel-name">选择：</span>
     	<a href="javascript:turen.com.checkAll(true);">全选</a> - 
     	<a href="javascript:turen.com.checkAll(false);">反选</a>
     	<span class="op-name">操作：</span>
@@ -108,7 +109,7 @@ $this->title = '信息来源管理';
 				<a href="javascript:turen.com.checkAll(false);">反选</a>
 				<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>
 				<span class="op-name">操作：</span>
-    	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a> - 
+				<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a> - 
 				<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'order'])?>', 'batchform');">排序</a> - 
 				<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
 			</span>

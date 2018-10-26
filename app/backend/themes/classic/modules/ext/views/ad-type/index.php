@@ -30,7 +30,7 @@ $this->title = '广告位管理';
 		<td width="3%">ID</td>
 		<td width="32%"><?= $dataProvider->sort->link('typename', ['label' => '广告位名称']) ?></td>
 		<td>尺寸px</td>
-		<td align="center"><?= $dataProvider->sort->link('orderid', ['label' => '排序']) ?></td>
+		<td align="center">排序</td>
 		<td width="30%" class="end-column">操作</td>
 	</tr>
 	<?php foreach ($dataProvider->getModels() as $key => $model) {

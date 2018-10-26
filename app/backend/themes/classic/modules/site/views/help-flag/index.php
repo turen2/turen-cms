@@ -77,7 +77,8 @@ $this->title = '帮助标记管理';
 <?php ActiveForm::end(); ?>
 
 <div class="bottom-toolbar clearfix">
-	<span class="sel-area"><span>选择：</span>
+	<span class="sel-area">
+		<span class="sel-name">选择：</span>
     	<a href="javascript:turen.com.checkAll(true);">全选</a> - 
     	<a href="javascript:turen.com.checkAll(false);">反选</a>
     	<span class="op-name">操作：</span>

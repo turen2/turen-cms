@@ -11,6 +11,7 @@ use yii\widgets\LinkPager;
 use yii\widgets\ActiveForm;
 use common\components\aliyunoss\AliyunOss;
 use common\helpers\ImageHelper;
+use app\widgets\edititem\EditItemWidget;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ext\AdSearch */
@@ -34,6 +35,7 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel]);
 		<td width="25%"><?= $dataProvider->sort->link('title', ['label' => '广告标题']) ?></td>
 		<td width="20%">投放范围</td>
 		<td>广告形式</td>
+		<td><?= $dataProvider->sort->link('orderid', ['label' => '排序']) ?></td>
 		<td width="20%" class="end-column">操作</td>
 	</tr>
 	<?php foreach ($dataProvider->getModels() as $key => $model) {
@@ -61,6 +63,13 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel]);
 		<td><?= $model->title; ?></td>
 		<td><?= $model->getAdTypeName().' ['.$model->ad_type_id.']'; ?></td>
 		<td><?= $model->admode; ?></td>
+		<td><?= EditItemWidget::widget([
+		    'model' => $model,
+		    'primaryKey' => 'id',
+		    'attribute' => 'orderid',
+		    'url' => Url::to(['/ext/ad/edit-item']),
+		    'options' => [],
+		]); ?></td>
 		<td class="action end-column"><span><?= $checkstr; ?></span> | <span><a href="<?= Url::to(['update', 'id' => $model->id]) ?>">编辑</a></span> | <span class="nb"><?= $delstr; ?></span></td>
 	</tr>
 	<?php } ?>
@@ -80,7 +89,7 @@ if(empty($dataProvider->count))
     	<a href="javascript:turen.com.checkAll(true);">全选</a> - 
     	<a href="javascript:turen.com.checkAll(false);">反选</a>
     	<span class="op-name">操作：</span>
-    	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>　
+    	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>
 	</span>
 	<?= Html::a('添加新广告', ['create'], ['class' => 'data-btn']) ?>
 	<div class="page">
@@ -102,13 +111,13 @@ if(empty($dataProvider->count))
 	<div class="qiuck-warp">
 		<div class="quick-area">
     		<span class="sel-area">
-        	<span class="sel-name">选择：</span> 
-        	<a href="javascript:turen.com.checkAll(true);">全选</a> - 
-        	<a href="javascript:turen.com.checkAll(false);">反选</a>
-        	<span class="op-name">操作：</span>
-        	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a> - 
-        	<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
-    	</span>
+            	<span class="sel-name">选择：</span> 
+            	<a href="javascript:turen.com.checkAll(true);">全选</a> - 
+            	<a href="javascript:turen.com.checkAll(false);">反选</a>
+            	<span class="op-name">操作：</span>
+            	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>
+            	<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
+        	</span>
 			<?= Html::a('添加新广告', ['create'], ['class' => 'data-btn']) ?>
 			<div class="page-small">
 			<?= LinkPager::widget([
