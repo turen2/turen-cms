@@ -13,7 +13,6 @@ use app\assets\NotifyAsset;
 
 YiiAsset::register($this);
 FontAwesomeAsset::register($this);
-NotifyAsset::register($this);//全局通知+提示
 WebAsset::register($this);
 ?>
 
@@ -27,7 +26,6 @@ WebAsset::register($this);
         <title><?= Html::encode($this->title.' - '.Yii::$app->name)?></title>
         <link type="image/x-icon" href="./favicon.ico" rel="shortcut icon">
         <?php $this->head() ?>
-        <?= $this->render('_config') ?>
     </head>
     <body>
     <?php $this->beginBody() ?>

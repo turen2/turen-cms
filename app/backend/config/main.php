@@ -205,9 +205,9 @@ return [
              * 基本可以认为是，由用户以各种方式发出的请求传入的数据不合理导致的。
              */
             //'displayVars' => ['_GET'],//只显示一个get全局量
-            'memoryReserveSize' => 0,//不预留内存空间
-            'maxSourceLines' => 19,
-            'maxTraceSourceLines' => 13,
+            //'memoryReserveSize' => 0,//不预留内存空间
+            //'maxSourceLines' => 19,
+            //'maxTraceSourceLines' => 13,
             //非debug或者是用户异常时有效，以正常的路由执行来显示错误【用户异常即http请求过程中与用户操作相关的所有http异常】
             'errorAction' => 'site/other/error',
             
