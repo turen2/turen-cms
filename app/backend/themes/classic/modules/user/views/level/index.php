@@ -33,7 +33,7 @@ $this->title = '用户等级管理';
 	
 	<?php if(empty($dataProvider->count)) { ?>
 	<tr align="center">
-		<td colspan="5" class="data-empty">暂时没有相关的记录</td>
+		<td colspan="6" class="data-empty">暂时没有相关的记录</td>
 	</tr>
 	<?php } ?>
 	

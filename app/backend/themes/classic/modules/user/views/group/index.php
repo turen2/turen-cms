@@ -32,7 +32,7 @@ $this->title = '用户组列表';
 	
 	<?php if(empty($dataProvider->count)) { ?>
 	<tr align="center">
-		<td colspan="5" class="data-empty">暂时没有相关的记录</td>
+		<td colspan="4" class="data-empty">暂时没有相关的记录</td>
 	</tr>
 	<?php } ?>
 	
@@ -68,7 +68,7 @@ $this->title = '用户组列表';
 	</tr>
 	<?php } ?>
 	<tr align="center">
-		<td colspan="5"><strong>新增一个用户组</strong></td>
+		<td colspan="4"><strong>新增一个用户组</strong></td>
 	</tr>
 	<tr align="left" class="data-tr-on">
 		<td  class="first-column">&nbsp;</td>
