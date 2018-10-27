@@ -110,26 +110,36 @@ $baseUrl = Yii::getAlias('@web');
 			</div>
 		</div>
 		<div class="quick-box">
-			<h2 class="title">发布统计<span><a href="javascript:;">更多 <i class="fa fa-angle-double-right"></i></a></span></h2>
+			<h2 class="title">发布统计<span><a href="<?= Url::to(['cms/column/index'])?>">更多 <i class="fa fa-angle-double-right"></i></a></span></h2>
 			<div class="box">
     			<table width="100%" border="0" cellspacing="0" cellpadding="0">
     				<tbody><tr>
+    					<td width="80" height="33">网站栏目数：</td>
+    					<td class="num">13</td>
     					<td width="80" height="33">网站栏目数：</td>
     					<td class="num">13</td>
     				</tr>
     				<tr>
     					<td height="33">单页信息数：</td>
     					<td class="num">5</td>
+    					<td height="33">单页信息数：</td>
+    					<td class="num">5</td>
     				</tr>
     				<tr>
+    					<td height="33">列表信息数：</td>
+    					<td class="num">19</td>
     					<td height="33">列表信息数：</td>
     					<td class="num">19</td>
     				</tr>
     				<tr>
     					<td height="33">图片信息数：</td>
     					<td class="num">15</td>
+    					<td height="33">图片信息数：</td>
+    					<td class="num">15</td>
     				</tr>
     				<tr class="nb">
+    					<td height="33">注册会员数：</td>
+    					<td class="num">1</td>
     					<td height="33">注册会员数：</td>
     					<td class="num">1</td>
     				</tr>

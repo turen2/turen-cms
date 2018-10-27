@@ -89,6 +89,8 @@ $adminModel = Yii::$app->user->identity;
                     }
                     ?>
             	</div>
+            	<a href="javascript:;" class="message-alert df" title="消息提醒"><i class="fa fa-bell-o"></i><span class="label label-danger">8</span></a>
+            	
         		<a href="<?= Yii::$app->params['config_site_url'] ?>" target="_blank" class="home-link df" title="网站首页"><i class="fa fa-desktop"></i></a>
         		<a href="javascript:;" id="lockscreen" class="lock-screen df" title="锁屏"><i class="fa fa-lock"></i></a>
         		
