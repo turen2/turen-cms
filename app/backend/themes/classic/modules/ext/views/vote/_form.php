@@ -164,7 +164,7 @@ $this->registerJs($js);
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('orderid')?><?php if($model->isAttributeRequired('orderid')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'orderid', ['class' => 'inputos']) ?>
+    			<?= Html::activeInput('text', $model, 'orderid', ['class' => 'inputs']) ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>

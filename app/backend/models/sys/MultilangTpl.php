@@ -5,9 +5,7 @@ namespace app\models\sys;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
-use yii\behaviors\TimestampBehavior;
 use yii\behaviors\AttributeBehavior;
-use app\behaviors\InsertLangBehavior;
 
 /**
  * This is the model class for table "{{%sys_multilang_tpl}}".
@@ -15,7 +13,7 @@ use app\behaviors\InsertLangBehavior;
  * @property int $id 站点ID
  * @property string $site_name 站点名称：简体中文、English、xxx子网站
  * @property int $template_id 模板id
- * @property string $lang 站点语言包，此语言包必须要有模板的支持
+ * @property string $lang_sign 站点语言包，此语言包必须要有模板的支持
  * @property string $key 站点标识，用于站点访问链接优化标识
  * @property int $back_default 是否后台默认
  * @property int $front_default 是否前台默认
@@ -106,17 +104,17 @@ class MultilangTpl extends \app\models\base\Sys
         //[['status'], 'default', 'value' => self::STATUS_ON],
         //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return [
-            [['lang_name', 'template_id', 'lang', 'key'], 'required'],
+            [['lang_name', 'template_id', 'lang_sign', 'key'], 'required'],
             [['template_id', 'back_default', 'front_default', 'orderid', 'is_visible'], 'integer'],
             [['lang_name', 'key'], 'string', 'max' => 30],
-            [['lang'], 'string', 'max' => 50],
+            [['lang_sign'], 'string', 'max' => 50],
             
             //默认值
             [['is_visible'], 'default', 'value' => self::STATUS_ON],
             [['front_default', 'back_default'], 'default', 'value' => self::STATUS_OFF],
             
             //禁止重复
-            [['lang_name', 'lang', 'key'], 'unique'],
+            [['lang_name', 'lang_sign', 'key'], 'unique'],
         ];
     }
 
@@ -129,7 +127,7 @@ class MultilangTpl extends \app\models\base\Sys
             'id' => '站点ID',
             'lang_name' => '站点名称',
             'template_id' => '指定模板',
-            'lang' => '语言包',
+            'lang_sign' => '语言包',
             'key' => '站点标识',
             'back_default' => '后台默认',
             'front_default' => '前台默认',
@@ -157,7 +155,7 @@ class MultilangTpl extends \app\models\base\Sys
             return false;
         }
         
-        if(Config::find()->where(['lang' => $this->lang])->exists()) {
+        if(Config::find()->where(['lang' => $this->lang_sign])->exists()) {
             return true;
         }
         
@@ -170,12 +168,12 @@ class MultilangTpl extends \app\models\base\Sys
         
         if($model = MultilangTpl::findOne(['back_default' => MultilangTpl::STATUS_ON])) {
             //新建站点配置
-            if($data = Config::find()->select($fields)->where(['lang' => $model->lang])->asArray()->all()) {
+            if($data = Config::find()->select($fields)->where(['lang' => $model->lang_sign])->asArray()->all()) {
                 //再执行批量插入
                 $fields = ArrayHelper::merge($fields, ['lang']);
                 
                 foreach ($data as $dkey => $dvalue) {
-                    $data[$dkey] = ArrayHelper::merge($dvalue, [$this->lang]);
+                    $data[$dkey] = ArrayHelper::merge($dvalue, [$this->lang_sign]);
                 }
                 
                 Yii::$app->getSession()->setFlash('success', '多语言站点对应的配置参数已经同步为默认站点参数，请知晓。');
@@ -196,7 +194,7 @@ class MultilangTpl extends \app\models\base\Sys
     public function afterDelete()
     {
         Yii::$app->getSession()->setFlash('success', '多语言站点对应的配置参数已经删除，请知晓。');
-        Config::deleteAll(['lang' => $this->lang]);
+        Config::deleteAll(['lang' => $this->lang_sign]);
     }
     
     /**

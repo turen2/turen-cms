@@ -19,7 +19,7 @@ class MultilangTplSearch extends MultilangTpl
     {
         return [
             [['id', 'template_id', 'back_default', 'front_default', 'is_visible', 'orderid'], 'integer'],
-            [['lang', 'key'], 'safe'],
+            [['lang_sign', 'key'], 'safe'],
         ];
     }
 
@@ -80,7 +80,7 @@ class MultilangTplSearch extends MultilangTpl
             'is_visible' => $this->is_visible,
         ]);
 
-        $query->andFilterWhere(['like', 'lang', $this->lang])
+        $query->andFilterWhere(['like', 'lang_sign', $this->lang_sign])
             ->andFilterWhere(['like', 'key', $this->key]);
         
         //echo $dataProvider->query->createCommand()->rawSql;

@@ -12,6 +12,7 @@ use common\components\aliyunoss\AliyunOss;
 use app\widgets\ueditor\UEditorAction;
 use app\widgets\fileupload\FileUploadAction;
 use app\actions\CheckAction;
+use app\widgets\edititem\EditItemAction;
 
 /**
  * BrandController implements the CRUD actions for Brand model.
@@ -38,6 +39,13 @@ class BrandController extends Controller
     {
         $request = Yii::$app->getRequest();
         return [
+            'edit-item' => [
+                'class' => EditItemAction::class,
+                'className' => Brand::class,
+                'id' => $request->post('id'),
+                'field' => 'orderid',
+                'value' => $request->post('value'),
+            ],
             'check' => [
                 'class' => CheckAction::class,
                 'className' => Brand::class,

@@ -32,7 +32,6 @@ class LnkController extends Controller
                 'type' => $request->get('type'),
                 'orderid' => $request->get('orderid'),
                 'nameFeild' => 'lnk_name',
-                'isCurrent' => false,
             ],
         ];
     }

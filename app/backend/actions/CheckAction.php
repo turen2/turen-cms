@@ -9,6 +9,7 @@ namespace app\actions;
 use Yii;
 use yii\base\Action;
 use yii\base\InvalidArgumentException;
+use app\helpers\BackCommonHelper;
  
 class CheckAction extends Action
 {
@@ -18,7 +19,6 @@ class CheckAction extends Action
     public $openName = '显示';
     public $closeName = '隐藏';
     
-    public $isCurrent = false;
     public $feild = 'status';//指定要修改的字段名
     
     public function run()
@@ -33,7 +33,7 @@ class CheckAction extends Action
         $primayKey = $className::primaryKey()[0];
         
         $query = $className::find();
-        if($this->isCurrent) {
+        if(BackCommonHelper::CheckFieldExist($className, 'lang')) {
             $query = $query->current();
         }
         

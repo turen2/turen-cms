@@ -7,6 +7,7 @@ use yii\widgets\LinkPager;
 use common\helpers\ImageHelper;
 use common\components\aliyunoss\AliyunOss;
 use yii\widgets\ActiveForm;
+use app\widgets\edititem\EditItemWidget;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\shop\BrandSearch */
@@ -54,7 +55,13 @@ $this->title = '品牌管理';
 			<img alt="" src="<?= empty($model->picurl)?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($model->picurl, true, AliyunOss::OSS_STYLE_NAME180X180) ?>" style="height: 60px;">
 		</span></td>
 		<td><?= $model->bname; ?></td>
-		<td><?= $model->orderid; ?></td>
+		<td><?= EditItemWidget::widget([
+		    'model' => $model,
+		    'primaryKey' => 'id',
+		    'attribute' => 'orderid',
+		    'url' => Url::to(['/shop/brand/edit-item']),
+		    'options' => [],
+		]); ?></td>
 		<td><?= Yii::$app->getFormatter()->asDate($model->updated_at); ?></td>
 		<td class="action end-column"><span><?= $checkstr; ?></span> | <span><a href="<?= Url::to(['update', 'id' => $model->id]) ?>">修改</a></span> | <span class="nb"><?= $delstr; ?></span></td>
 	</tr>
