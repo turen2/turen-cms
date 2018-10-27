@@ -347,7 +347,7 @@ turen.sys = (function($) {
             var callback = function(res, _this) {
                 if(res.state) {
                 	$.notify('当前模板支持的语言已获取', 'success');
-                	$('#multilangtpl-lang').html(res.msg);
+                	$('#multilangtpl-lang_sign').html(res.msg);
                 } else {
                 	$.notify(res.msg, 'error');
                 }

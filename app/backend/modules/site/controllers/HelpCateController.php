@@ -33,7 +33,6 @@ class HelpCateController extends Controller
                 'type' => $request->get('type'),
                 'orderid' => $request->get('orderid'),
                 'nameFeild' => 'catename',
-                'isCurrent' => false,
             ],
             'check' => [
                 'class' => CheckAction::class,

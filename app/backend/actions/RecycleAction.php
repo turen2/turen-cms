@@ -12,6 +12,7 @@ use yii\base\InvalidArgumentException;
 use app\components\ActiveRecord;
 use yii\web\MethodNotAllowedHttpException;
 use yii\helpers\Url;
+use app\helpers\BackCommonHelper;
 
 /**
  * 垃圾回收机制
@@ -32,7 +33,6 @@ class RecycleAction extends Action
     public $fieldName = 'title';
     
     public $feild = 'delstate';//垃圾标记字段
-    public $isCurrent = true;//是否当前，多语言，多站点
     
     public function run()
     {
@@ -50,7 +50,7 @@ class RecycleAction extends Action
         $primayKey = $className::primaryKey()[0];
         
         $query = $className::find();
-        if($this->isCurrent) {
+        if(BackCommonHelper::CheckFieldExist($className, 'lang')) {
             $query = $query->current();
         }
         

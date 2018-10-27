@@ -77,9 +77,9 @@ $adminModel = Yii::$app->user->identity;
                     if($multilangTplModels) {
                         foreach ($multilangTplModels as $multilangTplModel) {
                             $options = [
-                                'data-params' => ['lang' => $multilangTplModel->lang],//此参数是用来构造表单的post参数
+                                'data-params' => ['lang' => $multilangTplModel->lang_sign],//此参数是用来构造表单的post参数
                                 'data-method' => 'post',
-                                'class' => (GLOBAL_LANG == $multilangTplModel->lang)?'on':'',
+                                'class' => (GLOBAL_LANG == $multilangTplModel->lang_sign)?'on':'',
                                 'title' => '切换到',
                             ];
                             echo Html::a($multilangTplModel->lang_name, Url::current(), $options);

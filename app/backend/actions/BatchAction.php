@@ -10,6 +10,7 @@ use Yii;
 use yii\base\Action;
 use yii\base\InvalidArgumentException;
 use app\components\ActiveRecord;
+use app\helpers\BackCommonHelper;
 
 /**
  * 批量操作
@@ -34,8 +35,13 @@ class BatchAction extends Action
         $className = $this->className;
         $primayKey = $className::primaryKey()[0];
         
+        $query = $className::find();
+        if(BackCommonHelper::CheckFieldExist($className, 'lang')) {
+            $query = $query->current();
+        }
+        
         if($this->type == 'delete') {
-            foreach ($className::find()->current()->andWhere([$primayKey => Yii::$app->getRequest()->post('checkid', [])])->all() as $model) {
+            foreach ($query->andWhere([$primayKey => Yii::$app->getRequest()->post('checkid', [])])->all() as $model) {
                 $model->touch($this->timeFeild);
                 $model->updateAttributes([$this->stateFeild => ActiveRecord::IS_DEL]);//标记为垃圾
             }

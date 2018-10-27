@@ -5,6 +5,7 @@ use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use yii\widgets\ActiveForm;
+use app\widgets\edititem\EditItemWidget;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\shop\AttributeSearch */
@@ -55,7 +56,13 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel]);
 		<td><?= $model->getProductCateName().' ['.$model->pcateid.']'; ?></td>
 		<td><?= $model->type; ?></td>
 		<td><?= $model->typetext; ?></td>
-		<td><?= $model->orderid; ?></td>
+		<td><?= EditItemWidget::widget([
+		    'model' => $model,
+		    'primaryKey' => 'id',
+		    'attribute' => 'orderid',
+		    'url' => Url::to(['/shop/attribute/edit-item']),
+		    'options' => [],
+		]); ?></td>
 		<td><?= Yii::$app->getFormatter()->asDate($model->updated_at); ?></td>
 		<td class="action end-column"><span><?= $checkstr; ?></span> | <span><a href="<?= Url::to(['update', 'id' => $model->id]) ?>">修改</a></span> | <span class="nb"><?= $delstr; ?></span></td>
 	</tr>

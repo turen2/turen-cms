@@ -9,6 +9,7 @@ namespace app\actions;
 use Yii;
 use yii\base\Action;
 use yii\base\InvalidArgumentException;
+use app\helpers\BackCommonHelper;
  
 class SimpleMoveAction extends Action
 {
@@ -19,8 +20,6 @@ class SimpleMoveAction extends Action
     public $nameFeild = 'name';
     public $feild = 'orderid';//指定要修改的字段名
     public $orderid;//指定一个值
-    
-    public $isCurrent = true;
     
     public function run()
     {
@@ -33,7 +32,7 @@ class SimpleMoveAction extends Action
         $primayKey = $className::primaryKey()[0];
         
         $query = $className::find();
-        if($this->isCurrent) {
+        if(BackCommonHelper::CheckFieldExist($className, 'lang')) {
             $query = $query->current();
         }
         
@@ -45,7 +44,7 @@ class SimpleMoveAction extends Action
             $row = $query->andWhere(['>', 'orderid', $this->orderid])->orderBy(['orderid' => SORT_ASC])->asArray()->one();
         }
         
-        if(!empty($row['orderid']) && !empty($row[$primayKey])) {
+        if(!empty($row) && !empty($row['orderid']) && !empty($row[$primayKey])) {
             $newid = $row[$primayKey];
             $neworderid = $row['orderid'];
             
@@ -56,6 +55,8 @@ class SimpleMoveAction extends Action
             $row = $className::find()->where([$primayKey => $this->id])->asArray()->one();
             
             Yii::$app->getSession()->setFlash('success', $row[$this->nameFeild].' 移动成功。');
+        } else {
+            Yii::$app->getSession()->setFlash('error', '移动失败，可能是SimpleMoveAction参数配置有误。');
         }
         
         $this->controller->redirect(['index']);

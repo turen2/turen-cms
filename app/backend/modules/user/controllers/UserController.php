@@ -58,7 +58,6 @@ class UserController extends Controller
                 'class' => RecycleAction::class,
                 'className' => User::class,
                 'fieldName' => 'username',
-                'isCurrent' => false,
                 'type' => $request->get('type'),
                 'feild' => 'delstate',
             ],

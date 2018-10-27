@@ -9,6 +9,7 @@ namespace app\actions;
 use Yii;
 use yii\base\Action;
 use yii\base\InvalidArgumentException;
+use app\helpers\BackCommonHelper;
  
 class MoveAction extends Action
 {
@@ -21,8 +22,6 @@ class MoveAction extends Action
     public $feild = 'orderid';//指定要修改的字段名
     public $orderid;//指定一个值
     
-    public $isCurrent = true;//是否当前，多语言，多站点
-    
     public function run()
     {
         //校验参数
@@ -34,7 +33,7 @@ class MoveAction extends Action
         $primayKey = $className::primaryKey()[0];
         
         $query = $className::find();
-        if($this->isCurrent) {
+        if(BackCommonHelper::CheckFieldExist($className, 'lang')) {
             $query = $query->current();
         }
         
