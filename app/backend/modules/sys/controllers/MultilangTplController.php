@@ -41,6 +41,7 @@ class MultilangTplController extends Controller
                 'className' => MultilangTpl::class,
                 'id' => $request->get('id'),
                 'feild' => 'is_visible',
+                'isCurrent' => false,
                 'openName' => '前台显示',
                 'closeName' => '前台隐藏',
             ],
@@ -132,10 +133,6 @@ class MultilangTplController extends Controller
         if(!empty($model->front_default)) {
             $state = false;
             $msg = $model->lang_name.' 被指定前台默认不能删！';
-        }
-        if($model->lang_sign == GLOBAL_LANG) {
-            $state = false;
-            $msg = $model->lang_name.' 为系统当前选中语言，请先切换为其它语言后再来删除！';
         }
         
         if($state) {

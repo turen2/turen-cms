@@ -57,9 +57,9 @@ class InitSysten extends \yii\base\Component implements \yii\base\BootstrapInter
             
             foreach ($multilangTpls as $multilangTpl) {
                 if($multilangTpl['back_default']) {
-                    $defaultLang = $multilangTpl['lang_sign'];
+                    $defaultLang = $multilangTpl['lang'];
                 }
-                $allLang[] = $multilangTpl['lang_sign'];
+                $allLang[] = $multilangTpl['lang'];
             }
             
             if(empty($allLang)) {

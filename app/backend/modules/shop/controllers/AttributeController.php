@@ -10,7 +10,6 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use app\actions\CheckAction;
-use app\widgets\edititem\EditItemAction;
 
 /**
  * AttributeController implements the CRUD actions for Attribute model.
@@ -37,13 +36,6 @@ class AttributeController extends Controller
     {
         $request = Yii::$app->getRequest();
         return [
-            'edit-item' => [
-                'class' => EditItemAction::class,
-                'className' => Attribute::class,
-                'id' => $request->post('id'),
-                'field' => 'orderid',
-                'value' => $request->post('value'),
-            ],
             'check' => [
                 'class' => CheckAction::class,
                 'className' => Attribute::class,

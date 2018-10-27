@@ -25,7 +25,7 @@ var validator = $("#createform").validate({
         "'.Html::getInputName($model, 'template_id').'": {
 			required: true,
 		},
-        "'.Html::getInputName($model, 'lang_sign').'": {
+        "'.Html::getInputName($model, 'lang').'": {
 			required: true,
 		},
         "'.Html::getInputName($model, 'key').'": {
@@ -66,9 +66,9 @@ var validator = $("#createform").validate({
     		</td>
     	</tr>
     	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('lang_sign')?><?php if($model->isAttributeRequired('lang_sign')) { ?><span class="maroon">*</span><?php } ?></td>
+    		<td class="first-column"><?= $model->getAttributeLabel('lang')?><?php if($model->isAttributeRequired('lang')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<?= Html::activeDropDownList($model, 'lang_sign', ArrayHelper::merge([null => '--请选择--'], (isset($model->template)?$model->template->tempLangList():[]))) ?>
+    			<?= Html::activeDropDownList($model, 'lang', ArrayHelper::merge([null => '--请选择--'], (isset($model->template)?$model->template->tempLangList():[]))) ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>

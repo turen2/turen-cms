@@ -233,7 +233,7 @@ $srcModels = Src::find()->current()->orderBy(['orderid' => SORT_DESC])->all();
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('orderid')?><?php if($model->isAttributeRequired('orderid')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'orderid', ['class' => 'inputs']) ?>
+    			<?= Html::activeInput('text', $model, 'orderid', ['class' => 'inputos']) ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>

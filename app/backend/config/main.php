@@ -15,7 +15,7 @@ return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
     'name' => 'turen2.com',
-    'version' => '1.3.0',
+    'version' => '1.2.2',
     'charset' => 'UTF-8',
     'sourceLanguage' => 'en-US', // 默认源语言
     'language' => 'zh-CN', // 默认当前环境使用的语言

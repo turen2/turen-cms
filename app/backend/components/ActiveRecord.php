@@ -91,4 +91,45 @@ class ActiveRecord extends \yii\db\ActiveRecord
         
         return $parentstr;
     }
+    
+    /*
+    public function beforeSave($insert)
+    {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+        
+        //注意：从表单提交上来的所有数据都是字符串，当数字字段被提交上来后，在数据库中将会转化为null,
+        //因此会报字段不能为null的错。
+        
+        //排序填充问题
+//         if(isset($this->orderid) && $this->orderid === '') {
+//             //使用最大排序
+//             $className = get_class($this);
+//             $maxModel = $className::find()->current()->orderBy(['orderid' => SORT_DESC])->one();
+//             if($maxModel) {
+//                 $this->orderid = $maxModel->orderid + 1;
+//             } else {
+//                 $this->orderid = Yii::$app->params['config.orderid'];//配置默认值
+//             }
+//         }
+        
+        //发布时间填充问题
+//         if(isset($this->posttime) && $this->posttime === '') {
+//             $this->posttime = time();
+//         }
+        
+        //显示状态问题
+//         if(isset($this->status) && $this->status === '') {
+//             $this->status = self::STATUS_ON;
+//         }
+        
+        //默认点击次数问题
+//         if(isset($this->hits) && $this->hits === '') {
+//             $this->hits = Yii::$app->params['config.hits'];
+//         }
+        
+        return true;
+    }
+    */
 }

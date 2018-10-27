@@ -10,7 +10,6 @@ use Yii;
 use yii\base\Action;
 use yii\web\HttpException;
 use yii\base\InvalidArgumentException;
-use app\helpers\BackCommonHelper;
 
 class Select2Action extends Action
 {
@@ -30,6 +29,8 @@ class Select2Action extends Action
 
     public $where = []; //要查询限制的内容，默认没有限制
     
+    public $isCurrent = true;//是否区别lang语言和站点
+
     public function init()
     {
         parent::init();
@@ -57,7 +58,7 @@ class Select2Action extends Action
         
         $query = $className::find();
         
-        if(BackCommonHelper::CheckFieldExist($className, 'lang')) {
+        if($this->isCurrent) {
             $query = $query->current();
         }
 
