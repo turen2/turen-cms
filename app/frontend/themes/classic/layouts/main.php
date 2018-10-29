@@ -1,17 +1,19 @@
 <?php
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
-use frontend\assets\AppAsset;
-use common\widgets\Alert;
+use app\assets\AppAsset;
 
 AppAsset::register($this);
 ?>
+
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
@@ -24,24 +26,10 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<style type="text/css">
-    body{
-        background-position: center;background-repeat: no-repeat;background-size:100% 100%;
-    }
-    .container-fluid{
-        padding:0px;
-    }
-    .wrap{padding:0px;}
-</style>
-<body style="background-position: center;background-repeat: no-repeat;background-size:100% 100%;">
+<body>
 <?php $this->beginBody() ?>
 
-<div class="wrap">
-
-    <div class="container-fluid">
-        <?= $content ?>
-    </div>
-</div>
+<?= $content ?>
 
 <?php $this->endBody() ?>
 </body>
