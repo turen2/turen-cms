@@ -21,7 +21,10 @@ return [
     'charset' => 'UTF-8',
     'sourceLanguage' => 'en-US', // 默认源语言
     'language' => 'zh-CN', // 默认当前环境使用的语言
-    'bootstrap' => ['log'],
+    'bootstrap' => [
+        'log',
+        'devicedetect',//客户端检测
+    ],
     'controllerNamespace' => 'app\\controllers',
     
     //默认pc端模板布局与默认路由设置
@@ -44,6 +47,9 @@ return [
         ],
     ],
     'components' => [
+        'devicedetect' => [
+            'class' => 'alexandernst\devicedetect\DeviceDetect',
+        ],
         'request' => [
             'class' => 'yii\web\Request',
             'cookieValidationKey' => 'OUX1YppF-bHW9cm86EAmg4MwmBQ6Xvni',
