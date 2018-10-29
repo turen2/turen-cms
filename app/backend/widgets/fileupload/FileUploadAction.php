@@ -10,13 +10,14 @@ use Yii;
 use yii\base\Action;
 use yii\helpers\Json;
 use yii\web\UploadedFile;
-use common\components\aliyunoss\AliyunOss;
+use common\components\AliyunOss;
 use yii\base\Exception;
+use yii\base\InvalidConfigException;
 
 class FileUploadAction extends Action
 {
     public $uploadName = 'file';//接收上传的字段
-    public $folder = '';//上传到的目录，AliyunOss中有规定
+    public $folder;//上传到的目录，AliyunOss中有规定
     
     public function init()
     {
@@ -25,7 +26,9 @@ class FileUploadAction extends Action
         //open csrf
         Yii::$app->getRequest()->enableCsrfValidation = true;
         
-        $this->folder = empty($this->folder)?AliyunOss::OSS_DEFAULT:$this->folder;//默认是default
+        if(empty($this->folder)) {
+            throw new InvalidConfigException('上传组件配置错误。');
+        }
     }
 
     /**
@@ -53,7 +56,7 @@ class FileUploadAction extends Action
             'type' => $uploadedFile->type,
             
             'url' => Yii::$app->aliyunoss->getObjectUrl($object),
-            'thumbnailUrl' => Yii::$app->aliyunoss->getObjectUrl($object, true, AliyunOss::OSS_STYLE_NAME180X180),
+            'thumbnailUrl' => Yii::$app->aliyunoss->getObjectUrl($object, true, AliyunOss::OSS_STYLE_NAME180),
             'objectUrl' => Yii::$app->aliyunoss->getObjectUrl($object, false),//提交到字段的object地址
         ];
         

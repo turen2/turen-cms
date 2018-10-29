@@ -8,7 +8,7 @@ use app\models\shop\BrandSearch;
 use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use common\components\aliyunoss\AliyunOss;
+use common\components\AliyunOss;
 use app\widgets\ueditor\UEditorAction;
 use app\widgets\fileupload\FileUploadAction;
 use app\actions\CheckAction;
@@ -54,11 +54,11 @@ class BrandController extends Controller
             'fileupload' => [
                 'class' => FileUploadAction::class,
                 'uploadName' => 'picurl',
-                'folder' => AliyunOss::OSS_DEFAULT,
+                'folder' => AliyunOss::OSS_DEFAULT.'/brand',
             ],
             'ueditor' => [
                 'class' => UEditorAction::class,
-                'folder' => AliyunOss::OSS_DEFAULT,
+                'folder' => AliyunOss::OSS_DEFAULT.'/brand',
                 'config' => [],
             ],
         ];

@@ -9,7 +9,7 @@ namespace app\modules\sys\controllers;
 use Yii;
 use app\models\sys\Config;
 use app\widgets\fileupload\FileUploadAction;
-use common\components\aliyunoss\AliyunOss;
+use common\components\AliyunOss;
 
 class ConfigController extends \app\components\Controller
 {
@@ -32,7 +32,7 @@ class ConfigController extends \app\components\Controller
             'fileupload' => [
                 'class' => FileUploadAction::class,
                 'uploadName' => 'logourl',
-                'folder' => AliyunOss::OSS_DEFAULT,
+                'folder' => AliyunOss::OSS_DEFAULT.'/config',
             ],
         ];
     }

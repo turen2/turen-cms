@@ -14,7 +14,7 @@ use app\actions\RecycleAction;
 use app\widgets\select2\Select2Action;
 use app\models\cms\Tag;
 use app\widgets\fileupload\FileUploadAction;
-use common\components\aliyunoss\AliyunOss;
+use common\components\AliyunOss;
 use app\widgets\ueditor\UEditorAction;
 use app\models\shop\ProductCate;
 use app\widgets\edititem\EditItemAction;
@@ -86,16 +86,16 @@ class ProductController extends Controller
             'fileupload' => [
                 'class' => FileUploadAction::class,
                 'uploadName' => 'picurl',
-                'folder' => AliyunOss::OSS_DEFAULT,
+                'folder' => AliyunOss::OSS_DEFAULT.'/product',
             ],
             'multiple-fileupload' => [
                 'class' => FileUploadAction::class,
                 'uploadName' => 'picarr',
-                'folder' => AliyunOss::OSS_DEFAULT,
+                'folder' => AliyunOss::OSS_DEFAULT.'/product',
             ],
             'ueditor' => [
                 'class' => UEditorAction::class,
-                'folder' => AliyunOss::OSS_DEFAULT,
+                'folder' => AliyunOss::OSS_DEFAULT.'/product',
                 'config' => [],
             ],
         ];

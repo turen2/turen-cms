@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace common\components\aliyunoss;
+namespace common\components;
 
 use yii\base\Component;
 use OSS\OssClient;
@@ -17,16 +17,10 @@ use yii\web\UploadedFile;
 class AliyunOss extends Component
 {
     //存储文件名
-    const OSS_DEFAULT = 'default';//默认路径
-    const OSS_CMS = 'cms';
-    const OSS_USER = 'user';
-    const OSS_PRODUCT = 'product';
-    const OSS_BRAND = 'brand';
-    const OSS_CATEGORY = 'category';
-    const OSS_COUNTRY = 'country';
+    const OSS_DEFAULT = 'images';//默认路径
     
     //样式风格
-    const OSS_STYLE_NAME180X180 = 'thumbnail';//缩略图固定名称，宽180
+    const OSS_STYLE_NAME180 = 'thumbnail';//缩略图固定名称，宽180
     
     //构造函数有几种情况： 
     //1. 一般的时候初始化使用 $ossClient = new OssClient($id, $key, $endpoint) 
@@ -74,12 +68,11 @@ class AliyunOss extends Component
     /*
      public function createBucket($bucket)
      {
-     try {
-     $this->_ossClient->createBucket($bucket);
-     } catch (OssException $e) {
-     fb($e->getMessage());
-     return;
-     }
+         try {
+             $this->_ossClient->createBucket($bucket);
+         } catch (OssException $e) {
+             return;
+         }
      }
      */
     
@@ -178,17 +171,5 @@ class AliyunOss extends Component
         if ($nextMarker === '') {
             return $objectList;
         }
-    }
-    
-    public static function getFolders()
-    {
-        return [
-            self::OSS_CMS => self::OSS_CMS,
-            self::OSS_USER => self::OSS_USER,
-            self::OSS_PRODUCT => self::OSS_PRODUCT,
-            self::OSS_BRAND => self::OSS_BRAND,
-            self::OSS_CATEGORY => self::OSS_CATEGORY,
-            self::OSS_COUNTRY => self::OSS_COUNTRY,
-        ];
     }
 }

@@ -9,7 +9,7 @@ use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use yii\widgets\ActiveForm;
-use common\components\aliyunoss\AliyunOss;
+use common\components\AliyunOss;
 use app\widgets\edititem\EditItemWidget;
 
 /* @var $this yii\web\View */
@@ -56,7 +56,7 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel]);
 			<input type="checkbox" name="checkid[]" id="checkid[]" value="<?= $model->id; ?>">
 		</td>
 		<td><?= $model->id; ?></td>
-		<td><span class="thumbs"><img alt="" src="<?= Yii::$app->aliyunoss->getObjectUrl($model->picurl, true, AliyunOss::OSS_STYLE_NAME180X180) ?>" style="height: 60px;"></span></td>
+		<td><span class="thumbs"><img alt="" src="<?= Yii::$app->aliyunoss->getObjectUrl($model->picurl, true, AliyunOss::OSS_STYLE_NAME180) ?>" style="height: 60px;"></span></td>
 		<td><?= $model->webname; ?></td>
 		<td><a href="<?= $model->linkurl; ?>" target="_blank" title="点击访问"><?= $model->linkurl; ?></a></td>
 		<td><?= $model->getLinkTypeName().' ['.$model->link_type_id.']'; ?></td>

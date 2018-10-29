@@ -9,7 +9,7 @@ use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use yii\widgets\ActiveForm;
-use common\components\aliyunoss\AliyunOss;
+use common\components\AliyunOss;
 use common\helpers\ImageHelper;
 use app\widgets\edititem\EditItemWidget;
 
@@ -58,7 +58,7 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel]);
 		</td>
 		<td><?= $model->id; ?></td>
 		<td><span class="thumbs">
-		<img alt="" src="<?= empty($model->picurl)?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($model->picurl, true, AliyunOss::OSS_STYLE_NAME180X180) ?>" style="height: 60px;">
+		<img alt="" src="<?= empty($model->picurl)?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($model->picurl, true, AliyunOss::OSS_STYLE_NAME180) ?>" style="height: 60px;">
 		</span></td>
 		<td><?= $model->title; ?></td>
 		<td><?= $model->getAdTypeName().' ['.$model->ad_type_id.']'; ?></td>

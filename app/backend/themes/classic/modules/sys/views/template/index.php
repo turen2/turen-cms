@@ -9,7 +9,7 @@ use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use common\helpers\ImageHelper;
-use common\components\aliyunoss\AliyunOss;
+use common\components\AliyunOss;
 use yii\helpers\ArrayHelper;
 use app\models\sys\MultilangTpl;
 
@@ -45,7 +45,7 @@ $this->title = '模板管理';
 	?>
 	<tr align="left" class="data-tr">
 		<td class="first-column"><?= $model->temp_id; ?></td>
-		<td><span class="thumbs"><img alt="" src="<?= empty($model->picurl)?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($model->picurl, true, AliyunOss::OSS_STYLE_NAME180X180) ?>" style="height: 60px;"></span></td>
+		<td><span class="thumbs"><img alt="" src="<?= empty($model->picurl)?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($model->picurl, true, AliyunOss::OSS_STYLE_NAME180) ?>" style="height: 60px;"></span></td>
 		<td><?= $model->temp_name; ?></td>
 		<td><?= $model->temp_code; ?></td>
 		<td><?= $model->developer_name; ?></td>

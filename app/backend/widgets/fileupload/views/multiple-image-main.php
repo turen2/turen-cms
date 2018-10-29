@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\Html;
-use common\components\aliyunoss\AliyunOss;
+use common\components\AliyunOss;
 
 $context = $this->context;
 
@@ -21,7 +21,7 @@ $pic_ = ($context->hasModel()) ? Html::getInputName($context->model, $context->a
                 <li class="item">
                 	<a href="javascript:;">
                         <input class="pic" type="hidden" value="<?= $pic['pic'] ?>" name="<?= $pic_ ?>[<?= $key ?>][pic]" />
-                        <img class="thumbnail" title="<?= $pic['txt'] ?>" src="<?= Yii::$app->aliyunoss->getObjectUrl($pic['pic'], true, AliyunOss::OSS_STYLE_NAME180X180) ?>">
+                        <img class="thumbnail" title="<?= $pic['txt'] ?>" src="<?= Yii::$app->aliyunoss->getObjectUrl($pic['pic'], true, AliyunOss::OSS_STYLE_NAME180) ?>">
                         <em title="删除这张图片" class="closebtn">×</em>
                     </a>
                     <span class="img-name">

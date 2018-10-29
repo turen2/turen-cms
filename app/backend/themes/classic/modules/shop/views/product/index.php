@@ -5,7 +5,7 @@ use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use common\helpers\ImageHelper;
-use common\components\aliyunoss\AliyunOss;
+use common\components\AliyunOss;
 use app\models\cms\Column;
 use app\widgets\edititem\EditItemWidget;
 use yii\base\Widget;
@@ -61,7 +61,7 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel]);
 		</td>
 		<td><?= $model->id; ?></td>
 		<td><span class="thumbs">
-			<img alt="" src="<?= empty($model->picurl)?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($model->picurl, true, AliyunOss::OSS_STYLE_NAME180X180) ?>" style="height: 60px;">
+			<img alt="" src="<?= empty($model->picurl)?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($model->picurl, true, AliyunOss::OSS_STYLE_NAME180) ?>" style="height: 60px;">
 		</span></td>
 		<td><span class="title" style="color:<?= $model->colorval; ?>;font-weight:<?= $model->boldval; ?>"><?= $model->title; ?><span class="title-flag"><?= implode('&nbsp;', $model->getAllFlag(Column::COLUMN_TYPE_PRODUCT)); ?></span></span><span><em><?= $model->subtitle; ?></em></span></td>
 		<td><?= $model->getAllProductCate().' ['.$model->pcateid.']'; ?></td>

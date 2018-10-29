@@ -10,7 +10,8 @@ use Yii;
 use yii\base\Action;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
-use common\components\aliyunoss\AliyunOss;
+use common\components\AliyunOss;
+use yii\base\InvalidConfigException;
 
 class UEditorAction extends Action
 {
@@ -31,7 +32,9 @@ class UEditorAction extends Action
         //后端默认设置
         $this->config = ArrayHelper::merge(Config::getConfig(), $this->config);
         
-        $this->folder = empty($this->folder)?AliyunOss::OSS_DEFAULT:$this->folder;//默认default
+        if(empty($this->folder)) {
+            throw new InvalidConfigException('上传组件配置错误。');
+        }
     }
 
     /**

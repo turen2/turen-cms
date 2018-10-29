@@ -13,7 +13,7 @@ use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\cms\Column;
-use common\components\aliyunoss\AliyunOss;
+use common\components\AliyunOss;
 use app\widgets\fileupload\FileUploadAction;
 use app\widgets\ueditor\UEditorAction;
 
@@ -29,11 +29,11 @@ class InfoController extends Controller
             'fileupload' => [
                 'class' => FileUploadAction::class,
                 'uploadName' => 'picurl',
-                'folder' => AliyunOss::OSS_CMS,
+                'folder' => AliyunOss::OSS_DEFAULT.'/info',
             ],
             'ueditor' => [
                 'class' => UEditorAction::class,
-                'folder' => AliyunOss::OSS_CMS,
+                'folder' => AliyunOss::OSS_DEFAULT.'/info',
                 'config' => [],
             ],
         ];

@@ -22,7 +22,7 @@ $config = [
             //'queryCache' => 'cache',//指定存储对象
         ],
         'aliyunoss' => [//阿里云oss开放存储
-            'class' => 'common\components\aliyunoss\AliyunOss',
+            'class' => 'common\components\AliyunOss',
             'bucket' => '',
             'isCName' => false,
             'endpoint' => '',

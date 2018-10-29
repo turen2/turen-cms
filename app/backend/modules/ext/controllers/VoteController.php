@@ -14,7 +14,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\ext\VoteOption;
 use app\actions\CheckAction;
-use common\components\aliyunoss\AliyunOss;
+use common\components\AliyunOss;
 use app\widgets\ueditor\UEditorAction;
 use app\widgets\edititem\EditItemAction;
 
@@ -41,7 +41,7 @@ class VoteController extends Controller
             ],
             'ueditor' => [
                 'class' => UEditorAction::class,
-                'folder' => AliyunOss::OSS_CMS,
+                'folder' => AliyunOss::OSS_DEFAULT.'/vote',
                 'config' => [],
             ],
         ];

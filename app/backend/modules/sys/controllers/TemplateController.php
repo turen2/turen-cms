@@ -13,7 +13,7 @@ use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\widgets\fileupload\FileUploadAction;
-use common\components\aliyunoss\AliyunOss;
+use common\components\AliyunOss;
 use app\widgets\ueditor\UEditorAction;
 use app\models\sys\Admin;
 use yii\helpers\Html;
@@ -33,16 +33,16 @@ class TemplateController extends Controller
             'fileupload' => [
                 'class' => FileUploadAction::class,
                 'uploadName' => 'picurl',
-                'folder' => AliyunOss::OSS_CMS,
+                'folder' => AliyunOss::OSS_DEFAULT.'/template',
             ],
             'multiple-fileupload' => [
                 'class' => FileUploadAction::class,
                 'uploadName' => 'picarr',
-                'folder' => AliyunOss::OSS_CMS,
+                'folder' => AliyunOss::OSS_DEFAULT.'/template',
             ],
             'ueditor' => [
                 'class' => UEditorAction::class,
-                'folder' => AliyunOss::OSS_CMS,
+                'folder' => AliyunOss::OSS_DEFAULT.'/template',
                 'config' => [],
             ],
         ];

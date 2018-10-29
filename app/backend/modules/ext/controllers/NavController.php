@@ -16,7 +16,7 @@ use common\helpers\BuildHelper;
 use app\actions\MoveAction;
 use app\actions\CheckAction;
 use app\widgets\fileupload\FileUploadAction;
-use common\components\aliyunoss\AliyunOss;
+use common\components\AliyunOss;
 
 /**
  * NavController implements the CRUD actions for Nav model.
@@ -44,7 +44,7 @@ class NavController extends Controller
             'fileupload' => [
                 'class' => FileUploadAction::class,
                 'uploadName' => 'picurl',
-                'folder' => AliyunOss::OSS_CMS,
+                'folder' => AliyunOss::OSS_DEFAULT.'/nav',
             ],
         ];
     }

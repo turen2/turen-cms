@@ -14,7 +14,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\actions\CheckAction;
 use app\widgets\ueditor\UEditorAction;
-use common\components\aliyunoss\AliyunOss;
+use common\components\AliyunOss;
 use app\widgets\edititem\EditItemAction;
 
 /**
@@ -40,7 +40,7 @@ class JobController extends Controller
             ],
             'ueditor' => [
                 'class' => UEditorAction::class,
-                'folder' => AliyunOss::OSS_CMS,
+                'folder' => AliyunOss::OSS_DEFAULT.'/job',
                 'config' => [],
             ],
         ];

@@ -6,7 +6,7 @@ use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use yii\widgets\ActiveForm;
 use common\helpers\ImageHelper;
-use common\components\aliyunoss\AliyunOss;
+use common\components\AliyunOss;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\user\UserSearch */
@@ -54,7 +54,7 @@ $this->title = '用户管理';
 			<input type="checkbox" name="checkid[]" id="checkid[]" value="<?= $model->user_id; ?>">
 		</td>
 		<td><span class="thumbs">
-		<img alt="" src="<?= empty($model->avatar)?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($model->avatar, true, AliyunOss::OSS_STYLE_NAME180X180) ?>" style="height: 60px;">
+		<img alt="" src="<?= empty($model->avatar)?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($model->avatar, true, AliyunOss::OSS_STYLE_NAME180) ?>" style="height: 60px;">
 		</span></td>
 		<td><?= $model->username; ?><br /><?= $model->sex?'帅哥':'美女'; ?> [<?= $model->user_id; ?>]</td>
 		<td><?= $model->mobile; ?><br /><?= $model->email; ?></td>

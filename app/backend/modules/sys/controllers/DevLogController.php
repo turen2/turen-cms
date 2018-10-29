@@ -9,7 +9,7 @@ use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\widgets\ueditor\UEditorAction;
-use common\components\aliyunoss\AliyunOss;
+use common\components\AliyunOss;
 
 /**
  * DevLogController implements the CRUD actions for Devlog model.
@@ -22,7 +22,7 @@ class DevLogController extends Controller
         return [
             'ueditor' => [
                 'class' => UEditorAction::class,
-                'folder' => AliyunOss::OSS_DEFAULT,
+                'folder' => AliyunOss::OSS_DEFAULT.'/dev-log',
                 'config' => [],
             ],
         ];

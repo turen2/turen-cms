@@ -5,7 +5,7 @@ use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use common\helpers\ImageHelper;
-use common\components\aliyunoss\AliyunOss;
+use common\components\AliyunOss;
 use yii\widgets\ActiveForm;
 use app\widgets\edititem\EditItemWidget;
 
@@ -52,7 +52,7 @@ $this->title = '品牌管理';
 		</td>
 		<td><?= $model->id; ?></td>
 		<td><span class="thumbs">
-			<img alt="" src="<?= empty($model->picurl)?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($model->picurl, true, AliyunOss::OSS_STYLE_NAME180X180) ?>" style="height: 60px;">
+			<img alt="" src="<?= empty($model->picurl)?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($model->picurl, true, AliyunOss::OSS_STYLE_NAME180) ?>" style="height: 60px;">
 		</span></td>
 		<td><?= $model->bname; ?></td>
 		<td><?= EditItemWidget::widget([

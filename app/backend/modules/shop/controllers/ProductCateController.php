@@ -12,7 +12,7 @@ use app\actions\CheckAction;
 use app\actions\MoveAction;
 use common\helpers\BuildHelper;
 use app\widgets\fileupload\FileUploadAction;
-use common\components\aliyunoss\AliyunOss;
+use common\components\AliyunOss;
 
 /**
  * ProductCateController implements the CRUD actions for ProductCate model.
@@ -51,7 +51,7 @@ class ProductCateController extends Controller
             'fileupload' => [
                 'class' => FileUploadAction::class,
                 'uploadName' => 'picurl',
-                'folder' => AliyunOss::OSS_DEFAULT,
+                'folder' => AliyunOss::OSS_DEFAULT.'/product-cate',
             ],
             'check' => [
                 'class' => CheckAction::class,
