@@ -21,7 +21,7 @@ class MoveAction extends Action
     
     public $nameField = 'name';//项目名称字段名
     public $orderidField = 'orderid';//排序段名
-    public $pidField = 'pid';//父id字段名
+    public $parentidField = 'parentid';//父id字段名
     
     public function run()
     {
@@ -43,9 +43,9 @@ class MoveAction extends Action
         }
         
         if($this->type == 'down') {
-            $query->andWhere(['and', ['parentid' => $this->{$this->pidField}], ['<', $this->orderidField, $this->{$this->orderidField}]])->orderBy([$this->orderidField => SORT_DESC]);
+            $query->andWhere(['and', [$this->parentidField => $this->pid], ['<', $this->orderidField, $this->{$this->orderidField}]])->orderBy([$this->orderidField => SORT_DESC]);
         } else if($this->type == 'up') {
-            $query->andWhere(['and', ['parentid' => $this->{$this->pidField}], ['>', $this->orderidField, $this->{$this->orderidField}]])->orderBy([$this->orderidField => SORT_ASC]);
+            $query->andWhere(['and', [$this->parentidField => $this->pid], ['>', $this->orderidField, $this->{$this->orderidField}]])->orderBy([$this->orderidField => SORT_ASC]);
         } else {
             $query->andWhere('1!=1');//不存在的类型
         }
