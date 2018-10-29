@@ -32,7 +32,7 @@ class HelpCateController extends Controller
                 'pid' => $request->get('pid'),
                 'type' => $request->get('type'),
                 'orderid' => $request->get('orderid'),
-                'nameFeild' => 'catename',
+                'nameField' => 'catename',
             ],
             'check' => [
                 'class' => CheckAction::class,

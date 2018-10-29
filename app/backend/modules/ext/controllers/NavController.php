@@ -34,7 +34,7 @@ class NavController extends Controller
                 'pid' => $request->get('pid'),
                 'type' => $request->get('type'),
                 'orderid' => $request->get('orderid'),
-                'nameFeild' => 'menuname',
+                'nameField' => 'menuname',
             ],
             'check' => [
                 'class' => CheckAction::class,

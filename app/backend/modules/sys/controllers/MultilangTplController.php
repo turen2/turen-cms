@@ -40,7 +40,7 @@ class MultilangTplController extends Controller
                 'class' => CheckAction::class,
                 'className' => MultilangTpl::class,
                 'id' => $request->get('id'),
-                'feild' => 'is_visible',
+                'field' => 'is_visible',
                 'openName' => '前台显示',
                 'closeName' => '前台隐藏',
             ],
@@ -51,7 +51,7 @@ class MultilangTplController extends Controller
                 'id' => $request->get('id'),
                 'type' => $request->get('type'),
                 'orderid' => $request->get('orderid'),
-                'nameFeild' => 'lang_name',
+                'nameField' => 'lang_name',
             ],
         ];
     }

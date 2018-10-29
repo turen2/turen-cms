@@ -47,7 +47,7 @@ class FlagController extends Controller
                 'id' => $request->get('id'),
                 'type' => $request->get('type'),
                 'orderid' => $request->get('orderid'),
-                'nameFeild' => 'flagname',
+                'nameField' => 'flagname',
             ],
         ];
     }

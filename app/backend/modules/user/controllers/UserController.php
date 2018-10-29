@@ -50,8 +50,8 @@ class UserController extends Controller
                 'class' => BatchAction::class,
                 'className' => User::class,
                 'type' => $request->get('type'),
-                'stateFeild' => 'delstate',
-                'timeFeild' => 'deltime',
+                'stateField' => 'delstate',
+                'timeField' => 'deltime',
             ],
             //垃圾管理
             'recycle' => [
@@ -59,7 +59,7 @@ class UserController extends Controller
                 'className' => User::class,
                 'fieldName' => 'username',
                 'type' => $request->get('type'),
-                'feild' => 'delstate',
+                'field' => 'delstate',
             ],
             'fileupload' => [
                 'class' => FileUploadAction::class,

@@ -32,7 +32,7 @@ class AdTypeController extends Controller
                 'pid' => $request->get('pid'),
                 'type' => $request->get('type'),
                 'orderid' => $request->get('orderid'),
-                'nameFeild' => 'typename',
+                'nameField' => 'typename',
             ],
             'check' => [
                 'class' => CheckAction::class,

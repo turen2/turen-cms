@@ -21,8 +21,8 @@ class BatchAction extends Action
 {
     public $className;//要切换的模型
     public $type;//操作类型
-    public $stateFeild = 'delstate';//指定标记字段名
-    public $timeFeild = 'deltime';//指定时间字段名
+    public $stateField = 'delstate';//指定标记字段名
+    public $timeField = 'deltime';//指定时间字段名
     
     public function run()
     {
@@ -42,8 +42,8 @@ class BatchAction extends Action
         
         if($this->type == 'delete') {
             foreach ($query->andWhere([$primayKey => Yii::$app->getRequest()->post('checkid', [])])->all() as $model) {
-                $model->touch($this->timeFeild);
-                $model->updateAttributes([$this->stateFeild => ActiveRecord::IS_DEL]);//标记为垃圾
+                $model->touch($this->timeField);
+                $model->updateAttributes([$this->stateField => ActiveRecord::IS_DEL]);//标记为垃圾
             }
             Yii::$app->getSession()->setFlash('success', '已批量移到垃圾桶！');
         }

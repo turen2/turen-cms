@@ -31,7 +31,7 @@ class GroupController extends Controller
                 'id' => $request->get('id'),
                 'type' => $request->get('type'),
                 'orderid' => $request->get('orderid'),
-                'nameFeild' => 'ug_name',
+                'nameField' => 'ug_name',
             ],
         ];
     }
@@ -124,7 +124,6 @@ class GroupController extends Controller
     public function actionDelete($id, $returnUrl = ['index'])
     {
         $model = $this->findModel($id);
-        $model->delete();
         
         $state = true;
         $msg = $model->ug_name.' 已经成功删除！';
@@ -132,6 +131,10 @@ class GroupController extends Controller
         if($state && !empty($model->is_default)) {
             $state = false;
             $msg = $model->ug_name.' 为默认用户组不能删除！';
+        }
+        
+        if($state) {
+            $model->delete();
         }
         
         if(Yii::$app->getRequest()->isAjax) {

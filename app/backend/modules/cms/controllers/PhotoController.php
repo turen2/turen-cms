@@ -47,15 +47,15 @@ class PhotoController extends Controller
                 'class' => BatchAction::class,
                 'className' => Photo::class,
                 'type' => $request->get('type'),
-                'stateFeild' => 'delstate',
-                'timeFeild' => 'deltime',
+                'stateField' => 'delstate',
+                'timeField' => 'deltime',
             ],
             //垃圾管理
             'recycle' => [
                 'class' => RecycleAction::class,
                 'className' => Photo::class,
                 'type' => $request->get('type'),
-                'feild' => 'delstate',
+                'field' => 'delstate',
             ],
             //获取标签
             'get-tags' => [

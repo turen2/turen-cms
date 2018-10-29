@@ -34,7 +34,7 @@ class ColumnController extends Controller
                 'pid' => $request->get('pid'),
                 'type' => $request->get('type'),
                 'orderid' => $request->get('orderid'),
-                'nameFeild' => 'cname',
+                'nameField' => 'cname',
             ],
             'check' => [
                 'class' => CheckAction::class,

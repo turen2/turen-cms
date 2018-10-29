@@ -31,7 +31,7 @@ class LevelController extends Controller
                 'id' => $request->get('id'),
                 'type' => $request->get('type'),
                 'orderid' => $request->get('orderid'),
-                'nameFeild' => 'level_name',
+                'nameField' => 'level_name',
             ],
         ];
     }
@@ -133,7 +133,6 @@ class LevelController extends Controller
     public function actionDelete($id, $returnUrl = ['index'])
     {
         $model = $this->findModel($id);
-        $model->delete();
         
         $state = true;
         $msg = $model->level_name.' 已经成功删除！';
@@ -141,6 +140,10 @@ class LevelController extends Controller
         if($state && !empty($model->is_default)) {
             $state = false;
             $msg = $model->level_name.' 为默认等级不能删除！';
+        }
+        
+        if($state) {
+            $model->delete();
         }
         
         if(Yii::$app->getRequest()->isAjax) {

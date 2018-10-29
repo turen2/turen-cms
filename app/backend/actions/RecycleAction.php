@@ -32,7 +32,7 @@ class RecycleAction extends Action
     public $type;//操作类型 'list'垃圾列表、'reset'恢复指定id垃圾、'del'删除指定id垃圾、'resetall'恢复批量id垃圾、'delall'删除批量id垃圾、'empty'删除所有当前的垃圾
     public $fieldName = 'title';
     
-    public $feild = 'delstate';//垃圾标记字段
+    public $field = 'delstate';//垃圾标记字段
     
     public function run()
     {
@@ -62,13 +62,13 @@ class RecycleAction extends Action
                 $id = Yii::$app->getRequest()->post('id');
                 $model = $query->andWhere([$primayKey => $id])->one();
                 if($model) {
-                    $model->updateAttributes([$this->feild => ActiveRecord::IS_NOT_DEL]);
+                    $model->updateAttributes([$this->field => ActiveRecord::IS_NOT_DEL]);
                 }
                 break;
             case self::RECYCLE_TYPE_RESETALL:
                 $ids = Yii::$app->getRequest()->post('ids');
                 foreach ($query->andWhere([$primayKey => explode(',', $ids)])->all() as $model) {
-                    $model->updateAttributes([$this->feild => ActiveRecord::IS_NOT_DEL]);
+                    $model->updateAttributes([$this->field => ActiveRecord::IS_NOT_DEL]);
                 }
                 break;
             case self::RECYCLE_TYPE_DEL:
@@ -85,7 +85,7 @@ class RecycleAction extends Action
                 }
                 break;
             case self::RECYCLE_TYPE_EMPTY:
-                $models = $query->andWhere([$this->feild => ActiveRecord::IS_DEL])->all();
+                $models = $query->andWhere([$this->field => ActiveRecord::IS_DEL])->all();
                 foreach ($models as $model) {
                     $model->delete();
                 }
@@ -93,7 +93,7 @@ class RecycleAction extends Action
         }
         
         $str = '';
-        $models = $selectQuery->andWhere([$this->feild => ActiveRecord::IS_DEL])->all();
+        $models = $selectQuery->andWhere([$this->field => ActiveRecord::IS_DEL])->all();
         if($models) {
             foreach ($models as $model) {
                 if(method_exists($model, 'getAllColumn')) {
