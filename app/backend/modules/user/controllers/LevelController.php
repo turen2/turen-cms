@@ -13,6 +13,7 @@ use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\actions\SimpleMoveAction;
+use app\models\user\User;
 
 /**
  * LevelController implements the CRUD actions for Level model.
@@ -140,6 +141,12 @@ class LevelController extends Controller
         if($state && !empty($model->is_default)) {
             $state = false;
             $msg = $model->level_name.' 为默认等级不能删除！';
+        }
+        
+        //有用户在此组
+        if(User::find()->where(['level_id' => $id])->exists()) {
+            $state = false;
+            $msg = $model->level_name.' 已包含有用户，请先清理用户再来删除！';
         }
         
         if($state) {

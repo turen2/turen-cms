@@ -13,6 +13,7 @@ use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\actions\SimpleMoveAction;
+use app\models\user\User;
 
 /**
  * GroupController implements the CRUD actions for Group model.
@@ -131,6 +132,12 @@ class GroupController extends Controller
         if($state && !empty($model->is_default)) {
             $state = false;
             $msg = $model->ug_name.' 为默认用户组不能删除！';
+        }
+        
+        //有用户在此组
+        if(User::find()->where(['ug_id' => $id])->exists()) {
+            $state = false;
+            $msg = $model->ug_name.' 已包含有用户，请先清理用户再来删除！';
         }
         
         if($state) {
