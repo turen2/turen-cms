@@ -12,6 +12,7 @@ use yii\helpers\ArrayHelper;
 use app\behaviors\InsertLangBehavior;
 use yii\behaviors\AttributeBehavior;
 use yii\db\ActiveRecord;
+use yii\base\ErrorException;
 
 /**
  * This is the model class for table "{{%sys_config}}".
@@ -149,14 +150,10 @@ class Config extends \app\models\base\Sys
         $cache = Yii::$app->getCache();
         $models = self::find()->current()->all();//缓存网站的配置参数
         if($models) {
-            if($cache->exists(CONFIG_CACHE_KEY)) {
-                $cache->delete(CONFIG_CACHE_KEY);
-            }
+            $cache->delete(CONFIG_CACHE_KEY);
             
             //处理数组形式的数据
-            $data = Json::encode(ArrayHelper::map($models, 'varname', 'varvalue'));//获取数据
-            
-            $cache->set(CONFIG_CACHE_KEY, $data);
+            $cache->set(CONFIG_CACHE_KEY, Json::encode(ArrayHelper::map($models, 'varname', 'varvalue')));
             return true;
         } else {
             return false;

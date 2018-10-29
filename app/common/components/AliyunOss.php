@@ -11,13 +11,14 @@ use OSS\OssClient;
 use OSS\Core\OssException;
 use yii\web\HttpException;
 use yii\web\UploadedFile;
+use yii\base\InvalidArgumentException;
 
 //只实现对指定bucket的文件：上传、读取、（删除）
 
 class AliyunOss extends Component
 {
     //存储文件名
-    const OSS_DEFAULT = 'images';//默认路径
+    const OSS_DEFAULT = 'cms-images';//默认路径
     
     //样式风格
     const OSS_STYLE_NAME180 = 'thumbnail';//缩略图固定名称，宽180
@@ -47,6 +48,11 @@ class AliyunOss extends Component
     public function init()
     {
         parent::init();
+        
+        //校验参数
+        if(empty($this->accessKeyId) || empty($this->accessKeySecret) || empty($this->endpoint)) {
+            throw new InvalidArgumentException('阿里云OSS参数未配置，本项目依赖OSS存储资料文件。');
+        }
         
         try {
             $this->_ossClient = new OssClient($this->accessKeyId, $this->accessKeySecret, $this->endpoint, $this->isCName);
