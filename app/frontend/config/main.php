@@ -23,14 +23,25 @@ return [
     'language' => 'zh-CN', // 默认当前环境使用的语言
     'bootstrap' => ['log'],
     'controllerNamespace' => 'app\\controllers',
+    
+    //默认pc端模板布局与默认路由设置
     'defaultRoute' => 'site/home', // 默认路由，后台默认首页
     'layout' => 'main', // 默认布局
-    'viewPath' => '@app/themes/classic/views',
-    'layoutPath' => '@app/themes/classic/layouts',//View组件中可配配置
+    'viewPath' => '@app/themes/classic/pc/views',
+    'layoutPath' => '@app/themes/classic/pc/layouts',//View组件中可配配置
     
     'modules' => [
-        //前台只需要一个模块：mobile
-        'mobile' => 'app\modules\mobile\Module',
+        //前台只需要一个模块：wap
+        'wap' => [
+            'class' => 'app\modules\wap\Module',
+            'controllerNamespace' => 'app\\modules\\wap\\controllers',
+            
+            //wap端模板布局与默认路由设置
+            'defaultRoute' => 'site/home', // 默认路由，后台默认首页
+            'layout' => 'main', // 默认布局
+            'viewPath' => '@app/themes/classic/wap/views',
+            'layoutPath' => '@app/themes/classic/wap/layouts',//View组件中可配配置
+        ],
     ],
     'components' => [
         'request' => [
@@ -52,6 +63,7 @@ return [
             // this is the name of the session cookie used for login on the frontend
             'name' => 'app-frontend',
         ],
+        /*
         'view' => [
             'theme' => [
                 'class' => 'yii\base\Theme',
@@ -64,6 +76,7 @@ return [
                 ],
             ]
         ],
+        */
         //前端资源管理
         'assetManager' => [
             'class' => 'yii\web\AssetManager',

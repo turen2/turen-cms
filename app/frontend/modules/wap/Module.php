@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\mobile;
+namespace app\modules\wap;
 
 /**
  * common module definition class
@@ -19,7 +19,7 @@ class Module extends \yii\base\Module
     /**
      * @inheritdoc
      */
-    public $controllerNamespace = 'app\modules\mobile\controllers';
+    public $controllerNamespace = 'app\modules\wap\controllers';
 
     /**
      * @inheritdoc
