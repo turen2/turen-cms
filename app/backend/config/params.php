@@ -67,6 +67,9 @@ return [
         8 => '驾驶执照最后四位数字'
     ],
     
+    //是否开启问题验证
+    'config.loginSafeProblem' => false,
+    
     //此配置与整个系统有关
     'config.openCate' => true,//是否开启类别管理
 ];

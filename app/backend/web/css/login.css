@@ -290,7 +290,7 @@ fieldset[disabled] input[type=checkbox], fieldset[disabled] input[type=radio], i
 }
 
 .login-box {
-	min-height: 580px;
+	min-height: 435px;
 	padding: 25px 60px;
     margin-top: 3%;
     color: #76838f;

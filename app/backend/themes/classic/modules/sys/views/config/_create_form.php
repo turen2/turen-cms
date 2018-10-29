@@ -117,7 +117,7 @@ echo Tips::widget([
 				<td>
     				<div class="form-sub-btn">
     					<input type="submit" class="submit" value="提交" />
-    					<input type="button" class="back" value="返回" onclick="location.href='<?= Url::to(['/sys/config/index']) ?>'" />
+    					<input type="button" class="back" value="返回" onclick="location.href='<?= Url::to(['/sys/config/setting']) ?>'" />
     				</div>
 				</td>
 			</tr>

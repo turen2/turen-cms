@@ -99,10 +99,13 @@ class Login extends Model
      */
     public function validateQuestion($attribute, $params)
     {
-        if (!$this->hasErrors()) {
-            $user = $this->getUser();
-            if (!$user || !$user->validateQuestion($this->questionId, $this->answer)) {
-                $this->addError($attribute, '您的安全问题答案错误');
+        //开启问题验证
+        if(Yii::$app->params['config.loginSafeProblem']) {
+            if (!$this->hasErrors()) {
+                $user = $this->getUser();
+                if (!$user || !$user->validateQuestion($this->questionId, $this->answer)) {
+                    $this->addError($attribute, '您的安全问题答案错误');
+                }
             }
         }
     }

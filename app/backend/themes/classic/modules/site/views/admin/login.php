@@ -32,8 +32,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'options' => ['class' => 'form-control', 'style' => 'width: 228px;', 'placeholder' => $model->getAttributeLabel('verifyCode')],//注意，widget与field之间的关系
         'imageOptions' => ['title' => '点击刷新', 'alt' => '验证码', 'style' => 'cursor: pointer;'],
     ]) ?>
-    <?= $form->field($model, 'questionId')->dropDownList(Yii::$app->params['config.safeQuestion'], ['placeholder' => $model->getAttributeLabel('questionId')]) ?>
-    <?= $form->field($model, 'answer')->textInput(['placeholder' => $model->getAttributeLabel('answer')]) ?>
+    
+    <?php if(Yii::$app->params['config.loginSafeProblem']) { ?>
+        <?= $form->field($model, 'questionId')->dropDownList(Yii::$app->params['config.safeQuestion'], ['placeholder' => $model->getAttributeLabel('questionId')]) ?>
+    	<?= $form->field($model, 'answer')->textInput(['placeholder' => $model->getAttributeLabel('answer')]) ?>
+    <?php } ?>
+    
     <?= $form->field($model, 'rememberMe')->checkbox() ?>
     
     <?php if($model->hasErrors()) { ?>
