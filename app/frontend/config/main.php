@@ -31,12 +31,14 @@ return [
         ],
     ],
     
-    //'controllerNamespace' => 'app\\modules\\web\\controllers',//默认为pc端
+    
+    'controllerNamespace' => 'app\\modules\\web\\controllers',//默认为pc端
     //默认web pc端模板布局与默认路由设置
-    //'defaultRoute' => 'web/site/home', // 默认路由，后台默认首页
-    //'layout' => 'main', // 默认布局
-    //'viewPath' => '@app/themes/classic/web/views',
-    //'layoutPath' => '@app/themes/classic/web/layouts',//View组件中可配配置
+    'defaultRoute' => 'web/site/home', // 默认路由，后台默认首页
+    'layout' => 'main', // 默认布局
+    'viewPath' => '@app/themes/classic/web/views',
+    'layoutPath' => '@app/themes/classic/web/layouts',//View组件中可配配置
+    
     
     'modules' => [
         //前台web pc端：web
