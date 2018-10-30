@@ -7,7 +7,7 @@
 namespace app\controllers;
 
 use Yii;
-use yii\web\Controller;
+use app\components\Controller;
 
 /**
  * Site controller
@@ -30,10 +30,12 @@ class SiteController extends Controller
     public function actions()
     {
         return [
-            //
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
         ];
     }
-
+    
     /**
      * 电脑版首页
      * @return mixed

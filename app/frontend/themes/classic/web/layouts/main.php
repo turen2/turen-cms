@@ -29,7 +29,7 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-
+<p style="border: 1px solid green;">这里是pc模板布局.....</p>
 <?= $content ?>
 
 <?php $this->endBody() ?>

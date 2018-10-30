@@ -1,4 +1,6 @@
 <?php
+use app\bootstrap\InitSysten;
+
 /**
  * @link http://www.turen2.com/
  * @copyright Copyright (c) 土人开源CMS
@@ -16,7 +18,7 @@ return [
     'id' => 'app-frontend',
     'timeZone' => 'Asia/Shanghai',
     'basePath' => dirname(__DIR__),
-    'name' => 'Turen',
+    'name' => 'Turen2',
     'version' => '1.0',
     'charset' => 'UTF-8',
     'sourceLanguage' => 'en-US', // 默认源语言
@@ -24,17 +26,31 @@ return [
     'bootstrap' => [
         'log',
         'devicedetect',//客户端检测
+        [
+            'class' => InitSysten::class,//初始化环境：模板、语言、缓存
+        ],
     ],
-    'controllerNamespace' => 'app\\controllers',
     
-    //默认pc端模板布局与默认路由设置
-    'defaultRoute' => 'site/home', // 默认路由，后台默认首页
-    'layout' => 'main', // 默认布局
-    'viewPath' => '@app/themes/classic/pc/views',
-    'layoutPath' => '@app/themes/classic/pc/layouts',//View组件中可配配置
+    //'controllerNamespace' => 'app\\modules\\web\\controllers',//默认为pc端
+    //默认web pc端模板布局与默认路由设置
+    //'defaultRoute' => 'web/site/home', // 默认路由，后台默认首页
+    //'layout' => 'main', // 默认布局
+    //'viewPath' => '@app/themes/classic/web/views',
+    //'layoutPath' => '@app/themes/classic/web/layouts',//View组件中可配配置
     
     'modules' => [
-        //前台只需要一个模块：wap
+        //前台web pc端：web
+        'web' => [
+            'class' => 'app\modules\web\Module',
+            'controllerNamespace' => 'app\\modules\\web\\controllers',
+            
+            //wap端模板布局与默认路由设置
+            'defaultRoute' => 'site/home', // 默认路由，后台默认首页
+            'layout' => 'main', // 默认布局
+            'viewPath' => '@app/themes/classic/web/views',
+            'layoutPath' => '@app/themes/classic/web/layouts',//View组件中可配配置
+        ],
+        //前台wap手机端：wap
         'wap' => [
             'class' => 'app\modules\wap\Module',
             'controllerNamespace' => 'app\\modules\\wap\\controllers',
@@ -60,29 +76,34 @@ return [
         ],
         /*
          'user' => [
-         'identityClass' => 'common\models\User',
-         'enableAutoLogin' => true,
-         'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
+             'identityClass' => 'common\models\User',
+             'enableAutoLogin' => true,
+             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
          ],
          */
         'session' => [
             // this is the name of the session cookie used for login on the frontend
             'name' => 'app-frontend',
         ],
-        /*
         'view' => [
-            'theme' => [
-                'class' => 'yii\base\Theme',
-                'basePath' => '@app/themes/classic',//主题所在文件路径
-                'baseUrl' => '@app/themes/classic',//与主题相关的url资源路径
+            // 主题配置(module目录下的views > 根目录下的views > 主题下的模板)
+            'class' => 'app\components\View',
+            
+            //theme的功能是重新映射的关系，即将原模板系统默认的目录结果映射为自定义目录结构！！
+            //默认机制是，模板目录结构与控制器挂件模块等结构保持一致。
+            //'theme' => [
+                //'class' => 'yii\base\Theme',
+                //'basePath' => '@app/themes/classic',//主题所在文件路径
+                //'baseUrl' => '@app/themes/classic',//与主题相关的url资源路径
+                /*
                 'pathMap' => [
                     '@app/modules' => '@app/themes/classic/modules',//模块模板
                     '@app/widgets' => '@app/themes/classic/widgets',//部件模板
                     '@app/views' => '@app/themes/classic/views',//布局模板
                 ],
-            ]
+                */
+            //]
         ],
-        */
         //前端资源管理
         'assetManager' => [
             'class' => 'yii\web\AssetManager',
@@ -91,11 +112,26 @@ return [
                 'yii\web\JqueryAsset' => [
                     'sourcePath' => '@app/assets/jquery/',
                     'js' => [
-                        'jquery.min.js'
+                        'jquery.min.js'//
                     ]
                 ],
             ],
         ],
+        //异常处理
+        'errorHandler' => [
+            'class' => 'yii\web\ErrorHandler',
+            'errorAction' => 'site/error',//默认显示pc版路由
+        ],
+        /*
+        //伪静态管理
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [
+            ],
+        ],
+        */
+        //日志管理
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
@@ -105,21 +141,7 @@ return [
                 ],
             ],
         ],
-        
-        /*
-        'errorHandler' => [
-            'errorAction' => 'site/error',
-        ],
-        */
-        
-        /*
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
-        ],
-        */
     ],
+    
     'params' => $params,
 ];
