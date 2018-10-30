@@ -39,8 +39,8 @@ $this->title = '菜单栏';
 				<div class="title on" onclick="DisplayMenu('leftmenu08');" title="点击切换显示或隐藏"><i class="fa fa-angle-right i1"></i><i class="fa fa-angle-down i2"></i> 界面与专题</div>
 				<div id="leftmenu08">
 					<?= Html::a('后台首页', ['/site/home/default'], ['target' => 'main'])?>
-					<!-- <?= Html::a('界面配置', ['/site/face/config'], ['target' => 'main'])?> --><!-- 典型的站点配置 -->
-					<!-- <?= Html::a('专题管理', ['/site/topic/index'], ['target' => 'main'])?> --><!-- 典型的站点专题 -->
+					<?= Html::a('界面配置', ['/site/face/config'], ['target' => 'main'])?><!-- 典型的站点配置 -->
+					<?= Html::a('专题管理', ['/site/topic/index'], ['target' => 'main'])?><!-- 典型的站点专题 -->
 				</div>
 			</div>
 			<div class="hr_5"></div>
@@ -57,8 +57,8 @@ $this->title = '菜单栏';
 					<?= Html::a('视频', ['/cms/video/index'], ['target' => 'main'])?>
 					<div class="hr_1"> </div>
 					<?= Html::a('碎片', ['/cms/block/index'], ['target' => 'main'])?>
-					<!-- <?= Html::a('自定义模块', ['/cms/diymodel/index'], ['target' => 'main'])?> -->
-                    <!-- <?= Html::a('自定义字段', ['/cms/diyfield/index'], ['target' => 'main'])?> -->
+					<?= Html::a('自定义模块', ['/cms/diymodel/index'], ['target' => 'main'])?>
+                    <?= Html::a('自定义字段', ['/cms/diyfield/index'], ['target' => 'main'])?>
 				</div>
 			</div>
 			<div class="hr_5"></div>
@@ -68,10 +68,10 @@ $this->title = '菜单栏';
 					<?= Html::a('产品分类', ['/shop/product-cate/index'], ['target' => 'main'])?>
 					<?= Html::a('产品品牌', ['/shop/brand/index'], ['target' => 'main'])?>
 					<?= Html::a('产品管理', ['/shop/product/index'], ['target' => 'main'])?>
-					<!-- <div class="hr_1"> </div> -->
-					<!-- <?= Html::a('订单管理', ['/shop/order/index'], ['target' => 'main'])?> -->
-					<!-- <?= Html::a('配送设置', ['/shop/ship/index'], ['target' => 'main'])?> -->
-					<!-- <?= Html::a('支付设置', ['/shop/pay/index'], ['target' => 'main'])?> -->
+					<div class="hr_1"> </div>
+					<?= Html::a('订单管理', ['/shop/order/index'], ['target' => 'main'])?>
+					<?= Html::a('配送设置', ['/shop/ship/index'], ['target' => 'main'])?>
+					<?= Html::a('支付设置', ['/shop/pay/index'], ['target' => 'main'])?>
 				</div>
 			</div>
 			<div class="hr_5"></div>
@@ -111,14 +111,14 @@ $this->title = '菜单栏';
     				<?= Html::a('多语言管理', ['/sys/multilang-tpl/index'], ['target' => 'main'])?>
     				<?= Html::a('系统设置', ['/sys/config/setting'], ['target' => 'main'])?>
     				<div class="hr_1"> </div>
-    				<!-- <?= Html::a('媒体中心', ['/sys/media/index'], ['target' => 'main'])?> -->
-                    <!-- <?= Html::a('数据库管理', ['/sys/db/index'], ['target' => 'main'])?> -->
-                    <!-- <?= Html::a('级联数据', ['/sys/cascade/index'], ['target' => 'main'])?> -->
+    				<?= Html::a('媒体中心', ['/sys/media/index'], ['target' => 'main'])?>
+                    <?= Html::a('数据库管理', ['/sys/db/index'], ['target' => 'main'])?>
+                    <?= Html::a('级联数据', ['/sys/cascade/index'], ['target' => 'main'])?>
     				<?= Html::a('<i class="fa fa-wrench"></i>', ['/cms/flag/index'], ['target' => 'main', 'title' => '信息标记管理', 'class' => 'menu-wrench flag'])?>
 					<?= Html::a('<i class="fa fa-wrench"></i>', ['/cms/src/index'], ['target' => 'main', 'title' => '信息来源管理', 'class' => 'menu-wrench src'])?>
 				</div>
 			</div>
-			<!-- 
+			
 			<div class="hr_5"></div>
 			<div class="menubox">
 				<div class="title" onclick="DisplayMenu('leftmenu06');" title="点击切换显示或隐藏"><i class="fa fa-angle-right i1"></i><i class="fa fa-angle-down i2"></i> 辅助工具</div>
@@ -131,7 +131,7 @@ $this->title = '菜单栏';
     				<?= Html::a('公众号版', ['/tool/mp/index'], ['target' => 'main'])?>
 				</div>
 			</div>
-			 -->
+			
 			<div class="hr_5"></div>
 			<div class="menubox">
 				<div class="title" onclick="DisplayMenu('leftmenu07');" title="点击切换显示或隐藏"><i class="fa fa-angle-right i1"></i><i class="fa fa-angle-down i2"></i> 日志与更新</div>
