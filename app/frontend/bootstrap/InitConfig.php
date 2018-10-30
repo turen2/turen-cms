@@ -7,15 +7,22 @@
 namespace app\bootstrap;
 
 use Yii;
-use app\models\sys\Config;
-use yii\helpers\ArrayHelper;
+// use app\models\sys\Config;
+// use yii\helpers\ArrayHelper;
 
 //普通的导入类方式
 class InitConfig extends \yii\base\Component implements \yii\base\BootstrapInterface
 {
     public function bootstrap($app)
     {
+        
+    }
+    
+    /*
+    public function bootstrap($app)
+    {
         //后台管理参数配置
         Yii::$app->params = ArrayHelper::merge(Yii::$app->params, Config::CacheList());
     }
+    */
 }

@@ -1,5 +1,7 @@
-<?php
+<?php 
+use app\bootstrap\RewriteUrl;
 use app\bootstrap\InitSysten;
+use app\bootstrap\InitConfig;
 
 /**
  * @link http://www.turen2.com/
@@ -27,7 +29,13 @@ return [
         'log',
         'devicedetect',//客户端检测
         [
+            'class' => RewriteUrl::class,//url伪静态重写
+        ],
+        [
             'class' => InitSysten::class,//初始化环境：模板、语言、缓存
+        ],
+        [
+            'class' => InitConfig::class,//全局配置缓存、界面缓存
         ],
     ],
     
