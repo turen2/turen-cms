@@ -35,9 +35,7 @@ class Functions
         // 2.重写hostinfo//Yii::getAlias('@http_common')
         $urlManager->hostInfo = $domain;
         
-        $url = $urlManager->createAbsoluteUrl(ArrayHelper::merge([
-            $route
-        ], $param));
+        $url = $urlManager->createAbsoluteUrl(ArrayHelper::merge([$route], $param));
         
         // 3.恢复
         $urlManager->hostInfo = $hostInfo;
