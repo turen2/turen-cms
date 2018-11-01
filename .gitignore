@@ -3,3 +3,4 @@ vendor/*
 .buildpath
 .project
 *.zip
+!vendor.zip
