@@ -7,13 +7,8 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\base\Widget;
-use app\widgets\LangSelector;
-
 
 $this->title = '测试';
-
-Yii::$app->params['maninav'] = true;
 
 $webUrl = Yii::getAlias('@web');
 ?>
@@ -130,18 +125,3 @@ $webUrl = Yii::getAlias('@web');
         <div class="text"></div>
     </a>
 </div>
-
-<?php 
-//如果电脑端就提醒
-echo '语言切换菜单：';
-echo LangSelector::widget([]);
-echo '<div class="fui-title center">';
-echo '设备匹配：';
-if(in_array(Yii::getAlias('@device'), ['desktop'])) {
-    echo '您当前的设备是手机端</div>';
-    echo Html::a('切换到手机端', '');//多app跳转
-} else {
-    echo '设备匹配正常';
-}
-echo '</div>';
-?>

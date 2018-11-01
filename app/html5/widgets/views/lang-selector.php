@@ -7,14 +7,15 @@
 use yii\helpers\Html;
 ?>
 
-<ul class="lang-selector">
+<span class="lang-selector">
 <?php 
 foreach ($items as $langKey => $item) {
     if($langKey == Yii::$app->params['config_init_default_lang_key']) {
-        echo '<li'.(($langKey == $selection)?' class="on"':'').'>'.Html::a($item['name'], $baseUrl.'/index.html').'</li>';
+        echo Html::a($item['name'], $baseUrl.'/index.html');
     } else {
-        echo '<li'.(($langKey == $selection)?' class="on"':'').'>'.Html::a($item['name'], $baseUrl.'/'.$langKey.'/index.html').'</li>';
+        echo Html::a($item['name'], $baseUrl.'/'.$langKey.'/index.html');
     }
+    echo ' ';
 }
 ?>
-</ul>
+</span>

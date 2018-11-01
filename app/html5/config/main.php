@@ -21,8 +21,8 @@ return [
     'name' => 'Turen2',
     'version' => '1.0',
     'charset' => 'UTF-8',
-    'sourceLanguage' => 'en-US', // 默认源语言
-    'language' => 'zh-CN', // 默认当前环境使用的语言
+    'sourceLanguage' => 'zh-CN', // 默认源语言
+    'language' => 'en-US', // 默认当前环境使用的语言
     'controllerNamespace' => 'app\\controllers',
     'defaultRoute' => 'site/home', // 默认路由，后台默认首页
     'layout' => 'main', // 默认布局
@@ -104,6 +104,23 @@ return [
             'showScriptName' => false,
             'rules' => [
             ],
+        ],
+        'i18n' => [// 多语言组件配置，每个应用app都有独立的多语言配置，减少相关度
+            'translations' => [
+                //只配置一个应用
+                'h5'=> [// 匹配所有翻译//通用配置，使用*配置所有应用，再以fileMap分隔
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath'=>'@app/messages',//统一存储为一个翻译包
+                    //'sourceLanguage' => Yii::$app->sourceLanguage,
+                    /*
+                     'fileMap'=>[// 简单的映射
+                     'common'=>'common.php',
+                     'yii' => 'yii.php',
+                     ],
+                     */
+                    //'on missingTranslation' => ['app\events\TranslationEventHandler', 'handleMissingTranslation'],//事件解决，获取未翻译内容
+                ],
+            ]
         ],
         //日志管理
         'log' => [
