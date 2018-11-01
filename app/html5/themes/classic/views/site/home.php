@@ -17,130 +17,131 @@ Yii::$app->params['maninav'] = true;
 
 $webUrl = Yii::getAlias('@web');
 ?>
-<div class="fui-content navbar">
-	<div class="headinfo">
-        <div class="userinfo">
-            <a class="fui-list external" href="">
-                <div class="fui-list-media"><img src="<?=$webUrl?>/images/logo.jpg"></div>
-                <div class="fui-list-info">
-                    <div class="title">豹品云淘官方商城</div>
-                    <div class="text">豹品云淘，一个专注于全球优品分销的大众创业平台。</div>
-                </div>
-            </a>
-            <a class="setbtn" href="">
-                <i class="icon icon-settings"></i>
-            </a>
-        </div>
-    </div>
-    <div class="fui-menu-group">
-        <a class="fui-menu-item noactive">
-            <p id="today_count">1</p>
-            <small>今日订单</small>
-        </a>
-        <a class="fui-menu-item noactive">
-            <p id="today_price">78</p>
-            <small>今日成交</small>
-        </a>
-        <a class="fui-menu-item noactive">
-            <p id="today_member">2</p>
-            <small>新增会员</small>
-        </a>
-    </div>
-    <div class="fui-cell-group">
-        <a class="fui-cell external" href="">
-            <div class="fui-cell-icon">
-                <i class="icon icon-rejectedorder"></i>
-            </div>
-            <div class="fui-cell-text">订单管理</div>
-            <div class="fui-cell-remark">全部</div></a>
-    </div>
-    <div class="fui-block-group col-3">
-        <a class="fui-block-child" href="">
-            <div class="icon text-blue">
-                <i class="icon icon-deliver"></i>
-            </div>
-            <div class="title">待发货</div>
-            <div class="text"><span id="status_1">4</span>单</div>
-        </a>
-        <a class="fui-block-child" href="">
-            <div class="icon text-yellow">
-                <i class="icon icon-dollar"></i>
-            </div>
-            <div class="title">待付款</div>
-            <div class="text"><span id="status_0">1</span>笔</div>
-        </a>
-        <a class="fui-block-child" href="">
-            <div class="icon text-orange">
-                <i class="icon icon-rejectedorder"></i>
-            </div>
-            <div class="title">维权订单</div>
-            <div class="text"><span id="status_4">0</span>笔</div>
-        </a>
-    </div>
-    <div class="fui-cell-group">
-        <div class="fui-cell">
-            <div class="fui-cell-icon">
-                <i class="icon icon-shop"></i>
-            </div>
-            <div class="fui-cell-text">商城管理</div></div>
-    </div>
-    <div class="fui-block-group col-3">
-        <a class="fui-block-child" href="">
-            <div class="icon text-yellow">
-                <i class="icon icon-goods"></i>
-            </div>
-            <div class="title">商品管理</div>
-            <div class="text">
-                <span id="goods_count">955</span>个</div></a>
-        <a class="fui-block-child" href="">
-            <div class="icon text-orange">
-                <i class="icon icon-group"></i>
-            </div>
-            <div class="title">会员管理</div>
-            <div class="text">
-                <span id="member_count">44747</span>个</div></a>
-        <a class="fui-block-child" href="">
-            <div class="icon text-blue">
-                <i class="icon icon-recharge"></i>
-            </div>
-            <div class="title">财务管理</div>
-            <div class="text"></div>
-        </a>
-        <a class="fui-block-child" href="">
-            <div class="icon text-orange">
-                <i class="icon icon-goods1"></i>
-            </div>
-            <div class="title">营销设置</div>
-            <div class="text"></div>
-        </a>
-        <a class="fui-block-child" href="">
-            <div class="icon text-blue">
-                <i class="icon icon-rank"></i>
-            </div>
-            <div class="title">数据统计</div>
-            <div class="text"></div>
-        </a>
-        <a class="fui-block-child" href="">
-            <div class="icon text-orange">
-                <i class="icon icon-shop"></i>
-            </div>
-            <div class="title">店铺设置</div>
-            <div class="text"></div>
-        </a>
-    </div>
 
-	<?php 
-	//如果电脑端就提醒
-	echo '语言切换菜单：';
-	echo LangSelector::widget([]);
-	echo '<div class="fui-title center">';
-    echo '设备匹配：';
-    if(in_array(Yii::getAlias('@device'), ['desktop'])) {
-        echo '您当前的设备是手机端</div>';
-        echo Html::a('切换到手机端', '');//多app跳转
-    } else {
-        echo '设备匹配正常';
-    }
-    echo '</div>';
-    ?>
+<div class="headinfo">
+    <div class="userinfo">
+        <div class="fui-list external" href="">
+            <div class="fui-list-media"><img src="<?=$webUrl?>/images/logo.jpg"></div>
+            <div class="fui-list-info">
+                <div class="title">豹品云淘官方商城</div>
+                <div class="text">豹品云淘，一个专注于全球优品分销的大众创业平台。</div>
+            </div>
+        </div>
+        <a class="setbtn" href=""><i class="icon icon-settings"></i></a>
+    </div>
 </div>
+<div class="fui-menu-group">
+    <a class="fui-menu-item noactive">
+        <p id="today_count">1</p>
+        <small>今日订单</small>
+    </a>
+    <a class="fui-menu-item noactive">
+        <p id="today_price">78</p>
+        <small>今日成交</small>
+    </a>
+    <a class="fui-menu-item noactive">
+        <p id="today_member">2</p>
+        <small>新增会员</small>
+    </a>
+</div>
+<div class="fui-cell-group">
+    <a class="fui-cell external" href="">
+        <div class="fui-cell-icon">
+            <i class="icon icon-rejectedorder"></i>
+        </div>
+        <div class="fui-cell-text">订单管理</div>
+        <div class="fui-cell-remark">全部</div></a>
+</div>
+<div class="fui-block-group col-3">
+    <a class="fui-block-child" href="">
+        <div class="icon text-blue">
+            <i class="icon icon-deliver"></i>
+        </div>
+        <div class="title">待发货</div>
+        <div class="text"><span id="status_1">40</span>单</div>
+    </a>
+    <a class="fui-block-child" href="">
+        <div class="icon text-yellow">
+            <i class="icon icon-dollar"></i>
+        </div>
+        <div class="title">待付款</div>
+        <div class="text"><span id="status_0">189</span>笔</div>
+    </a>
+    <a class="fui-block-child" href="">
+        <div class="icon text-orange">
+            <i class="icon icon-rejectedorder"></i>
+        </div>
+        <div class="title">维权订单</div>
+        <div class="text"><span id="status_4">20</span>笔</div>
+    </a>
+</div>
+<div class="fui-cell-group">
+    <div class="fui-cell">
+        <div class="fui-cell-icon">
+            <i class="icon icon-shop"></i>
+        </div>
+        <div class="fui-cell-text">商城管理</div></div>
+</div>
+<div class="fui-block-group col-3">
+    <a class="fui-block-child" href="">
+        <div class="icon text-yellow">
+            <i class="icon icon-goods"></i>
+        </div>
+        <div class="title">商品管理</div>
+        <div class="text">
+            <span id="goods_count">955</span>个
+        </div>
+    </a>
+    <a class="fui-block-child" href="">
+        <div class="icon text-orange">
+            <i class="icon icon-group"></i>
+        </div>
+        <div class="title">会员管理</div>
+        <div class="text">
+            <span id="member_count">44747</span>个
+        </div>
+    </a>
+    <a class="fui-block-child" href="">
+        <div class="icon text-blue">
+            <i class="icon icon-recharge"></i>
+        </div>
+        <div class="title">财务管理</div>
+        <div class="text"></div>
+    </a>
+    <a class="fui-block-child" href="">
+        <div class="icon text-orange">
+            <i class="icon icon-goods1"></i>
+        </div>
+        <div class="title">营销设置</div>
+        <div class="text"></div>
+    </a>
+    <a class="fui-block-child" href="">
+        <div class="icon text-blue">
+            <i class="icon icon-rank"></i>
+        </div>
+        <div class="title">数据统计</div>
+        <div class="text"></div>
+    </a>
+    <a class="fui-block-child" href="">
+        <div class="icon text-orange">
+            <i class="icon icon-shop"></i>
+        </div>
+        <div class="title">店铺设置</div>
+        <div class="text"></div>
+    </a>
+</div>
+
+<?php 
+//如果电脑端就提醒
+echo '语言切换菜单：';
+echo LangSelector::widget([]);
+echo '<div class="fui-title center">';
+echo '设备匹配：';
+if(in_array(Yii::getAlias('@device'), ['desktop'])) {
+    echo '您当前的设备是手机端</div>';
+    echo Html::a('切换到手机端', '');//多app跳转
+} else {
+    echo '设备匹配正常';
+}
+echo '</div>';
+?>

@@ -11,8 +11,11 @@
 use yii\helpers\Html;
 use app\assets\H5Asset;
 use app\assets\AppAsset;
+use app\assets\QrcodeAsset;
+use yii\helpers\Url;
 
 H5Asset::register($this);
+QrcodeAsset::register($this);
 AppAsset::register($this);
 ?>
 
@@ -25,8 +28,10 @@ AppAsset::register($this);
     <script>document.documentElement.style.fontSize =document.documentElement.clientWidth/750*40 +"px";</script>
     <?= Html::csrfMetaTags() ?>
     <meta name="format-detection" content="telephone=no">
+    <meta name="current-url" content="<?= Yii::$app->request->absoluteUrl ?>">
     <title><?= Html::encode($this->title).'-'.Yii::$app->language.'-'.Yii::$app->viewPath ?></title>
     <link type="image/x-icon" href="./favicon.ico" rel="shortcut icon">
+    
     <?php $this->head() ?>
 </head>
 <body>
@@ -39,8 +44,9 @@ AppAsset::register($this);
 			<div class="fui-header-right"></div>
 		</div>
 		
+		<div class="fui-content navbar">
 		<?= $content ?>
-		
+		</div>
 	</div>
 	
 	<?php if(!empty(Yii::$app->params['maninav'])) { ?>
@@ -68,13 +74,14 @@ AppAsset::register($this);
 	</div>
 	<?php } ?>
 	
+	<!-- 扫描二维码 -->
 	<div class="wap-qrcode-container">
-		<p class="example1">豹品云淘官方商城</p>
-		<div class="wap-qrcode-image" id="wap-qrcode">
-			<canvas width="256" height="256"></canvas>
-		</div>
+		<p class="example1"><?php //Yii::$app->params['config_site_name'] ?>还未创建</p>
+		<div class="wap-qrcode-image" id="wap-qrcode"></div>
 		<p class="example1">微信“扫一扫”浏览</p>
 	</div>
+	
+	<!-- 返回顶部 -->
 	<a class="diy-gotop external" style="position: fixed; overflow: hidden; z-index: 999; bottom: 55px; right: 10px; text-align: left; display: none;" id="gotop">
 		<div style="background: #ff8000; opacity: 0.5; line-height: 34px; text-align: center; border-radius: 32px; height: 32px; width: 32px;">
 			<i class="icon icon-top1" style="color: #ffffff; font-size: 22px;"></i>
