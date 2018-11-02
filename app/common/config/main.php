@@ -47,7 +47,7 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',//通用的，与环境、应用都无关，全局一样
             'directoryLevel' => 2,//多层目录，提高存储效率
-            //'cachePath' => '@common/runtime/cache',
+            'cachePath' => '@common/runtime/cache',//全局使用一套缓存目录，数据库缓存，redis，memcahced等不需要单独设置
         ],
         'aliyunoss' => [//阿里云oss开放存储
             'class' => 'common\components\AliyunOss',

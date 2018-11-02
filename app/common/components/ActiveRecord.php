@@ -38,13 +38,6 @@ class ActiveRecord extends \yii\db\ActiveRecord
     {
         parent::init();
         
-        if(!Yii::$app->getUser()->getIsGuest()) {
-            $this->_user = Yii::$app->getUser()->getIdentity();
-        }
-    }
-    
-    public function getUser()
-    {
-        return $this->_user;
+        //custom code
     }
 }

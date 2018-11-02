@@ -6,6 +6,9 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
 use yii\behaviors\AttributeBehavior;
+use yii\caching\TagDependency;
+use yii\base\Behavior;
+use app\behaviors\ClearCacheBehavior;
 
 /**
  * This is the model class for table "{{%sys_multilang_tpl}}".
@@ -74,9 +77,15 @@ class MultilangTpl extends \app\models\base\Sys
                     return $this->front_default;
                 }
             ],
+            //更新所有前台缓存
+            'clearFrontCache' => [
+                'class' => ClearCacheBehavior::class,
+                'cache' => Yii::$app->cache,
+                'tagName' => Yii::$app->params['config.updateAllCache'],
+            ],
 	    ];
 	}
-
+	
     /**
      * @inheritdoc
      */
@@ -193,6 +202,8 @@ class MultilangTpl extends \app\models\base\Sys
      */
     public function afterDelete()
     {
+        parent::afterDelete();
+        
         Yii::$app->getSession()->setFlash('success', '多语言站点对应的配置参数已经删除，请知晓。');
         Config::deleteAll(['lang' => $this->lang_sign]);
     }

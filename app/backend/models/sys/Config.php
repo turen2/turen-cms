@@ -13,6 +13,7 @@ use app\behaviors\InsertLangBehavior;
 use yii\behaviors\AttributeBehavior;
 use yii\db\ActiveRecord;
 use yii\base\ErrorException;
+use yii\caching\TagDependency;
 
 /**
  * This is the model class for table "{{%sys_config}}".
@@ -137,6 +138,9 @@ class Config extends \app\models\base\Sys
                 //throw new InvalidArgumentException('无法查询出配置为“'.$model->varname.'”的参数，请先创建！');
             }
         }
+        
+        //更新前台初始化缓存
+        TagDependency::invalidate(Yii::$app->cache, Yii::$app->params['config.updateAllCache']);
         
         return true;
     }

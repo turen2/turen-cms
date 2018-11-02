@@ -55,7 +55,7 @@ AppAsset::register($this);
 	
 	<!-- 扫描二维码 -->
 	<div class="wap-qrcode-container">
-		<p class="example1"><?php //Yii::$app->params['config_site_name'] ?>还未创建</p>
+		<p class="example1"><?= Yii::$app->params['config_site_name'] ?></p>
 		<div class="wap-qrcode-image" id="wap-qrcode"></div>
 		<p class="example1">微信“扫一扫”浏览</p>
 	</div>

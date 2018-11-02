@@ -12,6 +12,8 @@ use yii\db\Query;
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 use common\models\sys\Template;
+use common\models\sys\Config;
+use yii\caching\TagDependency;
 
 /**
  * 系统初始化生成了全局参数以"config_init_"为前缀
@@ -19,102 +21,64 @@ use common\models\sys\Template;
  */
 class Init extends \yii\base\Component implements \yii\base\BootstrapInterface
 {
-    const MULTI_LAGN_TOGGLE = '__multi_lang_toggle';//多语言切换标记
     const MULTI_LAGN_CACHE = '__multi_lang_cache';//多语言默认配置参数缓存
+    const CURRENT_TEMPLATE_CACHE = '__current_template_cache';//当前模板参数缓存
     
-    //默认值
-    const DEFAULT_ON = 1;
-    const DEFAULT_OFF = 0;
+    private $_cache;
     
     //流程化处理，不考虑多个过滤器相互依赖发生作用
     public function bootstrap($app)
     {
-        //1.语言切换
-        $this->initLang();
+        $this->_cache = Yii::$app->cache;
+        
+        //tag缓存依赖测试用例
+        /*
+        if($va = $this->_cache->get('abc')) {//使用get可识别依赖，exsit不支持
+            //
+        } else {
+            //依赖缓存
+            $va = 'Yii2 - '.time();
+            $this->_cache->set('abc', $va, 3600, new TagDependency(['tags' => Yii::$app->params["config.updateAllCache"]]));
+        }
+        
+        echo $va;
+        exit;
+        */
+        
+        //1.语言初始化
+        $this->initLang();//由确定的当前语言产生的全局常量，用来固化整个系统环境
         
         //2.伪静态处理
-        $this->initRewrite();
+        $this->initRewrite();//根据语言定制伪静态
         
         //3.系统缓存
-        $this->initConfig();
+        $this->initConfig();//根据语言获取后台配置参数
         
         //4.模板选择
-        $this->initTemplate();
+        $this->initTemplate();//初始化模板系统，并产生一个模板常量
         
         //5.界面缓存
-        $this->initFace();
-        
+        $this->initFace();//根据模板获取对应的模板配置参数
     }
     
     protected function initLang()
     {
-        $cache = Yii::$app->cache;
-        
         //读取默认语言设置
-        $cache->delete(self::MULTI_LAGN_CACHE);
-        if($params = $cache->get(self::MULTI_LAGN_CACHE)) {//使用get可识别依赖，exsit不支持
+        if($params = $this->_cache->get(self::MULTI_LAGN_CACHE)) {//使用get可识别依赖，exsit不支持
             Yii::$app->params = ArrayHelper::merge(Yii::$app->params, $params);
         } else {
-            $multilangTpls = (new Query())->from(MultilangTpl::tableName())->all();
-            $allLang = [];
-            $defaultLang = '';
-            $defaultLangKey = '';
-            $templateId = '';
-            
-            foreach ($multilangTpls as $multilangTpl) {
-                if($multilangTpl['front_default']) {
-                    $defaultLang = $multilangTpl['lang_sign'];//只用来指定系统语言包
-                    $defaultLangKey = $multilangTpl['key'];//url key
-                    $templateId = $multilangTpl['template_id'];//模板id
-                }
-                $allLang[$multilangTpl['key']] = [
-                    'sign' => $multilangTpl['lang_sign'],
-                    'name' => $multilangTpl['lang_name'],
-                    'tid' => $multilangTpl['template_id'],
-                ];
-            }
-            
-            if(empty($allLang)) {
-                throw new InvalidConfigException('系统管理/多语言管理：未设置语言。');
-            }
-            
-            if($defaultLang === '') {
-                throw new InvalidConfigException('系统管理/多语言管理：未设置默认语言包。');
-            }
-            
-            if($defaultLangKey === '') {
-                throw new InvalidConfigException('系统管理/多语言管理：未设置默认语言key。');
-            }
-            
-            if($templateId === '') {
-                throw new InvalidConfigException('系统管理/多语言管理：未设置站点模板。');
-            }
-            
-            //所有语言+前台默认语言
-            $params = [
-                'config_init_langs' => $allLang,
-                'config_init_default_lang' => $defaultLang,
-                'config_init_default_lang_key' => $defaultLangKey,
-                'config_init_template_id' => $templateId,
-            ];
-            
-            //要使用依赖缓存
-            //$dependency = new \yii\caching\ExpressionDependency();
-            $cache->set(self::MULTI_LAGN_CACHE, $params);
+            //依赖缓存
+            $params = MultilangTpl::LangList();
+            $this->_cache->set(self::MULTI_LAGN_CACHE, $params, 3600, new TagDependency(['tags' => Yii::$app->params["config.updateAllCache"]]));
             Yii::$app->params = ArrayHelper::merge(Yii::$app->params, $params);
         }
-        
-        //Yii::$app->params['config_init_langs']
-        //Yii::$app->params['config_init_default_lang']
-        //Yii::$app->params['config_init_default_lang_key']
-        //Yii::$app->params['config_init_template_id']
         
         //由数据库设置的前台默认语言，首先运行系统时有效
         $lang = Yii::$app->params['config_init_default_lang'];
         $langKey = Yii::$app->params['config_init_default_lang_key'];
         $tid = Yii::$app->params['config_init_template_id'];
         
-        //url语言切换
+        //url获取当前指定的语言
         $url = Yii::$app->request->getUrl();
         foreach (Yii::$app->params['config_init_langs'] as $kk => $ll) {
             if((($pos = strpos($url, '/'.$kk.'/')) !== false) && $pos === 0) {
@@ -124,15 +88,16 @@ class Init extends \yii\base\Component implements \yii\base\BootstrapInterface
             }
         }
         
-        //初始化一下系统语言
+        //设置系统语言
         Yii::$app->language = $lang;
         
         //系统全局生效
         define('GLOBAL_LANG', $lang);//语言包名
         define('GLOBAL_LANG_KEY', $langKey);//语言URL KEY
         define('GLOBAL_TEMPLATE_ID', $tid);//语言包名
+        define('GLOBAL_SYS_CACHE_KEY', 'sys.cache.'.GLOBAL_LANG);
         
-        //var_dump(GLOBAL_LANG);var_dump(GLOBAL_LANG_KEY);var_dump(GLOBAL_TEMPLATE_ID);exit;
+        //var_dump(GLOBAL_LANG);var_dump(GLOBAL_LANG_KEY);var_dump(GLOBAL_TEMPLATE_ID);var_dump(CONFIG_CACHE_KEY);exit;
     }
     
     protected function initRewrite()
@@ -179,14 +144,18 @@ class Init extends \yii\base\Component implements \yii\base\BootstrapInterface
     
     protected function initConfig()
     {
-        
-        return true;
+        Yii::$app->params = ArrayHelper::merge(Yii::$app->params, Config::CacheList());
     }
     
     protected function initTemplate()
     {
         //要使用依赖缓存
-        $template = (new Query())->from(Template::tableName())->where(['temp_id' => GLOBAL_TEMPLATE_ID])->one();
+        if($template = $this->_cache->get(self::CURRENT_TEMPLATE_CACHE)) {
+            //nothing
+        } else {
+            $template = (new Query())->from(Template::tableName())->where(['temp_id' => GLOBAL_TEMPLATE_ID])->one();
+            $this->_cache->set(self::CURRENT_TEMPLATE_CACHE, $template, 3600, new TagDependency(['tags' => Yii::$app->params["config.updateAllCache"]]));
+        }
         
         if(empty($template)) {
             throw new InvalidConfigException('系统管理/多语言管理：Id为'.GLOBAL_TEMPLATE_ID.'的模板未找到。');
@@ -202,12 +171,4 @@ class Init extends \yii\base\Component implements \yii\base\BootstrapInterface
         
         return true;
     }
-    
-    /*
-     public function bootstrap($app)
-     {
-     //后台管理参数配置
-     Yii::$app->params = ArrayHelper::merge(Yii::$app->params, Config::CacheList());
-     }
-     */
 }

@@ -2,6 +2,9 @@
 
 namespace common\models\sys;
 
+use yii\db\Query;
+use yii\base\InvalidConfigException;
+
 /**
  * This is the model class for table "{{%sys_multilang_tpl}}".
  *
@@ -23,6 +26,62 @@ class MultilangTpl extends \common\models\base\Sys
     public static function tableName()
     {
         return '{{%sys_multilang_tpl}}';
+    }
+    
+    /**
+     * 系统初始化，必须按照以下格式：
+     * Yii::$app->params['config_init_langs']
+     * Yii::$app->params['config_init_default_lang']
+     * Yii::$app->params['config_init_default_lang_key']
+     * Yii::$app->params['config_init_template_id']
+     * 
+     * @throws InvalidConfigException
+     * @return string[]|unknown[]|unknown[][][]
+     */
+    public function LangList()
+    {
+        $multilangTpls = (new Query())->from(self::tableName())->all();//query为了效率
+        $allLang = [];
+        $defaultLang = '';
+        $defaultLangKey = '';
+        $templateId = '';
+        
+        foreach ($multilangTpls as $multilangTpl) {
+            if($multilangTpl['front_default']) {
+                $defaultLang = $multilangTpl['lang_sign'];//只用来指定系统语言包
+                $defaultLangKey = $multilangTpl['key'];//url key
+                $templateId = $multilangTpl['template_id'];//模板id
+            }
+            $allLang[$multilangTpl['key']] = [
+                'sign' => $multilangTpl['lang_sign'],
+                'name' => $multilangTpl['lang_name'],
+                'tid' => $multilangTpl['template_id'],
+            ];
+        }
+        
+        if(empty($allLang)) {
+            throw new InvalidConfigException('系统管理/多语言管理：未设置语言。');
+        }
+        
+        if($defaultLang === '') {
+            throw new InvalidConfigException('系统管理/多语言管理：未设置默认语言包。');
+        }
+        
+        if($defaultLangKey === '') {
+            throw new InvalidConfigException('系统管理/多语言管理：未设置默认语言key。');
+        }
+        
+        if($templateId === '') {
+            throw new InvalidConfigException('系统管理/多语言管理：未设置站点模板。');
+        }
+        
+        //所有语言+前台默认语言
+        return [
+            'config_init_langs' => $allLang,
+            'config_init_default_lang' => $defaultLang,
+            'config_init_default_lang_key' => $defaultLangKey,
+            'config_init_template_id' => $templateId,
+        ];
     }
     
     /**

@@ -43,7 +43,7 @@ class ActiveQuery extends \yii\db\ActiveQuery
      */
     public function current()
     {
-        //return $this->andWhere('[[lang]]='.'\''.GLOBAL_LANG.'\'');
+        return $this->andWhere('[[lang]]='.'\''.GLOBAL_LANG.'\'');
     }
     
     /**
