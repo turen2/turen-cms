@@ -23,7 +23,7 @@ AppAsset::register($this);
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title).'手机html5端' ?></title>
+    <title><?= Html::encode($this->title) ?></title>
     <link type="image/x-icon" href="./favicon.ico" rel="shortcut icon">
     <?php $this->head() ?>
 </head>

@@ -8,7 +8,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-$this->title = '测试';
+$this->title = '首页 - '.Yii::$app->params['config_site_name'];
 
 $webUrl = Yii::getAlias('@web');
 ?>

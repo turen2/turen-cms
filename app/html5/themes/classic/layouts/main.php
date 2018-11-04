@@ -29,7 +29,7 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <meta name="format-detection" content="telephone=no">
     <meta name="current-url" content="<?= Yii::$app->request->absoluteUrl ?>">
-    <title><?= Html::encode($this->title).'-'.Yii::$app->language.'-'.Yii::$app->viewPath ?></title>
+    <title><?= Html::encode($this->title) ?></title>
     <link type="image/x-icon" href="./favicon.ico" rel="shortcut icon">
     
     <?php $this->head() ?>

@@ -9,6 +9,8 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\base\Widget;
 use app\widgets\LangSelector;
+
+$this->title = '首页 - '.Yii::$app->params['config_site_name'];
 ?>
 手机端首页
 <br />
