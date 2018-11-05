@@ -1,7 +1,7 @@
 //返回顶部
 $(function () {
-    $(".fui-content").bind('scroll resize', function () {
-    	var scrolltop = $(".fui-content").scrollTop();
+    $(".tui-content").bind('scroll resize', function () {
+    	var scrolltop = $(".tui-content").scrollTop();
         if (scrolltop > "255") {
             $("#gotop").fadeIn(100)
         } else {
@@ -9,7 +9,7 @@ $(function () {
         }
     });
     $("#gotop").unbind('click').click(function () {
-        $(".fui-content").animate({scrollTop: "0px"}, 1000)
+        $(".tui-content").animate({scrollTop: "0px"}, 1000)
     });
     
     //生成二维码

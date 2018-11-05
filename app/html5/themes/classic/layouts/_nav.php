@@ -1,4 +1,4 @@
-<div class="fui-navbar">
+<div class="tui-navbar">
 	<a href="" class="external nav-item active">
 		<span class="icon icon-home"></span>
 		<span class="label"><?= Yii::t('h5', '首页')?></span>

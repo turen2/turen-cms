@@ -17,8 +17,7 @@ class H5Asset extends AssetBundle
     
     public $css = [
         'css/iconfont.css',
-        'css/foxui.min.css',
-        'css/style.css',
+        'css/tui.min.css',
     ];
     
     public $js = [

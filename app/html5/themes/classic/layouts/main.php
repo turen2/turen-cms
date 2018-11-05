@@ -36,15 +36,15 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-<div class="fui-page-group ">
-	<div class="fui-page fui-page-current">
-		<div class="fui-header fui-header-success">
-			<div class="fui-header-left"></div>
+<div class="tui-page-group ">
+	<div class="tui-page tui-page-current">
+		<div class="tui-header tui-header-success">
+			<div class="tui-header-left"></div>
 			<div class="title">默认首页</div>
-			<div class="fui-header-right"></div>
+			<div class="tui-header-right"></div>
 		</div>
 		
-		<div class="fui-content navbar">
+		<div class="tui-content navbar">
     		<?= $content ?>
     		
     		<?= $this->render('_client') ?>
