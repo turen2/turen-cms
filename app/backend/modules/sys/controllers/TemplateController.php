@@ -215,10 +215,17 @@ class TemplateController extends Controller
             $str .= '<option value="'.$k.'">'.$v.'</option>';
         }
         
-        return $this->asJson([
-            'state' => true,
-            'msg' => $str,
-        ]);
+        if($items) {
+            return $this->asJson([
+                'state' => true,
+                'msg' => $str,
+            ]);
+        } else {
+            return $this->asJson([
+                'state' => false,
+                'msg' => '您未选择模板，或者模板不支持多语言',
+            ]);
+        }
     }
 
     /**

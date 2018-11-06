@@ -124,7 +124,7 @@ class Photo extends \app\models\base\Cms
     public function rules()
     {
         return [
-            [['columnid', 'title', 'picarr'], 'required'],
+            [['columnid', 'title', 'picurl'], 'required'],
             [['columnid', 'parentid', 'cateid', 'catepid', 'deltime', 'delstate'], 'integer'],
             [['content', 'posttime'], 'string'],
             [['parentstr', 'catepstr', 'title'], 'string', 'max' => 80],

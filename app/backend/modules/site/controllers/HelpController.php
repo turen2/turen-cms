@@ -12,12 +12,13 @@ use app\models\site\HelpSearch;
 use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\widgets\select2\Select2Action;
-use app\models\cms\Tag;
 use common\components\AliyunOss;
 use app\widgets\fileupload\FileUploadAction;
 use app\actions\CheckAction;
 use app\widgets\ueditor\UEditorAction;
+use app\widgets\select2\Select2TagAction;
+use app\models\cms\Tag;
+use app\models\cms\TagAssign;
 
 /**
  * HelpController implements the CRUD actions for Help model.
@@ -35,14 +36,13 @@ class HelpController extends Controller
             ],
             //获取标签
             'get-tags' => [
-                'class' => Select2Action::class,
-                'className' => Tag::class,
+                'class' => Select2TagAction::class,
+                'modelClass' => Help::class,
+                'tagClass' => Tag::class,
+                'tagAssignClass' => TagAssign::class,
+                'keyword' => Yii::$app->getRequest()->get('keyword'),//要搜索的内容
                 'limit' => 20,//每次请求返回限制数量
                 'page' => Yii::$app->getRequest()->get('page'),//默认请求第一页
-                'searchFields' => ['name'],//搜索的字段
-                'valField' => 'name',//返回作为值的字段
-                'showField' => 'name',//返回显示的字段
-                'keyword' => Yii::$app->getRequest()->get('keyword'),//要搜索的内容
             ],
             'fileupload' => [
                 'class' => FileUploadAction::class,

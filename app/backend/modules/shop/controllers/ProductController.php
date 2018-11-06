@@ -11,13 +11,14 @@ use yii\filters\VerbFilter;
 use app\actions\CheckAction;
 use app\actions\BatchAction;
 use app\actions\RecycleAction;
-use app\widgets\select2\Select2Action;
-use app\models\cms\Tag;
 use app\widgets\fileupload\FileUploadAction;
 use common\components\AliyunOss;
 use app\widgets\ueditor\UEditorAction;
 use app\models\shop\ProductCate;
 use app\widgets\edititem\EditItemAction;
+use app\widgets\select2\Select2TagAction;
+use app\models\cms\Tag;
+use app\models\cms\TagAssign;
 
 /**
  * ProductController implements the CRUD actions for Product model.
@@ -74,14 +75,13 @@ class ProductController extends Controller
             ],
             //获取标签
             'get-tags' => [
-                'class' => Select2Action::class,
-                'className' => Tag::class,
+                'class' => Select2TagAction::class,
+                'modelClass' => Product::class,
+                'tagClass' => Tag::class,
+                'tagAssignClass' => TagAssign::class,
+                'keyword' => Yii::$app->getRequest()->get('keyword'),//要搜索的内容
                 'limit' => 20,//每次请求返回限制数量
                 'page' => Yii::$app->getRequest()->get('page'),//默认请求第一页
-                'searchFields' => ['name'],//搜索的字段
-                'valField' => 'name',//返回作为值的字段
-                'showField' => 'name',//返回显示的字段
-                'keyword' => Yii::$app->getRequest()->get('keyword'),//要搜索的内容
             ],
             'fileupload' => [
                 'class' => FileUploadAction::class,
