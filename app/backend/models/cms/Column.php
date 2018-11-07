@@ -121,8 +121,8 @@ class Column extends \app\models\base\Cms
     public function rules()
     {
         return [
-            [['parentid', 'orderid'], 'integer'],
             [['parentid', 'type', 'cname'], 'required'],
+            [['parentid', 'orderid'], 'integer'],
             [['parentstr', 'keywords'], 'string', 'max' => 50],
             [['type', 'status'], 'string', 'max' => 1],
             [['cname'], 'string', 'max' => 30],
@@ -190,6 +190,7 @@ class Column extends \app\models\base\Cms
      * 'id2class' ID对应模型类
      * 'mask2id' 标记对应ID
      * 'class2id' 模型类对应ID
+     * 'class2name' 模型类对应类名
      * .....
      * @param $key 转化后获取其中一个值的时候所使用的键
      * return [] | int | string

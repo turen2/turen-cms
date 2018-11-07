@@ -57,8 +57,8 @@ $this->title = '菜单栏';
 					<?= Html::a('视频', ['/cms/video/index'], ['target' => 'main'])?>
 					<div class="hr_1"> </div>
 					<?= Html::a('碎片', ['/cms/block/index'], ['target' => 'main'])?>
-					<?= Html::a('自定义模块', ['/cms/diymodel/index'], ['target' => 'main'])?>
-                    <?= Html::a('自定义字段', ['/cms/diyfield/index'], ['target' => 'main'])?>
+					<?= Html::a('自定义模块', ['/cms/diy-model/index'], ['target' => 'main'])?>
+                    <?= Html::a('自定义字段', ['/cms/diy-field/index'], ['target' => 'main'])?>
 				</div>
 			</div>
 			<div class="hr_5"></div>
