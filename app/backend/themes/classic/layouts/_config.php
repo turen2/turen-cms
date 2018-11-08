@@ -18,7 +18,7 @@ CONFIG.com = {
 };
 
 CONFIG.cms = {
-	
+	'columnCheckBoxListUrl': '<?= Url::to(['/cms/diy-field/column-check-box-list']) ?>'
 };
 
 CONFIG.ext = {

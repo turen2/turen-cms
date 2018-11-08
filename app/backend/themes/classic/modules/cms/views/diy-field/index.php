@@ -55,8 +55,8 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel, 'type' => 
 		<td class="first-column"><?= $model->id; ?></td>
 		<td><?= $model->fd_title; ?></td>
 		<td>diyfield_<?= $model->fd_name; ?></td>
-		<td><?= Column::ColumnConvert('class2name', $model->fd_mclass); ?></td>
-		<td><?= implode('<br />', $model->columnList()); ?></td>
+		<td><?= Column::ColumnConvert('id2name', $model->fd_column_type); ?></td>
+		<td><?= implode('<br />', $model->columnListStr()); ?></td>
 		<td><?= $model->fd_type; ?></td>
 		<td align="center">
 			<a href="<?=Url::to(['simple-move', 'type' => DiyField::ORDER_UP_TYPE, 'id' => $model->id, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>

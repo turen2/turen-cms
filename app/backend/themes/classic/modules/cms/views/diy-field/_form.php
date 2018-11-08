@@ -4,9 +4,10 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use app\widgets\Tips;
-use app\components\ActiveRecord;
 use app\assets\ValidationAsset;
 use app\models\cms\DiyField;
+use app\models\cms\Column;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\cms\DiyField */
@@ -17,13 +18,13 @@ ValidationAsset::register($this);
 $this->registerJs('
 var validator = $("#createform").validate({
 	rules: {
-		"'.Html::getInputName($model, 'columnid').'": {
+		"'.Html::getInputName($model, 'columnid_list').'": {
 			required: true,
 		},
         "'.Html::getInputName($model, 'fd_title').'": {
 			required: true,
 		},
-        "'.Html::getInputName($model, 'fd_mclass').'": {
+        "'.Html::getInputName($model, 'fd_column_type').'": {
 			required: true,
 		},
         "'.Html::getInputName($model, 'fd_name').'": {
@@ -56,9 +57,17 @@ var validator = $("#createform").validate({
 ]); ?>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="diy-field-form form-table">
 	<tr>
-		<td class="first-column"><?= $model->getAttributeLabel('columnid')?><?php if($model->isAttributeRequired('columnid')) { ?><span class="maroon">*</span><?php } ?></td>
+		<td class="first-column"><?= $model->getAttributeLabel('fd_column_type')?><?php if($model->isAttributeRequired('fd_column_type')) { ?><span class="maroon">*</span><?php } ?></td>
 		<td class="second-column">
-			<?= Html::activeInput('text', $model, 'columnid', ['class' => 'input']) ?>
+			<?= Html::activeDropDownList($model, 'fd_column_type', ArrayHelper::merge([null => '--请选择类型--'], Column::ColumnConvert('id2name')), ['onchange' => 'turen.cms.getColumnCheckboxList(this);']) ?>
+			<span class="cnote"></span>
+		</td>
+	</tr>
+	<tr>
+		<td class="first-column"><?= $model->getAttributeLabel('columnid_list')?><?php if($model->isAttributeRequired('columnid_list')) { ?><span class="maroon">*</span><?php } ?></td>
+		<td class="second-column">
+			<?php $model->columnid_list = is_array($model->columnid_list)?$model->columnid_list:(explode(',', $model->columnid_list)); ?>
+			<span id="fd-column-droplist"><?= Html::activeCheckboxList($model, 'columnid_list', Column::ColumnListByType($model->fd_column_type), ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']) ?></span>
 			<span class="cnote"></span>
 		</td>
 	</tr>
@@ -66,14 +75,14 @@ var validator = $("#createform").validate({
 		<td class="first-column"><?= $model->getAttributeLabel('fd_name')?><?php if($model->isAttributeRequired('fd_name')) { ?><span class="maroon">*</span><?php } ?></td>
 		<td class="second-column">
 			<?= Html::activeInput('text', $model, 'fd_name', ['class' => 'input']) ?>
-			<span class="cnote"></span>
+			<span class="cnote">字段名将在对应模型表中创建新字段，且以“diyfield_”开头</span>
 		</td>
 	</tr>
 	<tr>
 		<td class="first-column"><?= $model->getAttributeLabel('fd_title')?><?php if($model->isAttributeRequired('fd_title')) { ?><span class="maroon">*</span><?php } ?></td>
 		<td class="second-column">
 			<?= Html::activeInput('text', $model, 'fd_title', ['class' => 'input']) ?>
-			<span class="cnote"></span>
+			<span class="cnote">例如：文章标题</span>
 		</td>
 	</tr>
 	<tr>

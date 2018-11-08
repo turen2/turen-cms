@@ -10,6 +10,8 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\actions\SimpleMoveAction;
 use app\actions\CheckAction;
+use app\models\cms\Column;
+use yii\helpers\Html;
 
 /**
  * DiyFieldController implements the CRUD actions for DiyField model.
@@ -128,6 +130,29 @@ class DiyFieldController extends Controller
         
         Yii::$app->getSession()->setFlash('success', $model->fd_title.' 已经成功删除！');
         return $this->redirect($returnUrl);
+    }
+    
+    /**
+     * ajax获取类型对应的栏目 checkboxlist
+     */
+    public function actionColumnCheckBoxList()
+    {
+        $typeid = Yii::$app->getRequest()->post('typeid', null);
+        
+        $items = Column::ColumnListByType($typeid);
+        $model = new DiyField();
+        
+        if($items) {
+            return $this->asJson([
+                'state' => true,
+                'msg' => Html::activeCheckboxList($model, 'columnid_list', $items, ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']),
+            ]);
+        } else {
+            return $this->asJson([
+                'state' => true,
+                'msg' => '请先选择栏目类型',
+            ]);
+        }
     }
 
     /**

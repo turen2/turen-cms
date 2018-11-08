@@ -20,7 +20,7 @@ class DiyFieldSearch extends DiyField
     {
         return [
             [['id', 'columnid_list', 'orderid', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['fd_mclass', 'fd_name', 'fd_title', 'fd_desc', 'fd_type', 'fd_long', 'fd_value', 'fd_check', 'fd_tips'], 'safe'],
+            [['fd_column_type', 'fd_name', 'fd_title', 'fd_desc', 'fd_type', 'fd_long', 'fd_value', 'fd_check', 'fd_tips'], 'safe'],
         ];
     }
 
@@ -77,7 +77,7 @@ class DiyFieldSearch extends DiyField
             'id' => $this->id,
             'status' => $this->status,
             'fd_type' => $this->fd_type,
-            'fd_mclass' => $this->fd_mclass,
+            'fd_column_type' => $this->fd_column_type,
         ]);
 
         $query->andFilterWhere(['like', 'fd_name', $this->fd_name])

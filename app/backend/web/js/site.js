@@ -338,6 +338,51 @@ turen.shop = (function($) {
     return pub;
 })(jQuery);
 
+turen.cms = (function($) {
+    var pub = {
+		getColumnCheckboxList: function(_this) {
+        	var _this = $(_this);
+        	
+        	var typeid = _this.val();
+            var callback = function(res, _this) {
+                if(res.state) {
+                	$.notify('指定类型的栏目已获取', 'success');
+                	$('#fd-column-droplist').html(res.msg);
+                } else {
+                	$.notify(res.msg, 'error');
+                }
+            };
+            commonRemote(CONFIG.cms.columnCheckBoxListUrl, {typeid: typeid}, callback, _this);
+        }
+    };
+
+    // 私有方法
+    function commonRemote(url ,data, callback, _this, type = 'POST') {
+        data[csrfParam] = csrfToken;
+        $.ajax({
+            url: url,
+            type: type,
+            dataType: 'json',
+            context: _this,
+            cache: false,
+            data: data,
+            success: function(res) {
+                if(callback) {
+                    callback(res, _this);
+                } else {
+                	if (res['state']) {
+                    	$.notify(res['msg'], 'success');
+                    } else {
+                    	$.notify(res['msg'], 'warn');
+                    }
+                }
+           }
+        });
+    }
+
+    return pub;
+})(jQuery);
+
 turen.sys = (function($) {
     var pub = {
 		getTemplate: function(_this) {

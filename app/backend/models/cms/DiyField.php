@@ -13,7 +13,7 @@ use app\behaviors\InsertLangBehavior;
  * This is the model class for table "{{%diy_field}}".
  *
  * @property string $id 自定义字段id
- * @property string $fd_mclass 所属模型
+ * @property string $fd_column_type 所属模型类型
  * @property int $columnid_list 所属栏目
  * @property string $fd_name 字段名称
  * @property string $fd_title 字段标题
@@ -32,8 +32,6 @@ use app\behaviors\InsertLangBehavior;
 class DiyField extends \app\models\base\Cms
 {
 	public $keyword;
-	
-	private static $_allColumn;
 	
 	public function behaviors()
 	{
@@ -94,9 +92,10 @@ class DiyField extends \app\models\base\Cms
     {
         //静态默认值由规则来赋值
         return [
-            [['columnid_list', 'fd_title', 'fd_mclass', 'fd_name', 'fd_type', 'fd_long'], 'required'],
-            [['orderid', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['lang', 'fd_mclass', 'columnid_list', 'fd_name', 'fd_title', 'fd_type', 'fd_tips', 'fd_long', 'fd_desc', 'fd_value', 'fd_check'], 'string'],
+            [['columnid_list', 'fd_title', 'fd_column_type', 'fd_name', 'fd_type', 'fd_long'], 'required'],
+            [['fd_title', 'fd_name'], 'unique'],
+            [['fd_column_type', 'orderid', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['lang', 'columnid_list', 'fd_name', 'fd_title', 'fd_type', 'fd_tips', 'fd_long', 'fd_desc', 'fd_value', 'fd_check'], 'string'],
             [['status'], 'default', 'value' => self::STATUS_ON],
         ];
     }
@@ -108,7 +107,7 @@ class DiyField extends \app\models\base\Cms
     {
         return [
             'id' => 'ID',
-            'fd_mclass' => '所属模型',
+            'fd_column_type' => '所属模型类型',
             'columnid_list' => '所属栏目',
             'fd_name' => '字段名',
             'fd_title' => '字段标题',
@@ -126,15 +125,12 @@ class DiyField extends \app\models\base\Cms
         ];
     }
     
-    public function columnList()
+    public function columnListStr()
     {
-        if(empty(self::$_allColumn)) {
-            self::$_allColumn = ArrayHelper::map(Column::find()->where('1=1')->all(), 'id', 'cname');
-        }
-        
+        $columns = Column::ColumnListByType($this->fd_column_type);
         $columnNameList = [];
         foreach (explode(',', $this->columnid_list) as $columnid) {
-            $columnNameList[$columnid] = isset(self::$_allColumn[$columnid])?self::$_allColumn[$columnid]:'未定义';
+            $columnNameList[$columnid] = isset($columns[$columnid])?$columns[$columnid]:'未定义';
         }
         
         return $columnNameList;

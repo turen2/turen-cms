@@ -21,35 +21,61 @@ class Cms extends \app\components\ActiveRecord
     private static $_allCate = [];
     private static $_allFlag = [];
     
-    /**
-     * 获取所有栏目
-     * @return array|string|mixed
-     */
-    public function getAllColumn($isAll = false) {
+    private static function initData()
+    {
+        //使用频繁，初始化载入
         if(empty(self::$_allColumn)) {
-            self::$_allColumn = ArrayHelper::map(Column::find()->current()->orderBy(['orderid' => SORT_DESC])->all(), 'id', 'cname');
+            self::$_allColumn = Column::find()->current()->orderBy(['orderid' => SORT_DESC])->asArray()->all();
         }
         
-        if($isAll) {
-            return self::$_allColumn;
-        } else {
-            return isset(self::$_allColumn[$this->columnid])?self::$_allColumn[$this->columnid]:'';
+        if(empty(self::$_allCate)) {
+            self::$_allCate = Cate::find()->current()->orderBy(['orderid' => SORT_DESC])->asArray()->all();
         }
+    }
+    
+    /**
+     * 获取所有栏目
+     * @return array|string
+     */
+    public static function ColumnList($columnid = null) {
+        self::initData();
+        $allColumn = ArrayHelper::map(self::$_allColumn, 'id', 'cname');
+        if(is_null($columnid)) {
+            return $allColumn;
+        } else {
+            return isset($allColumn[$columnid])?$allColumn[$columnid]:'';
+        }
+    }
+    
+    /**
+     * 获取指定类型的栏目数组
+     * @param integer $type
+     * @return array
+     */
+    public static function ColumnListByType($type) {
+        self::initData();
+        $allColumn = self::$_allColumn;//转存
+        $tempColumn = [];
+        foreach ($allColumn as $key => $column) {
+            if($column['type'] == $type) {
+                $tempColumn[$column['id']] = $column['cname'];
+            }
+        }
+        
+        return $tempColumn;
     }
     
     /**
      * 获取所有类别
      * @return array|string|mixed
      */
-    public function getAllCate($isAll = false) {
-        if(empty(self::$_allCate)) {
-            self::$_allCate = ArrayHelper::map(Cate::find()->current()->orderBy(['orderid' => SORT_DESC])->all(), 'id', 'catename');
-        }
-        
-        if($isAll) {
-            return self::$_allCate;
+    public static function CateList($cateid = null) {
+        self::initData();
+        $allCate = ArrayHelper::map(self::$_allCate, 'id', 'catename');
+        if(is_null($cateid)) {
+            return $allCate;
         } else {
-            return isset(self::$_allCate[$this->cateid])?self::$_allCate[$this->cateid]:'';
+            return isset($allCate[$cateid])?$allCate[$cateid]:'';
         }
     }
     

@@ -13,6 +13,7 @@ use app\components\ActiveRecord;
 use yii\web\MethodNotAllowedHttpException;
 use yii\helpers\Url;
 use app\helpers\BackCommonHelper;
+use app\models\cms\Column;
 
 /**
  * 垃圾回收机制
@@ -97,7 +98,7 @@ class RecycleAction extends Action
         if($models) {
             foreach ($models as $model) {
                 if(method_exists($model, 'getAllColumn')) {
-                    $columns = $model->getAllColumn(true);
+                    $columns = Column::ColumnList();//所有栏目
                     if(isset($columns[$model->columnid])) {
                         $classname = $columns[$model->columnid].' ['.$model->columnid.']';
                     } else {

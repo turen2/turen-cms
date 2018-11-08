@@ -1,0 +1,20 @@
+DROP TABLE IF EXISTS `ss_diy_field`;
+CREATE TABLE `ss_diy_field` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '自定义字段ID',
+  `fd_column_type` tinyint(5) unsigned NOT NULL COMMENT '所属模型类型',
+  `columnid_list` varchar(30) NOT NULL DEFAULT '' COMMENT '所属栏目列表',
+  `fd_name` varchar(30) NOT NULL DEFAULT '' COMMENT '字段名称',
+  `fd_title` varchar(30) NOT NULL DEFAULT '' COMMENT '字段标题',
+  `fd_desc` varchar(255) NOT NULL DEFAULT '' COMMENT '字段提示',
+  `fd_type` varchar(30) NOT NULL DEFAULT '' COMMENT '字段类型',
+  `fd_long` varchar(10) NOT NULL DEFAULT '1' COMMENT '字段长度',
+  `fd_value` varchar(255) NOT NULL DEFAULT '' COMMENT '字段选项值',
+  `fd_check` varchar(80) NOT NULL DEFAULT '' COMMENT '校验正则',
+  `fd_tips` varchar(30) NOT NULL DEFAULT '' COMMENT '未通过提示',
+  `lang` varchar(8) NOT NULL COMMENT '多语言',
+  `orderid` int(11) unsigned NOT NULL DEFAULT '10' COMMENT '排列排序',
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '是否生效',
+  `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
+  `updated_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '编辑时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
