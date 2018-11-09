@@ -40,7 +40,7 @@ if(empty($dataProvider->count))
 ?>
 
 <div class="bottom-toolbar clearfix">
-	<a href="<?= Url::to(['column/index'])?>" class="data-btn">返回栏目管理</a>
+	<a href="<?= Url::to(['column/index'])?>" class="data-btn">返回单页信息</a>
 	<div class="page">
     	<?= LinkPager::widget([
     	    'pagination' => $dataProvider->getPagination(),
@@ -62,7 +62,7 @@ if(empty($dataProvider->count))
 			<span class="sel-area">
 				<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
 			</span>
-			<a href="<?= Url::to(['column/index'])?>" class="data-btn">返回栏目管理</a>
+			<a href="<?= Url::to(['column/index'])?>" class="data-btn">返回单页信息</a>
 			<div class="page-small">
 			<?= LinkPager::widget([
 			    'pagination' => $dataProvider->getPagination(),
