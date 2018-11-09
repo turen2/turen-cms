@@ -67,7 +67,7 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel, 'type' => 
 		<td><span class="title" style="color:<?= $model->colorval; ?>;font-weight:<?= $model->boldval; ?>"><?= $model->title; ?><span class="title-flag"><?= implode('&nbsp;', $model->getAllFlag(Column::COLUMN_TYPE_ARTICLE)); ?></span><?=empty($model->picurl)?'':' <span class="titpic"><i class="fa fa-picture-o"></i></span>'?></span></td>
 		<td><?= Column::ColumnList($model->columnid).' ['.$model->columnid.']'; ?></td>
 		<?php if(Yii::$app->params['config.openCate']) { ?>
-		<td><?= Column::CateList($model->cateid); ?></td>
+		<td><?= is_null($model->cateid)?'未定义':is_null($model->cateid)?'未定义':Column::CateList($model->cateid); ?></td>
 		<?php } ?>
 		<td><?= $model->author; ?></td>
 		<td><?= $model->hits; ?></td>

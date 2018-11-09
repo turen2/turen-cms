@@ -54,7 +54,7 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel, 'type' => 
 		</td>
 		<td class="first-column"><?= $model->id; ?></td>
 		<td><?= $model->fd_title; ?></td>
-		<td>diyfield_<?= $model->fd_name; ?></td>
+		<td><?= DiyField::FIELD_PRE.$model->fd_name; ?></td>
 		<td><?= Column::ColumnConvert('id2name', $model->fd_column_type); ?></td>
 		<td><?= implode('<br />', $model->columnListStr()); ?></td>
 		<td><?= $model->fd_type; ?></td>

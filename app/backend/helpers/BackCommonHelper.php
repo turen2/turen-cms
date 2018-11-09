@@ -35,12 +35,11 @@ class BackCommonHelper {
     public static function CheckFieldExist($className, $field)
     {
         $tableSchema = Yii::$app->db->schema->getTableSchema($className::tableName());
-        $fields = ArrayHelper::getColumn($tableSchema->columns, 'name', false);
+        return !is_null($tableSchema->getColumn($field));
         
-        $oldFields = $fields;
-        
-        ArrayHelper::removeValue($fields, $field);
-        
-        return $oldFields != $fields;
+//         $fields = ArrayHelper::getColumn($tableSchema->columns, 'name', false);
+//         $oldFields = $fields;
+//         ArrayHelper::removeValue($fields, $field);
+//         return $oldFields != $fields;
     }
 }

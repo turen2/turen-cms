@@ -23,8 +23,6 @@ foreach ($model->attributes as $key => $value) {
         <li class="<?= (!is_null($model->status) && $model->status == ActiveRecord::STATUS_ON)?'on':''?>"><?= Html::a('显示', ['index', Html::getInputName($model, 'status') => ActiveRecord::STATUS_ON]) ?></li>
         <li class="line">-</li>
         <li class="<?= (!is_null($model->status) && $model->status == ActiveRecord::STATUS_OFF)?'on':''?>"><?= Html::a('隐藏', ['index', Html::getInputName($model, 'status') => ActiveRecord::STATUS_OFF]) ?></li>
-        <li class="line">-</li>
-        <li><a id="recycle-bin" href="javascript:;">内容回收站</a></li>
 	</ul>
 	<div id="search" class="search">
         <?php $form = ActiveForm::begin([

@@ -18,8 +18,8 @@ input, select, textarea {
 	vertical-align: middle;
 }
 td select {
-	height: 25px;
-    line-height: 25px;
+	height: 24px;
+    line-height: 24px;
     border: 1px solid #ccc;
 }
 

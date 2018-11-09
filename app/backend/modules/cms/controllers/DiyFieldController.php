@@ -12,6 +12,7 @@ use app\actions\SimpleMoveAction;
 use app\actions\CheckAction;
 use app\models\cms\Column;
 use yii\helpers\Html;
+use app\actions\ValidateAction;
 
 /**
  * DiyFieldController implements the CRUD actions for DiyField model.
@@ -30,6 +31,20 @@ class DiyFieldController extends Controller
                 'type' => $request->get('type'),
                 'orderid' => $request->get('orderid'),
                 'nameField' => 'fd_title',
+            ],
+            'validate-title' => [
+                'class' => ValidateAction::class,
+                'className' => DiyField::class,
+                'fieldname' => 'fd_title',
+                'fieldvalue' => $request->get('DiyField'),
+                'primaryId' => $request->get('id'),
+            ],
+            'validate-name' => [
+                'class' => ValidateAction::class,
+                'className' => DiyField::class,
+                'fieldname' => 'fd_name',
+                'fieldvalue' => $request->get('DiyField'),
+                'primaryId' => $request->get('id'),
             ],
             'check' => [
                 'class' => CheckAction::class,
@@ -79,6 +94,7 @@ class DiyFieldController extends Controller
     public function actionCreate()
     {
         $model = new DiyField();
+        $model->loadDefaultValues();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
         	Yii::$app->getSession()->setFlash('success', $model->fd_title.' 添加成功，结果将展示在列表。');
@@ -153,6 +169,28 @@ class DiyFieldController extends Controller
                 'msg' => '请先选择栏目类型',
             ]);
         }
+    }
+    
+    /**
+     * 批量提交并处理
+     * @param string $type delete | order
+     * @return \yii\web\Response
+     */
+    public function actionBatch($type)
+    {
+        if($type == 'order') {//全局提交
+            $ids = Yii::$app->getRequest()->post('checkid', []);
+            $orders = Yii::$app->getRequest()->post('orderid', []);
+            foreach ($ids as $key => $id) {
+                if($model = DiyField::find()->current()->andWhere(['id' => $id])->one()) {
+                    $model->orderid = $orders[$key];
+                    $model->save(false);
+                }
+            }
+            Yii::$app->getSession()->setFlash('success', '已完成批量排序操作！');
+        }
+        
+        return $this->redirect(['index']);
     }
 
     /**
