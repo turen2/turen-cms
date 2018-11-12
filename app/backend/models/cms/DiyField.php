@@ -48,7 +48,7 @@ class DiyField extends \app\models\base\Cms
 	    'checkbox' => ['name' => 'checkbox', 'type' => 'varchar', 'title' => '多选菜单', 'size' => '1', 'value' => 'abc-123|34-DEG', 'tips' => '默认值填充格式为：“abc-123|34-DEG”左边是提交值，右边显示名，多个以“|”分隔。'],
 	    'select' => ['name' => 'select', 'type' => 'varchar', 'title' => '下拉菜单', 'size' => '20', 'value' => 'abc-123|34-DEG', 'tips' => '默认值填充格式为：“abc-123|34-DEG”左边是提交值，右边显示名，多个以“|”分隔。'],
 	    'decimal' => ['name' => 'decimal', 'type' => 'decimal', 'title' => '货币', 'size' => '10,2', 'value' => '10.2', 'tips' => '如102.56；长度默认为 "<span class="blue">10,2</span>"，"10"代表值总长度，"2"代表小数位数'],
-	    'datetime' => ['name' => 'datetime', 'type' => 'int', 'title' => '日期时间', 'size' => '1', 'value' => '0', 'tips' => '如2012-07-25 10:21:23，本系统日期格式为整型，所以系统会为您创建为整型字段；<span class="blue">字段长度留空</span>'],
+	    'datetime' => ['name' => 'datetime', 'type' => 'int', 'title' => '日期时间', 'size' => '10', 'value' => '0', 'tips' => '如2012-07-25 10:21:23，本系统日期格式为整型，所以系统会为您创建为整型字段；<span class="blue">字段长度留空</span>'],
 	    'file' => ['name' => 'file', 'type' => 'varchar', 'title' => '单个附件', 'size' => '128', 'value' => '', 'tips' => '上传类型字段(如图片、文档等)，上传类型、大小等限制按系统附件设置执行；默认长度小于或等于 "<span class="blue">100</span>"'],
 	    'filearr' => ['name' => 'filearr', 'type' => 'text', 'title' => '多个附件', 'size' => '0', 'value' => '', 'tips' => '多个附件：</strong>可上传多个附件，类似于组图上传；<span class="blue">字段长度留空 </span>'],
 	];

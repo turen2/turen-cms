@@ -14,6 +14,8 @@ use app\widgets\fileupload\JQueryFileUploadWidget;
 use yii\base\Widget;
 use yii\web\JsExpression;
 use app\widgets\ueditor\UEditorWidget;
+use app\widgets\diyfield\DiyFieldWidget;
+use app\models\cms\Info;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\cms\Info */
@@ -88,6 +90,11 @@ var validator = $("#submitform").validate({
                 ]); ?>
     		</td>
     	</tr>
+    	
+    	<?= DiyFieldWidget::widget([
+		    'columnClass' => Info::class,
+		]) ?>
+		
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('posttime')?><?php if($model->isAttributeRequired('posttime')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">

@@ -57,7 +57,7 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel, 'type' => 
 		<td><?= DiyField::FIELD_PRE.$model->fd_name; ?></td>
 		<td><?= Column::ColumnConvert('id2name', $model->fd_column_type); ?></td>
 		<td><?= implode('<br />', $model->columnListStr()); ?></td>
-		<td><?= $model->fd_type; ?></td>
+		<td><?= $model->fd_type ?><?= in_array($model->fd_type, ['text', 'mediumtext', 'filearr'])?'':'['.$model->fd_long.']'; ?></td>
 		<td align="center">
 			<a href="<?=Url::to(['simple-move', 'type' => DiyField::ORDER_UP_TYPE, 'id' => $model->id, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>
 			<input type="text" name="orderid[]" id="orderid[]" class="inputls" value="<?= $model->orderid; ?>">
