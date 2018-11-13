@@ -32,8 +32,8 @@ var validator = $("#submitform").validate({
 	rules: {$rules},
     errorElement: "p",
 	errorPlacement: function(error, element) {
-        if (element.is(\':radio\') || element.is(\':checkbox\')) { //如果是radio或checkbox
-            var eid = element.attr(\'name\');
+        if (element.is(':radio') || element.is(':checkbox')) { //如果是radio或checkbox
+            var eid = element.attr('name');
             error.appendTo(element.parent().parent());
         } else {
             error.appendTo(element.parent());
