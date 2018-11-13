@@ -63,11 +63,11 @@ class Info extends \app\models\base\Cms
      */
     public function rules()
     {
-        return [
+        return ArrayHelper::merge(parent::rules(), [
             [['columnid'], 'required'],
             [['columnid'], 'integer'],
             [['content', 'picurl', 'posttime'], 'string'],
-        ];
+        ]);
     }
 
     /**

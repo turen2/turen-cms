@@ -118,7 +118,7 @@ class Video extends \app\models\base\Cms
      */
     public function rules()
     {
-        return [
+        return ArrayHelper::merge(parent::rules(), [
             [['columnid', 'title', 'videolink'], 'required'],
             [['columnid', 'parentid', 'cateid', 'catepid', 'deltime', 'delstate'], 'integer'],
             [['content', 'videolink', 'posttime'], 'string'],
@@ -134,7 +134,7 @@ class Video extends \app\models\base\Cms
             [['status'], 'default', 'value' => self::STATUS_ON],
             [['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
             ['tagNames', 'safe'],
-        ];
+        ]);
     }
 
     /**

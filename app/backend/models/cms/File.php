@@ -128,7 +128,7 @@ class File extends \app\models\base\Cms
      */
     public function rules()
     {
-        return [
+        return ArrayHelper::merge(parent::rules(), [
             [['columnid', 'title', 'dlurl'], 'required'],
             [['columnid', 'parentid', 'cateid', 'catepid', 'deltime', 'delstate'], 'integer'],
             [['content', 'posttime'], 'string'],
@@ -145,7 +145,7 @@ class File extends \app\models\base\Cms
             [['picarr'], 'default', 'value' => ''],
             [['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
             [['flag', 'tagNames', 'picarr'], 'safe'],
-        ];
+        ]);
     }
 
     /**

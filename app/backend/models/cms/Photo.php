@@ -123,7 +123,7 @@ class Photo extends \app\models\base\Cms
      */
     public function rules()
     {
-        return [
+        return ArrayHelper::merge(parent::rules(), [
             [['columnid', 'title', 'picurl'], 'required'],
             [['columnid', 'parentid', 'cateid', 'catepid', 'deltime', 'delstate'], 'integer'],
             [['content', 'posttime'], 'string'],
@@ -139,7 +139,7 @@ class Photo extends \app\models\base\Cms
             [['picarr'], 'default', 'value' => ''],
             [['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
             [['flag', 'tagNames', 'picarr'], 'safe'],
-        ];
+        ]);
     }
 
     /**

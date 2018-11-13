@@ -11,6 +11,7 @@ use app\models\cms\Column;
 use app\models\cms\Flag;
 use app\models\cms\Cate;
 use yii\helpers\ArrayHelper;
+use app\models\cms\DiyField;
 
 class Cms extends \app\components\ActiveRecord
 {
@@ -20,6 +21,27 @@ class Cms extends \app\components\ActiveRecord
     private static $_allColumn = [];
     private static $_allCate = [];
     private static $_allFlag = [];
+    
+    /**
+     * 自定义字段规则先统一采用安全safe类型
+     * 注意：用户自定义的内容无条件入库，不需要精细化判断入库条件
+     * {@inheritDoc}
+     * @see \yii\base\Model::rules()
+     */
+    public function rules()
+    {
+        $id = Column::ColumnConvert('class2id', get_class($this));
+        $fieldModels = DiyField::find()->where(['fd_column_type' => $id])->orderBy(['orderid' => SORT_DESC])->all();
+        
+        $fields = [];
+        foreach ($fieldModels as $fieldModel) {
+            if(in_array($this->columnid, explode(',', $fieldModel->columnid_list))) {
+                $fields[] = DiyField::FIELD_PRE.$fieldModel->fd_name;
+            }
+        }
+        
+        return empty($fields)?[]:[[$fields, 'safe']];
+    }
     
     private static function initData()
     {

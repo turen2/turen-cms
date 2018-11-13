@@ -120,7 +120,7 @@ class Article extends \app\models\base\Cms
      */
     public function rules()
     {
-        return [
+        return ArrayHelper::merge(parent::rules(), [
             [['columnid', 'title'], 'required'],
             [['columnid', 'parentid', 'cateid', 'catepid', 'hits', 'orderid', 'deltime', 'delstate', 'status'], 'integer'],
             [['parentstr', 'catepstr', 'title'], 'string', 'max' => 80],
@@ -134,7 +134,7 @@ class Article extends \app\models\base\Cms
             [['picarr'], 'default', 'value' => ''],
             [['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
             [['flag', 'tagNames', 'picarr'], 'safe'],
-        ];
+        ]);
     }
 
     /**

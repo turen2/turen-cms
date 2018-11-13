@@ -227,6 +227,15 @@ class DiyField extends \app\models\base\Cms
     }
     
     /**
+     * 生成diy field验证规则
+     * @return array
+     */
+    public function diyFieldrules()
+    {
+        return [];
+    }
+    
+    /**
      * @inheritdoc
      * @return DiyFieldQuery the active query used by this AR class.
      */
