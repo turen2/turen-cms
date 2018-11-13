@@ -15,6 +15,7 @@ use app\models\ext\LinkType;
 use app\widgets\laydate\LaydateWidget;
 use yii\web\JsExpression;
 use app\widgets\fileupload\JQueryFileUploadWidget;
+use yii\helpers\Json;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\ext\Link */
@@ -22,22 +23,20 @@ use app\widgets\fileupload\JQueryFileUploadWidget;
 
 ValidationAsset::register($this);
 
-$this->registerJs('
+$rules = [];
+$rules[Html::getInputName($model, 'link_type_id')] = ['required' => true];
+$rules[Html::getInputName($model, 'webname')] = ['required' => true];
+$rules = Json::encode($rules);
+$js = <<<EOF
 var validator = $("#submitform").validate({
-	rules: {
-		"'.Html::getInputName($model, 'link_type_id').'": {
-			required: true,
-		},
-        "'.Html::getInputName($model, 'webname').'": {
-			required: true,
-		}
-	},
+	rules: {$rules},
     errorElement: "p",
 	errorPlacement: function(error, element) {
 		error.appendTo(element.parent());
 	}
 });
-');
+EOF;
+$this->registerJs($js);
 ?>
 
 <?= Tips::widget([

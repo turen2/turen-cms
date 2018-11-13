@@ -16,7 +16,7 @@ use app\widgets\edititem\EditItemWidget;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $js = <<<EOF
-
+    
 EOF;
 $this->registerJs($js);
 

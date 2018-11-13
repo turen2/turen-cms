@@ -4,12 +4,12 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use app\widgets\Tips;
-use app\components\ActiveRecord;
 use app\assets\ValidationAsset;
 use app\models\user\Comment;
 use app\widgets\laydate\LaydateWidget;
 use app\widgets\ueditor\UEditorWidget;
 use app\models\cms\Column;
+use yii\helpers\Json;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\user\Comment */
@@ -17,22 +17,20 @@ use app\models\cms\Column;
 
 ValidationAsset::register($this);
 
-$this->registerJs('
+$rules = [];
+$rules[Html::getInputName($model, 'uc_typeid')] = ['required' => true];
+$rules[Html::getInputName($model, 'uc_model_id')] = ['required' => true];
+$rules = Json::encode($rules);
+$js = <<<EOF
 var validator = $("#createform").validate({
-	rules: {
-		"'.Html::getInputName($model, 'uc_typeid').'": {
-			required: true,
-		},
-        "'.Html::getInputName($model, 'uc_model_id').'": {
-			required: true,
-		}
-	},
+	rules: {$rules},
     errorElement: "p",
 	errorPlacement: function(error, element) {
 		error.appendTo(element.parent());
 	}
 });
-');
+EOF;
+$this->registerJs($js);
 ?>
 
 <?= Tips::widget([

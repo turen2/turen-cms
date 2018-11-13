@@ -13,6 +13,7 @@ use app\models\cms\Column;
 use common\helpers\BuildHelper;
 use app\widgets\fileupload\JQueryFileUploadWidget;
 use yii\web\JsExpression;
+use yii\helpers\Json;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\cms\Column */
@@ -20,19 +21,19 @@ use yii\web\JsExpression;
 
 ValidationAsset::register($this);
 
-$this->registerJs('
+$rules = [];
+$rules[Html::getInputName($model, 'cname')] = ['required' => true];
+$rules = Json::encode($rules);
+$js = <<<EOF
 var validator = $("#submitform").validate({
-	rules: {
-		"'.Html::getInputName($model, 'cname').'": {
-			required: true,
-		}
-	},
+	rules: {$rules},
     errorElement: "p",
 	errorPlacement: function(error, element) {
 		error.appendTo(element.parent());
 	}
 });
-');
+EOF;
+$this->registerJs($js);
 ?>
 
 <?= Tips::widget([

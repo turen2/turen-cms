@@ -12,6 +12,7 @@ use app\components\ActiveRecord;
 use app\assets\ValidationAsset;
 use app\widgets\ueditor\UEditorWidget;
 use app\widgets\laydate\LaydateWidget;
+use yii\helpers\Json;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\sys\Devlog */
@@ -19,25 +20,21 @@ use app\widgets\laydate\LaydateWidget;
 
 ValidationAsset::register($this);
 
-$this->registerJs('
+$rules = [];
+$rules[Html::getInputName($model, 'log_name')] = ['required' => true];
+$rules[Html::getInputName($model, 'log_code')] = ['required' => true];
+$rules[Html::getInputName($model, 'log_note')] = ['required' => true];
+$rules = Json::encode($rules);
+$js = <<<EOF
 var validator = $("#submitform").validate({
-	rules: {
-		"'.Html::getInputName($model, 'log_name').'": {
-			required: true,
-		},
-        "'.Html::getInputName($model, 'log_code').'": {
-			required: true,
-		},
-        "'.Html::getInputName($model, 'log_note').'": {
-			required: true,
-		}
-	},
+	rules: {$rules},
     errorElement: "p",
 	errorPlacement: function(error, element) {
 		error.appendTo(element.parent());
 	}
 });
-');
+EOF;
+$this->registerJs($js);
 ?>
 
 <?= Tips::widget([

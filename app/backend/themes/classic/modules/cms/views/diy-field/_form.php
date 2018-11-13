@@ -78,8 +78,7 @@ function SelectDiyField(_this)
     _this.next(".cnote").html(typeList[value].tips);
     $("#diyfield-fd_long").val(typeList[value].size);
     $("#diyfield-fd_value").val(typeList[value].value);
-}
-', View::POS_HEAD);//优先载入
+}', View::POS_HEAD);//优先载入
 ?>
 
 <?= Tips::widget([

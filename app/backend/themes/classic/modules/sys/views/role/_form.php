@@ -11,6 +11,7 @@ use app\widgets\Tips;
 use app\assets\ValidationAsset;
 use app\models\sys\Role;
 use app\helpers\BackCommonHelper;
+use yii\helpers\Json;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\sys\Role */
@@ -18,19 +19,19 @@ use app\helpers\BackCommonHelper;
 
 ValidationAsset::register($this);
 
-$this->registerJs('
+$rules = [];
+$rules[Html::getInputName($model, 'role_name')] = ['required' => true];
+$rules = Json::encode($rules);
+$js = <<<EOF
 var validator = $("#submitform").validate({
-	rules: {
-		"'.Html::getInputName($model, 'role_name').'": {
-			required: true,
-		}
-	},
+	rules: {$rules},
     errorElement: "p",
 	errorPlacement: function(error, element) {
 		error.appendTo(element.parent());
 	}
 });
-');
+EOF;
+$this->registerJs($js);
 ?>
 
 <?= Tips::widget([

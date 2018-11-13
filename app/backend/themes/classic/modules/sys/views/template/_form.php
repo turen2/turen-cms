@@ -8,15 +8,13 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use app\widgets\Tips;
-use app\components\ActiveRecord;
 use app\assets\ValidationAsset;
 use app\models\sys\Template;
 use app\widgets\laydate\LaydateWidget;
 use app\widgets\ueditor\UEditorWidget;
 use app\widgets\fileupload\JQueryFileUploadWidget;
 use yii\web\JsExpression;
-use app\widgets\select2\Select2Widget;
-use app\models\sys\Admin;
+use yii\helpers\Json;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\sys\Template */
@@ -24,19 +22,14 @@ use app\models\sys\Admin;
 
 ValidationAsset::register($this);
 
-$this->registerJs('
+$rules = [];
+$rules[Html::getInputName($model, 'temp_name')] = ['required' => true];
+$rules[Html::getInputName($model, 'temp_code')] = ['required' => true];
+$rules[Html::getInputName($model, 'langs')] = ['required' => true];
+$rules = Json::encode($rules);
+$js = <<<EOF
 var validator = $("#submitform").validate({
-	rules: {
-		"'.Html::getInputName($model, 'temp_name').'": {
-			required: true,
-		},
-        "'.Html::getInputName($model, 'temp_code').'": {
-			required: true,
-		},
-        "'.Html::getInputName($model, 'langs').'[]": {
-			required: true,
-		}
-	},
+	rules: {$rules},
     errorElement: "p",
 	errorPlacement: function(error, element) {
         if (element.is(\':radio\') || element.is(\':checkbox\')) { //如果是radio或checkbox
@@ -47,7 +40,8 @@ var validator = $("#submitform").validate({
         }
 	}
 });
-');
+EOF;
+$this->registerJs($js);
 ?>
 
 <?= Tips::widget([

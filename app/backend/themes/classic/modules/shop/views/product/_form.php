@@ -4,7 +4,6 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use app\widgets\Tips;
-use app\components\ActiveRecord;
 use app\assets\ValidationAsset;
 use app\models\shop\Product;
 use app\widgets\laydate\LaydateWidget;
@@ -17,6 +16,7 @@ use app\models\shop\ProductCate;
 use app\assets\ColorPickerAsset;
 use app\models\shop\Brand;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\shop\Product */
@@ -25,38 +25,24 @@ use yii\helpers\ArrayHelper;
 ValidationAsset::register($this);
 ColorPickerAsset::register($this);
 
-$this->registerJs('
+$rules = [];
+$rules[Html::getInputName($model, 'columnid')] = ['required' => true];
+$rules[Html::getInputName($model, 'pcateid')] = ['required' => true];
+$rules[Html::getInputName($model, 'brand_id')] = ['required' => true];
+$rules[Html::getInputName($model, 'sales_price')] = ['required' => true, 'digits' => true];
+$rules[Html::getInputName($model, 'content')] = ['required' => true];
+$rules[Html::getInputName($model, 'picurl')] = ['required' => true];
+$rules = Json::encode($rules);
+$js = <<<EOF
 var validator = $("#createform").validate({
-	rules: {
-		"'.Html::getInputName($model, 'columnid').'": {
-			required: true,
-		},
-        "'.Html::getInputName($model, 'pcateid').'": {
-			required: true,
-		},
-        "'.Html::getInputName($model, 'brand_id').'": {
-			required: true,
-		},
-        "'.Html::getInputName($model, 'title').'": {
-			required: true,
-		},
-        "'.Html::getInputName($model, 'sales_price').'": {
-			required: true,
-            digits:true,
-		},
-        "'.Html::getInputName($model, 'content').'": {
-			required: true,
-		},
-        "'.Html::getInputName($model, 'picurl').'": {
-			required: true,
-		}
-	},
+	rules: {$rules},
     errorElement: "p",
 	errorPlacement: function(error, element) {
 		error.appendTo(element.parent());
 	}
 });
-');
+EOF;
+$this->registerJs($js);
 ?>
 
 <?= Tips::widget([

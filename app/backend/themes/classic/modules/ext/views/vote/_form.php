@@ -12,6 +12,7 @@ use app\assets\ValidationAsset;
 use app\models\ext\Vote;
 use app\widgets\laydate\LaydateWidget;
 use app\widgets\ueditor\UEditorWidget;
+use yii\helpers\Json;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\ext\Vote */
@@ -19,22 +20,17 @@ use app\widgets\ueditor\UEditorWidget;
 
 ValidationAsset::register($this);
 
-$this->registerJs('
+$rules = [];
+$rules[Html::getInputName($model, 'title')] = ['required' => true];
+$rules = Json::encode($rules);
+$js = <<<EOF
 var validator = $("#submitform").validate({
-	rules: {
-		"'.Html::getInputName($model, 'title').'": {
-			required: true,
-		}
-	},
+	rules: {$rules},
     errorElement: "p",
 	errorPlacement: function(error, element) {
 		error.appendTo(element.parent());
 	}
 });
-');
-
-$js = <<<EOF
-    //
 EOF;
 $this->registerJs($js);
 ?>

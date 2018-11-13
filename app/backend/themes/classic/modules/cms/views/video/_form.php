@@ -20,6 +20,7 @@ use app\assets\ColorPickerAsset;
 use app\widgets\fileupload\JQueryFileUploadWidget;
 use yii\web\JsExpression;
 use app\widgets\ueditor\UEditorWidget;
+use yii\helpers\Json;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\cms\Video */
@@ -28,25 +29,21 @@ use app\widgets\ueditor\UEditorWidget;
 ValidationAsset::register($this);
 ColorPickerAsset::register($this);
 
-$this->registerJs('
+$rules = [];
+$rules[Html::getInputName($model, 'columnid')] = ['required' => true];
+$rules[Html::getInputName($model, 'title')] = ['required' => true];
+$rules[Html::getInputName($model, 'videolink')] = ['required' => true];
+$rules = Json::encode($rules);
+$js = <<<EOF
 var validator = $("#submitform").validate({
-	rules: {
-		"'.Html::getInputName($model, 'columnid').'": {
-			required: true,
-		},
-        "'.Html::getInputName($model, 'title').'": {
-			required: true,
-		},
-        "'.Html::getInputName($model, 'videolink').'": {
-			required: true,
-		}
-	},
+	rules: {$rules},
     errorElement: "p",
 	errorPlacement: function(error, element) {
 		error.appendTo(element.parent());
 	}
 });
-');
+EOF;
+$this->registerJs($js);
 
 $srcModels = Src::find()->current()->orderBy(['orderid' => SORT_DESC])->all();
 ?>

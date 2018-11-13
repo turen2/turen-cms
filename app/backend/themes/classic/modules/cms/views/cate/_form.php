@@ -11,6 +11,7 @@ use app\widgets\Tips;
 use app\assets\ValidationAsset;
 use app\models\cms\Cate;
 use common\helpers\BuildHelper;
+use yii\helpers\Json;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\cms\Cate */
@@ -18,19 +19,20 @@ use common\helpers\BuildHelper;
 
 ValidationAsset::register($this);
 
-$this->registerJs('
+$rules = [];
+$rules[Html::getInputName($model, 'catename')] = ['required' => true];
+$rules = Json::encode($rules);
+
+$js = <<<EOF
 var validator = $("#submitform").validate({
-	rules: {
-		"'.Html::getInputName($model, 'catename').'": {
-			required: true,
-		}
-	},
+	rules: {$rules},
     errorElement: "p",
 	errorPlacement: function(error, element) {
 		error.appendTo(element.parent());
 	}
 });
-');
+EOF;
+$this->registerJs($js);
 ?>
 
 <?= Tips::widget([

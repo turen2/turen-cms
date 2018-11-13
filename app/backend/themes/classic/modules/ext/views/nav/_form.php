@@ -13,6 +13,7 @@ use app\models\ext\Nav;
 use common\helpers\BuildHelper;
 use app\widgets\fileupload\JQueryFileUploadWidget;
 use yii\web\JsExpression;
+use yii\helpers\Json;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\ext\Nav */
@@ -20,25 +21,21 @@ use yii\web\JsExpression;
 
 ValidationAsset::register($this);
 
-$this->registerJs('
+$rules = [];
+$rules[Html::getInputName($model, 'parentid')] = ['required' => true];
+$rules[Html::getInputName($model, 'menuname')] = ['required' => true];
+$rules[Html::getInputName($model, 'linkurl')] = ['required' => true];
+$rules = Json::encode($rules);
+$js = <<<EOF
 var validator = $("#submitform").validate({
-	rules: {
-		"'.Html::getInputName($model, 'parentid').'": {
-			required: true,
-		},
-        "'.Html::getInputName($model, 'menuname').'": {
-			required: true,
-		},
-        "'.Html::getInputName($model, 'linkurl').'": {
-			required: true,
-		}
-	},
+	rules: {$rules},
     errorElement: "p",
 	errorPlacement: function(error, element) {
 		error.appendTo(element.parent());
 	}
 });
-');
+EOF;
+$this->registerJs($js);
 ?>
 
 <?= Tips::widget([

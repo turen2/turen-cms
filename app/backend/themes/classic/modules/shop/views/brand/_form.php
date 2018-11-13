@@ -4,12 +4,12 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use app\widgets\Tips;
-use app\components\ActiveRecord;
 use app\assets\ValidationAsset;
 use app\widgets\fileupload\JQueryFileUploadWidget;
 use yii\web\JsExpression;
 use app\models\shop\Brand;
 use app\widgets\ueditor\UEditorWidget;
+use yii\helpers\Json;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\shop\Brand */
@@ -17,25 +17,21 @@ use app\widgets\ueditor\UEditorWidget;
 
 ValidationAsset::register($this);
 
-$this->registerJs('
+$rules = [];
+$rules[Html::getInputName($model, 'bname')] = ['required' => true];
+$rules[Html::getInputName($model, 'picurl')] = ['required' => true];
+$rules[Html::getInputName($model, 'bnote')] = ['required' => true];
+$rules = Json::encode($rules);
+$js = <<<EOF
 var validator = $("#createform").validate({
-	rules: {
-		"'.Html::getInputName($model, 'bname').'": {
-			required: true,
-		},
-        "'.Html::getInputName($model, 'picurl').'": {
-			required: true,
-		},
-        "'.Html::getInputName($model, 'bnote').'": {
-			required: true,
-		}
-	},
+	rules: {$rules},
     errorElement: "p",
 	errorPlacement: function(error, element) {
 		error.appendTo(element.parent());
 	}
 });
-');
+EOF;
+$this->registerJs($js);
 ?>
 
 <?= Tips::widget([

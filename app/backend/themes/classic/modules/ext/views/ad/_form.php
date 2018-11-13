@@ -15,6 +15,7 @@ use app\models\ext\AdType;
 use app\widgets\laydate\LaydateWidget;
 use app\widgets\fileupload\JQueryFileUploadWidget;
 use yii\web\JsExpression;
+use yii\helpers\Json;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\ext\Ad */
@@ -22,22 +23,20 @@ use yii\web\JsExpression;
 
 ValidationAsset::register($this);
 
-$this->registerJs('
+$rules = [];
+$rules[Html::getInputName($model, 'ad_type_id')] = ['required' => true];
+$rules[Html::getInputName($model, 'title')] = ['required' => true];
+$rules = Json::encode($rules);
+$js = <<<EOF
 var validator = $("#submitform").validate({
-	rules: {
-		"'.Html::getInputName($model, 'ad_type_id').'": {
-			required: true,
-		},
-        "'.Html::getInputName($model, 'title').'": {
-			required: true,
-		}
-	},
+	rules: {$rules},
     errorElement: "p",
 	errorPlacement: function(error, element) {
 		error.appendTo(element.parent());
 	}
 });
-');
+EOF;
+$this->registerJs($js);
 ?>
 
 <?= Tips::widget([

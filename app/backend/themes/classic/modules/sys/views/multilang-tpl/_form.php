@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use app\widgets\Tips;
-use app\components\ActiveRecord;
 use app\assets\ValidationAsset;
 use app\models\sys\MultilangTpl;
 use yii\helpers\ArrayHelper;
 use app\models\sys\Template;
+use yii\helpers\Json;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\sys\MultilangTpl */
@@ -16,28 +16,22 @@ use app\models\sys\Template;
 
 ValidationAsset::register($this);
 
-$this->registerJs('
+$rules = [];
+$rules[Html::getInputName($model, 'lang_name')] = ['required' => true];
+$rules[Html::getInputName($model, 'template_id')] = ['required' => true];
+$rules[Html::getInputName($model, 'lang_sign')] = ['required' => true];
+$rules[Html::getInputName($model, 'key')] = ['required' => true];
+$rules = Json::encode($rules);
+$js = <<<EOF
 var validator = $("#createform").validate({
-	rules: {
-		"'.Html::getInputName($model, 'lang_name').'": {
-			required: true,
-		},
-        "'.Html::getInputName($model, 'template_id').'": {
-			required: true,
-		},
-        "'.Html::getInputName($model, 'lang_sign').'": {
-			required: true,
-		},
-        "'.Html::getInputName($model, 'key').'": {
-			required: true,
-		}
-	},
+	rules: {$rules},
     errorElement: "p",
 	errorPlacement: function(error, element) {
 		error.appendTo(element.parent());
 	}
 });
-');
+EOF;
+$this->registerJs($js);
 ?>
 
 <?= Tips::widget([

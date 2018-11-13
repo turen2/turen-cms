@@ -22,55 +22,55 @@ ValidationAsset::register($this);
 
 if($model->isNewRecord) {
     $this->registerJs('
-    var validator = $("#submitform").validate({
-    	rules: {
-    		"'.Html::getInputName($model, 'username').'": {
-    			required: true,
-                minlength: 2,
-                maxlength: 16,
-    		},
-            "'.Html::getInputName($model, 'phone').'": {
-    			required: true,
-                isPhone: true,
-    		},
-    		"'.Html::getInputName($model, 'password').'": {
-    			required: true,
-                minlength: 5,
-                maxlength: 16,
-    		},
-            "'.Html::getInputName($model, 'repassword').'": {
-    			required: true,
-                equalTo:"#admin-password",
-    		}
-    	},
-        errorElement: "p",
-    	errorPlacement: function(error, element) {
-    		error.appendTo(element.parent());
-    	}
-    });
+        var validator = $("#submitform").validate({
+        	rules: {
+        		"'.Html::getInputName($model, 'username').'": {
+        			required: true,
+                    minlength: 2,
+                    maxlength: 16,
+        		},
+                "'.Html::getInputName($model, 'phone').'": {
+        			required: true,
+                    isPhone: true,
+        		},
+        		"'.Html::getInputName($model, 'password').'": {
+        			required: true,
+                    minlength: 5,
+                    maxlength: 16,
+        		},
+                "'.Html::getInputName($model, 'repassword').'": {
+        			required: true,
+                    equalTo:"#admin-password",
+        		}
+        	},
+            errorElement: "p",
+        	errorPlacement: function(error, element) {
+        		error.appendTo(element.parent());
+        	}
+        });
     ');
 } else {
     $this->registerJs('
-    var validator = $("#submitform").validate({
-    	rules: {
-            "'.Html::getInputName($model, 'username').'": {
-    			required: true,
-                minlength: 2,
-                maxlength: 16,
-    		},
-            "'.Html::getInputName($model, 'phone').'": {
-    			required: true,
-                isPhone: true,
-    		},
-            "'.Html::getInputName($model, 'repassword').'": {
-                equalTo:"#admin-password",
-    		}
-    	},
-        errorElement: "p",
-    	errorPlacement: function(error, element) {
-    		error.appendTo(element.parent());
-    	}
-    });
+        var validator = $("#submitform").validate({
+        	rules: {
+                "'.Html::getInputName($model, 'username').'": {
+        			required: true,
+                    minlength: 2,
+                    maxlength: 16,
+        		},
+                "'.Html::getInputName($model, 'phone').'": {
+        			required: true,
+                    isPhone: true,
+        		},
+                "'.Html::getInputName($model, 'repassword').'": {
+                    equalTo:"#admin-password",
+        		}
+        	},
+            errorElement: "p",
+        	errorPlacement: function(error, element) {
+        		error.appendTo(element.parent());
+        	}
+        });
     ');
 }
 ?>

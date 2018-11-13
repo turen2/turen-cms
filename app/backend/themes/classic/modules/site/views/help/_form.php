@@ -11,7 +11,6 @@ use app\widgets\Tips;
 use app\assets\ValidationAsset;
 use common\helpers\BuildHelper;
 use app\models\site\Help;
-use app\models\site\Src;
 use app\models\site\HelpCate;
 use yii\base\Widget;
 use app\widgets\select2\Select2Widget;
@@ -21,6 +20,7 @@ use app\assets\ColorPickerAsset;
 use app\widgets\fileupload\JQueryFileUploadWidget;
 use yii\web\JsExpression;
 use app\widgets\ueditor\UEditorWidget;
+use yii\helpers\Json;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\site\Help */
@@ -29,19 +29,19 @@ use app\widgets\ueditor\UEditorWidget;
 ValidationAsset::register($this);
 ColorPickerAsset::register($this);
 
-$this->registerJs('
+$rules = [];
+$rules[Html::getInputName($model, 'title')] = ['required' => true];
+$rules = Json::encode($rules);
+$js = <<<EOF
 var validator = $("#submitform").validate({
-	rules: {
-		"'.Html::getInputName($model, 'title').'": {
-			required: true,
-		}
-	},
+	rules: {$rules},
     errorElement: "p",
 	errorPlacement: function(error, element) {
 		error.appendTo(element.parent());
 	}
 });
-');
+EOF;
+$this->registerJs($js);
 ?>
 
 <?= Tips::widget([
