@@ -85,6 +85,7 @@ $this->registerJs($js);
     			<?= LaydateWidget::widget([
     			    'model' => $model,
     			    'attribute' => 'log_time',
+    			    'value' => $model->dateTimeValue(),
     			    'options' => ['class' => 'inputms'],
     			]) ?>
     			<span class="cnote"></span>

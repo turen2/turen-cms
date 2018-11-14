@@ -105,7 +105,7 @@ class Link extends \app\models\base\Ext
     {
         return [
             [['link_type_id', 'webname'], 'required'],
-            [['link_type_id', 'parentid', 'orderid'], 'integer'],
+            [['link_type_id', 'parentid', 'orderid', 'posttime'], 'integer'],
             [['parentstr'], 'string', 'max' => 80],
             [['webname'], 'string', 'max' => 30],
             [['webnote'], 'string', 'max' => 200],
@@ -113,7 +113,6 @@ class Link extends \app\models\base\Ext
             [['linkurl'], 'string', 'max' => 255],
             [['status'], 'string', 'max' => 1],
             [['lang'], 'string', 'max' => 8],
-            [['posttime'], 'string'],
             
             //静态默认值由规则来赋值
             [['status'], 'default', 'value' => self::STATUS_ON],

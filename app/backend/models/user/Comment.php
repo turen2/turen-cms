@@ -77,12 +77,11 @@ class Comment extends \app\models\base\User
         //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return [
             [['uc_typeid', 'uc_model_id' ,'uc_note'], 'required'],
-            [['uc_pid', 'uid', 'status'], 'integer'],
+            [['uc_pid', 'uid', 'status', 'created_at', 'reply_time'], 'integer'],
             [['username', 'uc_ip'], 'string', 'max' => 30],
             [['uc_note', 'uc_reply'], 'string', 'max' => 255],
             [['uc_link'], 'string', 'max' => 130],
             [['lang'], 'string', 'max' => 8],
-            [['created_at', 'reply_time'], 'string'],
         ];
     }
 

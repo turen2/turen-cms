@@ -22,8 +22,8 @@ class LinkSearch extends Link
     public function rules()
     {
         return [
-            [['id', 'link_type_id', 'parentid', 'orderid', 'posttime'], 'integer'],
-            [['parentstr', 'webname', 'webnote', 'picurl', 'linkurl', 'status', 'lang'], 'safe'],
+            [['id', 'link_type_id', 'parentid', 'orderid'], 'integer'],
+            [['parentstr', 'webname', 'webnote', 'picurl', 'linkurl', 'status', 'lang', 'posttime'], 'safe'],
         ];
     }
 
@@ -82,7 +82,6 @@ class LinkSearch extends Link
             'link_type_id' => $this->link_type_id,
             'parentid' => $this->parentid,
             'orderid' => $this->orderid,
-            'posttime' => $this->posttime,
         ]);
 
         $query->andFilterWhere(['like', 'parentstr', $this->parentstr])
@@ -92,6 +91,7 @@ class LinkSearch extends Link
             ->andFilterWhere(['like', 'linkurl', $this->linkurl])
             ->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'lang', $this->lang]);
+        
         //echo $dataProvider->query->createCommand()->rawSql;
 
         return $dataProvider;

@@ -83,7 +83,6 @@ class PhotoSearch extends Photo
             'catepid' => $this->catepid,
             'hits' => $this->hits,
             'delstate' => $this->delstate,
-            'posttime' => $this->posttime,
             'status' => $this->status,
         ]);
 
@@ -92,7 +91,7 @@ class PhotoSearch extends Photo
             ->andFilterWhere(['like', 'author', $this->author])
             ->andFilterWhere(['like', 'keywords', $this->keywords]);
         
-        //echo $dataProvider->query->createCommand()->rawSql;exit;
+//         echo $dataProvider->query->createCommand()->rawSql;exit;
 
         return $dataProvider;
     }

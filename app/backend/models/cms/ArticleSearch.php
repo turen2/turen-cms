@@ -82,8 +82,6 @@ class ArticleSearch extends Article
             'delstate' => $this->delstate,
             'status' => $this->status,
             'author' => $this->author,
-            //'posttime' => $this->posttime,
-            //'deltime' => $this->deltime,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->keyword])->andFilterWhere(['like', 'flag', $this->flag])

@@ -81,7 +81,7 @@ class User extends \app\models\base\User
         //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return [
             [['username'], 'required'],
-            [['level_id', 'ug_id', 'sex', 'point', 'login_time', 'status', 'deltime', 'delstate'], 'integer'],
+            [['level_id', 'ug_id', 'sex', 'point', 'login_time', 'status', 'deltime', 'delstate', 'reg_time'], 'integer'],
             [['intro', 'username', 'password', 'qq_id', 'weibo_id', 'wx_id', 'email', 'mobile', 'telephone', 'reg_ip', 'login_ip', 'avatar', 'company', 'address', 'trade', 'address_prov', 'address_city', 'zipcode', 'license', 'address_country'], 'string'],
             [['sex', 'point'], 'default', 'value' => 0],
             [['status'], 'default', 'value' => self::STATUS_ON],

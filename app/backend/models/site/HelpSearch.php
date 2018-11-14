@@ -80,7 +80,6 @@ class HelpSearch extends Help
             'cateid' => $this->cateid,
             'status' => $this->status,
             'author' => $this->author,
-            //'posttime' => $this->posttime,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->keyword])

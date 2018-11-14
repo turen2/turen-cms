@@ -120,6 +120,7 @@ $this->registerJs($js);
     			<?= LaydateWidget::widget([
     			    'model' => $model,
     			    'attribute' => 'posttime',
+    			    'value' => $model->dateTimeValue(),
     			    'options' => ['class' => 'inputms'],
     			]) ?>
     			<span class="cnote"></span>

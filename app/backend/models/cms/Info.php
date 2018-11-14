@@ -10,6 +10,7 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
 use app\widgets\laydate\LaydateBehavior;
+use app\widgets\diyfield\DiyFieldBehavior;
 
 /**
  * This is the model class for table "{{%cms_info}}".
@@ -36,6 +37,10 @@ class Info extends \app\models\base\Cms
 	            'class' => TimestampBehavior::class,
 	            'createdAtAttribute' => 'posttime',
 	            'updatedAtAttribute' => false,
+	        ],
+	        //自定义字段
+	        'diyField' => [
+	            'class' => DiyFieldBehavior::class,
 	        ],
         ];
 	}
@@ -65,8 +70,8 @@ class Info extends \app\models\base\Cms
     {
         return ArrayHelper::merge(parent::rules(), [
             [['columnid'], 'required'],
-            [['columnid'], 'integer'],
-            [['content', 'picurl', 'posttime'], 'string'],
+            [['columnid', 'posttime'], 'integer'],
+            [['content', 'picurl'], 'string'],
         ]);
     }
 

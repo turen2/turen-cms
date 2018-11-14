@@ -112,12 +112,12 @@ class Help extends \app\models\base\Site
     {
         return [
             [['cateid', 'title'], 'required'],
-            [['parentid', 'catepid', 'hits', 'orderid', 'status'], 'integer'],
+            [['parentid', 'catepid', 'hits', 'orderid', 'status', 'posttime'], 'integer'],
             [['parentstr', 'catepstr', 'title'], 'string', 'max' => 80],
             [['colorval', 'boldval'], 'string', 'max' => 10],
             [['keywords'], 'string', 'max' => 50],
             [['linkurl', 'description'], 'string', 'max' => 255],
-            [['content', 'picurl', 'posttime'], 'string'],
+            [['content', 'picurl'], 'string'],
             [['author'], 'default', 'value' => $this->getAdmin()->username],
             //静态默认值由规则来赋值
             [['status'], 'default', 'value' => self::STATUS_ON],

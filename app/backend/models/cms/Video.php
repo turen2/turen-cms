@@ -120,8 +120,8 @@ class Video extends \app\models\base\Cms
     {
         return ArrayHelper::merge(parent::rules(), [
             [['columnid', 'title', 'videolink'], 'required'],
-            [['columnid', 'parentid', 'cateid', 'catepid', 'deltime', 'delstate'], 'integer'],
-            [['content', 'videolink', 'posttime'], 'string'],
+            [['columnid', 'parentid', 'cateid', 'catepid', 'deltime', 'delstate', 'posttime'], 'integer'],
+            [['content', 'videolink'], 'string'],
             [['parentstr', 'catepstr', 'title'], 'string', 'max' => 80],
             [['colorval', 'boldval'], 'string', 'max' => 10],
             [['source', 'author', 'keywords'], 'string', 'max' => 50],

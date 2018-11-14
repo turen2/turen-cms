@@ -106,8 +106,8 @@ class Ad extends \app\models\base\Ext
     {
         return [
             [['ad_type_id', 'title'], 'required'],
-            [['ad_type_id', 'parentid', 'orderid'], 'integer'],
-            [['adtext', 'posttime'], 'string'],
+            [['ad_type_id', 'parentid', 'orderid', 'posttime'], 'integer'],
+            [['adtext'], 'string'],
             [['parentstr'], 'string', 'max' => 80],
             [['title'], 'string', 'max' => 30],
             [['admode'], 'string', 'max' => 10],

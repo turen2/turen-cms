@@ -96,8 +96,8 @@ class Template extends \app\models\base\Sys
         //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return [
             [['temp_name', 'temp_code', 'picurl', 'note'], 'required'],
-            [['picarr', 'note', 'temp_code', 'picurl', 'posttime'], 'string'],
-            [['created_at', 'updated_at'], 'integer'],
+            [['picarr', 'note', 'temp_code', 'picurl'], 'string'],
+            [['created_at', 'updated_at', 'posttime'], 'integer'],
             [['temp_name'], 'string', 'max' => 100],
             [['developer_name', 'design_name'], 'string', 'max' => 30],
             

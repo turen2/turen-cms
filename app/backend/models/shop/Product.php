@@ -144,14 +144,14 @@ class Product extends \app\models\base\Shop
         //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return [
             [['columnid', 'pcateid', 'brand_id', 'title', 'sales_price', 'content', 'picurl'], 'required'],
-            [['columnid', 'pcateid', 'brand_id', 'stock', 'hits', 'orderid', 'deltime', 'created_at', 'updated_at'], 'integer'],
+            [['columnid', 'pcateid', 'brand_id', 'stock', 'hits', 'orderid', 'deltime', 'created_at', 'updated_at', 'promote_start_date', 'promote_end_date', 'posttime'], 'integer'],
             [['title', 'sku', 'picurl'], 'string', 'max' => 100],
             [['colorval', 'boldval'], 'string', 'max' => 10],
             [['subtitle'], 'string', 'max' => 150],
             [['keywords', 'product_sn'], 'string', 'max' => 30],
             [['description', 'linkurl'], 'string', 'max' => 255],
             [['is_promote', 'is_shipping', 'is_best', 'is_new', 'is_hot', 'status'], 'string', 'max' => 1],
-            [['attrtext', 'content', 'picarr', 'author', 'promote_start_date', 'promote_end_date', 'posttime'], 'string'],
+            [['attrtext', 'content', 'picarr', 'author'], 'string'],
             [['market_price', 'sales_price', 'promote_price', 'weight', 'delstate'], 'number'],
             
             //静态默认值由规则来赋值

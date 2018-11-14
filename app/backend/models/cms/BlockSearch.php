@@ -78,7 +78,6 @@ class BlockSearch extends Block
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'posttime' => $this->posttime,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
@@ -86,6 +85,7 @@ class BlockSearch extends Block
             ->andFilterWhere(['like', 'linkurl', $this->linkurl])
             ->andFilterWhere(['like', 'content', $this->content])
             ->andFilterWhere(['like', 'lang', $this->lang]);
+        
         //echo $dataProvider->query->createCommand()->rawSql;
 
         return $dataProvider;

@@ -77,10 +77,11 @@ class Block extends \app\models\base\Cms
     {
         return [
             [['title', 'content'], 'required'],
-            [['content', 'posttime'], 'string'],
+            [['content'], 'string'],
             [['title'], 'string', 'max' => 30],
             [['picurl', 'linkurl'], 'string', 'max' => 80],
             [['lang'], 'string', 'max' => 8],
+            [['posttime'], 'integer'],
         ];
     }
 

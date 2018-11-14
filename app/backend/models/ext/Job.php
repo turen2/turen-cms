@@ -111,13 +111,12 @@ class Job extends \app\models\base\Ext
     {
         return [
             [['title'], 'required'],
-            [['employ', 'orderid'], 'integer'],
+            [['employ', 'orderid', 'posttime'], 'integer'],
             [['workdesc', 'content'], 'string'],
             [['title', 'jobdescription', 'treatment', 'usefullife', 'experience', 'joblang'], 'string', 'max' => 50],
             [['jobplace', 'education'], 'string', 'max' => 80],
             [['jobsex', 'status'], 'string', 'max' => 1],
             [['lang'], 'string', 'max' => 8],
-            [['posttime'], 'string'],
             //静态默认值由规则来赋值
             [['status'], 'default', 'value' => self::STATUS_ON],
             [['jobsex'], 'default', 'value' => self::SEX_MALE],

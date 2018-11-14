@@ -157,7 +157,7 @@ class DiyField extends \app\models\base\Cms
             return false;
         }
         
-        //转化flag为字符串
+        //转化columnid list为字符串
         if(is_array($this->columnid_list)) {
             $this->columnid_list = implode(',', $this->columnid_list);
         }

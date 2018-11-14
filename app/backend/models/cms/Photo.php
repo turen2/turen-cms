@@ -125,8 +125,8 @@ class Photo extends \app\models\base\Cms
     {
         return ArrayHelper::merge(parent::rules(), [
             [['columnid', 'title', 'picurl'], 'required'],
-            [['columnid', 'parentid', 'cateid', 'catepid', 'deltime', 'delstate'], 'integer'],
-            [['content', 'posttime'], 'string'],
+            [['columnid', 'parentid', 'cateid', 'catepid', 'deltime', 'delstate', 'posttime'], 'integer'],
+            [['content'], 'string'],
             [['parentstr', 'catepstr', 'title'], 'string', 'max' => 80],
             [['colorval', 'boldval'], 'string', 'max' => 10],
             [['source', 'author', 'keywords'], 'string', 'max' => 50],

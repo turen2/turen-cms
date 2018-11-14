@@ -124,6 +124,7 @@ $this->registerJs($js);
     			<?= LaydateWidget::widget([
     			    'model' => $model,
     			    'attribute' => 'reply_time',
+    			    'value' => $model->dateTimeValue(),
     			    'options' => ['class' => 'inputms'],
     			]) ?>
     			<span class="cnote"></span>
@@ -135,6 +136,7 @@ $this->registerJs($js);
     			<?= LaydateWidget::widget([
     			    'model' => $model,
     			    'attribute' => 'created_at',
+    			    'value' => $model->dateTimeValue(),
     			    'options' => ['class' => 'inputms'],
     			]) ?>
     			<span class="cnote"></span>

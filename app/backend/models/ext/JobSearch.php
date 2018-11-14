@@ -22,8 +22,8 @@ class JobSearch extends Job
     public function rules()
     {
         return [
-            [['id', 'employ', 'orderid', 'posttime'], 'integer'],
-            [['title', 'jobplace', 'jobdescription', 'jobsex', 'treatment', 'usefullife', 'experience', 'education', 'joblang', 'workdesc', 'content', 'status', 'lang'], 'safe'],
+            [['id', 'employ', 'orderid'], 'integer'],
+            [['title', 'jobplace', 'jobdescription', 'jobsex', 'treatment', 'usefullife', 'experience', 'education', 'joblang', 'workdesc', 'content', 'status', 'lang', 'posttime'], 'safe'],
         ];
     }
 

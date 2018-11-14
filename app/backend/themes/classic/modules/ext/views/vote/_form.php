@@ -98,6 +98,7 @@ $this->registerJs($js);
     			<?= LaydateWidget::widget([
     			    'model' => $model,
     			    'attribute' => 'starttime',
+    			    'value' => $model->dateTimeValue('starttime'),
     			    'options' => ['class' => 'inputms'],
     			]) ?>
     			<span class="cnote"></span>
@@ -109,6 +110,7 @@ $this->registerJs($js);
     			<?= LaydateWidget::widget([
     			    'model' => $model,
     			    'attribute' => 'endtime',
+    			    'value' => $model->dateTimeValue('endtime'),
     			    'options' => ['class' => 'inputms'],
     			]) ?>
     			<span class="cnote"></span>
@@ -170,6 +172,7 @@ $this->registerJs($js);
     			<?= LaydateWidget::widget([
     			    'model' => $model,
     			    'attribute' => 'posttime',
+    			    'value' => $model->dateTimeValue('posttime'),
     			    'options' => ['class' => 'inputms'],
     			]) ?>
     			<span class="cnote"></span>

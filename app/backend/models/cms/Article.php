@@ -122,12 +122,12 @@ class Article extends \app\models\base\Cms
     {
         return ArrayHelper::merge(parent::rules(), [
             [['columnid', 'title'], 'required'],
-            [['columnid', 'parentid', 'cateid', 'catepid', 'hits', 'orderid', 'deltime', 'delstate', 'status'], 'integer'],
+            [['columnid', 'parentid', 'cateid', 'catepid', 'hits', 'orderid', 'deltime', 'delstate', 'status', 'posttime'], 'integer'],
             [['parentstr', 'catepstr', 'title'], 'string', 'max' => 80],
             [['colorval', 'boldval'], 'string', 'max' => 10],
             [['source', 'keywords'], 'string', 'max' => 50],
             [['linkurl', 'description'], 'string', 'max' => 255],
-            [['content', 'picurl', 'lang', 'posttime'], 'string'],
+            [['content', 'picurl', 'lang'], 'string'],
             [['author'], 'default', 'value' => $this->getAdmin()->username],
             //静态默认值由规则来赋值
             [['status'], 'default', 'value' => self::STATUS_ON],

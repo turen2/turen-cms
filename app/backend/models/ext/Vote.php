@@ -132,8 +132,8 @@ class Vote extends \app\models\base\Ext
     {
         return [
             [['title'], 'required'],
-            [['intval', 'orderid', 'isguest', 'isview', 'isradio', 'status'], 'integer'],
-            [['content', 'starttime', 'endtime', 'posttime'], 'string'],
+            [['intval', 'orderid', 'isguest', 'isview', 'isradio', 'status', 'starttime', 'endtime', 'posttime'], 'integer'],
+            [['content'], 'string'],
             [['title'], 'string', 'max' => 30],
             [['lang'], 'string', 'max' => 8],
             //静态默认值由规则来赋值

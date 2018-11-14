@@ -244,6 +244,7 @@ $srcModels = Src::find()->current()->orderBy(['orderid' => SORT_DESC])->all();
     			<?= LaydateWidget::widget([
     			    'model' => $model,
     			    'attribute' => 'posttime',
+    			    'value' => $model->dateTimeValue(),
     			    'options' => ['class' => 'inputms'],
     			]) ?>
     			<span class="cnote"></span>

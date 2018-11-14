@@ -14,48 +14,64 @@ class LaydateBehavior extends \yii\base\Behavior
     
     public $timeAttribute = 'posttime';
     
-    private $_time;
-    
     public function events()
     {
         return [
-            ActiveRecord::EVENT_BEFORE_INSERT => 'beforeSaveDateTime',
-            ActiveRecord::EVENT_BEFORE_UPDATE => 'beforeSaveDateTime',
-            
-            ActiveRecord::EVENT_AFTER_INSERT => 'afterSaveDateTime',
-            ActiveRecord::EVENT_AFTER_UPDATE => 'afterSaveDateTime',
+            ActiveRecord::EVENT_BEFORE_VALIDATE => 'beforeValidateDateTime',
         ];
     }
     
-    public function getStrTime($attribute)
+    /**
+     * 验证之前统一转化为时间戳
+     * @return number
+     */
+    public function beforeValidateDateTime()
     {
+        $model = $this->owner;
+        $attribute = $this->timeAttribute;
+        $time = time();
+        if(!empty($model->{$attribute})) {
+            if(strcmp($model->{$attribute}, intval($model->{$attribute})) == 0) {
+                $time = $model->{$attribute};
+            } else if(strpos($model->{$attribute}, '-') !== false) {
+                $time = strtotime($model->{$attribute});
+            }
+        }
+        
+        $model->{$attribute} = $time;
+    }
+    
+    /**
+     * 从数据库中或者提交不成功数据中获取正确的时间格式
+     * @param string $attribute 用于一个区分表单中的多个时间控件
+     * @return string
+     */
+    public function dateTimeValue($attribute = null)
+    {
+        $model = $this->owner;
         if(is_null($attribute)) { 
             $attribute = $this->timeAttribute;
         }
         
-        if($this->owner->isNewRecord) {//new
-            return date('Y-m-d');
-        } else {
-            $modelClass = get_class($this->owner);
-            $key = $this->owner->primaryKey()[0];
-            
-            $model = $modelClass::findOne($this->owner->{$key});
-            return date('Y-m-d', $model->{$attribute});
+        if(!empty($model->{$attribute})) {
+            if(strpos($model->{$attribute}, '-') !== false) {
+                return $model->{$attribute};
+            } elseif(strcmp($model->{$attribute}, intval($model->{$attribute})) == 0) {
+                return date('Y-m-d', $model->{$attribute});
+            }
         }
+        
+        return date('Y-m-d');
     }
     
-    public function beforeSaveDateTime()
-    {
-        //将原来的str值临时存储起来
-        $this->_time = $this->owner->{$this->timeAttribute};
-        $this->_time = empty($this->_time)?date('Y-m-d'):$this->_time;
-        $this->owner->{$this->timeAttribute} = 0;//临时为0
-    }
-
-    public function afterSaveDateTime()
-    {
+    /**
+     * 数据库中的真实值
+     */
+    protected function dbtime() {
+        $attribute = $this->timeAttribute;
         $modelClass = get_class($this->owner);
         $key = $this->owner->primaryKey()[0];
-        $modelClass::updateAll([$this->timeAttribute => strtotime($this->_time)], [$key => $this->owner->{$key}]);
+        $model = $modelClass::findOne($model->{$key});
+        return $model->{$attribute};
     }
 }
