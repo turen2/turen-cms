@@ -22,6 +22,7 @@ use app\widgets\edititem\EditItemAction;
 use app\widgets\select2\Select2TagAction;
 use app\models\cms\Tag;
 use app\models\cms\TagAssign;
+use app\models\cms\DiyField;
 
 /**
  * PhotoController implements the CRUD actions for Photo model.
@@ -79,6 +80,21 @@ class PhotoController extends Controller
                 'folder' => AliyunOss::OSS_DEFAULT.'/photo',
             ],
             'ueditor' => [
+                'class' => UEditorAction::class,
+                'folder' => AliyunOss::OSS_DEFAULT.'/photo',
+                'config' => [],
+            ],
+            'diyfield-fileupload' => [
+                'class' => FileUploadAction::class,
+                'uploadName' => DiyField::FIELD_UPLOAD_NAME,
+                'folder' => AliyunOss::OSS_DEFAULT.'/photo',
+            ],
+            'diyfield-multiple-fileupload' => [
+                'class' => FileUploadAction::class,
+                'uploadName' => DiyField::FIELD_MULTI_UPLOAD_NAME,
+                'folder' => AliyunOss::OSS_DEFAULT.'/photo',
+            ],
+            'diyfield-ueditor' => [
                 'class' => UEditorAction::class,
                 'folder' => AliyunOss::OSS_DEFAULT.'/photo',
                 'config' => [],

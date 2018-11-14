@@ -19,6 +19,7 @@ use app\widgets\edititem\EditItemAction;
 use app\widgets\select2\Select2TagAction;
 use app\models\cms\Tag;
 use app\models\cms\TagAssign;
+use app\models\cms\DiyField;
 
 /**
  * ProductController implements the CRUD actions for Product model.
@@ -94,6 +95,21 @@ class ProductController extends Controller
                 'folder' => AliyunOss::OSS_DEFAULT.'/product',
             ],
             'ueditor' => [
+                'class' => UEditorAction::class,
+                'folder' => AliyunOss::OSS_DEFAULT.'/product',
+                'config' => [],
+            ],
+            'diyfield-fileupload' => [
+                'class' => FileUploadAction::class,
+                'uploadName' => DiyField::FIELD_UPLOAD_NAME,
+                'folder' => AliyunOss::OSS_DEFAULT.'/product',
+            ],
+            'diyfield-multiple-fileupload' => [
+                'class' => FileUploadAction::class,
+                'uploadName' => DiyField::FIELD_MULTI_UPLOAD_NAME,
+                'folder' => AliyunOss::OSS_DEFAULT.'/product',
+            ],
+            'diyfield-ueditor' => [
                 'class' => UEditorAction::class,
                 'folder' => AliyunOss::OSS_DEFAULT.'/product',
                 'config' => [],

@@ -11,6 +11,7 @@ use app\models\shop\ProductCate;
 use app\models\cms\Column;
 use app\models\shop\Brand;
 use yii\helpers\ArrayHelper;
+use app\models\cms\DiyField;
 
 class Shop extends \app\components\ActiveRecord
 {
@@ -18,6 +19,21 @@ class Shop extends \app\components\ActiveRecord
     private static $_allFlag = [];
     private static $_allProductCate = [];
     private static $_allProductBrand = [];
+    
+    public function rules()
+    {
+        $id = Column::ColumnConvert('class2id', get_class($this));
+        $fieldModels = DiyField::find()->where(['fd_column_type' => $id])->orderBy(['orderid' => SORT_DESC])->all();
+        
+        $fields = [];
+        foreach ($fieldModels as $fieldModel) {
+            if(in_array($this->columnid, explode(',', $fieldModel->columnid_list))) {
+                $fields[] = DiyField::FIELD_PRE.$fieldModel->fd_name;
+            }
+        }
+        
+        return empty($fields)?[]:[[$fields, 'safe']];
+    }
     
     /**
      * 获取所有栏目

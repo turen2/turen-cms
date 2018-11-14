@@ -21,6 +21,7 @@ use app\widgets\fileupload\JQueryFileUploadWidget;
 use yii\web\JsExpression;
 use app\widgets\ueditor\UEditorWidget;
 use yii\helpers\Json;
+use app\widgets\diyfield\DiyFieldWidget;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\cms\Video */
@@ -163,6 +164,9 @@ $srcModels = Src::find()->current()->orderBy(['orderid' => SORT_DESC])->all();
     			<span class="cnote"></span>
     		</td>
     	</tr>
+    	<?= DiyFieldWidget::widget([
+		    'model' => $model,
+		]) ?>
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('picurl')?><?php if($model->isAttributeRequired('picurl')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">

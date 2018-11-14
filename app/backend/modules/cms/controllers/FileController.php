@@ -21,6 +21,7 @@ use app\widgets\ueditor\UEditorAction;
 use app\widgets\edititem\EditItemAction;
 use app\models\cms\Tag;
 use app\models\cms\TagAssign;
+use app\models\cms\DiyField;
 
 /**
  * FileController implements the CRUD actions for File model.
@@ -78,6 +79,21 @@ class FileController extends Controller
                 'folder' => AliyunOss::OSS_DEFAULT.'/file',
             ],
             'ueditor' => [
+                'class' => UEditorAction::class,
+                'folder' => AliyunOss::OSS_DEFAULT.'/file',
+                'config' => [],
+            ],
+            'diyfield-fileupload' => [
+                'class' => FileUploadAction::class,
+                'uploadName' => DiyField::FIELD_UPLOAD_NAME,
+                'folder' => AliyunOss::OSS_DEFAULT.'/file',
+            ],
+            'diyfield-multiple-fileupload' => [
+                'class' => FileUploadAction::class,
+                'uploadName' => DiyField::FIELD_MULTI_UPLOAD_NAME,
+                'folder' => AliyunOss::OSS_DEFAULT.'/file',
+            ],
+            'diyfield-ueditor' => [
                 'class' => UEditorAction::class,
                 'folder' => AliyunOss::OSS_DEFAULT.'/file',
                 'config' => [],

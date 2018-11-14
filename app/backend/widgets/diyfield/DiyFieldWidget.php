@@ -51,8 +51,15 @@ class DiyFieldWidget extends \yii\base\Widget
      */
     public function run() {
         //组织数据
-        $id = Column::ColumnConvert('class2id', get_class($this->model));
+        $id = Column::ColumnConvert('class2id', get_class($this->model));//所属模型
         $fieldModels = DiyField::find()->where(['fd_column_type' => $id])->orderBy(['orderid' => SORT_DESC])->all();
+        
+        //所属栏目
+        foreach ($fieldModels as $fileKey => $fieldModel) {
+            if(!in_array($this->model->columnid, explode(',', $fieldModel->columnid_list))) {
+                unset($fieldModels[$fileKey]);
+            }
+        }
         
         //渲染模板
         return $this->render('diyfield', ['fieldModels' => $fieldModels, 'model' => $this->model]);

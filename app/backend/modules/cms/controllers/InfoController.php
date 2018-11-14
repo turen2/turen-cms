@@ -16,6 +16,7 @@ use app\models\cms\Column;
 use common\components\AliyunOss;
 use app\widgets\fileupload\FileUploadAction;
 use app\widgets\ueditor\UEditorAction;
+use app\models\cms\DiyField;
 
 /**
  * InfoController implements the CRUD actions for Info model.
@@ -32,6 +33,21 @@ class InfoController extends Controller
                 'folder' => AliyunOss::OSS_DEFAULT.'/info',
             ],
             'ueditor' => [
+                'class' => UEditorAction::class,
+                'folder' => AliyunOss::OSS_DEFAULT.'/info',
+                'config' => [],
+            ],
+            'diyfield-fileupload' => [
+                'class' => FileUploadAction::class,
+                'uploadName' => DiyField::FIELD_UPLOAD_NAME,
+                'folder' => AliyunOss::OSS_DEFAULT.'/info',
+            ],
+            'diyfield-multiple-fileupload' => [
+                'class' => FileUploadAction::class,
+                'uploadName' => DiyField::FIELD_MULTI_UPLOAD_NAME,
+                'folder' => AliyunOss::OSS_DEFAULT.'/info',
+            ],
+            'diyfield-ueditor' => [
                 'class' => UEditorAction::class,
                 'folder' => AliyunOss::OSS_DEFAULT.'/info',
                 'config' => [],

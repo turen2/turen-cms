@@ -13,6 +13,7 @@ use app\widgets\fileupload\MultiPicBehavior;
 use app\models\cms\Column;
 use yii\helpers\Html;
 use yii\helpers\Json;
+use app\widgets\diyfield\DiyFieldBehavior;
 
 /**
  * This is the model class for table "{{%shop_product}}".
@@ -113,6 +114,10 @@ class Product extends \app\models\base\Shop
     	            return $this->orderid;
 	            }
             ],
+            //自定义字段
+            'diyField' => [
+                'class' => DiyFieldBehavior::class,
+            ],
 	    ];
 	}
 
@@ -142,7 +147,7 @@ class Product extends \app\models\base\Shop
         //静态默认值由规则来赋值
         //[['status'], 'default', 'value' => self::STATUS_ON],
         //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
-        return [
+        return ArrayHelper::merge(parent::rules(), [
             [['columnid', 'pcateid', 'brand_id', 'title', 'sales_price', 'content', 'picurl'], 'required'],
             [['columnid', 'pcateid', 'brand_id', 'stock', 'hits', 'orderid', 'deltime', 'created_at', 'updated_at', 'promote_start_date', 'promote_end_date', 'posttime'], 'integer'],
             [['title', 'sku', 'picurl'], 'string', 'max' => 100],
@@ -161,7 +166,7 @@ class Product extends \app\models\base\Shop
             [['stock'], 'default', 'value' => Yii::$app->params['config_stock_warning']],
             [['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
             [['flag', 'picarr'], 'safe'],
-        ];
+        ]);
     }
 
     /**

@@ -32,6 +32,8 @@ use app\behaviors\InsertLangBehavior;
 class DiyField extends \app\models\base\Cms
 {
     const FIELD_PRE = 'diyfield_';
+    const FIELD_MULTI_UPLOAD_NAME = 'diyfield-multi-upload';
+    const FIELD_UPLOAD_NAME = 'diyfield-upload';
     
 	public $keyword;
 	

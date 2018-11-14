@@ -22,6 +22,7 @@ use app\widgets\edititem\EditItemAction;
 use app\widgets\select2\Select2TagAction;
 use app\models\cms\Tag;
 use app\models\cms\TagAssign;
+use app\models\cms\DiyField;
 
 /**
  * VideoController implements the CRUD actions for Video model.
@@ -74,6 +75,21 @@ class VideoController extends Controller
                 'folder' => AliyunOss::OSS_DEFAULT.'/video',
             ],
             'ueditor' => [
+                'class' => UEditorAction::class,
+                'folder' => AliyunOss::OSS_DEFAULT.'/video',
+                'config' => [],
+            ],
+            'diyfield-fileupload' => [
+                'class' => FileUploadAction::class,
+                'uploadName' => DiyField::FIELD_UPLOAD_NAME,
+                'folder' => AliyunOss::OSS_DEFAULT.'/video',
+            ],
+            'diyfield-multiple-fileupload' => [
+                'class' => FileUploadAction::class,
+                'uploadName' => DiyField::FIELD_MULTI_UPLOAD_NAME,
+                'folder' => AliyunOss::OSS_DEFAULT.'/video',
+            ],
+            'diyfield-ueditor' => [
                 'class' => UEditorAction::class,
                 'folder' => AliyunOss::OSS_DEFAULT.'/video',
                 'config' => [],

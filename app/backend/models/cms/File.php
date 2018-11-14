@@ -15,6 +15,7 @@ use yii\db\ActiveRecord;
 use app\widgets\select2\TaggableBehavior;
 use app\widgets\laydate\LaydateBehavior;
 use app\widgets\fileupload\MultiPicBehavior;
+use app\widgets\diyfield\DiyFieldBehavior;
 
 /**
  * This is the model class for table "{{%cms_file}}".
@@ -101,6 +102,10 @@ class File extends \app\models\base\Cms
     	            
     	            return $this->orderid;
 	            }
+            ],
+            //自定义字段
+            'diyField' => [
+                'class' => DiyFieldBehavior::class,
             ],
 	    ];
 	}

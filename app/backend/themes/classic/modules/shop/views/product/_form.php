@@ -17,6 +17,7 @@ use app\assets\ColorPickerAsset;
 use app\models\shop\Brand;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
+use app\widgets\diyfield\DiyFieldWidget;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\shop\Product */
@@ -98,6 +99,9 @@ $this->registerJs($js);
     			<span class="cnote"></span>
     		</td>
     	</tr>
+    	<?= DiyFieldWidget::widget([
+		    'model' => $model,
+		]) ?>
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('sku')?><?php if($model->isAttributeRequired('sku')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
