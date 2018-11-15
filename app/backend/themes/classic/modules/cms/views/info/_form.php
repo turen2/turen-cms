@@ -17,20 +17,29 @@ use app\widgets\ueditor\UEditorWidget;
 use app\widgets\diyfield\DiyFieldWidget;
 use app\models\cms\Info;
 use yii\helpers\Json;
+use app\models\cms\DiyField;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\cms\Info */
 /* @var $form yii\widgets\ActiveForm */
 
-/*
 ValidationAsset::register($this);
 
-$rules = [];
+$rules = $messages = [];
 //$rules[Html::getInputName($model, '')] = ['required' => true];
+
+//自定义字段部分
+$diyFieldRules = DiyField::DiyFieldRules($model);
+$rules = ArrayHelper::merge($diyFieldRules['rules'], $rules);
+$messages = ArrayHelper::merge($diyFieldRules['messages'], $messages);
+
 $rules = Json::encode($rules);
+$messages = Json::encode($messages);
 $js = <<<EOF
 var validator = $("#submitform").validate({
 	rules: {$rules},
+	messages: {$messages},
     errorElement: "p",
 	errorPlacement: function(error, element) {
 		error.appendTo(element.parent());
@@ -38,7 +47,6 @@ var validator = $("#submitform").validate({
 });
 EOF;
 $this->registerJs($js);
-*/
 ?>
 
 <?= Tips::widget([

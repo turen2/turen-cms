@@ -16,15 +16,17 @@ use yii\helpers\Json;
 
 ValidationAsset::register($this);
 
-$rules = [];
+$rules = $messages = [];
 $rules[Html::getInputName($model, 'lang_name')] = ['required' => true];
 $rules[Html::getInputName($model, 'template_id')] = ['required' => true];
 $rules[Html::getInputName($model, 'lang_sign')] = ['required' => true];
 $rules[Html::getInputName($model, 'key')] = ['required' => true];
 $rules = Json::encode($rules);
+$messages = Json::encode($messages);
 $js = <<<EOF
-var validator = $("#createform").validate({
+var validator = $("#submitform").validate({
 	rules: {$rules},
+	messages: {$messages},
     errorElement: "p",
 	errorPlacement: function(error, element) {
 		error.appendTo(element.parent());
@@ -42,7 +44,7 @@ $this->registerJs($js);
 
 <?php $form = ActiveForm::begin([
     'enableClientScript' => false,
-    'options' => ['id' => 'createform'],
+    'options' => ['id' => 'submitform'],
 ]); ?>
 
 <div class="alert alert-warning">注意：同一套模板应该包括 -> 移动端模板和PC端模板两者必须同名且开通相同的语言包。</div>

@@ -353,6 +353,25 @@ turen.cms = (function($) {
                 }
             };
             commonRemote(CONFIG.cms.columnCheckBoxListUrl, {typeid: typeid}, callback, _this);
+        },
+        setDiyFieldRegular: function(_this) {
+        	var key = $(_this).val();
+        	var meses = {
+    			required : '必须输入的字段',
+                email : '必须输入正确格式的电子邮件',
+                url : '必须输入正确格式的网址',
+                dateISO : '必须输入正确格式的日期（ISO），例如：2009-06-23',
+                number : '必须输入合法的数字（负数，小数）',
+                digits : '必须输入整数',
+                creditcard : '必须输入合法的信用卡号',
+                maxlength :	'字段长度不允许超过最大限制',
+                isZipCode : '必须填写正确的邮政编码',
+                isPhone : '必须填写正确的手机号码',
+                isDomain : '必须填写正确的域名'
+        	};
+        	
+        	$('#diyfield-fd_check').val(key);
+        	$('#diyfield-fd_tips').val(meses[key]);
         }
     };
 

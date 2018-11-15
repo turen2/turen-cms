@@ -18,7 +18,7 @@ use yii\helpers\Json;
 ValidationAsset::register($this);
 
 $this->registerJs('
-var validator = $("#createform").validate({
+var validator = $("#submitform").validate({
 	rules: {
 		"'.Html::getInputName($model, 'columnid_list').'": {
 			required: true,
@@ -89,7 +89,7 @@ function SelectDiyField(_this)
 
 <?php $form = ActiveForm::begin([
     'enableClientScript' => false,
-    'options' => ['id' => 'createform'],
+    'options' => ['id' => 'submitform'],
 ]); ?>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="diy-field-form form-table">
 	<tr>
@@ -163,20 +163,7 @@ function SelectDiyField(_this)
 		<td class="first-column"><?= $model->getAttributeLabel('fd_check')?><?php if($model->isAttributeRequired('fd_check')) { ?><span class="maroon">*</span><?php } ?></td>
 		<td class="second-column">
 			<?= Html::activeInput('text', $model, 'fd_check', ['class' => 'input']) ?>
-			<?= Html::dropDownList('validate-regular', $model->fd_check, [
-			    null => '常用正则',
-			    "required" => '必填',
-			    "/^[0-9.-]+$/" => '数字',
-			    "/^[0-9-]+$/" => '整数',
-			    "/^[a-z]+$/i" => '字母',
-			    "/^[0-9a-z]+$/i" => '数字+字母',
-			    "/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/" => 'E-mail',
-			    "/^[0-9]{5,20}$/" => 'QQ',
-			    "/^http:\/\//" => '超链接',
-			    "/^(1)[0-9]{10}$/" => '手机号码',
-			    "/^[0-9-]{6,13}$/" => '电话号码',
-			    "/^[0-9]{6}$/" => '邮政编码',
-			], ['onchange' => 'javascript:$(\'#diyfield-fd_check\').val(this.value);']) ?>
+			<?= Html::dropDownList('validate-regular', $model->fd_check, DiyField::RuleList(), ['onchange' => 'turen.cms.setDiyFieldRegular(this);']) ?>
 			<span class="cnote">不需校验数据请留空</span>
 		</td>
 	</tr>
@@ -198,8 +185,8 @@ function SelectDiyField(_this)
 		<td class="first-column"><?= $model->getAttributeLabel('status')?><?php if($model->isAttributeRequired('status')) { ?><span class="maroon">*</span><?php } ?></td>
 		<td class="second-column">
 			<?= Html::activeRadioList($model, 'status', [
-		        DiyField::STATUS_ON => '显示',
-			    DiyField::STATUS_OFF => '隐藏',
+		        DiyField::STATUS_ON => '启用',
+			    DiyField::STATUS_OFF => '禁用',
 			], ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']);
 			?>
 			<span class="cnote"></span>

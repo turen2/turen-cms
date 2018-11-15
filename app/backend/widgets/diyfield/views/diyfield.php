@@ -17,7 +17,7 @@ use yii\helpers\Url;
 $columnClass = get_class($model);
 foreach ($fieldModels as $fieldModel) { ?>
 <tr>
-	<td class="first-column"><?= $fieldModel->fd_title ?><?= ($fieldModel->fd_check == 'required')?'<span class="maroon">*</span>':'' ?></td>
+	<td class="first-column"><?= $fieldModel->fd_title ?><?= !empty($fieldModel->fd_check)?'<span class="maroon">*</span>':'' ?></td>
 	<td class="second-column">
 		<?php 
 		$attribute = DiyField::FIELD_PRE.$fieldModel->fd_name;
@@ -34,7 +34,12 @@ foreach ($fieldModels as $fieldModel) { ?>
     		            $items[$ii] = $ii;//键和值相等的情况
     		        }
 		        }
-		        $default = empty($items)?'':reset(array_keys($items));//取第一个值reset()
+		        if(empty($items)) {
+		            $default = '';
+		        } else {
+		            $keys = array_keys($items);
+		            $default = isset($keys[0])?$keys[0]:'';//取第一个值
+		        }
 		    } else {
 		        $items = [$fieldModel->fd_value];
 		        $default = $fieldModel->fd_value;

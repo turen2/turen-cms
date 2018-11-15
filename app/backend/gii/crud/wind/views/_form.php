@@ -34,23 +34,22 @@ use app\assets\ValidationAsset;
 
 ValidationAsset::register($this);
 
-$this->registerJs('
-var validator = $("#createform").validate({
-	rules: {
-		"'.Html::getInputName($model, 'xxxxx').'": {
-			required: true,
-		},
-        "'.Html::getInputName($model, 'xxxxx').'": {
-			required: true,
-            digits:true,
-		}
-	},
+$rules = $messages = [];
+$rules[Html::getInputName($model, 'xxxxx')] = ['required' => true];
+
+$rules = Json::encode($rules);
+$messages = Json::encode($messages);
+$js = <<<EOF
+var validator = $("#submitform").validate({
+	rules: {$rules},
+	messages: {$messages},
     errorElement: "p",
 	errorPlacement: function(error, element) {
 		error.appendTo(element.parent());
 	}
 });
-');
+EOF;
+$this->registerJs($js);
 ?>
 
 <?= "<?= " ?>Tips::widget([
@@ -61,7 +60,7 @@ var validator = $("#createform").validate({
 
 <?= "<?php " ?>$form = ActiveForm::begin([
     'enableClientScript' => false,
-    'options' => ['id' => 'createform'],
+    'options' => ['id' => 'submitform'],
 ]); ?>
     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-form form-table">
 <?php foreach ($generator->getColumnNames() as $attribute) { ?>

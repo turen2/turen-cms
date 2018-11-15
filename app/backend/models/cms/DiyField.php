@@ -8,6 +8,7 @@ use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\AttributeBehavior;
 use app\behaviors\InsertLangBehavior;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "{{%diy_field}}".
@@ -23,7 +24,6 @@ use app\behaviors\InsertLangBehavior;
  * @property string $fd_value 字段选项值
  * @property string $fd_check 校验正则
  * @property string $fd_tips 未通过提示
- * @property string $lang 多语言
  * @property string $orderid 排列排序
  * @property int $status 是否生效
  * @property string $created_at 添加时间
@@ -62,10 +62,6 @@ class DiyField extends \app\models\base\Cms
 	            'class' => TimestampBehavior::class,
 	            'createdAtAttribute' => 'created_at',
 	            'updatedAtAttribute' => 'updated_at'
-	        ],
-	        'insertLang' => [//自动填充多站点和多语言
-	            'class' => InsertLangBehavior::class,
-	            'insertLangAttribute' => 'lang',
 	        ],
 	        'defaultOrderid' => [
 	            'class' => AttributeBehavior::class,
@@ -117,7 +113,7 @@ class DiyField extends \app\models\base\Cms
             [['columnid_list', 'fd_title', 'fd_column_type', 'fd_name', 'fd_type'], 'required'],
             [['fd_title', 'fd_name'], 'unique'],
             [['fd_column_type', 'orderid', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['lang', 'fd_name', 'fd_title', 'fd_type', 'fd_tips', 'fd_long', 'fd_desc', 'fd_value', 'fd_check'], 'string'],
+            [['fd_name', 'fd_title', 'fd_type', 'fd_tips', 'fd_long', 'fd_desc', 'fd_value', 'fd_check'], 'string'],
             [['status'], 'default', 'value' => self::STATUS_ON],
             [['columnid_list'], 'safe'],
         ];
@@ -138,9 +134,8 @@ class DiyField extends \app\models\base\Cms
             'fd_type' => '字段类型',
             'fd_long' => '字段长度',
             'fd_value' => '字段选项值',
-            'fd_check' => '校验正则',
+            'fd_check' => '格式控制',
             'fd_tips' => '未通过提示',
-            'lang' => '多语言',
             'orderid' => '排列排序',
             'status' => '是否生效',
             'created_at' => '添加时间',
@@ -232,9 +227,57 @@ class DiyField extends \app\models\base\Cms
      * 生成diy field验证规则
      * @return array
      */
-    public function diyFieldrules()
+    public static function DiyFieldRules($model)
     {
-        return [];
+        $id = Column::ColumnConvert('class2id', get_class($model));
+        $fieldModels = self::find()->where(['fd_column_type' => $id])->orderBy(['orderid' => SORT_DESC])->all();
+        
+        $rules = [];
+        $messages = [];
+        foreach ($fieldModels as $fieldModel) {
+            if(in_array($model->columnid, explode(',', $fieldModel->columnid_list))) {
+                $attribute = DiyField::FIELD_PRE.$fieldModel->fd_name;
+                if(!empty($fieldModel->fd_check)) {
+                    if($fieldModel->fd_check == 'maxlength' && $fieldModel->fd_long > 0) {
+                        $rules[Html::getInputName($model, $attribute)] = [$fieldModel->fd_check => $fieldModel->fd_long];
+                    } else {
+                        $rules[Html::getInputName($model, $attribute)] = [$fieldModel->fd_check => true];
+                    }
+                }
+                $messages[Html::getInputName($model, $attribute)] = $fieldModel->fd_tips;
+            }
+        }
+        
+        return [
+            'rules' => $rules,
+            'messages' => $messages,
+        ];
+    }
+    
+    /**
+     * 验证列表
+     * @param string $hasNull
+     * @return string[] | empty
+     */
+    public static function RuleList($key = null, $hasNull = true)
+    {
+        $rules = [
+            'required' => '必填',//true必须输入的字段
+            'email' => '邮箱',//true必须输入正确格式的电子邮件
+            'url' => '网址',//true必须输入正确格式的网址
+            'dateISO' => '日期',//true必须输入正确格式的日期（ISO），例如：2009-06-23，1998/01/22
+            'number' => '数字',//true必须输入合法的数字（负数，小数）
+            'digits' => '整数',//true必须输入整数
+            'creditcard' => '信用卡号',//true必须输入合法的信用卡号
+            'maxlength' => '最大长度限制',//5	输入长度最多是 5 的字符串（汉字算一个字符）
+            'isZipCode' => '邮政编码',//true必须填写正确的邮政编码
+            'isPhone' => '手机号码',//true必须填写正确的手机号码
+            'isDomain' => '域名',//true必须填写正确的域名
+        ];
+        
+        $rules = $hasNull?ArrayHelper::merge([null => '常用格式限制'], $rules):$rules;
+        
+        return is_null($key)?$rules:(isset($rules[$key])?$rules[$key]:'');
     }
     
     /**

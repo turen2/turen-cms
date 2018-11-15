@@ -49,6 +49,8 @@ class DiyFieldController extends Controller
             'check' => [
                 'class' => CheckAction::class,
                 'className' => DiyField::class,
+                'openName' => '启用',
+                'closeName' => '禁用',
                 'id' => $request->get('id'),
             ],
         ];

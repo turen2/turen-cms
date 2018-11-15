@@ -10,9 +10,6 @@ use Yii;
 use yii\base\InvalidArgumentException;
 use app\models\cms\DiyField;
 use app\models\cms\Column;
-use app\assets\ValidationAsset;
-use yii\helpers\Html;
-use yii\helpers\Json;
 
 /**
  * @author jorry
@@ -52,7 +49,7 @@ class DiyFieldWidget extends \yii\base\Widget
     public function run() {
         //组织数据
         $id = Column::ColumnConvert('class2id', get_class($this->model));//所属模型
-        $fieldModels = DiyField::find()->where(['fd_column_type' => $id])->orderBy(['orderid' => SORT_DESC])->all();
+        $fieldModels = DiyField::find()->active()->andWhere(['fd_column_type' => $id])->orderBy(['orderid' => SORT_DESC])->all();
         
         //所属栏目
         foreach ($fieldModels as $fileKey => $fieldModel) {
@@ -65,52 +62,14 @@ class DiyFieldWidget extends \yii\base\Widget
         return $this->render('diyfield', ['fieldModels' => $fieldModels, 'model' => $this->model]);
     }
     
-    public function afterRun($result)
-    {
-        $result = parent::afterRun($result);
-        // your custom code here
-        
-        
-        return $result;
-    }
-    
     /**
      * 注册客户端脚本
      */
     protected function registerClientScript($model)
     {
-        ValidationAsset::register($this->view);
-        
-        $id = Column::ColumnConvert('class2id', get_class($model));
-        $fieldModels = DiyField::find()->where(['fd_column_type' => $id])->orderBy(['orderid' => SORT_DESC])->all();
-        
-        $rules = [];
-        $messages = [];
-        foreach ($fieldModels as $fieldModel) {
-            if(in_array($model->columnid, explode(',', $fieldModel->columnid_list))) {
-                $attribute = DiyField::FIELD_PRE.$fieldModel->fd_name;
-                //$check = $fieldModel->fd_check;
-                
-                $rules[Html::getInputName($model, $attribute)] = ['required' => true];
-                $messages[Html::getInputName($model, $attribute)] = $fieldModel->fd_tips;
-            }
-        }
-        
-        $rules = Json::encode($rules);
-        $messages = Json::encode($messages);
-        
         $script = <<<EOF
             //解决虚线问题
             $('.no-prev-line').prev().find('td').css('borderBottom', 'none');
-
-            var validatorDiyField = $("#submitform").validate({
-            	rules: {$rules},
-                messages: {$messages},
-                errorElement: "p",
-            	errorPlacement: function(error, element) {
-            		error.appendTo(element.parent());
-            	}
-            });
 EOF;
         
         $this->view->registerJs($script);//, yii\web\View::POS_READY

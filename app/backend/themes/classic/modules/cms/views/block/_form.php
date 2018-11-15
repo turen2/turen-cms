@@ -21,13 +21,15 @@ use yii\helpers\Json;
 
 ValidationAsset::register($this);
 
-$rules = [];
+$rules = $messages = [];
 $rules[Html::getInputName($model, 'title')] = ['required' => true];
 $rules = Json::encode($rules);
+$messages = Json::encode($messages);
 
 $js = <<<EOF
 var validator = $("#submitform").validate({
 	rules: {$rules},
+	messages: {$messages},
     errorElement: "p",
 	errorPlacement: function(error, element) {
 		error.appendTo(element.parent());

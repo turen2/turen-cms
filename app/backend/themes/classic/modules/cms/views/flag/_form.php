@@ -14,13 +14,16 @@ use yii\helpers\Json;
 
 ValidationAsset::register($this);
 
-$rules = [];
+$rules = $messages = [];
 $rules[Html::getInputName($model, 'flagname')] = ['required' => true];
 $rules[Html::getInputName($model, 'flag')] = ['required' => true];
+
 $rules = Json::encode($rules);
+$messages = Json::encode($messages);
 $js = <<<EOF
-var validator = $("#createform").validate({
+var validator = $("#submitform").validate({
 	rules: {$rules},
+	messages: {$messages},
     errorElement: "p",
 	errorPlacement: function(error, element) {
 		error.appendTo(element.parent());
@@ -38,7 +41,7 @@ $this->registerJs($js);
 
 <?php $form = ActiveForm::begin([
     'enableClientScript' => false,
-    'options' => ['id' => 'createform'],
+    'options' => ['id' => 'submitform'],
 ]); ?>
     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="flag-form form-table">
     	<tr>

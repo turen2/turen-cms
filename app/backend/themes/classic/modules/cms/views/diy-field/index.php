@@ -18,6 +18,8 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel, 'type' => 
 
 <?= $this->render('_search', ['model' => $searchModel]); ?>
 
+<div class="alert alert-warning">注意：编辑字段时一定要保证对应的字段没有内容，系统不会自动判断。</div>
+
 <?php $form = ActiveForm::begin([
     'enableClientScript' => false,
     'options' => ['id' => 'batchform'],
@@ -31,6 +33,7 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel, 'type' => 
 		<td width="7%">所属模型</td>
 		<td width="12%">所属栏目</td>
 		<td width="7%">字段类型</td>
+		<td width="7%">限制条件</td>
 		<td width="10%" align="center">排序</td>
 		<td width="25%" class="end-column">操作</td>
 	</tr>
@@ -40,7 +43,7 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel, 'type' => 
 	        'data-url' => Url::to(['check', 'id' => $model->id]),
 	        'onclick' => 'turen.com.updateStatus(this)',
         ];
-		$checkstr = Html::a(($model->status?'显示':'隐藏'), 'javascript:;', $options);
+		$checkstr = Html::a(($model->status?'启用':'禁用'), 'javascript:;', $options);
 		
 		$options = [
     		'data-url' => Url::to(['delete', 'id' => $model->id, 'returnUrl' => Url::current()]),
@@ -58,6 +61,7 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel, 'type' => 
 		<td><?= Column::ColumnConvert('id2name', $model->fd_column_type); ?></td>
 		<td><?= implode('<br />', $model->columnListStr()); ?></td>
 		<td><?= $model->fd_type ?><?= in_array($model->fd_type, ['text', 'mediumtext', 'filearr'])?'':'['.$model->fd_long.']'; ?></td>
+		<td><?= DiyField::RuleList($model->fd_check) ?></td>
 		<td align="center">
 			<a href="<?=Url::to(['simple-move', 'type' => DiyField::ORDER_UP_TYPE, 'id' => $model->id, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>
 			<input type="text" name="orderid[]" id="orderid[]" class="inputls" value="<?= $model->orderid; ?>">

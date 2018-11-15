@@ -18,6 +18,7 @@ use app\models\shop\Brand;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use app\widgets\diyfield\DiyFieldWidget;
+use app\models\cms\DiyField;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\shop\Product */
@@ -26,17 +27,25 @@ use app\widgets\diyfield\DiyFieldWidget;
 ValidationAsset::register($this);
 ColorPickerAsset::register($this);
 
-$rules = [];
+$rules = $messages = [];
 $rules[Html::getInputName($model, 'columnid')] = ['required' => true];
 $rules[Html::getInputName($model, 'pcateid')] = ['required' => true];
 $rules[Html::getInputName($model, 'brand_id')] = ['required' => true];
 $rules[Html::getInputName($model, 'sales_price')] = ['required' => true, 'digits' => true];
 $rules[Html::getInputName($model, 'content')] = ['required' => true];
 $rules[Html::getInputName($model, 'picurl')] = ['required' => true];
+
+//自定义字段部分
+$diyFieldRules = DiyField::DiyFieldRules($model);
+$rules = ArrayHelper::merge($diyFieldRules['rules'], $rules);
+$messages = ArrayHelper::merge($diyFieldRules['messages'], $messages);
+
 $rules = Json::encode($rules);
+$messages = Json::encode($messages);
 $js = <<<EOF
-var validator = $("#createform").validate({
+var validator = $("#submitform").validate({
 	rules: {$rules},
+	messages: {$messages},
     errorElement: "p",
 	errorPlacement: function(error, element) {
 		error.appendTo(element.parent());
@@ -54,7 +63,7 @@ $this->registerJs($js);
 
 <?php $form = ActiveForm::begin([
     'enableClientScript' => false,
-    'options' => ['id' => 'createform'],
+    'options' => ['id' => 'submitform'],
 ]); ?>
     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="product-form form-table">
     	<tr>
