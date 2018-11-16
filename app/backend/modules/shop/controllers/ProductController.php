@@ -141,6 +141,7 @@ class ProductController extends Controller
     {
         $model = new Product();
         $model->loadDefaultValues();
+        $model->columnid = Yii::$app->getRequest()->get('columnid', null);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $model->dealAttribute(Yii::$app->request->post());

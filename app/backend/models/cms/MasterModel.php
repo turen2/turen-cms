@@ -37,8 +37,8 @@ class MasterModel extends \app\models\base\Cms
 {
 	public $keyword;
 	
-	private static $_DiyModel;//缓存对象
 	public static $DiyModelId;//切换id
+	private static $_DiyModel;//缓存对象
 	
 	public function behaviors()
 	{
@@ -125,8 +125,9 @@ class MasterModel extends \app\models\base\Cms
         return [
             [['columnid', 'cateid', 'title'], 'required'],
             [['columnid', 'parentid', 'cateid', 'catepid', 'status', 'orderid', 'posttime', 'updated_at', 'created_at'], 'integer'],
-            [['title', 'parentstr', 'catepstr', 'flag', 'picurl', 'lang'], 'string'],
+            [['title', 'parentstr', 'catepstr', 'picurl', 'lang'], 'string'],
             [['status'], 'default', 'value' => self::STATUS_ON],
+            [['flag'], 'safe'],
         ];
     }
 
@@ -153,6 +154,34 @@ class MasterModel extends \app\models\base\Cms
             'updated_at' => '更新时间',
             'created_at' => '添加时间',
         ];
+    }
+    
+    /**
+     * 插入之前整理，且通过过滤器
+     * {@inheritDoc}
+     * @see \yii\db\BaseActiveRecord::beforeSave()
+     */
+    public function beforeSave($insert)
+    {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+        
+        //转化flag为字符串
+        if(is_array($this->flag)) {
+            $this->flag = implode(',', $this->flag);
+        }
+        
+        //添加和编辑，都要处理parentstr
+        $columModel = Column::findOne(['id' => $this->columnid]);
+        $this->parentid = $columModel->parentid;
+        $this->parentstr = $columModel->parentstr;
+        
+        $cateModel = Cate::findOne(['id' => $this->cateid]);
+        $this->catepid = $cateModel->parentid;
+        $this->catepstr = $cateModel->parentstr;
+        
+        return true;
     }
     
     /**

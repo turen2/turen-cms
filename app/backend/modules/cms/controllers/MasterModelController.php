@@ -15,12 +15,15 @@ use common\components\AliyunOss;
 use app\widgets\ueditor\UEditorAction;
 use yii\base\InvalidArgumentException;
 use app\models\cms\DiyModel;
+use app\widgets\edititem\EditItemAction;
 
 /**
  * MasterModelController implements the CRUD actions for MasterModel model.
  */
 class MasterModelController extends Controller
 {
+    public static $DiyModel;
+    
     public function init()
     {
         parent::init();
@@ -29,7 +32,15 @@ class MasterModelController extends Controller
         if(!isset($params['mid'])) {
             throw new InvalidArgumentException('访问MasterModelController必须要mid的get/post参数');
         }
-        MasterModel::$DiyModelId = $params['mid'];
+        MasterModel::$DiyModelId = $params['mid'];//切换模型与表的对应关系
+        
+        if(empty(self::$DiyModel)) {
+            self::$DiyModel = DiyModel::find()->active()->andWhere(['dm_id' => MasterModel::$DiyModelId])->one();
+        }
+        
+        if(empty(self::$DiyModel)) {
+            throw new InvalidArgumentException('访问MasterModelController必须要mid的get/post参数');
+        }
     }
     
     /**
@@ -53,24 +64,36 @@ class MasterModelController extends Controller
     {
         $request = Yii::$app->getRequest();
         return [
+            'edit-item' => [
+                'class' => EditItemAction::class,
+                'className' => MasterModel::class,
+                'id' => $request->post('id'),
+                'field' => 'orderid',
+                'value' => $request->post('value'),
+            ],
             'check' => [
                 'class' => CheckAction::class,
                 'className' => MasterModel::class,
                 'id' => $request->get('id'),
             ],
+            'fileupload' => [
+                'class' => FileUploadAction::class,
+                'uploadName' => 'picurl',
+                'folder' => AliyunOss::OSS_DEFAULT.'/'.self::$DiyModel->dm_name,
+            ],
             'diyfield-fileupload' => [
                 'class' => FileUploadAction::class,
                 'uploadName' => DiyField::FIELD_UPLOAD_NAME,
-                'folder' => AliyunOss::OSS_DEFAULT.'/xxxxxx',
+                'folder' => AliyunOss::OSS_DEFAULT.'/'.self::$DiyModel->dm_name,
             ],
             'diyfield-multiple-fileupload' => [
                 'class' => FileUploadAction::class,
                 'uploadName' => DiyField::FIELD_MULTI_UPLOAD_NAME,
-                'folder' => AliyunOss::OSS_DEFAULT.'/xxxxxx',
+                'folder' => AliyunOss::OSS_DEFAULT.'/'.self::$DiyModel->dm_name,
             ],
             'diyfield-ueditor' => [
                 'class' => UEditorAction::class,
-                'folder' => AliyunOss::OSS_DEFAULT.'/xxxxxx',
+                'folder' => AliyunOss::OSS_DEFAULT.'/'.self::$DiyModel->dm_name,
                 'config' => [],
             ],
         ];
@@ -85,11 +108,10 @@ class MasterModelController extends Controller
         $searchModel = new MasterModelSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         
-        $diyModel = DiyModel::find()->active()->andWhere([''])
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'diyModel' => self::$DiyModel,
         ]);
     }
 
@@ -102,13 +124,15 @@ class MasterModelController extends Controller
     {
         $model = new MasterModel();
         $model->loadDefaultValues();
+        $model->columnid = Yii::$app->getRequest()->get('columnid', null);
         
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
         	Yii::$app->getSession()->setFlash('success', $model->title.' 添加成功，结果将展示在列表。');
-            return $this->redirect(['index']);
+        	return $this->redirect(['index', 'mid' => MasterModel::$DiyModelId]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'diyModel' => self::$DiyModel,
             ]);
         }
     }
@@ -125,10 +149,11 @@ class MasterModelController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
         	Yii::$app->getSession()->setFlash('success', $model->title.' 已经修改成功！');
-            return $this->redirect(['index']);
+        	return $this->redirect(['index', 'mid' => MasterModel::$DiyModelId]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'diyModel' => self::$DiyModel,
             ]);
         }
     }
@@ -139,7 +164,7 @@ class MasterModelController extends Controller
      * @param string $id
      * @return mixed
      */
-    public function actionDelete($id, $returnUrl = ['index'])
+    public function actionDelete($id)
     {
         $model = $this->findModel($id);
         $model->delete();
@@ -152,7 +177,26 @@ class MasterModelController extends Controller
         }
         
         Yii::$app->getSession()->setFlash('success', $model->title.' 已经成功删除！');
-        return $this->redirect($returnUrl);
+        return $this->redirect(['index', 'mid' => MasterModel::$DiyModelId]);
+    }
+    
+    /**
+     * 批量提交并处理
+     * @param string $type delete | order
+     * @return \yii\web\Response
+     */
+    public function actionBatch($type)
+    {
+        if($type == 'delete') {
+            $tips = '';
+            foreach (MasterModel::find()->current()->andWhere(['id' => Yii::$app->getRequest()->post('checkid', [])])->all() as $model) {
+                $model->delete();
+                $tips .= '<li>'.$model->title.' 删除成功！</li>';
+            }
+            Yii::$app->getSession()->setFlash('success', '<ul>'.$tips.'</ul>');
+        }
+        
+        return $this->redirect(['index', 'mid' => MasterModel::$DiyModelId]);
     }
 
     /**

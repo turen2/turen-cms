@@ -141,6 +141,8 @@ class FileController extends Controller
     {
         $model = new File();
         $model->loadDefaultValues();
+        $model->columnid = Yii::$app->getRequest()->get('columnid', null);
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
         	Yii::$app->getSession()->setFlash('success', $model->title.' 添加成功，结果将展示在列表中。');
             return $this->redirect(['index']);

@@ -12,10 +12,10 @@ use app\widgets\edititem\EditItemWidget;
 /* @var $searchModel app\models\cms\MasterModelSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = '会修复。。。';
+$this->title = $diyModel->dm_title.'列表';
 ?>
 
-<?= $this->render('_search', ['model' => $searchModel]); ?>
+<?= $this->render('_search', ['model' => $searchModel, 'diyModel' => $diyModel]); ?>
 
 <?php $form = ActiveForm::begin([
     'enableClientScript' => false,
@@ -40,13 +40,13 @@ $this->title = '会修复。。。';
 	<?php foreach ($dataProvider->getModels() as $key => $model) {
 		$options = [
 	        'title' => '点击进行显示和隐藏操作',
-	        'data-url' => Url::to(['check', 'id' => $model->id]),
+	        'data-url' => Url::to(['check', 'id' => $model->id, 'mid' => $diyModel->dm_id]),
 	        'onclick' => 'turen.com.updateStatus(this)',
         ];
 		$checkstr = Html::a(($model->status?'显示':'隐藏'), 'javascript:;', $options);
 		
 		$options = [
-    		'data-url' => Url::to(['delete', 'id' => $model->id, 'returnUrl' => Url::current()]),
+		    'data-url' => Url::to(['delete', 'id' => $model->id, 'mid' => $diyModel->dm_id, 'returnUrl' => Url::current()]),
 		    'onclick' => 'turen.com.deleteItem(this, \''.$model->title.'\')',
 		];
 		$delstr = Html::a('删除', 'javascript:;', $options);
@@ -69,11 +69,11 @@ $this->title = '会修复。。。';
 		    'model' => $model,
 		    'primaryKey' => 'id',
 		    'attribute' => 'orderid',
-		    'url' => Url::to(['/cms/master-model/edit-item']),
+		    'url' => Url::to(['/cms/master-model/edit-item', 'mid' => $diyModel->dm_id]),
 		    'options' => [],
 		]); ?></td>
 		<td><?= Yii::$app->getFormatter()->asDate($model->posttime); ?></td>
-		<td class="action end-column"><span><?= $checkstr; ?></span> | <span><a href="<?= Url::to(['update', 'id' => $model->id]) ?>">修改</a></span> | <span class="nb"><?= $delstr; ?></span></td>
+		<td class="action end-column"><span><?= $checkstr; ?></span> | <span><a href="<?= Url::to(['update', 'mid' => $diyModel->dm_id, 'id' => $model->id]) ?>">修改</a></span> | <span class="nb"><?= $delstr; ?></span></td>
 	</tr>
 	<?php } ?>
 </table>
@@ -87,7 +87,14 @@ if(empty($dataProvider->count))
 ?>
 
 <div class="bottom-toolbar clearfix">
-	<?= Html::a('添加新xxxxxx', ['create'], ['class' => 'data-btn']) ?>
+	<span class="sel-area">
+    	<span class="sel-name">选择：</span> 
+    	<a href="javascript:turen.com.checkAll(true);">全选</a> - 
+    	<a href="javascript:turen.com.checkAll(false);">反选</a>
+    	<span class="op-name">操作：</span>
+    	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'mid' => $diyModel->dm_id, 'type' => 'delete'])?>', 'batchform');">删除</a>
+	</span>
+	<?= Html::a('添加新'.$diyModel->dm_title, ['create', 'mid' => $diyModel->dm_id], ['class' => 'data-btn']) ?>
 	<div class="page">
     	<?= LinkPager::widget([
     	    'pagination' => $dataProvider->getPagination(),
@@ -109,7 +116,7 @@ if(empty($dataProvider->count))
 			<span class="sel-area">
 				<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
 			</span>
-			<?= Html::a('添加新xxxxxx', ['create'], ['class' => 'data-btn']) ?>
+			<?= Html::a('添加新'.$diyModel->dm_title, ['create', 'mid' => $diyModel->dm_id], ['class' => 'data-btn']) ?>
 			<span class="page-small">
 			<?= LinkPager::widget([
 			    'pagination' => $dataProvider->getPagination(),

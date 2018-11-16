@@ -17,6 +17,7 @@ use yii\web\JsExpression;
 use app\widgets\diyfield\DiyFieldWidget;
 use app\models\cms\DiyField;
 use yii\helpers\ArrayHelper;
+use app\models\cms\MasterModel;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\cms\MasterModel */
@@ -29,7 +30,7 @@ $rules = $messages = [];
 $rules[Html::getInputName($model, 'title')] = ['required' => true];
 
 //自定义字段部分
-$diyFieldRules = DiyField::DiyFieldRules($model);
+$diyFieldRules = DiyField::DiyFieldRules($model, $diyModel);
 $rules = ArrayHelper::merge($diyFieldRules['rules'], $rules);
 $messages = ArrayHelper::merge($diyFieldRules['messages'], $messages);
 
@@ -57,12 +58,13 @@ $this->registerJs($js);
 <?php $form = ActiveForm::begin([
     'enableClientScript' => false,
     'options' => ['id' => 'submitform'],
+    'action' => ['create', 'mid' => $diyModel->dm_id],
 ]); ?>
     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="master-model-form form-table">
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('columnid')?><?php if($model->isAttributeRequired('columnid')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<?= BuildHelper::buildSelector($model, 'columnid', Column::find()->current()->orderBy(['orderid' => SORT_DESC])->all(), Column::class, 'id', 'parentid', 'cname', true, 6)?>
+    			<?= BuildHelper::buildSelector($model, 'columnid', Column::find()->current()->orderBy(['orderid' => SORT_DESC])->all(), Column::class, 'id', 'parentid', 'cname', true, MasterModel::$DiyModelId)?>
     			<span class="cnote">带<span class="maroon">*</span>号表示为必填项</span>
     		</td>
     	</tr>
@@ -92,8 +94,8 @@ $this->registerJs($js);
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('flag')?><?php if($model->isAttributeRequired('flag')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column attr-area">
-    			<?php $model->flag = array_keys($model->getAllFlag(5))//获取选择的标签数组?>
-    			<?= Html::activeCheckboxList($model, 'flag', $model->getAllFlag(5, true, true), ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']) ?>
+    			<?php $model->flag = array_keys($model->getAllFlag(MasterModel::$DiyModelId))//获取选择的标签数组?>
+    			<?= Html::activeCheckboxList($model, 'flag', $model->getAllFlag(MasterModel::$DiyModelId, true, true), ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']) ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>
@@ -104,7 +106,7 @@ $this->registerJs($js);
                     'model' => $model,
                     'attribute' => 'picurl',
                     'options' => ['class' => 'input', 'readonly' => true],
-                    'url' => ['fileupload', 'param' => 'value'],
+                    'url' => ['fileupload', 'mid' => $diyModel->dm_id],
                     'uploadName' => 'picurl',
                     'fileOptions' => [
                         'accept' => '*',//选择文件时的windows过滤器
@@ -156,7 +158,7 @@ $this->registerJs($js);
     		<td>
     			<div class="form-sub-btn">
             		<?= Html::submitButton('提交', ['class' => 'submit', 'id' => 'submit-btn']) ?>
-            		<?= Html::input('button', 'backName', '返回', ['class' => 'back', 'onclick' => 'location.href="'.Url::to(['index']).'"']) ?>
+            		<?= Html::input('button', 'backName', '返回', ['class' => 'back', 'onclick' => 'location.href="'.Url::to(['index', 'mid' => $diyModel->dm_id]).'"']) ?>
             	</div>
     		</td>
     	</tr>

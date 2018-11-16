@@ -233,9 +233,15 @@ class DiyField extends \app\models\base\Cms
      * 生成diy field验证规则
      * @return array
      */
-    public static function DiyFieldRules($model)
+    public static function DiyFieldRules($model, $diyModel = null)
     {
-        $id = Column::ColumnConvert('class2id', get_class($model));
+        $className = get_class($model);
+        if(!is_null($diyModel) && get_class($diyModel) == DiyModel::class) {
+            $className = MasterModel::class.'_'.$diyModel->dm_id;
+        }
+        $id = Column::ColumnConvert('class2id', $className);
+        
+        
         $fieldModels = self::find()->where(['fd_column_type' => $id])->orderBy(['orderid' => SORT_DESC])->all();
         
         $rules = [];

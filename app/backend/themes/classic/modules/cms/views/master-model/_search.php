@@ -18,15 +18,15 @@ foreach ($model->attributes as $key => $value) {
 
 <div class="master-model-search toolbar-tab">
 	<ul>
-        <li class="<?= $isAll?'on':''?>"><?= Html::a('全部', ['index']) ?></li>
+        <li class="<?= $isAll?'on':''?>"><?= Html::a('全部', ['index', 'mid' => $diyModel->dm_id]) ?></li>
         <li class="line">-</li>
-        <li class="<?= (!is_null($model->status) && $model->status == ActiveRecord::STATUS_ON)?'on':''?>"><?= Html::a('显示', ['index', Html::getInputName($model, 'status') => ActiveRecord::STATUS_ON]) ?></li>
+        <li class="<?= (!is_null($model->status) && $model->status == ActiveRecord::STATUS_ON)?'on':''?>"><?= Html::a('显示', ['index', 'mid' => $diyModel->dm_id, Html::getInputName($model, 'status') => ActiveRecord::STATUS_ON]) ?></li>
         <li class="line">-</li>
-        <li class="<?= (!is_null($model->status) && $model->status == ActiveRecord::STATUS_OFF)?'on':''?>"><?= Html::a('隐藏', ['index', Html::getInputName($model, 'status') => ActiveRecord::STATUS_OFF]) ?></li>
+        <li class="<?= (!is_null($model->status) && $model->status == ActiveRecord::STATUS_OFF)?'on':''?>"><?= Html::a('隐藏', ['index', 'mid' => $diyModel->dm_id, Html::getInputName($model, 'status') => ActiveRecord::STATUS_OFF]) ?></li>
 	</ul>
 	<div id="search" class="search">
         <?php $form = ActiveForm::begin([
-            'action' => ['index'],
+            'action' => ['index', 'mid' => $diyModel->dm_id],
             'method' => 'get',
             'id' => 'searchform',
         ]); ?>

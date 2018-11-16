@@ -160,7 +160,6 @@ class File extends \app\models\base\Cms
     {
         return [
             'id' => '文件信息ID',
-            
             'columnid' => '所属栏目',
             'cateid' => '所属类别',
             'parentid' => '所属栏目上级ID',

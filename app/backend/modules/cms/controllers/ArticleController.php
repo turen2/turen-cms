@@ -141,6 +141,8 @@ class ArticleController extends Controller
     public function actionCreate()
     {
         $model = new Article();
+        $model->loadDefaultValues();
+        $model->columnid = Yii::$app->getRequest()->get('columnid', null);
 
         $model->loadDefaultValues();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

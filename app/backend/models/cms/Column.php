@@ -277,6 +277,8 @@ class Column extends \app\models\base\Cms
         if(!empty($mask)) {
             if($key == self::COLUMN_TYPE_INFO) {
                 return Url::to(['info/update', 'id' => $model->id]);
+            } elseif(DiyModel::find()->where(['dm_id' => $key])->exists()) {
+                return Url::to([$mask.'/create', 'mid' => $key, 'columnid' => $model->id]);
             } else {
                 return Url::to([$mask.'/create', 'columnid' => $model->id]);
             }

@@ -10,6 +10,7 @@ use Yii;
 use yii\base\InvalidArgumentException;
 use app\models\cms\DiyField;
 use app\models\cms\Column;
+use app\models\cms\MasterModel;
 
 /**
  * @author jorry
@@ -48,7 +49,11 @@ class DiyFieldWidget extends \yii\base\Widget
      */
     public function run() {
         //考虑到有自定义模型的情况
-        $className = str_replace('MasterModel_'.$this->model->fd_column_type, 'MasterModel', get_class($this->model));
+        $className = get_class($this->model);
+        if(get_class($this->model) == MasterModel::class) {
+            $className = MasterModel::class.'_'.MasterModel::$DiyModelId;
+        }
+        
         //组织数据
         $id = Column::ColumnConvert('class2id', $className);//所属模型
         $fieldModels = DiyField::find()->active()->andWhere(['fd_column_type' => $id])->orderBy(['orderid' => SORT_DESC])->all();
