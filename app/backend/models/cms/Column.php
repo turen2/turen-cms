@@ -192,7 +192,7 @@ class Column extends \app\models\base\Cms
      * 'class2id' 模型类对应ID
      * 'class2name' 模型类对应类名
      * .....
-     * @param $key 转化后获取其中一个值的时候所使用的键
+     * @param $key 转化后获取其中一个值的时候所使用的键//不可以mask2id、mask2class、mask2name
      * return [] | int | string
      */
     public static function ColumnConvert($type, $key = null, $default = '')
@@ -235,6 +235,15 @@ class Column extends \app\models\base\Cms
                 'mask' => 'video',
             ],
         ];
+        
+        foreach (DiyModel::find()->active()->asArray()->all() as $diymodel) {
+            $data[$diymodel['dm_id']] = [
+                'id' => $diymodel['dm_id'],
+                'class' => MasterModel::class.'_'.$diymodel['dm_id'],//母模型会有重叠，因为使用id区分
+                'name' => $diymodel['dm_title'],
+                'mask' => 'master-model',//不可以mask2id、mask2class、mask2name
+            ];
+        }
         
         //匹配需要的类型数组
         list($k, $v) = explode('2', strtolower($type));

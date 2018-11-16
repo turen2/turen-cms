@@ -7,7 +7,6 @@ use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\AttributeBehavior;
-use app\behaviors\InsertLangBehavior;
 use yii\helpers\Html;
 
 /**
@@ -198,9 +197,16 @@ class DiyField extends \app\models\base\Cms
         
         //增加或删除模型中的字段
         $className = Column::ColumnConvert('id2class', $this->fd_column_type);
-        $columnName = self::FIELD_PRE.$this->fd_name;
+        
+        //判断自定义模型
+        if(strpos($className, 'MasterModel_'.$this->fd_column_type) !== false) {
+            $className = str_replace('MasterModel_'.$this->fd_column_type, 'MasterModel', $className);
+            $className::$DiyModelId = $this->fd_column_type;
+        }
+            
         $tableName = $className::tableName();
-        if(empty($className)) {
+        $columnName = self::FIELD_PRE.$this->fd_name;
+        if(empty($className) || empty($tableName)) {
             return;//直接返回
         }
         
