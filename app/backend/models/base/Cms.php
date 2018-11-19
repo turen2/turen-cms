@@ -12,6 +12,7 @@ use app\models\cms\Flag;
 use app\models\cms\Cate;
 use yii\helpers\ArrayHelper;
 use app\models\cms\DiyField;
+use app\models\cms\MasterModel;
 
 class Cms extends \app\components\ActiveRecord
 {
@@ -30,17 +31,47 @@ class Cms extends \app\components\ActiveRecord
      */
     public function rules()
     {
-        $id = Column::ColumnConvert('class2id', get_class($this));
+        if(get_class($this) == MasterModel::class) {
+            $className = MasterModel::class.'_'.MasterModel::$DiyModelId;
+        } else {
+            $className = get_class($this);
+        }
+        $id = Column::ColumnConvert('class2id', $className);
         $fieldModels = DiyField::find()->where(['fd_column_type' => $id])->orderBy(['orderid' => SORT_DESC])->all();
-        
         $fields = [];
         foreach ($fieldModels as $fieldModel) {
             if(in_array($this->columnid, explode(',', $fieldModel->columnid_list))) {
-                $fields[] = DiyField::FIELD_PRE.$fieldModel->fd_name;
+                //验证规则对应关系
+                switch (trim($fieldModel->fd_check)) {
+                    case 'required':
+                        $fields[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'required'];
+                        break;
+                    case 'email':
+                        $fields[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'email'];
+                        break;
+                    case 'url':
+                        $fields[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'url'];
+                        break;
+                    case 'digits':
+                    case 'number':
+                        $fields[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'double'];
+                        break;
+                    case 'maxlength':
+                        $fields[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'string', 'max' => $fieldModel->fd_long];
+                        break;
+                    case 'dateISO':
+                    case 'creditcard':
+                    case 'isZipCode':
+                    case 'isPhone':
+                    case 'isDomain':
+                        $fields[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'safe'];
+                        break;
+                }
             }
         }
         
-        return empty($fields)?[]:[[$fields, 'safe']];
+//         var_dump($fields);exit;
+        return empty($fields)?[]:$fields;
     }
     
     private static function initData()

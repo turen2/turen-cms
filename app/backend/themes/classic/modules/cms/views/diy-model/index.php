@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
+use app\models\cms\DiyModel;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\cms\DiyModelSearch */
@@ -41,7 +42,7 @@ $this->title = '自定义模型';
 		<td class="first-column"><?= $model->dm_id; ?></td>
 		<td><?= $model->dm_title; ?></td>
 		<td><?= $model->dm_name; ?></td>
-		<td><?= $model->dm_tbname; ?></td>
+		<td><?= DiyModel::MODEL_PRE.$model->dm_tbname; ?></td>
 		<td><?= Yii::$app->getFormatter()->asDate($model->updated_at); ?></td>
 		<td class="action end-column"><span><?= $checkstr; ?></span> | <span><a href="<?= Url::to(['/cms/diy-field/index', 'DiyFieldSearch[fd_column_type]' => $model->dm_id]) ?>">字段</a></span> | <span><a href="<?= Url::to(['update', 'id' => $model->dm_id]) ?>">修改</a></span> | <span class="nb"><?= $delstr; ?></span></td>
 	</tr>

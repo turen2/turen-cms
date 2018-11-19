@@ -10,6 +10,7 @@ use yii\behaviors\AttributeBehavior;
 use app\behaviors\InsertLangBehavior;
 use app\widgets\laydate\LaydateBehavior;
 use yii\base\InvalidArgumentException;
+use app\widgets\diyfield\DiyFieldBehavior;
 
 /**
  * This is the model class for table "{{%diymodel_master_model}}".
@@ -81,6 +82,10 @@ class MasterModel extends \app\models\base\Cms
     	            return $this->orderid;
 	            }
             ],
+            //自定义字段
+            'diyField' => [
+                'class' => DiyFieldBehavior::class,
+            ],
 	    ];
 	}
 
@@ -119,16 +124,14 @@ class MasterModel extends \app\models\base\Cms
      */
     public function rules()
     {
-        //静态默认值由规则来赋值
-        //[['status'], 'default', 'value' => self::STATUS_ON],
-        //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
-        return [
+        //var_dump(parent::rules());exit;
+        return ArrayHelper::merge(parent::rules(), [
             [['columnid', 'cateid', 'title'], 'required'],
             [['columnid', 'parentid', 'cateid', 'catepid', 'status', 'orderid', 'posttime', 'updated_at', 'created_at'], 'integer'],
             [['title', 'parentstr', 'catepstr', 'picurl', 'lang'], 'string'],
             [['status'], 'default', 'value' => self::STATUS_ON],
             [['flag'], 'safe'],
-        ];
+        ]);
     }
 
     /**

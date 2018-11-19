@@ -58,7 +58,7 @@ $this->registerJs($js);
 <?php $form = ActiveForm::begin([
     'enableClientScript' => false,
     'options' => ['id' => 'submitform'],
-    'action' => ['create', 'mid' => $diyModel->dm_id],
+    'action' => [$model->isNewRecord?'create':'update', 'id' => $model->id, 'mid' => $diyModel->dm_id],
 ]); ?>
     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="master-model-form form-table">
     	<tr>

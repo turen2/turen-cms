@@ -95,8 +95,24 @@ function SelectDiyField(_this)
 	<tr>
 		<td class="first-column"><?= $model->getAttributeLabel('fd_column_type')?><?php if($model->isAttributeRequired('fd_column_type')) { ?><span class="maroon">*</span><?php } ?></td>
 		<td class="second-column">
-			<?= Html::activeDropDownList($model, 'fd_column_type', ArrayHelper::merge([null => '--请选择类型--'], Column::ColumnConvert('id2name')), ['onchange' => 'turen.cms.getColumnCheckboxList(this);', 'readonly' => 'readonly']) ?>
+			<?php if($model->isNewRecord) { ?>
+			<?= Html::activeDropDownList($model, 'fd_column_type', ArrayHelper::merge([null => '--请选择类型--'], Column::ColumnConvert('id2name')), ['onchange' => 'turen.cms.getColumnCheckboxList(this);']) ?>
 			<span class="cnote"></span>
+			<?php } else { ?>
+			<?= Html::activeDropDownList($model, 'fd_column_type', ArrayHelper::merge([null => '--请选择类型--'], Column::ColumnConvert('id2name')), ['onchange' => 'turen.cms.getColumnCheckboxList(this);', 'disabled' => 'disabled']) ?>
+			<span class="cnote">不能编辑字段所属模型，否则会导致表结构问题</span>
+			<?php } ?>
+		</td>
+	</tr>
+	<tr>
+		<td class="first-column"><?= $model->getAttributeLabel('fd_name')?><?php if($model->isAttributeRequired('fd_name')) { ?><span class="maroon">*</span><?php } ?></td>
+		<td class="second-column">
+			<?php if($model->isNewRecord) { ?>
+			<?= Html::activeInput('text', $model, 'fd_name', ['class' => 'input']) ?>
+			<?php } else { ?>
+			<?= Html::activeInput('text', $model, 'fd_name', ['class' => 'input', 'disabled' => 'disabled']) ?>
+			<?php } ?>
+			<span class="cnote">字段名将在对应模型表中创建新字段，且以“diyfield_”开头</span>
 		</td>
 	</tr>
 	<tr>
@@ -109,13 +125,6 @@ function SelectDiyField(_this)
 				<span id="fd-column-droplist"><?= Html::activeCheckboxList($model, 'columnid_list', Column::ColumnListByType($model->fd_column_type), ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']) ?></span>
 			<?php } ?>
 			<span class="cnote"></span>
-		</td>
-	</tr>
-	<tr>
-		<td class="first-column"><?= $model->getAttributeLabel('fd_name')?><?php if($model->isAttributeRequired('fd_name')) { ?><span class="maroon">*</span><?php } ?></td>
-		<td class="second-column">
-			<?= Html::activeInput('text', $model, 'fd_name', ['class' => 'input']) ?>
-			<span class="cnote">字段名将在对应模型表中创建新字段，且以“diyfield_”开头</span>
 		</td>
 	</tr>
 	<tr>
