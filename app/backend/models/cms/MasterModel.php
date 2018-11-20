@@ -138,7 +138,7 @@ class MasterModel extends \app\models\base\Cms
      */
     public function attributeLabels()
     {
-        return [
+        return ArrayHelper::merge(DiyField::DiyFieldRule($this, false), [
             'id' => 'ID',
             'title' => '标题',
             'columnid' => '所属栏目',
@@ -155,7 +155,7 @@ class MasterModel extends \app\models\base\Cms
             'posttime' => '发布时间',
             'updated_at' => '更新时间',
             'created_at' => '添加时间',
-        ];
+        ]);
     }
     
     /**

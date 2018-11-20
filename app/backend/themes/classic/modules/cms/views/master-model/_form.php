@@ -27,6 +27,7 @@ ValidationAsset::register($this);
 ColorPickerAsset::register($this);
 
 $rules = $messages = [];
+$rules[Html::getInputName($model, 'columnid')] = ['required' => true];
 $rules[Html::getInputName($model, 'title')] = ['required' => true];
 
 //自定义字段部分
@@ -64,7 +65,7 @@ $this->registerJs($js);
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('columnid')?><?php if($model->isAttributeRequired('columnid')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<?= BuildHelper::buildSelector($model, 'columnid', Column::find()->current()->orderBy(['orderid' => SORT_DESC])->all(), Column::class, 'id', 'parentid', 'cname', true, MasterModel::$DiyModelId)?>
+    			<?= BuildHelper::buildSelector($model, 'columnid', Column::find()->current()->orderBy(['orderid' => SORT_DESC])->all(), Column::class, 'id', 'parentid', 'cname', true, MasterModel::$DiyModelId, ['onchange' => 'turen.com.filterField(this);'])?>
     			<span class="cnote">带<span class="maroon">*</span>号表示为必填项</span>
     		</td>
     	</tr>

@@ -80,13 +80,13 @@ class Info extends \app\models\base\Cms
      */
     public function attributeLabels()
     {
-        return [
+        return ArrayHelper::merge(DiyField::DiyFieldRule($this, false), [
             'id' => '单页ID',
             'columnid' => '栏目名称',
             'picurl' => '缩略图片',
             'content' => '内容',
             'posttime' => '发布时间',
-        ];
+        ]);
     }
 
     /**

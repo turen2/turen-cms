@@ -175,7 +175,7 @@ class Product extends \app\models\base\Shop
      */
     public function attributeLabels()
     {
-        return [
+        return ArrayHelper::merge(DiyField::DiyFieldRule($this, false), [
             'id' => 'ID',
             'columnid' => '所属栏目',
             'pcateid' => '商品分类',
@@ -215,7 +215,7 @@ class Product extends \app\models\base\Shop
             'deltime' => '删除时间',
             'created_at' => '添加时间',
             'updated_at' => '编辑时间',
-        ];
+        ]);
     }
     
     /**

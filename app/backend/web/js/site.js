@@ -225,6 +225,22 @@ turen.com = (function($) {
         	
         	boxClass = '.'+boxClass;
         	_this.parents(boxClass).hide('slow');
+        },
+        filterField: function(_this) {
+        	var _this = $(_this);
+        	
+        	var columnid = _this.val();
+        	if(columnid != '') {
+        		$('tr.diy-field-row').each(function() {
+        			var str = ','+$(this).data('columnids')+',';
+        			if(str.indexOf(columnid) != -1) {
+        				$('tr.no-prev-line').show();
+        				$(this).show();
+        			}
+        		});
+        	} else {
+        		$('tr.no-prev-line, tr.diy-field-row').hide();
+        	}
         }
     };
 

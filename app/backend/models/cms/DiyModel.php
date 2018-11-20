@@ -8,7 +8,6 @@ use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\AttributeBehavior;
 use app\models\cms\migrations\ModelMigration;
-use app\widgets\diyfield\DiyFieldBehavior;
 
 /**
  * This is the model class for table "{{%diy_model}}".
@@ -28,7 +27,17 @@ class DiyModel extends \app\models\base\Cms
 	
 	public $keyword;
 	//标题    标记    缩略图    多语言    排序    发布时间    更新时间    创建时间
-	private static $Default_fields = ['title' => '标题', 'flag' => '标记', 'picurl' => '缩略图', 'lang' => '多语言', 'orderid' => '排序', 'status' => '状态', 'posttime' => '发布时间', 'updated_at' => '创建时间',  'created_at' => '创建时间'];
+	private static $DefaultFields = [
+	    'title' => '标题', 
+	    'flag' => '标记', 
+	    'picurl' => '缩略图', 
+	    'lang' => '多语言', 
+	    'orderid' => '排序', 
+	    'status' => '状态', 
+	    'posttime' => '发布时间', 
+	    'updated_at' => '创建时间',  
+	    'created_at' => '创建时间'
+	];
 	
 	public function behaviors()
 	{
@@ -56,10 +65,6 @@ class DiyModel extends \app\models\base\Cms
     	            
     	            return $this->orderid;
 	            }
-            ],
-            //自定义字段
-            'diyField' => [
-                'class' => DiyFieldBehavior::class,
             ],
 	    ];
 	}
@@ -90,11 +95,11 @@ class DiyModel extends \app\models\base\Cms
         //静态默认值由规则来赋值
         //[['status'], 'default', 'value' => self::STATUS_ON],
         //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
-        return ArrayHelper::merge(DiyField::DiyFieldRule($this), [
+        return [
             [['dm_title', 'dm_name', 'dm_tbname'], 'required'],
             [['orderid', 'status', 'created_at', 'updated_at'], 'integer'],
             [['dm_title', 'dm_name', 'dm_tbname'], 'string', 'max' => 30],
-        ]);
+        ];
     }
 
     /**
@@ -112,11 +117,6 @@ class DiyModel extends \app\models\base\Cms
             'created_at' => '添加时间',
             'updated_at' => '更新时间',
         ];
-    }
-    
-    public static function DefaultFieldList()
-    {
-        return self::$Default_fields;
     }
     
     public function beforeSave($insert)
@@ -164,6 +164,15 @@ class DiyModel extends \app\models\base\Cms
         $migration->down();
         
         return true;
+    }
+    
+    /**
+     * 对外只读
+     * @return string[]
+     */
+    public static function DefaultFieldList()
+    {
+        return self::$DefaultFields;
     }
 
     /**

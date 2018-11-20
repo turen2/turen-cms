@@ -147,7 +147,7 @@ class Article extends \app\models\base\Cms
      */
     public function attributeLabels()
     {
-        return [
+        return ArrayHelper::merge(DiyField::DiyFieldRule($this, false), [
             'id' => '列表信息ID',
             'columnid' => '所属栏目',
             'cateid' => '所属类别',
@@ -171,7 +171,7 @@ class Article extends \app\models\base\Cms
             'delstate' => '删除状态',
             'deltime' => '删除时间',
             'lang' => '语言',
-        ];
+        ]);
     }
     
     /**

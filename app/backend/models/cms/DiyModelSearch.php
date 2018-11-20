@@ -58,7 +58,7 @@ class DiyModelSearch extends DiyModel
             'sort' => [
                 //'class' => Sort::class,
                 'defaultOrder' => [
-                    //'orderid' => SORT_DESC,
+                    'orderid' => SORT_DESC,
                 ],
             ],
         ]);
@@ -81,8 +81,6 @@ class DiyModelSearch extends DiyModel
             ->andFilterWhere(['like', 'dm_name', $this->dm_name])
             ->andFilterWhere(['like', 'dm_tbname', $this->dm_tbname]);
         
-        //echo $dataProvider->query->createCommand()->rawSql;
-
         return $dataProvider;
     }
 }

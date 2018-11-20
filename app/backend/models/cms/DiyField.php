@@ -54,6 +54,8 @@ class DiyField extends \app\models\base\Cms
 	    'filearr' => ['name' => 'filearr', 'type' => 'text', 'title' => '多个附件', 'size' => '0', 'value' => '', 'tips' => '多个附件：</strong>可上传多个附件，类似于组图上传；<span class="blue">字段长度留空 </span>'],
 	];
 	
+	private static $FieldModels;//缓存
+	
 	public function behaviors()
 	{
 	    return [
@@ -237,7 +239,10 @@ class DiyField extends \app\models\base\Cms
      */
     public static function FieldModelList($columnType, $columnid = null)
     {
-        $fieldModels = self::find()->where(['fd_column_type' => $columnType])->orderBy(['orderid' => SORT_DESC])->all();
+        if(empty(self::$FieldModels)) {
+            self::$FieldModels = self::find()->where(['fd_column_type' => $columnType])->orderBy(['orderid' => SORT_DESC])->all();
+        }
+        $fieldModels = self::$FieldModels;
         if(!empty($columnid)) {
             foreach ($fieldModels as $key => $fieldModel) {
                 if(!in_array($columnid, explode(',', $fieldModel->columnid_list))) {
@@ -251,10 +256,11 @@ class DiyField extends \app\models\base\Cms
     
     /**
      * 自定义字段提交，保存之前的验证规则
-     * @param Model
+     * @param Model $model 绑定了自定义字段的模型
+     * @param integer $type 返回类型，true：返回规则rule,false：返回消息label
      * @return []
      */
-    public static function DiyFieldRule($model)
+    public static function DiyFieldRule($model, $type = true)
     {
         if(get_class($model) == MasterModel::class) {
             $className = MasterModel::class.'_'.MasterModel::$DiyModelId;
@@ -264,38 +270,45 @@ class DiyField extends \app\models\base\Cms
         $id = Column::ColumnConvert('class2id', $className);
         $fieldModels = DiyField::FieldModelList($id, $model->columnid);//取匹配的活动字段
         
-        $fields = [];
-        foreach ($fieldModels as $fieldModel) {
-            //验证规则对应关系
-            switch (trim($fieldModel->fd_check)) {
-                case 'required':
-                    $fields[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'required'];
-                    break;
-                case 'email':
-                    $fields[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'email'];
-                    break;
-                case 'url':
-                    $fields[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'url'];
-                    break;
-                case 'digits':
-                case 'number':
-                    $fields[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'double'];
-                    break;
-                case 'maxlength':
-                    $fields[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'string', 'max' => $fieldModel->fd_long];
-                    break;
-                case 'dateISO':
-                case 'creditcard':
-                case 'isZipCode':
-                case 'isPhone':
-                case 'isDomain':
-                    $fields[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'safe'];
-                    break;
+        if($type) {//返回规则
+            $rules = [];
+            foreach ($fieldModels as $fieldModel) {
+                //验证规则对应关系
+                switch (trim($fieldModel->fd_check)) {
+                    case 'required':
+                        $rules[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'required'];
+                        break;
+                    case 'email':
+                        $rules[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'email'];
+                        break;
+                    case 'url':
+                        $rules[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'url'];
+                        break;
+                    case 'digits':
+                    case 'number':
+                        $rules[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'double'];
+                        break;
+                    case 'maxlength':
+                        $rules[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'string', 'max' => $fieldModel->fd_long];
+                        break;
+                    case 'dateISO':
+                    case 'creditcard':
+                    case 'isZipCode':
+                    case 'isPhone':
+                    case 'isDomain':
+                        $rules[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'safe'];
+                        break;
+                }
             }
+            return $rules;
         }
         
-//         var_dump($fields);exit;
-        return empty($fields)?[]:$fields;
+        //不返回规则，则返回标题label
+        $labels = [];
+        foreach ($fieldModels as $fieldModel) {
+            $labels[DiyField::FIELD_PRE.$fieldModel->fd_name] = $fieldModel->fd_title;
+        }
+        return $labels;
     }
     
     /**
