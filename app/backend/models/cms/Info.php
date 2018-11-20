@@ -68,7 +68,7 @@ class Info extends \app\models\base\Cms
      */
     public function rules()
     {
-        return ArrayHelper::merge(parent::rules(), [
+        return ArrayHelper::merge(DiyField::DiyFieldRule($this), [
             [['columnid'], 'required'],
             [['columnid', 'posttime'], 'integer'],
             [['content', 'picurl'], 'string'],

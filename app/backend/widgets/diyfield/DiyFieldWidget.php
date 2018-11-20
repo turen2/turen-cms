@@ -50,23 +50,20 @@ class DiyFieldWidget extends \yii\base\Widget
     public function run() {
         //考虑到有自定义模型的情况
         $className = get_class($this->model);
+        $isNewRecord = $this->model->isNewRecord;
         if(get_class($this->model) == MasterModel::class) {
             $className = MasterModel::class.'_'.MasterModel::$DiyModelId;
         }
-        
         //组织数据
         $id = Column::ColumnConvert('class2id', $className);//所属模型
-        $fieldModels = DiyField::find()->active()->andWhere(['fd_column_type' => $id])->orderBy(['orderid' => SORT_DESC])->all();
-        
-        //所属栏目
-        foreach ($fieldModels as $fileKey => $fieldModel) {
-            if(!in_array($this->model->columnid, explode(',', $fieldModel->columnid_list))) {
-                unset($fieldModels[$fileKey]);
-            }
+        if($isNewRecord) {
+            $fieldModels = DiyField::FieldModelList($id);//取模型id对应的所有字段
+        } else {
+            $fieldModels = DiyField::FieldModelList($id, $this->model->columnid);//取模型id对应的所有字段
         }
         
         //渲染模板
-        return $this->render('diyfield', ['fieldModels' => $fieldModels, 'model' => $this->model]);
+        return $this->render('diyfield', ['fieldModels' => $fieldModels, 'model' => $this->model, 'isNewRecord' => $isNewRecord]);
     }
     
     /**

@@ -124,8 +124,7 @@ class MasterModel extends \app\models\base\Cms
      */
     public function rules()
     {
-        //var_dump(parent::rules());exit;
-        return ArrayHelper::merge(parent::rules(), [
+        return ArrayHelper::merge(DiyField::DiyFieldRule($this), [
             [['columnid', 'cateid', 'title'], 'required'],
             [['columnid', 'parentid', 'cateid', 'catepid', 'status', 'orderid', 'posttime', 'updated_at', 'created_at'], 'integer'],
             [['title', 'parentstr', 'catepstr', 'picurl', 'lang'], 'string'],

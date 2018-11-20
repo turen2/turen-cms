@@ -37,7 +37,7 @@ $rules[Html::getInputName($model, 'columnid')] = ['required' => true];
 $rules[Html::getInputName($model, 'title')] = ['required' => true];
 
 //自定义字段部分
-$diyFieldRules = DiyField::DiyFieldRules($model);
+$diyFieldRules = DiyField::DiyFieldRuleClient($model);
 $rules = ArrayHelper::merge($diyFieldRules['rules'], $rules);
 $messages = ArrayHelper::merge($diyFieldRules['messages'], $messages);
 

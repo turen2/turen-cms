@@ -230,34 +230,99 @@ class DiyField extends \app\models\base\Cms
     }
     
     /**
+     * 获取字段模型
+     * @param integer $columnType 模型id值
+     * @param integer $columnid 对应模型生成的栏目id值，如果为null则表示全部栏目，否则为指定栏目字段
+     * @return \app\components\Column[]|array
+     */
+    public static function FieldModelList($columnType, $columnid = null)
+    {
+        $fieldModels = self::find()->where(['fd_column_type' => $columnType])->orderBy(['orderid' => SORT_DESC])->all();
+        if(!empty($columnid)) {
+            foreach ($fieldModels as $key => $fieldModel) {
+                if(!in_array($columnid, explode(',', $fieldModel->columnid_list))) {
+                    unset($fieldModels[$key]);
+                }
+            }
+        }
+        
+        return $fieldModels;
+    }
+    
+    /**
+     * 自定义字段提交，保存之前的验证规则
+     * @param Model
+     * @return []
+     */
+    public static function DiyFieldRule($model)
+    {
+        if(get_class($model) == MasterModel::class) {
+            $className = MasterModel::class.'_'.MasterModel::$DiyModelId;
+        } else {
+            $className = get_class($model);
+        }
+        $id = Column::ColumnConvert('class2id', $className);
+        $fieldModels = DiyField::FieldModelList($id, $model->columnid);//取匹配的活动字段
+        
+        $fields = [];
+        foreach ($fieldModels as $fieldModel) {
+            //验证规则对应关系
+            switch (trim($fieldModel->fd_check)) {
+                case 'required':
+                    $fields[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'required'];
+                    break;
+                case 'email':
+                    $fields[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'email'];
+                    break;
+                case 'url':
+                    $fields[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'url'];
+                    break;
+                case 'digits':
+                case 'number':
+                    $fields[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'double'];
+                    break;
+                case 'maxlength':
+                    $fields[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'string', 'max' => $fieldModel->fd_long];
+                    break;
+                case 'dateISO':
+                case 'creditcard':
+                case 'isZipCode':
+                case 'isPhone':
+                case 'isDomain':
+                    $fields[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'safe'];
+                    break;
+            }
+        }
+        
+//         var_dump($fields);exit;
+        return empty($fields)?[]:$fields;
+    }
+    
+    /**
      * 生成diy field验证规则
      * @return array
      */
-    public static function DiyFieldRules($model, $diyModel = null)
+    public static function DiyFieldRuleClient($model, $diyModel = null)
     {
         $className = get_class($model);
         if(!is_null($diyModel) && get_class($diyModel) == DiyModel::class) {
             $className = MasterModel::class.'_'.$diyModel->dm_id;
         }
         $id = Column::ColumnConvert('class2id', $className);
-        
-        
-        $fieldModels = self::find()->where(['fd_column_type' => $id])->orderBy(['orderid' => SORT_DESC])->all();
+        $fieldModels = self::FieldModelList($id, $model->columnid);//取匹配的字段
         
         $rules = [];
         $messages = [];
         foreach ($fieldModels as $fieldModel) {
-            if(in_array($model->columnid, explode(',', $fieldModel->columnid_list))) {
-                $attribute = DiyField::FIELD_PRE.$fieldModel->fd_name;
-                if(!empty($fieldModel->fd_check)) {
-                    if($fieldModel->fd_check == 'maxlength' && $fieldModel->fd_long > 0) {
-                        $rules[Html::getInputName($model, $attribute)] = [$fieldModel->fd_check => $fieldModel->fd_long];
-                    } else {
-                        $rules[Html::getInputName($model, $attribute)] = [$fieldModel->fd_check => true];
-                    }
+            $attribute = DiyField::FIELD_PRE.$fieldModel->fd_name;
+            if(!empty($fieldModel->fd_check)) {
+                if($fieldModel->fd_check == 'maxlength' && $fieldModel->fd_long > 0) {
+                    $rules[Html::getInputName($model, $attribute)] = [$fieldModel->fd_check => $fieldModel->fd_long];
+                } else {
+                    $rules[Html::getInputName($model, $attribute)] = [$fieldModel->fd_check => true];
                 }
-                $messages[Html::getInputName($model, $attribute)] = $fieldModel->fd_tips;
             }
+            $messages[Html::getInputName($model, $attribute)] = $fieldModel->fd_tips;
         }
         
         return [

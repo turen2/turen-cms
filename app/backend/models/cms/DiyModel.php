@@ -90,7 +90,7 @@ class DiyModel extends \app\models\base\Cms
         //静态默认值由规则来赋值
         //[['status'], 'default', 'value' => self::STATUS_ON],
         //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
-        return ArrayHelper::merge(parent::rules(), [
+        return ArrayHelper::merge(DiyField::DiyFieldRule($this), [
             [['dm_title', 'dm_name', 'dm_tbname'], 'required'],
             [['orderid', 'status', 'created_at', 'updated_at'], 'integer'],
             [['dm_title', 'dm_name', 'dm_tbname'], 'string', 'max' => 30],

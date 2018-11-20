@@ -36,14 +36,7 @@ class DiyFieldBehavior extends \yii\base\Behavior
         if(is_null(self::$_fieldModels)) {//缓存处理
             //组织数据
             $id = Column::ColumnConvert('class2id', get_class($model));//所属模型
-            $fieldModels = DiyField::find()->active()->andWhere(['fd_column_type' => $id])->orderBy(['orderid' => SORT_DESC])->all();
-            //所属栏目
-            foreach ($fieldModels as $fileKey => $fieldModel) {
-                if(!in_array($model->columnid, explode(',', $fieldModel->columnid_list))) {
-                    unset($fieldModels[$fileKey]);
-                }
-            }
-            self::$_fieldModels = $fieldModels;
+            self::$_fieldModels = DiyField::FieldModelList($id, $model->columnid);//取匹配的活动字段
         }
         
         if(self::$_fieldModels) {

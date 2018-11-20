@@ -9,14 +9,14 @@ use yii\helpers\Url;
 ?>
 
 <?php if($fieldModels) { ?>
-<tr class="nb no-prev-line">
+<tr class="nb no-prev-line" style="display: <?= $isNewRecord?'none':'' ?>;">
 	<td colspan="2" class="td-line"><div class="line"></div></td>
 </tr>
 
 <?php 
 $columnClass = get_class($model);
 foreach ($fieldModels as $fieldModel) { ?>
-<tr>
+<tr class="diy-field-row" data-columnids="<?= $isNewRecord?$fieldModel->columnid_list:'' ?>" style="display: <?= $isNewRecord?'none':'' ?>;">
 	<td class="first-column"><?= $fieldModel->fd_title ?><?= !empty($fieldModel->fd_check)?'<span class="maroon">*</span>':'' ?></td>
 	<td class="second-column">
 		<?php 
@@ -138,7 +138,7 @@ foreach ($fieldModels as $fieldModel) { ?>
 </tr>
 <?php } ?>
 
-<tr class="nb no-prev-line">
+<tr class="nb no-prev-line" style="display: <?= $isNewRecord?'none':'' ?>;">
 	<td colspan="2" class="td-line"><div class="line"></div></td>
 </tr>
 <?php } ?>

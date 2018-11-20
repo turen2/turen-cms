@@ -128,7 +128,7 @@ class Photo extends \app\models\base\Cms
      */
     public function rules()
     {
-        return ArrayHelper::merge(parent::rules(), [
+        return ArrayHelper::merge(DiyField::DiyFieldRule($this), [
             [['columnid', 'title', 'picurl'], 'required'],
             [['columnid', 'parentid', 'cateid', 'catepid', 'deltime', 'delstate', 'posttime'], 'integer'],
             [['content'], 'string'],
