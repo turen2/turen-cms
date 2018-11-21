@@ -18,10 +18,10 @@ $this->title = '自定义模型';
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="data-table">
 	<tr align="left" class="head">
 		<td width="4%" class="first-column">ID</td>
-		<td width="10%">模型名称</td>
-		<td width="10%">模型标识</td>
-		<td width="10%">模型表名</td>
-		<td width="10%">更新时间</td>
+		<td width="10%"><?= $dataProvider->sort->link('dm_title', ['label' => '模型标题']) ?></td>
+		<td width="10%"><?= $dataProvider->sort->link('dm_name', ['label' => '模型标识']) ?></td>
+		<td width="10%"><?= $dataProvider->sort->link('dm_tbname', ['label' => '模型表名']) ?></td>
+		<td width="10%"><?= $dataProvider->sort->link('updated_at', ['label' => '更新时间']) ?></td>
 		<td width="25%" class="end-column">操作</td>
 	</tr>
 	<?php foreach ($dataProvider->getModels() as $key => $model) {

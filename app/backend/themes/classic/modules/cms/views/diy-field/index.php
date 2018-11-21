@@ -28,13 +28,13 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel, 'type' => 
 	<tr align="left" class="head">
 		<td width="4%" class="first-column"><input type="checkbox" name="checkid" id="checkid" onclick="turen.com.checkAll(this.checked);"></td>
 		<td width="4%">ID</td>
-		<td width="12%">字段标题</td>
-		<td width="11%">字段名</td>
+		<td width="12%"><?= $dataProvider->sort->link('fd_title', ['label' => '字段标题']) ?></td>
+		<td width="11%"><?= $dataProvider->sort->link('fd_name', ['label' => '字段名']) ?></td>
 		<td width="7%">所属模型</td>
 		<td width="12%">所属栏目</td>
 		<td width="7%">字段类型</td>
 		<td width="7%">限制条件</td>
-		<td width="10%" align="center">排序</td>
+		<td width="10%" align="center"><?= $dataProvider->sort->link('orderid', ['label' => '排序']) ?></td>
 		<td width="25%" class="end-column">操作</td>
 	</tr>
 	<?php foreach ($dataProvider->getModels() as $key => $model) {
