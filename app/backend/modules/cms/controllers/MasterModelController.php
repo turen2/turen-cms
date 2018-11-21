@@ -16,6 +16,7 @@ use app\widgets\ueditor\UEditorAction;
 use yii\base\InvalidArgumentException;
 use app\models\cms\DiyModel;
 use app\widgets\edititem\EditItemAction;
+use app\models\cms\Column;
 
 /**
  * MasterModelController implements the CRUD actions for MasterModel model.
@@ -108,10 +109,14 @@ class MasterModelController extends Controller
         $searchModel = new MasterModelSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         
+        $className = MasterModel::class.'_'.MasterModel::$DiyModelId;
+        $modelid = Column::ColumnConvert('class2id', $className);
+        
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'diyModel' => self::$DiyModel,
+            'modelid' => $modelid,
         ]);
     }
 

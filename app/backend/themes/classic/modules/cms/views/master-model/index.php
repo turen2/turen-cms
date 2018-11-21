@@ -7,6 +7,8 @@ use yii\widgets\LinkPager;
 use app\models\cms\Column;
 use yii\widgets\ActiveForm;
 use app\widgets\edititem\EditItemWidget;
+use app\models\cms\DiyField;
+use app\models\cms\MasterModel;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\cms\MasterModelSearch */
@@ -15,7 +17,7 @@ use app\widgets\edititem\EditItemWidget;
 $this->title = $diyModel->dm_title.'列表';
 ?>
 
-<?= $this->render('_search', ['model' => $searchModel, 'diyModel' => $diyModel]); ?>
+<?= $this->render('_search', ['model' => $searchModel, 'diyModel' => $diyModel, 'modelid' => $modelid]); ?>
 
 <?php $form = ActiveForm::begin([
     'enableClientScript' => false,
@@ -31,7 +33,9 @@ $this->title = $diyModel->dm_title.'列表';
 		<td width="8%">所属类别</td>
 		<?php } ?>
 		
-		<?php //自定义字段 ?>
+		<?php foreach (MasterModel::DisplayFieldModelList() as $listModel) { ?>
+		<td width="8%"><?= $listModel->fd_title ?></td>
+		<?php } ?>
 		
 		<td width="5%"><?= $dataProvider->sort->link('orderid', ['label' => '排序']) ?></td>
 		<td width="10%"><?= $dataProvider->sort->link('posttime', ['label' => '发布时间']) ?></td>
@@ -57,13 +61,15 @@ $this->title = $diyModel->dm_title.'列表';
 			<input type="checkbox" name="checkid[]" id="checkid[]" value="<?= $model->id; ?>">
 		</td>
 		<td><?= $model->id; ?></td>
-		<td><span class="title" style="color:<?= $model->colorval; ?>;font-weight:<?= $model->boldval; ?>"><?= $model->title; ?><span class="title-flag"><?= implode('&nbsp;', $model->getAllFlag(Column::COLUMN_TYPE_ARTICLE)); ?></span><?=empty($model->picurl)?'':' <span class="titpic"><i class="fa fa-picture-o"></i></span>'?></span></td>
+		<td><span class="title" style="color:<?= $model->colorval; ?>;font-weight:<?= $model->boldval; ?>"><?= $model->title; ?><span class="title-flag"><?= implode('&nbsp;', $model->getAllFlag($modelid)); ?></span><?=empty($model->picurl)?'':' <span class="titpic"><i class="fa fa-picture-o"></i></span>'?></span></td>
 		<td><?= Column::ColumnList($model->columnid).' ['.$model->columnid.']'; ?></td>
 		<?php if(Yii::$app->params['config.openCate']) { ?>
 		<td><?= is_null($model->cateid)?'未定义':is_null($model->cateid)?'未定义':Column::CateList($model->cateid); ?></td>
 		<?php } ?>
 		
-		<?php //自定义字段 ?>
+		<?php foreach (MasterModel::DisplayFieldModelList() as $listModel) { ?>
+		<td><?= $model->{DiyField::FIELD_PRE.$listModel->fd_name} ?></td>
+		<?php } ?>
 		
 		<td><?= EditItemWidget::widget([
 		    'model' => $model,

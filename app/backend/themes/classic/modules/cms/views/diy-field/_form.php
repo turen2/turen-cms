@@ -191,6 +191,17 @@ function SelectDiyField(_this)
 		</td>
 	</tr>
 	<tr>
+		<td class="first-column"><?= $model->getAttributeLabel('list_status')?><?php if($model->isAttributeRequired('list_status')) { ?><span class="maroon">*</span><?php } ?></td>
+		<td class="second-column">
+			<?= Html::activeRadioList($model, 'list_status', [
+		        DiyField::STATUS_ON => '显示',
+			    DiyField::STATUS_OFF => '隐藏',
+			], ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']);
+			?>
+			<span class="cnote">此选项只适用于对自定义模型列表的显示控制</span>
+		</td>
+	</tr>
+	<tr>
 		<td class="first-column"><?= $model->getAttributeLabel('status')?><?php if($model->isAttributeRequired('status')) { ?><span class="maroon">*</span><?php } ?></td>
 		<td class="second-column">
 			<?= Html::activeRadioList($model, 'status', [

@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\components\ActiveRecord;
+use app\models\cms\Column;
+use app\models\cms\MasterModel;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\cms\MasterModelSearch */
@@ -23,6 +25,14 @@ foreach ($model->attributes as $key => $value) {
         <li class="<?= (!is_null($model->status) && $model->status == ActiveRecord::STATUS_ON)?'on':''?>"><?= Html::a('显示', ['index', 'mid' => $diyModel->dm_id, Html::getInputName($model, 'status') => ActiveRecord::STATUS_ON]) ?></li>
         <li class="line">-</li>
         <li class="<?= (!is_null($model->status) && $model->status == ActiveRecord::STATUS_OFF)?'on':''?>"><?= Html::a('隐藏', ['index', 'mid' => $diyModel->dm_id, Html::getInputName($model, 'status') => ActiveRecord::STATUS_OFF]) ?></li>
+        <li class="line">-</li>
+        
+        <?php foreach ($model->getAllFlag($modelid, true, true) as $key => $name) { ?>
+        <li class="<?= (!is_null($model->flag) && $model->flag == $key)?'on':''?>"><?= Html::a($name, ['index', Html::getInputName($model, 'flag') => $key, 'mid' => $modelid]) ?></li>
+        <li class="line">-</li>
+        <?php } ?>
+        <li><?= Html::a('我发布的内容', 'javascript:;') ?></li>
+        
 	</ul>
 	<div id="search" class="search">
         <?php $form = ActiveForm::begin([

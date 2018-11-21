@@ -13,6 +13,7 @@ use app\models\sys\Log;
 use app\models\sys\Devlog;
 use app\models\site\Lnk;
 use app\models\site\Help;
+use app\models\cms\DiyModel;
 
 class HomeController extends \app\components\Controller
 {
@@ -38,7 +39,11 @@ class HomeController extends \app\components\Controller
         
         Yii::$app->layout = 'menu-main';//使用单独的菜单布局
         
-        return $this->render('menu', ['identify' => $identify]);
+        //开启的模型别名叫：附加栏目
+        return $this->render('menu', [
+            'identify' => $identify,
+            'diyModels' => DiyModel::find()->active()->asArray()->all(),
+        ]);
     }
     
     // 默认主内容
@@ -56,13 +61,6 @@ class HomeController extends \app\components\Controller
             'helpModels' => $helpModels,
         ]);
     }
-    
-    
-    
-    
-    
-    
-    
     
     
     

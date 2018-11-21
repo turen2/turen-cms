@@ -53,6 +53,14 @@ class DiyFieldController extends Controller
                 'closeName' => '禁用',
                 'id' => $request->get('id'),
             ],
+            'list-check' => [
+                'class' => CheckAction::class,
+                'className' => DiyField::class,
+                'openName' => '列表显示',
+                'closeName' => '列表隐藏',
+                'field' => 'list_status',
+                'id' => $request->get('id'),
+            ],
         ];
     }
     
@@ -138,6 +146,7 @@ class DiyFieldController extends Controller
     {
         $model = $this->findModel($id);
         $model->delete();
+        ob_clean();
         
         if(Yii::$app->getRequest()->isAjax) {
             return $this->asJson([

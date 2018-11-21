@@ -50,16 +50,27 @@ $this->title = '菜单栏';
 					<?= Html::a('栏目管理', ['/cms/column/index'], ['target' => 'main'])?>
 					<?= Html::a('类别管理', ['/cms/cate/index'], ['target' => 'main'])?>
 					<div class="hr_1"> </div>
-					<?= Html::a('单页', ['/cms/info/index'], ['target' => 'main'])?>
-					<?= Html::a('文章', ['/cms/article/index'], ['target' => 'main'])?>
-					<?= Html::a('图片', ['/cms/photo/index'], ['target' => 'main'])?>
-					<?= Html::a('下载', ['/cms/file/index'], ['target' => 'main'])?>
-					<?= Html::a('视频', ['/cms/video/index'], ['target' => 'main'])?>
+					<?= Html::a('简单页面', ['/cms/info/index'], ['target' => 'main'])?>
+					<?= Html::a('文章管理', ['/cms/article/index'], ['target' => 'main'])?>
+					<?= Html::a('图片图集', ['/cms/photo/index'], ['target' => 'main'])?>
+					<?= Html::a('文件下载', ['/cms/file/index'], ['target' => 'main'])?>
+					<?= Html::a('视频管理', ['/cms/video/index'], ['target' => 'main'])?>
 					<div class="hr_1"> </div>
-					<?= Html::a('碎片', ['/cms/block/index'], ['target' => 'main'])?>
-					<?= Html::a('自定义模块', ['/cms/diy-model/index'], ['target' => 'main'])?>
+					<?= Html::a('碎片集', ['/cms/block/index'], ['target' => 'main'])?>
+				</div>
+			</div>
+			<div class="hr_5"></div>
+			<div class="menubox">
+				<div class="title" onclick="DisplayMenu('leftmenu10');" title="点击切换显示或隐藏"><i class="fa fa-angle-right i1"></i><i class="fa fa-angle-down i2"></i> 附加栏目</div>
+				<div id="leftmenu10" style="display:none">
+					<?php foreach ($diyModels as $diyModel) { ?>
+					<?= Html::a($diyModel['dm_title'], ['/cms/master-model/index', 'mid' => $diyModel['dm_id']], ['target' => 'main'])?>
+					<?php } ?>
+					<?php if($diyModels) { ?>
+					<div class="hr_1"> </div>
+					<?php } ?>
+					<?= Html::a('自定义模型', ['/cms/diy-model/index'], ['target' => 'main'])?>
                     <?= Html::a('自定义字段', ['/cms/diy-field/index'], ['target' => 'main'])?>
-                    <?= Html::a('母模型测试', ['/cms/master-model/index', 'mid' => 7], ['target' => 'main'])?>
 				</div>
 			</div>
 			<div class="hr_5"></div>

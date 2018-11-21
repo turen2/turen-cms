@@ -187,6 +187,24 @@ class MasterModel extends \app\models\base\Cms
     }
     
     /**
+     * 返回所有已经开启在列表中显示的字段
+     * @return \app\components\Column[]|array
+     */
+    public static function DisplayFieldModelList()
+    {
+        $className = self::class.'_'.self::$DiyModelId;
+        $id = Column::ColumnConvert('class2id', $className);
+        $fieldModels = DiyField::FieldModelList($id);
+        foreach ($fieldModels as $key => $fieldModel) {
+            if(empty($fieldModel->list_status)) {
+                unset($fieldModels[$key]);
+            }
+        }
+        
+        return $fieldModels;
+    }
+    
+    /**
      * @inheritdoc
      * @return MasterModelQuery the active query used by this AR class.
      */

@@ -46,6 +46,14 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel, 'type' => 
 		$checkstr = Html::a(($model->status?'启用':'禁用'), 'javascript:;', $options);
 		
 		$options = [
+		    'title' => '（自定义模型专用）点击进行显示和隐藏操作',
+		    'data-url' => Url::to(['list-check', 'id' => $model->id]),
+		    'onclick' => 'turen.com.updateStatus(this)',
+		];
+		$checkstr .= '</span> | <span>'.Html::a(($model->list_status?'列表显示':'列表隐藏'), 'javascript:;', $options);
+		
+		
+		$options = [
     		'data-url' => Url::to(['delete', 'id' => $model->id, 'returnUrl' => Url::current()]),
 		    'onclick' => 'turen.com.deleteItem(this, \''.$model->fd_title.'\')',
 		];

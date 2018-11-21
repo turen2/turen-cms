@@ -25,6 +25,7 @@ use yii\helpers\Html;
  * @property string $fd_tips 未通过提示
  * @property string $orderid 排列排序
  * @property int $status 是否生效
+ * @property int $list_status 是否在列表中显示（自定义模型专用）
  * @property string $created_at 添加时间
  * @property string $updated_at 编辑时间
  */
@@ -113,9 +114,10 @@ class DiyField extends \app\models\base\Cms
         return [
             [['columnid_list', 'fd_title', 'fd_column_type', 'fd_name', 'fd_type'], 'required'],
             [['fd_title', 'fd_name'], 'unique'],
-            [['fd_column_type', 'orderid', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['fd_column_type', 'orderid', 'status', 'list_status', 'created_at', 'updated_at'], 'integer'],
             [['fd_name', 'fd_title', 'fd_type', 'fd_tips', 'fd_long', 'fd_desc', 'fd_value', 'fd_check'], 'string'],
             [['status'], 'default', 'value' => self::STATUS_ON],
+            [['list_status'], 'default', 'value' => self::STATUS_OFF],
             [['columnid_list'], 'safe'],
         ];
     }
@@ -139,13 +141,14 @@ class DiyField extends \app\models\base\Cms
             'fd_tips' => '未通过提示',
             'orderid' => '排列排序',
             'status' => '是否生效',
+            'list_status' => '列表显示',
             'created_at' => '添加时间',
             'updated_at' => '编辑时间',
         ];
     }
     
     /**
-     * 插入之前整理，且通过过滤器
+     * 插入之前整理，且通过过滤器，删除之前保已经调整了表结构
      * {@inheritDoc}
      * @see \yii\db\BaseActiveRecord::beforeSave()
      */
@@ -160,56 +163,18 @@ class DiyField extends \app\models\base\Cms
             $this->columnid_list = implode(',', $this->columnid_list);
         }
         
-        return true;
-    }
-    
-    public function columnListStr()
-    {
-        $columns = Column::ColumnListByType($this->fd_column_type);
-        $columnNameList = [];
-        foreach (explode(',', $this->columnid_list) as $columnid) {
-            $columnNameList[$columnid] = isset($columns[$columnid])?$columns[$columnid]:'未定义';
-        }
-        
-        return $columnNameList;
-    }
-    
-    public function afterDelete()
-    {
-        parent::afterDelete();
-        
-        //删除模型中的字段
-        $className = Column::ColumnConvert('id2class', $this->fd_column_type);
-        $columnName = self::FIELD_PRE.$this->fd_name;
-        $tableName = $className::tableName();
-        if(empty($className)) {
-            return;//直接返回
-        }
-        
-        $tableSchema = Yii::$app->db->schema->getTableSchema($tableName);
-        //如果有则删除
-        if($columnSchema = $tableSchema->getColumn($columnName)) {
-            Yii::$app->db->createCommand()->dropColumn($tableName, $columnName)->execute();
-        }
-    }
-    
-    public function afterSave($insert, $changedAttributes)
-    {
-        parent::afterSave($insert, $changedAttributes);
-        
         //增加或删除模型中的字段
         $className = Column::ColumnConvert('id2class', $this->fd_column_type);
-        
         //判断自定义模型
         if(strpos($className, 'MasterModel_'.$this->fd_column_type) !== false) {
             $className = str_replace('MasterModel_'.$this->fd_column_type, 'MasterModel', $className);
             $className::$DiyModelId = $this->fd_column_type;
         }
-            
+        
         $tableName = $className::tableName();
         $columnName = self::FIELD_PRE.$this->fd_name;
         if(empty($className) || empty($tableName)) {
-            return;//直接返回
+            return true;//直接返回
         }
         
         $tableSchema = Yii::$app->db->schema->getTableSchema($tableName);
@@ -229,6 +194,53 @@ class DiyField extends \app\models\base\Cms
         Yii::$app->db->createCommand()
             ->addColumn($tableName, $columnName, $type)
             ->execute();
+        
+        return true;
+    }
+    
+    /**
+     * 删除之前保已经调整了表结构
+     * {@inheritDoc}
+     * @see \yii\db\BaseActiveRecord::beforeDelete()
+     */
+    public function beforeDelete()
+    {
+        if (!parent::beforeDelete()) {
+            return false;
+        }
+        
+        //删除模型中的字段
+        $className = Column::ColumnConvert('id2class', $this->fd_column_type);
+        //判断自定义模型
+        if(strpos($className, 'MasterModel_'.$this->fd_column_type) !== false) {
+            $className = str_replace('MasterModel_'.$this->fd_column_type, 'MasterModel', $className);
+            $className::$DiyModelId = $this->fd_column_type;
+        }
+        
+        $columnName = self::FIELD_PRE.$this->fd_name;
+        $tableName = $className::tableName();
+        if(empty($className)) {
+            return true;//直接返回
+        }
+        
+        $tableSchema = Yii::$app->db->schema->getTableSchema($tableName);
+        //如果有则删除
+        if($columnSchema = $tableSchema->getColumn($columnName)) {
+            Yii::$app->db->createCommand()->dropColumn($tableName, $columnName)->execute();
+        }
+        
+        return true;    
+    }
+    
+    public function columnListStr()
+    {
+        $columns = Column::ColumnListByType($this->fd_column_type);
+        $columnNameList = [];
+        foreach (explode(',', $this->columnid_list) as $columnid) {
+            $columnNameList[$columnid] = isset($columns[$columnid])?$columns[$columnid]:'未定义';
+        }
+        
+        return $columnNameList;
     }
     
     /**
