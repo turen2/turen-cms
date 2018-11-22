@@ -22,8 +22,8 @@ class HelpSearch extends Help
     public function rules()
     {
         return [
-            [['id', 'parentid', 'cateid', 'catepid', 'hits', 'orderid'], 'integer'],
-            [['parentstr', 'catepstr', 'title', 'colorval', 'boldval', 'flag', 'author', 'linkurl', 'keywords', 'keyword', 'description', 'content', 'picurl', 'picarr', 'status', 'posttime'], 'safe'],
+            [['id', 'cateid', 'catepid', 'hits', 'orderid'], 'integer'],
+            [['catepstr', 'title', 'colorval', 'boldval', 'flag', 'author', 'linkurl', 'keywords', 'keyword', 'description', 'content', 'picurl', 'picarr', 'status', 'posttime'], 'safe'],
         ];
     }
 

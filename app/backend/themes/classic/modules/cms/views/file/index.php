@@ -10,6 +10,8 @@ use yii\widgets\LinkPager;
 use yii\widgets\ActiveForm;
 use app\models\cms\Column;
 use app\widgets\edititem\EditItemWidget;
+use app\models\cms\Cate;
+use app\models\cms\Flag;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\cms\ArticleSearch */
@@ -59,10 +61,10 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel, 'type' => 
 			<input type="checkbox" name="checkid[]" id="checkid[]" value="<?= $model->id; ?>">
 		</td>
 		<td><?= $model->id; ?></td>
-		<td><span class="title" style="color:<?= $model->colorval; ?>;font-weight:<?= $model->boldval; ?>"><?= $model->title; ?><span class="title-flag"><?= implode('&nbsp;', $model->getAllFlag(Column::COLUMN_TYPE_FILE)); ?></span><?=empty($model->picurl)?'':' <span class="titpic"><i class="fa fa-picture-o"></i></span>'?></span></td>
-		<td><?= Column::ColumnList($model->columnid).' ['.$model->columnid.']'; ?></td>
+		<td><span class="title" style="color:<?= $model->colorval; ?>;font-weight:<?= $model->boldval; ?>"><?= $model->title; ?><span class="title-flag"><?= implode('&nbsp;', $model->activeFlagList(Column::COLUMN_TYPE_FILE)); ?></span><?=empty($model->picurl)?'':' <span class="titpic"><i class="fa fa-picture-o"></i></span>'?></span></td>
+		<td><?= Column::ColumnName($model->columnid).' ['.$model->columnid.']'; ?></td>
 		<?php if(Yii::$app->params['config.openCate']) { ?>
-		<td><?= is_null($model->cateid)?'未定义':Column::CateList($model->cateid); ?></td>
+		<td><?= Cate::CateName($model->cateid) ?></td>
 		<?php } ?>
 		<td><?= $model->author; ?></td>
 		<td><?= $model->hits; ?></td>

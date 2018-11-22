@@ -15,6 +15,9 @@ use yii\db\ActiveRecord;
 use app\widgets\select2\TaggableBehavior;
 use app\widgets\laydate\LaydateBehavior;
 use app\widgets\diyfield\DiyFieldBehavior;
+use app\behaviors\FlagBehavior;
+use app\behaviors\CateBehavior;
+use app\behaviors\ColumnBehavior;
 
 /**
  * This is the model class for table "{{%cms_video}}".
@@ -54,6 +57,15 @@ class Video extends \app\models\base\Cms
 	public function behaviors()
 	{
 	    return [
+	        'flagMark' => [
+	            'class' => FlagBehavior::class,
+	        ],
+	        'cateParent' => [
+	            'class' => CateBehavior::class,
+	        ],
+	        'columnParent' => [
+	            'class' => ColumnBehavior::class,
+	        ],
 	        'taggabble' => TaggableBehavior::class,//tags
 	        'posttime' => [
 	            'class' => LaydateBehavior::class,
@@ -126,7 +138,7 @@ class Video extends \app\models\base\Cms
         return ArrayHelper::merge(DiyField::DiyFieldRule($this), [
             [['columnid', 'title', 'videolink'], 'required'],
             [['columnid', 'parentid', 'cateid', 'catepid', 'deltime', 'delstate', 'posttime'], 'integer'],
-            [['content', 'videolink'], 'string'],
+            [['content', 'videolink', 'flag'], 'string'],
             [['parentstr', 'catepstr', 'title'], 'string', 'max' => 80],
             [['colorval', 'boldval'], 'string', 'max' => 10],
             [['source', 'author', 'keywords'], 'string', 'max' => 50],
@@ -134,7 +146,6 @@ class Video extends \app\models\base\Cms
             [['picurl'], 'string', 'max' => 100],
             [['lang'], 'string', 'max' => 8],
             [['author'], 'default', 'value' => $this->getAdmin()->username],
-            [['flag'], 'safe'],
             //静态默认值由规则来赋值
             [['status'], 'default', 'value' => self::STATUS_ON],
             [['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
@@ -179,34 +190,6 @@ class Video extends \app\models\base\Cms
         ]);
     }
     
-    /**
-     * 插入之前整理，且通过过滤器
-     * {@inheritDoc}
-     * @see \yii\db\BaseActiveRecord::beforeSave()
-     */
-    public function beforeSave($insert)
-    {
-        if (!parent::beforeSave($insert)) {
-            return false;
-        }
-        
-        //转化flag为字符串
-        if(is_array($this->flag)) {
-            $this->flag = implode(',', $this->flag);
-        }
-        
-        //添加和编辑，都要处理parentstr
-        $columModel = Column::findOne(['id' => $this->columnid]);
-        $this->parentid = $columModel->parentid;
-        $this->parentstr = $columModel->parentstr;
-        
-        $cateModel = Cate::findOne(['id' => $this->cateid]);
-        $this->catepid = $cateModel->parentid;
-        $this->catepstr = $cateModel->parentstr;
-        
-        return true;
-    }
-
     /**
      * @inheritdoc
      * @return VideoQuery the active query used by this AR class.

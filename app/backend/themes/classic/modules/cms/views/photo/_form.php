@@ -24,6 +24,7 @@ use yii\helpers\Json;
 use app\widgets\diyfield\DiyFieldWidget;
 use app\models\cms\DiyField;
 use yii\helpers\ArrayHelper;
+use app\models\cms\Flag;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\cms\Photo */
@@ -102,8 +103,8 @@ $srcModels = Src::find()->current()->orderBy(['orderid' => SORT_DESC])->all();
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('flag')?><?php if($model->isAttributeRequired('flag')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column attr-area">
-    			<?php $model->flag = array_keys($model->getAllFlag(Column::COLUMN_TYPE_PHOTO))//获取选择的标签数组?>
-    			<?= Html::activeCheckboxList($model, 'flag', $model->getAllFlag(Column::COLUMN_TYPE_PHOTO, true, true), ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']) ?>
+    			<?= Html::hiddenInput(Html::getInputName($model, 'flag'), '') ?>
+    			<?= Html::checkboxList(Html::getInputName($model, 'flag'), array_keys($model->activeFlagList(Column::COLUMN_TYPE_PHOTO)), Flag::FlagList(Column::COLUMN_TYPE_PHOTO, true), ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']) ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>

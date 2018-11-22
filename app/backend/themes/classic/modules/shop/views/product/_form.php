@@ -19,6 +19,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use app\widgets\diyfield\DiyFieldWidget;
 use app\models\cms\DiyField;
+use app\models\cms\Flag;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\shop\Product */
@@ -254,8 +255,8 @@ $this->registerJs($js);
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('flag')?><?php if($model->isAttributeRequired('flag')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column attr-area">
-    			<?php $model->flag = array_keys($model->getAllFlag(Column::COLUMN_TYPE_PRODUCT))//获取选择的标签数组?>
-    			<?= Html::activeCheckboxList($model, 'flag', $model->getAllFlag(Column::COLUMN_TYPE_PRODUCT, true, true), ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']) ?>
+    			<?= Html::hiddenInput(Html::getInputName($model, 'flag'), '') ?>
+    			<?= Html::checkboxList(Html::getInputName($model, 'flag'), array_keys($model->activeFlagList(Column::COLUMN_TYPE_PRODUCT)), Flag::FlagList(Column::COLUMN_TYPE_PRODUCT, true), ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']) ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>

@@ -16,6 +16,9 @@ use app\widgets\select2\TaggableBehavior;
 use app\widgets\laydate\LaydateBehavior;
 use app\widgets\fileupload\MultiPicBehavior;
 use app\widgets\diyfield\DiyFieldBehavior;
+use app\behaviors\FlagBehavior;
+use app\behaviors\CateBehavior;
+use app\behaviors\ColumnBehavior;
 
 /**
  * This is the model class for table "{{%cms_article}}".
@@ -52,6 +55,15 @@ class Article extends \app\models\base\Cms
 	public function behaviors()
 	{
 	    return [
+	        'flagMark' => [
+	            'class' => FlagBehavior::class,
+	        ],
+	        'cateParent' => [
+	            'class' => CateBehavior::class,
+	        ],
+	        'columnParent' => [
+	            'class' => ColumnBehavior::class,
+	        ],
 	        'taggabble' => TaggableBehavior::class,//tags
 	        'posttime' => [
 	            'class' => LaydateBehavior::class,
@@ -132,13 +144,13 @@ class Article extends \app\models\base\Cms
             [['colorval', 'boldval'], 'string', 'max' => 10],
             [['source', 'keywords'], 'string', 'max' => 50],
             [['linkurl', 'description'], 'string', 'max' => 255],
-            [['content', 'picurl', 'lang'], 'string'],
+            [['content', 'picurl', 'lang', 'flag'], 'string'],
             [['author'], 'default', 'value' => $this->getAdmin()->username],
             //静态默认值由规则来赋值
             [['status'], 'default', 'value' => self::STATUS_ON],
             [['picarr'], 'default', 'value' => ''],
             [['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
-            [['flag', 'tagNames', 'picarr'], 'safe'],
+            [['tagNames', 'picarr'], 'safe'],
         ]);
     }
 
@@ -174,34 +186,6 @@ class Article extends \app\models\base\Cms
         ]);
     }
     
-    /**
-     * 插入之前整理，且通过过滤器
-     * {@inheritDoc}
-     * @see \yii\db\BaseActiveRecord::beforeSave()
-     */
-    public function beforeSave($insert)
-    {
-        if (!parent::beforeSave($insert)) {
-            return false;
-        }
-        
-        //转化flag为字符串
-        if(is_array($this->flag)) {
-            $this->flag = implode(',', $this->flag);
-        }
-        
-        //添加和编辑，都要处理parentstr
-        $columModel = Column::findOne(['id' => $this->columnid]);
-        $this->parentid = $columModel->parentid;
-        $this->parentstr = $columModel->parentstr;
-        
-        $cateModel = Cate::findOne(['id' => $this->cateid]);
-        $this->catepid = $cateModel->parentid;
-        $this->catepstr = $cateModel->parentstr;
-        
-        return true;
-    }
-
     /**
      * @inheritdoc
      * @return ArticleQuery the active query used by this AR class.

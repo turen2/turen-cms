@@ -101,8 +101,8 @@ class HelpController extends Controller
     public function actionCreate()
     {
         $model = new Help();
-
         $model->loadDefaultValues();
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->getSession()->setFlash('success', $model->title.' 添加成功，结果将展示在列表中。');
             return $this->redirect(['index']);

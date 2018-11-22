@@ -6,6 +6,7 @@ use app\components\ActiveRecord;
 use app\actions\RecycleAction;
 use yii\helpers\Url;
 use app\models\cms\Column;
+use app\models\cms\Flag;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\shop\ProductSearch */
@@ -27,7 +28,7 @@ foreach ($model->attributes as $key => $value) {
         <li class="line">-</li>
         <li class="<?= (!is_null($model->status) && $model->status == ActiveRecord::STATUS_OFF)?'on':''?>"><?= Html::a('隐藏', ['index', Html::getInputName($model, 'status') => ActiveRecord::STATUS_OFF]) ?></li>
         <li class="line">-</li>
-        <?php foreach ($model->getAllFlag(Column::COLUMN_TYPE_PRODUCT, true, true) as $key => $name) { ?>
+        <?php foreach (Flag::FlagList(Column::COLUMN_TYPE_PRODUCT, true) as $key => $name) { ?>
         <li class="<?= (!is_null($model->flag) && $model->flag == $key)?'on':''?>"><?= Html::a($name, ['index', Html::getInputName($model, 'flag') => $key]) ?></li>
         <li class="line">-</li>
         <?php } ?>

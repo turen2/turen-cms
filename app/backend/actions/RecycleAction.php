@@ -97,22 +97,11 @@ class RecycleAction extends Action
         $models = $selectQuery->andWhere([$this->field => ActiveRecord::IS_DEL])->all();
         if($models) {
             foreach ($models as $model) {
-                if(method_exists($model, 'getAllColumn')) {
-                    $columns = Column::ColumnList();//所有栏目
-                    if(isset($columns[$model->columnid])) {
-                        $classname = $columns[$model->columnid].' ['.$model->columnid.']';
-                    } else {
-                        $classname = '栏目已删除 ['.$model->columnid.']';
-                    }
-                } else {
-                    $classname = '无栏目';
-                }
-                
                 $deltime = Yii::$app->getFormatter()->asDate($model->deltime);
                 $reset = Url::to(['recycle', 'type' => self::RECYCLE_TYPE_RESET]);
                 $del = Url::to(['recycle', 'type' => self::RECYCLE_TYPE_DEL]);
                 
-                $title = '删除日期：'.$deltime."\n".'所属栏目：'.$classname;
+                $title = '删除日期：'.$deltime."\n".'所属栏目：'.Column::ColumnName($model->columnid);
                 
                 $str .= <<<EOF
 <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="data-table">

@@ -18,6 +18,7 @@ use app\widgets\diyfield\DiyFieldWidget;
 use app\models\cms\DiyField;
 use yii\helpers\ArrayHelper;
 use app\models\cms\MasterModel;
+use app\models\cms\Flag;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\cms\MasterModel */
@@ -95,8 +96,8 @@ $this->registerJs($js);
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('flag')?><?php if($model->isAttributeRequired('flag')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column attr-area">
-    			<?php $model->flag = array_keys($model->getAllFlag(MasterModel::$DiyModelId))//获取选择的标签数组?>
-    			<?= Html::activeCheckboxList($model, 'flag', $model->getAllFlag(MasterModel::$DiyModelId, true, true), ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']) ?>
+    			<?= Html::hiddenInput(Html::getInputName($model, 'flag'), '') ?>
+    			<?= Html::checkboxList(Html::getInputName($model, 'flag'), array_keys($model->activeFlagList($modelid)), Flag::FlagList($modelid, true), ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']) ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>

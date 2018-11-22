@@ -21,6 +21,7 @@ use app\widgets\fileupload\JQueryFileUploadWidget;
 use yii\web\JsExpression;
 use app\widgets\ueditor\UEditorWidget;
 use yii\helpers\Json;
+use app\models\site\HelpFlag;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\site\Help */
@@ -81,8 +82,8 @@ $this->registerJs($js);
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('flag')?><?php if($model->isAttributeRequired('flag')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column attr-area">
-    			<?php $model->flag = array_keys($model->getAllHelpFlag())//获取选择的标签数组?>
-    			<?= Html::activeCheckboxList($model, 'flag', $model->getAllHelpFlag(true, true), ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']) ?>
+    			<?= Html::hiddenInput(Html::getInputName($model, 'flag'), '') ?>
+    			<?= Html::checkboxList(Html::getInputName($model, 'flag'), array_keys($model->activeFlagList()), HelpFlag::FlagList(true), ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']) ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>

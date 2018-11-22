@@ -14,14 +14,16 @@ use yii\db\ActiveRecord;
 use app\widgets\select2\TaggableBehavior;
 use app\widgets\laydate\LaydateBehavior;
 use app\widgets\fileupload\MultiPicBehavior;
+use app\behaviors\HelpFlagBehavior;
+use app\behaviors\HelpCateBehavior;
 
 /**
  * This is the model class for table "{{%site_help}}".
  *
  * @property string $id 列表信息id
  * @property int $cateid 类别id
- * @property int $parentid 所属栏目上级id
- * @property string $parentstr 所属栏目上级id字符串
+ * @property int $catepid 所属类别上级id
+ * @property string $catepstr 所属类别上级id字符串
  * @property string $title 标题
  * @property string $colorval 字体颜色
  * @property string $boldval 字体加粗
@@ -45,6 +47,12 @@ class Help extends \app\models\base\Site
 	public function behaviors()
 	{
 	    return [
+	        'flagMark' => [
+	            'class' => HelpFlagBehavior::class,
+	        ],
+	        'productCate' => [
+	            'class' => HelpCateBehavior::class,
+	        ],
 	        'taggabble' => TaggableBehavior::class,//tags
 	        'posttime' => [
 	            'class' => LaydateBehavior::class,
@@ -112,18 +120,18 @@ class Help extends \app\models\base\Site
     {
         return [
             [['cateid', 'title'], 'required'],
-            [['parentid', 'catepid', 'hits', 'orderid', 'status', 'posttime'], 'integer'],
-            [['parentstr', 'catepstr', 'title'], 'string', 'max' => 80],
+            [['catepid', 'hits', 'orderid', 'status', 'posttime'], 'integer'],
+            [['catepstr', 'title'], 'string', 'max' => 80],
             [['colorval', 'boldval'], 'string', 'max' => 10],
             [['keywords'], 'string', 'max' => 50],
             [['linkurl', 'description'], 'string', 'max' => 255],
-            [['content', 'picurl'], 'string'],
+            [['content', 'picurl', 'flag'], 'string'],
             [['author'], 'default', 'value' => $this->getAdmin()->username],
             //静态默认值由规则来赋值
             [['status'], 'default', 'value' => self::STATUS_ON],
             [['picarr'], 'default', 'value' => ''],
             [['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
-            [['flag', 'tagNames', 'picarr'], 'safe'],
+            [['tagNames', 'picarr'], 'safe'],
         ];
     }
 
@@ -154,30 +162,6 @@ class Help extends \app\models\base\Site
         ];
     }
     
-    /**
-     * 插入之前整理，且通过过滤器
-     * {@inheritDoc}
-     * @see \yii\db\BaseActiveRecord::beforeSave()
-     */
-    public function beforeSave($insert)
-    {
-        if (!parent::beforeSave($insert)) {
-            return false;
-        }
-        
-        //转化flag为字符串
-        if(is_array($this->flag)) {
-            $this->flag = implode(',', $this->flag);
-        }
-        
-        //添加和编辑，都要处理parentstr
-        $cateModel = HelpCate::findOne(['id' => $this->cateid]);
-        $this->catepid = $cateModel->parentid;
-        $this->catepstr = $cateModel->parentstr;
-        
-        return true;
-    }
-
     /**
      * @inheritdoc
      * @return HelpQuery the active query used by this AR class.

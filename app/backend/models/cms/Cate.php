@@ -29,6 +29,8 @@ class Cate extends \app\models\base\Cms
 	public $keyword;
 	
 	public $level;
+	
+	private static $_allCate = [];
 
 	public function behaviors()
 	{
@@ -152,6 +154,36 @@ class Cate extends \app\models\base\Cms
         $this->parentstr = $this->initParentStr('id', 'parentid', 'parentstr');
         
         return true;
+    }
+    
+    /**
+     * 获取所有类别列表
+     * @return array
+     */
+    public static function CateList() {
+        if(empty(self::$_allCate)) {
+            self::$_allCate = self::find()->current()->orderBy(['orderid' => SORT_DESC])->asArray()->all();
+            foreach (self::$_allCate as $cate) {
+                self::$_allCate[$cate['id']] = $cate;
+            }
+        }
+        
+        return self::$_allCate;
+    }
+    
+    /**
+     * 类别名称
+     * @param integer $cateid
+     * @return string|string|mixed
+     */
+    public static function CateName($cateid = null) {
+        $name = '未定义';
+        $cateList = self::CateList();
+        if(is_null($cateid)) {
+            return $name;
+        } else {
+            return isset($cateList[$cateid])?$cateList[$cateid]['catename']:$name;
+        }
     }
 
     /**

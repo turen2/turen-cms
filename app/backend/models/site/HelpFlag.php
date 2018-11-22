@@ -8,7 +8,6 @@ namespace app\models\site;
 
 use Yii;
 use yii\helpers\ArrayHelper;
-use app\behaviors\InsertLangBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\AttributeBehavior;
 use yii\db\ActiveRecord;
@@ -24,6 +23,8 @@ use yii\db\ActiveRecord;
 class HelpFlag extends \app\models\base\Site
 {
 	public $keyword;
+	
+	private static $_allFlag;
 
 	public function behaviors()
 	{
@@ -97,6 +98,25 @@ class HelpFlag extends \app\models\base\Site
             'flagname' => '标记标识',
             'orderid' => '排列排序',
         ];
+    }
+    
+    /**
+     * 获取原系统的所有标签列表
+     * @param string $haveFlag
+     * @return string[]
+     */
+    public static function FlagList($haveFlag = false)
+    {
+        if(empty(self::$_allFlag)) {
+            self::$_allFlag = self::find()->orderBy(['orderid' => SORT_DESC])->asArray()->all();
+        }
+        
+        $flags = [];
+        foreach (self::$_allFlag as $flag) {
+            $flags[$flag['flag']] = ($flag['flagname'].($haveFlag?'['.$flag['flag'].']':''));
+        }
+        
+        return $flags;
     }
 
     /**

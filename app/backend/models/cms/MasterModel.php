@@ -11,6 +11,9 @@ use app\behaviors\InsertLangBehavior;
 use app\widgets\laydate\LaydateBehavior;
 use yii\base\InvalidArgumentException;
 use app\widgets\diyfield\DiyFieldBehavior;
+use app\behaviors\FlagBehavior;
+use app\behaviors\CateBehavior;
+use app\behaviors\ColumnBehavior;
 
 /**
  * This is the model class for table "{{%diymodel_master_model}}".
@@ -44,6 +47,15 @@ class MasterModel extends \app\models\base\Cms
 	public function behaviors()
 	{
 	    return [
+	        'flagMark' => [
+	            'class' => FlagBehavior::class,
+	        ],
+	        'cateParent' => [
+	            'class' => CateBehavior::class,
+	        ],
+	        'columnParent' => [
+	            'class' => ColumnBehavior::class,
+	        ],
 	        'timemap' => [
 	            'class' => TimestampBehavior::class,
 	            'createdAtAttribute' => 'created_at',
@@ -127,9 +139,8 @@ class MasterModel extends \app\models\base\Cms
         return ArrayHelper::merge(DiyField::DiyFieldRule($this), [
             [['columnid', 'cateid', 'title'], 'required'],
             [['columnid', 'parentid', 'cateid', 'catepid', 'status', 'orderid', 'posttime', 'updated_at', 'created_at'], 'integer'],
-            [['title', 'parentstr', 'catepstr', 'picurl', 'lang'], 'string'],
+            [['title', 'parentstr', 'catepstr', 'flag', 'picurl', 'lang'], 'string'],
             [['status'], 'default', 'value' => self::STATUS_ON],
-            [['flag'], 'safe'],
         ]);
     }
 
@@ -156,34 +167,6 @@ class MasterModel extends \app\models\base\Cms
             'updated_at' => '更新时间',
             'created_at' => '添加时间',
         ]);
-    }
-    
-    /**
-     * 插入之前整理，且通过过滤器
-     * {@inheritDoc}
-     * @see \yii\db\BaseActiveRecord::beforeSave()
-     */
-    public function beforeSave($insert)
-    {
-        if (!parent::beforeSave($insert)) {
-            return false;
-        }
-        
-        //转化flag为字符串
-        if(is_array($this->flag)) {
-            $this->flag = implode(',', $this->flag);
-        }
-        
-        //添加和编辑，都要处理parentstr
-        $columModel = Column::findOne(['id' => $this->columnid]);
-        $this->parentid = $columModel->parentid;
-        $this->parentstr = $columModel->parentstr;
-        
-        $cateModel = Cate::findOne(['id' => $this->cateid]);
-        $this->catepid = $cateModel->parentid;
-        $this->catepstr = $cateModel->parentstr;
-        
-        return true;
     }
     
     /**

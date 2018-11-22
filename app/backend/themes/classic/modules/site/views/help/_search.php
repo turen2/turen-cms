@@ -8,6 +8,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\site\Help;
 use yii\helpers\Url;
+use app\models\site\HelpFlag;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\site\HelpSearch */
@@ -30,7 +31,7 @@ foreach ($model->attributes as $key => $value) {
         <li class="<?= (!is_null($model->status) && $model->status == Help::STATUS_OFF)?'on':''?>"><?= Html::a('隐藏', ['index', Html::getInputName($model, 'status') => Help::STATUS_OFF]) ?></li>
         <li class="line">-</li>
         
-        <?php foreach ($model->getAllHelpFlag(true, true) as $key => $name) { ?>
+        <?php foreach (HelpFlag::FlagList(true) as $key => $name) { ?>
         <li class="<?= (!is_null($model->flag) && $model->flag == $key)?'on':''?>"><?= Html::a($name, ['index', Html::getInputName($model, 'flag') => $key]) ?></li>
         <li class="line">-</li>
         <?php } ?>

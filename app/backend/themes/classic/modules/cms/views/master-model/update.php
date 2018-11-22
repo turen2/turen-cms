@@ -12,5 +12,6 @@ $this->title = '编辑: ' . $diyModel->dm_title;
     <?= $this->render('_form', [
         'model' => $model,
         'diyModel' => $diyModel,
+        'modelid' => $modelid,
     ]) ?>
 </div>

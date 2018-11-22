@@ -10,11 +10,11 @@ use yii\behaviors\AttributeBehavior;
 use app\behaviors\InsertLangBehavior;
 use app\widgets\laydate\LaydateBehavior;
 use app\widgets\fileupload\MultiPicBehavior;
-use app\models\cms\Column;
-use yii\helpers\Html;
 use yii\helpers\Json;
 use app\widgets\diyfield\DiyFieldBehavior;
 use app\models\cms\DiyField;
+use app\behaviors\FlagBehavior;
+use app\behaviors\ProductCateBehavior;
 
 /**
  * This is the model class for table "{{%shop_product}}".
@@ -65,6 +65,12 @@ class Product extends \app\models\base\Shop
 	public function behaviors()
 	{
 	    return [
+	        'flagMark' => [
+	            'class' => FlagBehavior::class,
+	        ],
+	        'parentCateParent' => [
+	            'class' => ProductCateBehavior::class,
+	        ],
 	        'posttime' => [
 	            'class' => LaydateBehavior::class,
 	            'timeAttribute' => 'posttime',
@@ -157,7 +163,7 @@ class Product extends \app\models\base\Shop
             [['keywords', 'product_sn'], 'string', 'max' => 30],
             [['description', 'linkurl'], 'string', 'max' => 255],
             [['is_promote', 'is_shipping', 'is_best', 'is_new', 'is_hot', 'status'], 'string', 'max' => 1],
-            [['attrtext', 'content', 'picarr', 'author'], 'string'],
+            [['attrtext', 'content', 'picarr', 'author', 'flag'], 'string'],
             [['market_price', 'sales_price', 'promote_price', 'weight', 'delstate'], 'number'],
             
             //静态默认值由规则来赋值
@@ -166,7 +172,7 @@ class Product extends \app\models\base\Shop
             [['weight', 'market_price'], 'default', 'value' => 0],
             [['stock'], 'default', 'value' => Yii::$app->params['config_stock_warning']],
             [['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
-            [['flag', 'picarr'], 'safe'],
+            [['picarr'], 'safe'],
         ]);
     }
 
@@ -216,30 +222,6 @@ class Product extends \app\models\base\Shop
             'created_at' => '添加时间',
             'updated_at' => '编辑时间',
         ]);
-    }
-    
-    /**
-     * 插入之前整理，且通过过滤器
-     * {@inheritDoc}
-     * @see \yii\db\BaseActiveRecord::beforeSave()
-     */
-    public function beforeSave($insert)
-    {
-        if (!parent::beforeSave($insert)) {
-            return false;
-        }
-        
-        //转化flag为字符串
-        if(is_array($this->flag)) {
-            $this->flag = implode(',', $this->flag);
-        }
-        
-        //添加和编辑，都要处理parentstr
-        $pcateModel = ProductCate::findOne(['id' => $this->pcateid]);
-        $this->pcatepid = $pcateModel->parentid;
-        $this->pcatepstr = $pcateModel->parentstr;
-        
-        return true;
     }
     
     /**

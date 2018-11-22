@@ -26,6 +26,8 @@ use yii\db\ActiveRecord;
 class Flag extends \app\models\base\Cms
 {
 	public $keyword;
+	
+	private static $_allFlag;
 
 	public function behaviors()
 	{
@@ -105,6 +107,28 @@ class Flag extends \app\models\base\Cms
             'type' => '所属类型',
             'lang' => '多语言',
         ];
+    }
+    
+    /**
+     * 获取原系统的所有标签列表
+     * @param integer $modelid 模型id
+     * @param string $haveFlag 标签名是否带[flag]
+     * @return string[]
+     */
+    public static function FlagList($modelid, $haveFlag = false)
+    {
+        if(empty(self::$_allFlag)) {
+            self::$_allFlag = self::find()->current()->orderBy(['orderid' => SORT_DESC])->asArray()->all();
+        }
+        
+        $flags = [];
+        foreach (self::$_allFlag as $flag) {
+            if($modelid == $flag['type']) {
+                $flags[$flag['flag']] = ($flag['flagname'].($haveFlag?'['.$flag['flag'].']':''));
+            }
+        }
+        
+        return $flags;
     }
 
     /**

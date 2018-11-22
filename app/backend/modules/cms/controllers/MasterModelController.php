@@ -131,6 +131,9 @@ class MasterModelController extends Controller
         $model->loadDefaultValues();
         $model->columnid = Yii::$app->getRequest()->get('columnid', null);
         
+        $className = MasterModel::class.'_'.MasterModel::$DiyModelId;
+        $modelid = Column::ColumnConvert('class2id', $className);
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
         	Yii::$app->getSession()->setFlash('success', $model->title.' 添加成功，结果将展示在列表。');
         	return $this->redirect(['index', 'mid' => MasterModel::$DiyModelId]);
@@ -138,6 +141,7 @@ class MasterModelController extends Controller
             return $this->render('create', [
                 'model' => $model,
                 'diyModel' => self::$DiyModel,
+                'modelid' => $modelid,
             ]);
         }
     }
@@ -151,6 +155,9 @@ class MasterModelController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        
+        $className = MasterModel::class.'_'.MasterModel::$DiyModelId;
+        $modelid = Column::ColumnConvert('class2id', $className);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
         	Yii::$app->getSession()->setFlash('success', $model->title.' 已经修改成功！');
@@ -159,6 +166,7 @@ class MasterModelController extends Controller
             return $this->render('update', [
                 'model' => $model,
                 'diyModel' => self::$DiyModel,
+                'modelid' => $modelid,
             ]);
         }
     }

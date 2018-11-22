@@ -14,5 +14,6 @@ $this->title = '添加新'.$diyModel->dm_title;
     <?= $this->render('_form', [
         'model' => $model,
         'diyModel' => $diyModel,
+        'modelid' => $modelid,
     ]) ?>
 </div>

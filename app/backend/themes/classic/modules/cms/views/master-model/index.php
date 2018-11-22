@@ -9,6 +9,8 @@ use yii\widgets\ActiveForm;
 use app\widgets\edititem\EditItemWidget;
 use app\models\cms\DiyField;
 use app\models\cms\MasterModel;
+use app\models\cms\Cate;
+use app\models\cms\Flag;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\cms\MasterModelSearch */
@@ -61,10 +63,10 @@ $this->title = $diyModel->dm_title.'列表';
 			<input type="checkbox" name="checkid[]" id="checkid[]" value="<?= $model->id; ?>">
 		</td>
 		<td><?= $model->id; ?></td>
-		<td><span class="title" style="color:<?= $model->colorval; ?>;font-weight:<?= $model->boldval; ?>"><?= $model->title; ?><span class="title-flag"><?= implode('&nbsp;', $model->getAllFlag($modelid)); ?></span><?=empty($model->picurl)?'':' <span class="titpic"><i class="fa fa-picture-o"></i></span>'?></span></td>
-		<td><?= Column::ColumnList($model->columnid).' ['.$model->columnid.']'; ?></td>
+		<td><span class="title" style="color:<?= $model->colorval; ?>;font-weight:<?= $model->boldval; ?>"><?= $model->title; ?><span class="title-flag"><?= implode('&nbsp;', $model->activeFlagList($modelid)); ?></span><?=empty($model->picurl)?'':' <span class="titpic"><i class="fa fa-picture-o"></i></span>'?></span></td>
+		<td><?= Column::ColumnName($model->columnid).' ['.$model->columnid.']'; ?></td>
 		<?php if(Yii::$app->params['config.openCate']) { ?>
-		<td><?= is_null($model->cateid)?'未定义':is_null($model->cateid)?'未定义':Column::CateList($model->cateid); ?></td>
+		<td><?= Cate::CateName($model->cateid) ?></td>
 		<?php } ?>
 		
 		<?php foreach (MasterModel::DisplayFieldModelList() as $listModel) { ?>

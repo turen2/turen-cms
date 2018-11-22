@@ -51,6 +51,8 @@ class Column extends \app\models\base\Cms
 	
 	public $level;
 	
+	private static $_allColumn;
+	
 	public function behaviors()
 	{
 	    return [
@@ -310,6 +312,54 @@ class Column extends \app\models\base\Cms
         }
     }
     
+    /**
+     * 获取所有栏目列表
+     * @param integer $columnid 栏目id
+     * @return array
+     */
+    public static function ColumnList() {
+        //使用频繁，初始化载入
+        if(empty(self::$_allColumn)) {
+            self::$_allColumn = self::find()->current()->orderBy(['orderid' => SORT_DESC])->asArray()->all();
+            foreach (self::$_allColumn as $column) {
+                self::$_allColumn[$column['id']] = $column;
+            }
+        }
+        
+        return self::$_allColumn;
+    }
+    
+    /**
+     * 获取指定类型的栏目列表
+     * @param integer $type
+     * @return array
+     */
+    public static function ColumnListByType($type) {
+        $columnList = self::ColumnList();
+        foreach ($columnList as $key => $column) {
+            if($column['type'] != $type) {
+                unset($columnList[$key]);
+            }
+        }
+        
+        return $columnList;
+    }
+    
+    /**
+     * 获取栏目名称
+     * @param unknown $columnid
+     * @return string|string|mixed
+     */
+    public static function ColumnName($columnid)
+    {
+        $name = '未定义';
+        $columnList = self::ColumnList();
+        if(is_null($columnid)) {
+            return $name;
+        } else {
+            return isset($columnList[$columnid])?$columnList[$columnid]['cname']:$name;
+        }
+    }
     /**
      * 删除之后，如果是单页面类型，对应删除
      * {@inheritDoc}
