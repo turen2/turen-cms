@@ -22,6 +22,7 @@ use app\widgets\edititem\EditItemAction;
 use app\models\cms\Tag;
 use app\models\cms\TagAssign;
 use app\models\cms\DiyField;
+use app\widgets\select2\Select2TagAction;
 
 /**
  * FileController implements the CRUD actions for File model.

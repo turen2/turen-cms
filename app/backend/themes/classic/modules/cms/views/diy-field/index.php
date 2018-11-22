@@ -7,6 +7,7 @@ use yii\widgets\LinkPager;
 use yii\widgets\ActiveForm;
 use app\models\cms\DiyField;
 use app\models\cms\Column;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\cms\DiyFieldSearch */
@@ -67,7 +68,7 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel, 'type' => 
 		<td><?= $model->fd_title; ?></td>
 		<td><?= DiyField::FIELD_PRE.$model->fd_name; ?></td>
 		<td><?= Column::ColumnConvert('id2name', $model->fd_column_type); ?></td>
-		<td><?= implode('<br />', $model->columnListStr()); ?></td>
+		<td><?= implode('<br />', ArrayHelper::map($model->columnListStr(), 'id', 'cname')); ?></td>
 		<td><?= $model->fd_type ?><?= in_array($model->fd_type, ['text', 'mediumtext', 'filearr'])?'':'['.$model->fd_long.']'; ?></td>
 		<td><?= DiyField::RuleList($model->fd_check) ?></td>
 		<td align="center">

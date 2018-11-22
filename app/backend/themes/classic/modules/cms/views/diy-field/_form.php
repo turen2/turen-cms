@@ -122,7 +122,7 @@ function SelectDiyField(_this)
 				<span id="fd-column-droplist">请先选择栏目类型</span>
 			<?php } else { ?>
 			    <?php $model->columnid_list = is_array($model->columnid_list)?$model->columnid_list:(explode(',', $model->columnid_list)); ?>
-				<span id="fd-column-droplist"><?= Html::activeCheckboxList($model, 'columnid_list', Column::ColumnListByType($model->fd_column_type), ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']) ?></span>
+				<span id="fd-column-droplist"><?= Html::activeCheckboxList($model, 'columnid_list', ArrayHelper::map(Column::ColumnListByType($model->fd_column_type), 'id', 'cname'), ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']) ?></span>
 			<?php } ?>
 			<span class="cnote"></span>
 		</td>
