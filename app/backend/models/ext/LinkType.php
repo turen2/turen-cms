@@ -12,6 +12,7 @@ use yii\behaviors\TimestampBehavior;
 use app\behaviors\InsertLangBehavior;
 use yii\db\ActiveRecord;
 use yii\behaviors\AttributeBehavior;
+use app\behaviors\OrderDefaultBehavior;
 
 /**
  * This is the model class for table "{{%ext_link_type}}".
@@ -55,23 +56,7 @@ class LinkType extends \app\models\base\Ext
 	        ],
 	        //动态值由此属性行为处理
 	        'defaultOrderid' => [
-	            'class' => AttributeBehavior::class,
-	            'attributes' => [
-	                ActiveRecord::EVENT_BEFORE_INSERT => 'orderid',
-	                //ActiveRecord::EVENT_BEFORE_UPDATE => 'attribute2',
-	            ],
-	            'value' => function ($event) {
-    	            if(empty($this->orderid)) {
-    	                $maxModel = self::find()->current()->orderBy(['orderid' => SORT_DESC])->one();
-    	                if($maxModel) {
-    	                    return $maxModel->orderid + 1;
-    	                } else {
-    	                    return Yii::$app->params['config.orderid'];//配置默认值
-    	                }
-    	            }
-    	            
-    	            return $this->orderid;
-	            }
+	            'class' => OrderDefaultBehavior::class,
             ],
 	    ];
 	}

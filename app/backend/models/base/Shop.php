@@ -6,30 +6,12 @@
  */
 namespace app\models\base;
 
-use app\models\shop\ProductCate;
 use app\models\shop\Brand;
 use yii\helpers\ArrayHelper;
 
 class Shop extends \app\components\ActiveRecord
 {
-    private static $_allProductCate = [];
     private static $_allProductBrand = [];
-    
-    /**
-     * 获取所有产品类别
-     * @return array|string|mixed
-     */
-    public function getAllProductCate($isAll = false) {
-        if(empty(self::$_allProductCate)) {
-            self::$_allProductCate = ArrayHelper::map(ProductCate::find()->current()->orderBy(['orderid' => SORT_DESC])->all(), 'id', 'cname');
-        }
-        
-        if($isAll) {
-            return self::$_allProductCate;
-        } else {
-            return isset(self::$_allProductCate[$this->pcateid])?self::$_allProductCate[$this->pcateid]:'';
-        }
-    }
     
     /**
      * 获取所有产品品牌

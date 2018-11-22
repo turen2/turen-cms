@@ -7,24 +7,8 @@
 namespace app\models\base;
 
 use Yii;
-use app\models\cms\Column;
 
 class Sys extends \app\components\ActiveRecord
 {
-    /**
-     * 
-     * @return string
-     */
-    public static function getInitParentStr($className)
-    {
-        if($this->parentid == Column::COLUMN_TOP_ID) {
-            $this->parentstr = '0,';
-        } else {
-            if($parentModel = Column::find()->current()->andWhere(['id' => $this->parentid])->one()) {
-                $this->parentstr = $parentModel->parentstr.$this->parentid.',';
-            }
-        }
-        
-        return $this->parentstr;
-    }
+    
 }

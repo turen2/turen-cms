@@ -19,6 +19,7 @@ use app\widgets\ueditor\UEditorAction;
 use app\widgets\select2\Select2TagAction;
 use app\models\cms\Tag;
 use app\models\cms\TagAssign;
+use app\widgets\edititem\EditItemAction;
 
 /**
  * HelpController implements the CRUD actions for Help model.
@@ -43,6 +44,13 @@ class HelpController extends Controller
                 'keyword' => Yii::$app->getRequest()->get('keyword'),//要搜索的内容
                 'limit' => 20,//每次请求返回限制数量
                 'page' => Yii::$app->getRequest()->get('page'),//默认请求第一页
+            ],
+            'edit-item' => [
+                'class' => EditItemAction::class,
+                'className' => Help::class,
+                'id' => $request->post('id'),
+                'field' => 'orderid',
+                'value' => $request->post('value'),
             ],
             'fileupload' => [
                 'class' => FileUploadAction::class,

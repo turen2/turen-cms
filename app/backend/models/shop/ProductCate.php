@@ -10,6 +10,7 @@ use yii\behaviors\AttributeBehavior;
 use app\behaviors\InsertLangBehavior;
 use yii\helpers\Html;
 use yii\helpers\Json;
+use app\behaviors\OrderDefaultBehavior;
 
 /**
  * This is the model class for table "{{%shop_product_cate}}".
@@ -31,6 +32,8 @@ class ProductCate extends \app\models\base\Shop
 {
     public $keyword;
     public $level;
+    
+    private static $_allCate;
 	
 	public function behaviors()
 	{
@@ -56,23 +59,7 @@ class ProductCate extends \app\models\base\Shop
 	            'insertLangAttribute' => 'lang',
 	        ],
 	        'defaultOrderid' => [
-	            'class' => AttributeBehavior::class,
-	            'attributes' => [
-	                ActiveRecord::EVENT_BEFORE_INSERT => 'orderid',
-	                //ActiveRecord::EVENT_BEFORE_UPDATE => 'attribute2',
-	            ],
-	            'value' => function ($event) {
-    	            if(empty($this->orderid)) {
-    	                $maxModel = self::find()->current()->orderBy(['orderid' => SORT_DESC])->one();
-    	                if($maxModel) {
-    	                    return $maxModel->orderid + 1;
-    	                } else {
-    	                    return Yii::$app->params['config.orderid'];//配置默认值
-    	                }
-    	            }
-    	            
-    	            return $this->orderid;
-	            }
+	            'class' => OrderDefaultBehavior::class,
             ],
 	    ];
 	}
@@ -181,6 +168,36 @@ class ProductCate extends \app\models\base\Shop
             return '<ul class="attr-box clearfix">'.$str.'</ul>';
         } else {
             return '<div style="color:#9C0;">暂无自定义属性，您可以在商品类别中进行绑定</div>';
+        }
+    }
+    
+    /**
+     * 获取所有类别列表
+     * @return array
+     */
+    public static function CateList() {
+        if(empty(self::$_allCate)) {
+            self::$_allCate = self::find()->current()->orderBy(['orderid' => SORT_DESC])->asArray()->all();
+            foreach (self::$_allCate as $cate) {
+                self::$_allCate[$cate['id']] = $cate;
+            }
+        }
+        
+        return self::$_allCate;
+    }
+    
+    /**
+     * 类别名称
+     * @param integer $cateid
+     * @return string|string|mixed
+     */
+    public static function CateName($cateid = null) {
+        $name = '未定义';
+        $cateList = self::CateList();
+        if(is_null($cateid)) {
+            return $name;
+        } else {
+            return isset($cateList[$cateid])?$cateList[$cateid]['cname']:$name;
         }
     }
 

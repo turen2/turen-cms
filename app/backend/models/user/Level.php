@@ -5,8 +5,8 @@ namespace app\models\user;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
-use yii\behaviors\AttributeBehavior;
 use app\behaviors\InsertLangBehavior;
+use app\behaviors\OrderDefaultBehavior;
 
 /**
  * This is the model class for table "{{%user_level}}".
@@ -31,23 +31,7 @@ class Level extends \app\models\base\User
 	            'insertLangAttribute' => 'lang',
 	        ],
 	        'defaultOrderid' => [
-	            'class' => AttributeBehavior::class,
-	            'attributes' => [
-	                ActiveRecord::EVENT_BEFORE_INSERT => 'orderid',
-	                //ActiveRecord::EVENT_BEFORE_UPDATE => 'attribute2',
-	            ],
-	            'value' => function ($event) {
-    	            if(empty($this->orderid)) {
-    	                $maxModel = self::find()->current()->orderBy(['orderid' => SORT_DESC])->one();
-        	            if($maxModel) {
-        	                return $maxModel->orderid + 1;
-        	            } else {
-        	                return Yii::$app->params['config.orderid'];//配置默认值
-        	            }
-    	            }
-    	            
-    	            return $this->orderid;
-	            }
+	            'class' => OrderDefaultBehavior::class,
             ],
 	    ];
 	}

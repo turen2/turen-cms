@@ -10,7 +10,6 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
 use app\behaviors\InsertLangBehavior;
-use yii\behaviors\AttributeBehavior;
 use yii\db\ActiveRecord;
 use app\widgets\select2\TaggableBehavior;
 use app\widgets\laydate\LaydateBehavior;
@@ -19,6 +18,7 @@ use app\widgets\diyfield\DiyFieldBehavior;
 use app\behaviors\FlagBehavior;
 use app\behaviors\CateBehavior;
 use app\behaviors\ColumnBehavior;
+use app\behaviors\OrderDefaultBehavior;
 
 /**
  * This is the model class for table "{{%cms_article}}".
@@ -89,23 +89,7 @@ class Article extends \app\models\base\Cms
 	            'updatedAtAttribute' => false,
 	        ],
 	        'defaultOrderid' => [
-	            'class' => AttributeBehavior::class,
-	            'attributes' => [
-	                ActiveRecord::EVENT_BEFORE_INSERT => 'orderid',
-	                //ActiveRecord::EVENT_BEFORE_UPDATE => 'attribute2',
-	            ],
-	            'value' => function ($event) {
-    	            if(empty($this->orderid)) {
-    	                $maxModel = self::find()->current()->orderBy(['orderid' => SORT_DESC])->one();
-    	                if($maxModel) {
-    	                    return $maxModel->orderid + 1;
-    	                } else {
-    	                    return Yii::$app->params['config.orderid'];//配置默认值
-    	                }
-    	            }
-    	            
-    	            return $this->orderid;
-	            }
+	            'class' => OrderDefaultBehavior::class,
             ],
             //自定义字段
             'diyField' => [

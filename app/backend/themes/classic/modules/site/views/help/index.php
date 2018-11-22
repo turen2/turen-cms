@@ -8,6 +8,9 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use yii\widgets\ActiveForm;
+use app\models\site\HelpCate;
+use app\models\site\HelpFlag;
+use app\widgets\edititem\EditItemWidget;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\site\HelpSearch */
@@ -34,9 +37,10 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel]);
 		<td width="5%">ID</td>
 		<td width="20%"><?= $dataProvider->sort->link('title', ['label' => '标题']) ?></td>
 		<td width="8%">帮助分类名称</td>
+		<td width="4%"><?= $dataProvider->sort->link('orderid', ['label' => '排序']) ?></td>
 		<td width="10%"><?= $dataProvider->sort->link('posttime', ['label' => '发布时间']) ?></td>
 		<td width="8%">发布人</td>
-		<td width="5%"><?= $dataProvider->sort->link('hits', ['label' => '点击']) ?>点击</td>
+		<td width="5%"><?= $dataProvider->sort->link('hits', ['label' => '点击']) ?></td>
 		<td class="end-column">操作</td>
 	</tr>
 	<?php foreach ($dataProvider->getModels() as $key => $model) {
@@ -58,8 +62,15 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel]);
 			<input type="checkbox" name="checkid[]" id="checkid[]" value="<?= $model->id; ?>">
 		</td>
 		<td><?= $model->id; ?></td>
-		<td><span class="title" style="color:<?= $model->colorval; ?>;font-weight:<?= $model->boldval; ?>"><?= $model->title; ?><span class="title-flag"><?= implode('&nbsp;', $model->getAllHelpFlag()); ?></span><?=empty($model->picurl)?'':' <span class="titpic"><i class="fa fa-picture-o"></i></span>'?></span></td>
-		<td><?= $model->getAllHelpCate(); ?></td>
+		<td><span class="title" style="color:<?= $model->colorval; ?>;font-weight:<?= $model->boldval; ?>"><?= $model->title; ?><span class="title-flag"><?= implode('&nbsp;', $model->activeFlagList()); ?></span><?=empty($model->picurl)?'':' <span class="titpic"><i class="fa fa-picture-o"></i></span>'?></span></td>
+		<td><?= HelpCate::CateName($model->cateid); ?></td>
+		<td><?= EditItemWidget::widget([
+		    'model' => $model,
+		    'primaryKey' => 'id',
+		    'attribute' => 'orderid',
+		    'url' => Url::to(['/site/help/edit-item']),
+		    'options' => [],
+		]); ?></td>
 		<td><?= Yii::$app->getFormatter()->asDate($model->posttime); ?></td>
 		<td><?= $model->author; ?></td>
 		<td><?= $model->hits; ?></td>

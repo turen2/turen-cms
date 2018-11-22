@@ -11,6 +11,7 @@ use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\AttributeBehavior;
 use yii\db\ActiveRecord;
+use app\behaviors\OrderDefaultBehavior;
 
 /**
  * This is the model class for table "{{%site_help_cate}}".
@@ -27,6 +28,8 @@ class HelpCate extends \app\models\base\Site
 	public $keyword;
 	
 	public $level;
+	
+	private static $_allCate;
 
 	public function behaviors()
 	{
@@ -49,23 +52,7 @@ class HelpCate extends \app\models\base\Site
 	        ],
 	        //动态值由此属性行为处理
 	        'defaultOrderid' => [
-	            'class' => AttributeBehavior::class,
-	            'attributes' => [
-	                ActiveRecord::EVENT_BEFORE_INSERT => 'orderid',
-	                //ActiveRecord::EVENT_BEFORE_UPDATE => 'attribute2',
-	            ],
-	            'value' => function ($event) {
-    	            if(empty($this->orderid)) {
-    	                $maxModel = self::find()->current()->orderBy(['orderid' => SORT_DESC])->one();
-    	                if($maxModel) {
-    	                    return $maxModel->orderid + 1;
-    	                } else {
-    	                    return Yii::$app->params['config.orderid'];//配置默认值
-    	                }
-    	            }
-    	            
-    	            return $this->orderid;
-	            }
+	            'class' => OrderDefaultBehavior::class,
             ],
 	    ];
 	}
@@ -119,7 +106,7 @@ class HelpCate extends \app\models\base\Site
             }
             
             //不允许把自己插入到自己的下级里面
-            $children = HelpCate::find()->select('id')->current()->where(['like', 'parentstr', ','.$this->id.','])->asArray()->all();
+            $children = HelpCate::find()->select('id')->where(['like', 'parentstr', ','.$this->id.','])->asArray()->all();
             if(!empty($children) && in_array($this->parentid, ArrayHelper::getColumn($children, 'id'))) {
                 $this->addError($attribute, '不能将当前项移入到自己的下级。');
             }
@@ -144,6 +131,36 @@ class HelpCate extends \app\models\base\Site
             'status' => '审核状态',
             'lang' => '多语言',
         ];
+    }
+    
+    /**
+     * 获取所有类别列表
+     * @return array
+     */
+    public static function CateList() {
+        if(empty(self::$_allCate)) {
+            self::$_allCate = self::find()->orderBy(['orderid' => SORT_DESC])->asArray()->all();
+            foreach (self::$_allCate as $cate) {
+                self::$_allCate[$cate['id']] = $cate;
+            }
+        }
+        
+        return self::$_allCate;
+    }
+    
+    /**
+     * 类别名称
+     * @param integer $cateid
+     * @return string|string|mixed
+     */
+    public static function CateName($cateid = null) {
+        $name = '未定义';
+        $cateList = self::CateList();
+        if(is_null($cateid)) {
+            return $name;
+        } else {
+            return isset($cateList[$cateid])?$cateList[$cateid]['catename']:$name;
+        }
     }
     
     /**
