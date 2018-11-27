@@ -27,6 +27,8 @@ class Brand extends \app\models\base\Shop
 {
 	public $keyword;
 	
+	private static $_allBrand;
+	
 	public function behaviors()
 	{
 	    return [
@@ -102,6 +104,36 @@ class Brand extends \app\models\base\Shop
         ];
     }
 
+    /**
+     * 获取所有品牌列表
+     * @return array
+     */
+    public static function BrandList() {
+        if(empty(self::$_allBrand)) {
+            self::$_allBrand = self::find()->current()->orderBy(['orderid' => SORT_DESC])->asArray()->all();
+            foreach (self::$_allBrand as $brand) {
+                self::$_allBrand[$brand['id']] = $brand;
+            }
+        }
+        
+        return self::$_allBrand;
+    }
+    
+    /**
+     * 品牌名称
+     * @param integer $brandid
+     * @return string|string|mixed
+     */
+    public static function BrandName($brandid = null) {
+        $name = '未定义';
+        $brandList = self::BrandList();
+        if(is_null($brandid)) {
+            return $name;
+        } else {
+            return isset($brandList[$brandid])?$brandList[$brandid]['bname']:$name;
+        }
+    }
+    
     /**
      * @inheritdoc
      * @return BrandQuery the active query used by this AR class.
