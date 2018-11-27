@@ -21,7 +21,7 @@ foreach ($model->attributes as $key => $value) {
 ?>
 
 <div class="nav-search toolbar-tab">
-	<ul>
+	<ul class="fl">
         <li class="<?= $isAll?'on':''?>"><?= Html::a('全部', ['index']) ?></li>
         <li class="line">-</li>
         <li class="<?= (!is_null($model->status) && $model->status == ActiveRecord::STATUS_ON)?'on':''?>"><?= Html::a('显示', ['index', Html::getInputName($model, 'status') => ActiveRecord::STATUS_ON]) ?></li>
@@ -30,21 +30,16 @@ foreach ($model->attributes as $key => $value) {
         <li class="line">-</li>
         <li><a id="recycle-bin" href="javascript:;">内容回收站</a></li>
 	</ul>
-	<div id="search" class="search">
+	
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
         'id' => 'searchform',
+	    'options' => ['class' => 'fr'],
     ]); ?>
-
-		<span class="s">
+		<span class="keyword">
 			<?= Html::activeInput('text', $model, 'keyword', ['class' => 'input']) ?>
 		</span>
-		<span class="b">
-			<a href="javascript:;" onclick="searchform.submit();"></a>
-		</span>
-
+		<a class="s-btn" href="javascript:;" onclick="searchform.submit();">查询</a>
     <?php ActiveForm::end(); ?>
-    </div>
-	<div class="cl"></div>
 </div>

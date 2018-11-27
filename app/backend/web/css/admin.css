@@ -85,7 +85,7 @@ a:focus {
 }
 
 .pull-right {
-    float: right!important;
+    float: right !important;
 }
 
 .clearfix:before, .clearfix:after, .cl:before, .cl:after {
@@ -244,21 +244,14 @@ input {
 }
 
 /*定义新型浏览器特性*/
-::-webkit-scrollbar {
-	width: 10px;
-	height: 10px
-}
 
-::-webkit-scrollbar-button:vertical {
-	display: none
-}
 
 ::-webkit-scrollbar-track:vertical {
-	background: 000
+	background: 000;
 }
 
 ::-webkit-scrollbar-track-piece {
-	background: #f6f6f6
+	background: #f6f6f6;
 }
 
 ::-webkit-scrollbar-thumb:vertical {
@@ -266,15 +259,15 @@ input {
 }
 
 ::-webkit-scrollbar-thumb:vertical:hover {
-	background: #3B3B3B
+	background: #3B3B3B;
 }
 
 ::-webkit-scrollbar-corner:vertical {
-	background: #535353
+	background: #535353;
 }
 
 ::-webkit-scrollbar-resizer:vertical {
-	background: #FF6E00
+	background: #FF6E00;
 }
 
 input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
@@ -473,7 +466,7 @@ input[type="button"]:focus, input[type="submit"]:focus {
 .top-toolbar {
 	height: 40px;
 	line-height: 40px;
-	margin-bottom: 10px;
+	margin-bottom: 8px;
 	border-bottom: 1px solid #dadada;
 }
 
@@ -700,6 +693,7 @@ input[type="button"]:focus, input[type="submit"]:focus {
 
 .data-table .head {
 	font-weight: bold;
+	background: #eee;
 }
 
 .data-table .head td {
@@ -814,12 +808,12 @@ input[type="button"]:focus, input[type="submit"]:focus {
 
 /*切换搜索*/
 .toolbar-tab {
-	height: 38px;
-	margin-bottom: 12px;
+	height: 24px;
+	margin-bottom: 8px;
 }
 
 .toolbar-tab ul {
-	padding: 8px 0 0 0;
+	
 }
 
 .toolbar-tab ul li {
@@ -2175,4 +2169,148 @@ span.fileinput-button input {
 }
 .edit-box.active input {
 	display: inline;
+}
+
+/* 表格宽度 */
+.w20 {
+	width: 20px !important;
+}
+.w40 {
+    width: 40px !important;
+}
+.w50 {
+    width: 50px !important;
+}
+.w60 {
+    width: 60px !important;
+}
+.w80 {
+    width: 80px !important;
+}
+.w100 {
+    width: 100px !important;
+}
+.w120 {
+    width: 120px !important;
+}
+.w150 {
+    width: 150px !important;
+}
+.w180 {
+    width: 180px !important;
+}
+.w200 {
+    width: 200px !important;
+}
+.w210 {
+    width: 210px !important;
+}
+.w220 {
+    width: 220px !important;
+}
+.w230 {
+    width: 230px !important;
+}
+.w250 {
+    width: 250px !important;
+}
+.w260 {
+    width: 260px !important;
+}
+.w280 {
+    width: 280px !important;
+}
+.w300 {
+    width: 300px !important;
+}
+
+/* 搜索框样式 */
+.toolbar-tab input, .toolbar-tab select {
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.toolbar-tab .input {
+    height: 22px;
+    line-height: 22px;
+    margin: 0 3px 0 0;
+    border: 1px solid #ccc;
+    padding: 0 3px;
+    outline: none;
+    width: 130px;
+}
+
+.toolbar-tab select {
+    height: 24px;
+    line-height: 24px;
+    border: 1px solid #ccc;
+}
+
+.toolbar-tab .s-btn {
+    height: 22px;
+    line-height: 22px;
+    border: 1px solid #09F;
+    cursor: pointer;
+    border-radius: 2px;
+    margin: 0 0 0 8px;
+    padding: 0 8px;
+    float: right;
+    color: #fff;
+    background: #09F;
+    -webkit-transition: background ease .3s,border ease .3s;
+    transition: background ease .3s,border ease .3s;
+    position: relative;
+}
+
+.toolbar-tab .s-btn:hover {
+    background: #07F;
+    text-decoration: none;
+}
+
+.toolbar-tab .s-btn:active {
+    background: #f40;
+    border: 1px solid #f40;
+    line-height: 24px;
+    padding: 0 7px 0 9px;
+}
+
+.toolbar-tab .op-btn {
+	height: 22px;
+    padding: 0 8px;
+    color: #FFF;
+    float: left;
+    line-height: 22px;
+    cursor: pointer;
+    border-radius: 2px;
+    border: 1px solid #09F;
+    background: #09F;
+    margin-right: 5px;
+    -webkit-transition: background-color ease .5s, border ease .5s;
+    transition: background-color ease .5s, border ease .5s;
+}
+
+.toolbar-tab .op-btn:hover {
+    height: 22px;
+    padding: 0 8px;
+    float: left;
+    line-height: 22px;
+    color: #07F;
+    background-color: #e5f5fa;
+    border: 1px solid #5ac;
+}
+
+.toolbar-tab .op-btn:active {
+    line-height: 24px;
+    padding: 0 7px 0 9px;
+}
+
+.toolbar-tab label {
+	border: 1px solid #ccc;
+    padding: 4px;
+    position: relative;
+    top: 1px;
+}
+
+.toolbar-tab label:hover {
+	cursor: pointer;
 }

@@ -17,24 +17,18 @@ foreach ($model->attributes as $key => $value) {
 ?>
 
 <div class="multilang-tpl-search toolbar-tab">
-	<ul>
+	<ul class="fl">
         <li class="<?= $isAll?'on':''?>"><?= Html::a('全部', ['index']) ?></li>
 	</ul>
-	<div id="search" class="search">
-        <?php $form = ActiveForm::begin([
-            'action' => ['index'],
-            'method' => 'get',
-            'id' => 'searchform',
-        ]); ?>
-
-		<span class="s">
+    <?php $form = ActiveForm::begin([
+        'action' => ['index'],
+        'method' => 'get',
+        'id' => 'searchform',
+    'options' => ['class' => 'fr'],
+    ]); ?>
+		<span class="keyword">
 			<?= Html::activeInput('text', $model, 'keyword', ['class' => 'input']) ?>
 		</span>
-		<span class="b">
-			<a href="javascript:;" onclick="searchform.submit();"></a>
-		</span>
-
-    	<?php ActiveForm::end(); ?>
-    </div>
-	<div class="cl"></div>
+		<a class="s-btn" href="javascript:;" onclick="searchform.submit();">查询</a>
+	<?php ActiveForm::end(); ?>
 </div>

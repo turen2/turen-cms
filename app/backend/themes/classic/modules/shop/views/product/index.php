@@ -11,6 +11,8 @@ use app\widgets\edititem\EditItemWidget;
 use yii\base\Widget;
 use yii\widgets\ActiveForm;
 use app\models\cms\Flag;
+use app\models\shop\ProductCate;
+use app\models\shop\Brand;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\shop\ProductSearch */
@@ -65,8 +67,8 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel]);
 			<img alt="" src="<?= empty($model->picurl)?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($model->picurl, true, AliyunOss::OSS_STYLE_NAME180) ?>" style="height: 60px;">
 		</span></td>
 		<td><span class="title" style="color:<?= $model->colorval; ?>;font-weight:<?= $model->boldval; ?>"><?= $model->title; ?><span class="title-flag"><?= implode('&nbsp;', $model->activeFlagList(Column::COLUMN_TYPE_PRODUCT)); ?></span></span><span><em><?= $model->subtitle; ?></em></span></td>
-		<td><?= $model->getAllProductCate().' ['.$model->pcateid.']'; ?></td>
-		<td><?= $model->getAllProductBrand().' ['.$model->brand_id.']'; ?></td>
+		<td><?= ProductCate::CateName($model->pcateid).' ['.$model->pcateid.']'; ?></td>
+		<td><?= Brand::BrandName($model->brand_id).' ['.$model->brand_id.']'; ?></td>
 		<td><?= Yii::$app->getFormatter()->asCurrency($model->finalPrice()); ?><?= $model->isPromote()?'<span class="is-promote">促</span>':''; ?></td>
 		<td><?= $model->stock; ?></td>
 		<td><?= '快捷'.$model->is_best.$model->is_new.$model->is_hot; ?></td>
@@ -120,13 +122,13 @@ if(empty($dataProvider->count))
 	<div class="qiuck-warp">
 		<div class="quick-area">
     		<span class="sel-area">
-        	<span class="sel-name">选择：</span> 
-        	<a href="javascript:turen.com.checkAll(true);">全选</a> - 
-        	<a href="javascript:turen.com.checkAll(false);">反选</a>
-        	<span class="op-name">操作：</span>
-        	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>
-        	<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
-    	</span>
+            	<span class="sel-name">选择：</span> 
+            	<a href="javascript:turen.com.checkAll(true);">全选</a> - 
+            	<a href="javascript:turen.com.checkAll(false);">反选</a>
+            	<span class="op-name">操作：</span>
+            	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>
+            	<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
+        	</span>
 			<?= Html::a('添加新文章', ['create'], ['class' => 'data-btn']) ?>
 			<div class="page-small">
 			<?= LinkPager::widget([

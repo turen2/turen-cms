@@ -29,6 +29,7 @@ ValidationAsset::register($this);
 ColorPickerAsset::register($this);
 
 $rules = $messages = [];
+$rules[Html::getInputName($model, 'title')] = ['required' => true];
 $rules[Html::getInputName($model, 'columnid')] = ['required' => true];
 $rules[Html::getInputName($model, 'pcateid')] = ['required' => true];
 $rules[Html::getInputName($model, 'brand_id')] = ['required' => true];

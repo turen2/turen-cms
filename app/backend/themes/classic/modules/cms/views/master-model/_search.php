@@ -20,7 +20,7 @@ foreach ($model->attributes as $key => $value) {
 ?>
 
 <div class="master-model-search toolbar-tab">
-	<ul>
+	<ul class="fl">
         <li class="<?= $isAll?'on':''?>"><?= Html::a('全部', ['index', 'mid' => $diyModel->dm_id]) ?></li>
         <li class="line">-</li>
         <li class="<?= (!is_null($model->status) && $model->status == ActiveRecord::STATUS_ON)?'on':''?>"><?= Html::a('显示', ['index', 'mid' => $diyModel->dm_id, Html::getInputName($model, 'status') => ActiveRecord::STATUS_ON]) ?></li>
@@ -35,21 +35,16 @@ foreach ($model->attributes as $key => $value) {
         <li><?= Html::a('我发布的内容', 'javascript:;') ?></li>
         
 	</ul>
-	<div id="search" class="search">
-        <?php $form = ActiveForm::begin([
-            'action' => ['index', 'mid' => $diyModel->dm_id],
-            'method' => 'get',
-            'id' => 'searchform',
-        ]); ?>
-
-		<span class="s">
+	
+    <?php $form = ActiveForm::begin([
+        'action' => ['index', 'mid' => $diyModel->dm_id],
+        'method' => 'get',
+        'id' => 'searchform',
+    'options' => ['class' => 'fr'],
+    ]); ?>
+		<span class="keyword">
 			<?= Html::activeInput('text', $model, 'keyword', ['class' => 'input']) ?>
 		</span>
-		<span class="b">
-			<a href="javascript:;" onclick="searchform.submit();"></a>
-		</span>
-
-    	<?php ActiveForm::end(); ?>
-    </div>
-	<div class="cl"></div>
+		<a class="s-btn" href="javascript:;" onclick="searchform.submit();">查询</a>
+	<?php ActiveForm::end(); ?>
 </div>
