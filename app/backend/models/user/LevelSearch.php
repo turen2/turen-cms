@@ -19,7 +19,7 @@ class LevelSearch extends Level
     {
         return [
             [['level_id', 'level_expval_min', 'level_expval_max', 'orderid'], 'integer'],
-            [['level_name', 'is_default', 'lang'], 'safe'],
+            [['level_name', 'is_default', 'lang', 'keyword'], 'safe'],
         ];
     }
 

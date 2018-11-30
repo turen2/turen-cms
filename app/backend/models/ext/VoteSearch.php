@@ -23,7 +23,7 @@ class VoteSearch extends Vote
     {
         return [
             [['id', 'starttime', 'endtime', 'intval', 'orderid', 'posttime'], 'integer'],
-            [['title', 'content', 'isguest', 'isview', 'isradio', 'status', 'lang'], 'safe'],
+            [['title', 'content', 'isguest', 'isview', 'isradio', 'status', 'lang', 'keyword'], 'safe'],
         ];
     }
 

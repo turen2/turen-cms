@@ -15,11 +15,10 @@ use yii\helpers\ArrayHelper;
 
 $this->title = '自定义字段';
 $this->topFilter = $this->render('_filter', ['model' => $searchModel, 'type' => null]);
+$this->topAlert = '<div class="alert alert-warning">注意：编辑字段时一定要保证对应的字段没有内容，系统不会自动判断。</div>';
 ?>
 
 <?= $this->render('_search', ['model' => $searchModel]); ?>
-
-<div class="alert alert-warning">注意：编辑字段时一定要保证对应的字段没有内容，系统不会自动判断。</div>
 
 <?php $form = ActiveForm::begin([
     'enableClientScript' => false,

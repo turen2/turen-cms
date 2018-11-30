@@ -186,6 +186,12 @@ a:focus {
 .menubox .menu-wrench.level {
     bottom: 55px;
 }
+.menubox .menu-wrench.notify-content {
+    bottom: 54px;
+}
+.menubox .menu-wrench.notify-from {
+    bottom: 82px;
+}
 
 /*导航条*/
 #scrollmenu {

@@ -19,7 +19,7 @@ class FavoriteSearch extends Favorite
     {
         return [
             [['uf_id', 'uf_model_id', 'uid', 'uf_star', 'created_at'], 'integer'],
-            [['uf_typeid', 'uf_data', 'uf_link', 'uf_ip', 'lang'], 'safe'],
+            [['uf_typeid', 'uf_data', 'uf_link', 'uf_ip', 'lang', 'keyword'], 'safe'],
         ];
     }
 

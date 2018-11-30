@@ -23,7 +23,7 @@ class AdTypeSearch extends AdType
     {
         return [
             [['id', 'parentid', 'width', 'height', 'orderid'], 'integer'],
-            [['parentstr', 'typename', 'status', 'lang'], 'safe'],
+            [['parentstr', 'typename', 'status', 'lang', 'keyword'], 'safe'],
         ];
     }
 

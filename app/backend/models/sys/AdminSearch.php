@@ -22,7 +22,7 @@ class AdminSearch extends Admin
     public function rules()
     {
         return [
-            [['username', 'nickname', 'question', 'answer', 'phone', 'status'], 'safe'],
+            [['username', 'nickname', 'question', 'answer', 'phone', 'status', 'keyword'], 'safe'],
         ];
     }
 

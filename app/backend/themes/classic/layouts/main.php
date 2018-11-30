@@ -45,13 +45,13 @@ $baseUrl = Yii::getAlias('@web');
     </head>
     <body>
     <?php $this->beginBody() ?>
+    <?= $this->topAlert ?>
+    <?= Alert::widget();// 持久信息层 ?>
     <div class="top-toolbar">
     	<span class="title"><?= $this->title ?></span>
     	<?= $this->topFilter ?>
     	<a href="javascript:location.reload();" class="reload"><i class="fa fa-refresh"></i> 刷新</a>
 	</div>
-    
-    <?= Alert::widget();// 持久信息层 ?>
     
     <?= $content ?>
     

@@ -24,6 +24,30 @@ class HomeController extends \app\components\Controller
         //nothing
     }
     
+    /**
+     * 平时测试用的
+     */
+    public function actionTest()
+    {
+        //单条短信
+        //Yii::$app->sms->sendSms('13725514524', '豹品淘', 'SMS_91980004', ['code' => '1234']);
+        
+        //多条短信
+        //Yii::$app->sms->sendBatchSms(['13725514524', '18589080024'], ['豹品淘', '豹品淘'], [['code' => '1234'], ['code' => '4321']], 'SMS_91980004');
+        
+        //消息接口查阅短信状态报告返回结果
+//         Yii::$app->msg->receiveMsg('SmsReport', 'Alicom-Queue-1918237367517277-SmsReport', function($message) {
+//             print_r($message);
+//             return false;
+//         });
+        
+        //消息接口查阅短信服务上行返回结果
+//         Yii::$app->msg->receiveMsg('SmsUp', 'Alicom-Queue-1918237367517277-SmsUp', function($message) {
+//             print_r($message);
+//             return false;
+//         });
+    }
+    
     // iframe大框架
     public function actionIndex()
     {

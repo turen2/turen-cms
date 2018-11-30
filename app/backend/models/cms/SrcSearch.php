@@ -23,7 +23,7 @@ class SrcSearch extends Src
     {
         return [
             [['id', 'orderid'], 'integer'],
-            [['srcname', 'linkurl', 'lang'], 'safe'],
+            [['srcname', 'linkurl', 'lang', 'keyword'], 'safe'],
         ];
     }
 

@@ -23,7 +23,7 @@ class InfoSearch extends Info
     {
         return [
             [['id', 'columnid'], 'integer'],
-            [['picurl', 'content', 'posttime'], 'safe'],
+            [['picurl', 'content', 'posttime', 'keyword'], 'safe'],
         ];
     }
 

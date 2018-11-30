@@ -137,12 +137,11 @@ $this->title = '菜单栏';
 				<div id="leftmenu06" style="display:none;">
 					<?= Html::a('文章抓取', ['/tool/spider/index'], ['target' => 'main'])?>
     				<?= Html::a('批量SEO优化', ['/tool/seo/index'], ['target' => 'main'])?>
-    				
+    				<div class="hr_1"> </div>
     				<?= Html::a('通知用户', ['/tool/notify-user/index'], ['target' => 'main'])?>
-    				<?= Html::a('通知组', ['/tool/notify-group/index'], ['target' => 'main'])?>
-    				<?= Html::a('通知用户来源', ['/tool/notify-from/index'], ['target' => 'main'])?>
-    				<?= Html::a('通知内容', ['/tool/notify-content/index'], ['target' => 'main'])?>
-    				<?= Html::a('通知队列', ['/tool/notify-queue/index'], ['target' => 'main'])?>
+    				<?= Html::a('通知队列', ['/tool/notify-group/index'], ['target' => 'main'])?>
+    				<?= Html::a('<i class="fa fa-wrench"></i>', ['/tool/notify-content/index'], ['target' => 'main', 'title' => '消息通知内容', 'class' => 'menu-wrench notify-content'])?>
+    				<?= Html::a('<i class="fa fa-wrench"></i>', ['/tool/notify-from/index'], ['target' => 'main', 'title' => '通知用户来源', 'class' => 'menu-wrench notify-from'])?>
     				<div class="hr_1"> </div>
     				<?= Html::a('手机版', ['/tool/mobile/index'], ['target' => 'main'])?>
     				<?= Html::a('公众号版', ['/tool/mp/index'], ['target' => 'main'])?>

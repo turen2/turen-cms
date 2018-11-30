@@ -46,11 +46,11 @@ foreach ($model->attributes as $key => $value) {
         'action' => ['index'],
         'method' => 'get',
         'id' => 'searchform',
-    'options' => ['class' => 'fr'],
+        'options' => ['class' => 'fr'],
     ]); ?>
 		<span class="keyword">
-			<?= Html::activeInput('text', $model, 'keyword', ['class' => 'input']) ?>
+			<?= Html::activeInput('text', $model, 'keyword', ['class' => 'input', 'placeholder' => '关键词']) ?>
 		</span>
-		<a class="s-btn" href="javascript:;" onclick="searchform.submit();">查询</a>
+		<a class="op-btn" href="javascript:;" onclick="searchform.submit();">查询</a>
     <?php ActiveForm::end(); ?>
 </div>

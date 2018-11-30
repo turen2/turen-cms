@@ -46,9 +46,6 @@ class Favorite extends \app\models\base\User
 	            'createdAtAttribute' => 'posttime',
 	            'updatedAtAttribute' => false,
 	        ],
-	        'defaultOrderid' => [
-	            'class' => OrderDefaultBehavior::class,
-            ],
 	    ];
 	}
 

@@ -18,6 +18,8 @@ class View extends \yii\web\View
     //当前展示的模型过视图
     public $topFilter;
     
+    public $topAlert;
+    
     public function init()
     {
         parent::init();

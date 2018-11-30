@@ -23,7 +23,7 @@ class JobSearch extends Job
     {
         return [
             [['id', 'employ', 'orderid'], 'integer'],
-            [['title', 'jobplace', 'jobdescription', 'jobsex', 'treatment', 'usefullife', 'experience', 'education', 'joblang', 'workdesc', 'content', 'status', 'lang', 'posttime'], 'safe'],
+            [['title', 'jobplace', 'jobdescription', 'jobsex', 'treatment', 'usefullife', 'experience', 'education', 'joblang', 'workdesc', 'content', 'status', 'lang', 'posttime', 'keyword'], 'safe'],
         ];
     }
 

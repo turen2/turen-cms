@@ -10,21 +10,24 @@ class ActiveQuery extends \yii\db\ActiveQuery
 {
     /**
      * 活动状态
+     * @param string $field
+     * @param int $value
      * @return \app\components\ActiveQuery
      */
-    public function active()
+    public function active($field = 'status', $value = ActiveRecord::STATUS_ON)
     {
-        return $this->andWhere('[[status]]='.ActiveRecord::STATUS_ON);
+        return $this->andWhere('[['.$field.']]='.$value);
     }
     
     /**
      * 指定审核状态
-     * @param integer $status
+     * @param string $field
+     * @param int $value
      * @return \app\components\ActiveQuery
      */
-    public function status($status = ActiveRecord::STATUS_ON)
+    public function status($field = 'status', $value = ActiveRecord::STATUS_ON)
     {
-        return $this->andWhere('[[status]]='.$status);
+        return $this->andWhere('[['.$field.']]='.$value);
     }
     
     /**

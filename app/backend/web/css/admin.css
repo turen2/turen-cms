@@ -243,6 +243,33 @@ input {
 	outline: none;
 }
 
+/* 操作按钮 */
+.op-btn {
+    height: 22px;
+    padding: 0 8px;
+    color: #FFF;
+    line-height: 22px;
+    border-radius: 2px;
+    border: 1px solid #1c84c6;
+    background: #1c84c6;
+    margin-right: 5px;
+    -webkit-transition: background ease .3s,border ease .3s;
+    transition: background ease .3s,border ease .3s;
+    display: inline-block;
+    *display:inline;
+    *zoom:1;
+    /*
+    display: inline-block;
+    _zoom: 1;
+    _display: inline;
+    */
+}
+.op-btn:hover {
+    cursor: pointer;
+    background: #1b5983;
+    text-decoration: none;
+}
+
 /*定义新型浏览器特性*/
 
 
@@ -270,9 +297,9 @@ input {
 	background: #FF6E00;
 }
 
-input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
-	border-color: #62a8ea;
-    -moz-box-shadow: 0 0 3px #62a8ea;
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:focus {
+	border-color: #1c84c6;
+    -moz-box-shadow: 0 0 3px #1c84c6;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(98, 168, 234, .6);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(98, 168, 234, .6);
     outline: 0;
@@ -346,6 +373,10 @@ input[type="button"]:focus, input[type="submit"]:focus {
 .quick-box {
 	height: 200px;
     margin-bottom: 30px;
+}
+
+.quick-box .log-name {
+	color: #1c84c6;
 }
 
 .row-box {
@@ -464,8 +495,8 @@ input[type="button"]:focus, input[type="submit"]:focus {
 
 /*管理列表页*/
 .top-toolbar {
-	height: 40px;
-	line-height: 40px;
+    height: 36px;
+    line-height: 36px;
 	margin-bottom: 8px;
 	border-bottom: 1px solid #dadada;
 }
@@ -473,7 +504,7 @@ input[type="button"]:focus, input[type="submit"]:focus {
 .top-toolbar span.title {
 	float: left;
 	display: block;
-	height: 39px;
+	height: 35px;
 	border-bottom: 3px solid #fdab36;
 	font-size: 16px;
 	color: #555;
@@ -589,22 +620,26 @@ input[type="button"]:focus, input[type="submit"]:focus {
 	text-decoration: none;
 }
 
-.bottom-toolbar span.sel-area {
+.sel-area {
 	position: absolute;
     left: 0;
 	margin-top: 10px;
 }
 
-.bottom-toolbar span.sel-area a {
+.quick-area .sel-area {
+    margin-top: 0;
+}
+
+.sel-area a {
 	text-decoration: underline;
 	color: #3d566d;
 }
 
-.bottom-toolbar span.sel-area a:hover {
+.sel-area a:hover {
 	color: #3d566d;
 }
 
-.bottom-toolbar span.sel-area span {
+.sel-area span {
 	color: #999;
 }
 
@@ -656,22 +691,52 @@ input[type="button"]:focus, input[type="submit"]:focus {
 	text-decoration: none;
 }
 
-.quick-toolbar .quick-area span.sel-area {
+.sel-area {
 	float: left;
 	margin-left: 8px;
 }
 
-.quick-toolbar .quick-area span.sel-area a {
+.sel-area a {
 	text-decoration: underline;
 	color: #333;
 }
 
-.quick-toolbar .quick-area span.sel-area a:hover {
+.sel-area a:hover {
 	color: #333;
 }
 
-.quick-toolbar .quick-area span.sel-area span {
+.sel-area a.op-btn {
+    text-decoration: none;
+    color: #FFF;
+}
+
+.sel-area a.op-btn:hover {
+    color: #FFF;
+}
+
+.sel-area span {
 	color: #666;
+}
+
+.sel-area input, .sel-area select {
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.sel-area .input {
+    height: 22px;
+    line-height: 22px;
+    margin: 0 3px 0 0;
+    border: 1px solid #ccc;
+    padding: 0 3px;
+    outline: none;
+    width: 130px;
+}
+
+.sel-area select {
+    height: 24px;
+    line-height: 24px;
+    border: 1px solid #ccc;
 }
 
 .quick-toolbar .quick-area span.inputArea {
@@ -706,12 +771,12 @@ input[type="button"]:focus, input[type="submit"]:focus {
 }
 
 .data-table .first-column {
-	padding-left: 5px;
+	padding-left: 10px;
 	text-align: left;
 }
 
 .data-table .end-column {
-	padding-right: 5px;
+	padding-right: 10px;
 	text-align: right;
 }
 
@@ -734,7 +799,7 @@ input[type="button"]:focus, input[type="submit"]:focus {
 }
 
 .data-table td.action a:hover {
-	color: #d30000;
+	color: #1c84c6;
 }
 
 .data-table span.title {
@@ -808,7 +873,8 @@ input[type="button"]:focus, input[type="submit"]:focus {
 
 /*切换搜索*/
 .toolbar-tab {
-	height: 24px;
+	min-height: 24px;
+	_height: 24px;
 	margin-bottom: 8px;
 }
 
@@ -1322,7 +1388,7 @@ input[type="button"]:focus, input[type="submit"]:focus {
 	left: 56px;
 	top: 2px;
 	font: 11px Verdana;
-	color: #09F;
+	color: #1c84c6;
 }
 
 .form-table .attr-area span.attr {
@@ -1341,7 +1407,7 @@ input[type="button"]:focus, input[type="submit"]:focus {
 }
 
 .form-table .cutPicTxt a {
-	color: #09F;
+	color: #1c84c6;
 }
 
 .form-table .srcArea {
@@ -1823,10 +1889,6 @@ input[type="button"]:focus, input[type="submit"]:focus {
 }
 
 /*颜色定义*/
-.blue {
-	color: blue;
-}
-
 .red {
 	color: red;
 }
@@ -1855,7 +1917,6 @@ input[type="button"]:focus, input[type="submit"]:focus {
 /*jorry*/
 .alert {
 	padding: 15px;
-	margin-bottom: 20px;
 	border: 1px solid transparent;
 	border-radius: 4px;
 }
@@ -1876,6 +1937,7 @@ input[type="button"]:focus, input[type="submit"]:focus {
 	color: #8a6d3b;
 	background-color: #fcf8e3;
 	border-color: #faebcc;
+    margin-bottom: 10px;
 }
 
 .alert-danger, .alert-error {
@@ -2246,64 +2308,6 @@ span.fileinput-button input {
     border: 1px solid #ccc;
 }
 
-.toolbar-tab .s-btn {
-    height: 22px;
-    line-height: 22px;
-    border: 1px solid #09F;
-    cursor: pointer;
-    border-radius: 2px;
-    margin: 0 0 0 8px;
-    padding: 0 8px;
-    float: right;
-    color: #fff;
-    background: #09F;
-    -webkit-transition: background ease .3s,border ease .3s;
-    transition: background ease .3s,border ease .3s;
-    position: relative;
-}
-
-.toolbar-tab .s-btn:hover {
-    background: #07F;
-    text-decoration: none;
-}
-
-.toolbar-tab .s-btn:active {
-    background: #f40;
-    border: 1px solid #f40;
-    line-height: 24px;
-    padding: 0 7px 0 9px;
-}
-
-.toolbar-tab .op-btn {
-	height: 22px;
-    padding: 0 8px;
-    color: #FFF;
-    float: left;
-    line-height: 22px;
-    cursor: pointer;
-    border-radius: 2px;
-    border: 1px solid #09F;
-    background: #09F;
-    margin-right: 5px;
-    -webkit-transition: background-color ease .5s, border ease .5s;
-    transition: background-color ease .5s, border ease .5s;
-}
-
-.toolbar-tab .op-btn:hover {
-    height: 22px;
-    padding: 0 8px;
-    float: left;
-    line-height: 22px;
-    color: #07F;
-    background-color: #e5f5fa;
-    border: 1px solid #5ac;
-}
-
-.toolbar-tab .op-btn:active {
-    line-height: 24px;
-    padding: 0 7px 0 9px;
-}
-
 .toolbar-tab label {
 	border: 1px solid #ccc;
     padding: 4px;
@@ -2313,4 +2317,12 @@ span.fileinput-button input {
 
 .toolbar-tab label:hover {
 	cursor: pointer;
+}
+
+.toolbar-tab form {
+	text-align: right;
+}
+
+.font-14i i {
+	font-size: 14px;
 }

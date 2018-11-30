@@ -116,7 +116,7 @@ class Help extends \app\models\base\Site
             [['status'], 'default', 'value' => self::STATUS_ON],
             [['picarr'], 'default', 'value' => ''],
             [['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
-            [['tagNames', 'picarr'], 'safe'],
+            [['tagNames', 'picarr', 'keyword'], 'safe'],
         ];
     }
 

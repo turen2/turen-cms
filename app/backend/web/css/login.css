@@ -257,7 +257,7 @@ fieldset[disabled] input[type=checkbox], fieldset[disabled] input[type=radio], i
     padding: 10px;
     padding-right: 30px;
     padding-left: 10px;
-    margin-bottom: 22px;
+    margin-bottom: 10px;
     border: 1px solid transparent;
     border-radius: 3px;
 }

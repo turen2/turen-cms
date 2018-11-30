@@ -23,7 +23,7 @@ class LogSearch extends Log
     {
         return [
             [['log_id', 'admin_id'], 'integer'],
-            [['username', 'route', 'name', 'method', 'get_data', 'post_data', 'ip', 'agent', 'md5', 'created_at'], 'safe'],
+            [['username', 'route', 'name', 'method', 'get_data', 'post_data', 'ip', 'agent', 'md5', 'created_at', 'keyword'], 'safe'],
         ];
     }
 

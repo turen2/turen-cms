@@ -19,7 +19,7 @@ class ProductCateSearch extends ProductCate
     {
         return [
             [['id', 'parentid', 'orderid', 'created_at', 'updated_at'], 'integer'],
-            [['parentstr', 'cname', 'ctext', 'picurl', 'linkurl', 'status', 'lang'], 'safe'],
+            [['parentstr', 'cname', 'ctext', 'picurl', 'linkurl', 'status', 'lang', 'keyword'], 'safe'],
         ];
     }
 

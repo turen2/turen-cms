@@ -103,7 +103,7 @@ class Template extends \app\models\base\Sys
             
             //默认值
             [['picarr'], 'default', 'value' => ''],
-            [['langs'], 'safe'],
+            [['langs', 'keyword'], 'safe'],
         ];
     }
 

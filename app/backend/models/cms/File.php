@@ -146,7 +146,7 @@ class File extends \app\models\base\Cms
             [['status'], 'default', 'value' => self::STATUS_ON],
             [['picarr'], 'default', 'value' => ''],
             [['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
-            [['tagNames', 'picarr'], 'safe'],
+            [['tagNames', 'picarr', 'keyword'], 'safe'],
         ]);
     }
 

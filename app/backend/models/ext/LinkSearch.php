@@ -23,7 +23,7 @@ class LinkSearch extends Link
     {
         return [
             [['id', 'link_type_id', 'parentid', 'orderid'], 'integer'],
-            [['parentstr', 'webname', 'webnote', 'picurl', 'linkurl', 'status', 'lang', 'posttime'], 'safe'],
+            [['parentstr', 'webname', 'webnote', 'picurl', 'linkurl', 'status', 'lang', 'posttime', 'keyword'], 'safe'],
         ];
     }
 

@@ -156,7 +156,7 @@ class Product extends \app\models\base\Shop
             [['weight', 'market_price'], 'default', 'value' => 0],
             [['stock'], 'default', 'value' => Yii::$app->params['config_stock_warning']],
             [['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
-            [['picarr'], 'safe'],
+            [['picarr', 'keyword'], 'safe'],
         ]);
     }
 

@@ -210,7 +210,7 @@ a:focus {
 /*头部样式*/
 .header {
 	height: 60px;
-	border-bottom: 1px solid #1b5983;
+	border-bottom: 1px solid #509ee1;
 	background: #509ee1;
 	position: relative;
 	z-index: 2;

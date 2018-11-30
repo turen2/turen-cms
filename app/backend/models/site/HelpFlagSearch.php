@@ -23,7 +23,7 @@ class HelpFlagSearch extends HelpFlag
     {
         return [
             [['id', 'orderid'], 'integer'],
-            [['flag', 'flagname'], 'safe'],
+            [['flag', 'flagname', 'keyword'], 'safe'],
         ];
     }
 

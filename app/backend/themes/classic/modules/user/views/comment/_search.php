@@ -27,8 +27,8 @@ $isAll = is_null($model->status);
 	    'options' => ['class' => 'fr'],
     ]); ?>
 		<span class="keyword">
-			<?= Html::activeInput('text', $model, 'keyword', ['class' => 'input']) ?>
+			<?= Html::activeInput('text', $model, 'keyword', ['class' => 'input', 'placeholder' => '关键词']) ?>
 		</span>
-		<a class="s-btn" href="javascript:;" onclick="searchform.submit();">查询</a>
+		<a class="op-btn" href="javascript:;" onclick="searchform.submit();">查询</a>
     <?php ActiveForm::end(); ?>
 </div>

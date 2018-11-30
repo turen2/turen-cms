@@ -23,7 +23,7 @@ class HelpSearch extends Help
     {
         return [
             [['id', 'cateid', 'catepid', 'hits', 'orderid'], 'integer'],
-            [['catepstr', 'title', 'colorval', 'boldval', 'flag', 'author', 'linkurl', 'keywords', 'keyword', 'description', 'content', 'picurl', 'picarr', 'status', 'posttime'], 'safe'],
+            [['catepstr', 'title', 'colorval', 'boldval', 'flag', 'author', 'linkurl', 'keywords', 'keyword', 'description', 'content', 'picurl', 'picarr', 'status', 'posttime', 'keyword'], 'safe'],
         ];
     }
 

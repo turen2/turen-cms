@@ -71,9 +71,9 @@ class UEditorWidget extends InputWidget
         $this->registerClientScript();
         
         if ($this->hasModel()) {
-            return Html::activeTextarea($this->model, $this->attribute, ['id' => $this->id]);
+            return Html::activeTextarea($this->model, $this->attribute, ['id' => $this->id, 'class' => 'ueditor-textarea']);
         } else {
-            return Html::textarea($this->id, $this->value, ['id' => $this->id]);
+            return Html::textarea($this->id, $this->value, ['id' => $this->id, 'class' => 'ueditor-textarea']);
         }
     }
 
@@ -84,7 +84,12 @@ class UEditorWidget extends InputWidget
     {
         UEditorAsset::register($this->view);
         $clientOptions = Json::encode($this->clientOptions);
-        $script = "UE.getEditor('" . $this->id . "', " . $clientOptions . ");";
+        //commands: {…}, options: {…}, shortcutkeys: {…}, inputRules
+        $script = "var ue = UE.getEditor('" . $this->id . "', " . $clientOptions . ");/*console.log(ue);*/";
         $this->view->registerJs($script, View::POS_READY);
+        
+        //显示ueditor的textarea使validation验证有效
+//         $js = "$('.ueditor-textarea').css('display', 'block');";
+//         $this->view->registerJs($js, View::POS_READY);
     }
 }

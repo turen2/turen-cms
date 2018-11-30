@@ -23,7 +23,7 @@ class AdSearch extends Ad
     {
         return [
             [['id', 'ad_type_id', 'parentid', 'orderid', 'posttime'], 'integer'],
-            [['parentstr', 'title', 'admode', 'picurl', 'adtext', 'linkurl', 'status', 'lang'], 'safe'],
+            [['parentstr', 'title', 'admode', 'picurl', 'adtext', 'linkurl', 'status', 'lang', 'keyword'], 'safe'],
         ];
     }
 

@@ -102,7 +102,7 @@ class DiyField extends \app\models\base\Cms
             [['fd_name', 'fd_title', 'fd_type', 'fd_tips', 'fd_long', 'fd_desc', 'fd_value', 'fd_check'], 'string'],
             [['status'], 'default', 'value' => self::STATUS_ON],
             [['list_status'], 'default', 'value' => self::STATUS_OFF],
-            [['columnid_list'], 'safe'],
+            [['columnid_list', 'keyword'], 'safe'],
         ];
     }
 

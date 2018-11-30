@@ -23,7 +23,7 @@ class NavSearch extends Nav
     {
         return [
             [['id', 'parentid', 'orderid'], 'integer'],
-            [['parentstr', 'menuname', 'linkurl', 'picurl', 'target', 'status', 'lang'], 'safe'],
+            [['parentstr', 'menuname', 'linkurl', 'picurl', 'target', 'status', 'lang', 'keyword'], 'safe'],
         ];
     }
 

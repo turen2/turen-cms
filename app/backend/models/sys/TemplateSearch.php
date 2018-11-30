@@ -23,7 +23,7 @@ class TemplateSearch extends Template
     {
         return [
             [['temp_id', 'posttime', 'created_at', 'updated_at'], 'integer'],
-            [['temp_name', 'temp_code', 'picurl', 'picarr', 'developer_name', 'design_name', 'note', 'langs'], 'safe'],
+            [['temp_name', 'temp_code', 'picurl', 'picarr', 'developer_name', 'design_name', 'note', 'langs', 'keyword'], 'safe'],
         ];
     }
 

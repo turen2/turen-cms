@@ -27,7 +27,7 @@ $baseUrl = Yii::getAlias('@web');
 	</div>
 </div>
 
-<div class="home-count">
+<div class="home-count clearfix">
 	<div class="left-area">
 		<div class="row-box quick-box">
 			<h2 class="title">快捷操作<span><a href="<?= Url::to(['/site/lnk/index']) ?>">更多 <i class="fa fa-angle-double-right"></i></a></span></h2>
@@ -103,7 +103,7 @@ $baseUrl = Yii::getAlias('@web');
 				<ul>
 				<?php if($logModels) { ?>
 					<?php foreach ($logModels as $logModel) { ?>
-    				<li><?= Yii::$app->getFormatter()->asDatetime($logModel->created_at, 'yyyy-MM-dd HH:mm') ?> 用户 <strong><?= $logModel->username ?></strong> 进行了 <span class="blue"><?= $logModel->name ?> [<?= $logModel->route ?>]</span> </li>
+    				<li><?= Yii::$app->getFormatter()->asDatetime($logModel->created_at, 'yyyy-MM-dd HH:mm') ?> 用户 <strong><?= $logModel->username ?></strong> 进行了 <span class="log-name"><?= $logModel->name ?> [<?= $logModel->route ?>]</span> </li>
     				<?php } ?>
     			<?php } ?>
     			</ul>

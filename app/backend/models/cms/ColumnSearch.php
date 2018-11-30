@@ -23,7 +23,7 @@ class ColumnSearch extends Column
     {
         return [
             [['id', 'parentid', 'orderid'], 'integer'],
-            [['parentstr', 'type', 'cname', 'linkurl', 'picurl', 'picwidth', 'picheight', 'seotitle', 'keywords', 'keyword', 'description', 'status', 'lang'], 'safe'],
+            [['parentstr', 'type', 'cname', 'linkurl', 'picurl', 'picwidth', 'picheight', 'seotitle', 'keywords', 'keyword', 'description', 'status', 'lang', 'keyword'], 'safe'],
         ];
     }
 

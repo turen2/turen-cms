@@ -23,7 +23,7 @@ class FlagSearch extends Flag
     {
         return [
             [['id', 'orderid'], 'integer'],
-            [['flag', 'flagname', 'lang', 'type'], 'safe'],
+            [['flag', 'flagname', 'lang', 'type', 'keyword'], 'safe'],
         ];
     }
 

@@ -19,7 +19,7 @@ class GroupSearch extends Group
     {
         return [
             [['ug_id', 'orderid'], 'integer'],
-            [['ug_name', 'is_default', 'lang'], 'safe'],
+            [['ug_name', 'is_default', 'lang', 'keyword'], 'safe'],
         ];
     }
 

@@ -19,7 +19,7 @@ class AttributeSearch extends Attribute
     {
         return [
             [['id', 'pcateid', 'orderid', 'created_at', 'updated_at'], 'integer'],
-            [['attrname', 'type', 'typetext', 'status', 'lang'], 'safe'],
+            [['attrname', 'type', 'typetext', 'status', 'lang', 'keyword'], 'safe'],
         ];
     }
 

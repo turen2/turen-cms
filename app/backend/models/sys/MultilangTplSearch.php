@@ -19,7 +19,7 @@ class MultilangTplSearch extends MultilangTpl
     {
         return [
             [['id', 'template_id', 'back_default', 'front_default', 'is_visible', 'orderid'], 'integer'],
-            [['lang_sign', 'key'], 'safe'],
+            [['lang_sign', 'key', 'keyword'], 'safe'],
         ];
     }
 

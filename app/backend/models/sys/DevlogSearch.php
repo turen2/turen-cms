@@ -24,7 +24,7 @@ class DevlogSearch extends Devlog
         return [
             [['log_name', 'log_note'], 'required'],
             [['log_id', 'log_time', 'created_at'], 'integer'],
-            [['log_code'], 'safe'],
+            [['log_code', 'keyword'], 'safe'],
         ];
     }
 

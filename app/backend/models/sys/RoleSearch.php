@@ -22,7 +22,7 @@ class RoleSearch extends Role
     public function rules()
     {
         return [
-            [['role_id', 'role_name', 'note', 'status'], 'safe'],
+            [['role_id', 'role_name', 'note', 'status', 'keyword'], 'safe'],
         ];
     }
 

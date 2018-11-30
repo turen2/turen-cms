@@ -19,7 +19,7 @@ class BrandSearch extends Brand
     {
         return [
             [['id', 'orderid', 'created_at', 'updated_at'], 'integer'],
-            [['bname', 'picurl', 'bnote', 'linkurl', 'lang', 'status'], 'safe'],
+            [['bname', 'picurl', 'bnote', 'linkurl', 'lang', 'status', 'keyword'], 'safe'],
         ];
     }
 

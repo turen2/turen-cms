@@ -23,7 +23,7 @@ class BlockSearch extends Block
     {
         return [
             [['id'], 'integer'],
-            [['title', 'picurl', 'linkurl', 'content', 'lang', 'posttime'], 'safe'],
+            [['title', 'picurl', 'linkurl', 'content', 'lang', 'posttime', 'keyword'], 'safe'],
         ];
     }
 

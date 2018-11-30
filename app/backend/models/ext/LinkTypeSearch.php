@@ -23,7 +23,7 @@ class LinkTypeSearch extends LinkType
     {
         return [
             [['id', 'parentid', 'orderid'], 'integer'],
-            [['parentstr', 'typename', 'status', 'lang'], 'safe'],
+            [['parentstr', 'typename', 'status', 'lang', 'keyword'], 'safe'],
         ];
     }
 

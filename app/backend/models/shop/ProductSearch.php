@@ -19,7 +19,7 @@ class ProductSearch extends Product
     {
         return [
             [['id', 'columnid', 'pcateid', 'brand_id', 'promote_start_date', 'promote_end_date', 'stock', 'hits', 'orderid', 'posttime', 'deltime', 'created_at', 'updated_at'], 'integer'],
-            [['attrtext', 'title', 'colorval', 'boldval', 'subtitle', 'keywords', 'description', 'flag', 'sku', 'product_sn', 'weight', 'is_promote', 'is_shipping', 'linkurl', 'content', 'picurl', 'picarr', 'is_best', 'is_new', 'is_hot', 'status', 'delstate'], 'safe'],
+            [['attrtext', 'title', 'colorval', 'boldval', 'subtitle', 'keywords', 'description', 'flag', 'sku', 'product_sn', 'weight', 'is_promote', 'is_shipping', 'linkurl', 'content', 'picurl', 'picarr', 'is_best', 'is_new', 'is_hot', 'status', 'delstate', 'keyword'], 'safe'],
             [['market_price', 'sales_price', 'promote_price'], 'number'],
         ];
     }

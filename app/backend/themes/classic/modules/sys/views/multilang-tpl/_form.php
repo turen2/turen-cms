@@ -34,6 +34,8 @@ var validator = $("#submitform").validate({
 });
 EOF;
 $this->registerJs($js);
+
+$this->topAlert = '<div class="alert alert-warning">注意：同一套模板应该包括 -> 移动端模板和PC端模板两者必须同名且开通相同的语言包。</div>';
 ?>
 
 <?= Tips::widget([
@@ -46,8 +48,6 @@ $this->registerJs($js);
     'enableClientScript' => false,
     'options' => ['id' => 'submitform'],
 ]); ?>
-
-<div class="alert alert-warning">注意：同一套模板应该包括 -> 移动端模板和PC端模板两者必须同名且开通相同的语言包。</div>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="multilang-tpl-form form-table">
 	<tr>

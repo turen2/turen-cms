@@ -19,7 +19,7 @@ class DiyModelSearch extends DiyModel
     {
         return [
             [['dm_id', 'orderid', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['dm_title', 'dm_name', 'dm_tbname'], 'safe'],
+            [['dm_title', 'dm_name', 'dm_tbname', 'keyword'], 'safe'],
         ];
     }
 

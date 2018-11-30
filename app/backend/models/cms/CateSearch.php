@@ -23,7 +23,7 @@ class CateSearch extends Cate
     {
         return [
             [['id', 'parentid', 'orderid'], 'integer'],
-            [['linkurl', 'seotitle', 'keywords', 'keyword', 'description', 'parentstr', 'catename', 'status', 'lang'], 'safe'],
+            [['linkurl', 'seotitle', 'keywords', 'keyword', 'description', 'parentstr', 'catename', 'status', 'lang', 'keyword'], 'safe'],
         ];
     }
 

@@ -19,7 +19,7 @@ class CommentSearch extends Comment
     {
         return [
             [['uc_id', 'uc_pid', 'uc_model_id', 'uid', 'status', 'reply_time', 'created_at'], 'integer'],
-            [['uc_typeid', 'username', 'uc_note', 'uc_reply', 'uc_link', 'uc_ip', 'lang'], 'safe'],
+            [['uc_typeid', 'username', 'uc_note', 'uc_reply', 'uc_link', 'uc_ip', 'lang', 'keyword'], 'safe'],
         ];
     }
 
