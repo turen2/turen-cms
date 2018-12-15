@@ -122,7 +122,7 @@ class NotifyUser extends \app\models\base\Tool
             'nu_comment' => '备注',
             'nu_fr_id' => '来源id',
             'nu_order_total' => '交易总额',
-            'nu_reg_time' => '获取用户的时间',
+            'nu_reg_time' => '获取用户的日期',
             'nu_star' => '用户星级',
             'nu_province' => '省',
             'nu_city' => '市',
@@ -130,12 +130,23 @@ class NotifyUser extends \app\models\base\Tool
             'nu_is_sms_white' => '可否发短信',//可发名单
             'nu_is_notify_white' => '可否发站内信',//可发名单
             'nu_is_email_white' => '可否发邮件',//可发名单
-            'nu_last_login_time' => '最后登录时间',
-            'nu_last_order_time' => '最后下单时间',
-            'nu_last_send_time' => '最后发送时间',
+            'nu_last_login_time' => '最后登录日期',
+            'nu_last_order_time' => '最后下单日期',
+            'nu_last_send_time' => '最后发送日期',
             'created_at' => '添加时间',
             'updated_at' => '修改时间',
         ];
+    }
+    
+    public static function AddToNotifyQueue($models, $params)
+    {
+        //每10条，执行一次插入
+        foreach ($models as $model) {
+            
+            
+            
+            
+        }
     }
 
     /**

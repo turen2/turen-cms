@@ -12,6 +12,12 @@ use app\models\tool\NotifyUser;
  */
 class NotifyUserSearch extends NotifyUser
 {
+    
+    public $nu_last_order_s_time;
+    public $nu_last_order_e_time;
+    public $nu_last_send_s_time;
+    public $nu_last_send_e_time;
+    
     /**
      * @inheritdoc
      */
@@ -21,6 +27,8 @@ class NotifyUserSearch extends NotifyUser
             [['nu_id', 'nu_userid', 'nu_fr_id', 'nu_reg_time', 'nu_star', 'nu_is_sms_white', 'nu_is_notify_white', 'nu_is_email_white'], 'integer'],
             [['nu_username', 'nu_realname', 'nu_phone', 'nu_email', 'nu_comment', 'nu_province', 'nu_city', 'nu_area', 'keyword', 'nu_last_login_time', 'nu_last_order_time', 'nu_last_send_time', 'created_at', 'updated_at', 'keyword'], 'safe'],
             [['nu_order_total'], 'number'],
+            
+            [['nu_last_order_s_time', 'nu_last_order_e_time', 'nu_last_send_s_time', 'nu_last_send_e_time'], 'safe'],
         ];
     }
 
@@ -40,7 +48,7 @@ class NotifyUserSearch extends NotifyUser
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $defaultPageSize = null)
     {
     	//$sql = "select a.*, s.company as company, s.domain as domain, s.username as merchant from ".Admin::tableName()." as a left join ".Site::tableName()." as s on a.test_id = s.testid";
         //$query = Admin::findBySql($sql);
@@ -57,7 +65,7 @@ class NotifyUserSearch extends NotifyUser
             'query' => $query,
             'pagination' => [
                 //'class' => Pagination::class,
-                'defaultPageSize' => Yii::$app->params['config_page_size'],
+                'defaultPageSize' => empty($defaultPageSize)?Yii::$app->params['config_page_size']:$defaultPageSize,
             ],
             'sort' => [
                 //'class' => Sort::class,
@@ -90,30 +98,27 @@ class NotifyUserSearch extends NotifyUser
         $query->andFilterWhere(['>=', 'nu_order_total', $this->nu_order_total]);//['>=', 'id', 10]
         
         //时间范围
+        if(!empty($this->nu_last_order_s_time)) {
+            $query->andFilterWhere(['>=', 'nu_last_order_time', strtotime($this->nu_last_order_s_time)]);
+        }
+        if(!empty($this->nu_last_order_e_time)) {
+            $query->andFilterWhere(['<=', 'nu_last_order_time', strtotime($this->nu_last_order_e_time)+(24*3600)]);
+        }
+        if(!empty($this->nu_last_send_s_time)) {
+            $query->andFilterWhere(['>=', 'nu_last_send_time', strtotime($this->nu_last_send_s_time)]);
+        }
+        if(!empty($this->nu_last_send_e_time)) {
+            $query->andFilterWhere(['<=', 'nu_last_send_time', strtotime($this->nu_last_send_e_time)+(24*3600)]);
+        }
+        
+        /*
         if(!empty($this->nu_reg_time)) {
-            $dateTime = explode('-', $this->nu_reg_time);
-            $start = trim($dateTime[0]);
-            $end = trim($dateTime[1]);
             $query->andFilterWhere(['between', 'nu_reg_time', strtotime($start), strtotime($end)]);
         }
         if(!empty($this->nu_last_login_time)) {
-            $dateTime = explode('/', $this->nu_last_login_time);
-            $start = trim($dateTime[0]);
-            $end = trim($dateTime[1]);
             $query->andFilterWhere(['between', 'nu_last_login_time', strtotime($start), strtotime($end)]);
         }
-        if(!empty($this->nu_last_order_time)) {
-            $dateTime = explode('/', $this->nu_last_order_time);
-            $start = trim($dateTime[0]);
-            $end = trim($dateTime[1]);
-            $query->andFilterWhere(['between', 'nu_last_order_time', strtotime($start), strtotime($end)]);
-        }
-        if(!empty($this->nu_last_send_time)) {
-            $dateTime = explode('/', $this->nu_last_send_time);
-            $start = trim($dateTime[0]);
-            $end = trim($dateTime[1]);
-            $query->andFilterWhere(['between', 'nu_last_send_time', strtotime($start), strtotime($end)]);
-        }
+        */
         
         //good
         $query->andFilterWhere(['or', 

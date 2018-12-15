@@ -139,7 +139,7 @@ $this->title = '菜单栏';
     				<?= Html::a('批量SEO优化', ['/tool/seo/index'], ['target' => 'main'])?>
     				<div class="hr_1"> </div>
     				<?= Html::a('通知用户', ['/tool/notify-user/index'], ['target' => 'main'])?>
-    				<?= Html::a('通知队列', ['/tool/notify-group/index'], ['target' => 'main'])?>
+    				<?= Html::a('消息队列', ['/tool/notify-group/index'], ['target' => 'main'])?>
     				<?= Html::a('<i class="fa fa-wrench"></i>', ['/tool/notify-content/index'], ['target' => 'main', 'title' => '消息通知内容', 'class' => 'menu-wrench notify-content'])?>
     				<?= Html::a('<i class="fa fa-wrench"></i>', ['/tool/notify-from/index'], ['target' => 'main', 'title' => '通知用户来源', 'class' => 'menu-wrench notify-from'])?>
     				<div class="hr_1"> </div>

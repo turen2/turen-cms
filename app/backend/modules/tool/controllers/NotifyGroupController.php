@@ -90,7 +90,6 @@ class NotifyGroupController extends Controller
     {
         $model = $this->findModel($id);
 
-        $model->load(Yii::$app->request->post());exit;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
         	Yii::$app->getSession()->setFlash('success', $model->ng_title.' 已经修改成功！');
             return $this->redirect(['index']);

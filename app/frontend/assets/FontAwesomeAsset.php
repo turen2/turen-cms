@@ -19,7 +19,6 @@ class FontAwesomeAsset extends AssetBundle
     
     public $css = [
         'css/font-awesome.min.css',
-        'css/animate.css',
     ];
     
     public $js = [];

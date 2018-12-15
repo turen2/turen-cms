@@ -463,6 +463,74 @@ turen.sys = (function($) {
     return pub;
 })(jQuery);
 
+turen.tool = (function($) {
+    var pub = {
+		addToQueue: function(_this, url) {
+        	var _this = $(_this);
+        	var selectGroup = $(_this).prev().val();
+        	var selectType = $(_this).prev().prev().val();
+        	
+        	if(selectType == 'selected') {//当前选中的
+        		var selectedAll = $("input[type='checkbox'][name!='checkid'][name^='checkid']:checked");
+        		if(selectedAll.size() > 0) {
+        			$.pb.confirm('确定要加入到指定队列吗？', function() {
+        				var callback = function(res, _this) {
+        	                if(res.state) {
+        	                	$.notify(res.msg, 'success');
+        	                } else {
+        	                	$.notify(res.msg, 'error');
+        	                }
+        	            };
+        	            commonRemote(url, {checkIds: selectedAll.serialize(), group_id: selectGroup}, callback, _this);
+        	            return;
+        			});
+        		} else {
+        			$.notify('没有任何选中信息！', 'warn');
+        		}
+        	} else if(selectType == 'filtered') {//当前过滤的列表
+        		
+        	}
+        	
+        	/*
+            var callback = function(res, _this) {
+                if(res.state) {
+                	//$.notify('222222', 'success');
+                	//$('#multilangtpl-lang_sign').html(res.msg);
+                } else {
+                	//$.notify(res.msg, 'error');
+                }
+            };
+            */
+        }
+    };
+
+    // 私有方法
+    function commonRemote(url ,data, callback, _this, type = 'POST') {
+        data[csrfParam] = csrfToken;
+        $.ajax({
+            url: url,
+            type: type,
+            dataType: 'json',
+            context: _this,
+            cache: false,
+            data: data,
+            success: function(res) {
+                if(callback) {
+                    callback(res, _this);
+                } else {
+                	if (res['state']) {
+                    	$.notify(res['msg'], 'success');
+                    } else {
+                    	$.notify(res['msg'], 'warn');
+                    }
+                }
+           }
+        });
+    }
+
+    return pub;
+})(jQuery);
+
 //立刻执行
 turen.com.autoDeal();
 

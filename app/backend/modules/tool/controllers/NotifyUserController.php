@@ -37,7 +37,16 @@ class NotifyUserController extends Controller
     public function actionIndex()
     {
         $searchModel = new NotifyUserSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if(Yii::$app->getRequest()->isPost) {
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams, 999999999);
+            NotifyUser::AddToNotifyQueue($dataProvider->models, Yii::$app->getRequest()->post());
+            return $this->asJson([
+                'state' => true,
+                'msg' => '添加成功',
+            ]);
+        } else {
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,

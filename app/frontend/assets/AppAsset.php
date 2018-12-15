@@ -16,7 +16,10 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
+        'css/global.css',//重置样式
+        'css/common.css',//全局通用样式
+        'css/layout.css',//所有布局样式
+        'css/site.css',//详情样式
     ];
     
     public $js = [

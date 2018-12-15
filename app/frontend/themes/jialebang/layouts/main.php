@@ -10,7 +10,9 @@
 
 use yii\helpers\Html;
 use app\assets\AppAsset;
+use app\assets\FontAwesomeAsset;
 
+FontAwesomeAsset::register($this);
 AppAsset::register($this);
 ?>
 
@@ -26,12 +28,16 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <link type="image/x-icon" href="./favicon.ico" rel="shortcut icon">
     <?php $this->head() ?>
+    <?= $this->render('_config') ?>
 </head>
-<body>
+<body class="">
 <?php $this->beginBody() ?>
-<p style="border: 1px solid green;">这里是pc模板布局.....</p>
-<p style="border: 1px solid blue;">当前语言包：<?= Yii::$app->language ?>，当前模板：<?= Yii::$app->viewPath ?></p>
+
+<?= $this->render('_header') ?>
+
 <?= $content ?>
+
+<?= $this->render('_footer') ?>
 
 <?php $this->endBody() ?>
 </body>

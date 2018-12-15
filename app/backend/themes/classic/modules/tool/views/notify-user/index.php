@@ -94,9 +94,9 @@ if(empty($dataProvider->count))
 	<span class="sel-area" style="top: 25px;">
     	<span class="op-name" style="margin-left: 0;">队列：</span>
 		<span class="op-queue">
-			<?= Html::dropDownList('type', 'filtered', ['selected' => '当前选中', '"filtered"' => '当前过滤']) ?>
+			<?= Html::dropDownList('type', 'selected', ['selected' => '当前选中', 'filtered' => '当前过滤']) ?>
 			<?= Html::dropDownList('notify_group_id', null, ArrayHelper::map(NotifyGroup::find()->all(), 'ng_id', 'ng_title')) ?> 
-			<a class="op-btn" href="javascript:;" onclick="alert('dddd');">确认</a>
+			<a class="op-btn" href="javascript:;" onclick="javascript:turen.tool.addToQueue(this, '<?=Url::current()?>');">确认</a>
 		</span>
 	</span>
 	<div class="page">
@@ -126,9 +126,9 @@ if(empty($dataProvider->count))
         		<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
             	<span class="op-name">队列：</span>
     			<span class="op-queue">
-        			<?= Html::dropDownList('type', 'filtered', ['selected' => '当前选中', '"filtered"' => '当前过滤']) ?>
+        			<?= Html::dropDownList('type', 'selected', ['selected' => '当前选中', 'filtered' => '当前过滤']) ?>
         			<?= Html::dropDownList('notify_group_id', null, ArrayHelper::map(NotifyGroup::find()->all(), 'ng_id', 'ng_title')) ?> 
-					<a class="op-btn" href="javascript:;" onclick="alert('dddd');">确认</a>
+					<a class="op-btn" href="javascript:;" onclick="javascript:turen.tool.addToQueue(this, '<?=Url::current()?>');">确认</a>
     			</span>
         	</span>
 			<span class="page-small">

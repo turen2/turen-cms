@@ -87,7 +87,7 @@ return [
                 'yii\web\JqueryAsset' => [
                     'sourcePath' => '@app/assets/jquery/',
                     'js' => [
-                        'jquery.min.js'//
+                        'jquery-1.9.1.min.js'
                     ]
                 ],
             ],

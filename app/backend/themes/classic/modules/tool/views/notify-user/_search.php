@@ -4,6 +4,8 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\models\tool\NotifyFrom;
+use app\widgets\datetimepicker\DatetimePickerWidget;
+use yii\base\Widget;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\tool\NotifyUserSearch */
@@ -32,8 +34,65 @@ foreach ($model->attributes as $key => $value) {
     	<span><?= Html::activeCheckbox($model, 'nu_is_sms_white', ['label' => '可发短信', 'uncheck' => null]) ?></span>
     	<span><?= Html::activeCheckbox($model, 'nu_is_notify_white', ['label' => '可发站内信', 'uncheck' => null]) ?></span>
     	<span><?= Html::activeCheckbox($model, 'nu_is_email_white', ['label' => '可发邮件', 'uncheck' => null]) ?></span>
-    	<span><?= Html::activeInput('text', $model, 'nu_last_order_time', ['class' => 'input w80', 'placeholder' => '下单时间']) ?></span>
-    	<span><?= Html::activeInput('text', $model, 'nu_last_send_time', ['class' => 'input w80', 'placeholder' => '发送时间']) ?></span>
+    	
+    	<span><?= DatetimePickerWidget::widget([
+    	    'model' => $model,
+    	    'attribute' => 'nu_last_order_s_time',
+    	    'clientOptions' => [
+    	        'format' => 'Y-m-d',
+    	        'timepicker' => false,
+    	        'value' => $model->nu_last_order_s_time,
+    	    ],
+    	    'options' => [
+    	        'autocomplete' => 'off',
+    	        'class' => 'input w80',
+    	        'placeholder' => '下单开始日期',
+            ],
+    	]) ?></span>
+    	<span><?= DatetimePickerWidget::widget([
+    	    'model' => $model,
+    	    'attribute' => 'nu_last_order_e_time',
+    	    'clientOptions' => [
+    	        'format' => 'Y-m-d',
+    	        'timepicker' => false,
+    	        'value' => $model->nu_last_order_e_time,
+            ],
+    	    'options' => [
+    	        'autocomplete' => 'off',
+    	        'class' => 'input w80',
+    	        'placeholder' => '下单结束日期',
+            ],
+    	]) ?></span>
+    	<span>| </span>
+    	<span><?= DatetimePickerWidget::widget([
+    	    'model' => $model,
+    	    'attribute' => 'nu_last_send_s_time',
+    	    'clientOptions' => [
+    	        'format' => 'Y-m-d',
+    	        'timepicker' => false,
+    	        'value' => $model->nu_last_send_s_time,
+    	    ],
+    	    'options' => [
+    	        'autocomplete' => 'off',
+    	        'class' => 'input w80',
+    	        'placeholder' => '发送开始日期',
+            ],
+    	]) ?></span>
+    	<span><?= DatetimePickerWidget::widget([
+    	    'model' => $model,
+    	    'attribute' => 'nu_last_send_e_time',
+    	    'clientOptions' => [
+    	        'format' => 'Y-m-d',
+    	        'timepicker' => false,
+    	        'value' => $model->nu_last_send_e_time,
+    	    ],
+    	    'options' => [
+    	        'autocomplete' => 'off',
+    	        'class' => 'input w80',
+    	        'placeholder' => '发送结束日期',
+            ],
+    	]) ?></span>
+    	
     	<span><?= Html::activeInput('text', $model, 'nu_order_total', ['class' => 'input w80', 'placeholder' => '最低订单额']) ?></span>
     	<span><?= Html::activeDropDownList($model, 'nu_star', [null => '选择星级', '1' => '1星', '2' => '2星', '3' => '3星', '4' => '4星', '5' => '5星']) ?></span>
     	<span><?= Html::activeDropDownList($model, 'nu_fr_id', ArrayHelper::merge([null => '选择发送组'], ArrayHelper::map(NotifyFrom::find()->asArray()->all(), 'fr_id', 'fr_title'))) ?></span>
