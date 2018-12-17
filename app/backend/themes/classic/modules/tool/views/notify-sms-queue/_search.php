@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\components\ActiveRecord;
@@ -7,11 +11,11 @@ use yii\helpers\ArrayHelper;
 use app\models\tool\NotifyGroup;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\tool\NotifyQueueSearch */
+/* @var $model app\models\tool\NotifySmsQueueSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="notify-queue-search toolbar-tab">
+<div class="notify-sms-queue-search toolbar-tab">
 	<ul class="fl">
         <li class="<?= (empty($model->keyword) && empty($model->nq_nu_id) && empty($model->nq_ng_id))?'on':''?>"><?= Html::a('全部', ['index']) ?></li>
 	</ul>

@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 namespace app\modules\tool\controllers;
 
 use Yii;
@@ -38,11 +42,33 @@ class NotifyUserController extends Controller
     {
         $searchModel = new NotifyUserSearch();
         if(Yii::$app->getRequest()->isPost) {
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams, 999999999);
-            NotifyUser::AddToNotifyQueue($dataProvider->models, Yii::$app->getRequest()->post());
+            $checkIds = Yii::$app->getRequest()->post('checkIds', null);
+            if($checkIds) {//当前选择
+                $models = NotifyUser::findAll(['nu_id' => explode('|', $checkIds)]);
+            } else {//当前过滤
+                $dataProvider = $searchModel->search(Yii::$app->request->queryParams, 999999999);
+                $models = $dataProvider->getModels();
+            }
+            
+            $sendType = Yii::$app->getRequest()->post('send_type', null);
+            $state = false;
+            $msg = '未找到您指定的发送类型';
+            if($sendType == 'sms') {
+                $total = NotifyUser::AddToNotifySmsQueue($models, Yii::$app->getRequest()->post('group_id', null));
+                $state = true;
+                $msg = '添加成功了 '.$total.' 条';
+            } elseif($sendType == 'email') {
+                $total = NotifyUser::AddToNotifyEmailQueue($models, Yii::$app->getRequest()->post('group_id', null));
+                $state = false;
+                $msg = '邮件推送未开通';
+            } elseif($sendType == 'site') {
+                $total = NotifyUser::AddToNotifySiteQueue($models, Yii::$app->getRequest()->post('group_id', null));
+                $state = false;
+                $msg = '站内推送未开通';
+            }
             return $this->asJson([
-                'state' => true,
-                'msg' => '添加成功',
+                'state' => $state,
+                'msg' => $msg,
             ]);
         } else {
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);

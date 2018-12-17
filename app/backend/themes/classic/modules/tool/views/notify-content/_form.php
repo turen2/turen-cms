@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
@@ -49,54 +53,6 @@ $this->registerJs($js);
     		<td class="second-column">
     			<?= Html::activeInput('text', $model, 'nc_title', ['class' => 'input']) ?>
     			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('nc_notify_content')?><?php if($model->isAttributeRequired('nc_notify_content')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= UEditorWidget::widget([
-    			    'model' => $model,
-    			    'attribute' => 'nc_notify_content',
-                    'clientOptions' => [
-                        'serverUrl' => Url::to(['ueditor']),
-                        'initialContent' => '',
-                        'initialFrameWidth' => '738',
-                        'initialFrameHeight' => '280',
-                    ],
-                    //'readyEvent' => 'alert(\'abc\');console.log(ue);',
-                ]); ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('nc_notify_data')?><?php if($model->isAttributeRequired('nc_notify_data')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeTextarea($model, 'nc_notify_data', ['class' => 'textdesc']) ?>
-    			<span class="cnote">键值等于替换内容时，取数据库字段</span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('nc_email_content')?><?php if($model->isAttributeRequired('nc_email_content')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= UEditorWidget::widget([
-    			    'model' => $model,
-    			    'attribute' => 'nc_email_content',
-                    'clientOptions' => [
-                        'serverUrl' => Url::to(['ueditor']),
-                        'initialContent' => '',
-                        'initialFrameWidth' => '738',
-                        'initialFrameHeight' => '280',
-                    ],
-                    //'readyEvent' => 'alert(\'abc\');console.log(ue);',
-                ]); ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('nc_email_data')?><?php if($model->isAttributeRequired('nc_email_data')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeTextarea($model, 'nc_email_data', ['class' => 'textdesc']) ?>
-    			<span class="cnote">键值等于替换内容时，取数据库字段</span>
     		</td>
     	</tr>
     	<tr>

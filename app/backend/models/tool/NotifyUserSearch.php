@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 namespace app\models\tool;
 
 use Yii;
@@ -48,7 +52,7 @@ class NotifyUserSearch extends NotifyUser
      *
      * @return ActiveDataProvider
      */
-    public function search($params, $defaultPageSize = null)
+    public function search($params, $limit = null)
     {
     	//$sql = "select a.*, s.company as company, s.domain as domain, s.username as merchant from ".Admin::tableName()." as a left join ".Site::tableName()." as s on a.test_id = s.testid";
         //$query = Admin::findBySql($sql);
@@ -65,7 +69,8 @@ class NotifyUserSearch extends NotifyUser
             'query' => $query,
             'pagination' => [
                 //'class' => Pagination::class,
-                'defaultPageSize' => empty($defaultPageSize)?Yii::$app->params['config_page_size']:$defaultPageSize,
+                'defaultPageSize' => empty($limit)?Yii::$app->params['config_page_size']:$limit,
+                'pageSizeLimit' => [1, empty($limit)?50:$limit],
             ],
             'sort' => [
                 //'class' => Sort::class,
@@ -132,7 +137,7 @@ class NotifyUserSearch extends NotifyUser
             ['like', 'nu_area', $this->keyword],
         ]);
         
-        //echo $dataProvider->query->createCommand()->rawSql;
+        //echo $dataProvider->query->createCommand()->rawSql;exit;
 
         return $dataProvider;
     }

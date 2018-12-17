@@ -467,40 +467,41 @@ turen.tool = (function($) {
     var pub = {
 		addToQueue: function(_this, url) {
         	var _this = $(_this);
-        	var selectGroup = $(_this).prev().val();
-        	var selectType = $(_this).prev().prev().val();
+        	var sendType = $(_this).prev().val();
+        	var selectGroup = $(_this).prev().prev().val();
+        	var selectType = $(_this).prev().prev().prev().val();
         	
-        	if(selectType == 'selected') {//当前选中的
-        		var selectedAll = $("input[type='checkbox'][name!='checkid'][name^='checkid']:checked");
-        		if(selectedAll.size() > 0) {
-        			$.pb.confirm('确定要加入到指定队列吗？', function() {
-        				var callback = function(res, _this) {
-        	                if(res.state) {
-        	                	$.notify(res.msg, 'success');
-        	                } else {
-        	                	$.notify(res.msg, 'error');
-        	                }
-        	            };
-        	            commonRemote(url, {checkIds: selectedAll.serialize(), group_id: selectGroup}, callback, _this);
-        	            return;
-        			});
-        		} else {
-        			$.notify('没有任何选中信息！', 'warn');
-        		}
-        	} else if(selectType == 'filtered') {//当前过滤的列表
-        		
+        	if(selectGroup == '') {
+        		$.notify('请先选择队列，如果没有先创建', 'warn');
+        		return;
         	}
         	
-        	/*
-            var callback = function(res, _this) {
-                if(res.state) {
-                	//$.notify('222222', 'success');
-                	//$('#multilangtpl-lang_sign').html(res.msg);
-                } else {
-                	//$.notify(res.msg, 'error');
-                }
-            };
-            */
+        	$.pb.confirm('确定要加入到指定队列吗？', function() {
+        		var callback = function(res, _this) {
+	                if(res.state) {
+	                	$.notify(res.msg, 'success');
+	                } else {
+	                	$.notify(res.msg, 'error');
+	                }
+	            };
+        		if(selectType == 'selected') {//当前选中的
+            		var selectedAll = $("input[type='checkbox'][name!='checkid'][name^='checkid']:checked");
+            		if(selectedAll.size() > 0) {
+            	            var checkIds = new Array();
+            	            selectedAll.each(function(i) {
+            	            	checkIds[i] = $(this).val();
+            	            });
+            	            checkIds = checkIds.join('|');
+            	            
+            	            commonRemote(url, {checkIds: checkIds, group_id: selectGroup, send_type: sendType}, callback, _this);
+            	            return;
+            		} else {
+            			$.notify('没有任何选中信息！', 'warn');
+            		}
+            	} else if(selectType == 'filtered') {//当前过滤的列表
+            		commonRemote(url, {group_id: selectGroup, send_type: sendType}, callback, _this);
+            	}
+        	});
         }
     };
 

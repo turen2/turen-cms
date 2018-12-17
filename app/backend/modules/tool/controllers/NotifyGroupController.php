@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 namespace app\modules\tool\controllers;
 
 use Yii;
@@ -9,6 +13,8 @@ use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\actions\CheckAction;
+use app\models\tool\NotifySmsQueue;
+use app\models\tool\NotifyContent;
 
 /**
  * NotifyGroupController implements the CRUD actions for NotifyGroup model.
@@ -69,6 +75,7 @@ class NotifyGroupController extends Controller
     public function actionCreate()
     {
         $model = new NotifyGroup();
+        $model->loadDefaultValues();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
         	Yii::$app->getSession()->setFlash('success', $model->ng_title.' 添加成功，结果将展示在列表。');
@@ -135,6 +142,39 @@ class NotifyGroupController extends Controller
         
         Yii::$app->getSession()->setFlash('success', $model->ng_title.' 已经成功删除！');
         return $this->redirect($returnUrl);
+    }
+    
+    /**
+     * 定时任务（稳定后移到console控制台）
+     */
+    public function actionSendSms()
+    {
+        //每次最多取20条队列
+        $total = 0;
+        foreach (NotifyGroup::find()->where(['ng_status' => 1])->andWhere(['or', ['ng_clock_time' => 0], ['and', ['>', 'ng_clock_time', 0], ['<', 'ng_clock_time', time()]]])->batch(20) as $notifyGroupModels) {
+            foreach ($notifyGroupModels as $notifyGroupModel) {
+                //短信内容组装
+                $contentModel = NotifyContent::findOne(['nc_id' => $notifyGroupModel->ng_nc_id]);
+                if($contentModel) {
+                    //每次发送20条短信
+                    foreach (NotifySmsQueue::find()->where(['nq_ng_id' => $notifyGroupModel->ng_id])->batch(20) as $notifySmsQueueModels) {
+                        foreach ($notifySmsQueueModels as $notifySmsQueueModel) {
+                            if(empty($notifySmsQueueModel->nq_sms_send_time)) {
+                                //发送
+                                Yii::$app->sms->sendSms($notifySmsQueueModel->nq_phone, $contentModel->nc_sms_sign, $contentModel->nc_sms_tcode, []);
+                                $total++;
+                                //更新相关内容
+                                NotifySmsQueue::updateAll(['nq_sms_send_time' => time()], ['nq_sms_id' => $notifySmsQueueModel->nq_sms_id]);
+                                NotifyGroup::updateAllCounters(['ng_send_count' => 1], ['ng_id' => $notifyGroupModel->ng_id]);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        echo '本次发送总量为：'.$total;
+        exit;
     }
 
     /**

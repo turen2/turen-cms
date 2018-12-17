@@ -93,7 +93,7 @@ class AliyunSms extends Component
      * 实例：
      * Yii::$app->sms->sendSms('13725514524', '豹品淘', 'SMS_91980004', ['code' => '1234']);
      */
-    public function sendSms($number, $sign, $tcode, array $meses, $outId = null, $extCode = null) {
+    public function sendSms($number, $sign, $tcode, array $meses = [], $outId = null, $extCode = null) {
 
         // 初始化SendSmsRequest实例用于设置发送短信的参数
         $request = $this->_sendSmsRequest;

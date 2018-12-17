@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
@@ -10,6 +14,7 @@ use yii\helpers\Json;
 use app\models\tool\NotifyGroup;
 use yii\helpers\ArrayHelper;
 use app\models\tool\NotifyContent;
+use app\widgets\datetimepicker\DatetimePickerWidget;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\tool\NotifyGroup */
@@ -72,7 +77,20 @@ $this->registerJs($js);
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('ng_clock_time')?><?php if($model->isAttributeRequired('ng_clock_time')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'ng_clock_time', ['class' => 'input']) ?>
+    			<?= DatetimePickerWidget::widget([
+            	    'model' => $model,
+            	    'attribute' => 'ng_clock_time',
+            	    'clientOptions' => [
+            	        'format' => 'Y-m-d H:i:s',
+            	        'timepicker' => true,
+            	        'value' => $model->dateTimeValue(),
+            	    ],
+            	    'options' => [
+            	        'autocomplete' => 'off',
+            	        'class' => 'inputms',
+            	        'placeholder' => '发送结束日期',
+                    ],
+            	]) ?>
     			<span class="cnote">如果定时发送不为空，则队列由状态和时间共同决定是否执行。</span>
     		</td>
     	</tr>

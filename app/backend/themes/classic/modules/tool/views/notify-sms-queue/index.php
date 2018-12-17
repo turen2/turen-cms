@@ -10,44 +10,39 @@ use yii\helpers\Url;
 use yii\widgets\LinkPager;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\tool\NotifyGroupSearch */
+/* @var $searchModel app\models\tool\NotifySmsQueueSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = '消息队列';
+$this->title = '短信队列';
 ?>
 
 <?= $this->render('_search', ['model' => $searchModel]); ?>
 
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="data-table">
 	<tr align="left" class="head">
-		<td width="20%" class="first-column"><?= $dataProvider->sort->link('ng_title', ['label' => '标题']) ?></td>
-		<td width="18%"><?= $dataProvider->sort->link('ng_nc_id', ['label' => '关联内容']) ?></td>
-		<td width="6%"><?= $dataProvider->sort->link('ng_count', ['label' => '待发量']) ?></td>
-		<td width="6%"><?= $dataProvider->sort->link('ng_send_count', ['label' => '已发量']) ?></td>
-		<td width="19%"><?= $dataProvider->sort->link('ng_clock_time', ['label' => '定时发送']) ?></td>
-		<td width="25%" class="end-column"><?= $dataProvider->sort->link('ng_status', ['label' => '操作']) ?></td>
+		<td width="3%" class="first-column"><?= $dataProvider->sort->link('nq_sms_id', ['label' => 'ID']) ?></td>
+		<td width="6%">用户名</td>
+		<td width="10%">所属队列</td>
+		<td width="5%"><?= $dataProvider->sort->link('nq_phone', ['label' => '手机号']) ?></td>
+		<td width="9%"><?= $dataProvider->sort->link('nq_sms_send_time', ['label' => '短信发送时间']) ?></td>
+		<td width="9%"><?= $dataProvider->sort->link('nq_sms_arrive_time', ['label' => '短信到达时间']) ?></td>
+		<td width="25%" class="end-column">操作</td>
 	</tr>
 	<?php foreach ($dataProvider->getModels() as $key => $model) {
 		$options = [
-	        'title' => '点击进行发送和暂停操作',
-	        'data-url' => Url::to(['check', 'id' => $model->ng_id]),
-	        'onclick' => 'turen.com.updateStatus(this)',
-        ];
-		$checkstr = Html::a(($model->ng_status?'启用':'禁用'), 'javascript:;', $options);
-		
-		$options = [
-    		'data-url' => Url::to(['delete', 'id' => $model->ng_id, 'returnUrl' => Url::current()]),
-		    'onclick' => 'turen.com.deleteItem(this, \''.$model->ng_title.'\')',
+    		'data-url' => Url::to(['delete', 'id' => $model->nq_sms_id, 'returnUrl' => Url::current()]),
+		    'onclick' => 'turen.com.deleteItem(this, \''.$model->nq_sms_id.'\')',
 		];
 		$delstr = Html::a('删除', 'javascript:;', $options);
 	?>
 	<tr align="left" class="data-tr">
-		<td class="first-column font-14i"><?= $model->sendStatus() ?> <?= $model->ng_title ?> <br /><a href="<?= Url::to(['/tool/notify-sms-queue/index', 'NotifySmsQueueSearch[nq_ng_id]' => $model->ng_id]) ?>">[查看详情]</a></td>
-		<td><?= empty($model->notifyContent)?'未定义':$model->notifyContent->nc_title; ?></td>
-		<td><?= $model->ng_count?></td>
-		<td><?= $model->ng_send_count?></td>
-		<td><?= empty($model->ng_clock_time)?'未定义时间':Yii::$app->getFormatter()->asDatetime($model->ng_clock_time)?></td>
-		<td class="action end-column"><span><?= $checkstr; ?></span> | <span><a href="<?= Url::to(['update', 'id' => $model->ng_id]) ?>">修改</a></span> | <span class="nb"><?= $delstr; ?></span></td>
+		<td class="first-column"><?= $model->nq_sms_id; ?></td>
+		<td><?= empty($model->notifyUser)?'未定义':$model->notifyUser->nu_username; ?></td>
+		<td><?= empty($model->notifyGroup)?'未定义':$model->notifyGroup->ng_title; ?></td>
+		<td><?= $model->nq_phone; ?></td>
+		<td><?= empty($model->nq_sms_send_time)?'未发送':(Yii::$app->getFormatter()->asDate($model->nq_sms_send_time).'<br />'.Yii::$app->getFormatter()->asTime($model->nq_sms_send_time)); ?></td>
+		<td><?= empty($model->nq_sms_arrive_time)?'未达':(Yii::$app->getFormatter()->asDate($model->nq_sms_arrive_time).'<br />'.Yii::$app->getFormatter()->asTime($model->nq_sms_arrive_time)); ?></td>
+		<td class="action end-column"><span class="nb"><?= $delstr; ?></span></td>
 	</tr>
 	<?php } ?>
 </table>
@@ -59,7 +54,6 @@ if(empty($dataProvider->count))
 ?>
 
 <div class="bottom-toolbar clearfix">
-	<?= Html::a('添加新队列', ['create'], ['class' => 'data-btn']) ?>
 	<div class="page">
     	<?= LinkPager::widget([
     	    'pagination' => $dataProvider->getPagination(),
@@ -81,7 +75,6 @@ if(empty($dataProvider->count))
 			<span class="sel-area">
 				<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
 			</span>
-			<?= Html::a('添加新队列', ['create'], ['class' => 'data-btn']) ?>
 			<span class="page-small">
 			<?= LinkPager::widget([
 			    'pagination' => $dataProvider->getPagination(),

@@ -1,11 +1,15 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 namespace app\models\tool;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
-use yii\behaviors\TimestampBehavior;
+use app\widgets\datetimepicker\DatetimePickerBehavior;
 
 /**
  * This is the model class for table "{{%tool_notify_group}}".
@@ -31,9 +35,9 @@ class NotifyGroup extends \app\models\base\Tool
 	{
 	    return [
 	        'clockTime' => [
-	            'class' => TimestampBehavior::class,
-	            'createdAtAttribute' => 'ng_clock_time',
-	            'updatedAtAttribute' => false,
+	            'class' => DatetimePickerBehavior::class,
+	            'timeAttribute' => 'ng_clock_time',
+	            'fomat' => 'Y-m-d H:i:s',
 	        ],
 	    ];
 	}
@@ -63,8 +67,8 @@ class NotifyGroup extends \app\models\base\Tool
     {
         return [
             [['ng_title', 'ng_nc_id'], 'required'],
-            [['ng_id', '', 'ng_count', 'ng_send_count', 'ng_clock_time', 'ng_status'], 'integer'],
-            [['ng_comment'], 'string', 'max' => 255],
+            [['ng_id', 'ng_count', 'ng_clock_time', 'ng_send_count', 'ng_status'], 'integer'],
+            [['ng_comment'], 'string'],
         ];
     }
 
@@ -78,8 +82,8 @@ class NotifyGroup extends \app\models\base\Tool
             'ng_title' => ' 队列标题',
             'ng_comment' => '队列备注',
             'ng_nc_id' => '发送内容',
-            'ng_count' => '待发总量',
-            'ng_send_count' => '已发总量',
+            'ng_count' => '发送总量',
+            'ng_send_count' => '已发量',
             'ng_clock_time' => '定时发送',
             'ng_status' => '发送状态',
         ];

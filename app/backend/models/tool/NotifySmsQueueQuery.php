@@ -7,11 +7,11 @@
 namespace app\models\tool;
 
 /**
- * This is the ActiveQuery class for [[NotifyContent]].
+ * This is the ActiveQuery class for [[NotifySmsQueue]].
  *
- * @see NotifyContent
+ * @see NotifySmsQueue
  */
-class NotifyContentQuery extends \app\components\ActiveQuery
+class NotifySmsQueueQuery extends \app\components\ActiveQuery
 {
 	//自定义专用方法
 }

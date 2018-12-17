@@ -1,11 +1,16 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 namespace app\models\tool;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
+use yii\base\Model;
 
 /**
  * This is the model class for table "{{%tool_notify_user}}".
@@ -96,9 +101,9 @@ class NotifyUser extends \app\models\base\Tool
         //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return [
             [['nu_id'], 'required'],
-            [['nu_id', 'nu_userid', 'nu_fr_id', 'nu_reg_time', 'nu_star', 'nu_is_sms_white', 'nu_is_notify_white', 'nu_is_email_white', 'nu_last_login_time', 'nu_last_order_time', 'nu_last_send_time', 'created_at', 'updated_at'], 'integer'],
+            [['nu_id', 'nu_userid', 'nu_fr_id', 'nu_reg_time', 'nu_star', 'nu_is_sms_white', 'nu_is_notify_white', 'nu_is_email_white', 'nu_last_login_time', 'nu_last_order_time', 'nu_last_send_time', 'created_at', 'updated_at', 'nq_user_id'], 'integer'],
             [['nu_order_total'], 'number'],
-            [['nu_username', 'nu_realname'], 'string', 'max' => 30],
+            [['nu_username', 'nu_realname', 'nq_phone', 'nq_email'], 'string'],
             [['nu_phone'], 'string', 'max' => 11],
             [['nu_email'], 'string', 'max' => 38],
             [['nu_comment'], 'string', 'max' => 255],
@@ -127,6 +132,9 @@ class NotifyUser extends \app\models\base\Tool
             'nu_province' => '省',
             'nu_city' => '市',
             'nu_area' => '区县',
+            'nq_phone' => '手机号码',
+            'nq_email' => '邮箱',
+            'nq_user_id' => '用户ID',
             'nu_is_sms_white' => '可否发短信',//可发名单
             'nu_is_notify_white' => '可否发站内信',//可发名单
             'nu_is_email_white' => '可否发邮件',//可发名单
@@ -138,15 +146,70 @@ class NotifyUser extends \app\models\base\Tool
         ];
     }
     
-    public static function AddToNotifyQueue($models, $params)
+    /**
+     * 添加用户到指定的队列，执行发送
+     * @param Model $models
+     * @param integer $groupId
+     * @return number
+     */
+    public static function AddToNotifySmsQueue($models, $groupId)
     {
-        //每10条，执行一次插入
-        foreach ($models as $model) {
-            
-            
-            
-            
+        $smsTotal = 0;
+        //队列不存在
+        if(!NotifyGroup::find()->where(['ng_id' => $groupId])->exists()) {
+            return $smsTotal;
         }
+        
+        //此处可优化：如，每10条，执行一次插入
+        $notifySmsQueueModel = new NotifySmsQueue();
+        foreach ($models as $model) {
+            if($model->nu_is_sms_white && !empty($model->nu_phone)) {
+                $notifySmsQueueModel->nq_sms_id = null;
+                $notifySmsQueueModel->isNewRecord = true;
+                $notifySmsQueueModel->nq_nu_id = $model->nu_id;
+                $notifySmsQueueModel->nq_ng_id = $groupId;
+                $notifySmsQueueModel->nq_user_id = $model->nu_userid;
+                $notifySmsQueueModel->nq_phone = $model->nu_phone;
+                $notifySmsQueueModel->nq_sms_send_time = 0;
+                $notifySmsQueueModel->nq_sms_arrive_time = 0;
+                if($notifySmsQueueModel->save(false)) {
+                    $smsTotal++;
+                }
+            }
+        }
+        
+        //重新计算发送量：ng_count
+        NotifyGroup::updateAll(['ng_count' => NotifySmsQueue::find()->where(['nq_ng_id' => $groupId])->count('nq_sms_id')], ['ng_id' => $groupId]);
+        
+        return $smsTotal;
+    }
+    
+    /**
+     * 添加用户到指定的队列，执行发送
+     * @param Model $models
+     * @param integer $groupId
+     * @return number
+     */
+    public static function AddToNotifyEmailQueue($models, $groupId)
+    {
+        /**
+         * @todo
+         * 待实现
+         */
+    }
+    
+    /**
+     * 添加用户到指定的队列，执行发送
+     * @param Model $models
+     * @param integer $groupId
+     * @return number
+     */
+    public static function AddToNotifySiteQueue($models, $groupId)
+    {
+        /**
+         * @todo
+         * 待实现
+         */
     }
 
     /**

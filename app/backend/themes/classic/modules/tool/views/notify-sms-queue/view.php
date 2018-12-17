@@ -1,17 +1,21 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\widgets\Breadcrumbs;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\tool\NotifyQueue */
+/* @var $model app\models\tool\NotifySmsQueue */
 
-$this->title = $model->nq_id;
+$this->title = $model->nq_sms_id;
 $this->params['breadcrumbs'][] = ['label' => '队列详情', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="notify-queue-view wrapper wrapper-content">
+<div class="notify-sms-queue-view wrapper wrapper-content">
     <div class="row">
         <div class="col-sm-12">
             <div class="ibox">
@@ -41,8 +45,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="ibox-content">
                 <p>
                     <?= Html::a('<i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> 返回', ['index'], ['class' => 'btn btn-default btn-rounded return btn-sm']) ?>
-                    <?= Html::a('Update', ['update', 'id' => $model->nq_id], ['class' => 'btn btn-primary btn-sm']) ?>
-                    <?= Html::a('Delete', ['delete', 'id' => $model->nq_id], [
+                    <?= Html::a('Update', ['update', 'id' => $model->nq_sms_id], ['class' => 'btn btn-primary btn-sm']) ?>
+                    <?= Html::a('Delete', ['delete', 'id' => $model->nq_sms_id], [
                         'class' => 'btn btn-danger btn-sm',
                         'data' => [
                             'confirm' => '您确认要删除吗？',
@@ -65,7 +69,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 //'status' => true,//是否显示
                             ],
                             */
-                                            'nq_id',
+                                            'nq_sms_id',
                             'nq_nu_id',
                             'nq_ng_id',
                             'nq_is_email:email',

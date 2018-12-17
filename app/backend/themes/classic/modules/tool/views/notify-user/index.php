@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
@@ -38,7 +42,7 @@ $this->title = '会员列表';
     		<td><div class="w120"><?= $dataProvider->sort->link('nu_last_order_time', ['label' => '下单时间']) ?></div></td>
     		<td><div class="w120"><?= $dataProvider->sort->link('nu_last_send_time', ['label' => '发送时间']) ?></div></td>
     		<td><div class="w120"><?= $dataProvider->sort->link('created_at', ['label' => '添加日期']) ?></div></td>
-    		<td class="end-column"><div class="w80">操作</div></td>
+    		<td class="end-column"><div class="w40">操作</div></td>
     	</tr>
     	<?php foreach ($dataProvider->getModels() as $key => $model) {
     		$options = [
@@ -68,7 +72,7 @@ $this->title = '会员列表';
     		<td><?= Yii::$app->getFormatter()->asDate($model->nu_last_order_time); ?><br /><?= Yii::$app->getFormatter()->asTime($model->nu_last_order_time); ?></td>
     		<td><?= Yii::$app->getFormatter()->asDate($model->nu_last_send_time); ?><br /><?= Yii::$app->getFormatter()->asTime($model->nu_last_send_time); ?></td>
     		<td><?= Yii::$app->getFormatter()->asDate($model->created_at); ?><br /><?= Yii::$app->getFormatter()->asTime($model->created_at); ?></td>
-    		<td class="action end-column"><span><a href="<?= Url::to(['update', 'id' => $model->nu_id]) ?>">修改</a></span> | <span class="nb"><?= $delstr; ?></span></td>
+    		<td class="action end-column"><span class="nb"><?= $delstr; ?></span></td>
     	</tr>
     	<?php } ?>
     </table>
@@ -95,7 +99,8 @@ if(empty($dataProvider->count))
     	<span class="op-name" style="margin-left: 0;">队列：</span>
 		<span class="op-queue">
 			<?= Html::dropDownList('type', 'selected', ['selected' => '当前选中', 'filtered' => '当前过滤']) ?>
-			<?= Html::dropDownList('notify_group_id', null, ArrayHelper::map(NotifyGroup::find()->all(), 'ng_id', 'ng_title')) ?> 
+			<?= Html::dropDownList('notify_group_id', null, ArrayHelper::merge([null => '请选择队列'], ArrayHelper::map(NotifyGroup::find()->all(), 'ng_id', 'ng_title'))) ?> 
+			<?= Html::dropDownList('send_type', 'sms', ['sms' => '短信', 'email' => '邮件', 'site' => '站内通知']) ?> 
 			<a class="op-btn" href="javascript:;" onclick="javascript:turen.tool.addToQueue(this, '<?=Url::current()?>');">确认</a>
 		</span>
 	</span>
@@ -126,8 +131,9 @@ if(empty($dataProvider->count))
         		<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
             	<span class="op-name">队列：</span>
     			<span class="op-queue">
-        			<?= Html::dropDownList('type', 'selected', ['selected' => '当前选中', 'filtered' => '当前过滤']) ?>
-        			<?= Html::dropDownList('notify_group_id', null, ArrayHelper::map(NotifyGroup::find()->all(), 'ng_id', 'ng_title')) ?> 
+        			<?= Html::dropDownList('select_type', 'selected', ['selected' => '当前选中', 'filtered' => '当前过滤']) ?>
+        			<?= Html::dropDownList('notify_group_id', null, ArrayHelper::merge([null => '请选择队列'], ArrayHelper::map(NotifyGroup::find()->all(), 'ng_id', 'ng_title'))) ?> 
+        			<?= Html::dropDownList('send_type', 'sms', ['sms' => '短信', 'email' => '邮件', 'site' => '站内通知']) ?> 
 					<a class="op-btn" href="javascript:;" onclick="javascript:turen.tool.addToQueue(this, '<?=Url::current()?>');">确认</a>
     			</span>
         	</span>
