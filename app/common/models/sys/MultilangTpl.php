@@ -38,7 +38,7 @@ class MultilangTpl extends \common\models\base\Sys
      * @throws InvalidConfigException
      * @return string[]|unknown[]|unknown[][][]
      */
-    public function LangList()
+    public static function LangList()
     {
         $multilangTpls = (new Query())->from(self::tableName())->all();//query为了效率
         $allLang = [];
