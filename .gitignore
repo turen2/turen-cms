@@ -2,5 +2,6 @@ vendor/*
 .settings
 .buildpath
 .project
+.idea
 *.zip
 !vendor.zip
