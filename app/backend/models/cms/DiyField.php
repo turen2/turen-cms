@@ -202,11 +202,11 @@ class DiyField extends \app\models\base\Cms
         }
         
         $columnName = self::FIELD_PRE.$this->fd_name;
-        $tableName = $className::tableName();
         if(empty($className)) {
             return true;//直接返回
         }
-        
+        $tableName = $className::tableName();
+
         $tableSchema = Yii::$app->db->schema->getTableSchema($tableName);
         //如果有则删除
         if($columnSchema = $tableSchema->getColumn($columnName)) {
