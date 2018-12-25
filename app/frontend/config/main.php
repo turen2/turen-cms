@@ -18,7 +18,7 @@ return [
     'id' => 'app-frontend',
     'timeZone' => 'Asia/Shanghai',
     'basePath' => dirname(__DIR__),
-    'name' => 'Turen2',
+    'name' => 'Jialebang',
     'version' => '1.0',
     'charset' => 'UTF-8',
     'sourceLanguage' => 'en-US', // 默认源语言
@@ -34,7 +34,10 @@ return [
         ],
     ],
     'modules' => [
-        //
+        //搬家模块
+        'banjia' => [
+            'class' => 'app\modules\banjia\Module',
+        ],
     ],
     'components' => [
         'devicedetect' => [
@@ -62,6 +65,9 @@ return [
         'view' => [
             // 主题配置(module目录下的views > 根目录下的views > 主题下的模板)
             'class' => 'app\components\View',
+            'theme' => [
+                'class' => 'yii\base\Theme',//配置了才能初始化
+            ],
             //theme的功能是重新映射的关系，即将原模板系统默认的目录结果映射为自定义目录结构！！
             //默认机制是，模板目录结构与控制器挂件模块等结构保持一致。
             /*

@@ -17,31 +17,6 @@ class Module extends \yii\base\Module
     
     public $layout = 'main';
     
-//     public $controllerNamespace = 'app\\modules\\web\\controllers';
-//     public $viewPath = '@app/themes/classic/web/views';
-//     public $layoutPath = '@app/themes/classic/web/layouts';
+    public $controllerNamespace = 'app\\modules\\web\\controllers';
 
-    /**
-     * @inheritdoc
-     */
-    public function init()
-    {
-        parent::init();
-
-        //模板切换
-        $this->setViewPath('@app/themes/'.GLOBAL_TEMPLATE_CODE.'/web/views');
-        $this->setLayoutPath('@app/themes/'.GLOBAL_TEMPLATE_CODE.'/web/layouts');
-        
-        //特殊处理widget模板
-        Yii::$app->view->theme->setBasePath('@app/themes/'.GLOBAL_TEMPLATE_CODE);
-        Yii::$app->view->theme->setBaseUrl('@app/themes/'.GLOBAL_TEMPLATE_CODE);
-        
-        Yii::$app->view->theme->pathMap = [
-            '@app/modules/web/widgets' => '@app/themes/'.GLOBAL_TEMPLATE_CODE.'/web/widgets',
-        ];
-
-        //当前为web模板
-        Yii::$app->errorHandler->errorAction = 'web/site/error';
-        // custom initialization code goes here
-    }
 }

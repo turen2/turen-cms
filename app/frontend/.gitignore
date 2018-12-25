@@ -1,2 +1,5 @@
-*
-!.gitignore
+web/assets/*
+!assets/.gitignore
+runtime/*
+!runtime/.gitignore
+config/*-local.php

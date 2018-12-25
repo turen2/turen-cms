@@ -1,0 +1,206 @@
+/* 全局css start */
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+a {
+	color: #666;
+    text-decoration: none;
+}
+
+.primary-color, a:hover, a.on {
+	color: #0099e9;
+}
+
+ul, li {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+body, button, input, select, textarea {
+    font-size: 12px;
+    font-family: -apple-system,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;
+    word-break: break-word;
+    text-rendering: optimizeLegibility;
+    color: #666;
+    background-color: #FFFFFF;
+}
+
+img {
+    border: 0;
+    vertical-align: middle;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+.big-font {
+    font-size: 22px;
+}
+
+.small-font {
+    font-size: 14px;
+}
+
+/* 总宽+居中 */
+.container {
+    width: 1190px;
+    margin: 0 auto;
+}
+
+/*清除浮动*/
+.clearfix:before,
+.clearfix:after {
+  content: ".";    
+  display: block;    
+  height: 0;    
+  overflow: hidden; 
+}
+.clearfix:after {clear: both;}
+
+/*清除浮动*/
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/*文字overflow 显示’…’*/
+.text-overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*兼容透明*/
+.opacity50 {
+    /* IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    /* IE 5-7 */
+    filter: alpha(opacity = 50);
+    /* Netscape */
+    -moz-opacity: 0.5;
+    /* Safari 1.x */
+    -khtml-opacity: 0.5;
+    /* Good browsers */
+    opacity: 0.5;
+}
+
+/*四个圆角5px*/
+.br5 {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+/*圆角10px*/
+.br10 {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+/* 蓝色阴影 */
+.sb {
+	border: solid 1px rgba(83, 173, 252, 0.05);
+    -webkit-box-shadow: 0px 7px 7px 0px rgba(83, 173, 252, 0.2);
+    -moz-box-shadow: 0px 7px 7px 0px rgba(83, 173, 252, 0.2);
+    box-shadow: 0px 7px 7px 0px rgba(83, 173, 252, 0.2);
+}
+
+/*p标签自动换行*/
+.word-wrap {
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+    word-break: break-all;
+    overflow: hidden;
+}
+
+/*浮动*/
+.fl {
+    float: left !important;
+}
+.fr {
+    float: right !important;
+}
+
+/*隐藏显示*/
+.hide {
+    display: none !important;
+}
+.show {
+    display: block !important;
+}
+
+/*对齐方式*/
+.tl {
+    text-align: left !important;
+}
+.tc {
+    text-align: center !important;
+}
+.tr {
+    text-align: right !important;
+}
+
+/* 外边距 */
+.m0 {
+    margin: 0;
+}
+.mt0 {
+    margin-top: 0px !important;
+}
+.mr0 {
+    margin-right: 0px !important;
+}
+.mb0 {
+    margin-bottom: 0px !important;
+}
+.ml0 {
+    margin-left: 0px !important;
+}
+
+/* 内边距 */
+.p0 {
+    padding: 0px;
+}
+.pt0 {
+    padding-top: 0 !important;
+}
+.pr0 {
+    padding-right: 0 !important;
+}
+.pb0 {
+    padding-bottom: 0 !important;
+}
+.pl0 {
+    padding-left: 0 !important;
+}
+
+/* 去掉input文本框边框焦点样式 */
+input:focus
+{
+    outline: none;/*去掉默认input焦点边框*/
+}
+
+/* 按钮 */
+.btn {
+    padding: 0 10px;
+    height: 23px;
+    line-height: 23px;
+    border: 1px solid #f42424;
+    display: inline-block;
+    color: #f42424;
+    background-color: #fff;
+    margin-right: 5px;
+    font-size: 12px;
+    cursor: pointer;
+}
+/* 全局css end */

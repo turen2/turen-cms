@@ -164,6 +164,17 @@ class Init extends \yii\base\Component implements \yii\base\BootstrapInterface
         //设置系统模板
         Yii::$app->setViewPath('@app/themes/'.$template['temp_code'].'/views');
         Yii::$app->setLayoutPath('@app/themes/'.$template['temp_code'].'/layouts');
+
+        $theme = Yii::$app->getView()->theme;
+        $theme->basePath = '@app/themes/'.$template['temp_code'];//主题所在文件路径
+        $theme->baseUrl = '@app/themes/'.$template['temp_code'];//与主题相关的url资源路径
+        $theme->pathMap = [
+            '@app/modules' => '@app/themes/'.$template['temp_code'].'/modules',//模板
+            '@app/widgets' => '@app/themes/'.$template['temp_code'].'/widgets',//部件
+            '@app/layouts' => '@app/themes/'.$template['temp_code'].'/layouts',//布局
+            //优先级最低
+            '@app/views' => '@app/themes/'.$template['temp_code'],//非模块模板
+        ];
     }
     
     protected function initFace()
