@@ -20,7 +20,7 @@
     	<div class="container clearfix">
     		<!-- logon -->
             <a href="" class="logo fl">
-                <img src="/images/logo.png">
+            	<img src="/images/logo.png">
         	</a>
         	
             <!-- 导航 -->

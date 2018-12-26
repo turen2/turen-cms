@@ -11,6 +11,8 @@ namespace app\modules\banjia;
  */
 class Module extends \yii\base\Module
 {
+    public $layout = '/main-banjia';
+
     /**
      * {@inheritdoc}
      */

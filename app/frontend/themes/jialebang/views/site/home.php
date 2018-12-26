@@ -921,7 +921,14 @@ $webUrl = Yii::getAlias('@web/');
 </div>
 
 <div class="container">
-http://wh.ikongjian.com/底部的友链和扇形展示
+    <div class="jia-baike container">
+        <div class="jia-head">
+            <h2 class="fl">百科大全&amp;服务协议障<span class="txt">一站式的服务</span></h2>
+        </div>
+        <div class="clearfix">
+            http://wh.ikongjian.com/底部的友链和扇形展示
+        </div>
+    </div>
 </div>
 
 <div class="company-history">

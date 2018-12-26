@@ -9,11 +9,11 @@
 /* @var $content string */
 
 use yii\helpers\Html;
-use app\assets\AppAsset;
+use app\assets\AppBanjiaAsset;
 use app\assets\FontAwesomeAsset;
 
 FontAwesomeAsset::register($this);
-AppAsset::register($this);
+AppBanjiaAsset::register($this);
 ?>
 
 <?php $this->beginPage() ?>
@@ -33,11 +33,13 @@ AppAsset::register($this);
 <body class="">
 <?php $this->beginBody() ?>
 
-<?= $this->render('_header') ?>
+<?= $this->render('_header-banjia') ?>
 
-<?= $content ?>
+<div class="banjia-home">
+    <?= $content ?>
+</div>
 
-<?= $this->render('_footer') ?>
+<?= $this->render('_footer-banjia') ?>
 
 <?php $this->endBody() ?>
 </body>
