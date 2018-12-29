@@ -110,7 +110,7 @@ $webUrl = Yii::getAlias('@web/');
                         <p class="nav-box nav-wx">
                             <img class="nav-qr" src="<?= $webUrl ?>images/common/xcx.png">
                             <br />
-                            <span class="qr-txt">官方公众号</span>
+                            <span class="qr-txt">官方客服</span>
                         </p>
                     </a>
                 </div>
@@ -120,7 +120,7 @@ $webUrl = Yii::getAlias('@web/');
 </div>
 
 <div class="nav-bg">
-    <ul class="header-nav-hide clearfix" id="sub-25" style="width: 900px;">
+    <ul class="header-nav-hide clearfix" id="sub-25" style="width: 1080px;">
         <li><a href=""><img src="<?= $webUrl ?>images/987.jpg" /><span>居民搬家</span></a></li>
         <li><a href=""><img src="<?= $webUrl ?>images/987.jpg" /><span>办公室搬迁</span></a></li>
         <li><a href=""><img src="<?= $webUrl ?>images/987.jpg" /><span>厂房搬迁</span></a></li>
@@ -131,8 +131,9 @@ $webUrl = Yii::getAlias('@web/');
         <li><a href=""><img src="<?= $webUrl ?>images/987.jpg" /><span>空调移机</span></a></li>
         <li><a href="" class="last"><img src="<?= $webUrl ?>images/987.jpg" /><span>长途搬家</span></a></li>
     </ul>
-    <ul class="header-nav-hide hide" id="sub-30">
-        <li><a href="">搬家百科</a></li>
-        <li><a href="">行业动态</a></li>
+    <ul class="header-nav-hide clearfix hide" id="sub-30" style="width: 360px;">
+        <li><a href=""><img src="<?= $webUrl ?>images/987.jpg" /><span>搬家百科</span></a></li>
+        <li><a href=""><img src="<?= $webUrl ?>images/987.jpg" /><span>行业动态</span></a></li>
+        <li><a href="" class="last"><img src="<?= $webUrl ?>images/987.jpg" /><span>常见问题</span></a></li>
     </ul>
 </div>

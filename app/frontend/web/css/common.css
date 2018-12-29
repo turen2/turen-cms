@@ -432,7 +432,7 @@ input:focus
 .nav-bg .header-nav-hide li {
 	float: left;
 	height: 100px;
-	width: 100px;
+	width: 120px;
 	padding-top: 5px;
 	text-align: center;
 }
@@ -453,7 +453,7 @@ input:focus
 
 .nav-bg .header-nav-hide li img {
 	width: 75px;
-	height: 75px;
+	height: 70px;
 }
 
 .nav-bg .header-nav-hide li span {
