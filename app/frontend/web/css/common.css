@@ -684,6 +684,6 @@ input:focus
     padding-top: 45px;
     cursor: pointer;
     z-index: 11;
-    background: url('../images/fixe_top.jpg') center center no-repeat;
+    background: url('../images/fixe_top.png') center center no-repeat;
 }
 /* 右侧浮层end */
