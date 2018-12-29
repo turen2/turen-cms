@@ -20,7 +20,7 @@ $(window).scroll(function () {
         $('.nav-bg').css('top', '80px');
     } else {
         $('.header').stop().animate({
-            height: '116px'
+            height: '114px'
         }, 100);
         $('.header .head-top').stop().animate({
             top: '0px'

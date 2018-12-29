@@ -211,7 +211,7 @@ input:focus
 
 /* 头部 */
 .header {
-    height: 121px;
+    height: 114px;
     position: relative;
     overflow: hidden;
 }
@@ -424,9 +424,41 @@ input:focus
     border-top: 1px solid #eee;
 }
 
+.nav-bg .header-nav-hide {
+	display: block;
+	margin: 0 auto;
+}
 
+.nav-bg .header-nav-hide li {
+	float: left;
+	height: 100px;
+	width: 100px;
+	padding-top: 5px;
+	text-align: center;
+}
 
+.nav-bg .header-nav-hide li:hover {
+    border-bottom: 2px solid #0099e9;
+}
 
+.nav-bg .header-nav-hide li a {
+	display: block;
+	font-weight: bold;
+	border-right: 1px dashed #ededed;
+}
+
+.nav-bg .header-nav-hide li a.last {
+	border: none;
+}
+
+.nav-bg .header-nav-hide li img {
+	width: 75px;
+	height: 75px;
+}
+
+.nav-bg .header-nav-hide li span {
+	display: block;
+}
 
 
 /* 头部end */
@@ -541,7 +573,7 @@ input:focus
     height: 311px;
     top: 26%;
     background: rgb(255, 255, 255);
-    z-index: 11;
+    z-index: 25;
     opacity: 1;
 }
 
@@ -569,8 +601,8 @@ input:focus
 }
 
 .fixe-right a:nth-child(1):hover {
-    background: url('../images/fixe_call_1.png') center center no-repeat rgb(255, 163, 31);
-    border-color: rgb(255, 163, 31);
+    background: url('../images/fixe_call_1.png') center center no-repeat #0099e9;
+    border-color: #0099e9;
     color: #fff;
 }
 
@@ -588,8 +620,8 @@ input:focus
 }
 
 .fixe-right a:nth-child(2):hover {
-    background: url('../images/fixe_about_1.png') center center no-repeat rgb(255, 163, 31);
-    border-color: rgb(255, 163, 31);
+    background: url('../images/fixe_about_1.png') center center no-repeat #0099e9;
+    border-color: #0099e9;
     color: #fff;
 }
 
@@ -607,8 +639,8 @@ input:focus
 }
 
 .fixe-right a:nth-child(3):hover {
-    background: url('../images/fixe_price_1.png') center center no-repeat rgb(255, 163, 31);
-    border-color: rgb(255, 163, 31);
+    background: url('../images/fixe_price_1.png') center center no-repeat #0099e9;
+    border-color: #0099e9;
     color: #fff;
 }
 
@@ -626,8 +658,8 @@ input:focus
 }
 
 .fixe-right a:nth-child(4):hover,.fixe-right a:nth-child(4).hover {
-    background: url('../images/fixe_ma_1.png') center center no-repeat rgb(255, 163, 31);
-    border-color: rgb(255, 163, 31);
+    background: url('../images/fixe_ma_1.png') center center no-repeat #0099e9;
+    border-color: #0099e9;
     color: #fff;
 }
 
@@ -683,7 +715,7 @@ input:focus
     border: 1px solid rgb(233, 233, 233);
     padding-top: 45px;
     cursor: pointer;
-    z-index: 11;
+    z-index: 25;
     background: url('../images/fixe_top.png') center center no-repeat;
 }
 /* 右侧浮层end */
