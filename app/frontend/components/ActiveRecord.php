@@ -31,7 +31,8 @@ class ActiveRecord extends \yii\db\ActiveRecord
     //移动方向
     const ORDER_UP_TYPE = 'up';
     const ORDER_DOWN_TYPE = 'down';
-    
+
+    /*
     private $_admin;
     
     public function init()
@@ -47,4 +48,5 @@ class ActiveRecord extends \yii\db\ActiveRecord
     {
         return $this->_admin;
     }
+    */
 }

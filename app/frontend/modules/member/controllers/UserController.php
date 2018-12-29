@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\common\controllers;
+namespace app\modules\member\controllers;
 
 use Yii;
 use yii\base\InvalidArgumentException;
@@ -27,11 +27,12 @@ class UserController extends Controller
     /**
      * @inheritdoc
      */
+/*
     public function behaviors()
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'only' => ['logout', 'signup'],
                 'rules' => [
                     [
@@ -47,13 +48,14 @@ class UserController extends Controller
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'logout' => ['post'],
                 ],
             ],
         ];
     }
+*/
 
     /**
      * @inheritdoc
@@ -73,13 +75,14 @@ class UserController extends Controller
 
     /**
      * Displays homepage.
+     * 用户中心
      *
      * @return mixed
      */
-    public function actionIndex()
+    public function actionInfo()
     {
 //        echo "访问成功";
-        return $this->render('index');
+        return $this->render('info');
     }
 
     /**
@@ -113,39 +116,6 @@ class UserController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
-    }
-
-    /**
-     * Displays contact page.
-     *
-     * @return mixed
-     */
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
-            } else {
-                Yii::$app->session->setFlash('error', 'There was an error sending your message.');
-            }
-
-            return $this->refresh();
-        } else {
-            return $this->render('contact', [
-                'model' => $model,
-            ]);
-        }
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return mixed
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
     }
 
     /**

@@ -26,7 +26,7 @@ AppBanjiaAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
-    <link type="image/x-icon" href="./favicon.ico" rel="shortcut icon">
+    <link type="image/x-icon" href="/favicon.ico" rel="shortcut icon">
     <?php $this->head() ?>
     <?= $this->render('_config') ?>
 </head>

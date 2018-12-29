@@ -1,15 +1,26 @@
 <?php 
 $webUrl = Yii::getAlias('@web/');
+
+use app\models\CmsBlock;
+
+$blockModel = CmsBlock::find()->current()->where(['id' => 2])->one();
+if($blockModel) {
+    $aboutUsTitle = $blockModel->title;
+    $aboutUsContent = $blockModel->content;
+} else {
+    $aboutUsTitle = 'bottom_aboutus标题';
+    $aboutUsContent = '在后台碎片管理添加，简码为“bottom_aboutus”';
+}
 ?>
+
 <div class="footer">
     <div class="footer-content">
         <div class="container">
         	<div class="footer-ulist clearfix">
         		<div class="inner-block first">
-    				<h3>关于我们</h3>
+    				<h3><?= $aboutUsTitle ?></h3>
     				<div class="inner-con">
-    					家乐邦（jialebang100.com）成立8年以来，立足于深圳，服务于珠三角地区，通过自身的不断努力在客户心
-                        中树立了良好的形象，得到了用户的一致好评，累计服务超过千家企业。其完善的售后体系是客户选择我们的核心力量。
+                        <?= $aboutUsContent ?>
     				</div>
     			</div>
     			<div class="inner-block second">

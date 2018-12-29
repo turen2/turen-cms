@@ -9,8 +9,8 @@ $webUrl = Yii::getAlias('@web/');
 ?>
 
 <div class="container block slide-form">
-    <div class="main-slide fl">幻灯片轮播</div>
-    <div class="call-form">提单表单</div>
+    <div class="main-slide fl">幻灯片轮播+免费咨询（http://91.jiaju.sina.com.cn/bj/）</div>
+    <div class="call-form">订单滚动+公司公告列表</div>
 </div>
 
 <div class="container block hot-item">
@@ -65,7 +65,7 @@ $webUrl = Yii::getAlias('@web/');
         </div>
         <div class="home-img-box">
             <img src="<?= $webUrl ?>images/banjia/index_data_represent.png" class="home-img">
-            <p class="home-slogan-top">嘉乐邦8年搬家经验</p>
+            <p class="home-slogan-top">嘉乐邦八年行业经验</p>
             <p class="home-slogan-bottom">深 度 服 务 于 珠 三 角 客 户</p>
         </div>
     </div>
