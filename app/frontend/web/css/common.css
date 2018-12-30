@@ -311,6 +311,7 @@ input:focus
     -moz-box-shadow:0px 6px 10px rgba(0, 0, 0, 0.1);
     -webkit-box-shadow:0px 6px 10px rgba(0, 0, 0, 0.1);
     box-shadow:0px 6px 10px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgb(233, 233, 233) \9;
 }
 
 .head-bottom .logo {
@@ -322,37 +323,34 @@ input:focus
     height: 80px;
 }
 
-.head-bottom .nav ul li {
+.head-bottom .nav li {
     position: relative;
     float: left;
     font-size: 16px;
-    line-height: 80px;
+    line-height: 78px;
     margin-right: 60px;
 }
 
-.head-bottom .nav ul li a {
+.head-bottom .nav li a {
     display: block;
 }
 
-.head-bottom .nav ul li .nav-title {
+.head-bottom .nav li .nav-title {
 
 }
 
-.head-bottom .nav ul li a img.nav-icon {
-    vertical-align: 3px;
-    margin-left: 6px;
+.head-bottom .nav li a.on, .head-bottom .nav li a:hover {
+    border-bottom: 2px solid #0099e9;
 }
 
-.head-bottom .nav ul li a img.hot {
-    position: absolute;
-    top: 22px;
-    right: -13px;
+.head-bottom .nav li a.hover {
+    color: #0099e9;
 }
 
-.head-bottom .nav ul li a img.nav-new {
+.head-bottom .nav li a img.label {
     position: absolute;
     top: 12px;
-    left: -3px;
+    left: 5px;
 }
 
 .nav-qrcode {
@@ -406,7 +404,17 @@ input:focus
     color: #666;
 }
 
+.head-bottom .nav li a.have-sub .nav-title {
+    padding-right: 15px;
+    background: url(../images/common/nav.png) no-repeat 100% 50%;
+}
+
+.head-bottom .nav li a.have-sub.hover .nav-title {
+    background-image: url(../images/common/nav-hover.png);
+}
+
 .nav-bg {
+    display: none;
     position: fixed;
     top: 114px;
     z-index: 22;
@@ -422,10 +430,16 @@ input:focus
     -moz-box-shadow: 0 10px 15px rgba(0,0,0,.1);
     box-shadow: 0 10px 15px rgba(0,0,0,.1);
     border-top: 1px solid #eee;
+    /* behavior: url(/css/PIE.htc); */
+    border-bottom: 1px solid rgb(233, 233, 233) \9;
+}
+
+.nav-bg.hover {
+    display: block;
 }
 
 .nav-bg .header-nav-hide {
-	display: block;
+	display: none;
 	margin: 0 auto;
 }
 

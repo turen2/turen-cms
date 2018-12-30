@@ -32,6 +32,48 @@ $(window).scroll(function () {
     }
 });
 
+$(function () {
+    var subid = null;//nva title状态记录器
+    var contentid = null;//nav sub状态记录器
+    $('.nav .have-sub').hover(function () {
+        $(this).addClass('hover');
+        $('.nav-bg').addClass('hover');
+        subid = $(this).data('subid');
+        $('.nav-bg .header-nav-hide').hide();
+        $('#'+'sub-'+subid).show();
+    }, function() {
+        //延时检测重置状态
+        var tVar = setTimeout(function() {
+            subid = null;
+            if(contentid == null) {
+                $('.nav .have-sub').removeClass('hover');
+                $('.nav-bg .header-nav-hide').hide();
+                $('.nav-bg').removeClass('hover');
+                contentid = null;
+                subid = null;
+            }
+        }, 20);
+        //clearTimeout(tVar);
+    });
+
+    $('.nav-bg').hover(function () {
+        contentid = subid;
+    }, function() {
+        //延时检测重置状态
+        var tVar = setTimeout(function() {
+            contentid = null;
+            if(subid == null) {
+                $('.nav .have-sub').removeClass('hover');
+                $('.nav-bg .header-nav-hide').hide();
+                $('.nav-bg').removeClass('hover');
+                contentid = null;
+                subid = null;
+            }
+        }, 20);
+        //clearTimeout(tVar);
+    });
+});
+//$(".nav .have-sub[data-subid='"+subid+"']").addClass('hover');
 
 /*
 $(function () {

@@ -6,10 +6,35 @@
  */
 
 $webUrl = Yii::getAlias('@web/');
-?>
+
+use yii\helpers\Url; ?>
 
 <div class="container block slide-form">
-    <div class="main-slide fl">幻灯片轮播+免费咨询（http://91.jiaju.sina.com.cn/bj/）</div>
+    <div class="main-slide fl">幻灯片轮播+免费咨询（http://91.jiaju.sina.com.cn/bj/）
+
+    <br /><br />
+    全局链接：
+    <br />
+        <a href="<?= Url::to(['/banjia/news/list']) ?>" target="_blank">新闻news</a>
+    <br />
+        <a href="<?= Url::to(['/banjia/baike/list']) ?>" target="_blank">百科baike</a>
+    <br />
+        <a href="<?= Url::to(['/banjia/faqs/index']) ?>" target="_blank">问答faqs</a>
+    <br />
+        <a href="<?= Url::to(['/banjia/service/detail']) ?>" target="_blank">服务service</a>
+    <br />
+        <a href="<?= Url::to(['/banjia/calculator/index']) ?>" target="_blank">计价器calculator</a>
+    <br />
+        <a href="<?= Url::to(['/banjia/case/list']) ?>" target="_blank">项目case</a>
+    <br />
+        <a href="<?= Url::to(['/banjia/page/info']) ?>" target="_blank">通用简单页面page</a>
+    <br />
+        <a href="<?= Url::to(['/banjia/calendar/index']) ?>" target="_blank">吉日日历calendar</a>
+    <br />
+        <a href="<?= Url::to(['/banjia/case/list']) ?>" target="_blank">案例</a>
+
+
+    </div>
     <div class="call-form">订单滚动+公司公告列表</div>
 </div>
 

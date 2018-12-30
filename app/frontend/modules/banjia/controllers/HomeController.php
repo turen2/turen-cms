@@ -7,7 +7,7 @@
 namespace app\modules\banjia\controllers;
 
 use Yii;
-use yii\web\Controller;
+use app\components\Controller;
 
 /**
  * Home controller for the `banjia` module

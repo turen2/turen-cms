@@ -1,3 +1,4 @@
+/* 首页 */
 .banjia-home .block {
     margin-top: 15px;
     margin-bottom: 15px;
@@ -115,4 +116,77 @@
 .footer {
     margin-top: 0;
 }
+/* 首页end */
+
+/* 计价器 */
+.calculator {
+    height: 800px;
+    margin-top: 15px;
+    background: #eee;
+}
+.calculator .side-btn {
+    float: left;
+    width: 100px;
+    height: 450px;
+    background: red;
+}
+.calculator .content {
+    margin-left: 100px;
+    height: 500px;
+    background: green;
+}
+/* 计价器end */
+
+/* 业务详情 */
+.service-item {
+    margin-top: 15px;
+    border-bottom: 1px solid #eee;
+}
+.service-item ul {
+    width: 910px;
+    margin: 0 auto;
+}
+.service-item li {
+    float: left;
+    display: block;
+    height: 100px;
+    width: 130px;
+    background: yellow;
+}
+.service .detail {
+    width: 860px;
+    height: 600px;
+    float: left;
+    background: pink;
+}
+.service .form {
+    width: 330px;
+    height: 450px;
+    margin-left: 860px;
+    background: orange;
+}
+
+/* 业务详情end */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
