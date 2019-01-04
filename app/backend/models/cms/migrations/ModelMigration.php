@@ -42,6 +42,7 @@ class ModelMigration extends Migration
             $this->createTable($userTable, [
                 'id' => $this->primaryKey()->unsigned()->notNull()->comment('ID'),
                 'title' => $this->string(80)->notNull()->defaultValue('')->comment('标题'),
+                'slug' => $this->string(200)->notNull()->defaultValue('')->comment('访问链接'),
                 'colorval' => $this->char(10)->notNull()->comment('字体颜色'),
                 'boldval' => $this->char(10)->notNull()->comment('字体加粗'),
                 'columnid' => $this->integer(11)->unsigned()->notNull()->comment('栏目ID'),

@@ -33,6 +33,7 @@ use app\behaviors\OrderDefaultBehavior;
  * @property string $catepid 类别父id
  * @property string $catepstr 多级父id
  * @property string $title 标题
+ * @property string $slug 访问链接
  * @property string $colorval 字体颜色
  * @property string $boldval 字体加粗
  * @property string $flag 属性
@@ -131,9 +132,9 @@ class File extends \app\models\base\Cms
     public function rules()
     {
         return ArrayHelper::merge(DiyField::DiyFieldRule($this), [
-            [['columnid', 'title', 'dlurl'], 'required'],
+            [['columnid', 'title', 'dlurl', 'slug'], 'required'],
             [['columnid', 'parentid', 'cateid', 'catepid', 'deltime', 'delstate', 'posttime'], 'integer'],
-            [['content', 'flag'], 'string'],
+            [['content', 'flag', 'slug'], 'string'],
             [['parentstr', 'catepstr', 'title'], 'string', 'max' => 80],
             [['colorval', 'boldval', 'filesize'], 'string', 'max' => 10],
             [['source', 'author', 'keywords'], 'string', 'max' => 50],
@@ -165,6 +166,7 @@ class File extends \app\models\base\Cms
             'catepid' => '类别父ID',
             'catepstr' => '多级父ID',
             'title' => '下载文件标题',
+            'slug' => '访问链接',
             'colorval' => '字体颜色',
             'boldval' => '字体加粗',
             'flag' => '展示标记',

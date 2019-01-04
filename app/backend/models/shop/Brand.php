@@ -14,6 +14,7 @@ use app\behaviors\OrderDefaultBehavior;
  *
  * @property string $id 品牌id
  * @property string $bname 品牌名称
+ * @property string $slug 链接别名
  * @property string $picurl 品牌图片
  * @property string $bnote 品牌介绍
  * @property string $linkurl 跳转链接
@@ -74,8 +75,8 @@ class Brand extends \app\models\base\Shop
         //[['status'], 'default', 'value' => self::STATUS_ON],
         //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return [
-            [['bname', 'bnote', 'picurl'], 'required'],
-            [['bnote'], 'string'],
+            [['bname', 'bnote', 'picurl', 'slug'], 'required'],
+            [['bnote', 'slug'], 'string'],
             [['orderid', 'created_at', 'updated_at'], 'integer'],
             [['bname'], 'string', 'max' => 30],
             [['picurl'], 'string', 'max' => 100],
@@ -93,6 +94,7 @@ class Brand extends \app\models\base\Shop
         return [
             'id' => 'ID',
             'bname' => '品牌名称',
+            'slug' => '访问链接',
             'picurl' => '品牌图片',
             'bnote' => '品牌介绍',
             'linkurl' => '跳转链接',

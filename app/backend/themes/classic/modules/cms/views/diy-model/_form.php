@@ -68,7 +68,7 @@ var validator = $("#submitform").validate({
 });
 ');
 
-$this->topAlert = '<div class="alert alert-warning">注意：自定义模型将自动创建，标题、标记、缩略图、排序、状态、发布时间、更新时间、创建时间。</div>';
+$this->topAlert = '<div class="alert alert-warning">注意：自定义模型将自动创建，标题、访问链接、标记、缩略图、排序、状态、发布时间、更新时间、创建时间。</div>';
 ?>
 
 <?= Tips::widget([

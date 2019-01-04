@@ -13,6 +13,7 @@ use yii\widgets\ActiveForm;
 use app\models\cms\Flag;
 use app\models\shop\ProductCate;
 use app\models\shop\Brand;
+use common\helpers\Functions;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\shop\ProductSearch */
@@ -66,7 +67,10 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel]);
 		<td><span class="thumbs">
 			<img alt="" src="<?= empty($model->picurl)?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($model->picurl, true, AliyunOss::OSS_STYLE_NAME180) ?>" style="height: 60px;">
 		</span></td>
-		<td><span class="title" style="color:<?= $model->colorval; ?>;font-weight:<?= $model->boldval; ?>"><?= $model->title; ?><span class="title-flag"><?= implode('&nbsp;', $model->activeFlagList(Column::COLUMN_TYPE_PRODUCT)); ?></span></span><span><em><?= $model->subtitle; ?></em></span></td>
+		<td>
+			<span class="title" style="color:<?= $model->colorval; ?>;font-weight:<?= $model->boldval; ?>"><?= $model->title; ?><span class="title-flag"><?= implode('&nbsp;', $model->activeFlagList(Column::COLUMN_TYPE_PRODUCT)); ?></span></span><span><em><?= $model->subtitle; ?></em></span>
+			<?= Functions::SlugUrl($model, 'slug', 'product') ?>
+		</td>
 		<td><?= ProductCate::CateName($model->pcateid).' ['.$model->pcateid.']'; ?></td>
 		<td><?= Brand::BrandName($model->brand_id).' ['.$model->brand_id.']'; ?></td>
 		<td><?= Yii::$app->getFormatter()->asCurrency($model->finalPrice()); ?><?= $model->isPromote()?'<span class="is-promote">促</span>':''; ?></td>

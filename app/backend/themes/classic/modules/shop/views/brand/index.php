@@ -8,6 +8,7 @@ use common\helpers\ImageHelper;
 use common\components\AliyunOss;
 use yii\widgets\ActiveForm;
 use app\widgets\edititem\EditItemWidget;
+use common\helpers\Functions;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\shop\BrandSearch */
@@ -27,7 +28,7 @@ $this->title = '品牌管理';
 		<td width="4%" class="first-column"><input type="checkbox" name="checkid" id="checkid" onclick="turen.com.checkAll(this.checked);"></td>
 		<td width="4%">ID</td>
 		<td width="6%">品牌图片</td>
-		<td width="10%">品牌名称</td>
+		<td width="25%">品牌名称</td>
 		<td width="5%"><?= $dataProvider->sort->link('orderid', ['label' => '排序']) ?></td>
 		<td width="10%"><?= $dataProvider->sort->link('updated_at', ['label' => '更新日期']) ?></td>
 		<td width="25%" class="end-column">操作</td>
@@ -54,7 +55,10 @@ $this->title = '品牌管理';
 		<td><span class="thumbs">
 			<img alt="" src="<?= empty($model->picurl)?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($model->picurl, true, AliyunOss::OSS_STYLE_NAME180) ?>" style="height: 60px;">
 		</span></td>
-		<td><?= $model->bname; ?></td>
+		<td>
+			<div><?= $model->bname; ?></div>
+			<?= Functions::SlugUrl($model, 'slug', 'brand') ?>
+		</td>
 		<td><?= EditItemWidget::widget([
 		    'model' => $model,
 		    'primaryKey' => 'id',

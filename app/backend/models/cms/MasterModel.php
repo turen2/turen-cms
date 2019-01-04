@@ -20,6 +20,7 @@ use app\behaviors\OrderDefaultBehavior;
  *
  * @property string $id ID
  * @property string $title 标题
+ * @property string $slug 访问链接
  * @property string $colorval 字体颜色
  * @property string $boldval 字体加粗
  * @property string $columnid 栏目ID
@@ -121,7 +122,7 @@ class MasterModel extends \app\models\base\Cms
     public function rules()
     {
         return ArrayHelper::merge(DiyField::DiyFieldRule($this), [
-            [['columnid', 'cateid', 'title'], 'required'],
+            [['columnid', 'cateid', 'title', 'slug'], 'required'],
             [['columnid', 'parentid', 'cateid', 'catepid', 'status', 'orderid', 'posttime', 'updated_at', 'created_at'], 'integer'],
             [['title', 'parentstr', 'catepstr', 'flag', 'picurl', 'lang'], 'string'],
             [['status'], 'default', 'value' => self::STATUS_ON],
@@ -136,6 +137,7 @@ class MasterModel extends \app\models\base\Cms
         return ArrayHelper::merge(DiyField::DiyFieldRule($this, false), [
             'id' => 'ID',
             'title' => '标题',
+            'slug' => '访问链接',
             'columnid' => '所属栏目',
             'parentid' => '栏目父ID',
             'parentstr' => '栏目父ID列表',

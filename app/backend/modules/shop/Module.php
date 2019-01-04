@@ -9,7 +9,7 @@ namespace app\modules\shop;
 /**
  * shop module definition class
  */
-class Module extends \yii\base\Module
+class Module extends \app\components\Module
 {
     /**
      * @inheritdoc

@@ -20,6 +20,7 @@ use yii\helpers\Json;
 use app\widgets\diyfield\DiyFieldWidget;
 use app\models\cms\DiyField;
 use app\models\cms\Flag;
+use common\helpers\Functions;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\shop\Product */
@@ -30,6 +31,7 @@ ColorPickerAsset::register($this);
 
 $rules = $messages = [];
 $rules[Html::getInputName($model, 'title')] = ['required' => true];
+$rules[Html::getInputName($model, 'slug')] = ['required' => true];
 $rules[Html::getInputName($model, 'columnid')] = ['required' => true];
 $rules[Html::getInputName($model, 'pcateid')] = ['required' => true];
 $rules[Html::getInputName($model, 'brand_id')] = ['required' => true];
@@ -101,6 +103,16 @@ $this->registerJs($js);
 					<span onclick="blodpicker('<?= Html::getInputId($model, 'boldval') ?>','<?= Html::getInputId($model, 'title') ?>');" class="blod" title="标题加粗"> </span>
 					<span onclick="clearpicker('<?= Html::getInputId($model, 'colorval') ?>', '<?= Html::getInputId($model, 'boldval') ?>','<?= Html::getInputId($model, 'title') ?>')" class="clear" title="清除属性">[#]</span> &nbsp; 
 				</div>
+    		</td>
+    	</tr>
+    	<tr>
+    		<td class="first-column"><?= $model->getAttributeLabel('slug')?><?php if($model->isAttributeRequired('slug')) { ?><span class="maroon">*</span><?php } ?></td>
+    		<td class="second-column">
+    			<strong><?= Functions::SlugUrl($model, 'slug', 'product') ?></strong>
+    			<div class="slug-input">
+        			<?= Html::activeInput('text', $model, 'slug', ['class' => 'input', 'onKeyup' => '$(this).parent().prev().find(".slug-url").html($(this).val());']) ?>
+        			<span onclick="turen.com.pinyin(this, document.getElementById('product-title').value);" class="gray-btn slug-btn">推荐值</span>
+    			</div>
     		</td>
     	</tr>
     	<tr>

@@ -10,6 +10,7 @@ use yii\web\JsExpression;
 use app\models\shop\Brand;
 use app\widgets\ueditor\UEditorWidget;
 use yii\helpers\Json;
+use common\helpers\Functions;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\shop\Brand */
@@ -19,8 +20,10 @@ ValidationAsset::register($this);
 
 $rules = $messages = [];
 $rules[Html::getInputName($model, 'bname')] = ['required' => true];
+$rules[Html::getInputName($model, 'slug')] = ['required' => true];
 $rules[Html::getInputName($model, 'picurl')] = ['required' => true];
 $rules[Html::getInputName($model, 'bnote')] = ['required' => true];
+
 $rules = Json::encode($rules);
 $messages = Json::encode($messages);
 $js = <<<EOF
@@ -52,6 +55,16 @@ $this->registerJs($js);
     		<td class="second-column">
     			<?= Html::activeInput('text', $model, 'bname', ['class' => 'input']) ?>
     			<span class="cnote">带<span class="maroon">*</span>号表示为必填项</span>
+    		</td>
+    	</tr>
+    	<tr>
+    		<td class="first-column"><?= $model->getAttributeLabel('slug')?><?php if($model->isAttributeRequired('slug')) { ?><span class="maroon">*</span><?php } ?></td>
+    		<td class="second-column">
+    			<strong><?= Functions::SlugUrl($model, 'slug', 'brand') ?></strong>
+    			<div class="slug-input">
+        			<?= Html::activeInput('text', $model, 'slug', ['class' => 'input', 'onKeyup' => '$(this).parent().prev().find(".slug-url").html($(this).val());']) ?>
+        			<span onclick="turen.com.pinyin(this, document.getElementById('brand-bname').value);" class="gray-btn slug-btn">推荐值</span>
+    			</div>
     		</td>
     	</tr>
     	<tr>

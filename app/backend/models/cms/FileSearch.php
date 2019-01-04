@@ -23,7 +23,7 @@ class FileSearch extends File
     {
         return [
             [['id', 'columnid', 'parentid', 'cateid', 'catepid', 'hits', 'orderid', 'deltime'], 'integer'],
-            [['parentstr', 'catepstr', 'title', 'colorval', 'boldval', 'flag', 'source', 'author', 'filetype', 'filesize', 'website', 'demourl', 'dlurl', 'linkurl', 'keywords', 'keyword', 'description', 'content', 'picurl', 'picarr', 'status', 'delstate', 'lang', 'posttime', 'keyword'], 'safe'],
+            [['parentstr', 'catepstr', 'title', 'colorval', 'boldval', 'flag', 'source', 'author', 'filetype', 'filesize', 'website', 'demourl', 'dlurl', 'linkurl', 'keywords', 'keyword', 'description', 'content', 'picurl', 'picarr', 'status', 'delstate', 'lang', 'posttime', 'keyword', 'slug'], 'safe'],
         ];
     }
 
@@ -87,6 +87,7 @@ class FileSearch extends File
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'slug', $this->slug])
             ->andFilterWhere(['like', 'flag', $this->flag])
             ->andFilterWhere(['like', 'author', $this->author])
             ->andFilterWhere(['like', 'website', $this->website])

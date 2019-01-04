@@ -19,6 +19,7 @@ use app\models\cms\Info;
 use yii\helpers\Json;
 use app\models\cms\DiyField;
 use yii\helpers\ArrayHelper;
+use common\helpers\Functions;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\cms\Info */
@@ -27,7 +28,7 @@ use yii\helpers\ArrayHelper;
 ValidationAsset::register($this);
 
 $rules = $messages = [];
-//$rules[Html::getInputName($model, '')] = ['required' => true];
+$rules[Html::getInputName($model, 'slug')] = ['required' => true];
 
 //自定义字段部分
 $diyFieldRules = DiyField::DiyFieldRuleClient($model);
@@ -63,8 +64,18 @@ $this->registerJs($js);
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('columnid')?><?php if($model->isAttributeRequired('columnid')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<strong><?=$model->cname?></strong>
+    			<strong id="info-title"><?=$model->cname?></strong>
     			<span class="cnote">带<span class="maroon">*</span>号表示为必填项</span>
+    		</td>
+    	</tr>
+    	<tr>
+    		<td class="first-column"><?= $model->getAttributeLabel('slug')?><?php if($model->isAttributeRequired('slug')) { ?><span class="maroon">*</span><?php } ?></td>
+    		<td class="second-column">
+    			<strong><?= Functions::SlugUrl($model, 'slug', 'page') ?></strong>
+    			<div class="slug-input">
+        			<?= Html::activeInput('text', $model, 'slug', ['class' => 'input', 'onKeyup' => '$(this).parent().prev().find(".slug-url").html($(this).val());']) ?>
+        			<span onclick="turen.com.pinyin(this, document.getElementById('info-title').innerHTML);" class="gray-btn slug-btn">推荐值</span>
+    			</div>
     		</td>
     	</tr>
     	<tr>

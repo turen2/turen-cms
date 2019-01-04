@@ -241,6 +241,23 @@ turen.com = (function($) {
         	} else {
         		$('tr.no-prev-line, tr.diy-field-row').hide();
         	}
+        },
+        //生成链接
+        pinyin: function(_this, name) {
+        	var _this = $(_this);
+        	if(name != '') {
+        		var callback = function(res, _this) {
+                    if(res.state) {
+                    	$.notify('生成链接成功', 'success');
+                    	_this.prev('input').val(res.msg).parent('.slug-input').prev().find('.slug-url').html(res.msg);
+                    } else {
+                    	$.notify(res.msg, 'error');
+                    }
+                };
+                commonRemote(CONFIG.com.pinyinUrl, {text: name}, callback, _this, 'GET');
+        	} else {
+        		$.notify('请先填充标题', 'warn');
+        	}
         }
     };
 

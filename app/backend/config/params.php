@@ -71,5 +71,5 @@ return [
     'config.loginSafeProblem' => false,
     
     //此配置与整个系统有关
-    'config.openCate' => true,//是否开启类别管理
+    'config.openCate' => false,//是否开启类别管理
 ];

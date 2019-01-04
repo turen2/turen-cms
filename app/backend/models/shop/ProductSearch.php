@@ -19,7 +19,7 @@ class ProductSearch extends Product
     {
         return [
             [['id', 'columnid', 'pcateid', 'brand_id', 'promote_start_date', 'promote_end_date', 'stock', 'hits', 'orderid', 'posttime', 'deltime', 'created_at', 'updated_at'], 'integer'],
-            [['attrtext', 'title', 'colorval', 'boldval', 'subtitle', 'keywords', 'description', 'flag', 'sku', 'product_sn', 'weight', 'is_promote', 'is_shipping', 'linkurl', 'content', 'picurl', 'picarr', 'is_best', 'is_new', 'is_hot', 'status', 'delstate', 'keyword'], 'safe'],
+            [['attrtext', 'title', 'colorval', 'boldval', 'subtitle', 'keywords', 'description', 'flag', 'sku', 'product_sn', 'weight', 'is_promote', 'is_shipping', 'linkurl', 'content', 'picurl', 'picarr', 'is_best', 'is_new', 'is_hot', 'status', 'delstate', 'keyword', 'slug'], 'safe'],
             [['market_price', 'sales_price', 'promote_price'], 'number'],
         ];
     }
@@ -95,6 +95,7 @@ class ProductSearch extends Product
         
         $query->andFilterWhere(['like', 'attrtext', $this->attrtext])
             ->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'slug', $this->keyword])
             ->andFilterWhere(['like', 'subtitle', $this->subtitle])
             ->andFilterWhere(['like', 'keywords', $this->keywords])
             ->andFilterWhere(['like', 'description', $this->description])

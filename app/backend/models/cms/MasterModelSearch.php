@@ -19,7 +19,7 @@ class MasterModelSearch extends MasterModel
     {
         return [
             [['id', 'columnid', 'parentid', 'cateid', 'catepid', 'status', 'orderid', 'posttime', 'updated_at', 'created_at'], 'integer'],
-            [['title', 'parentstr', 'catepstr', 'flag', 'picurl', 'lang', 'keyword'], 'safe'],
+            [['title', 'parentstr', 'catepstr', 'flag', 'picurl', 'lang', 'keyword', 'slug'], 'safe'],
         ];
     }
 
@@ -79,6 +79,7 @@ class MasterModelSearch extends MasterModel
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'slug', $this->slug])
             ->andFilterWhere(['like', 'parentstr', $this->parentstr])
             ->andFilterWhere(['like', 'catepstr', $this->catepstr])
             ->andFilterWhere(['like', 'flag', $this->flag])

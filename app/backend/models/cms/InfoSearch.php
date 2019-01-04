@@ -23,7 +23,7 @@ class InfoSearch extends Info
     {
         return [
             [['id', 'columnid'], 'integer'],
-            [['picurl', 'content', 'posttime', 'keyword'], 'safe'],
+            [['picurl', 'content', 'posttime', 'keyword', 'slug'], 'safe'],
         ];
     }
 
@@ -81,6 +81,7 @@ class InfoSearch extends Info
         ]);
 
         $query->andFilterWhere(['like', 'picurl', $this->picurl])
+            ->andFilterWhere(['like', 'slug', $this->slug])
             ->andFilterWhere(['like', 'content', $this->content]);
         
         //echo $dataProvider->query->createCommand()->rawSql;

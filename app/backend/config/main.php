@@ -44,6 +44,9 @@ return [
         ]
     ],
     'modules' => [
+        'com' => [//公共服务调用
+            'class' => 'app\modules\com\Module',
+        ],
         'site' => [//主要解决公共页面的展示，iframe主框架、404、503、首页等
             'class' => 'app\modules\site\Module',
             //'defaultRoute' => 'home/index',//默认进入home控制器，在全局已配置

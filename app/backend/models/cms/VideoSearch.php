@@ -23,7 +23,7 @@ class VideoSearch extends Video
     {
         return [
             [['id', 'columnid', 'parentid', 'cateid', 'catepid', 'hits', 'orderid', 'deltime'], 'integer'],
-            [['parentstr', 'catepstr', 'title', 'colorval', 'boldval', 'flag', 'source', 'author', 'linkurl', 'keywords', 'keyword', 'description', 'content', 'picurl', 'videolink', 'status', 'delstate', 'lang', 'posttime', 'keyword'], 'safe'],
+            [['parentstr', 'catepstr', 'title', 'colorval', 'boldval', 'flag', 'source', 'author', 'linkurl', 'keywords', 'keyword', 'description', 'content', 'picurl', 'videolink', 'status', 'delstate', 'lang', 'posttime', 'keyword', 'slug'], 'safe'],
         ];
     }
 
@@ -88,6 +88,7 @@ class VideoSearch extends Video
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'slug', $this->slug])
             ->andFilterWhere(['like', 'flag', $this->flag])
             ->andFilterWhere(['like', 'source', $this->source])
             ->andFilterWhere(['like', 'author', $this->author])

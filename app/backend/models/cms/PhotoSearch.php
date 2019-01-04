@@ -23,7 +23,7 @@ class PhotoSearch extends Photo
     {
         return [
             [['id', 'columnid', 'parentid', 'cateid', 'catepid', 'hits', 'orderid', 'deltime'], 'integer'],
-            [['parentstr', 'catepstr', 'title', 'colorval', 'boldval', 'flag', 'source', 'author', 'linkurl', 'keywords', 'keyword', 'description', 'content', 'picurl', 'picarr', 'status', 'delstate', 'lang', 'posttime', 'keyword'], 'safe'],
+            [['parentstr', 'catepstr', 'title', 'colorval', 'boldval', 'flag', 'source', 'author', 'linkurl', 'keywords', 'keyword', 'description', 'content', 'picurl', 'picarr', 'status', 'delstate', 'lang', 'posttime', 'keyword', 'slug'], 'safe'],
         ];
     }
 
@@ -86,10 +86,11 @@ class PhotoSearch extends Photo
             'status' => $this->status,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'source', $this->source])
-            ->andFilterWhere(['like', 'author', $this->author])
-            ->andFilterWhere(['like', 'keywords', $this->keywords]);
+        $query->andFilterWhere(['like', 'title', $this->keyword])
+            ->andFilterWhere(['like', 'slug', $this->keyword])
+            ->andFilterWhere(['like', 'source', $this->keyword])
+            ->andFilterWhere(['like', 'author', $this->keyword])
+            ->andFilterWhere(['like', 'keywords', $this->keyword]);
         
 //         echo $dataProvider->query->createCommand()->rawSql;exit;
 

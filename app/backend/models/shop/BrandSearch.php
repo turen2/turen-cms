@@ -19,7 +19,7 @@ class BrandSearch extends Brand
     {
         return [
             [['id', 'orderid', 'created_at', 'updated_at'], 'integer'],
-            [['bname', 'picurl', 'bnote', 'linkurl', 'lang', 'status', 'keyword'], 'safe'],
+            [['bname', 'picurl', 'bnote', 'linkurl', 'lang', 'status', 'keyword', 'slug'], 'safe'],
         ];
     }
 
@@ -77,6 +77,7 @@ class BrandSearch extends Brand
         ]);
 
         $query->andFilterWhere(['like', 'bname', $this->bname])
+            ->andFilterWhere(['like', 'slug', $this->keyword])
             ->andFilterWhere(['like', 'picurl', $this->picurl])
             ->andFilterWhere(['like', 'bnote', $this->bnote])
             ->andFilterWhere(['like', 'linkurl', $this->linkurl]);

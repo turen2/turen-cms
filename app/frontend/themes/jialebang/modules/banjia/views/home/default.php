@@ -32,10 +32,11 @@ use yii\helpers\Url; ?>
         <a href="<?= Url::to(['/banjia/calendar/index']) ?>" target="_blank">吉日日历calendar</a>
     <br />
         <a href="<?= Url::to(['/banjia/case/list']) ?>" target="_blank">案例</a>
-
+        
+        <br />所有使用装修之家的：弹出窗口样式，各种确认窗口，填写窗口
 
     </div>
-    <div class="call-form">订单滚动+公司公告列表</div>
+    <div class="call-form">订单滚动+公司公告列表，滚动：http://shenzhen.17house.com/xftc/</div>
 </div>
 
 <div class="container block hot-item">

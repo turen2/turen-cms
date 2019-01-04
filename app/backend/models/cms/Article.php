@@ -28,6 +28,7 @@ use app\behaviors\OrderDefaultBehavior;
  * @property int $cateid 类别id
  * @property int $parentid 所属栏目上级id
  * @property string $parentstr 所属栏目上级id字符串
+ * @property string $slug 链接别名
  * @property string $title 标题
  * @property string $colorval 字体颜色
  * @property string $boldval 字体加粗
@@ -122,13 +123,13 @@ class Article extends \app\models\base\Cms
     public function rules()
     {
         return ArrayHelper::merge(DiyField::DiyFieldRule($this), [
-            [['columnid', 'title'], 'required'],
+            [['columnid', 'title', 'slug'], 'required'],
             [['columnid', 'parentid', 'cateid', 'catepid', 'hits', 'orderid', 'deltime', 'delstate', 'status', 'posttime'], 'integer'],
             [['parentstr', 'catepstr', 'title'], 'string', 'max' => 80],
             [['colorval', 'boldval'], 'string', 'max' => 10],
             [['source', 'keywords'], 'string', 'max' => 50],
             [['linkurl', 'description'], 'string', 'max' => 255],
-            [['content', 'picurl', 'lang', 'flag'], 'string'],
+            [['content', 'picurl', 'lang', 'flag', 'slug'], 'string'],
             [['author'], 'default', 'value' => $this->getAdmin()->username],
             //静态默认值由规则来赋值
             [['status'], 'default', 'value' => self::STATUS_ON],
@@ -148,6 +149,7 @@ class Article extends \app\models\base\Cms
             'columnid' => '所属栏目',
             'cateid' => '所属类别',
             'title' => '文章标题',
+            'slug' => '访问链接',
             'colorval' => '字体颜色',
             'boldval' => '字体加粗',
             'flag' => '展示标记',

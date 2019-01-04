@@ -17,6 +17,7 @@ use app\widgets\diyfield\DiyFieldBehavior;
  *
  * @property int $id 单页id
  * @property int $columnid 所属栏目id
+ * @property string $slug 访问链接
  * @property string $picurl 缩略图片
  * @property string $content 内容
  * @property string $posttime 发布时间
@@ -69,9 +70,9 @@ class Info extends \app\models\base\Cms
     public function rules()
     {
         return ArrayHelper::merge(DiyField::DiyFieldRule($this), [
-            [['columnid'], 'required'],
+            [['columnid', 'slug'], 'required'],
             [['columnid', 'posttime'], 'integer'],
-            [['content', 'picurl'], 'string'],
+            [['content', 'picurl', 'slug'], 'string'],
         ]);
     }
 
@@ -83,6 +84,7 @@ class Info extends \app\models\base\Cms
         return ArrayHelper::merge(DiyField::DiyFieldRule($this, false), [
             'id' => '单页ID',
             'columnid' => '栏目名称',
+            'slug' => '访问链接',
             'picurl' => '缩略图片',
             'content' => '内容',
             'posttime' => '发布时间',

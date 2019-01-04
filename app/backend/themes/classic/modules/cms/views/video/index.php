@@ -12,6 +12,7 @@ use app\models\cms\Column;
 use app\widgets\edititem\EditItemWidget;
 use app\models\cms\Cate;
 use app\models\cms\Flag;
+use common\helpers\Functions;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\cms\ArticleSearch */
@@ -31,7 +32,7 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel, 'type' => 
 	<tr align="left" class="head">
 		<td width="4%" class="first-column"><input type="checkbox" name="checkid" id="checkid" onclick="turen.com.checkAll(this.checked);"></td>
 		<td width="5%">ID</td>
-		<td width="20%"><?= $dataProvider->sort->link('title', ['label' => '标题']) ?></td>
+		<td width="30%"><?= $dataProvider->sort->link('title', ['label' => '标题']) ?></td>
 		<td width="8%">栏目</td>
 		<?php if(Yii::$app->params['config.openCate']) { ?>
 		<td width="8%">所属类别</td>
@@ -61,7 +62,10 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel, 'type' => 
 			<input type="checkbox" name="checkid[]" id="checkid[]" value="<?= $model->id; ?>">
 		</td>
 		<td><?= $model->id; ?></td>
-		<td><span class="title" style="color:<?= $model->colorval; ?>;font-weight:<?= $model->boldval; ?>"><?= $model->title; ?><span class="title-flag"><?= implode('&nbsp;', $model->activeFlagList(Column::COLUMN_TYPE_VIDEO)); ?></span><?=empty($model->picurl)?'':' <span class="titpic"><i class="fa fa-picture-o"></i></span>'?></span></td>
+		<td>
+			<span class="title" style="color:<?= $model->colorval; ?>;font-weight:<?= $model->boldval; ?>"><?= $model->title; ?><span class="title-flag"><?= implode('&nbsp;', $model->activeFlagList(Column::COLUMN_TYPE_VIDEO)); ?></span><?=empty($model->picurl)?'':' <span class="titpic"><i class="fa fa-picture-o"></i></span>'?></span>
+			<?= Functions::SlugUrl($model, 'slug', 'video') ?>
+		</td>
 		<td><?= Column::ColumnName($model->columnid).' ['.$model->columnid.']'; ?></td>
 		<?php if(Yii::$app->params['config.openCate']) { ?>
 		<td><?= Cate::CateName($model->cateid) ?></td>

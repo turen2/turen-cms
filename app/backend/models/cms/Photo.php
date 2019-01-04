@@ -32,6 +32,7 @@ use app\behaviors\OrderDefaultBehavior;
  * @property string $catepid 类别父id
  * @property string $catepstr 所属类别上级id字符串
  * @property string $title 标题
+ * @property string $slug 访问链接
  * @property string $colorval 字体颜色
  * @property string $boldval 字体加粗
  * @property string $flag 属性
@@ -125,9 +126,9 @@ class Photo extends \app\models\base\Cms
     public function rules()
     {
         return ArrayHelper::merge(DiyField::DiyFieldRule($this), [
-            [['columnid', 'title', 'picurl'], 'required'],
+            [['columnid', 'title', 'picurl', 'slug'], 'required'],
             [['columnid', 'parentid', 'cateid', 'catepid', 'deltime', 'delstate', 'posttime'], 'integer'],
-            [['content', 'flag'], 'string'],
+            [['content', 'flag', 'slug'], 'string'],
             [['parentstr', 'catepstr', 'title'], 'string', 'max' => 80],
             [['colorval', 'boldval'], 'string', 'max' => 10],
             [['source', 'author', 'keywords'], 'string', 'max' => 50],
@@ -158,6 +159,7 @@ class Photo extends \app\models\base\Cms
             'catepid' => '类别父ID',
             'catepstr' => '所属类别上级ID字符串',
             'title' => '相片集标题',
+            'slug' => '访问链接',
             'colorval' => '字体颜色',
             'boldval' => '字体加粗',
             'flag' => '展示标记',

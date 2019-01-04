@@ -9,6 +9,7 @@ namespace common\helpers;
 use Yii;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 
 /**
  * 一些通用全局的共用函数
@@ -112,4 +113,38 @@ class Functions
         }
         return $str;
     }
+    
+    public function SlugUrl($model, $attribute, $label = '标记')
+    {
+        $slug = empty($model->{$attribute})?'未设置':$model->{$attribute};
+        return Yii::$app->params['config_site_url'].'/模块/'.$label.'-<span class="slug-url">'.$slug.'</span>'.Yii::$app->params['config_site_url_suffix'];
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

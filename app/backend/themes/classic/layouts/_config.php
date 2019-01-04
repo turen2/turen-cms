@@ -14,7 +14,8 @@ var CONFIG = {};
 CONFIG.islogin = <?= \Yii::$app->getUser()->isGuest?'false':'true' ?>;//登录状态
 
 CONFIG.com = {
-    'logoutUrl': '<?= Url::to(['/site/admin/logout']) ?>'
+    'logoutUrl': '<?= Url::to(['/site/admin/logout']) ?>',
+    'pinyinUrl': '<?= Url::to(['/com/link/pinyin']) ?>'
 };
 
 CONFIG.cms = {

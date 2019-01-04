@@ -29,6 +29,7 @@ class DiyModel extends \app\models\base\Cms
 	//标题    标记    缩略图    多语言    排序    发布时间    更新时间    创建时间
 	private static $DefaultFields = [
 	    'title' => '标题', 
+	    'slug' => '访问链接', 
 	    'flag' => '标记', 
 	    'picurl' => '缩略图', 
 	    'lang' => '多语言', 

@@ -23,7 +23,7 @@ class ArticleSearch extends Article
     {
         return [
             [['id', 'columnid', 'parentid', 'cateid', 'catepid', 'hits', 'orderid', 'deltime'], 'integer'],
-            [['parentstr', 'catepstr', 'title', 'colorval', 'boldval', 'flag', 'source', 'author', 'linkurl', 'keywords', 'keyword', 'description', 'content', 'picurl', 'picarr', 'status', 'delstate', 'lang', 'posttime', 'keyword'], 'safe'],
+            [['parentstr', 'catepstr', 'title', 'colorval', 'boldval', 'flag', 'source', 'author', 'linkurl', 'keywords', 'keyword', 'description', 'content', 'picurl', 'picarr', 'status', 'delstate', 'lang', 'posttime', 'keyword', 'slug'], 'safe'],
         ];
     }
 
@@ -84,7 +84,9 @@ class ArticleSearch extends Article
             'author' => $this->author,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->keyword])->andFilterWhere(['like', 'flag', $this->flag])
+        $query->andFilterWhere(['like', 'title', $this->keyword])
+            ->andFilterWhere(['like', 'flag', $this->flag])
+            ->andFilterWhere(['like', 'slug', $this->keyword])
             ->orFilterWhere(['like', 'parentstr', $this->keyword])
             ->orFilterWhere(['like', 'source', $this->keyword])
             ->orFilterWhere(['like', 'author', $this->keyword])

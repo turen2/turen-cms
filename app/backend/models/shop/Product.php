@@ -25,6 +25,7 @@ use app\behaviors\OrderDefaultBehavior;
  * @property string $attrtext 属性json值
  * @property int $brand_id 商品品牌id
  * @property string $title 商品名称
+ * @property string $slug 链接别名
  * @property string $colorval 标题颜色
  * @property string $boldval 标题加粗
  * @property string $subtitle 副标题
@@ -139,7 +140,7 @@ class Product extends \app\models\base\Shop
         //[['status'], 'default', 'value' => self::STATUS_ON],
         //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return ArrayHelper::merge(DiyField::DiyFieldRule($this), [
-            [['columnid', 'pcateid', 'brand_id', 'title', 'sales_price', 'content', 'picurl'], 'required'],
+            [['columnid', 'pcateid', 'brand_id', 'title', 'sales_price', 'content', 'picurl', 'slug'], 'required'],
             [['columnid', 'pcateid', 'brand_id', 'stock', 'hits', 'orderid', 'deltime', 'created_at', 'updated_at', 'promote_start_date', 'promote_end_date', 'posttime'], 'integer'],
             [['title', 'sku', 'picurl'], 'string', 'max' => 100],
             [['colorval', 'boldval'], 'string', 'max' => 10],
@@ -147,7 +148,7 @@ class Product extends \app\models\base\Shop
             [['keywords', 'product_sn'], 'string', 'max' => 30],
             [['description', 'linkurl'], 'string', 'max' => 255],
             [['is_promote', 'is_shipping', 'is_best', 'is_new', 'is_hot', 'status'], 'string', 'max' => 1],
-            [['attrtext', 'content', 'picarr', 'author', 'flag'], 'string'],
+            [['attrtext', 'content', 'picarr', 'author', 'flag', 'slug'], 'string'],
             [['market_price', 'sales_price', 'promote_price', 'weight', 'delstate'], 'number'],
             
             //静态默认值由规则来赋值
@@ -172,6 +173,7 @@ class Product extends \app\models\base\Shop
             'attrtext' => '产品属性',
             'brand_id' => '商品品牌',
             'title' => '商品名称',
+            'slug' => '访问链接',
             'colorval' => '标题颜色',
             'boldval' => '标题加粗',
             'subtitle' => '副标题',

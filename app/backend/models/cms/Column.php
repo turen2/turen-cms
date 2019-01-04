@@ -264,6 +264,8 @@ class Column extends \app\models\base\Cms
         if(!empty($mask)) {
             if($key == self::COLUMN_TYPE_INFO) {
                 return Url::to(['info/update', 'id' => $model->id]);
+            } elseif($key == self::COLUMN_TYPE_PRODUCT) {
+                return Url::to(['/shop/product/create', 'columnid' => $model->id]);
             } elseif(DiyModel::find()->where(['dm_id' => $key])->exists()) {
                 return Url::to([$mask.'/create', 'mid' => $key, 'columnid' => $model->id]);
             } else {
