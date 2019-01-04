@@ -119,7 +119,7 @@ function SelectDiyField(_this)
 		<td class="first-column"><?= $model->getAttributeLabel('columnid_list')?><?php if($model->isAttributeRequired('columnid_list')) { ?><span class="maroon">*</span><?php } ?></td>
 		<td class="second-column">
 			<?php if(empty($model->fd_column_type)) { ?>
-				<span id="fd-column-droplist">请先选择栏目类型</span>
+				<span id="fd-column-droplist">请先选择模型类型</span>
 			<?php } else { ?>
 			    <?php $model->columnid_list = is_array($model->columnid_list)?$model->columnid_list:(explode(',', $model->columnid_list)); ?>
 				<span id="fd-column-droplist"><?= Html::activeCheckboxList($model, 'columnid_list', ArrayHelper::map(Column::ColumnListByType($model->fd_column_type), 'id', 'cname'), ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']) ?></span>

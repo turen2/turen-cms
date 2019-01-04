@@ -13,6 +13,7 @@ use app\actions\CheckAction;
 use app\models\cms\Column;
 use yii\helpers\Html;
 use app\actions\ValidateAction;
+use yii\helpers\ArrayHelper;
 
 /**
  * DiyFieldController implements the CRUD actions for DiyField model.
@@ -166,7 +167,7 @@ class DiyFieldController extends Controller
     {
         $typeid = Yii::$app->getRequest()->post('typeid', null);
         
-        $items = Column::ColumnListByType($typeid);
+        $items = ArrayHelper::map(Column::ColumnListByType($typeid), 'id', 'cname');
         $model = new DiyField();
         
         if($items) {
@@ -177,7 +178,7 @@ class DiyFieldController extends Controller
         } else {
             return $this->asJson([
                 'state' => true,
-                'msg' => '请先选择栏目类型',
+                'msg' => '此模型下没有对应的栏目，请先创建栏目',
             ]);
         }
     }
