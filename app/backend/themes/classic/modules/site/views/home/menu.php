@@ -39,7 +39,7 @@ $this->title = '菜单栏';
 				<div class="title on" onclick="DisplayMenu('leftmenu08');" title="点击切换显示或隐藏"><i class="fa fa-angle-right i1"></i><i class="fa fa-angle-down i2"></i> 界面与专题</div>
 				<div id="leftmenu08">
 					<?= Html::a('后台首页', ['/site/home/default'], ['target' => 'main'])?>
-					<?= Html::a('界面配置', ['/site/face/config'], ['target' => 'main'])?><!-- 典型的站点配置 -->
+					<?= Html::a('界面配置', ['/site/face-config/setting'], ['target' => 'main'])?><!-- 典型的站点配置 -->
 					<?= Html::a('专题管理', ['/site/topic/index'], ['target' => 'main'])?><!-- 典型的站点专题 -->
 				</div>
 			</div>

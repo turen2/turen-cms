@@ -1,0 +1,26 @@
+<?php 
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
+use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
+use app\models\sys\Template;
+
+$config = ArrayHelper::index($config, 'cfg_name');
+
+echo '友链绑定';
+return;
+?>
+
+<tr>
+	<td class="first-column"><?= $config['config_template_id']['cfg_info']; ?></td>
+	<td class="second-column" width="33%">
+		<?= Html::dropDownList($config['config_template_id']['cfg_name'], $config['config_template_id']['cfg_value'], ArrayHelper::map(Template::find()->all(), 'temp_id', 'temp_name'), ['id' => $config['config_template_id']['cfg_name']]) ?>
+		<span class="cnote">切换模板后，请刷新整个页面</span>
+	</td>
+	<td style="border-bottom: 1px dashed #efefef;">
+		Yii::$app->params['<?php echo $config['config_template_id']['cfg_name']; ?>']
+	</td>
+</tr>
