@@ -9,7 +9,7 @@ namespace app\models\sys;
 /**
  * This is the ActiveQuery class for [[Config]].
  *
- * @see Config
+ * @see FaceConfig
  */
 class ConfigQuery extends \app\components\ActiveQuery
 {

@@ -3,7 +3,7 @@ $webUrl = Yii::getAlias('@web/');
 
 use app\models\CmsBlock;
 
-$blockModel = CmsBlock::find()->current()->where(['id' => 2])->one();
+$blockModel = CmsBlock::find()->current()->where(['id' => Yii::$app->params['config_face_banjia_cn_left_bottom_block_id']])->one();
 if($blockModel) {
     $aboutUsTitle = $blockModel->title;
     $aboutUsContent = $blockModel->content;

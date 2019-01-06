@@ -7,46 +7,35 @@
 namespace app\modules\site\controllers;
 
 use Yii;
-use app\widgets\fileupload\FileUploadAction;
-use common\components\AliyunOss;
+use yii\base\UserException;
 use app\models\site\FaceConfig;
+use app\models\sys\MultilangTpl;
+use app\models\sys\Template;
 
 class FaceConfigController extends \app\components\Controller
 {
-    protected $_configs = [];
-    
-    public function init()
-    {
-        parent::init();
-        
-        //当前站点指定的语言站配置参数
-        foreach (FaceConfig::getConfigAsArray() as $config) {
-            $this->_configs[$config['cfg_group']][] = $config;
-        }
-    }
-    
-    public function actions()
-    {
-        $request = Yii::$app->getRequest();
-        return [
-            'fileupload' => [
-                'class' => FileUploadAction::class,
-                'uploadName' => 'logourl',
-                'folder' => AliyunOss::OSS_DEFAULT.'/face_config',
-            ],
-        ];
-    }
-    
     /**
      * 查看配置
      * @return string
      */
     public function actionSetting()
     {
-        return $this->render('setting', [
-            'configs' => $this->_configs,
-            'model' => new FaceConfig(),
-        ]);
+        //当前语言下的模板
+        $multilangTplmodel = MultilangTpl::findOne(['lang_sign' => GLOBAL_LANG]);
+        if($multilangTplmodel) {
+            $template = Template::findOne(['temp_id' => $multilangTplmodel->template_id]);
+            if($template) {
+                return $this->render('setting', [
+                    'templateId' => $template->temp_id,
+                    'templateCode' => $template->temp_code,
+                    'configs' => FaceConfig::FaceConfigArray($template->temp_id),
+                    'model' => new FaceConfig(),
+                ]);
+            } else {
+                throw new UserException('当前语言下，指定的模板不存在！');
+            }
+        }
+        throw new UserException('多语言管理下，未设置此语言！');
     }
     
     /**
@@ -55,15 +44,9 @@ class FaceConfigController extends \app\components\Controller
      */
     public function actionBatch()
     {
-//         if(Yii::$app->request->isPost) {
-//             var_dump(Yii::$app->request->post());
-//             exit;
-//         }
-        
         //批量更新
         if (Yii::$app->request->isPost && FaceConfig::batchSave(Yii::$app->request->post())) {
-            //更新缓存
-            FaceConfig::UpdateCache();
+            //FaceConfig::UpdateCache();//更新缓存
             Yii::$app->getSession()->setFlash('success', '界面配置保存成功。');
         }
         

@@ -95,6 +95,6 @@ class InitSysten extends \yii\base\Component implements \yii\base\BootstrapInter
         
         defined('GLOBAL_LANG') || define('GLOBAL_LANG', Yii::$app->params['config_init_default_lang']);
         defined('CONFIG_CACHE_KEY') || define('CONFIG_CACHE_KEY', 'sys.cache.'.GLOBAL_LANG);
-        defined('CONFIG_FACE_CACHE_KEY') || define('CONFIG_FACE_CACHE_KEY', 'site.face.cache.'.GLOBAL_LANG);
+        defined('CONFIG_FACE_CACHE_KEY') || define('CONFIG_FACE_CACHE_KEY', 'face.cache.'.GLOBAL_LANG);
     }
 }

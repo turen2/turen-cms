@@ -7,12 +7,13 @@
 namespace app\bootstrap;
 
 use Yii;
-use common\models\sys\MultilangTpl;
 use yii\db\Query;
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
-use common\models\sys\Template;
 use common\models\sys\Config;
+use common\models\site\FaceConfig;
+use common\models\sys\Template;
+use common\models\sys\MultilangTpl;
 use yii\caching\TagDependency;
 
 /**
@@ -96,6 +97,7 @@ class Init extends \yii\base\Component implements \yii\base\BootstrapInterface
         define('GLOBAL_LANG_KEY', $langKey);//语言URL KEY
         define('GLOBAL_TEMPLATE_ID', $tid);//语言包名
         define('GLOBAL_SYS_CACHE_KEY', 'sys.cache.'.GLOBAL_LANG);
+        define('GLOBAL_FACE_CACHE_KEY', 'face.cache.'.GLOBAL_TEMPLATE_ID.'.'.GLOBAL_LANG);
         
         //var_dump(GLOBAL_LANG);var_dump(GLOBAL_LANG_KEY);var_dump(GLOBAL_TEMPLATE_ID);var_dump(CONFIG_CACHE_KEY);exit;
     }
@@ -179,7 +181,6 @@ class Init extends \yii\base\Component implements \yii\base\BootstrapInterface
     
     protected function initFace()
     {
-        
-        return true;
+        Yii::$app->params = ArrayHelper::merge(Yii::$app->params, FaceConfig::FaceCacheList());
     }
 }

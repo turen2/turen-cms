@@ -20,7 +20,7 @@ class ConfigController extends \app\components\Controller
         parent::init();
         
         //当前站点指定的语言站配置参数
-        foreach (Config::getConfigAsArray() as $config) {
+        foreach (Config::ConfigArray() as $config) {
             $this->_configs[$config['vargroup']][] = $config;
         }
     }
@@ -62,8 +62,6 @@ class ConfigController extends \app\components\Controller
         
         //批量更新
         if (Yii::$app->request->isPost && Config::batchSave(Yii::$app->request->post())) {
-            //更新缓存
-            Config::UpdateCache();
             Yii::$app->getSession()->setFlash('success', '站点配置保存成功。');
         }
         

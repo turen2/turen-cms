@@ -46,6 +46,15 @@ use yii\helpers\Url; ?>
             <li>项目1</li>
             <li>项目2</li>
         </ul>
+        <?php
+        echo Yii::$app->params['config_face_banjia_cn_main_nav_id'];
+        echo '<br />';
+        echo Yii::$app->params['config_face_banjia_cn_left_bottom_block_id'];
+        echo '<br />';
+        echo Yii::$app->params['config_face_banjia_cn_left_top_block_id'];
+        echo '<br />';
+        ?>
+
     </div>
 </div>
 

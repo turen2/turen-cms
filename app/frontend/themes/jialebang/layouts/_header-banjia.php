@@ -15,7 +15,7 @@ $webUrl = Yii::getAlias('@web/');
                 <i class="fa fa-bullhorn"></i>
                 <span><span class="primary-color">公告：</span>
                     <?php
-                    $blockModel = CmsBlock::find()->current()->where(['id' => 1])->one();
+                    $blockModel = CmsBlock::find()->current()->where(['id' => Yii::$app->params['config_face_banjia_cn_left_top_block_id']])->one();
                     if($blockModel) {
                         echo HtmlPurifier::process($blockModel->content, function($config) {
                             $config->set('HTML.Allowed', 'a[href]');
@@ -59,7 +59,7 @@ $webUrl = Yii::getAlias('@web/');
         	
             <!-- 导航 -->
             <?php
-            $menus = ExtNav::NavByCode(41);
+            $menus = ExtNav::NavByCode(Yii::$app->params['config_face_banjia_cn_main_nav_id']);
             $mainNav = $menus['main'];
             $subNav = $menus['sub'];
             ?>

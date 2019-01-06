@@ -99,12 +99,12 @@ class Config extends \app\models\base\Sys
             'lang' => '多语言',
         ];
     }
-    
+
     /**
      * 获取指定语言和站点的配置
-     * @param unknown $lang
+     * @return array
      */
-    public static function getConfigAsArray()
+    public static function ConfigArray()
     {
         if(empty(self::$_config)) {
             self::$_config = self::find()->current()->orderBy(['orderid' => SORT_DESC])->asArray()->all();
@@ -129,11 +129,6 @@ class Config extends \app\models\base\Sys
         foreach ($models as $model) {
             if(isset($data[$model->varname]) && $model->varvalue != $data[$model->varname]) {
                 self::updateAll(['varvalue' => $data[$model->varname]], ['varname' => $model->varname, 'lang' => GLOBAL_LANG]);
-                //$model->setAttribute('varvalue', $data[$model->varname]);
-                //if($model->getOldAttribute('varvalue') != $model->getAttribute('varvalue')) {
-                    //$model->save(false);//不验证保存
-                    //self::updateAll(['varvalue' => $data[$model->varname]], ['varname' => $model->varname]);
-                //}
             } else {
                 //throw new InvalidArgumentException('无法查询出配置为“'.$model->varname.'”的参数，请先创建！');
             }
@@ -142,54 +137,6 @@ class Config extends \app\models\base\Sys
         //更新前台初始化缓存
         TagDependency::invalidate(Yii::$app->cache, Yii::$app->params['config.updateAllCache']);
         
-        return true;
-    }
-    
-    /**
-     * 更新配置缓存
-     * @return boolean
-     */
-    public static function UpdateCache()
-    {
-        $cache = Yii::$app->getCache();
-        $models = self::find()->current()->all();//缓存网站的配置参数
-        if($models) {
-            $cache->delete(CONFIG_CACHE_KEY);
-            
-            //处理数组形式的数据
-            $cache->set(CONFIG_CACHE_KEY, Json::encode(ArrayHelper::map($models, 'varname', 'varvalue')));
-            return true;
-        } else {
-            return false;
-        }
-    }
-    
-    /**
-     * 获取配置缓存
-     * @return string
-     */
-    public static function CacheList()
-    {
-        $cache = Yii::$app->getCache();
-        if($cacheData = $cache->get(CONFIG_CACHE_KEY)) {
-            return Json::decode($cacheData);//返回数组
-        } else {
-            if(self::UpdateCache()) {//就地更新
-                return Json::decode($cache->get(CONFIG_CACHE_KEY));//返回数组
-            } else {
-                //更新失败
-                throw new ErrorException('更新配置缓存失败！');
-            }
-        }
-    }
-    
-    /**
-     * 删除本站点配置缓存
-     * @return boolean
-     */
-    public static function DeleteCache()
-    {
-        Yii::$app->getCache()->delete(CONFIG_CACHE_KEY);
         return true;
     }
 

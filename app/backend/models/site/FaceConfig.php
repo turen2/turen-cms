@@ -7,24 +7,16 @@
 namespace app\models\site;
 
 use Yii;
-use yii\helpers\Json;
 use yii\helpers\ArrayHelper;
 use app\behaviors\InsertLangBehavior;
-use yii\behaviors\AttributeBehavior;
-use yii\db\ActiveRecord;
-use yii\base\ErrorException;
 use yii\caching\TagDependency;
 
 /**
  * This is the model class for table "{{%site_face_config}}".
  *
- * @property string $cfg_id
- * @property string $varname 变量名称
- * @property string $varinfo 参数说明
- * @property int $vargroup 所属组
- * @property string $vartype 变量类型
- * @property string $varvalue 变量值
- * @property int $orderid 排列排序
+ * @property string $cfg_name 变量名称
+ * @property string $cfg_value 变量值
+ * @property string $template_id 模板
  * @property string $lang 多语言
  */
 class FaceConfig extends \app\models\base\Site
@@ -37,22 +29,6 @@ class FaceConfig extends \app\models\base\Site
             'insertLang' => [//自动填充多站点和多语言
                 'class' => InsertLangBehavior::class,
                 'insertLangAttribute' => 'lang',
-            ],
-            'varvalueDeal' => [
-                'class' => AttributeBehavior::class,
-                'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => 'varvalue',
-                    ActiveRecord::EVENT_BEFORE_UPDATE => 'varvalue',
-                ],
-                'value' => function ($event) {
-                    if($this->vartype == 'checkbox') {
-                        if(is_array($this->varvalue)) {
-                            return implode('|', $this->varvalue);
-                        }
-                    }
-                    
-                    return $this->vartype;
-                }
             ],
         ];
     }
@@ -71,14 +47,10 @@ class FaceConfig extends \app\models\base\Site
     public function rules()
     {
         return [
-            [['varname', 'varinfo', 'vargroup', 'vartype', 'varvalue'], 'required'],
-            [['cfg_id', 'vargroup', 'orderid'], 'integer'],
-            [['varvalue', 'vardefault'], 'string'],
-            [['varname'], 'string', 'max' => 50],
-            [['varinfo'], 'string', 'max' => 80],
-            [['vartype'], 'string', 'max' => 10],
+            [['template_id'], 'integer'],
+            [['cfg_name', 'cfg_value'], 'string'],
+            [['cfg_name'], 'string', 'max' => 100],
             [['lang'], 'string', 'max' => 8],
-            [['varname'], 'unique'],
         ];
     }
 
@@ -88,26 +60,21 @@ class FaceConfig extends \app\models\base\Site
     public function attributeLabels()
     {
         return [
-            'cfg_id' => '配置ID',
-            'varname' => '变量名称',
-            'varinfo' => '参数说明',
-            'vargroup' => '所属组',
-            'vartype' => '变量类型',
-            'varvalue' => '变量值',
-            'vardefault' => '默认参考值',
-            'orderid' => '排列排序',
+            'cfg_name' => '变量名称',
+            'cfg_value' => '变量值',
+            'template_id' => '模板',
             'lang' => '多语言',
         ];
     }
-    
+
     /**
-     * 获取指定语言和站点的配置
-     * @param unknown $lang
+     * 获取指定语言和站点的界面配置
+     * @return mixed
      */
-    public static function getConfigAsArray()
+    public static function FaceConfigArray($templateId)
     {
         if(empty(self::$_config)) {
-            self::$_config = self::find()->current()->orderBy(['orderid' => SORT_DESC])->asArray()->all();
+            self::$_config = self::find()->current()->where(['template_id' => $templateId])->asArray()->all();
         }
         
         return self::$_config;
@@ -121,81 +88,45 @@ class FaceConfig extends \app\models\base\Site
     public static function batchSave(array $data)
     {
         $csrfParam = Yii::$app->getRequest()->csrfParam;
-        if(isset($data[$csrfParam])) {
+        if (isset($data[$csrfParam])) {
             unset($data[$csrfParam]);
         }
-        
-        $models = self::find()->current()->all();
-        foreach ($models as $model) {
-            if(isset($data[$model->varname]) && $model->varvalue != $data[$model->varname]) {
-                self::updateAll(['varvalue' => $data[$model->varname]], ['varname' => $model->varname, 'lang' => GLOBAL_LANG]);
-                //$model->setAttribute('varvalue', $data[$model->varname]);
-                //if($model->getOldAttribute('varvalue') != $model->getAttribute('varvalue')) {
-                    //$model->save(false);//不验证保存
-                    //self::updateAll(['varvalue' => $data[$model->varname]], ['varname' => $model->varname]);
-                //}
+
+        $templateId = $data['template_id'];
+        if (isset($data['template_id'])) {
+            unset($data['template_id']);
+        }
+
+        $models = self::find()->current()->where(['template_id' => $templateId])->all();
+        $oldFaceConfigArray = ArrayHelper::map($models, 'cfg_name', 'cfg_value');
+
+        $model = new self;
+        foreach ($data as $key => $val) {
+            //如果有则更新
+            if (isset($oldFaceConfigArray[$key])) {
+                unset($oldFaceConfigArray[$key]);//剔除
+                self::updateAll(['cfg_value' => $val], ['cfg_name' => $key]);
             } else {
-                //throw new InvalidArgumentException('无法查询出配置为“'.$model->varname.'”的参数，请先创建！');
+                //统一新建
+                $model->isNewRecord = true;
+                $model->cfg_name = $key;
+                $model->cfg_value = $val;
+                $model->template_id = $templateId;
+                $model->save(false);
             }
         }
-        
+        //删除多余的
+        self::deleteAll(['cfg_name' => array_keys($oldFaceConfigArray)]);
+
         //更新前台初始化缓存
-        TagDependency::invalidate(Yii::$app->cache, Yii::$app->params['config.updateAllCache']);
-        
-        return true;
-    }
-    
-    /**
-     * 更新配置缓存
-     * @return boolean
-     */
-    public static function UpdateCache()
-    {
-        $cache = Yii::$app->getCache();
-        $models = self::find()->current()->all();//缓存网站的配置参数
-        if($models) {
-            $cache->delete(CONFIG_FACE_CACHE_KEY);
-            
-            //处理数组形式的数据
-            $cache->set(CONFIG_FACE_CACHE_KEY, Json::encode(ArrayHelper::map($models, 'varname', 'varvalue')));
-            return true;
-        } else {
-            return false;
-        }
-    }
-    
-    /**
-     * 获取配置缓存
-     * @return string
-     */
-    public static function CacheList()
-    {
-        $cache = Yii::$app->getCache();
-        if($cacheData = $cache->get(CONFIG_FACE_CACHE_KEY)) {
-            return Json::decode($cacheData);//返回数组
-        } else {
-            if(self::UpdateCache()) {//就地更新
-                return Json::decode($cache->get(CONFIG_FACE_CACHE_KEY));//返回数组
-            } else {
-                //更新失败
-                throw new ErrorException('更新配置缓存失败！');
-            }
-        }
-    }
-    
-    /**
-     * 删除本站点配置缓存
-     * @return boolean
-     */
-    public static function DeleteCache()
-    {
-        Yii::$app->getCache()->delete(CONFIG_FACE_CACHE_KEY);
+        TagDependency::invalidate(Yii::$app->cache, Yii::$app->params['config.updateAllFaceCache']);
+
         return true;
     }
 
     /**
      * @inheritdoc
-     * @return ConfigQuery the active query used by this AR class.
+     * @return FaceConfigQuery the active query used by this AR class.
      */
     public static function find()
     {

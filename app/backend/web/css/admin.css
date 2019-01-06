@@ -1771,22 +1771,22 @@ input[type="button"]:focus, input[type="submit"]:focus {
 }
 
 /*分页样式*/
-.page {
+.bottom-toolbar .page {
 	height: 32px;
 	padding: 15px 0 10px;
 	text-align: center;
 }
 
-.page .page-text {
+.bottom-toolbar .page-text {
 	color: #333;
 }
 
-.page .page-text span {
+.bottom-toolbar .page-text span {
 	padding: 0 2px;
 	font-weight: bold;
 }
 
-.page .page-list {
+.bottom-toolbar .page-list {
 	height: 32px;
 	line-height: 32px;
 	letter-spacing: 0;
@@ -1794,22 +1794,22 @@ input[type="button"]:focus, input[type="submit"]:focus {
 	font-size: 12px;
 }
 
-.page .page-list a, .page .page-list span span {
+.bottom-toolbar .page-list a, .bottom-toolbar .page-list span span {
 	display: inline-block;
 	padding: 0 8px;
 	text-align: center;
 	color: #333;
 }
 
-.page .page-list span span {
+.bottom-toolbar .page-list span span {
 	color: #999;
 }
 
-.page .page-list a:hover {
+.bottom-toolbar .page-list a:hover {
 	color: #999;
 }
 
-.page .page-list .on a {
+.bottom-toolbar .page-list .on a {
 	width: 32px;
 	height: 32px;
 	text-align: center;

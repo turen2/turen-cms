@@ -16,6 +16,6 @@ class InitConfig extends \yii\base\Component implements \yii\base\BootstrapInter
     public function bootstrap($app)
     {
         //后台管理参数配置
-        Yii::$app->params = ArrayHelper::merge(Yii::$app->params, Config::CacheList());
+        Yii::$app->params = ArrayHelper::merge(Yii::$app->params, ArrayHelper::map(Config::ConfigArray(), 'varname', 'varvalue'));
     }
 }

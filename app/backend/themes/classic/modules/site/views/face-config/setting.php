@@ -4,6 +4,9 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
+
+use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use app\components\View;
@@ -11,27 +14,19 @@ use app\widgets\Tips;
 use app\models\sys\Config;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\sys\Config */
+/* @var $model app\models\site\Config */
 /* @var $form yii\widgets\ActiveForm */
 
-$this->title = '界面绑定';
+$this->title = '界面绑定'.' ['.$templateCode.']';
 
 $js = <<<EOF
-function tabs(tabobj, obj)
-{
-	$("#"+tabobj+" li[id^="+tabobj+"]").each(function(i){
-		if(tabobj+"_title"+i == obj.id)
-		{
-			$("#"+tabobj+"_title"+i).attr("class","on");
-			$("#"+tabobj+"_content"+i).show();
-		}
-		else
-		{
-			$("#"+tabobj+"_title"+i).attr("class","");
-			$("#"+tabobj+"_content"+i).hide();
-		}
-	});
-}
+$('#tabs li:not(\'.line\')').on('click', function() {
+    $('#tabs li').removeClass('on');
+    $(this).addClass('on');
+    var name = 'tabs_content_'+$(this).data('view');
+    $('.tabs_content').hide();
+    $('#'+name).show();
+});
 EOF;
 $this->registerJs($js, View::POS_END);
 
@@ -39,27 +34,27 @@ $this->registerJs($js, View::POS_END);
 $configTabArr = [
     [
         'name' => '菜单绑定',
-        'view' => '_item/_nav',
+        'view' => 'nav',
     ],
     [
         'name' => '栏目绑定',
-        'view' => '_item/_column',
+        'view' => 'column',
     ],
     [
         'name' => '单页绑定',
-        'view' => '_item/_page',
+        'view' => 'page',
     ],
     [
         'name' => '类别绑定',
-        'view' => '_item/_cate',
+        'view' => 'cate',
     ],
     [
         'name' => '友链绑定',
-        'view' => '_item/_link',
+        'view' => 'link',
     ],
     [
         'name' => '碎片绑定',
-        'view' => '_item/_block',
+        'view' => 'block',
     ],
 ];
 
@@ -75,43 +70,40 @@ echo Tips::widget([
 	<div class="toolbar-tab">
     	<ul id="tabs">
     		<?php
-    		foreach($configTabArr as $configTabId => $configTabText)
+    		foreach($configTabArr as $index => $configTabText)
     		{
-    			echo '<li id="tabs_title'.$configTabId.'" onclick="tabs(\'tabs\',this);" class="';
-    			if($configTabId == 0) echo 'on';
+    			echo '<li data-view="'.$configTabText['view'].'" class="';
+    			if($configTabText['view']  == 'nav') echo 'on';
     			echo '"><a href="javascript:;">'.$configTabText['name'].'</a></li>';
-    			if($configTabId + 1 < count($configTabArr)) {
-    			    echo '<li class="line">-</li>';
-    			}
+    			if($index != count($configTabArr) - 1) {
+                    echo '<li class="line">-</li>';
+                }
     		}
     		?>
     	</ul>
     </div>
-    
-    <?php 
+
+    <?php
     $form = ActiveForm::begin([
         'options' => [],
         'method' => 'POST',
         'action' => ['/site/face-config/batch'],
     ]);
-    
-	foreach($configTabArr as $configTabId => $configTabText) {
+
+    echo Html::hiddenInput('template_id', $templateId);
+
+	foreach($configTabArr as $configTabText) {
 	?>
-	<div class="<?php if($configTabId != 0) echo 'undis'; ?>" id="tabs_content<?php echo $configTabId; ?>">
+	<div class="tabs_content <?php if($configTabText['view'] != 'nav') echo 'undis'; ?>" id="tabs_content_<?= $configTabText['view']; ?>">
 		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="form-table">
-			<?php
-			if(isset($configs[$configTabId])) {
-			    echo $this->render($configTabText['view'], [
-			        'config' => $configs[$configTabId],
-			    ]);
-			    ?>
-			<?php } ?>
+			<?= $this->render('_item/template-'.$templateCode.'/'.Yii::$app->language.'/_'.$configTabText['view'], [
+                'config' => ArrayHelper::map($configs, 'cfg_name', 'cfg_value'),
+            ]); ?>
 			<tr class="nb">
 				<td></td>
 				<td>
     				<div class="form-sub-btn">
     					<input type="submit" class="submit" value="提交" />
-    					<input type="button" class="back" value="返回" onclick="location.href='<?= Url::to(['/site/face-config/setting']) ?>'" />
     				</div>
 				</td>
 				<td></td>

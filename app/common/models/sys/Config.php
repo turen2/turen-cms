@@ -38,7 +38,7 @@ class Config extends \common\models\base\Sys
 
     /**
      * 获取指定语言和站点的配置
-     * @param unknown $lang
+     * @return array
      */
     public static function getConfigAsArray()
     {
