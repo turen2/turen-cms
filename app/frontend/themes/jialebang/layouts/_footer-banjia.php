@@ -1,9 +1,17 @@
-<?php 
+<?php
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 $webUrl = Yii::getAlias('@web/');
 
-use app\models\CmsBlock;
+use common\models\cms\Block;
+use common\models\ext\Link;
+use common\models\ext\Nav;
+use yii\helpers\Html;
 
-$blockModel = CmsBlock::find()->current()->where(['id' => Yii::$app->params['config_face_banjia_cn_left_bottom_block_id']])->one();
+$blockModel = Block::find()->current()->where(['id' => Yii::$app->params['config_face_banjia_cn_left_bottom_block_id']])->one();
 if($blockModel) {
     $aboutUsTitle = $blockModel->title;
     $aboutUsContent = $blockModel->content;
@@ -41,16 +49,14 @@ if($blockModel) {
     				</div>
     			</div>
     			<div class="inner-block third">
-    				<h3>了解家乐邦<span class="more-friend-link"><a href="" class="external">更多帮助 »</a></span></h3>
+    				<h3>了解家乐邦<span class="more-friend-link"><a target="_blank" href="http://turen.com/banjia/faqs/index.html" class="external">更多帮助 »</a></span></h3>
     				<ul class="wp-tag-cloud">
-                    	<li><a href="" title="">经验分享经验分享</a></li>
-                    	<li><a href="" title="">网页设计网页设计</a></li>
-                    	<li><a href="" title="">PS教程PS教程</a></li>
-                    	<li><a href="" title="">酷站酷站酷站</a></li>
-                    	<li><a href="" title="">App设计App设计</a></li>
-                    	<li><a href="" title="">职场规划职场</a></li>
-                    	<li><a href="" title="">神器推荐器推荐</a></li>
-                    	<li><a href="" title="">ICONICON</a></li>
+                        <?php
+                        $bottomLinks = Link::find()->current()->where(['link_type_id' => Yii::$app->params['config_face_banjia_cn_bottom_link_type_id']])->all();
+                        foreach ($bottomLinks as $bottomLink) {
+                            echo '<li>'.Html::a($bottomLink->webname, $bottomLink->linkurl).'</li>';
+                        }
+                        ?>
                     </ul>
     			</div>
     			<div class="inner-block last">
@@ -64,17 +70,21 @@ if($blockModel) {
     			</div>
         	</div>
             <p class="footer-nav">
-                <a href="">首页</a> |
-                <a href="">关于家乐邦</a> |
-                <a href="">媒体报道</a> |
-                <a href="">人才招聘</a> |
-                <a href="">联系我们</a> |
-                <a href="">商务合作</a> |
-                <a href="">帮助中心</a> |
-                <a href="">联系客服</a> |
-                <a href="">手机客版</a>
+                <!-- 底部导航 -->
+                <?php
+                $menus = Nav::NavById(Yii::$app->params['config_face_banjia_cn_bottom_nav_id']);
+                $bottomNav = $menus['main'];
+                //$subBottomNav = $menus['sub'];
+
+                foreach ($bottomNav as $index => $item) {
+                    echo Html::a($item->menuname, $item->linkurl, ['target' => $item->target]);
+                    if($index != count($bottomNav)-1) {
+                        echo ' |';
+                    }
+                }
+                ?>
             </p>
-        	<p class="footer-c">© 2017-2018  - xxxxxxxxxxx有限公司 旗下网站 - xICP备8577444406</p>
+        	<p class="footer-c">© 2016-<?= date('Y') ?>  - <?= Yii::$app->params['config_copyright'] ?> - <?= Yii::$app->params['config_icp_code'] ?></p>
         </div>
     </div>
 </div>

@@ -20,7 +20,7 @@ use yii\caching\TagDependency;
  * @property string $template_id 模板
  * @property string $lang 多语言
  */
-class FaceConfig extends \common\models\base\Site
+class FaceConfig extends \common\components\ActiveRecord
 {
     private static $_config;
     

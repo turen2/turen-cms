@@ -81,7 +81,6 @@ class LinkSearch extends Link
             
             'link_type_id' => $this->link_type_id,
             'parentid' => $this->parentid,
-            'orderid' => $this->orderid,
         ]);
 
         $query->andFilterWhere(['like', 'parentstr', $this->parentstr])

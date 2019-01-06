@@ -6,11 +6,11 @@
  */
 namespace app\models\ext;
 
+use app\behaviors\ParentBehavior;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
 use app\behaviors\InsertLangBehavior;
-use yii\db\ActiveRecord;
 use app\widgets\laydate\LaydateBehavior;
 use app\behaviors\OrderDefaultBehavior;
 
@@ -43,6 +43,16 @@ class Link extends \app\models\base\Ext
 	            'class' => LaydateBehavior::class,
 	            'timeAttribute' => 'posttime',
 	        ],
+            'linkParent' => [
+                'class' => ParentBehavior::class,
+                'parentPrimaryField' => 'id',
+                'parentidField' => 'parentid',
+                'parentidStrField' => 'parentstr',
+                'parentClassName' => LinkType::class,
+                'foreignField' => 'link_type_id',//外键
+                'pidField' => 'parentid',
+                'pStrField' => 'parentstr',
+            ],
 	        'timemap' => [
 	            'class' => TimestampBehavior::class,
 	            'createdAtAttribute' => 'created_at',

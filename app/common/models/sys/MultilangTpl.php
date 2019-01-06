@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 namespace common\models\sys;
 
 use yii\db\Query;
@@ -18,7 +22,7 @@ use yii\base\InvalidConfigException;
  * @property int $orderid 排序
  * @property int $is_visible 是否显示在前台站点切换
  */
-class MultilangTpl extends \common\models\base\Sys
+class MultilangTpl extends \common\components\ActiveRecord
 {
     /**
      * @inheritdoc

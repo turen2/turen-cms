@@ -27,4 +27,19 @@ $value = isset($config[$name])?$config[$name]:null;
     </td>
 </tr>
 
+<?php
+//-----------------------------------------------
+$name = 'config_face_banjia_cn_bottom_nav_id';
+$value = isset($config[$name])?$config[$name]:null;
+?>
+<tr>
+    <td class="first-column">搬家站点底部菜单</td>
+    <td class="second-column" width="33%">
+        <?= Html::dropDownList($name, $value, ArrayHelper::merge([null => '请选择一个配置'], $navArray), ['id' => $name]) ?>
+    </td>
+    <td style="border-bottom: 1px dashed #efefef;">
+        Yii::$app->params['<?=$name?>']
+    </td>
+</tr>
+
 

@@ -6,6 +6,7 @@
  */
 namespace app\models\ext;
 
+use app\behaviors\ParentBehavior;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
@@ -45,6 +46,16 @@ class Ad extends \app\models\base\Ext
 	            'class' => LaydateBehavior::class,
 	            'timeAttribute' => 'posttime',
 	        ],
+            'adParent' => [
+                'class' => ParentBehavior::class,
+                'parentPrimaryField' => 'id',
+                'parentidField' => 'parentid',
+                'parentidStrField' => 'parentstr',
+                'parentClassName' => AdType::class,
+                'foreignField' => 'ad_type_id',//外键
+                'pidField' => 'parentid',
+                'pStrField' => 'parentstr',
+            ],
 	        'timemap' => [
 	            'class' => TimestampBehavior::class,
 	            'createdAtAttribute' => 'created_at',

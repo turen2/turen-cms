@@ -24,7 +24,7 @@ use yii\caching\TagDependency;
  * @property int $orderid 排列排序
  * @property string $lang 多语言
  */
-class Config extends \common\models\base\Sys
+class Config extends \common\components\ActiveRecord
 {
     private static $_config;
     

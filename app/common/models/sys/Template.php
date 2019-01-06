@@ -25,7 +25,7 @@ use yii\helpers\FileHelper;
  * @property string $created_at 添加时间
  * @property string $updated_at 编辑时间
  */
-class Template extends \common\models\base\Sys
+class Template extends \common\components\ActiveRecord
 {
     /**
      * @inheritdoc

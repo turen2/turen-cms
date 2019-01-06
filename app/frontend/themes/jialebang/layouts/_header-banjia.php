@@ -1,6 +1,11 @@
 <?php
-use app\models\CmsBlock;
-use app\models\ExtNav;
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
+use common\models\cms\Block;
+use common\models\ext\Nav;
 use common\helpers\ImageHelper;
 use yii\helpers\HtmlPurifier;
 use yii\helpers\Url;
@@ -15,7 +20,7 @@ $webUrl = Yii::getAlias('@web/');
                 <i class="fa fa-bullhorn"></i>
                 <span><span class="primary-color">公告：</span>
                     <?php
-                    $blockModel = CmsBlock::find()->current()->where(['id' => Yii::$app->params['config_face_banjia_cn_left_top_block_id']])->one();
+                    $blockModel = Block::find()->current()->where(['id' => Yii::$app->params['config_face_banjia_cn_left_top_block_id']])->one();
                     if($blockModel) {
                         echo HtmlPurifier::process($blockModel->content, function($config) {
                             $config->set('HTML.Allowed', 'a[href]');
@@ -57,9 +62,9 @@ $webUrl = Yii::getAlias('@web/');
             	<img src="/images/logo.png">
         	</a>
         	
-            <!-- 导航 -->
+            <!-- 主导航 -->
             <?php
-            $menus = ExtNav::NavByCode(Yii::$app->params['config_face_banjia_cn_main_nav_id']);
+            $menus = Nav::NavById(Yii::$app->params['config_face_banjia_cn_main_nav_id']);
             $mainNav = $menus['main'];
             $subNav = $menus['sub'];
             ?>
