@@ -19,6 +19,6 @@ class BaikeController extends \app\components\Controller
      */
     public function actionDetail()
     {
-        return $this->render('list');
+        return $this->render('detail');
     }
 }

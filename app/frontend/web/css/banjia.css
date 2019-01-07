@@ -231,25 +231,35 @@
 /* 通用侧边栏end */
 
 /* 搬家百科侧边栏 */
-.banjia-left .baike-list li {
+.sidebox .baike-list li {
     margin-bottom: 18px;
 }
-.banjia-left .baike-list li a {
+.sidebox .baike-list li a {
     display: block;
     font-size: 14px;
     color: #333;
     line-height: 18px;
 }
-.banjia-left .baike-list li a:hover {
+.sidebox .baike-list li a:hover {
     color: #0099e9;
 }
-.banjia-left .baike-list li a i {
+.sidebox .baike-list li a i {
     margin-right: 8px;
     font-size: 14px;
     color: #333;
     font-style: italic;
 }
 /* 搬家百科侧边栏end */
+
+/* 搬家联系我们侧边栏 */
+.sidebox .about-us {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.sidebox .about-us p {
+    margin: 20px 0;
+}
+/* 搬家联系我们侧边栏end */
 
 /* 咨讯中心 */
 .baike-content, .faqs-content, .news-content {
@@ -633,23 +643,8 @@
     overflow: hidden;
 }
 
-.banjia-list .banjia-text dl dd i{
-    float: left;
-    background-image: url(../images/css_sprites.png);
-    background-repeat: no-repeat;
-}
-
-.banjia-list .banjia-text dl dd i.ah1{
-    background-position: -875px -489px;
-}
-
-.banjia-list .banjia-text dl dd i.ah2{
-    background-position: -910px -142px;
-}
-
 .banjia-list .banjia-text dl dd b{
-    float: left;
-    margin-left: 10px;
+    margin-left: 3px;
     font-size: 12px;
     color: #888;
     line-height: 20px;

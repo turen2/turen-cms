@@ -36,6 +36,7 @@ class SideBoxListWidget extends \yii\base\Widget
     public $flagName;//目前支持：推荐，置顶，最新，最热，四个标签
     public $columnId;//文章图片视频文件产品对应的columnid
     public $listNum = 10;//列表类型最多显示多少条信息
+    public $route = '';
 
     public function init()
     {
@@ -121,7 +122,7 @@ class SideBoxListWidget extends \yii\base\Widget
     {
         $query = Article::find()->where(['columnid' => $this->columnId]);
         if(in_array($this->flagName, ['推荐', '置顶'])) {
-            $query->andFilterWhere(['like', 'flag', $this->flagName]);
+            $query->andFilterWhere(['like', 'flag', $this->flagName])->orderBy(['orderid' => SORT_DESC]);
         } elseif($this->flagName == '最新') {
             $query->orderBy(['posttime' => SORT_DESC]);
         } elseif($this->flagName == '最热') {
@@ -133,7 +134,7 @@ class SideBoxListWidget extends \yii\base\Widget
 
         $content = '';
         foreach ($query->asArray()->all() as $index => $item) {
-            $content .= '<li><a href="'.Url::to(['/']).'"><i>'.($index + 1).'.</i>'.$item['title'].'</a></li>';
+            $content .= '<li><a href="'.Url::to([$this->route, 'slug' => $item['slug']]).'"><i>'.($index + 1).'.</i>'.$item['title'].'</a></li>';
         }
         return '<ul>'.$content.'</ul>';
     }

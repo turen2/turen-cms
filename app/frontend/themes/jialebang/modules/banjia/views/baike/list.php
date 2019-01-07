@@ -17,7 +17,7 @@ use app\widgets\SideBoxListWidget;
             </ul>
         </div>
         <div class="banjia-box">
-            <div class="banjia-left">
+            <div class="banjia-left sidebox">
                 <div class="banjia-manual">
                     <div class="banjia-manual-title">
                         <h3>搬家流程</h3>
@@ -76,9 +76,11 @@ use app\widgets\SideBoxListWidget;
                     'style' => 'gen',
                     'title' => '百科推荐',
                     'htmlClass' => 'baike-list',
+                    
                     'columnType' => 'article',
                     'flagName' => '推荐',
                     'columnId' => 	Yii::$app->params['config_face_banjia_cn_sidebox_baike_column_id'],//搬家百科
+                    'route' => '/banjia/baike/detail',
                 ]); ?>
                 <?= SideBoxListWidget::widget([
                     'style' => 'tab',
@@ -125,8 +127,8 @@ use app\widgets\SideBoxListWidget;
                                 </h5>
                                 <p>别墅设计新中式风格作为一种在中国新兴的设计风格，它格调高雅、平和内敛、古朴端庄，展现出中国传统文化的深厚底蕴！</p>
                                 <dl>
-                                    <dd><i class="ah1" style="width: 15px;height: 15px;margin: 2px 0 3px;"></i><b>01月07日 11:21</b></dd>
-                                    <dd><i class="ah2" style="width: 15px;height: 15px;margin: 5px 0;"></i><b><a href="" target="_blank" style="color: #888;">深圳誉巢装饰</a></b></dd>
+                                    <dd><i class="fa fa-clock-o"></i><b>01月07日 11:21</b></dd>
+                                    <dd><i class="fa fa-eye"></i><b style="color: #888;">857</b></dd>
                                 </dl>
                             </div>
                         </li>
@@ -143,8 +145,8 @@ use app\widgets\SideBoxListWidget;
                                 <p>
                                     纯粹的黑白灰作为空间主色出现，旨在烘托出一种文雅与风度，墨色的背景墙透过月洞门，又宛如远山萦绕，言有尽，而意无声。这种引景入室的手法，可以令室内与室外产生良好的互动，呈现出‘顾盼有景，游之不厌’的生动画面。</p>
                                 <dl>
-                                    <dd><i class="ah1" style="width: 15px;height: 15px;margin: 2px 0 3px;"></i><b>01月07日 11:20</b></dd>
-                                    <dd><i class="ah2" style="width: 15px;height: 15px;margin: 5px 0;"></i><b><a href="" target="_blank" style="color: #888;">深圳誉巢装饰</a></b></dd>
+                                    <dd><i class="fa fa-clock-o"></i><b>01月07日 11:20</b></dd>
+                                    <dd><i class="fa fa-eye"></i><b style="color: #888;">888</b></dd>
                                 </dl>
                             </div>
                         </li>
@@ -162,8 +164,8 @@ use app\widgets\SideBoxListWidget;
                                     现代家居装修设计，注重功能，是当下人们追求的居家理念，简约大气的感觉，不要繁琐的设计，色调温暖明亮。现代简约风格的设计相对于普通百姓来说，选择的会多一些，简约而不简单，实用大气，
                                     也能彰显出年轻的活力，现代风格的舒适简约，拥抱您那颗自由无拘、永远年轻的心。</p>
                                 <dl>
-                                    <dd><i class="ah1" style="width: 15px;height: 15px;margin: 2px 0 3px;"></i><b>01月07日 10:29</b></dd>
-                                    <dd><i class="ah2" style="width: 15px;height: 15px;margin: 5px 0;"></i><b><a href="" target="_blank" style="color: #888;">深圳誉巢装饰</a></b></dd>
+                                    <dd><i class="fa fa-clock-o"></i><b>01月07日 10:29</b></dd>
+                                    <dd><i class="fa fa-eye"></i><b style="color: #888;">888</b></dd>
                                 </dl>
                             </div>
                         </li>
@@ -180,8 +182,8 @@ use app\widgets\SideBoxListWidget;
                                 <p>
                                     别墅设计结合现代简约风格和传统中式风格，用各自的特点，来相互补充和完善，呈现出两者兼有。设计中减少中式风格的沉闷和简约风格的浮动，让空间稳中有动，简中有繁，体现业主对中国生活情调的追求。用富有中国特色的装饰和艺术来体现东方之美，通过一种简约的形式，呈现舒适温馨的居住环境。</p>
                                 <dl>
-                                    <dd><i class="ah1" style="width: 15px;height: 15px;margin: 2px 0 3px;"></i><b>01月07日 10:28</b></dd>
-                                    <dd><i class="ah2" style="width: 15px;height: 15px;margin: 5px 0;"></i><b><a href="" target="_blank" style="color: #888;">深圳誉巢装饰</a></b></dd>
+                                    <dd><i class="fa fa-clock-o"></i><b>01月07日 10:28</b></dd>
+                                    <dd><i class="fa fa-eye"></i><b style="color: #888;">888</b></dd>
                                 </dl>
                             </div>
                         </li>
@@ -197,8 +199,8 @@ use app\widgets\SideBoxListWidget;
                                 </h5>
                                 <p>别墅座落在青山绿水间，返璞归真心，注定要追寻一场以东方文化为精髓的闲趣逸致生活。</p>
                                 <dl>
-                                    <dd><i class="ah1" style="width: 15px;height: 15px;margin: 2px 0 3px;"></i><b>01月05日 13:35</b></dd>
-                                    <dd><i class="ah2" style="width: 15px;height: 15px;margin: 5px 0;"></i><b><a href="" target="_blank" style="color: #888;">深圳誉巢装饰</a></b></dd>
+                                    <dd><i class="fa fa-clock-o"></i><b>01月05日 13:35</b></dd>
+                                    <dd><i class="fa fa-eye"></i><b style="color: #888;">888</b></dd>
                                 </dl>
                             </div>
                         </li>
@@ -214,8 +216,8 @@ use app\widgets\SideBoxListWidget;
                                 </h5>
                                 <p>在四海为家的时代，昂扬的生活态度，是优雅与浪漫、狂放与绅士风度、过去与时尚潮流汇聚在一起的妙不可言。</p>
                                 <dl>
-                                    <dd><i class="ah1" style="width: 15px;height: 15px;margin: 2px 0 3px;"></i><b>01月05日 13:19</b></dd>
-                                    <dd><i class="ah2" style="width: 15px;height: 15px;margin: 5px 0;"></i><b><a href="" target="_blank" style="color: #888;">深圳誉巢装饰</a></b></dd>
+                                    <dd><i class="fa fa-clock-o"></i><b>01月05日 13:19</b></dd>
+                                    <dd><i class="fa fa-eye"></i><b style="color: #888;">888</b></dd>
                                 </dl>
                             </div>
                         </li>
@@ -231,8 +233,8 @@ use app\widgets\SideBoxListWidget;
                                 </h5>
                                 <p>设计师本次软装设计中解构流行与文化，突破风格界限，带着自我意识中对人文的理解和态度重新审视陈设艺术与生活百态。</p>
                                 <dl>
-                                    <dd><i class="ah1" style="width: 15px;height: 15px;margin: 2px 0 3px;"></i><b>01月04日11:37</b></dd>
-                                    <dd><i class="ah2" style="width: 15px;height: 15px;margin: 5px 0;"></i><b><a href="" target="_blank" style="color: #888;">深圳誉巢装饰</a></b></dd>
+                                    <dd><i class="fa fa-clock-o"></i><b>01月04日11:37</b></dd>
+                                    <dd><i class="fa fa-eye"></i><b style="color: #888;">888</b></dd>
                                 </dl>
                             </div>
                         </li>
@@ -249,8 +251,8 @@ use app\widgets\SideBoxListWidget;
                                 <p>
                                     对于年轻一族来说，豪奢不是最重要的，温暖、轻松、愉悦、充满生活气息的品质生活才是他们真正的需求所在。比起在视觉层面的迎合，适宜的大小、满足日常居住的功能性、舒适的空间氛围更能打动他们。</p>
                                 <dl>
-                                    <dd><i class="ah1" style="width: 15px;height: 15px;margin: 2px 0 3px;"></i><b>01月04日 11:35</b></dd>
-                                    <dd><i class="ah2" style="width: 15px;height: 15px;margin: 5px 0;"></i><b><a href="" target="_blank" style="color: #888;">深圳誉巢装饰</a></b></dd>
+                                    <dd><i class="fa fa-clock-o"></i><b>01月04日 11:35</b></dd>
+                                    <dd><i class="fa fa-eye"></i><b style="color: #888;">888</b></dd>
                                 </dl>
                             </div>
                         </li>
