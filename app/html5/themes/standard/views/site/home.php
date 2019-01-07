@@ -8,7 +8,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\base\Widget;
-use app\widgets\LangSelector;
+use app\widgets\LangSelectorWidget;
 
 $this->title = '首页 - '.Yii::$app->params['config_site_name'];
 ?>
@@ -19,7 +19,7 @@ $this->title = '首页 - '.Yii::$app->params['config_site_name'];
 <br />
 语言切换菜单：
 <?php 
-echo LangSelector::widget([]);
+echo LangSelectorWidget::widget([]);
 
 
 

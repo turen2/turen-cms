@@ -5,7 +5,7 @@
  * @author developer qq:980522557
  */
 use yii\helpers\Html;
-use app\widgets\LangSelector;
+use app\widgets\LangSelectorWidget;
 
 //客户端切换
 if(in_array(Yii::getAlias('@device'), ['desktop'])) {
@@ -15,6 +15,6 @@ if(in_array(Yii::getAlias('@device'), ['desktop'])) {
 }
 ?>
 
-<div class="tui-title center"><?= Yii::t('h5', '语言').Yii::t('h5', '：')?><?= LangSelector::widget([]) ?></div>
+<div class="tui-title center"><?= Yii::t('h5', '语言').Yii::t('h5', '：')?><?= LangSelectorWidget::widget([]) ?></div>
 
 <div class="tui-title center">Copyright © 2004-2018 XXX xxx.com 版权所有</div>

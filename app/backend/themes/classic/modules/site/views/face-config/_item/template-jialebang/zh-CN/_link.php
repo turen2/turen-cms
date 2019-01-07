@@ -11,7 +11,7 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 
 //获取数据
-$models =LinkType::find()->current()->orderBy(['orderid' => SORT_DESC])->all();
+$models = LinkType::find()->current()->orderBy(['orderid' => SORT_DESC])->all();
 
 $models = BuildHelper::reBuildModelKeys($models, 'id');//重构模型数组索引
 $nexus = BuildHelper::getModelNexus($models, LinkType::class, 'id', 'parentid');//获取父子关系

@@ -8,7 +8,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\base\Widget;
-use app\widgets\LangSelector;
+use app\widgets\LangSelectorWidget;
 use app\assets\Swiper2Asset;
 
 Swiper2Asset::register($this);

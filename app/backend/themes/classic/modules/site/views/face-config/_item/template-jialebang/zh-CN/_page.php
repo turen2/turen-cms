@@ -12,5 +12,5 @@ use app\models\cms\Info;
 
 return;
 
-$infoArray = Column::find()->alias('c')->select(['c.cname', 'i.id as info_id'])->leftJoin(Info::tableName().' as i', 'c.id = i.columnid')->asArray()->all();
+$infoArray = Info::find()->alias('i')->select(['c.cname', 'i.id as info_id'])->leftJoin(Column::tableName().' as c', 'c.id = i.columnid')->asArray()->all();
 ?>

@@ -56,6 +56,10 @@ $configTabArr = [
         'name' => '碎片绑定',
         'view' => 'block',
     ],
+    [
+        'name' => '侧边栏配置',
+        'view' => 'sidebox',
+    ],
 ];
 
 //统计当前数组数量

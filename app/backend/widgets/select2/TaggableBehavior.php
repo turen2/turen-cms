@@ -61,6 +61,10 @@ class TaggableBehavior extends \yii\base\Behavior
             $this->beforeDeleteTaggable();
         }
 
+        if($this->_tags === null) {
+            $this->_tags = [];
+        }
+
         if(count($this->_tags)) {
             $tagAssigns = [];
             $modelClass = get_class($this->owner);

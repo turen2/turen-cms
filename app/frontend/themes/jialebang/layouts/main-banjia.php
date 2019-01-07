@@ -35,7 +35,7 @@ AppBanjiaAsset::register($this);
 
 <?= $this->render('_header-banjia') ?>
 
-<div class="banjia-home">
+<div class="banjia-<?= Yii::$app->controller->id ?>">
     <?= $content ?>
 </div>
 
