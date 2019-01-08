@@ -11,28 +11,7 @@ namespace common\models\cms;
  *
  * @see Column
  */
-class ColumnQuery extends \app\components\ActiveQuery
+class ColumnQuery extends \common\components\ActiveQuery
 {
-    /*public function active()
-    {
-        return $this->andWhere('[[status]]=1');
-    }*/
 
-    /**
-     * {@inheritdoc}
-     * @return Column[]|array
-     */
-    public function all($db = null)
-    {
-        return parent::all($db);
-    }
-
-    /**
-     * {@inheritdoc}
-     * @return Column|array|null
-     */
-    public function one($db = null)
-    {
-        return parent::one($db);
-    }
 }

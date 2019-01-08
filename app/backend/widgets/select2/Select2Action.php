@@ -8,8 +8,7 @@ namespace app\widgets\select2;
 
 use Yii;
 use yii\base\Action;
-use yii\web\HttpException;
-use yii\base\InvalidArgumentException;
+use yii\base\InvalidConfigException;
 use app\helpers\BackCommonHelper;
 
 class Select2Action extends Action
@@ -41,7 +40,7 @@ class Select2Action extends Action
         
         //各种校验参数
         if(empty($this->className)) {
-            throw new InvalidArgumentException('Select2Action Parameter Error.');
+            throw new InvalidConfigException('Select2Action Parameter Error.');
         }
     }
 

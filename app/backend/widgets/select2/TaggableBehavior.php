@@ -26,7 +26,8 @@ class TaggableBehavior extends \yii\base\Behavior
 
     public function getTagAssigns()
     {
-        return $this->owner->hasMany(TagAssign::class, ['item_id' => $this->owner->primaryKey()[0]])->where(['class' => get_class($this->owner)]);
+
+        return $this->owner->hasMany(TagAssign::class, ['item_id' => $this->owner->primaryKey()[0]])->where(['class' => $this->ownerShortClassName()]);
     }
 
     public function getTags()
@@ -67,8 +68,7 @@ class TaggableBehavior extends \yii\base\Behavior
 
         if(count($this->_tags)) {
             $tagAssigns = [];
-            $modelClass = get_class($this->owner);
-
+            //$modelClass = get_class($this->owner);
             foreach ($this->_tags as $name) {
                 if (!($tag = Tag::findOne(['name' => $name]))) {
                     $tag = new Tag(['name' => $name]);
@@ -76,7 +76,7 @@ class TaggableBehavior extends \yii\base\Behavior
                 $tag->frequency++;
                 if ($tag->save()) {
                     $updatedTags[] = $tag;
-                    $tagAssigns[] = [$modelClass, $this->owner->primaryKey, $tag->tag_id];
+                    $tagAssigns[] = [$this->ownerShortClassName(), $this->owner->primaryKey, $tag->tag_id];
                 }
             }
 
@@ -100,7 +100,7 @@ class TaggableBehavior extends \yii\base\Behavior
         }
         
         Tag::deleteAll(['frequency' => 0]);
-        TagAssign::deleteAll(['class' => get_class($this->owner), 'item_id' => $this->owner->primaryKey]);
+        TagAssign::deleteAll(['class' => $this->ownerShortClassName(), 'item_id' => $this->owner->primaryKey]);
     }
 
     /**
@@ -116,5 +116,11 @@ class TaggableBehavior extends \yii\base\Behavior
             -1,
             PREG_SPLIT_NO_EMPTY
         ));
+    }
+
+    private function ownerShortClassName()
+    {
+        $reflect = new \ReflectionClass($this->owner);//反射获取短类名
+        return $reflect->getShortName();
     }
 }

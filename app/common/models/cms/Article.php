@@ -41,7 +41,7 @@ use Yii;
  * @property string $created_at 添加时间
  * @property string $updated_at 编辑时间
  */
-class Article extends \app\components\ActiveRecord
+class Article extends \common\components\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -107,6 +107,17 @@ class Article extends \app\components\ActiveRecord
             'created_at' => Yii::t('app', '添加时间'),
             'updated_at' => Yii::t('app', '编辑时间'),
         ];
+    }
+
+    /**
+     * 文章详情的面包屑数据
+     */
+    public static function Breadcrumbs()
+    {
+//        $this->params['breadcrumbs'][] = ['label' => 'Admins', 'url' => ['index']];
+//        $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+//        $this->params['breadcrumbs'][] = 'Update';
+        return [];
     }
 
     /**

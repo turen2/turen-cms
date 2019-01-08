@@ -11,28 +11,7 @@ namespace common\models\cms;
  *
  * @see File
  */
-class FileQuery extends \app\components\ActiveQuery
+class FileQuery extends \common\components\ActiveQuery
 {
-    /*public function active()
-    {
-        return $this->andWhere('[[status]]=1');
-    }*/
 
-    /**
-     * {@inheritdoc}
-     * @return File[]|array
-     */
-    public function all($db = null)
-    {
-        return parent::all($db);
-    }
-
-    /**
-     * {@inheritdoc}
-     * @return File|array|null
-     */
-    public function one($db = null)
-    {
-        return parent::one($db);
-    }
 }

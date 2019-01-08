@@ -11,28 +11,7 @@ namespace common\models\cms;
  *
  * @see Article
  */
-class ArticleQuery extends \app\components\ActiveQuery
+class ArticleQuery extends \common\components\ActiveQuery
 {
-    /*public function active()
-    {
-        return $this->andWhere('[[status]]=1');
-    }*/
 
-    /**
-     * {@inheritdoc}
-     * @return Article[]|array
-     */
-    public function all($db = null)
-    {
-        return parent::all($db);
-    }
-
-    /**
-     * {@inheritdoc}
-     * @return Article|array|null
-     */
-    public function one($db = null)
-    {
-        return parent::one($db);
-    }
 }

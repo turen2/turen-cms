@@ -7,14 +7,13 @@
 namespace app\models\cms;
 
 use Yii;
+use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 use app\behaviors\InsertLangBehavior;
 use yii\helpers\Url;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\AttributeBehavior;
 use yii\db\ActiveRecord;
-use app\models\base\Cms;
-use yii\base\InvalidArgumentException;
 use app\models\shop\Product;
 use app\behaviors\OrderDefaultBehavior;
 
@@ -248,7 +247,7 @@ class Column extends \app\models\base\Cms
             }
         } else {
             //异常
-            throw new InvalidArgumentException(Column::class.'参数错误，参数为：'.$type);
+            throw new InvalidConfigException(Column::class.'参数错误，参数为：'.$type);
         }
     }
     

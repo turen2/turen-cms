@@ -46,7 +46,7 @@ use Yii;
  * @property string $created_at 添加时间
  * @property string $updated_at 编辑时间
  */
-class File extends \app\components\ActiveRecord
+class File extends \common\components\ActiveRecord
 {
     /**
      * {@inheritdoc}

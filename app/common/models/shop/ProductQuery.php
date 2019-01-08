@@ -11,7 +11,7 @@ namespace common\models\shop;
  *
  * @see Product
  */
-class ProductQuery extends \app\components\ActiveQuery
+class ProductQuery extends \common\components\ActiveQuery
 {
     /*public function active()
     {

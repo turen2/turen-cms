@@ -18,7 +18,7 @@ use Yii;
  * @property string $content 内容
  * @property string $posttime 发布时间
  */
-class Info extends \app\components\ActiveRecord
+class Info extends \common\components\ActiveRecord
 {
     /**
      * {@inheritdoc}

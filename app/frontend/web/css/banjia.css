@@ -480,19 +480,28 @@
 
 .banjia-right-tab ul li{
     float: left;
-    margin-right: 25px;
-    cursor: pointer;
 }
 
 .banjia-right-tab ul li a{
+    display: block;
+    padding-right: 25px;
+    color: #999;
     overflow: hidden;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 49px;
 }
 
-.banjia-right-tab ul li a b{
-    float: left;
-    font-size: 12px;
-    color: #999;
-    line-height: 49px;
+.banjia-right-tab ul li a.asc, .banjia-right-tab ul li a.desc {
+    color: #0099e9;
+}
+
+.banjia-right-tab ul li a.asc {
+    background: url(../images/common/asc_desc.png) no-repeat 83% 300%;
+}
+
+.banjia-right-tab ul li a.desc {
+    background: url(../images/common/asc_desc.png) no-repeat 83% -200%;
 }
 
 .banjia-right-tab ul li a span{
@@ -503,26 +512,6 @@
     margin: 21px 0 19px 6px;
 }
 
-.banjia-right-tab ul li a span img{
-    display: none;
-}
-
-.banjia-right-tab ul li a span img.banjia-btm{
-    display: block;
-}
-
-.banjia-right-tab ul .banjia-choose a b{
-    color: #0099e9;
-}
-
-.banjia-right-tab ul .banjia-choose a span img{
-    display: block;
-}
-
-.banjia-right-tab ul .banjia-choose a span img.banjia-btm{
-    display: none;
-}
-
 .banjia-list{
     padding: 33px 30px 36px;
     border-top: 1px solid #f5f5f5;
@@ -530,14 +519,6 @@
     overflow: hidden;
     cursor: default;
     behavior: url(css/PIE.htc);
-}
-
-.banjia-none{
-    border: none;
-}
-
-.ie7 .banjia-list:hover{
-    box-shadow: none;
 }
 
 .banjia-list span{
@@ -649,11 +630,7 @@
     color: #888;
     line-height: 20px;
 }
-.banjia-list .noimg{
-    float: left;
-    width: 815px;
-    margin-left: 20px;
-}
+
 .banjia-page{
     width: 582px;
     margin: 30px auto 0;
@@ -670,53 +647,43 @@
 }
 
 .banjia-page ul li{
-    float: left
+    float: left;
+    display: block;
 }
 
-.banjia-page ul li a{
+.banjia-page ul li a, .banjia-page ul li span{
     display: block;
     padding: 0 18px;
     font-size: 14px;
     color: #666;
-    line-height: 33px;
-}
-
-.banjia-page .next,
-.banjia-page .last{
-    float: left;
-    display: block;
-    padding: 0 12px;
-    margin-left: 2px;
-    font-size: 14px;
-    color: #fff;
     line-height: 36px;
-    background-color: #0099e9;
+}
 
+.banjia-page .active a {
+    background: #f6f6f6;
+    color: #0099e9;
 }
-.banjia-page a.nov {
-    background: #999999;
-    border: 1px solid #999999;
-    text-decoration: none;
-    color: #fff;
-}
+
 .banjia-page ul li a:hover{
     background: #f6f6f6;
-    text-decoration: none;
     color: #333;
 }
-.banjia-page .first, .banjia-page .pre {
-    float: left;
-    display: block;
-    padding: 0 12px;
-    margin-left: 2px;
-    font-size: 14px;
+
+.banjia-page .text a,
+.banjia-page .text a:hover,
+.banjia-page .text span {
     color: #fff;
-    line-height: 36px;
     background-color: #0099e9;
+    padding: 0 12px;
 }
-.banjia-page .pre {
-    margin-right: 2px;
+
+.banjia-page .first a,
+.banjia-page .first span,
+.banjia-page .next a,
+.banjia-page .next span {
+    margin-right: 1px;
 }
+
 
 
 

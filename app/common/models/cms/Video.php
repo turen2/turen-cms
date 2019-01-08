@@ -41,7 +41,7 @@ use Yii;
  * @property string $created_at
  * @property string $updated_at
  */
-class Video extends \app\components\ActiveRecord
+class Video extends \common\components\ActiveRecord
 {
     /**
      * {@inheritdoc}

@@ -51,6 +51,7 @@ class Select2TagAction extends Action
         
         $tagClass = $this->tagClass;
         $tagAssignClass = $this->tagAssignClass;
+        $modelClass = $this->modelClass;
         
         //联表查询
         $query = $tagClass::find()->alias('t')->select(['t.*'])->leftJoin($tagAssignClass::tableName().' as ta', ' t.tag_id = ta.tag_id');
@@ -58,8 +59,9 @@ class Select2TagAction extends Action
         if(BackCommonHelper::CheckFieldExist($tagClass, 'lang')) {
             $query = $query->current();
         }
-        
-        $query->andFilterWhere(['class' => $this->modelClass])->andFilterWhere(['like', 'name', $this->keyword]);
+
+        $reflect = new \ReflectionClass(new $modelClass);
+        $query->andFilterWhere(['class' => $reflect->getShortName()])->andFilterWhere(['like', 'name', $this->keyword]);
         
         //var_dump($query->createCommand()->getRawSql());exit;
         

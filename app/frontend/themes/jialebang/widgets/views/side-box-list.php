@@ -22,5 +22,6 @@
     <?php } ?>
     <div class="<?= $style ?>-sidebox-content <?= $htmlClass ?>">
         <?= $content ?>
+        <?php //<p class="case-more"><a href="$moreLink">查看更多<i>∨</i></a></p> ?>
     </div>
 </div>

@@ -11,11 +11,7 @@ use yii\base\InvalidConfigException;
 use common\models\cms\Column;
 use common\models\cms\Block;
 use common\models\cms\Info;
-use common\models\cms\Article;
-use common\models\cms\Photo;
-use common\models\cms\File;
-use common\models\cms\Video;
-use common\models\shop\Product;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 
 /**
@@ -36,7 +32,7 @@ class SideBoxListWidget extends \yii\base\Widget
     public $flagName;//目前支持：推荐，置顶，最新，最热，四个标签
     public $columnId;//文章图片视频文件产品对应的columnid
     public $listNum = 10;//列表类型最多显示多少条信息
-    public $route = '';
+    public $route = [];
 
     public function init()
     {
@@ -62,24 +58,13 @@ class SideBoxListWidget extends \yii\base\Widget
     protected function boxContent()
     {
         //內容生成
-        $className = '';
         switch ($this->columnType) {
             case 'article':
-                if(empty($className))
-                $className = Article::class;
             case 'photo':
-                if(empty($className))
-                $className = Photo::class;
             case 'file':
-                if(empty($className))
-                $className = File::class;
             case 'product':
-                if(empty($className))
-                $className = Product::class;
             case 'video':
-                if(empty($className))
-                $className = Video::class;
-
+                $className = Column::ColumnConvert('mask2class', $this->columnType);
                 if(empty($this->flagName) || empty($this->columnId) || empty($className)) {
                     throw new InvalidConfigException(self::class.'参数flagName或columnId配置有误。');
                 }
@@ -120,7 +105,7 @@ class SideBoxListWidget extends \yii\base\Widget
      */
     protected function listTypeContent($className)
     {
-        $query = Article::find()->where(['columnid' => $this->columnId]);
+        $query = $className::find()->where(['columnid' => $this->columnId]);
         if(in_array($this->flagName, ['推荐', '置顶'])) {
             $query->andFilterWhere(['like', 'flag', $this->flagName])->orderBy(['orderid' => SORT_DESC]);
         } elseif($this->flagName == '最新') {
@@ -134,7 +119,8 @@ class SideBoxListWidget extends \yii\base\Widget
 
         $content = '';
         foreach ($query->asArray()->all() as $index => $item) {
-            $content .= '<li><a href="'.Url::to([$this->route, 'slug' => $item['slug']]).'"><i>'.($index + 1).'.</i>'.$item['title'].'</a></li>';
+            $this->route['slug'] = $item['slug'];
+            $content .= '<li><a href="'.Url::to($this->route).'"><i>'.($index + 1).'.</i>'.$item['title'].'</a></li>';
         }
         return '<ul>'.$content.'</ul>';
     }

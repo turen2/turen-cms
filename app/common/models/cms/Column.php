@@ -6,7 +6,10 @@
  */
 namespace common\models\cms;
 
+use common\models\shop\Product;
 use Yii;
+use yii\base\InvalidConfigException;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "{{%cms_column}}".
@@ -29,7 +32,7 @@ use Yii;
  * @property string $created_at 添加时间
  * @property string $updated_at 编辑时间
  */
-class Column extends \app\components\ActiveRecord
+class Column extends \common\components\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -81,6 +84,99 @@ class Column extends \app\components\ActiveRecord
             'created_at' => Yii::t('app', '添加时间'),
             'updated_at' => Yii::t('app', '编辑时间'),
         ];
+    }
+
+    /**
+     * 转换器
+     * 负责模型类、栏目、ID、名称、标记之间的转换
+     * @param string $type
+     * 'id2name' ID对应名称
+     * 'id2mask' ID对应标记
+     * 'id2class' ID对应模型类
+     * 'mask2id' 标记对应ID
+     * 'class2id' 模型类对应ID
+     * 'class2name' 模型类对应类名
+     * .....
+     * @param $key 转化后获取其中一个值的时候所使用的键//不可以mask2id、mask2class、mask2name
+     * return [] | int | string
+     */
+    public static function ColumnConvert($type, $key = null, $default = '')
+    {
+        $data = [
+            [
+                'class' => Info::class,
+                'name' => '单页',
+                'mask' => 'info',
+            ],
+            [
+                'class' => Article::class,
+                'name' => '列表',
+                'mask' => 'article',
+            ],
+            [
+                'class' => Photo::class,
+                'name' => '图片',
+                'mask' => 'photo',
+            ],
+            [
+                'class' => File::class,
+                'name' => '下载',
+                'mask' => 'file',
+            ],
+            [
+                'class' => Product::class,
+                'name' => '产品',
+                'mask' => 'product',
+            ],
+            [
+                'class' => Video::class,
+                'name' => '视频',
+                'mask' => 'video',
+            ],
+        ];
+
+        //匹配需要的类型数组
+        list($k, $v) = explode('2', strtolower($type));
+        if(in_array($k, ['class', 'name', 'mask']) && in_array($v, ['class', 'name', 'mask'])) {
+            $list = [];
+            foreach ($data as $dd) {
+                $list[$dd[$k]] = $dd[$v];
+            }
+
+            //是否获取一个元素，否则返回整个数组
+            if(is_null($key)) {
+                return $list;
+            } else {
+                return isset($list[$key])?$list[$key]:$default;
+            }
+        } else {
+            //异常
+            throw new InvalidConfigException(Column::class.'参数错误，参数为：'.$type);
+        }
+    }
+
+    /**
+     * 栏目列表的面包屑数据
+     */
+    public static function Breadcrumbs($columnModel, $route = ['/'])
+    {
+        $links[] = ['label' => '<span>&gt;</span>'];
+
+        $ids = [];
+        if($columnModel) {
+            $ids = explode(',', $columnModel->parentstr);
+            array_pop($ids);
+        }
+
+        $columnModels = Column::findAll(['id' => $ids]);
+        foreach ($columnModels as $cModel) {
+            $links[] = ['label' => $cModel->cname, 'url' => ArrayHelper::merge($route, ['columnid' => $cModel->id])];
+            $links[] = ['label' => '<span>&gt;</span>'];
+        }
+
+        $links[] =  $columnModel->cname.'列表';
+
+        return $links;
     }
 
     /**

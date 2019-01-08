@@ -11,28 +11,7 @@ namespace common\models\cms;
  *
  * @see Photo
  */
-class PhotoQuery extends \app\components\ActiveQuery
+class PhotoQuery extends \common\components\ActiveQuery
 {
-    /*public function active()
-    {
-        return $this->andWhere('[[status]]=1');
-    }*/
 
-    /**
-     * {@inheritdoc}
-     * @return Photo[]|array
-     */
-    public function all($db = null)
-    {
-        return parent::all($db);
-    }
-
-    /**
-     * {@inheritdoc}
-     * @return Photo|array|null
-     */
-    public function one($db = null)
-    {
-        return parent::one($db);
-    }
 }
