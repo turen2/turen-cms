@@ -20,6 +20,9 @@ use Yii;
  */
 class Info extends \common\components\ActiveRecord
 {
+    public $title;
+    public $parentstr;
+
     /**
      * {@inheritdoc}
      */

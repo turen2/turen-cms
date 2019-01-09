@@ -71,7 +71,7 @@ $webUrl = Yii::getAlias('@web/');
             <div class="nav fr">
                 <ul class="fl">
                     <li>
-                    	<a class="" href="<?= Url::home() ?>">
+                    	<a class="" href="<?= Yii::$app->homeUrl ?>">
                     		<span class="nav-title">首页</span>
                 		</a>
             		</li>

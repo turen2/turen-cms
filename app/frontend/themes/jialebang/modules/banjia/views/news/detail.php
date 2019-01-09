@@ -38,7 +38,6 @@ $dlength = 90;
             <div class="midcontent">
                 <div class="detail-text">
                     <div class="detail-title">
-                        <h3>
                         <?php
                         $options = ['style' => ''];
                         if(!empty($model->colorval) || !empty($model->boldval)) {
@@ -46,7 +45,6 @@ $dlength = 90;
                         }
                         echo Html::tag('h3', $model->title, ['style' => $options['style']]);
                         ?>
-                        </h3>
                         <div class="detail-date">
                             <ul>
                                 <li><span>日期：</span><?= Yii::$app->getFormatter()->asDateTime($model->posttime, 'php:Y年m月d日') ?></li>

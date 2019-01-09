@@ -21,13 +21,15 @@ use yii\helpers\Url;
         <?php } ?>
     </h5>
     <ul>
-        <?php foreach ($boxlist as $item) { ?>
-        <?php $route['slug'] = $item['slug']; ?>
-            <li>
-                <a href="<?= Url::to($route) ?>"><?= $item['title'] ?></a>
-                <b><?= Functions::toTime($item['posttime']) ?></b>
-            </li>
-        <?php } ?>
+        <?php
+        foreach ($boxlist as $index => $item) {
+            $route['slug'] = $item['slug'];
+            echo '<li class="'.(($index+1 == count($boxlist))?'no-border':'').'">'.
+                '<a href="'.Url::to($route).'">'.$item['title'].'</a>'.
+                '<b>'.Functions::toTime($item['posttime']).'</b>'.
+                '</li>';
+        }
+        ?>
     </ul>
 </div>
 <?php } ?>

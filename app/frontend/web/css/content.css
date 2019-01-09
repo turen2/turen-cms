@@ -1,6 +1,6 @@
 /* 界面核心区域管理样式 */
 
-/* 百科列表主体内容 */
+/* 全局列表主体内容 */
 .turen-sort{
     padding: 0 30px;
 }
@@ -432,6 +432,10 @@
     overflow: hidden;
 }
 
+.detail-more .detail-box ul li.no-border {
+    border: none;
+}
+
 .detail-more .detail-box ul li a{
     display: block;
     float: left;
@@ -451,4 +455,9 @@
 .detail-more .detail-add{
     margin-left: 20px;
 }
-/* 百科详情主体内容end */
+/* 全局详情主体内容end */
+
+/* 单页面内容重构 */
+.page-info .detail-title h3 {
+    text-align: center;
+}
