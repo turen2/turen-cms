@@ -9,6 +9,11 @@
   box-sizing: border-box;
 }
 
+b, i {
+    font-style: normal;
+    font-weight: normal;
+}
+
 a {
 	color: #666;
     text-decoration: none;

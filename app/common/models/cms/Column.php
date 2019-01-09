@@ -157,26 +157,93 @@ class Column extends \common\components\ActiveRecord
 
     /**
      * 栏目列表的面包屑数据
+     * @param array $route
+     * @param $isColumnParam
+     * @return array
      */
-    public static function Breadcrumbs($columnModel, $route = ['/'])
+    public function breadcrumbs($route = ['/'], $isColumnParam)
     {
         $links[] = ['label' => '<span>&gt;</span>'];
 
-        $ids = [];
-        if($columnModel) {
-            $ids = explode(',', $columnModel->parentstr);
+        $ids = explode(',', $this->parentstr);
+        if(count($ids) > 1) {
             array_pop($ids);
-        }
 
-        $columnModels = Column::findAll(['id' => $ids]);
-        foreach ($columnModels as $cModel) {
-            $links[] = ['label' => $cModel->cname, 'url' => ArrayHelper::merge($route, ['columnid' => $cModel->id])];
-            $links[] = ['label' => '<span>&gt;</span>'];
-        }
+            $columnModels = self::findAll(['id' => $ids]);
+            foreach ($columnModels as $cModel) {
+                if($isColumnParam) {
+                    $route = ArrayHelper::merge($route, ['columnid' => $cModel->id]);
+                }
+                $links[] = ['label' => $cModel->cname, 'url' => $route];
+                $links[] = ['label' => '<span>&gt;</span>'];
+            }
 
-        $links[] =  $columnModel->cname.'列表';
+            $links[] =  $this->cname.'列表';
+        } else {
+            $links = [];
+        }
 
         return $links;
+    }
+
+    /**
+     * 模型面包屑数据
+     * @param $model
+     * @param array $route
+     * @param $isColumnParam
+     * @return array
+     */
+    public static function ModelBreadcrumbs($model, $route = ['/'], $isColumnParam)
+    {
+        $links[] = ['label' => '<span>&gt;</span>'];
+
+        $ids = explode(',', $model->parentstr);
+        $ids[] = $model->columnid;
+        if(count($ids) > 1) {
+            array_shift($ids);
+
+            $columnModels = self::findAll(['id' => $ids]);
+            foreach ($columnModels as $cModel) {
+                if($isColumnParam) {
+                    $route = ArrayHelper::merge($route, ['columnid' => $cModel->id]);
+                }
+                $links[] = ['label' => $cModel->cname, 'url' => $route];
+                $links[] = ['label' => '<span>&gt;</span>'];
+            }
+
+            $links[] =  $model->title;
+        } else {
+            $links = [];
+        }
+
+        return $links;
+    }
+
+    /**
+     * 由指定的模型，返回上N条，或者下N条记录
+     * @param $model
+     * @param string $positon
+     * @param int $num 参数为1时返回model或者null,参数大于1，返回model数组或[]
+     * @return array
+     */
+    public static function ModelRelated($model, $positon = 'prev', $num = 1)//prev或next
+    {
+        $className = get_class($model);
+        if($positon == 'prev') {
+            if($num > 1) {
+                $result = Article::find()->where(['>', 'orderid', $model->orderid])->orderBy(['orderid' => SORT_ASC])->limit($num)->all();
+            } else {
+                $result = Article::find()->where(['>', 'orderid', $model->orderid])->orderBy(['orderid' => SORT_ASC])->one();
+            }
+        } elseif($positon == 'next') {
+            if($num > 1) {
+                $result = Article::find()->where(['<', 'orderid', $model->orderid])->orderBy(['orderid' => SORT_DESC])->limit($num)->all();
+            } else {
+                $result = Article::find()->where(['<', 'orderid', $model->orderid])->orderBy(['orderid' => SORT_DESC])->one();
+            }
+        }
+
+        return $result;
     }
 
     /**

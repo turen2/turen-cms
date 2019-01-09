@@ -18,9 +18,16 @@ AppBanjiaAsset::register($this);
 
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
+<!--[if IE 7 ]><html lang="en" class="ie7 ielt8 ielt9 ielt10 en"><![endif]-->
+<!--[if IE 8 ]><html lang="en" class="ie8 ielt9 ielt10 en"><![endif]-->
+<!--[if IE 9 ]><html lang="en" class="ie9 ielt10 en"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
 <html lang="<?= Yii::$app->language ?>">
+<!--<![endif]-->
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
+    <!--<meta name="renderer" content="webkit">-->
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=8"/>-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -35,7 +42,7 @@ AppBanjiaAsset::register($this);
 
 <?= $this->render('_header-banjia') ?>
 
-<div class="banjia-<?= Yii::$app->controller->id ?>">
+<div class="turen-<?= Yii::$app->controller->id ?>">
     <?= $content ?>
 </div>
 

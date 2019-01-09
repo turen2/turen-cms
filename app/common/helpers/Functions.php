@@ -89,10 +89,9 @@ class Functions
      * @param int $time 必须为时间戳
      * @return string
      */
-    public static function toTime($time)
+    public static function toTime($time, $format = 'm月d日')
     {
-        $rtime = date("Y.m.d H:i", $time);
-        $htime = date("H:i", $time);
+        $rtime = date($format, $time);
         $time = time() - $time;
         if ($time < 60) {
             $str = "刚刚";
@@ -105,9 +104,9 @@ class Functions
         } elseif ($time < 60 * 60 * 24 * 3) {
             $d = floor($time / (60 * 60 * 24));
             if ($d = 1)
-                $str = "昨天 ".$htime;
+                $str = "昨天";
                 else
-                    $str = "前天 ".$htime;
+                    $str = "前天";
         } else {
             $str = $rtime;
         }

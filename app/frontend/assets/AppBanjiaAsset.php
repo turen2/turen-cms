@@ -17,8 +17,14 @@ class AppBanjiaAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/global.css',//重置样式
-        'css/common.css',//全局通用样式
-        'css/banjia.css',//详情样式
+        'css/common.css',//全局通用样式，包括头和尾样式
+
+        'css/banjia.css',//详情样式（只测试用）
+
+        'css/layout.css',//页面布局样式
+        'css/content.css',//内容与列表详情样式
+        'css/sidebox.css',//侧边栏样式
+        'css/unit.css',//独立单元样式
     ];
     
     public $js = [

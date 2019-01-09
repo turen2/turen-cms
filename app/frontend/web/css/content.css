@@ -1,0 +1,454 @@
+/* 界面核心区域管理样式 */
+
+/* 百科列表主体内容 */
+.turen-sort{
+    padding: 0 30px;
+}
+
+.turen-sort ul li{
+    float: left;
+}
+
+.turen-sort ul li a{
+    display: block;
+    padding-right: 25px;
+    color: #999;
+    overflow: hidden;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 49px;
+}
+
+.turen-sort ul li a.asc, .turen-sort ul li a.desc {
+    color: #0099e9;
+}
+
+.turen-sort ul li a.asc {
+    background: url(../images/common/asc_desc.png) no-repeat 83% 300%;
+}
+
+.turen-sort ul li a.desc {
+    background: url(../images/common/asc_desc.png) no-repeat 83% -200%;
+}
+
+.turen-sort ul li a span{
+    float: left;
+    display: block;
+    width: 6px;
+    height: 9px;
+    margin: 21px 0 19px 6px;
+}
+
+.turen-list{
+    padding: 33px 30px 36px;
+    border-top: 1px solid #f5f5f5;
+    box-sizing: content-box;
+    overflow: hidden;
+    cursor: default;
+    behavior: url(css/PIE.htc);
+}
+
+.turen-list span{
+    float: left;
+    display: block;
+    width: 160px;
+    height: 120px;
+    overflow: hidden;
+}
+
+.turen-list span img{
+    max-width: none;
+    width: 160px;
+    height: 120px;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -ms-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
+}
+
+.turen-list span:hover>a img{
+    -ms-transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -o-transform: scale(1.05);
+    transform: scale(1.05);
+}
+
+.turen-list .turen-text{
+    float: left;
+    width: 645px;
+    margin-left: 20px;
+}
+
+.turen-list .turen-text h5{
+    overflow: hidden;
+}
+
+.turen-list .turen-text h5 .textname{
+    float: left;
+    display: block;
+    width:auto;
+    font-size: 16px;
+    color: #333;
+    line-height: 40px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 460px;
+}
+
+.turen-list:hover>.turen-text h5 .textname{
+    color: #0099e9;
+}
+
+.turen-list .turen-text h5 ol{
+    float: right;
+    margin: 7px 0;
+    overflow: hidden;
+}
+
+.turen-list .turen-text h5 ol li{
+    float: left;
+    margin-left: 8px;
+}
+
+.turen-list .turen-text h5 ol li a{
+    display: block;
+    font-size: 12px;
+    color: #999;
+    line-height: 26px;
+    padding: 0 12px;
+    background-color: #f5f5f5;
+}
+
+.turen-list .turen-text h5 ol li a:hover{
+    color: #0099e9;
+    background-color: #d9edf7;
+}
+
+.turen-list .turen-text p{
+    height: 40px;
+    font-size: 14px;
+    color: #666;
+    line-height: 20px;
+    white-space:initial;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.turen-list .turen-text dl{
+    margin-top: 15px;
+    overflow: hidden;
+}
+
+.turen-list .turen-text dl dd{
+    float: left;
+    margin-right: 30px;
+    overflow: hidden;
+}
+
+.turen-list .turen-text dl dd b{
+    margin-left: 3px;
+    font-size: 12px;
+    color: #888;
+    line-height: 20px;
+}
+/* 百科列表主体内容end */
+
+/* 百科详情主体内容 */
+.detail-text{
+    padding: 0 35px;
+    background-color: #fff;
+}
+
+.detail-text .detail-title{
+    padding-top: 40px;
+}
+
+.detail-text .detail-title h3{
+    font-size: 20px;
+    color: #333;
+    line-height: 36px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.detail-text .detail-title .detail-date{
+    overflow: hidden;
+}
+
+.detail-text .detail-title .detail-date ul{
+    float: left;
+    overflow: hidden;
+}
+
+.detail-text .detail-title .detail-date ul li{
+    float: left;
+    margin-right: 42px;
+    font-size: 14px;
+    color: #333;
+    line-height: 28px;
+}
+
+.detail-text .detail-title .detail-date ul li span{
+    color: #666;
+}
+
+.detail-text .detail-title .detail-date a{
+    display: block;
+    float: right;
+    overflow: hidden;
+}
+
+.detail-text .detail-title .detail-date a span{
+    width: 14px;
+    height: 14px;
+    display: block;
+    float: left;
+    margin: 7px 0;
+}
+
+.detail-text .detail-title .detail-date a b{
+    font-size: 12px;
+    color: #999;
+    float: left;
+    margin-left: 5px;
+    line-height: 28px;
+}
+
+.detail-text .detail-digest{
+    padding: 0 7px;
+    margin-top: 46px;
+}
+
+.detail-text .detail-digest .detail-digest-line{
+    position: relative;
+    border: 1px solid #cecece;
+    padding: 30px 18px 20px;
+}
+
+.detail-text .detail-digest .detail-digest-line span{
+    position: absolute;
+    top: -18px;
+    left: 60px;
+    background-color: #0099e9;
+    font-size: 14px;
+    color: #fafafa;
+    line-height: 34px;
+    padding: 0 14px;
+}
+
+.detail-text .detail-digest .detail-digest-line span i{
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    bottom: 1px;
+    left: 0;
+    background-color: #fafafa;
+}
+
+.detail-text .detail-digest p{
+    font-size: 14px;
+    color: #666;
+    line-height: 26px;
+}
+
+.detail-main p{
+    font-size: 14px;
+    color: #333;
+    line-height: 24px;
+    margin: 0 0;
+}
+
+.detail-text .detail-main .detail-pic{
+    margin: 0 auto;
+}
+.detail-main{
+    margin-top: 26px;
+}
+.detail-main  dl{
+    margin-bottom: 26px;
+    overflow: hidden;
+    margin-top: 26px;
+}
+
+.detail-main  dl dt{
+    float: left;
+    overflow: hidden;
+}
+
+.detail-main  dl dt span{
+    float: left;
+    display: block;
+    margin-right: 14px;
+}
+
+.detail-main  dl dt b{
+    float: right;
+    font-size: 14px;
+    color: #333;
+    float: left;
+}
+
+.detail-main  dl dt  img{
+    width: 147px;
+}
+
+.detail-main  dl dd{
+    float: right;
+}
+
+.detail-main  dl dd b{
+    float: left;
+    font-size: 14px;
+    color: #333;
+    float: left;
+}
+
+.detail-main  dl dd span{
+    float: left;
+    display: block;
+    margin-right: 14px;
+    width: 20px;
+    height: 19px;
+    background-image: url(../images/css_sprites.png);
+    background-repeat: no-repeat;
+    background-position: -337px -737px;
+}
+
+.detail-main  dl dd a{
+    display: block;
+    overflow: hidden;
+}
+
+.detail-main ul{
+    padding: 25px 0;
+    overflow: hidden;
+    border-top: 1px solid #ededed;
+}
+
+.detail-main ul li{
+    float: left;
+    width: 437px;
+    max-width: 45%;
+    font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.detail-main ul li a{
+    overflow: hidden;
+}
+
+.detail-main ul li a span{
+    display: block;
+    width: 20px;
+    height: 16px;;
+    float: left;
+    margin-top: 3px;
+    margin-right: 8px;
+    background-image: url(../images/css_sprites.png);
+    background-repeat: no-repeat;
+}
+
+.detail-main ul li a span.ap8{
+    background-position: -617px -738px;
+}
+
+.detail-main ul li a span.ap8{
+    background-position: -617px -738px;
+}
+
+.detail-main ul li a span.ap9{
+    background-position: -456px -378px;
+}
+
+.detail-main ul li a b{
+    font-size: 14px;
+}
+
+.detail-content{
+    margin-top:26px;
+}
+.detail-content img{
+    display:inline-block;
+}
+.detail-content p{
+    font-size: 14px;
+    color: #333;
+    line-height: 24px;
+    margin: 0 0;
+}
+.detail-content a {
+    color: #0099e9;
+}
+
+.detail-more{
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.detail-more .detail-box{
+    float: left;
+    width: 432px;
+    padding: 23px 34px;
+    background-color: #fff;
+}
+
+.ie7 .detail-more .detail-box{
+    width: 369px;
+}
+
+.detail-more .detail-box h5{
+    overflow: hidden;
+}
+
+.detail-more .detail-box h5 b{
+    display: block;
+    float: left;
+    font-size: 16px;
+    color: #333;
+    line-height: 46px;
+    font-weight: 700;
+}
+
+.detail-more .detail-box h5 a{
+    float: right;
+    font-size: 12px;
+    color: #999;
+    line-height: 46px;
+}
+
+.detail-more .detail-box ul li{
+    font-size: 14px;
+    line-height: 38px;
+    border-bottom: 1px dashed #e3e3e3;
+    overflow: hidden;
+}
+
+.detail-more .detail-box ul li a{
+    display: block;
+    float: left;
+    width: 300px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.detail-more .detail-box ul li b{
+    font-size: 12px;
+    color: #999;
+    line-height: 38px;
+    float: right;
+}
+
+.detail-more .detail-add{
+    margin-left: 20px;
+}
+/* 百科详情主体内容end */

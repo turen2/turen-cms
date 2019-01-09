@@ -7,14 +7,14 @@
  * Time: 18:31
  */
 ?>
-<div class="banjia-manual">
-    <div class="banjia-manual-title">
+<div class="manual-sidebox">
+    <div class="manual-sidebox-title">
         <h3>搬家流程</h3>
     </div>
-    <div class="banjia-manual-tab">
+    <div class="manual-sidebox-tab">
         <ol>
             <div class="flow-line"></div>
-            <li class="banjia-flow">
+            <li class="turen-flow">
                 <div class="flow-left">
                     <span></span><i>1</i>
                 </div>
@@ -25,7 +25,7 @@
                     </p>
                 </div>
             </li>
-            <li class="banjia-flow">
+            <li class="turen-flow">
                 <div class="flow-left">
                     <span></span><i>2</i>
                 </div>
@@ -36,7 +36,7 @@
                     </p>
                 </div>
             </li>
-            <li class="banjia-flow">
+            <li class="turen-flow">
                 <div class="flow-left">
                     <span></span><i>3</i>
                 </div>
@@ -47,7 +47,7 @@
                     </p>
                 </div>
             </li>
-            <li class="banjia-flow">
+            <li class="turen-flow">
                 <div class="flow-left">
                     <span></span><i>4</i>
                 </div>

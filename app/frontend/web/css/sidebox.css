@@ -1,0 +1,337 @@
+/* 系统所有侧边栏管理样式 */
+
+/* 通用侧边栏 */
+.tab-sidebox {
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+.tab-sidebox-title {
+    height: 49px;
+    padding: 0 20px;
+    border-bottom: 1px solid #e9e9e9;
+    box-sizing: content-box;
+    overflow: hidden;
+}
+.tab-sidebox-title h3 {
+    float: left;
+    font-size: 16px;
+    color: #333;
+    line-height: 48px;
+    border-bottom: 1px solid #929292;
+    box-sizing: content-box;
+    cursor: default;
+}
+.tab-sidebox-title a.link {
+    float: right;
+    display: block;
+    font-size: 12px;
+    color: #999;
+    line-height: 56px;
+}
+.tab-sidebox-title a.link:hover {
+    color: #0099e9;
+}
+.tab-sidebox-content {
+    padding: 0 20px;
+}
+
+.gen-sidebox {
+    background-color: #fff;
+    padding: 0 20px 1px;
+    margin-bottom: 20px;
+}
+.gen-sidebox h3 {
+    overflow: hidden;
+}
+.gen-sidebox .title {
+    float: left;
+    font-size: 16px;
+    color: #333;
+    line-height: 56px;
+}
+.gen-sidebox .link {
+    float: right;
+    display: block;
+    font-size: 12px;
+    color: #999;
+    line-height: 56px;
+}
+.tab-sidebox-content li a, .gen-sidebox-content li a {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+/* 通用侧边栏end */
+
+/* 流程侧边栏 */
+.manual-sidebox{
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+.manual-sidebox-title{
+    height: 49px;
+    padding: 0 20px;
+    border-bottom: 1px solid #e9e9e9;
+    box-sizing: content-box;
+    overflow: hidden;
+}
+
+.manual-sidebox-title h3{
+    float: left;
+    font-size: 16px;
+    color: #333;
+    line-height: 48px;
+    border-bottom: 1px solid #929292;
+    box-sizing: content-box;
+    cursor: default;
+}
+.manual-sidebox-title span {
+    display: block;
+    width: 19px;
+    height: 20px;
+    float: left;
+    margin: 18px 15px 18px 0;
+    vertical-align: middle;
+}
+.manual-sidebox-tab{
+    padding: 0 20px;
+}
+
+.manual-sidebox-tab ol{
+    position: relative;
+    padding-bottom: 20px;
+    z-index: 3;
+}
+
+.manual-sidebox-tab ol .flow-line{
+    position: absolute;
+    left: 6px;
+    top: 10px;
+    width: 1px;
+    height: 306px;
+    background-color: #e6e6e6;
+    z-index: -1;
+}
+
+.manual-sidebox-tab .turen-flow{
+    margin-top: 22px;
+    margin-bottom: -10px;
+    overflow: hidden;
+}
+
+.manual-sidebox-tab .turen-flow .flow-left{
+    float: left;
+    height: 30px;
+    padding-right: 12px;
+    overflow: hidden;
+}
+
+.manual-sidebox-tab .turen-flow .flow-left span{
+    float: left;
+    display: block;
+    width: 9px;
+    height: 9px;
+    margin: 10px 0 10px 2px;
+    border: 1px solid #a8a8a8;
+    background-color: #fff;
+    box-sizing: border-box;
+    -moz-border-radius: 50%;
+    -o-border-radius:50%;
+    -webkit-border-radius: 50%;
+    -ms-border-radius:50%;
+    border-radius:50%;
+    behavior: url(css/PIE.htc);
+}
+
+.manual-sidebox-tab .turen-flow .flow-left i{
+    display: block;
+    float: left;
+    margin-left: 20px;
+    font-size: 24px;
+    color: #333;
+    line-height: 30px;
+    font-style: italic;
+}
+
+.manual-sidebox-tab .turen-flow .flow-right{
+    float: left;
+    width: 177px;
+}
+
+.manual-sidebox-tab .turen-flow .flow-right p{
+    font-size: 14px;
+    color: #333;
+    line-height: 30px;
+}
+
+.manual-sidebox-tab .turen-flow .flow-right p.content {
+    font-size: 12px;
+}
+
+.manual-sidebox-tab .flow-now .flow-left span{
+    width: 12px;
+    height: 12px;
+    background-color: #0099e9;
+    border: 1px solid #0099e9;
+    box-sizing: border-box;
+    margin-left: 0;
+}
+
+.ie7 .manual-sidebox-tab{
+    padding-top: 30px;
+}
+
+.ie7 .manual-sidebox-tab ol .flow-line{
+    left: 7px;
+}
+/* 流程侧边栏end */
+
+/* 简单页面，碎片侧边栏 */
+.sidebox-info,
+.sidebox-block{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.sidebox-info p,
+.sidebox-block p{
+    margin: 20px 0;
+}
+/* 简单页面，碎片侧边栏end */
+
+/* 文章、文件侧边栏 */
+.sidebox-article li,
+.sidebox-file li{
+    margin-bottom: 18px;
+}
+.sidebox-article li a,
+.sidebox-file li a{
+    display: block;
+    font-size: 14px;
+    color: #333;
+    line-height: 18px;
+}
+.sidebox-article li a:hover,
+.sidebox-file li a:hover{
+    color: #0099e9;
+}
+.sidebox-article li a i,
+.sidebox-file li a i{
+    margin-right: 8px;
+    font-size: 14px;
+    color: #333;
+    font-style: italic;
+}
+/* 文章、文件侧边栏end */
+
+/* 图片、产品、视频侧边栏 */
+.sidebox-photo ul li,
+.sidebox-product ul li,
+.sidebox-video ul li{
+    float: left;
+    position: relative;
+    width: 112px;
+    height: 100px;
+    margin-bottom: 20px;
+    margin-right: 21px;
+}
+
+.sidebox-photo ul li a,
+.sidebox-product ul li a,
+.sidebox-video ul li a{
+    width: 112px;
+    height: 100px;
+    display: block;
+}
+
+.sidebox-photo ul li a img,
+.sidebox-product ul li a img,
+.sidebox-video ul li a img{
+    width: 112px;
+    height: 100px;
+}
+
+.sidebox-photo ul li a p,
+.sidebox-product ul li a p,
+.sidebox-video ul li a p{
+    width: 112px;
+    padding: 0 10px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 12px;
+    color: #fff;
+    line-height: 28px;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    z-index: 3;
+}
+
+.ie7 .sidebox-photo ul li a p,
+.ie7 .sidebox-product ul li a p,
+.ie7 .sidebox-video ul li a p{
+    width: 92px;
+}
+
+.sidebox-photo ul li a p span,
+.sidebox-product ul li a p span,
+.sidebox-video ul li a p span{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #131b18;
+    opacity: 0.66;
+    filter: alpha(opacity=66);
+    z-index: -1;
+}
+
+.sidebox-photo ul li.last-left,
+.sidebox-product ul li.last-left,
+.sidebox-video ul li.last-left{
+    margin-right: 0;
+}
+/* 图片、产品、视频侧边栏end */
+
+/* 标签侧边栏 */
+.label-sidebox{
+    margin-top: 12px;
+    padding: 0 16px;
+}
+
+.label-sidebox h3{
+    font-size: 16px;
+    color: #333;
+    line-height: 60px;
+    cursor: default;
+}
+
+.label-sidebox ul{
+    overflow: hidden;
+}
+
+.label-sidebox ul li{
+    float: left;
+    margin-right: 11px;
+    margin-bottom: 11px;
+}
+
+.label-sidebox ul li a{
+    display: block;
+    font-size: 12px;
+    color: #666;
+    line-height: 28px;
+    padding: 0 12px;
+    background-color: #ebebeb;
+    white-space: nowrap;
+}
+
+.label-sidebox ul li a:hover{
+    background-color: #d9edf7;
+    color: #0099e9;
+}
+/* 标签侧边栏end */

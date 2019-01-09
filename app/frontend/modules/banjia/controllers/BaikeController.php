@@ -6,10 +6,11 @@
  */
 namespace app\modules\banjia\controllers;
 
-use common\models\cms\Column;
 use Yii;
-use common\models\cms\ArticleSearch;
 use yii\web\NotFoundHttpException;
+use common\models\cms\Article;
+use common\models\cms\Column;
+use common\models\cms\ArticleSearch;
 
 class BaikeController extends \app\components\Controller
 {
@@ -36,10 +37,37 @@ class BaikeController extends \app\components\Controller
 
     /**
      * 百科详情
+     * @param $slug
      * @return string
+     * @throws NotFoundHttpException
      */
-    public function actionDetail()
+    public function actionDetail($slug)
     {
-        return $this->render('detail');
+        $model = $this->findModel($slug);
+        //上一条，下一条
+        $prevModel = Column::ModelRelated($model, 'prev');
+        $nextModel = Column::ModelRelated($model, 'next');//model或null
+        return $this->render('detail', [
+            'model' => $model,
+            'prevModel' => $prevModel,
+            'nextModel' => $nextModel,
+        ]);
+    }
+
+    /**
+     * Finds the Article model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param string $id
+     * @return Article the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($slug)
+    {
+        $model = Article::find()->current()->andWhere(['slug' => $slug])->one();
+        if (!is_null($model)) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('请求页面不存在！');
+        }
     }
 }

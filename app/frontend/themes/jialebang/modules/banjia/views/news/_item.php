@@ -15,7 +15,7 @@ use common\helpers\ImageHelper;
 //Html::encode($model->title)
 $length = 28;//标题截取长度
 $dlength = 82;
-$link = Url::to(['/banjia/baike/detail', 'slug' => $model->slug]);
+$link = Url::to(['/banjia/news/detail', 'slug' => $model->slug]);
 ?>
 
 <span><a href="<?= $link ?>"><img src="<?= empty($model->picurl)?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($model->picurl, true) ?>" /></a></span>

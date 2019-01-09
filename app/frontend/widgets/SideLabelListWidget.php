@@ -6,10 +6,9 @@
  */
 namespace app\widgets;
 
-use common\models\cms\Tag;
 use Yii;
 use yii\base\InvalidConfigException;
-use yii\helpers\ArrayHelper;
+use common\models\cms\Tag;
 
 /**
  * @author jorry
@@ -18,17 +17,17 @@ use yii\helpers\ArrayHelper;
 class SideLabelListWidget extends \yii\base\Widget
 {
     public $shortColumnClassName;//栏目短类名
-    public $htmlClass = 'none';
+    public $htmlClass = '';
     public $title = '请填写标题';
     public $listNum = 10;//列表类型最多显示多少条信息
-    public $route = [];
+    public $route = ['/'];
 
     public function init()
     {
         parent::init();
 
         //检测参数
-        if(empty($this->shortColumnClassName) || empty($this->route)) {
+        if(empty($this->shortColumnClassName)) {
             throw new InvalidConfigException(self::class.'参数配置有误。');
         }
     }
@@ -36,7 +35,7 @@ class SideLabelListWidget extends \yii\base\Widget
     public function run() {
         $tagList = Tag::TagList($this->shortColumnClassName);
         return $this->render('side-label-list', [
-            'htmlClass' => $this->htmlClass,
+            'htmlClass' => 'label-sidebox '.$this->htmlClass,
             'title' => $this->title,
             'tagList' => array_slice($tagList, 0, $this->listNum),
             'route' => $this->route,

@@ -110,17 +110,6 @@ class Article extends \common\components\ActiveRecord
     }
 
     /**
-     * 文章详情的面包屑数据
-     */
-    public static function Breadcrumbs()
-    {
-//        $this->params['breadcrumbs'][] = ['label' => 'Admins', 'url' => ['index']];
-//        $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-//        $this->params['breadcrumbs'][] = 'Update';
-        return [];
-    }
-
-    /**
      * {@inheritdoc}
      * @return ArticleQuery the active query used by this AR class.
      */

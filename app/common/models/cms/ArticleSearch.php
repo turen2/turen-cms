@@ -56,7 +56,7 @@ class ArticleSearch extends Article
             'sort' => [
                 //'class' => Sort::class,
                 'defaultOrder' => [
-                    'hits' => SORT_DESC,
+                    'orderid' => SORT_DESC,
                 ],
             ],
         ]);
