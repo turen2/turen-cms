@@ -9,6 +9,8 @@ namespace common\components;
 use yii\base\Component;
 use OSS\OssClient;
 use OSS\Core\OssException;
+use yii\helpers\Json;
+use yii\httpclient\Client;
 use yii\web\HttpException;
 use yii\web\UploadedFile;
 use yii\base\InvalidArgumentException;
@@ -125,6 +127,33 @@ class AliyunOss extends Component
         $thumb?($img .='?x-oss-process=style/'.$thumb):'';
         
         return $img;
+    }
+
+    /**
+     * 远程获取资源对象参数
+     * @param $object
+     * @param bool $hasHttp
+     * @return array|mixed
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getObjectInfo($object, $hasHttp = true)
+    {
+        $basePath = $this->getFullPath();
+        $imgRequest = $object;
+        $hasHttp?($imgRequest = $basePath.$object):'';
+        //$imgRequest .='?x-oss-process=image/info';//请求规则
+
+        $client = new Client();
+        $response = $client->createRequest()
+            ->setMethod('get')
+            ->setUrl($imgRequest)
+            ->setData(['x-oss-process' => 'image/info'])
+            ->send();
+        if ($response->isOk) {
+            return Json::decode($response->content);
+        } else {
+            return [];
+        }
     }
     
     /**

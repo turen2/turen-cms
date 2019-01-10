@@ -26,7 +26,7 @@ $dlength = 90;
             <span class="location"><b>当前位置：</b></span>
             <?= Breadcrumbs::widget([
                 'encodeLabels' => false,
-                'options' => ['class' => 'pagination'],
+                'options' => ['class' => 'pagination clearfix'],
                 'tag' => 'ul',
                 'homeLink' => null,
                 'itemTemplate' => "<li>{link}</li>\n",

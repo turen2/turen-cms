@@ -33,11 +33,7 @@
 
 /* 列表分页 */
 .pagination-box{
-    width: 582px;
-    margin: 30px auto 0;
-    margin-left: 25%;
-    overflow: hidden;
-    background-color: #fff;
+    margin: 20px 0 20px 50px;
 }
 
 .pagination-box ul{
@@ -73,8 +69,7 @@
 .pagination-box .text a,
 .pagination-box .text a:hover,
 .pagination-box .text span {
-    color: #fff;
-    background-color: #0099e9;
+    color: #666;
     padding: 0 12px;
 }
 

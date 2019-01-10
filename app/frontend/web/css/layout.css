@@ -28,10 +28,7 @@
     width: 885px;
     float: left;
     background-color: #fff;
-}
-
-.baike-list .midcontent {
-    padding-bottom: 68px;
+    padding-bottom: 20px;
 }
 
 .baike-detail .midcontent {

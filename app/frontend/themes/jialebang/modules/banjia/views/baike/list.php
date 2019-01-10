@@ -8,7 +8,6 @@
 
 use app\widgets\SideBoxListWidget;
 use app\widgets\SideLabelListWidget;
-use common\models\cms\Column;
 use yii\widgets\Breadcrumbs;
 use yii\widgets\LinkPager;
 use yii\widgets\LinkSorter;
@@ -22,7 +21,7 @@ $this->title = $columnModel->cname;
             <span class="location"><b>当前位置：</b></span>
             <?= Breadcrumbs::widget([
                 'encodeLabels' => false,
-                'options' => ['class' => 'pagination'],
+                'options' => ['class' => 'pagination clearfix'],
                 'tag' => 'ul',
                 'homeLink' => null,
                 'itemTemplate' => "<li>{link}</li>\n",
@@ -63,7 +62,7 @@ $this->title = $columnModel->cname;
             </div>
             <div class="midcontent">
                 <?= ListView::widget([
-                    'layout' => "<div class=\"turen-sort\">{sorter}</div>\n<div class=\"turen-items\"><ul>{items}</ul></div>\n<div class=\"pagination-box\">{pager}</div>",
+                    'layout' => "<div class=\"turen-sort\">{sorter}</div>\n<div class=\"turen-items\"><ul>{items}</ul></div>\n<div class=\"pagination-box clearfix\">{pager}</div>",
                     'dataProvider' => $dataProvider,
                     'summary' => '',//分页概要
                     'showOnEmpty' => true,
@@ -87,7 +86,7 @@ $this->title = $columnModel->cname;
                     ],
                     'pager' => [
                         'class' => LinkPager::class,
-                        'options' => ['class' => 'pagination'],
+                        'options' => ['class' => 'pagination clearfix'],
                         //'linkOptions' => ['class' => ''],
                         'firstPageCssClass' => 'text first',
                         'lastPageCssClass' => 'text last',

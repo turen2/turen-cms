@@ -26,7 +26,7 @@ $dlength = 90;
             <span class="location"><b>当前位置：</b></span>
             <?= Breadcrumbs::widget([
                 'encodeLabels' => false,
-                'options' => ['class' => 'pagination'],
+                'options' => ['class' => 'pagination clearfix'],
                 'tag' => 'ul',
                 'homeLink' => null,
                 'itemTemplate' => "<li>{link}</li>\n",
@@ -161,6 +161,18 @@ $dlength = 90;
                     'columnId' => 	76,//现场案例
                     'listNum' => 6,
                     'route' => ['/banjia/case/detail'],
+                ]); ?>
+
+                <?= SideBoxListWidget::widget([
+                    'style' => 'gen',
+                    'title' => '咨询推荐',
+                    'htmlClass' => 'news-detail-article',
+                    'moreLink' => Url::to(['/banjia/news/list']),
+
+                    'columnType' => 'article',
+                    'columnId' => $model->columnid,
+                    'listNum' => 6,
+                    'route' => ['/banjia/news/detail'],
                 ]); ?>
 
                 <?= SideLabelListWidget::widget([

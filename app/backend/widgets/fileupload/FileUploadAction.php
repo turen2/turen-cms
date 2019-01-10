@@ -40,8 +40,12 @@ class FileUploadAction extends Action
         $content = file_get_contents($uploadedFile->tempName);
         $md5 = md5($content.$this->folder);//内容+文件夹+日期=文件名，即同一文件，同一次上传不允许重复
         $time = time();
+        //文件的长和宽
+        list($width, $height) = getimagesize($uploadedFile->tempName);
         
-        $object = $this->folder.'/'.date('Y_m_d', $time).'/'.$md5 . '.' . $uploadedFile->extension;
+        $object = $this->folder.
+            '/'.date('Y_m_d', $time).
+            '/'.$md5 . '=='.$width.'x'.$height .'.'. $uploadedFile->extension;
         try {
             //上传是开放oss
             Yii::$app->aliyunoss->putFile($content, $object);//return boolean

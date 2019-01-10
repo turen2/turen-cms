@@ -12,6 +12,7 @@ use yii\helpers\Url;
 $str = '';
 foreach ($content as $index => $item) {
     $route['slug'] = $item['slug'];
-    $str .= '<li><a href="'.Url::to($route).'"><i>'.($index + 1).'.</i>'.$item['title'].'</a></li>';
+    $active = ($index < 3)?'active':'';
+    $str .= '<li><a href="'.Url::to($route).'"><i class="'.$active.'">'.($index + 1).'</i>'.$item['title'].'</a></li>';
 }
 echo '<ul>'.$str.'</ul>';

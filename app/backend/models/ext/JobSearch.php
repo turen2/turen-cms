@@ -61,7 +61,7 @@ class JobSearch extends Job
             'sort' => [
                 //'class' => Sort::class,
                 'defaultOrder' => [
-                    'posttime' => SORT_DESC,
+                    'orderid' => SORT_DESC,
                 ],
             ],
         ]);

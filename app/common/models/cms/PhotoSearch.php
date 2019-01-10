@@ -8,12 +8,12 @@ namespace common\models\cms;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\cms\Article;
+use common\models\cms\Photo;
 
 /**
- * ArticleSearch represents the model behind the search form of `common\models\cms\Article`.
+ * PhotoSearch represents the model behind the search form of `common\models\cms\Photo`.
  */
-class ArticleSearch extends Article
+class PhotoSearch extends Photo
 {
     /**
      * {@inheritdoc}
@@ -42,16 +42,16 @@ class ArticleSearch extends Article
      *
      * @return ActiveDataProvider
      */
-    public function search($params, $columnId = null)
+    public function search($params, $pageSize, $columnId = null)
     {
-        $query = Article::find()->current();
+        $query = Photo::find()->current();
 
         // add conditions that should always apply here
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
                 //'class' => Pagination::class,
-                'defaultPageSize' => 8,
+                'defaultPageSize' => $pageSize,//一大单元为27个元素，ajax请求每3次为一个单元
             ],
             'sort' => [
                 //'class' => Sort::class,
@@ -86,6 +86,7 @@ class ArticleSearch extends Article
             'updated_at' => $this->updated_at,
             */
         ]);
+
         /*
         $query->andFilterWhere(['like', 'parentstr', $this->parentstr])
             ->andFilterWhere(['like', 'catepstr', $this->catepstr])
@@ -105,7 +106,8 @@ class ArticleSearch extends Article
             ->andFilterWhere(['like', 'lang', $this->lang]);
         */
 
-        //echo $dataProvider->query->createCommand()->rawSql;
+//        echo $dataProvider->query->createCommand()->getRawSql();exit;
+//        echo $dataProvider->query->createCommand()->rawSql;exit;
 
         return $dataProvider;
     }
