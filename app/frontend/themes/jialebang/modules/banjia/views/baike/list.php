@@ -6,12 +6,12 @@
  */
 /* @var $this yii\web\View */
 
-use app\widgets\SideBoxListWidget;
-use app\widgets\SideLabelListWidget;
 use yii\widgets\Breadcrumbs;
 use yii\widgets\LinkPager;
 use yii\widgets\LinkSorter;
 use yii\widgets\ListView;
+use app\widgets\SideBoxListWidget;
+use app\widgets\SideLabelListWidget;
 
 $this->title = $columnModel->cname;
 ?>

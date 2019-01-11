@@ -10,6 +10,8 @@ use app\widgets\SideLabelListWidget;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use common\models\cms\Column;
+
+$this->title = $model->title;
 ?>
 <div class="page-info">
     <div class="container">

@@ -7,6 +7,8 @@
 namespace common\components;
 
 use Yii;
+use yii\base\UnknownPropertyException;
+use yii\helpers\Json;
 
 class ActiveRecord extends \yii\db\ActiveRecord
 {
@@ -39,5 +41,19 @@ class ActiveRecord extends \yii\db\ActiveRecord
         parent::init();
         
         //custom code
+    }
+
+    /**
+     * 由对象的picarr属性json decode返回解释图片数组
+     * @return array|mixed
+     * @throws UnknownPropertyException
+     */
+    public function picList()
+    {
+        if(!isset($this->picarr)) {
+            //没有属性报错
+            throw new UnknownPropertyException('模型对象没有这样的属性：picarr');
+        }
+        return empty($this->picarr)?[]:Json::decode($this->picarr);
     }
 }

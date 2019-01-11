@@ -107,6 +107,19 @@ $this->title = $columnModel->cname;
                         'attributes' => ['posttime', 'hits'],
                     ]) ?>
                 </div>
+                <div class="mod-promote">
+                    <dl class="clearfix">
+                        <dt>主要城市<i></i></dt>
+                        <dd>
+                            <a href="javascript:;">深圳市</a>
+                            <a href="javascript:;">广州市</a>
+                            <a href="javascript:;">东莞市</a>
+                            <a href="javascript:;">珠海市</a>
+                            <a href="javascript:;">中山市</a>
+                            <a href="javascript:;">惠州市</a>
+                        </dd>
+                    </dl>
+                </div>
                 <div id="photo-water-list" class="turen-items">
                     <ul></ul>
                 </div>

@@ -50,7 +50,7 @@ $webUrl = Yii::getAlias('@web/');
                 <li class="line">|</li>
                 <li><a href="javascript:void(0);">常见问题</a></li>
                 <li class="line">|</li>
-                <li><a href="javascript:void(0)">搬家吉日</a></li>
+                <li><a href="<?= Url::to(['/banjia/calendar/index']) ?>">搬家吉日</a></li>
             </ul>
         </div>
     </div>

@@ -18,7 +18,7 @@ class CaseController extends \app\components\Controller
 {
     /**
      * 案例列表/ajax数据流
-     * @param int $wall_page 动态加载参数
+     * @param int $wallpage 动态加载参数
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException
      */
@@ -87,8 +87,13 @@ class CaseController extends \app\components\Controller
     public function actionDetail($slug)
     {
         $model = $this->findModel($slug);
+        //上一条，下一条
+        $prevModel = Column::ModelRelated($model, 'prev');
+        $nextModel = Column::ModelRelated($model, 'next');//model或null
         return $this->render('detail', [
             'model' => $model,
+            'prevModel' => $prevModel,
+            'nextModel' => $nextModel,
         ]);
     }
 

@@ -9,7 +9,6 @@ use common\models\cms\Tag;
 use yii\helpers\Html;
 use yii\helpers\StringHelper;
 use yii\helpers\Url;
-use common\helpers\ImageHelper;
 
 //默认参数：$model, $key, $index, $widget
 //Html::encode($model->title)
@@ -18,7 +17,16 @@ $dlength = 82;
 $link = Url::to(['/banjia/news/detail', 'slug' => $model->slug]);
 ?>
 
-<span><a href="<?= $link ?>"><img src="<?= empty($model->picurl)?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($model->picurl, true) ?>" /></a></span>
+<?php if(!empty($model->picurl)) { ?>
+    <div class="list-img">
+        <a href="<?= $link ?>">
+            <img src="<?= Yii::$app->aliyunoss->getObjectUrl($model->picurl, true) ?>" />
+        </a>
+    </div>
+<?php } else {
+    $dlength = 120;
+} ?>
+
 <div class="turen-text">
     <h5>
         <?php

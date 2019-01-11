@@ -99,7 +99,7 @@ class Photo extends \common\components\ActiveRecord
             'picarr' => Yii::t('app', '组图'),
             'hits' => Yii::t('app', '点击次数'),
             'orderid' => Yii::t('app', '排列排序'),
-            'posttime' => Yii::t('app', '更新时间'),
+            'posttime' => Yii::t('app', '发布时间'),
             'status' => Yii::t('app', '审核状态'),
             'delstate' => Yii::t('app', '删除状态'),
             'deltime' => Yii::t('app', '删除时间'),

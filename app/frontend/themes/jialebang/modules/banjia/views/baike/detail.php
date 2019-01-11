@@ -6,17 +6,16 @@
  */
 /* @var $this yii\web\View */
 
-$this->title = '百科详情';
-
-use app\widgets\ContentMoreWidget;
-use common\models\cms\Column;
 use yii\helpers\Html;
 use yii\helpers\StringHelper;
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
+use common\models\cms\Column;
 use app\widgets\SideBoxListWidget;
 use app\widgets\SideLabelListWidget;
+use app\widgets\ContentMoreWidget;
 
+$this->title = $model->title;
 $dlength = 90;
 ?>
 

@@ -40,7 +40,7 @@
 }
 
 .turen-list{
-    padding: 33px 30px 36px;
+    padding: 25px 30px 30px;
     border-top: 1px solid #f5f5f5;
     box-sizing: content-box;
     overflow: hidden;
@@ -48,15 +48,17 @@
     behavior: url(css/PIE.htc);
 }
 
-.turen-list span{
+.turen-list .list-img{
     float: left;
     display: block;
     width: 160px;
     height: 120px;
+    margin-right: 15px;
+    margin-bottom: 15px;
     overflow: hidden;
 }
 
-.turen-list span img{
+.turen-list .list-img img{
     max-width: none;
     width: 160px;
     height: 120px;
@@ -67,7 +69,7 @@
     transition: all .5s;
 }
 
-.turen-list span:hover>a img{
+.turen-list .list-img:hover>a img{
     -ms-transform: scale(1.05);
     -webkit-transform: scale(1.05);
     -moz-transform: scale(1.05);
@@ -76,9 +78,7 @@
 }
 
 .turen-list .turen-text{
-    float: left;
-    width: 645px;
-    margin-left: 20px;
+
 }
 
 .turen-list .turen-text h5{
@@ -161,7 +161,7 @@
 
 /* 百科详情主体内容 */
 .detail-text{
-    padding: 0 35px;
+    padding: 0 35px 15px 35px;
     background-color: #fff;
 }
 
@@ -180,6 +180,7 @@
 
 .detail-text .detail-title .detail-date{
     overflow: hidden;
+    margin-top: 6px;
 }
 
 .detail-text .detail-title .detail-date ul{
@@ -270,6 +271,7 @@
 }
 .detail-main{
     margin-top: 26px;
+    margin-bottom: -15px;
 }
 .detail-main  dl{
     margin-bottom: 26px;
@@ -605,5 +607,114 @@
 #photo-water-list .water-list .wall-text:hover>p a{
     color: #0099e9;
 }
-
 /* 瀑布流布局end */
+
+/* 主要城市 */
+.mod-promote {
+    padding: 15px;
+    padding-left: 25px;
+    border-top: 1px solid #efefef;
+    overflow: hidden;
+    font-size: 14px;
+}
+.mod-promote dt {
+    position: relative;
+    float: left;
+    background: #0099e9;
+    color: #fff;
+    line-height: 30px;
+    padding: 0px 10px;
+}
+.mod-promote dt i {
+    position: absolute;
+    top: 11px;
+    right: -5px;
+    display: block;
+    width: 5px;
+    height: 8px;
+    background: url(../images/index-bg.png) no-repeat 0px -91px;
+}
+.mod-promote dd {
+    float: left;
+    line-height: 30px;
+    overflow: hidden;
+}
+.mod-promote dd a {
+    padding: 0px 10px;
+    float: left;
+}
+/* 主要城市end */
+
+/* 案例幻灯片 */
+.detail-photo-list {
+    width: 815px;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    margin: 20px 0;
+    position: relative;
+}
+.detail-photo-list .swiper-container {
+    height: 350px;
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+}
+.detail-photo-list .swiper-container .swiper-slide {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.detail-photo-list .swiper-container .swiper-slide img {
+    display: block;
+}
+.detail-photo-list .swiper-container .pagination {
+    position: absolute;
+    z-index: 20;
+    left: 10px;
+    bottom: 10px;
+}
+.detail-photo-list .swiper-container .swiper-pagination-switch {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    background: #222;
+    margin-right: 8px;
+    opacity: 0.8;
+    border: 1px solid #fff;
+    cursor: pointer;
+}
+.detail-photo-list .swiper-container .swiper-visible-switch {
+    background: #0099e9;
+}
+.detail-photo-list .swiper-container .swiper-active-switch {
+    background: #fff;
+}
+.detail-photo-list .arrow {
+    position: absolute;
+    z-index: 2;
+    bottom: 16px;
+    width: 54px;
+    height: 54px;
+    background: url('../images/common/sprite-square.png') no-repeat;
+}
+.detail-photo-list .arrow-left {
+    background-position: 0px -55px;
+    right: 16px;
+}
+.detail-photo-list .arrow-right {
+    background-position: 0px -110px;
+    right: 71px;
+}
+/* 案例幻灯片end */
+
+/* 搬家吉日功能 */
+.turen-calendar .detail-text .detail-title h3 {
+    text-align: center;
+}
+.float-box {
+    float: right;
+    width: 250px;
+    height: 400px;
+    border: 1px solid #eee;
+}
+/* 搬家吉日功能end */

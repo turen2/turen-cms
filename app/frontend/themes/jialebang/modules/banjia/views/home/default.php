@@ -83,6 +83,7 @@ use yii\helpers\Url; ?>
     <div class="head-title"><h2>用户好评<span class="txt">缩小的子标题</span></h2></div>
     <div class="comment-list">
         <p>评论列表</p>
+        <p>首页客户好评：https://2.swiper.com.cn/demo/senior/index.html</p>
     </div>
 </div>
 
