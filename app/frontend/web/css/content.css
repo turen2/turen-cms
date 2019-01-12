@@ -163,6 +163,11 @@
 .detail-text{
     padding: 0 35px 15px 35px;
     background-color: #fff;
+    font-size: 14px;
+    line-height: 1.8em;
+    overflow: hidden;
+    text-align: justify;
+    word-wrap: break-word;
 }
 
 .detail-text .detail-title{
@@ -176,6 +181,14 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+
+.detail-text p {
+    text-indent: 0 !important;
+}
+
+.detail-text p + p {
+    margin-top: 1.3em;
 }
 
 .detail-text .detail-title .detail-date{
@@ -708,13 +721,13 @@
 /* 案例幻灯片end */
 
 /* 搬家吉日功能 */
-.turen-calendar .detail-text .detail-title h3 {
-    text-align: center;
-}
-.float-box {
-    float: right;
-    width: 250px;
-    height: 400px;
-    border: 1px solid #eee;
+.jiri-baike h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
 }
 /* 搬家吉日功能end */
