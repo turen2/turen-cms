@@ -53,7 +53,7 @@ $this->registerJs($js);
     		<td class="first-column"><?= $model->getAttributeLabel('type')?><?php if($model->isAttributeRequired('type')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
     			<?= Html::activeDropDownList($model, 'type', Column::ColumnConvert('id2name'), ['class' => '']) ?>
-    			<span class="cnote">带<span class="maroon">*</span>号表示为必填项</span>
+    			<span class="cnote">带<span class="maroon">*</span>号表示为必填项，且栏目类型为“栏目类别”时，所属类目必须是顶级类目</span>
     		</td>
     	</tr>
     	<tr>

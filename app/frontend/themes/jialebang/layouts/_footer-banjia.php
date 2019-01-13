@@ -52,7 +52,7 @@ if($blockModel) {
     				<h3>了解家乐邦<span class="more-friend-link"><a target="_blank" href="http://turen.com/banjia/faqs/index.html" class="external">更多帮助 »</a></span></h3>
     				<ul class="wp-tag-cloud">
                         <?php
-                        $bottomLinks = Link::find()->current()->where(['link_type_id' => Yii::$app->params['config_face_banjia_cn_bottom_link_type_id']])->all();
+                        $bottomLinks = Link::find()->current()->where(['link_type_id' => Yii::$app->params['config_face_banjia_cn_bottom_link_type_id']])->orderBy(['orderid' => SORT_DESC])->all();
                         foreach ($bottomLinks as $bottomLink) {
                             echo '<li>'.Html::a($bottomLink->webname, $bottomLink->linkurl).'</li>';
                         }

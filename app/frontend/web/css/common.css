@@ -132,6 +132,13 @@ input:-webkit-autofill {
     overflow: hidden;
 }
 
+.triplex-row {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
 /*浮动*/
 .fl {
     float: left !important;

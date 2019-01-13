@@ -5,9 +5,11 @@
  * @author developer qq:980522557
  */
 
-$webUrl = Yii::getAlias('@web/');
+use yii\helpers\Url;
 
-use yii\helpers\Url; ?>
+$this->title = '嘉乐邦首页';
+$webUrl = Yii::getAlias('@web/');
+?>
 
 <div class="container block slide-form">
     <div class="main-slide fl">幻灯片轮播+免费咨询（http://91.jiaju.sina.com.cn/bj/）
@@ -36,7 +38,11 @@ use yii\helpers\Url; ?>
         <br />所有使用装修之家的：弹出窗口样式，各种确认窗口，填写窗口
 
     </div>
-    <div class="call-form">订单滚动+公司公告列表，滚动：http://shenzhen.17house.com/xftc/</div>
+    <div class="call-form">
+        订单滚动+公司公告列表，滚动：http://shenzhen.17house.com/xftc/
+        <br />
+        头部：https://wenda.tobosu.com/
+    </div>
 </div>
 
 <div class="container block hot-item">

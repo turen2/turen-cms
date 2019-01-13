@@ -48,7 +48,9 @@ $webUrl = Yii::getAlias('@web/');
                     </div>
                 </li>
                 <li class="line">|</li>
-                <li><a href="javascript:void(0);">常见问题</a></li>
+                <li><a href="<?= Url::to(['/banjia/faqs/index']) ?>">常见问题</a></li>
+                <li class="line">|</li>
+                <li><a href="<?= Url::to(['/banjia/page/info', 'slug' => 'chexing-shibei']) ?>">车型识别</a></li>
                 <li class="line">|</li>
                 <li><a href="<?= Url::to(['/banjia/calendar/index']) ?>">搬家吉日</a></li>
             </ul>

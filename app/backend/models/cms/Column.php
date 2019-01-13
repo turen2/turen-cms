@@ -40,6 +40,7 @@ use app\behaviors\OrderDefaultBehavior;
 class Column extends \app\models\base\Cms
 {
     //栏目类型
+    const COLUMN_TYPE_CATE = 100;//栏目总类别
     const COLUMN_TYPE_ARTICLE = 1;
     const COLUMN_TYPE_PHOTO = 2;
     const COLUMN_TYPE_FILE = 3;
@@ -110,7 +111,7 @@ class Column extends \app\models\base\Cms
             [['parentid', 'type', 'cname'], 'required'],
             [['parentid', 'orderid'], 'integer'],
             [['parentstr', 'keywords'], 'string', 'max' => 50],
-            [['type', 'status'], 'string', 'max' => 1],
+            [['type', 'status'], 'string', 'max' => 3],
             [['cname'], 'string', 'max' => 30],
             [['linkurl', 'description'], 'string', 'max' => 255],
             [['picurl'], 'string', 'max' => 100],
@@ -184,6 +185,12 @@ class Column extends \app\models\base\Cms
     public static function ColumnConvert($type, $key = null, $default = '')
     {
         $data = [
+            self::COLUMN_TYPE_CATE => [
+                'id' => self::COLUMN_TYPE_CATE,
+                'class' => \stdClass::class,
+                'name' => '栏目类别',
+                'mask' => 'cate',
+            ],
             self::COLUMN_TYPE_INFO => [
                 'id' => self::COLUMN_TYPE_INFO,
                 'class' => Info::class,

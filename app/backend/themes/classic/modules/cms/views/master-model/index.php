@@ -122,7 +122,12 @@ if(empty($dataProvider->count))
 	<div class="qiuck-warp">
 		<div class="quick-area">
 			<span class="sel-area">
-				<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
+                <span class="sel-name">选择：</span>
+            	<a href="javascript:turen.com.checkAll(true);">全选</a> -
+            	<a href="javascript:turen.com.checkAll(false);">反选</a>
+            	<span class="op-name">操作：</span>
+            	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>
+            	<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
 			</span>
 			<?= Html::a('添加新'.$diyModel->dm_title, ['create', 'mid' => $diyModel->dm_id], ['class' => 'data-btn']) ?>
 			<span class="page-small">

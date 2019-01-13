@@ -34,6 +34,15 @@ use yii\helpers\ArrayHelper;
  */
 class Column extends \common\components\ActiveRecord
 {
+    //栏目类型
+    const COLUMN_TYPE_CATE = 100;//栏目总类别
+    const COLUMN_TYPE_ARTICLE = 1;
+    const COLUMN_TYPE_PHOTO = 2;
+    const COLUMN_TYPE_FILE = 3;
+    const COLUMN_TYPE_PRODUCT = 4;
+    const COLUMN_TYPE_VIDEO = 5;
+    const COLUMN_TYPE_INFO = 6;
+
     /**
      * {@inheritdoc}
      */
@@ -103,32 +112,44 @@ class Column extends \common\components\ActiveRecord
     public static function ColumnConvert($type, $key = null, $default = '')
     {
         $data = [
-            [
+            self::COLUMN_TYPE_CATE => [
+                'id' => self::COLUMN_TYPE_CATE,
+                'class' => \stdClass::class,
+                'name' => '栏目类别',
+                'mask' => 'cate',
+            ],
+            self::COLUMN_TYPE_INFO => [
+                'id' => self::COLUMN_TYPE_INFO,
                 'class' => Info::class,
                 'name' => '单页',
                 'mask' => 'info',
             ],
-            [
+            self::COLUMN_TYPE_ARTICLE => [
+                'id' => self::COLUMN_TYPE_ARTICLE,
                 'class' => Article::class,
                 'name' => '列表',
                 'mask' => 'article',
             ],
-            [
+            self::COLUMN_TYPE_PHOTO => [
+                'id' => self::COLUMN_TYPE_PHOTO,
                 'class' => Photo::class,
                 'name' => '图片',
                 'mask' => 'photo',
             ],
-            [
+            self::COLUMN_TYPE_FILE => [
+                'id' => self::COLUMN_TYPE_FILE,
                 'class' => File::class,
                 'name' => '下载',
                 'mask' => 'file',
             ],
-            [
+            self::COLUMN_TYPE_PRODUCT => [
+                'id' => self::COLUMN_TYPE_PRODUCT,
                 'class' => Product::class,
                 'name' => '产品',
                 'mask' => 'product',
             ],
-            [
+            self::COLUMN_TYPE_VIDEO => [
+                'id' => self::COLUMN_TYPE_VIDEO,
                 'class' => Video::class,
                 'name' => '视频',
                 'mask' => 'video',
@@ -166,16 +187,20 @@ class Column extends \common\components\ActiveRecord
         $links[] = ['label' => '<span>&gt;</span>'];
 
         $ids = explode(',', $this->parentstr);
-        if(count($ids) > 1) {
-            array_pop($ids);
+        $ids = array_filter($ids);//去掉顶级0栏目和最后的空栏目
 
-            $columnModels = self::findAll(['id' => $ids]);
-            foreach ($columnModels as $cModel) {
-                if($isColumnParam) {
-                    $route = ArrayHelper::merge($route, ['columnid' => $cModel->id]);
+        if(count($ids) > 0) {
+            //排除COLUMN_TYPE_CATE类型的分类栏目
+            $columnArray = ArrayHelper::map(self::find()->current()->andWhere(['id' => $ids])->andWhere(['not', ['type' => self::COLUMN_TYPE_CATE]])->asArray()->all(), 'id', 'cname');
+            //循环ids是为了保证顺序正确
+            foreach ($ids as $id) {
+                if(isset($columnArray[$id])) {//$columnArray中才是正确的栏目数据
+                    if($isColumnParam) {
+                        $route = ArrayHelper::merge($route, ['columnid' => $id]);
+                    }
+                    $links[] = ['label' => $columnArray[$id], 'url' => $route];
+                    $links[] = ['label' => '<span>&gt;</span>'];
                 }
-                $links[] = ['label' => $cModel->cname, 'url' => $route];
-                $links[] = ['label' => '<span>&gt;</span>'];
             }
 
             $links[] =  $this->cname.'列表';
@@ -198,20 +223,23 @@ class Column extends \common\components\ActiveRecord
         $links[] = ['label' => '<span>&gt;</span>'];
 
         $ids = explode(',', $model->parentstr);
-        $ids[] = $model->columnid;
-        if(count($ids) > 1) {
-            array_shift($ids);
+        $ids = array_filter($ids);//去掉顶级0栏目和最后的空栏目
 
-            $columnModels = self::findAll(['id' => $ids]);
-            foreach ($columnModels as $cModel) {
-                if($isColumnParam) {
-                    $route = ArrayHelper::merge($route, ['columnid' => $cModel->id]);
+        if(count($ids) > 0) {
+            //排除COLUMN_TYPE_CATE类型的分类栏目
+            $columnArray = ArrayHelper::map(self::find()->current()->andWhere(['id' => $ids])->andWhere(['not', ['type' => self::COLUMN_TYPE_CATE]])->asArray()->all(), 'id', 'cname');
+            //循环ids是为了保证顺序正确
+            foreach ($ids as $id) {
+                if(isset($columnArray[$id])) {//$columnArray中才是正确的栏目数据
+                    if($isColumnParam) {
+                        $route = ArrayHelper::merge($route, ['columnid' => $id]);
+                    }
+                    $links[] = ['label' => $columnArray[$id], 'url' => $route];
+                    $links[] = ['label' => '<span>&gt;</span>'];
                 }
-                $links[] = ['label' => $cModel->cname, 'url' => $route];
-                $links[] = ['label' => '<span>&gt;</span>'];
             }
 
-            $links[] =  $model->title;
+            $links[] =  $this->cname.'列表';
         } else {
             $links = [];
         }

@@ -1,15 +1,15 @@
 /* 界面核心区域管理样式 */
 
 /* 全局列表主体内容 */
-.turen-sort{
+.turen-sort {
     padding: 0 30px;
 }
 
-.turen-sort ul li{
+.turen-sort ul li {
     float: left;
 }
 
-.turen-sort ul li a{
+.turen-sort ul li a {
     display: block;
     padding-right: 25px;
     color: #999;
@@ -31,7 +31,7 @@
     background: url(../images/common/asc_desc.png) no-repeat 83% -200%;
 }
 
-.turen-sort ul li a span{
+.turen-sort ul li a span {
     float: left;
     display: block;
     width: 6px;
@@ -39,7 +39,7 @@
     margin: 21px 0 19px 6px;
 }
 
-.turen-list{
+.turen-list {
     padding: 25px 30px 30px;
     border-top: 1px solid #f5f5f5;
     box-sizing: content-box;
@@ -48,7 +48,7 @@
     behavior: url(css/PIE.htc);
 }
 
-.turen-list .list-img{
+.turen-list .list-img {
     float: left;
     display: block;
     width: 160px;
@@ -58,7 +58,7 @@
     overflow: hidden;
 }
 
-.turen-list .list-img img{
+.turen-list .list-img img {
     max-width: none;
     width: 160px;
     height: 120px;
@@ -69,7 +69,7 @@
     transition: all .5s;
 }
 
-.turen-list .list-img:hover>a img{
+.turen-list .list-img:hover > a img {
     -ms-transform: scale(1.05);
     -webkit-transform: scale(1.05);
     -moz-transform: scale(1.05);
@@ -77,18 +77,18 @@
     transform: scale(1.05);
 }
 
-.turen-list .turen-text{
+.turen-list .turen-text {
 
 }
 
-.turen-list .turen-text h5{
+.turen-list .turen-text h5 {
     overflow: hidden;
 }
 
-.turen-list .turen-text h5 .textname{
+.turen-list .turen-text h5 .textname {
     float: left;
     display: block;
-    width:auto;
+    width: auto;
     font-size: 16px;
     color: #333;
     line-height: 40px;
@@ -98,22 +98,22 @@
     max-width: 460px;
 }
 
-.turen-list:hover>.turen-text h5 .textname{
+.turen-list:hover > .turen-text h5 .textname {
     color: #0099e9;
 }
 
-.turen-list .turen-text h5 ol{
+.turen-list .turen-text h5 ol {
     float: right;
     margin: 7px 0;
     overflow: hidden;
 }
 
-.turen-list .turen-text h5 ol li{
+.turen-list .turen-text h5 ol li {
     float: left;
     margin-left: 8px;
 }
 
-.turen-list .turen-text h5 ol li a{
+.turen-list .turen-text h5 ol li a {
     display: block;
     font-size: 12px;
     color: #999;
@@ -122,45 +122,46 @@
     background-color: #f5f5f5;
 }
 
-.turen-list .turen-text h5 ol li a:hover{
+.turen-list .turen-text h5 ol li a:hover {
     color: #0099e9;
     background-color: #d9edf7;
 }
 
-.turen-list .turen-text p{
+.turen-list .turen-text p {
     height: 40px;
     font-size: 14px;
     color: #666;
     line-height: 20px;
-    white-space:initial;
-    overflow : hidden;
+    white-space: initial;
+    overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
 
-.turen-list .turen-text dl{
+.turen-list .turen-text dl {
     margin-top: 15px;
     overflow: hidden;
 }
 
-.turen-list .turen-text dl dd{
+.turen-list .turen-text dl dd {
     float: left;
     margin-right: 30px;
     overflow: hidden;
 }
 
-.turen-list .turen-text dl dd b{
+.turen-list .turen-text dl dd b {
     margin-left: 3px;
     font-size: 12px;
     color: #888;
     line-height: 20px;
 }
+
 /* 百科列表主体内容end */
 
 /* 百科详情主体内容 */
-.detail-text{
+.detail-text {
     padding: 0 35px 15px 35px;
     background-color: #fff;
     font-size: 14px;
@@ -170,11 +171,11 @@
     word-wrap: break-word;
 }
 
-.detail-text .detail-title{
+.detail-text .detail-title {
     padding-top: 40px;
 }
 
-.detail-text .detail-title h3{
+.detail-text .detail-title h3 {
     font-size: 20px;
     color: #333;
     line-height: 36px;
@@ -191,17 +192,17 @@
     margin-top: 1.3em;
 }
 
-.detail-text .detail-title .detail-date{
+.detail-text .detail-title .detail-date {
     overflow: hidden;
     margin-top: 6px;
 }
 
-.detail-text .detail-title .detail-date ul{
+.detail-text .detail-title .detail-date ul {
     float: left;
     overflow: hidden;
 }
 
-.detail-text .detail-title .detail-date ul li{
+.detail-text .detail-title .detail-date ul li {
     float: left;
     margin-right: 42px;
     font-size: 14px;
@@ -209,17 +210,17 @@
     line-height: 28px;
 }
 
-.detail-text .detail-title .detail-date ul li span{
+.detail-text .detail-title .detail-date ul li span {
     color: #666;
 }
 
-.detail-text .detail-title .detail-date a{
+.detail-text .detail-title .detail-date a {
     display: block;
     float: right;
     overflow: hidden;
 }
 
-.detail-text .detail-title .detail-date a span{
+.detail-text .detail-title .detail-date a span {
     width: 14px;
     height: 14px;
     display: block;
@@ -227,7 +228,7 @@
     margin: 7px 0;
 }
 
-.detail-text .detail-title .detail-date a b{
+.detail-text .detail-title .detail-date a b {
     font-size: 12px;
     color: #999;
     float: left;
@@ -235,18 +236,18 @@
     line-height: 28px;
 }
 
-.detail-text .detail-digest{
+.detail-text .detail-digest {
     padding: 0 7px;
     margin-top: 46px;
 }
 
-.detail-text .detail-digest .detail-digest-line{
+.detail-text .detail-digest .detail-digest-line {
     position: relative;
     border: 1px solid #cecece;
     padding: 30px 18px 20px;
 }
 
-.detail-text .detail-digest .detail-digest-line span{
+.detail-text .detail-digest .detail-digest-line span {
     position: absolute;
     top: -18px;
     left: 60px;
@@ -257,7 +258,7 @@
     padding: 0 14px;
 }
 
-.detail-text .detail-digest .detail-digest-line span i{
+.detail-text .detail-digest .detail-digest-line span i {
     height: 2px;
     width: 100%;
     position: absolute;
@@ -266,66 +267,68 @@
     background-color: #fafafa;
 }
 
-.detail-text .detail-digest p{
+.detail-text .detail-digest p {
     font-size: 14px;
     color: #666;
     line-height: 26px;
 }
 
-.detail-main p{
+.detail-main p {
     font-size: 14px;
     color: #333;
     line-height: 24px;
     margin: 0 0;
 }
 
-.detail-text .detail-main .detail-pic{
+.detail-text .detail-main .detail-pic {
     margin: 0 auto;
 }
-.detail-main{
+
+.detail-main {
     margin-top: 26px;
     margin-bottom: -15px;
 }
-.detail-main  dl{
+
+.detail-main dl {
     margin-bottom: 26px;
     overflow: hidden;
     margin-top: 26px;
 }
 
-.detail-main  dl dt{
+.detail-main dl dt {
     float: left;
     overflow: hidden;
 }
 
-.detail-main  dl dt span{
+.detail-main dl dt span {
     float: left;
     display: block;
     margin-right: 14px;
 }
 
-.detail-main  dl dt b{
+.detail-main dl dt b {
     float: right;
     font-size: 14px;
     color: #333;
     float: left;
 }
 
-.detail-main  dl dt  img{
+.detail-main dl dt img {
     width: 147px;
 }
 
-.detail-main  dl dd{
+.detail-main dl dd {
     float: right;
 }
 
-.detail-main  dl dd b{
+.detail-main dl dd b {
     float: left;
     font-size: 14px;
     color: #333;
     float: left;
 }
 
-.detail-main  dl dd span{
+.detail-main dl dd span {
     float: left;
     display: block;
     margin-right: 14px;
@@ -336,18 +339,18 @@
     background-position: -337px -737px;
 }
 
-.detail-main  dl dd a{
+.detail-main dl dd a {
     display: block;
     overflow: hidden;
 }
 
-.detail-main ul{
+.detail-main ul {
     padding: 25px 0;
     overflow: hidden;
     border-top: 1px solid #ededed;
 }
 
-.detail-main ul li{
+.detail-main ul li {
     float: left;
     width: 437px;
     max-width: 45%;
@@ -357,11 +360,11 @@
     text-overflow: ellipsis;
 }
 
-.detail-main ul li a{
+.detail-main ul li a {
     overflow: hidden;
 }
 
-.detail-main ul li a span{
+.detail-main ul li a span {
     display: block;
     width: 20px;
     height: 16px;;
@@ -372,59 +375,62 @@
     background-repeat: no-repeat;
 }
 
-.detail-main ul li a span.ap8{
+.detail-main ul li a span.ap8 {
     background-position: -617px -738px;
 }
 
-.detail-main ul li a span.ap8{
+.detail-main ul li a span.ap8 {
     background-position: -617px -738px;
 }
 
-.detail-main ul li a span.ap9{
+.detail-main ul li a span.ap9 {
     background-position: -456px -378px;
 }
 
-.detail-main ul li a b{
+.detail-main ul li a b {
     font-size: 14px;
 }
 
-.detail-content{
-    margin-top:26px;
+.detail-content {
+    margin-top: 26px;
 }
-.detail-content img{
-    display:inline-block;
+
+.detail-content img {
+    display: inline-block;
 }
-.detail-content p{
+
+.detail-content p {
     font-size: 14px;
     color: #333;
     line-height: 24px;
     margin: 0 0;
 }
+
 .detail-content a {
     color: #0099e9;
 }
 
-.detail-more{
+.detail-more {
     margin-top: 20px;
     overflow: hidden;
 }
 
-.detail-more .detail-box{
+.detail-more .detail-box {
     float: left;
     width: 432px;
     padding: 23px 34px;
     background-color: #fff;
 }
 
-.ie7 .detail-more .detail-box{
+.ie7 .detail-more .detail-box {
     width: 369px;
 }
 
-.detail-more .detail-box h5{
+.detail-more .detail-box h5 {
     overflow: hidden;
 }
 
-.detail-more .detail-box h5 b{
+.detail-more .detail-box h5 b {
     display: block;
     float: left;
     font-size: 16px;
@@ -433,14 +439,14 @@
     font-weight: 700;
 }
 
-.detail-more .detail-box h5 a{
+.detail-more .detail-box h5 a {
     float: right;
     font-size: 12px;
     color: #999;
     line-height: 46px;
 }
 
-.detail-more .detail-box ul li{
+.detail-more .detail-box ul li {
     font-size: 14px;
     line-height: 38px;
     border-bottom: 1px dashed #e3e3e3;
@@ -451,7 +457,7 @@
     border: none;
 }
 
-.detail-more .detail-box ul li a{
+.detail-more .detail-box ul li a {
     display: block;
     float: left;
     width: 300px;
@@ -460,28 +466,31 @@
     overflow: hidden;
 }
 
-.detail-more .detail-box ul li b{
+.detail-more .detail-box ul li b {
     font-size: 12px;
     color: #999;
     line-height: 38px;
     float: right;
 }
 
-.detail-more .detail-add{
+.detail-more .detail-add {
     margin-left: 20px;
 }
+
 /* 全局详情主体内容end */
 
 /* 单页面内容重构 */
 .page-info .detail-title h3 {
     text-align: center;
 }
+
 /* 单页面内容重构end */
 
 /* 瀑布流布局 */
 #photo-water-list ul {
     margin: 0 20px;
 }
+
 #photo-water-list .water-list {
     width: 265px;
     margin-bottom: 15px;
@@ -490,37 +499,38 @@
     overflow: hidden;
     behavior: url(css/PIE.htc);
 }
+
 #photo-water-list .water-list:hover {
-    box-shadow:0 0 10px #999;
+    box-shadow: 0 0 10px #999;
     behavior: url(css/PIE.htc);
 }
 
-#photo-water-list .water-list .wall-pic{
-    width:265px;
+#photo-water-list .water-list .wall-pic {
+    width: 265px;
 }
 
 #photo-water-list .water-list .wall-pic img {
-    width:265px;
+    width: 265px;
 }
 
-#photo-water-list .water-list .wall-text{
+#photo-water-list .water-list .wall-text {
     background: #fff;
     padding: 0 20px;
     width: 265px;
 }
 
-.ie7 #photo-water-list .water-list .wall-text{
+.ie7 #photo-water-list .water-list .wall-text {
     width: 235px;
 }
 
-#photo-water-list .water-list .wall-text p{
+#photo-water-list .water-list .wall-text p {
     height: 40px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
 }
 
-#photo-water-list .water-list .wall-text p .wall-word{
+#photo-water-list .water-list .wall-text p .wall-word {
     display: block;
     font-size: 14px;
     color: #333;
@@ -530,11 +540,11 @@
     overflow: hidden;
 }
 
-#photo-water-list .water-list .wall-pic{
+#photo-water-list .water-list .wall-pic {
     position: relative;
 }
 
-#photo-water-list .water-list .wall-pic span{
+#photo-water-list .water-list .wall-pic span {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -546,7 +556,7 @@
     z-index: 3;
 }
 
-#photo-water-list .water-list .wall-pic span i{
+#photo-water-list .water-list .wall-pic span i {
     position: absolute;
     top: 0;
     left: 0;
@@ -556,12 +566,12 @@
     height: 100%;
     background-color: #0099e9;
     opacity: 0.9;
-    filter: alpha(opacity = 90);
+    filter: alpha(opacity=90);
     border-radius: 0 3px 3px 0;
     behavior: url(css/PIE.htc);
 }
 
-#photo-water-list .water-list .wall-pic span a{
+#photo-water-list .water-list .wall-pic span a {
     display: block;
     font-size: 14px;
     color: #fff;
@@ -569,7 +579,7 @@
     text-align: center;
 }
 
-#photo-water-list .water-list .wall-pic b{
+#photo-water-list .water-list .wall-pic b {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -581,7 +591,7 @@
     z-index: 3;
 }
 
-#photo-water-list .water-list .wall-pic b i{
+#photo-water-list .water-list .wall-pic b i {
     position: absolute;
     top: 0;
     left: 0;
@@ -591,12 +601,12 @@
     height: 100%;
     background-color: #131b18;
     opacity: 0.8;
-    filter: alpha(opacity = 80);
+    filter: alpha(opacity=80);
     border-radius: 3px 0 0 3px;
     behavior: url(css/PIE.htc);
 }
 
-#photo-water-list .water-list .wall-pic b a{
+#photo-water-list .water-list .wall-pic b a {
     overflow: hidden;
     font-size: 12px;
     color: #dcdcdc;
@@ -609,17 +619,18 @@
     background-position: -237px -813px;
 }
 
-#photo-water-list .water-list .wall-pic:hover>span{
+#photo-water-list .water-list .wall-pic:hover > span {
     display: block;
 }
 
-#photo-water-list .water-list .wall-pic:hover>b{
+#photo-water-list .water-list .wall-pic:hover > b {
     display: block;
 }
 
-#photo-water-list .water-list .wall-text:hover>p a{
+#photo-water-list .water-list .wall-text:hover > p a {
     color: #0099e9;
 }
+
 /* 瀑布流布局end */
 
 /* 主要城市 */
@@ -630,6 +641,7 @@
     overflow: hidden;
     font-size: 14px;
 }
+
 .mod-promote dt {
     position: relative;
     float: left;
@@ -638,6 +650,7 @@
     line-height: 30px;
     padding: 0px 10px;
 }
+
 .mod-promote dt i {
     position: absolute;
     top: 11px;
@@ -647,15 +660,18 @@
     height: 8px;
     background: url(../images/index-bg.png) no-repeat 0px -91px;
 }
+
 .mod-promote dd {
     float: left;
     line-height: 30px;
     overflow: hidden;
 }
+
 .mod-promote dd a {
     padding: 0px 10px;
     float: left;
 }
+
 /* 主要城市end */
 
 /* 案例幻灯片 */
@@ -666,25 +682,30 @@
     margin: 20px 0;
     position: relative;
 }
+
 .detail-photo-list .swiper-container {
     height: 350px;
     color: #fff;
     overflow: hidden;
     position: relative;
 }
+
 .detail-photo-list .swiper-container .swiper-slide {
     padding-left: 5px;
     padding-right: 5px;
 }
+
 .detail-photo-list .swiper-container .swiper-slide img {
     display: block;
 }
+
 .detail-photo-list .swiper-container .pagination {
     position: absolute;
     z-index: 20;
     left: 10px;
     bottom: 10px;
 }
+
 .detail-photo-list .swiper-container .swiper-pagination-switch {
     display: inline-block;
     width: 8px;
@@ -696,12 +717,15 @@
     border: 1px solid #fff;
     cursor: pointer;
 }
+
 .detail-photo-list .swiper-container .swiper-visible-switch {
     background: #0099e9;
 }
+
 .detail-photo-list .swiper-container .swiper-active-switch {
     background: #fff;
 }
+
 .detail-photo-list .arrow {
     position: absolute;
     z-index: 2;
@@ -710,24 +734,115 @@
     height: 54px;
     background: url('../images/common/sprite-square.png') no-repeat;
 }
+
 .detail-photo-list .arrow-left {
     background-position: 0px -55px;
     right: 16px;
 }
+
 .detail-photo-list .arrow-right {
     background-position: 0px -110px;
     right: 71px;
 }
+
 /* 案例幻灯片end */
 
 /* 搬家吉日功能 */
+.jiri-baike {
+    margin-top: 30px;
+}
+
 .jiri-baike h3 {
     display: block;
     font-size: 1.17em;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
     font-weight: bold;
 }
+
 /* 搬家吉日功能end */
+
+/* 问答功能 */
+.faqs-index .ask-info {
+    margin: 20px 0 0;
+    padding: 0 0 20px;
+}
+
+.faqs-index .ask-info .info-top {
+    padding: 0 5px;
+    height: 45px;
+    line-height: 45px;
+    border-bottom: 1px solid #d8d8d8;
+}
+
+.faqs-index .ask-info .info-top li {
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+.faqs-index .ask-info .info-top a {
+    display: block;
+    position: relative;
+    color: #333;
+    font-size: 16px;
+}
+
+.faqs-index .ask-info .info-top a:hover, .faqs-index .ask-info .info-top .active {
+    color: #0099e9;
+    border-bottom: 2px solid #0099e9;
+    top: -2px;
+}
+
+.faqs-index .info-body li {
+    position: relative;
+    padding: 20px 0;
+    border-top: 1px solid #e5e5e5;
+}
+
+.faqs-index .info-body .first {
+    border-top: none;
+}
+
+.faqs-index .info-body .info-title {
+    display: block;
+    font-size: 16px;
+    font-weight: normal;
+    color: #333;
+}
+
+.faqs-index .info-body .post-time {
+    display: block;
+    margin: 10px 0;
+    margin-bottom: 6px;
+    font-size: 12px;
+    color: #333;
+}
+
+.faqs-index .info-body .info-content {
+    font-size: 14px;
+    color: #666;
+}
+.faqs-index .info-body .ask-label {
+    display: block;
+    margin-top: 12px;
+}
+.faqs-index .info-body .ask-label a {
+    margin-right: 2px;
+    padding: 2px 10px;
+    color: #333;
+    border: 1px solid #e8e8e8;
+    cursor: default;
+}
+
+.faqs-index .info-body .ask-more {
+    display: block;
+    margin: 10px auto 0;
+    width: 300px;
+    height: 42px;
+    line-height: 42px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    background-color: #fafafa;
+    border: 1px solid #e5e5e5;
+}
+
+/* 问答功能end */

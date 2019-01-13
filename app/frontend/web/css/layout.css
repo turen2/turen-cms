@@ -36,6 +36,10 @@
     background: transparent;
 }
 
+.turen-page {
+    background-color: #fff;
+}
+
 /* 布局结构有：s2m左小右大，m2s左大右小，sms左右侧栏中间大 */
 .turen-box.s2m .midcontent {
     margin-left: 20px;

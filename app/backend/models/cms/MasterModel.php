@@ -122,7 +122,7 @@ class MasterModel extends \app\models\base\Cms
     public function rules()
     {
         return ArrayHelper::merge(DiyField::DiyFieldRule($this), [
-            [['columnid', 'cateid', 'title', 'slug'], 'required'],
+            [['columnid', 'title', 'slug'], 'required'],
             [['columnid', 'parentid', 'cateid', 'catepid', 'status', 'orderid', 'posttime', 'updated_at', 'created_at'], 'integer'],
             [['title', 'parentstr', 'catepstr', 'flag', 'picurl', 'lang'], 'string'],
             [['status'], 'default', 'value' => self::STATUS_ON],

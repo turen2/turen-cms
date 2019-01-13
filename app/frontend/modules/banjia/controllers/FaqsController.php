@@ -6,6 +6,8 @@
  */
 namespace app\modules\banjia\controllers;
 
+use common\models\diy\FaqsForm;
+
 class FaqsController extends \app\components\Controller
 {
     /**
@@ -14,7 +16,10 @@ class FaqsController extends \app\components\Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $mdoel = new FaqsForm();
+        return $this->render('index', [
+            'model' => $mdoel,
+        ]);
     }
 
     /**
@@ -23,6 +28,7 @@ class FaqsController extends \app\components\Controller
      */
     public function actionAsk()
     {
+
         return $this->render('ask');
     }
 }
