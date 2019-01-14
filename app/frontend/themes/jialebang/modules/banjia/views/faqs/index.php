@@ -1,15 +1,116 @@
 <?php
-/* @var $this yii\web\View */
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
+use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\widgets\ActiveForm;
+use yii\widgets\Breadcrumbs;
+use yii\widgets\LinkPager;
+use yii\widgets\LinkSorter;
+use yii\widgets\ListView;
+use app\widgets\SideBoxListWidget;
+use app\assets\LayerAsset;
 
 $this->title = '常见问答';
 $links = [];
 $links[] = ['label' => '<li class="active"><span>&gt;</span></li>'];
 $links[] = ['label' => $this->title];
 
-use app\widgets\SideBoxListWidget;
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
-use yii\widgets\Breadcrumbs; ?>
+LayerAsset::register($this);
+$pageParam = $dataProvider->pagination->pageParam;
+$url = Url::current([$pageParam => null]);//禁止链接中包含page参数
+$js = <<<EOF
+//问题提交功能
+$('.ask-cancel').on('click', function() {
+    $('#answer').val('');
+});
+$('.ask-confirm').on('click', function() {
+    layer.open({
+        type: 1
+        ,title: false
+        //,title: '安全验证'
+        ,anim: -1//无动画
+        ,shade: false
+        ,area: ['420px', '300px'] //宽高
+        ,content: $('#phone-code-tpl'),
+    });
+});
+
+//加载功能
+$('.ask-more').on('click', function() {
+    var url = '{$url}';
+    var _this = $(this);
+    $.ajax({
+        url: url,
+        type: 'GET',
+        dataType: 'json',
+        context: _this,
+        cache: false,
+        data: {{$pageParam}: _this.data('page')},
+        beforeSend: function(xhr) {
+            _this.addClass('loading');
+        },
+        complete: function(xhr, status) {
+            _this.removeClass('loading');
+        },
+        success: function(res) {
+            if (res['state']) {
+                $('.info-body ul').append(res['msg']);
+                $('.info-body .ajax').fadeIn();
+                if(res['complete']) {
+                    _this.html('已经加载完了').unbind('click');
+                } else {
+                    _this.data('page', _this.data('page')+1);//分页+1
+                }
+            } else {
+                alert(res['state']);
+            }
+       }
+    });
+});
+EOF;
+$this->registerJs($js);
+?>
+
+<div id="phone-code-tpl" style="display: none;">
+    <form action="" class="phone-code-form">
+        <h3>请验证手机验证码</h3>
+        <div class="form-items">
+            <div class="items clearfix">
+                <label for="" class="fl">您的称呼 : <span>*</span></label>
+                <div class="fl">
+                    <input type="text" name="name" placeholder="请输入您的称呼" />
+                </div>
+            </div>
+            <span class="cue"></span>
+        </div>
+        <div class="form-items">
+            <div class="items clearfix">
+                <label for="" class="fl">手机号码 : <span>*</span></label>
+                <div class="fl">
+                    <input type="number" name="phone" placeholder="填写手机号码" />
+                </div>
+            </div>
+            <span class="cue"></span>
+        </div>
+        <div class="form-items">
+            <div class="items clearfix">
+                <label for="" class="fl">手机验证码 : <span>*</span></label>
+                <div class="fl">
+                    <input type="number" name="phoneCode" placeholder="手机验证码" />
+                </div>
+                <a href="">获取验证码</a>
+            </div>
+            <span class="cue"></span>
+        </div>
+        <div class="refer clearfix">
+            <a href="javascript:;" class="submit-now fr">马上提交</a>
+        </div>
+    </form>
+</div>
 
 <div class="faqs-index">
     <div class="container">
@@ -36,85 +137,79 @@ use yii\widgets\Breadcrumbs; ?>
                         </div>
                         <div class="detail-content ask-info">
                             <div class="ask-form">
+                                <div class="ask-answer">
+                                    <textarea id="answer" class="jsshow"></textarea>
+                                    <div class="ask-foot clearfix">
+                                        <div class="fr ask-answer-btn">
+                                            <span class="ask-cancel">取消</span>
+                                            <span class="ask-confirm">确定</span>
+                                        </div>
+                                        <p class="tips">您有什么问题，可以在此处进行发布，我们会第一时间进行解答。</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="display: none;">
                                 <?php $form = ActiveForm::begin(); ?>
-                                    <?= $model->getAttributeLabel('question')?>
-                                    <?= Html::activeInput('text', $model, 'question') ?>
-                                    <?= $model->getAttributeLabel('nickname')?>
-                                    <?= Html::activeInput('text', $model, 'nickname') ?>
-                                    <?= $model->getAttributeLabel('phone')?>
-                                    <?= Html::activeInput('text', $model, 'phone') ?>
-                                    <?= $model->getAttributeLabel('phoneCode')?>
-                                    <?= Html::activeInput('text', $model, 'phoneCode') ?>
-                                    <?= $model->getAttributeLabel('verifyCode')?>
-                                    <?= Html::activeInput('text', $model, 'verifyCode') ?>
-                                    <?= Html::submitButton(Yii::t('app', 'Submit'), ['class' => 'btn btn-primary']) ?>
+                                <?= $model->getAttributeLabel('question')?>
+                                <?= Html::activeInput('text', $model, 'question') ?>
+                                <?= $model->getAttributeLabel('nickname')?>
+                                <?= Html::activeInput('text', $model, 'nickname') ?>
+                                <?= $model->getAttributeLabel('phone')?>
+                                <?= Html::activeInput('text', $model, 'phone') ?>
+                                <?= $model->getAttributeLabel('phoneCode')?>
+                                <?= Html::activeInput('text', $model, 'phoneCode') ?>
+                                <?= $model->getAttributeLabel('verifyCode')?>
+                                <?= Html::activeInput('text', $model, 'verifyCode') ?>
+                                <?= Html::submitButton(Yii::t('app', 'Submit'), ['class' => 'btn btn-primary']) ?>
                                 <?php ActiveForm::end(); ?>
                             </div>
+
                             <ul class="info-top">
-                                <li class="fl"><a class="active" href="">全部问答</a></li>
-                                <li class="fl"><a href="">搬家必答</a></li>
-                                <li class="fl"><a href="">最新问答</a></li>
+                                <li class="fl"><a class="<?= empty($searchModel->flag)?'active':'' ?>" href="<?= Url::to(['/banjia/faqs/index', 'flag' => null]) ?>">全部问答</a></li>
+                                <li class="fl"><a class="<?= ($searchModel->flag == '搬家必答')?'active':'' ?>" href="<?= Url::to(['/banjia/faqs/index', 'flag' => '搬家必答']) ?>">搬家必答</a></li>
+                                <li class="fl"><a class="<?= ($searchModel->flag == '最新问答')?'active':'' ?>" href="<?= Url::to(['/banjia/faqs/index', 'flag' => '最新问答']) ?>">最新问答</a></li>
                             </ul>
-                            <div class="info-body">
-                                <ul>
-                                    <li class="first">
-                                        <h5 class="info-title" target="_blank">卧室梳妆台可以对着床摆放？有哪些风水讲究</h5>
-                                        <span class="post-time"><i class="fa fa-clock-o"></i> 2018-12-11 11:13:02</span>
-                                        <p class="info-content">在卧室中，除了床之外，梳妆台也是非常重要的家具，不仅可以帮助收纳化妆等用品，而且还可以起到一定的装饰效果，因此，备受人们的喜爱。不过，卧室梳妆台的摆放也是很有讲究的，从风水上来说，卧室梳妆台不宜正对着床摆放，这样半夜醒来时容易被镜子中的自己吓到，导致精神过于紧张，不利于提高居住者的睡眠质量。另外，如果梳妆台正对着床摆放的话，那么，还容易影响家中的财运，所以，大家在摆放卧室梳妆台时，一定要注意风水上的讲究。</p>
-                                        <span class="ask-label">
-                                            <i class="fa fa-tags"></i>
-                                            <a href="javascript:;">搬家必答</a>
-                                            <a href="javascript:;">最新问答</a>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <h5 class="info-title" target="_blank">卧室梳妆台可以对着床摆放？有哪些风水讲究</h5>
-                                        <span class="post-time"><i class="fa fa-clock-o"></i> 2018-12-11 11:13:02</span>
-                                        <p class="info-content more">
-                                            在卧室中，除了床之外，梳妆台也是非常重要的家具，不仅可以帮助收纳化妆等用品，而且还可以起到一定的装饰效果，因此，备受人们的喜爱。不过，卧室梳妆台的摆放也是很有讲究的，从风水上来说，卧室梳妆台不宜正对着床摆放，这样半夜醒来时容易被镜子中的自己吓到，导致精神过于紧张，不利于提高居住者的睡眠质量。另外，如果梳妆台正对着床摆放的话，那么，还容易影响家中的财运，所以，大家在摆放卧室梳妆台时，一定要注意风水上的讲究。
-                                            <a class="more-btn" href="javascript:;">更多</a>
-                                        </p>
-                                        <span class="ask-label"></span>
-                                    </li>
-                                    <li>
-                                        <h5 class="info-title" target="_blank">卧室梳妆台可以对着床摆放？有哪些风水讲究</h5>
-                                        <span class="post-time"><i class="fa fa-clock-o"></i> 2018-12-11 11:13:02</span>
-                                        <p class="info-content">在卧室中，除了床之外，梳妆台也是非常重要的家具，不仅可以帮助收纳化妆等用品，而且还可以起到一定的装饰效果，因此，备受人们的喜爱。不过，卧室梳妆台的摆放也是很有讲究的，从风水上来说，卧室梳妆台不宜正对着床摆放，这样半夜醒来时容易被镜子中的自己吓到，导致精神过于紧张，不利于提高居住者的睡眠质量。另外，如果梳妆台正对着床摆放的话，那么，还容易影响家中的财运，所以，大家在摆放卧室梳妆台时，一定要注意风水上的讲究。</p>
-                                        <span class="ask-label"></span>
-                                    </li>
-                                    <li>
-                                        <h5 class="info-title" target="_blank">卧室梳妆台可以对着床摆放？有哪些风水讲究</h5>
-                                        <span class="post-time"><i class="fa fa-clock-o"></i> 2018-12-11 11:13:02</span>
-                                        <p class="info-content">在卧室中，除了床之外，梳妆台也是非常重要的家具，不仅可以帮助收纳化妆等用品，而且还可以起到一定的装饰效果，因此，备受人们的喜爱。不过，卧室梳妆台的摆放也是很有讲究的，从风水上来说，卧室梳妆台不宜正对着床摆放，这样半夜醒来时容易被镜子中的自己吓到，导致精神过于紧张，不利于提高居住者的睡眠质量。另外，如果梳妆台正对着床摆放的话，那么，还容易影响家中的财运，所以，大家在摆放卧室梳妆台时，一定要注意风水上的讲究。</p>
-                                        <span class="ask-label"></span>
-                                    </li>
-                                    <li>
-                                        <h5 class="info-title" target="_blank">卧室梳妆台可以对着床摆放？有哪些风水讲究</h5>
-                                        <span class="post-time"><i class="fa fa-clock-o"></i> 2018-12-11 11:13:02</span>
-                                        <p class="info-content">在卧室中，除了床之外，梳妆台也是非常重要的家具，不仅可以帮助收纳化妆等用品，而且还可以起到一定的装饰效果，因此，备受人们的喜爱。不过，卧室梳妆台的摆放也是很有讲究的，从风水上来说，卧室梳妆台不宜正对着床摆放，这样半夜醒来时容易被镜子中的自己吓到，导致精神过于紧张，不利于提高居住者的睡眠质量。另外，如果梳妆台正对着床摆放的话，那么，还容易影响家中的财运，所以，大家在摆放卧室梳妆台时，一定要注意风水上的讲究。</p>
-                                        <span class="ask-label"></span>
-                                    </li>
-                                    <li>
-                                        <h5 class="info-title" target="_blank">卧室梳妆台可以对着床摆放？有哪些风水讲究</h5>
-                                        <span class="post-time"><i class="fa fa-clock-o"></i> 2018-12-11 11:13:02</span>
-                                        <p class="info-content">在卧室中，除了床之外，梳妆台也是非常重要的家具，不仅可以帮助收纳化妆等用品，而且还可以起到一定的装饰效果，因此，备受人们的喜爱。不过，卧室梳妆台的摆放也是很有讲究的，从风水上来说，卧室梳妆台不宜正对着床摆放，这样半夜醒来时容易被镜子中的自己吓到，导致精神过于紧张，不利于提高居住者的睡眠质量。另外，如果梳妆台正对着床摆放的话，那么，还容易影响家中的财运，所以，大家在摆放卧室梳妆台时，一定要注意风水上的讲究。</p>
-                                        <span class="ask-label"></span>
-                                    </li>
-                                    <li>
-                                        <h5 class="info-title" target="_blank">卧室梳妆台可以对着床摆放？有哪些风水讲究</h5>
-                                        <span class="post-time"><i class="fa fa-clock-o"></i> 2018-12-11 11:13:02</span>
-                                        <p class="info-content">在卧室中，除了床之外，梳妆台也是非常重要的家具，不仅可以帮助收纳化妆等用品，而且还可以起到一定的装饰效果，因此，备受人们的喜爱。不过，卧室梳妆台的摆放也是很有讲究的，从风水上来说，卧室梳妆台不宜正对着床摆放，这样半夜醒来时容易被镜子中的自己吓到，导致精神过于紧张，不利于提高居住者的睡眠质量。另外，如果梳妆台正对着床摆放的话，那么，还容易影响家中的财运，所以，大家在摆放卧室梳妆台时，一定要注意风水上的讲究。</p>
-                                        <span class="ask-label"></span>
-                                    </li>
-                                    <li>
-                                        <h5 class="info-title" target="_blank">卧室梳妆台可以对着床摆放？有哪些风水讲究</h5>
-                                        <span class="post-time"><i class="fa fa-clock-o"></i> 2018-12-11 11:13:02</span>
-                                        <p class="info-content">在卧室中，除了床之外，梳妆台也是非常重要的家具，不仅可以帮助收纳化妆等用品，而且还可以起到一定的装饰效果，因此，备受人们的喜爱。不过，卧室梳妆台的摆放也是很有讲究的，从风水上来说，卧室梳妆台不宜正对着床摆放，这样半夜醒来时容易被镜子中的自己吓到，导致精神过于紧张，不利于提高居住者的睡眠质量。另外，如果梳妆台正对着床摆放的话，那么，还容易影响家中的财运，所以，大家在摆放卧室梳妆台时，一定要注意风水上的讲究。</p>
-                                        <span class="ask-label"></span>
-                                    </li>
-                                </ul>
-                                <a class="ask-more" href="javascript;">点击加载更多</a>
-                            </div>
+                            <?php
+                            if(empty($dataProvider->count)) {
+                                echo '<p class="empty">没有任何内容。</p>';
+                            } else {
+                                echo ListView::widget([
+                                    'layout' => "<div class=\"info-body\"><ul>{items}</ul><a class=\"ask-more\" data-page=\"2\" href=\"javascript:;\">点击加载更多</a></div>",
+                                    'dataProvider' => $dataProvider,
+                                    'summary' => '',//分页概要
+                                    'showOnEmpty' => true,
+                                    'emptyText' => '没有任何内容。',
+                                    'emptyTextOptions' => ['class' => 'empty'],
+                                    'options' => ['tag' => false, 'class' => 'list-view'],//整个列表的总class
+                                    'itemOptions' => ['tag' => false, 'class' => ''],//每个item上的class
+                                    'separator' => "\n",//每个item之间的分隔线
+                                    'viewParams' => ['notfirst' => 0],//给模板的额外参数
+                                    'itemView' => '_item',//默认参数：$model, $key, $index, $widget
+                                    'beforeItem' => '',
+                                    'afterItem' => '',
+                                    'sorter' => [
+                                        'class' => LinkSorter::class,
+                                        'options' => ['class' => 'sorter clearfix'],
+                                        'attributes' => ['posttime'],
+                                    ],
+                                    'pager' => [
+                                        'class' => LinkPager::class,
+                                        'options' => ['class' => 'pagination clearfix'],
+                                        //'linkOptions' => ['class' => ''],
+                                        'firstPageCssClass' => 'text first',
+                                        'lastPageCssClass' => 'text last',
+                                        'prevPageCssClass' => 'text prev',
+                                        'nextPageCssClass' => 'text next',
+                                        'activePageCssClass'=> 'active',
+                                        'firstPageLabel' => '首页',
+                                        'lastPageLabel' => '末页',
+                                        'prevPageLabel' => '上页',
+                                        'nextPageLabel' => '下页',
+                                    ],
+                                ]);
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>

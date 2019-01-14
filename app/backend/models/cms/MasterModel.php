@@ -124,7 +124,7 @@ class MasterModel extends \app\models\base\Cms
         return ArrayHelper::merge(DiyField::DiyFieldRule($this), [
             [['columnid', 'title', 'slug'], 'required'],
             [['columnid', 'parentid', 'cateid', 'catepid', 'status', 'orderid', 'posttime', 'updated_at', 'created_at'], 'integer'],
-            [['title', 'parentstr', 'catepstr', 'flag', 'picurl', 'lang'], 'string'],
+            [['title', 'colorval', 'boldval', 'parentstr', 'catepstr', 'flag', 'picurl', 'lang'], 'string'],
             [['status'], 'default', 'value' => self::STATUS_ON],
         ]);
     }

@@ -200,6 +200,15 @@ input:-webkit-autofill {
     padding-left: 0 !important;
 }
 
+.hide {
+    display: none;
+}
+
+p.empty {
+    text-align: center !important;
+    margin: 20px !important;
+}
+
 /* 去掉input文本框边框焦点样式 */
 input:focus
 {

@@ -239,7 +239,7 @@ class Column extends \common\components\ActiveRecord
                 }
             }
 
-            $links[] =  $this->cname.'列表';
+            $links[] =  $model->title.'列表';
         } else {
             $links = [];
         }

@@ -225,7 +225,6 @@
     height: 14px;
     display: block;
     float: left;
-    margin: 7px 0;
 }
 
 .detail-text .detail-title .detail-date a b {
@@ -832,7 +831,7 @@
     cursor: default;
 }
 
-.faqs-index .info-body .ask-more {
+.faqs-index .info-body .ask-more, .faqs-index .info-body .ask-more2 {
     display: block;
     margin: 10px auto 0;
     width: 300px;
@@ -844,5 +843,88 @@
     background-color: #fafafa;
     border: 1px solid #e5e5e5;
 }
+.faqs-index .info-body .ask-more.loading {
+    background: url(../images/load/loading2.gif) no-repeat 75% 50%;
+}
+.faqs-index .info-body .ajax {
+    display: none;
+}
+.ask-answer {
+    margin: 20px 0;
+    padding: 20px;
+    max-height: 270px;
+    background-color: #f8f8f8;
+}
+.ask-answer .jsshow {
+    margin-top: 8px;
+    padding: 10px;
+    width: 100%;
+    height: 110px;
+    border: 1px solid #f8f8f8;
+}
+.ask-answer .ask-foot {
+    margin-top: 10px;
+}
+.ask-answer .ask-foot .tips {
+    font-size: 12px;
+}
+.ask-answer .ask-answer-btn span {
+    color: #333;
+    padding: 5px 30px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.ask-answer .ask-answer-btn .ask-confirm {
+    color: #fff;
+    background-color: #0099e9;
+}
+
+.phone-code-form {
+    display: block;
+    padding: 36px;
+}
+.phone-code-form h3 {
+    font-size: 16px;
+    color: #333;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+.phone-code-form .offer .form-items {
+    height: 69px;
+}
+.phone-code-form .items label {
+    font-size: 14px;
+    color: #333;
+    height: 40px;
+    line-height: 32px;
+    width: 95px;
+    text-align: right;
+}
+.phone-code-form .items label span {
+    display: inline-block;
+    color: #ff6f20;
+    margin-left: 2px;
+}
+.phone-code-form .items div {
+    margin-left: 16px;
+    position: relative;
+}
+.phone-code-form .items input {
+    height: 32px;
+    line-height: 32px;
+    width: 200px;
+    font-size: 14px;
+    padding-left: 12px;
+    border: 1px solid #d8d8d8;
+}
+.phone-code-form .submit-now {
+    height: 32px;
+    background-color: #0099e9;
+    color: white;
+    line-height: 32px;
+    font-size: 14px;
+    padding: 0 10px;
+}
+
 
 /* 问答功能end */

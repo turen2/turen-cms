@@ -13,8 +13,10 @@ $webUrl = Yii::getAlias('@web/');
 
 <div class="container block slide-form">
     <div class="main-slide fl">幻灯片轮播+免费咨询（http://91.jiaju.sina.com.cn/bj/）
-
-    <br /><br />
+        <br />
+        下单滚动效果：http://ask.17house.com/c-all/1.html
+        <br />
+        <br />
     全局链接：
     <br />
         <a href="<?= Url::to(['/banjia/news/list']) ?>" target="_blank">新闻news</a>
