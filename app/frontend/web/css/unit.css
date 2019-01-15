@@ -80,3 +80,89 @@
     margin-right: 1px;
 }
 /* 列表分页end */
+
+/* 弹窗验证码 */
+.verifycode-form {
+    display: block;
+    padding: 36px;
+}
+
+.verifycode-form h3 {
+    font-size: 16px;
+    height: 18px;
+    line-height: 18px;
+    color: #333;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+.verifycode-form .items label {
+    font-size: 14px;
+    color: #333;
+    height: 40px;
+    line-height: 40px;
+    width: 110px;
+    text-align: right;
+}
+
+.verifycode-form .items label span {
+    color: #ff6f20;
+    margin-left: 2px;
+}
+
+.verifycode-form .items {
+    position: relative;
+}
+
+.verifycode-form .items div {
+    margin-left: 12px;
+}
+
+.verifycode-form .items input {
+    height: 32px;
+    width: 200px;
+    line-height: 32px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-size: 14px;
+    padding-left: 6px;
+    padding-right: 6px;
+    border: 1px solid #d8d8d8;
+}
+
+#verifycode-code {
+    width: 90px;
+}
+
+#get-verifycode {
+    padding: 3px 5px;
+    border: 1px solid #a07941;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    color: #a07941;
+    background-color: transparent;
+    position: absolute;
+    top: 10px;
+    right: 22px;
+    cursor: pointer;
+}
+
+.verifycode-form .refer {
+    margin-top: 20px;
+}
+
+.verifycode-form .submit-now {
+    display: block;
+    height: 36px;
+    line-height: 36px;
+    background-color: #0099e9;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    margin: auto 16px;
+}
+.verifycode-form .submit-now.loading {
+    background: #0099e9 url(../images/load/loading2.gif) no-repeat 65% 50%;
+}
+/* 弹窗验证码end */

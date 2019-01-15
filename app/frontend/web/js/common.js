@@ -33,6 +33,14 @@ $(window).scroll(function () {
 });
 
 $(function () {
+    //顶部导航效果
+    $('.head-list .drop').hover(function() {
+        $(this).addClass('hover');
+    }, function() {
+        $(this).removeClass('hover');
+    });
+
+    //主菜单效果
     var subid = null;//nva title状态记录器
     var contentid = null;//nav sub状态记录器
     $('.nav .have-sub').hover(function () {
@@ -73,8 +81,6 @@ $(function () {
         //clearTimeout(tVar);
     });
 });
-//$(".nav .have-sub[data-subid='"+subid+"']").addClass('hover');
-
 /*
 $(function () {
     $('.nav li').hover(function () {
@@ -112,4 +118,102 @@ $(function () {
     })
 });
 */
+
+window.turen = yii;
+var csrfParam = turen.getCsrfParam();
+var csrfToken = turen.getCsrfToken();
+
+/*
+对应后台，创建以下模块turen.com、turen.cms、turen.ext、turen.shop、turen.sys、turen.tool
+*/
+turen.com = (function($) {
+    var pub = {
+        //状态更新
+        updateStatus: function(_this) {
+            _this = $(_this);
+            var url = _this.data('url');
+            var callback = function(res, _this) {
+                if(res.state) {
+                    _this.text(res.msg);
+                    //$.notify('已设置的状态为：'+res.msg+'！', 'success');//状态切换成功
+                } else {
+                    //$.notify(res.msg+'！', 'error');
+                }
+            };
+            commonRemote(url, {}, callback, _this);
+        },
+    };
+
+    // 私有方法
+    function commonRemote(url ,data, callback, _this, type = 'POST') {
+        data[csrfParam] = csrfToken;
+        $.ajax({
+            url: url,
+            type: type,
+            dataType: 'json',
+            context: _this,
+            cache: false,
+            data: data,
+            success: function(res) {
+                if (res['state']) {
+                    if(callback) {
+                        callback(res, _this);
+                    }
+                } else {
+                    //$.notify(res['msg'], 'warn');
+                }
+            }
+        });
+    }
+
+    return pub;
+})(jQuery);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -6,6 +6,7 @@
  */
 namespace app\modules\banjia\controllers;
 
+use app\widgets\phonecode\PhoneCodePopAction;
 use common\models\diy\FaqsForm;
 use Yii;
 use common\models\diy\Faqs;
@@ -75,14 +76,53 @@ class FaqsController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Faqs();
+        if($post = Yii::$app->getRequest()->post()) {
+            $session = Yii::$app->getSession();
+            //验证码
+            $sessionCode = $session->get(PhoneCodePopAction::PHONE_CODE_PARAM);
+            if($post['phone'] != $sessionCode['phone']) {
+                return $this->asJson([
+                    'state' => false,
+                    'code' => 200,
+                    'msg' => '手机号码不匹配',
+                ]);
+            }
+            if((time() - $sessionCode['t']) > PhoneCodePopAction::PHONE_CODE_VALID_TIME) {
+                return $this->asJson([
+                    'state' => false,
+                    'code' => 200,
+                    'msg' => '验证码已过期',
+                ]);
+            }
+            if($post['code'] != $sessionCode['code']) {
+                return $this->asJson([
+                    'state' => false,
+                    'code' => 200,
+                    'msg' => '验证码错误',
+                ]);
+            }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            //清理老验证码
+            $session->remove(PhoneCodePopAction::PHONE_CODE_PARAM);
+
+            //入库
+            $model = new Faqs();
+            $model->title = $post['content'];//提问标题
+            $model->status = Faqs::IS_OFF;//不显示，等待后台回复
+            $model->diyfield_ask_content = '提问用户：'.$post['name'].' <br />用户电话：'.$post['phone'].' <br />提问内容：'.$post['content'];
+            $time = time();
+            $model->posttime = $time;
+            $model->updated_at = $time;
+            $model->created_at = $time;
+            $model->lang = GLOBAL_LANG;
+            $model->orderid = 10;
+            $model->save(false);
+
+            return $this->asJson([
+                'state' => true,
+                'code' => 200,
+                'msg' => '提交问题成功',
+            ]);
         }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 }

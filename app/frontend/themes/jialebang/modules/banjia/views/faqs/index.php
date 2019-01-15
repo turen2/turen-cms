@@ -12,6 +12,7 @@ use yii\widgets\LinkPager;
 use yii\widgets\LinkSorter;
 use yii\widgets\ListView;
 use app\widgets\SideBoxListWidget;
+use app\widgets\phonecode\PhoneCodePopWidget;
 use app\assets\LayerAsset;
 
 $this->title = '常见问答';
@@ -21,27 +22,131 @@ $links[] = ['label' => $this->title];
 
 LayerAsset::register($this);
 $pageParam = $dataProvider->pagination->pageParam;
-$url = Url::current([$pageParam => null]);//禁止链接中包含page参数
+$loadPageUrl = Url::current([$pageParam => null]);//禁止链接中包含page参数
+$phoneCodeUrl = Url::to(['/banjia/site/phone-code']);
+$submitAnswerUrl = Url::to(['/banjia/faqs/create']);
 $js = <<<EOF
 //问题提交功能
 $('.ask-cancel').on('click', function() {
     $('#answer').val('');
 });
+
+//验证码操作
+var layerIndex = null;
 $('.ask-confirm').on('click', function() {
-    layer.open({
+    if($('#answer').val() == '') {
+        layer.msg('提交的问题不能为空，请重新提交。');
+        return false;
+    }
+    layerIndex = layer.open({
         type: 1
         ,title: false
         //,title: '安全验证'
         ,anim: -1//无动画
-        ,shade: false
-        ,area: ['420px', '300px'] //宽高
-        ,content: $('#phone-code-tpl'),
+        ,shade: false//无背景遮布
+        ,area: ['416px', '286px'] //宽高
+        ,content: $('#verifycode-tpl'),//模板
+    });
+});
+var getCodeBtn = $("#get-verifycode");//获取验证码按钮
+var verifycodePhone = $('#verifycode-phone');//手机号码表单
+var verifycodeCode = $('#verifycode-code');//验证码表单
+var phoneReg = /(^1[3|4|5|7|8]\d{9}$)|(^09\d{8}$)/;//手机号正则
+var codeReg = /^\d+$/;
+var count = 60; //间隔函数，1秒执行
+var InterValObj1; //timer变量，控制时间
+var curCount1;//当前剩余秒数
+var btnStatus = 1;//按钮状态
+$('.turen-faqs').on('click', '#get-verifycode', function() {
+    curCount1 = count;		 		 
+    var phone = $.trim(verifycodePhone.val());
+    if (!phoneReg.test(phone)) {
+        layer.msg('请输入有效的手机号码');
+        return false;
+    }
+    if(btnStatus == 0) {
+        return false;
+    }
+    //设置button效果，开始计时
+    btnStatus = 0;
+    $(this).html( + curCount1 + "秒再获取");
+    $.ajax({
+        url: '{$phoneCodeUrl}',
+        type: 'GET',
+        dataType: 'json',
+        context: $(this),
+        cache: false,
+        data: {phone: phone},
+        success: function(res) {
+            if (res['state']) {
+                //console.log(res);
+            } else {
+                btnStatus = 1;//启用按钮
+                layer.msg(res['msg']);
+                getCodeBtn.html("重新发送");
+            }
+        }
+    });
+    InterValObj1 = window.setInterval(function() {
+        if (curCount1 == 0) {
+            window.clearInterval(InterValObj1);//停止计时器
+            btnStatus = 1;//启用按钮
+            getCodeBtn.html("重新发送");
+        } else {
+            curCount1--;
+            getCodeBtn.html( + curCount1 + "秒再获取");
+        }
+    }, 1000);//启动计时器，1秒执行一次
+});
+$('.turen-faqs').on('click', '.submit-now', function() {
+    var name = $.trim($('#verifycode-name').val());
+    if(name == '') {
+        layer.msg('用户昵称不能为空');
+        return false;
+    }
+    var answer = $.trim($('#answer').val());
+    if(answer == '') {
+        layer.msg('提交的问题不能为空，请重新提交。');
+        return false;
+    }
+    var phone = $.trim(verifycodePhone.val());
+    if (!phoneReg.test(phone)) {
+        layer.msg('请输入有效的手机号码');
+        return false;
+    }
+    var code = $.trim(verifycodeCode.val());
+    if(!codeReg.test(code)) {
+        layer.msg('请输入手机验证码');
+        return false;
+    }
+    $.ajax({
+        url: '{$submitAnswerUrl}',
+        type: 'POST',
+        dataType: 'json',
+        context: $(this),
+        cache: false,
+        beforeSend: function(xhr) {
+            $(this).addClass('loading');
+        },
+        complete: function(xhr, status) {
+            $(this).removeClass('loading');
+        },
+        data: {phone: phone, name: name, content: answer, code: code},
+        success: function(res) {
+            if (res['state']) {
+                layer.close(layerIndex);
+                $('.ask-info .ask-form').fadeOut();
+                layer.msg(res['msg'], {icon: 1});//成功
+            } else {
+                layer.msg(res['msg'], {icon: 5});//失败
+            }
+        }
     });
 });
 
 //加载功能
 $('.ask-more').on('click', function() {
-    var url = '{$url}';
+    var url = '{$loadPageUrl}';
     var _this = $(this);
     $.ajax({
         url: url,
@@ -75,42 +180,10 @@ EOF;
 $this->registerJs($js);
 ?>
 
-<div id="phone-code-tpl" style="display: none;">
-    <form action="" class="phone-code-form">
-        <h3>请验证手机验证码</h3>
-        <div class="form-items">
-            <div class="items clearfix">
-                <label for="" class="fl">您的称呼 : <span>*</span></label>
-                <div class="fl">
-                    <input type="text" name="name" placeholder="请输入您的称呼" />
-                </div>
-            </div>
-            <span class="cue"></span>
-        </div>
-        <div class="form-items">
-            <div class="items clearfix">
-                <label for="" class="fl">手机号码 : <span>*</span></label>
-                <div class="fl">
-                    <input type="number" name="phone" placeholder="填写手机号码" />
-                </div>
-            </div>
-            <span class="cue"></span>
-        </div>
-        <div class="form-items">
-            <div class="items clearfix">
-                <label for="" class="fl">手机验证码 : <span>*</span></label>
-                <div class="fl">
-                    <input type="number" name="phoneCode" placeholder="手机验证码" />
-                </div>
-                <a href="">获取验证码</a>
-            </div>
-            <span class="cue"></span>
-        </div>
-        <div class="refer clearfix">
-            <a href="javascript:;" class="submit-now fr">马上提交</a>
-        </div>
-    </form>
-</div>
+<?php //只提供了一个弹窗模板，和对应的验证码生成action ?>
+<?= PhoneCodePopWidget::widget([
+    'templateId' => 'verifycode-tpl',
+]); ?>
 
 <div class="faqs-index">
     <div class="container">
@@ -147,22 +220,6 @@ $this->registerJs($js);
                                         <p class="tips">您有什么问题，可以在此处进行发布，我们会第一时间进行解答。</p>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div style="display: none;">
-                                <?php $form = ActiveForm::begin(); ?>
-                                <?= $model->getAttributeLabel('question')?>
-                                <?= Html::activeInput('text', $model, 'question') ?>
-                                <?= $model->getAttributeLabel('nickname')?>
-                                <?= Html::activeInput('text', $model, 'nickname') ?>
-                                <?= $model->getAttributeLabel('phone')?>
-                                <?= Html::activeInput('text', $model, 'phone') ?>
-                                <?= $model->getAttributeLabel('phoneCode')?>
-                                <?= Html::activeInput('text', $model, 'phoneCode') ?>
-                                <?= $model->getAttributeLabel('verifyCode')?>
-                                <?= Html::activeInput('text', $model, 'verifyCode') ?>
-                                <?= Html::submitButton(Yii::t('app', 'Submit'), ['class' => 'btn btn-primary']) ?>
-                                <?php ActiveForm::end(); ?>
                             </div>
 
                             <ul class="info-top">

@@ -11,8 +11,10 @@
 use yii\helpers\Html;
 use app\assets\AppAsset;
 use app\assets\FontAwesomeAsset;
+use yii\web\YiiAsset;
 
 FontAwesomeAsset::register($this);
+YiiAsset::register($this);
 AppAsset::register($this);
 ?>
 

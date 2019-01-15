@@ -44,7 +44,7 @@ class FaqsSearch extends Faqs
      */
     public function search($params)
     {
-        $query = Faqs::find()->current();
+        $query = Faqs::find()->current()->active();
 
         // add conditions that should always apply here
         $dataProvider = new ActiveDataProvider([
