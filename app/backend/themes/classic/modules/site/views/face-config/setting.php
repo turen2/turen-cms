@@ -49,6 +49,10 @@ $configTabArr = [
         'view' => 'cate',
     ],
     [
+        'name' => '广告绑定',
+        'view' => 'ad',
+    ],
+    [
         'name' => '友链绑定',
         'view' => 'link',
     ],

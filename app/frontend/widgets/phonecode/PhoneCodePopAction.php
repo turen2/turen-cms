@@ -6,6 +6,7 @@
  */
 namespace app\widgets\phonecode;
 
+use common\helpers\Functions;
 use Yii;
 use yii\base\Action;
 use yii\base\InvalidConfigException;
@@ -43,13 +44,8 @@ class PhoneCodePopAction extends Action
                 'msg' => '手机号码格式有误',
             ]);
         }
-
         //发短信
-        $numbers = '1234567890';
-        $code = '';
-        for ($i = 0; $i < 6; ++$i) {
-            $code .= $numbers[mt_rand(0, 9)];
-        }
+        $code = Functions::PhoneCode(6);
         $phoneCode = [
             'phone' => $this->phone,
             'code' => $code,
@@ -79,7 +75,7 @@ class PhoneCodePopAction extends Action
         $phoneNumbers = $phone;
         $templateParam = ['code' => $code];
 
-        //Yii::$app->sms->sendSms('13725514524', '豹品淘', 'SMS_91980004', ['code' => '1234']);
+        //Yii::$app->sms->sendSms('13725514524', '小铃铛科技', 'SMS_91980004', ['code' => '1234']);
         $response = Yii::$app->sms->sendSms($phoneNumbers, $signName, $templateCode, $templateParam);
         if($response->Code == 'OK') {
             return true;

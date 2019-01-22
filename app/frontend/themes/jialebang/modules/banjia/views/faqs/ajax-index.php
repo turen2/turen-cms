@@ -7,7 +7,6 @@
 use yii\widgets\LinkPager;
 use yii\widgets\LinkSorter;
 use yii\widgets\ListView;
-
 ?>
 
 <?= ListView::widget([

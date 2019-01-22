@@ -8,7 +8,7 @@
  */
 ?>
 
-<div class="<?= $style ?>-sidebox">
+<div class="<?= $style ?>-sidebox <?= $htmlClass ?>">
     <?php if($style == 'tab') { ?>
         <div class="<?= $style ?>-sidebox-title">
             <h3><?= $title ?></h3>
@@ -25,7 +25,7 @@
         </h3>
     <?php } ?>
     <div class="<?= $style ?>-sidebox-content">
-        <div class="<?= $htmlClass ?>">
+        <div class="sidebox-<?= $type ?>">
             <?= $content ?>
         </div>
         <?php if(!empty($moreLink)) { ?>

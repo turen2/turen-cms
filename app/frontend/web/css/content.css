@@ -160,6 +160,125 @@
 
 /* 百科列表主体内容end */
 
+/* 首页 */
+.slide-form .main-slide {
+    width: 860px;
+}
+.home-main-ad {
+    position: relative;
+}
+
+.home-main-ad .swiper-container {
+    height: 370px;
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+}
+
+.home-main-ad .swiper-container .swiper-slide img {
+    display: block;
+}
+
+.home-main-ad .swiper-container .pagination {
+    position: absolute;
+    z-index: 20;
+    left: 50%;
+    bottom: 10px;
+}
+
+.home-main-ad .swiper-container .swiper-pagination-switch {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    margin-right: 10px;
+    opacity: 0.8;
+    background: #fff;
+    border: 1px solid #fff;
+    cursor: pointer;
+}
+
+.home-main-ad .swiper-container .swiper-active-switch {
+    background: #0099e9;
+}
+
+.home-main-ad .arrow {
+    position: absolute;
+    z-index: 2;
+    bottom: 137px;
+    width: 60px;
+    height: 90px;
+    background: url('../images/common/soso-arrow.png') no-repeat;
+}
+
+.home-main-ad .arrow-left {
+    background-position: 100% 50%;
+    right: 0;
+}
+
+.home-main-ad .arrow-right {
+    background-position: 0 50%;
+    left: 0;
+}
+
+.call-form .home-pulish {
+    height: 370px;
+    padding: 30px 35px;
+    color: #333;
+    background: white;
+    border: 1px solid #ddd;
+    border-left: none;
+    box-shadow: 0 0 30px 0 rgba(204,204,204,.5);
+    overflow: hidden;
+}
+.call-form .home-pulish .title {
+    height: 38px;
+    line-height: 38px;
+    font-size: 25px;
+    font-weight: normal;
+    text-align: center;
+}
+.call-form .home-pulish .form-items {
+    margin-top: 16px;
+}
+.call-form .home-pulish .form-items .label {
+
+}
+.call-form .home-pulish .form-items input,
+.call-form .home-pulish .form-items select {
+    width: 180px;
+    height: 38px;
+    border: 1px solid #d8d8d8;
+    margin-left: 12px;
+}
+.call-form .home-pulish .form-items input {
+    padding: 0 0 0 10px;
+}
+.call-form .home-pulish .form-items select {
+    padding: 0 0 0 10px;
+}
+.call-form .home-pulish .submit-btn {
+    display: block;
+    margin-top: 25px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #0099e9;
+    color: #fff;
+    font-size: 16px;
+}
+.call-form .home-pulish .text {
+    display: block;
+    margin-top: 24px;
+    font-size: 12px;
+    color: #999;
+}
+/* 首页end */
+
+
+
+
+
 /* 百科详情主体内容 */
 .detail-text {
     padding: 0 35px 15px 35px;
@@ -710,19 +829,15 @@
     width: 8px;
     height: 8px;
     border-radius: 8px;
-    background: #222;
     margin-right: 8px;
     opacity: 0.8;
+    background: #fff;
     border: 1px solid #fff;
     cursor: pointer;
 }
 
-.detail-photo-list .swiper-container .swiper-visible-switch {
-    background: #0099e9;
-}
-
 .detail-photo-list .swiper-container .swiper-active-switch {
-    background: #fff;
+    background: #0099e9;
 }
 
 .detail-photo-list .arrow {

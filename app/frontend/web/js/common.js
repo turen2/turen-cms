@@ -80,6 +80,14 @@ $(function () {
         }, 20);
         //clearTimeout(tVar);
     });
+
+    //所有侧边pin栏
+    /*
+    $(".pinned").pin({
+        containerSelector: ".sidebox"
+    });
+    */
+    //alert($('html').attr('class'));
 });
 /*
 $(function () {
@@ -140,20 +148,33 @@ turen.com = (function($) {
                     //$.notify(res.msg+'！', 'error');
                 }
             };
-            commonRemote(url, {}, callback, _this);
+            commonRemote({
+                url: url,
+                data: {},
+                callback: callback,
+                _this: _this
+            });
         },
     };
 
     // 私有方法
-    function commonRemote(url ,data, callback, _this, type = 'POST') {
+    function commonRemote(settings) {
+        var defaultSetting = {
+            url: null,
+            data: null,
+            callback: null,
+            _this: null,
+            type: 'POST'
+        };
+        $.extend(defaultSetting, settings);
         data[csrfParam] = csrfToken;
         $.ajax({
-            url: url,
-            type: type,
+            url: defaultSetting.url,
+            type: defaultSetting.type,
             dataType: 'json',
-            context: _this,
+            context: defaultSetting._this,
             cache: false,
-            data: data,
+            data: defaultSetting.data,
             success: function(res) {
                 if (res['state']) {
                     if(callback) {

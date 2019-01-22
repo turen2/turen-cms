@@ -46,7 +46,8 @@ class SideBoxListWidget extends \yii\base\Widget
         $content = $this->boxContent();
         return $this->render('side-box-list', [
             'style' => $this->style,
-            'htmlClass' => 'sidebox-'.$this->columnType.' '.$this->htmlClass,//组合通用class名
+            'type' => $this->columnType,
+            'htmlClass' => $this->htmlClass,//组合通用class名
             'title' => $this->title,
             'moreLink' => $this->moreLink,
             'content' => $content,//内容html对应的css由开发者单独自定义

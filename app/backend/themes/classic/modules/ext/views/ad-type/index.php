@@ -64,7 +64,7 @@ $this->title = '广告位管理';
 				<span class="sub-type"><?= $model->typename?></span>
 			<?php } ?>
 		</td>
-		<td><?=$model->width?>*<?=$model->width?></td>
+		<td><?= empty($model->width*$model->height)?'未设置':$model->width.'*'.$model->height ?></td>
 		<td align="center">
 			<a href="<?=Url::to(['move', 'type' => AdType::ORDER_UP_TYPE, 'id' => $model->id, 'pid' => $model->parentid, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>
 			<input type="text" name="orderid[]" id="orderid[]" class="inputls" value="<?= $model->orderid; ?>">

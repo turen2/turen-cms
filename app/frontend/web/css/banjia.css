@@ -6,10 +6,6 @@
 .slide-form .call-form, .slide-form .main-slide {
     height: 370px;
 }
-.slide-form .main-slide {
-    width: 860px;
-    background: #00a0e9;
-}
 .slide-form .call-form {
     margin-left: 860px;
     width: 330px;

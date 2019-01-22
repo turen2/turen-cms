@@ -32,7 +32,6 @@ $('.detail-photo-list .arrow-right').on('click', function(e){
 });
 EOF;
 $this->registerJs($js);
-
 ?>
 <div class="case-detail">
     <div class="container">
