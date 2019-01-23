@@ -4,8 +4,8 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-
 use app\assets\Swiper2Asset;
+use common\helpers\ImageHelper;
 use common\models\ext\Ad;
 use yii\helpers\Url;
 
@@ -14,18 +14,29 @@ $webUrl = Yii::getAlias('@web/');
 
 Swiper2Asset::register($this);
 $js = <<<EOF
+//主幻灯片
 var homeMainAdSwiper = new Swiper('.home-main-ad .swiper-container', {
     pagination: '.home-main-ad .swiper-container .pagination',
-    paginationClickable: true,
-    slidesPerView: 'auto'
+    loop: true,//循环
+    autoplay: 3500,//自动播放且间隔为3秒
+    paginationClickable: true,//导航可操作帧
+    autoplayDisableOnInteraction: true,//用户操作后，autoplay将禁止
 });
 $('.home-main-ad .arrow-left').on('click', function(e){
-    e.preventDefault()
-    homeMainAdSwiper.swipePrev()
+    e.preventDefault();
+    homeMainAdSwiper.swipeNext();
 });
 $('.home-main-ad .arrow-right').on('click', function(e){
-    e.preventDefault()
-    homeMainAdSwiper.swipeNext()
+    e.preventDefault();
+    homeMainAdSwiper.swipePrev();
+});
+
+//下单跳动效果
+var callOrderSwiper = new Swiper('.call-form .swiper-container', {
+    mode: 'vertical',//纵向模式
+    loop: true,//循环
+    autoplay: 2500,//自动播放且间隔为3秒
+    autoplayDisableOnInteraction: true,//用户操作后，autoplay将禁止
 });
 EOF;
 $this->registerJs($js);
@@ -36,13 +47,15 @@ $this->registerJs($js);
         <?php $mainAds = Ad::AdListByAdTypeId(Yii::$app->params['config_face_banjia_cn_home_main_ad_type_id']); ?>
         <?php if($mainAds) { ?>
             <div class="home-main-ad">
-                <a class="arrow arrow-left" href="#"></a>
-                <a class="arrow arrow-right" href="#"></a>
+                <a class="arrow arrow-left" title="向左滑动" href="#"></a>
+                <a class="arrow arrow-right" title="向右滑动" href="#"></a>
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
                         <?php foreach ($mainAds as $index => $mainAd) { ?>
                             <div class="swiper-slide">
-                                <img height="370px" alt="<?= $mainAd['title'] ?>" src="<?= empty($mainAd['picurl'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($mainAd['picurl'], true) ?>" />
+                                <a href="<?= $mainAd['linkurl'] ?>">
+                                    <img height="370px" alt="<?= $mainAd['title'] ?>" src="<?= empty($mainAd['picurl'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($mainAd['picurl'], true) ?>" />
+                                </a>
                             </div>
                         <?php } ?>
                     </div>
@@ -90,10 +103,23 @@ $this->registerJs($js);
                         <option value="其它类型">其它类型</option>
                     </select>
                 </div>
-
-                <a class="submit-btn" href="javascript:;">立即获取</a>
+                <a class="submit-btn" href="javascript:;">立即免费回电</a>
             </form>
-            <p class="text">*声明：为了您的权益，您的隐私将被严格保密！</p>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">1分钟前王先生****4527已预约</div>
+                    <div class="swiper-slide">2分钟前王先生****4527已预约</div>
+                    <div class="swiper-slide">3分钟前王先生****4527已预约</div>
+                    <div class="swiper-slide">4分钟前王先生****4527已预约</div>
+                    <div class="swiper-slide">5分钟前王先生****4527已预约</div>
+                    <div class="swiper-slide">6分钟前王先生****4527已预约</div>
+                    <div class="swiper-slide">7分钟前王先生****4527已预约</div>
+                    <div class="swiper-slide">8分钟前王先生****4527已预约</div>
+                    <div class="swiper-slide">9分钟前王先生****4527已预约</div>
+                    <div class="swiper-slide">10分钟前王先生****4527已预约</div>
+                </div>
+            </div>
+            <p class="text"><span class="red">*</span>声明：为了您的权益，您的隐私将被严格保密！</p>
         </div>
     </div>
 </div>

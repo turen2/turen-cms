@@ -9,8 +9,14 @@ use common\models\ext\Nav;
 use common\helpers\ImageHelper;
 use yii\helpers\HtmlPurifier;
 use yii\helpers\Url;
+use app\assets\LimarqueeAsset;
 
 $webUrl = Yii::getAlias('@web/');
+LimarqueeAsset::register($this);
+$js = <<<EOF
+$('.dowebok').liMarquee();
+EOF;
+$this->registerJs($js);
 ?>
 
 <div class="header">
@@ -19,6 +25,7 @@ $webUrl = Yii::getAlias('@web/');
         	<div class="head-note fl">
                 <i class="fa fa-bullhorn"></i>
                 <span><span class="primary-color">公告：</span>
+                    <span class="dowebok">
                     <?php
                     $blockModel = Block::find()->current()->where(['id' => Yii::$app->params['config_face_banjia_cn_left_top_block_id']])->one();
                     if($blockModel) {
@@ -31,6 +38,7 @@ $webUrl = Yii::getAlias('@web/');
                         echo '<span>请创建简码为“top_note”的碎片。</span>';
                     }
                     ?>
+                    </span>
                 </span>
             </div>
         	<ul class="head-list fr">

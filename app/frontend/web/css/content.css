@@ -223,7 +223,7 @@
 
 .call-form .home-pulish {
     height: 370px;
-    padding: 30px 35px;
+    padding: 28px;
     color: #333;
     background: white;
     border: 1px solid #ddd;
@@ -234,20 +234,20 @@
 .call-form .home-pulish .title {
     height: 38px;
     line-height: 38px;
-    font-size: 25px;
+    font-size: 24px;
     font-weight: normal;
     text-align: center;
 }
 .call-form .home-pulish .form-items {
-    margin-top: 16px;
+    margin-top: 20px;
 }
 .call-form .home-pulish .form-items .label {
 
 }
 .call-form .home-pulish .form-items input,
 .call-form .home-pulish .form-items select {
-    width: 180px;
-    height: 38px;
+    width: 208px;
+    height: 34px;
     border: 1px solid #d8d8d8;
     margin-left: 12px;
 }
@@ -260,18 +260,28 @@
 .call-form .home-pulish .submit-btn {
     display: block;
     margin-top: 25px;
-    height: 40px;
-    line-height: 40px;
+    height: 38px;
+    line-height: 38px;
     text-align: center;
     background-color: #0099e9;
     color: #fff;
     font-size: 16px;
 }
+.call-form .swiper-container {
+    height: 30px;
+    line-height: 30px;
+    margin-top: 6px;
+    overflow: hidden;
+    text-align: center;
+}
 .call-form .home-pulish .text {
     display: block;
-    margin-top: 24px;
+    margin-top: 10px;
     font-size: 12px;
     color: #999;
+}
+.call-form .home-pulish .red {
+    color: red;
 }
 /* 首页end */
 

@@ -19,16 +19,18 @@ Swiper2Asset::register($this);
 $js = <<<EOF
 var caseDetailSwiper = new Swiper('.detail-photo-list .swiper-container', {
     pagination: '.detail-photo-list .swiper-container .pagination',
+    autoplay: true,
+    autoplay: 3500,//自动播放且间隔为3秒
     paginationClickable: true,
     slidesPerView: 'auto'
 });
 $('.detail-photo-list .arrow-left').on('click', function(e){
-    e.preventDefault()
-    caseDetailSwiper.swipePrev()
+    e.preventDefault();
+    caseDetailSwiper.swipeNext();
 });
 $('.detail-photo-list .arrow-right').on('click', function(e){
-    e.preventDefault()
-    caseDetailSwiper.swipeNext()
+    e.preventDefault();
+    caseDetailSwiper.swipePrev();
 });
 EOF;
 $this->registerJs($js);
@@ -68,8 +70,8 @@ $this->registerJs($js);
                     <?php $imgs = $model->picList() ?>
                     <?php if($imgs) { ?>
                     <div class="detail-photo-list">
-                        <a class="arrow arrow-left" href="#"></a>
-                        <a class="arrow arrow-right" href="#"></a>
+                        <a class="arrow arrow-left" title="向左滑动" href="#"></a>
+                        <a class="arrow arrow-right" title="向右滑动" href="#"></a>
                         <div class="swiper-container">
                             <div class="swiper-wrapper">
                                 <?php foreach ($imgs as $index => $img) { ?>
