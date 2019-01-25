@@ -4,12 +4,23 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-$webUrl = Yii::getAlias('@web/');
 
+use app\assets\ToTopAsset;
 use common\models\cms\Block;
 use common\models\ext\Link;
 use common\models\ext\Nav;
 use yii\helpers\Html;
+
+$webUrl = Yii::getAlias('@web/');
+ToTopAsset::register($this);
+$js = <<<EOF
+$('.to-top').toTop({
+    autohide: false,
+    speed: 500,
+    position: false
+});
+EOF;
+$this->registerJs($js);
 
 $blockModel = Block::find()->current()->where(['id' => Yii::$app->params['config_face_banjia_cn_left_bottom_block_id']])->one();
 if($blockModel) {
@@ -109,5 +120,5 @@ if($blockModel) {
             <img src="<?= $webUrl ?>images/fixe_ma_2.png">
         </div>
     </a>
-    <a href="javascript:;"></a>
+    <a class="to-top" href="javascript:;"></a>
 </div>

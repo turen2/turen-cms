@@ -25,21 +25,9 @@
     color: #999;
     margin: 25px 0px 0px 10px;
 }
-.turen-home .hot-item {
-    height: 300px;
-    background: pink;
-}
 .turen-home .work-flow {
     height: 300px;
     background: greenyellow;
-}
-.turen-home .news-center {
-    height: 300px;
-    background: darkolivegreen;
-}
-.turen-home .work-case {
-    height: 300px;
-    background: yellow;
 }
 .turen-home .user-comment {
     height: 300px;
@@ -48,69 +36,6 @@
 .turen-home .work-star {
     height: 300px;
     background: orangered;
-}
-
-
-.home-data-show {
-    position: relative;
-    height: 220px;
-    overflow: hidden; /* background-color:#0cb46a */
-}
-.home-data-show .content-wrapper {
-    position: relative;
-    z-index: 10;
-    height: 220px;
-}
-.home-data-show .home-bg {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 220px;
-}
-.home-img-box p {
-    position: absolute;
-    color: #fff;
-}
-.home-slogan-top {
-    top: 45px;
-    left: 117px;
-    font-size: 23px;
-    font-weight: 600;
-}
-.home-slogan-bottom {
-    top: 81px;
-    left: 120px;
-    font-size: 17px;
-}
-.home-img-box {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-}
-.home-img {
-    position: absolute;
-    height: 204px;
-    width: 212px;
-    vertical-align: bottom;
-    bottom: 0;
-    left: 0;
-}
-.home-data-box {
-    position: absolute;
-    right: 0;
-    top: 50px;
-}
-.home-data-box img {
-    display: block;
-    width: 618px;
-    height: 73px;
-}
-.footer {
-    margin-top: 0;
 }
 /* 首页end */
 

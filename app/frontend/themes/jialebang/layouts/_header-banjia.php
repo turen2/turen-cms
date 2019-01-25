@@ -14,7 +14,12 @@ use app\assets\LimarqueeAsset;
 $webUrl = Yii::getAlias('@web/');
 LimarqueeAsset::register($this);
 $js = <<<EOF
-$('.dowebok').liMarquee();
+$('.scroll-note').liMarquee({
+    scrollamount: 30,
+    //circular: false,//非无疑滚动
+    drag: false,//禁止拖动
+    runshort: false//内容不足不滚动
+});
 EOF;
 $this->registerJs($js);
 ?>
@@ -23,22 +28,23 @@ $this->registerJs($js);
     <div class="head head-top">
         <div class="container clearfix">
         	<div class="head-note fl">
-                <i class="fa fa-bullhorn"></i>
-                <span><span class="primary-color">公告：</span>
-                    <span class="dowebok">
-                    <?php
-                    $blockModel = Block::find()->current()->where(['id' => Yii::$app->params['config_face_banjia_cn_left_top_block_id']])->one();
-                    if($blockModel) {
-                        echo HtmlPurifier::process($blockModel->content, function($config) {
-                            $config->set('HTML.Allowed', 'a[href]');
-                            $config->set('HTML.TargetBlank', true);
-                            $config->set('AutoFormat.RemoveEmpty', true);
-                        });
-                    } else {
-                        echo '<span>请创建简码为“top_note”的碎片。</span>';
-                    }
-                    ?>
-                    </span>
+                <span class="fl">
+                    <i class="fa fa-bullhorn"></i>
+                    <span class="primary-color">公告：</span>
+                </span>
+                <span class="scroll-note fl">
+                <?php
+                $blockModel = Block::find()->current()->where(['id' => Yii::$app->params['config_face_banjia_cn_left_top_block_id']])->one();
+                if($blockModel) {
+                    echo HtmlPurifier::process($blockModel->content, function($config) {
+                        $config->set('HTML.Allowed', 'a[href]');
+                        $config->set('HTML.TargetBlank', true);
+                        $config->set('AutoFormat.RemoveEmpty', true);
+                    });
+                } else {
+                    echo '<span>请创建简码为“top_note”的碎片。</span>';
+                }
+                ?>
                 </span>
             </div>
         	<ul class="head-list fr">

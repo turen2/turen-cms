@@ -254,6 +254,12 @@ input:focus
     line-height: 34px;
 }
 
+.head-top .scroll-note {
+    height: 34px;
+    line-height: 34px;
+    width: 500px;
+}
+
 .head-top .head-list .line {
     padding: 0;
     color: #ddd;
