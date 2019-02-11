@@ -571,7 +571,7 @@ $this->registerJs($js);
             </div>
             <div class="pagination"></div>
         </div>
-        <div class="case-list">
+        <div class="case-recommend">
             <div class="list-left">
                 <a href="javascript:;" target="_blank">
                     <img src="//tgi13.jia.com/122/269/22269527.jpg" alt="搬搬家案例搬家案例家案例">

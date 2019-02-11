@@ -39,8 +39,8 @@ return [
             'class' => 'app\modules\banjia\Module',
         ],
         //用户中心模块
-        'member' => [
-            'class' => 'app\modules\member\Module',
+        'account' => [
+            'class' => 'app\modules\account\Module',
         ],
     ],
     'components' => [
@@ -55,13 +55,11 @@ return [
             'enableCsrfCookie' => true,//默认显示了基于cookie的csrf，否则将以session传递验证数据
             'enableCookieValidation' => true,//默认配合上面启用验证
         ],
-        /*
          'user' => [
-             'identityClass' => 'common\models\User',
+             'identityClass' => 'common\models\user\User',
              'enableAutoLogin' => true,
              'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
          ],
-         */
         'session' => [
             // this is the name of the session cookie used for login on the frontend
             'name' => 'app-frontend',

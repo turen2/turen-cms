@@ -10704,8 +10704,8 @@ module.exports = Array.isArray || function (arr) {
                 var element = serialize(property, value, callback, properties, whitespace, indentation, stack);
                 if (element !== undef) {
                   // According to ES 5.1 section 15.12.3: "If `gap` {whitespace}
-                  // is not the empty string, let `member` {quote(property) + ":"}
-                  // be the concatenation of `member` and the `space` character."
+                  // is not the empty string, let `account` {quote(property) + ":"}
+                  // be the concatenation of `account` and the `space` character."
                   // The "`space` character" refers to the literal space
                   // character, not the `space` {width} argument provided to
                   // `JSON.stringify`.
@@ -10744,7 +10744,7 @@ module.exports = Array.isArray || function (arr) {
             }
           }
           // Opera <= 7.54u2 discards the values associated with empty string keys
-          // (`""`) only if they are used directly within an object member list
+          // (`""`) only if they are used directly within an object account list
           // (e.g., `!("" in { "": 1})`).
           return serialize("", (value = {}, value[""] = source, value), callback, properties, whitespace, "", []);
         };
@@ -10999,7 +10999,7 @@ module.exports = Array.isArray || function (arr) {
                       abort();
                     }
                   } else {
-                    // A `,` must separate each object member.
+                    // A `,` must separate each object account.
                     abort();
                   }
                 }
@@ -11019,7 +11019,7 @@ module.exports = Array.isArray || function (arr) {
           return value;
         };
 
-        // Internal: Updates a traversed object member.
+        // Internal: Updates a traversed object account.
         var update = function (source, property, callback) {
           var element = walk(source, property, callback);
           if (element === undef) {

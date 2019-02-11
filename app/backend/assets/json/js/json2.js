@@ -52,9 +52,9 @@
 //              };
 
 //          You can provide an optional replacer method. It will be passed the
-//          key and value of each member, with this bound to the containing
+//          key and value of each account, with this bound to the containing
 //          object. The value that is returned from your method will be
-//          serialized. If your method returns undefined, then the member will
+//          serialized. If your method returns undefined, then the account will
 //          be excluded from the serialization.
 
 //          If the replacer parameter is an array of strings, then it will be
@@ -100,7 +100,7 @@
 //          transform the results. It receives each of the keys and values,
 //          and its return value is used instead of the original value.
 //          If it returns what it received, then the structure is not modified.
-//          If it returns undefined then the member is deleted.
+//          If it returns undefined then the account is deleted.
 
 //          Example:
 
@@ -225,8 +225,8 @@ if (typeof JSON !== "object") {
 // Produce a string from holder[key].
 
         var i;          // The loop counter.
-        var k;          // The member key.
-        var v;          // The member value.
+        var k;          // The account key.
+        var v;          // The account value.
         var length;
         var mind = gap;
         var partial;
@@ -345,7 +345,7 @@ if (typeof JSON !== "object") {
                 }
             }
 
-// Join all of the member texts together, separated with commas,
+// Join all of the account texts together, separated with commas,
 // and wrap them in braces.
 
             v = partial.length === 0

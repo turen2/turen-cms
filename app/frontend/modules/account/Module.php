@@ -4,12 +4,12 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\member;
+namespace app\modules\account;
 
 use Yii;
 
 /**
- * member module definition class
+ * account module definition class
  */
 class Module extends \yii\base\Module
 {
@@ -18,7 +18,7 @@ class Module extends \yii\base\Module
     /**
      * {@inheritdoc}
      */
-    public $controllerNamespace = 'app\modules\member\controllers';
+    public $controllerNamespace = 'app\modules\account\controllers';
 
     /**
      * {@inheritdoc}

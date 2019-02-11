@@ -871,7 +871,7 @@ function stableSort(arr, sortFunction) {
 }
 
 /**
- * Non-recursive method to find the lowest member of an array. Math.min raises a maximum
+ * Non-recursive method to find the lowest account of an array. Math.min raises a maximum
  * call stack size exceeded error in Chrome when trying to apply more than 150.000 points. This
  * method is slightly slower, but safe.
  */
@@ -888,7 +888,7 @@ function arrayMin(data) {
 }
 
 /**
- * Non-recursive method to find the lowest member of an array. Math.min raises a maximum
+ * Non-recursive method to find the lowest account of an array. Math.min raises a maximum
  * call stack size exceeded error in Chrome when trying to apply more than 150.000 points. This
  * method is slightly slower, but safe.
  */

@@ -4,25 +4,20 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\member\controllers;
+namespace app\modules\account\controllers;
 
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-
-use app\components\Controller;
-use common\models\LoginForm;
-use frontend\models\PasswordResetRequestForm;
-use frontend\models\ResetPasswordForm;
-use frontend\models\SignupForm;
-use frontend\models\ContactForm;
+use common\models\user\LoginForm;
+use common\models\user\SignupForm;
 
 /**
  * Site controller
  */
-class UserController extends Controller
+class UserController extends \app\components\Controller
 {
     /**
      * @inheritdoc
@@ -74,18 +69,6 @@ class UserController extends Controller
     }
 
     /**
-     * Displays homepage.
-     * 用户中心
-     *
-     * @return mixed
-     */
-    public function actionInfo()
-    {
-//        echo "访问成功";
-        return $this->render('info');
-    }
-
-    /**
      * Logs in a user.
      *
      * @return mixed
@@ -104,6 +87,18 @@ class UserController extends Controller
                 'model' => $model,
             ]);
         }
+    }
+
+    /**
+     * Displays homepage.
+     * 用户中心
+     *
+     * @return mixed
+     */
+    public function actionInfo()
+    {
+//        echo "访问成功";
+        return $this->render('info');
     }
 
     /**

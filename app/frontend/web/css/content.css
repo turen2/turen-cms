@@ -1342,13 +1342,13 @@
     background: url(../images/swiper2/right.png) no-repeat center center;
 }
 
-.case-list {
+.case-recommend {
     width: 701px;
     height: 362px;
     float: right;
 }
 
-.case-list .case-gloab {
+.case-recommend .case-gloab {
     width: 100%;
     height: 35px;
     line-height: 35px;
@@ -1358,25 +1358,23 @@
     color: #FFF;
     font-size: 14px;
     cursor: pointer;
-    background: url(https://ued.jia.com/image/jiahome/2015/opactiy.png) repeat;
 }
 
-.case-list .case-gloab-title {
+.case-recommend .case-gloab-title {
     display: inline-block;
     margin-left: 10px;
 }
 
-.case-list .list-left {
+.case-recommend .list-left {
     width: 227px;
     height: 176px;
     float: left;
     position: relative;
     margin-right: 10px;
     margin-bottom: 10px;
-    background: #f8f8f8 url(https://ued.jia.com/image/common/Jia_loading_b.jpg) 50% 50% no-repeat;
 }
 
-.case-list .list-left img {
+.case-recommend .list-left img {
     width: 227px;
     height: 176px;
 }

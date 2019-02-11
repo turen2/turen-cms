@@ -48,17 +48,17 @@ $this->registerJs($js);
                 </span>
             </div>
         	<ul class="head-list fr">
-                <li><a href="<?= Url::to(['/member/user/login']) ?>">请登录</a></li>
+                <li><a href="<?= Url::to(['/account/user/login']) ?>">请登录</a></li>
                 <li class="line">|</li>
-                <li><a href="<?= Url::to(['/member/user/signup']) ?>">立即注册</a></li>
+                <li><a href="<?= Url::to(['/account/user/signup']) ?>">免费注册</a></li>
                 <li class="line">|</li>
                 <li class="drop">
-                    <a class="drop-title" href="<?= Url::to(['/member/user/info']) ?>">用户中心<b></b></a>
+                    <a class="drop-title" href="<?= Url::to(['/account/user/info']) ?>">账户中心<b></b></a>
                     <div class="drop-content">
-                        <a href="<?= Url::to(['/member/order/list']) ?>" rel="nofollow">我的订单</a>
-                        <a href="<?= Url::to(['/member/order/list']) ?>" rel="nofollow">我的咨询</a>
-                        <a href="<?= Url::to(['/member/order/list']) ?>" rel="nofollow">我的预约</a>
-                        <a href="<?= Url::to(['/member/order/list']) ?>">我的售后</a>
+                        <a href="<?= Url::to(['/account/order/list']) ?>" rel="nofollow">我的订单</a>
+                        <a href="<?= Url::to(['/account/order/list']) ?>" rel="nofollow">我的咨询</a>
+                        <a href="<?= Url::to(['/account/order/list']) ?>" rel="nofollow">我的预约</a>
+                        <a href="<?= Url::to(['/account/order/list']) ?>">我的售后</a>
                     </div>
                 </li>
                 <li class="line">|</li>
