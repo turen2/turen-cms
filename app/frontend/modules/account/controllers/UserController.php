@@ -6,6 +6,7 @@
  */
 namespace app\modules\account\controllers;
 
+use app\widgets\phonecode\PhoneCodePopAction;
 use common\models\user\VerifyCodeForm;
 use Yii;
 use yii\base\InvalidArgumentException;
@@ -20,6 +21,8 @@ use common\models\user\SignupForm;
  */
 class UserController extends \app\components\Controller
 {
+    const SIGNUP_VERIFY_CODE = 'signup_verify_code';
+
     /**
      * @inheritdoc
      */
@@ -58,6 +61,7 @@ class UserController extends \app\components\Controller
      */
     public function actions()
     {
+        $params = Yii::$app->getRequest()->queryParams;
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
@@ -68,6 +72,14 @@ class UserController extends \app\components\Controller
                 'minLength' => 4,
                 'maxLength' => 4,
             ],
+            //获取手机验证码
+            /*
+            'phone-code' => [
+                'class' => PhoneCodePopAction::class,
+                'phone' => $params['phone'],
+                'maxNum' => 6,
+            ],
+            */
         ];
     }
 
@@ -115,6 +127,39 @@ class UserController extends \app\components\Controller
 
         return $this->goHome();
     }
+
+    /**
+     * 验证，注册验证码
+     */
+    public function actionSignupVerifyCode()
+    {
+        $verifyModel = new VerifyCodeForm();
+
+        if($verifyModel->load(Yii::$app->request->post()) && $result = $verifyModel->validate()) {
+            //验证成功//写入session
+            Yii::$app->session->set(self::SIGNUP_VERIFY_CODE, true);
+        }
+
+        return $this->asJson($result);
+    }
+
+    //Yii::$app->session->set(self::SIGNUP_VERIFY_CODE, true);
+    public function actionSendPhoneCode()
+    {
+        $action = Yii::createObject([
+            'class' => PhoneCodePopAction::class,
+            'phone' => '13725514524',
+            'maxNum' => 6,
+        ]);
+
+//        $action = new PhoneCodePopAction([
+//
+//        ]);
+
+        return $action->run();
+    }
+
+
 
     /**
      * Signs user up.
