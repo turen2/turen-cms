@@ -8,7 +8,7 @@ namespace common\models\user;
 
 use Yii;
 use yii\base\Model;
-use common\models\merchant\Merchant;
+use common\models\user\User;
 
 /**
  * Password reset form

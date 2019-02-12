@@ -6,6 +6,7 @@
  */
 namespace app\modules\account\controllers;
 
+use common\models\user\VerifyCodeForm;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
@@ -64,6 +65,8 @@ class UserController extends \app\components\Controller
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+                'minLength' => 4,
+                'maxLength' => 4,
             ],
         ];
     }
@@ -120,9 +123,11 @@ class UserController extends \app\components\Controller
      */
     public function actionSignup()
     {
-        $model = new SignupForm();
-        if ($model->load(Yii::$app->request->post())) {
-            if ($user = $model->signup()) {
+        $signupModel = new SignupForm();
+        $verifyModel = new VerifyCodeForm();
+
+        if ($signupModel->load(Yii::$app->request->post())) {
+            if ($user = $signupModel->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
                     return $this->goHome();
                 }
@@ -130,7 +135,8 @@ class UserController extends \app\components\Controller
         }
 
         return $this->render('signup', [
-            'model' => $model,
+            'signupModel' => $signupModel,
+            'verifyModel' => $verifyModel,
         ]);
     }
 

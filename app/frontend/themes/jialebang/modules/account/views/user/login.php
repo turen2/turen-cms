@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="container">
     <?php $form = ActiveForm::begin(['enableAjaxValidation' => false, 'id' => 'loginForm', 'options' => ['class' => 'login-form']]); ?>
-    <?= $form->field($model, 'username')->textInput(['placeholder' => $model->getAttributeLabel('username')]) ?>
+    <?= $form->field($model, 'verifyName')->textInput(['placeholder' => $model->getAttributeLabel('verifyName')]) ?>
     <?= $form->field($model, 'password')->passwordInput(['placeholder' => $model->getAttributeLabel('password')]) ?>
     <?= $form->field($model, 'verifyCode')->widget(Captcha::class, [
         'captchaAction' => '/account/user/captcha',

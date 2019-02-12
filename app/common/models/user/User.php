@@ -7,6 +7,7 @@
 namespace common\models\user;
 
 use Yii;
+use yii\base\NotSupportedException;
 use yii\web\IdentityInterface;
 use common\components\ActiveRecord;
 
@@ -128,6 +129,16 @@ class User extends ActiveRecord implements IdentityInterface
     {
         //基于token的登录
         throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+    }
+
+    /**
+     * 用户名/邮箱/手机号，查询用户
+     * @param $verifyName
+     * @return User|null
+     */
+    public static function findByVerifyName($verifyName)
+    {
+        return static::findOne(['and', ['status' => static::STATUS_ON], ['or', ['username' => $verifyName], ['mobile' => $verifyName], ['email' => $verifyName]]]);
     }
 
     /**

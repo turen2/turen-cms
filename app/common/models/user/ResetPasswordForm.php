@@ -9,7 +9,7 @@ namespace common\models\user;
 use Yii;
 use yii\base\Model;
 use yii\base\InvalidParamException;
-use common\models\merchant\Merchant;
+use common\models\user\User;
 
 /**
  * Password reset form
@@ -19,7 +19,7 @@ class ResetPasswordForm extends Model
     public $password;
 
     /**
-     * @var \common\models\merchant\Merchant
+     * @var \common\models\user\User
      */
     private $_user;
 

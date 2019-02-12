@@ -7,12 +7,11 @@
 namespace app\controllers;
 
 use Yii;
-use app\components\Controller;
 
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends \app\components\Controller
 {
     /**
      * @inheritdoc

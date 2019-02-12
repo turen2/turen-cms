@@ -14,16 +14,12 @@ use yii\base\Model;
  */
 class LoginForm extends Model
 {
-    public $username;
+    public $verifyName;//统一的凭证，包括用户名、邮箱、手机号
     public $password;
     public $rememberMe = true;
     public $verifyCode;
     public $phone;
-    
-    public $verifyName;//统一的凭证，包括用户名、邮箱、手机号
-    
     private $_user;
-
 
     /**
      * @inheritdoc
@@ -52,7 +48,6 @@ class LoginForm extends Model
     public function attributeLabels()
     {
         return array(
-            'username' => '用户名',
             'password' => '用户密码',
             'rememberMe' => '下次自动登录',
             'verifyCode' => '验证码',

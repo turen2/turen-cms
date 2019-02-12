@@ -8,7 +8,7 @@ namespace common\models\user;
 
 use Yii;
 use yii\base\Model;
-use common\models\merchant\Merchant;
+use common\models\user\User;
 
 /**
  * Password reset request form
@@ -29,7 +29,7 @@ class PasswordResetRequestPhoneForm extends Model
             [['phone', 'verifyCode'], 'number'],
             ['phone','match','pattern'=>'/^[1][3578][0-9]{9}$/'],
             ['phone', 'exist',
-                'targetClass' => '\common\models\merchant\Merchant',
+                'targetClass' => '\common\models\user\User',
                 'filter' => ['status' => Merchant::STATUS_ACTIVE],
                 'message' => '手机号码有误或请尝试注册新用户！'
             ],
