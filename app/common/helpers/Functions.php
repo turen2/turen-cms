@@ -116,7 +116,7 @@ class Functions
     public static function SlugUrl($model, $attribute, $label = '标记')
     {
         $slug = empty($model->{$attribute})?'未设置':$model->{$attribute};
-        return Yii::$app->params['config_site_url'].'/模块/'.$label.'-<span class="slug-url">'.$slug.'</span>'.Yii::$app->params['config_site_url_suffix'];
+        return Yii::$app->params['config_site_url'].'/.../'.$label.'-<span class="slug-url">'.$slug.'</span>'.Yii::$app->params['config_site_url_suffix'];
     }
 
     /**

@@ -95,8 +95,18 @@ if($blockModel) {
                 }
                 ?>
             </p>
-        	<p class="footer-c">© 2016-<?= date('Y') ?>  - <?= Yii::$app->params['config_copyright'] ?> - <?= Yii::$app->params['config_icp_code'] ?> <a target="_blank" href="http://www.turen2.com">技术支持</a></p>
+        	<p class="footer-c">2016-<?= date('Y') ?> <?= Yii::$app->params['config_copyright'] ?> - <?= Yii::$app->params['config_icp_code'] ?> <a target="_blank" href="http://www.turen2.com">技术支持</a></p>
         </div>
+    </div>
+</div>
+
+<div class="call-me">
+    <div class="center-box container">
+        <span class="left-part"><img src="/images/logo.png"></span>
+        <span class="mid-part">仅需3秒钟马上出发，一站式服务！</span>
+        <span class="right-part"><i>Customer Hot Line</i><b>400-400-4000</b></span>
+        <a href="" id="custon_button1" class="call-btn">立即咨询</a>
+        <a href="" class="bre-btn">立即下单</a>
     </div>
 </div>
 

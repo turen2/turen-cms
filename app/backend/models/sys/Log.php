@@ -95,8 +95,8 @@ class Log extends \app\models\base\Sys
     {
         return [
             'log_id' => '日志ID',
-            'admin_id' => '管理员',
-            'username' => '管理员名称',
+            'admin_id' => '管理者ID',
+            'username' => '管理者',
             'route' => '路由名称',
             'name' => '记录详情',
             'method' => '操作方法',

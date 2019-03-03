@@ -12,7 +12,7 @@ use yii\widgets\LinkPager;
 use yii\widgets\LinkSorter;
 use yii\widgets\ListView;
 use app\widgets\SideBoxListWidget;
-use app\widgets\phonecode\PhoneCodePopWidget;
+use app\widgets\phonecode\VerifyCodeWidget;
 use app\assets\LayerAsset;
 
 $this->title = '常见问答';
@@ -181,7 +181,7 @@ $this->registerJs($js);
 ?>
 
 <?php //只提供了一个弹窗模板，和对应的验证码生成action ?>
-<?= PhoneCodePopWidget::widget([
+<?= VerifyCodeWidget::widget([
     'templateId' => 'verifycode-tpl',
 ]); ?>
 

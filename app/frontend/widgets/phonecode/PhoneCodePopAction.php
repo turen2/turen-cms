@@ -13,6 +13,7 @@ use yii\base\InvalidConfigException;
 
 class PhoneCodePopAction extends Action
 {
+    const VERIFY_CODE_PARAM = 'VerifyCode';//数字验证码
     const PHONE_CODE_PARAM = 'PhoneCode';
     const PHONE_CODE_VALID_TIME = 60;//验证码有效时间
     const PHONE_MATCH_PATTERN = '/^[1][35678][0-9]{9}$/';

@@ -175,6 +175,37 @@ $this->registerJs($js);
     </div>
 </div>
 
+<div class="container block work-flow">
+    <div class="head-title"><h2>服务流程<span class="txt">标准化质量输出</span></h2></div>
+    <div class="flow-content">
+        <ul class="clearfix">
+            <li class="first">
+                <i class="insqzxfw_img1"></i>
+                <b>免费咨询</b>
+                <p>预约成功，安排上门服务</p>
+            </li>
+            <li>
+                <i class="insqzxfw_img2"></i>
+                <b>在线方案</b>
+                <p>纯在客服沟通定制专业方案</p>
+            </li>
+            <li>
+                <i class="insqzxfw_img3"></i>
+                <b>售后保障</b>
+                <p>服务全程客服跟进，服务质量有保障</p>
+            </li>
+            <li class="last">
+                <i class="insqzxfw_img4"></i>
+                <b>优惠活动</b>
+                <p>预约即可享受9折优惠</p>
+            </li>
+        </ul>
+        <div class="insqzxfw_but"><a href="https://www.jiazhuang.com/baojia_3/" target="_blank">申请装修服务</a></div>
+    </div>
+</div>
+
+
+
 <div class="hot-item container">
     <div class="turen-head">
         <h2 class="fl">热门服务<span class="txt">一站式的服务</span></h2>
@@ -423,48 +454,6 @@ $this->registerJs($js);
     </ul>
 </div>
 
-<div class="container block work-flow">
-    <div class="head-title"><h2>服务流程<span class="txt">缩小的子标题</span></h2></div>
-    <div class="flow-content">
-        <p>服务流程内容<br />
-            http://shenzhen.17house.com
-        </p>
-    </div>
-</div>
-
-<div style="background: #000;color: white">
-    <br />
-    下单滚动效果：http://ask.17house.com/c-all/1.html
-    <br />
-    幻灯片轮播+免费咨询（http://91.jiaju.sina.com.cn/bj/）
-    <br />
-    全局链接：
-    <br />
-    <a href="<?= Url::to(['/banjia/news/list']) ?>" target="_blank">新闻news</a>
-    <br />
-    <a href="<?= Url::to(['/banjia/baike/list']) ?>" target="_blank">百科baike</a>
-    <br />
-    <a href="<?= Url::to(['/banjia/faqs/index']) ?>" target="_blank">问答faqs</a>
-    <br />
-    <a href="<?= Url::to(['/banjia/service/detail']) ?>" target="_blank">服务service</a>
-    <br />
-    <a href="<?= Url::to(['/banjia/calculator/index']) ?>" target="_blank">计价器calculator</a>
-    <br />
-    <a href="<?= Url::to(['/banjia/case/list']) ?>" target="_blank">项目case</a>
-    <br />
-    <a href="<?= Url::to(['/banjia/page/info']) ?>" target="_blank">通用简单页面page</a>
-    <br />
-    <a href="<?= Url::to(['/banjia/calendar/index']) ?>" target="_blank">吉日日历calendar</a>
-    <br />
-    <a href="<?= Url::to(['/banjia/case/list']) ?>" target="_blank">案例</a>
-
-    <br />所有使用装修之家的：弹出窗口样式，各种确认窗口，填写窗口
-
-    订单滚动+公司公告列表，滚动：http://shenzhen.17house.com/xftc/
-    <br />
-    头部：https://wenda.tobosu.com/
-</div>
-
 <div class="container news-center">
     <div class="clearfix">
         <dl class="box">
@@ -624,6 +613,38 @@ $this->registerJs($js);
     </div>
 </div>
 
+<div class="container" style="background: #000;color: white">
+    <br />
+    下单滚动效果：http://ask.17house.com/c-all/1.html
+    <br />
+    幻灯片轮播+免费咨询（http://91.jiaju.sina.com.cn/bj/）
+    <br />
+    全局链接：
+    <br />
+    <a href="<?= Url::to(['/banjia/news/list']) ?>" target="_blank">新闻news</a>
+    <br />
+    <a href="<?= Url::to(['/banjia/baike/list']) ?>" target="_blank">百科baike</a>
+    <br />
+    <a href="<?= Url::to(['/banjia/faqs/index']) ?>" target="_blank">问答faqs</a>
+    <br />
+    <a href="<?= Url::to(['/banjia/service/detail']) ?>" target="_blank">服务service</a>
+    <br />
+    <a href="<?= Url::to(['/banjia/calculator/index']) ?>" target="_blank">计价器calculator</a>
+    <br />
+    <a href="<?= Url::to(['/banjia/case/list']) ?>" target="_blank">项目case</a>
+    <br />
+    <a href="<?= Url::to(['/banjia/page/info']) ?>" target="_blank">通用简单页面page</a>
+    <br />
+    <a href="<?= Url::to(['/banjia/calendar/index']) ?>" target="_blank">吉日日历calendar</a>
+    <br />
+    <a href="<?= Url::to(['/banjia/case/list']) ?>" target="_blank">案例</a>
+
+    <br />所有使用装修之家的：弹出窗口样式，各种确认窗口，填写窗口
+
+    订单滚动+公司公告列表，滚动：http://shenzhen.17house.com/xftc/
+    <br />
+    头部：https://wenda.tobosu.com/
+</div>
 
 <div class="container block user-comment">
     <div class="head-title"><h2>用户好评<span class="txt">缩小的子标题</span></h2></div>

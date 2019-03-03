@@ -215,6 +215,114 @@ input:focus
     outline: none;/*去掉默认input焦点边框*/
 }
 
+/* alert */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px
+}
+
+.alert h4 {
+    margin-top: 0;
+    color: inherit
+}
+
+.alert .alert-link {
+    font-weight: bold
+}
+
+.alert > p, .alert > ul {
+    margin-bottom: 0
+}
+
+.alert > p + p {
+    margin-top: 5px
+}
+
+.alert-dismissable, .alert-dismissible {
+    padding-right: 35px
+}
+
+.alert-dismissable .close, .alert-dismissible .close {
+    position: relative;
+    top: -2px;
+    right: -21px;
+    color: inherit
+}
+
+.alert-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d
+}
+
+.alert-success hr {
+    border-top-color: #c9e2b3
+}
+
+.alert-success .alert-link {
+    color: #2b542c
+}
+
+.alert-info {
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    color: #31708f
+}
+
+.alert-info hr {
+    border-top-color: #a6e1ec
+}
+
+.alert-info .alert-link {
+    color: #245269
+}
+
+.alert-warning {
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+    color: #8a6d3b
+}
+
+.alert-warning hr {
+    border-top-color: #f7e1b5
+}
+
+.alert-warning .alert-link {
+    color: #66512c
+}
+
+.alert-danger {
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442
+}
+
+.alert-danger hr {
+    border-top-color: #e4b9c0
+}
+
+.alert-danger .alert-link {
+    color: #843534
+}
+
+.topframe.alert-danger {
+    border-bottom: 1px solid #ebccd1;
+}
+.topframe {
+    margin: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center;
+    border-radius: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+}
+
 /* 按钮 */
 .btn {
     padding: 0 10px;
@@ -605,6 +713,85 @@ input:focus
     margin: 0;
 }
 /* 尾部end */
+
+/* call me */
+.call-me {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+    bottom: 0;
+    padding: 12px 0;
+    background-color: #262626;
+}
+.call-me .center-box {
+    position: relative;
+    margin: 0 auto;
+}
+.call-me .left-part {
+    position: relative;
+    color: #FFFFFF;
+    font-size: 24px;
+    margin-right: 100px;
+}
+.call-me .mid-part {
+    color: #3ea0f1;
+    font-size: 22px;
+    font-style: italic;
+    margin-right: 10px;
+}
+.call-me .right-part {
+    display: inline-block;
+    position: relative;
+    top: 4px;
+    margin-right: 223px;
+    color: #FFFFFF;
+    text-align: left;
+}
+.call-me .left-part img {
+    height: 40px;
+    position: relative;
+    top: 5px;
+    margin-right: 28px;
+}
+.call-me .right-part i {
+    position: absolute;
+    top: -11px;
+    left: -26px;
+    white-space: nowrap;
+    font-style: normal;
+    font-size: 12px;
+    font-family: serif;
+    text-transform: uppercase;
+    -webkit-transform: scale(0.6);
+    transform: scale(0.6);
+}
+.call-me .right-part b {
+    display: block;
+    font-size: 18px;
+    line-height: 16px;
+}
+.call-me a {
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    width: 120px;
+    padding: 10px 0;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+}
+.call-me a.call-btn {
+    color: #FF5816;
+    border: 1px solid #FF5816;
+    margin-right: 20px;
+}
+.call-me a.bre-btn {
+    color: #FFFFFF;
+    background-color: #3ea0f1;
+    border: 1px solid #3ea0f1;
+}
+/* call me end */
 
 /* 右侧浮层 */
 .fixe-right {

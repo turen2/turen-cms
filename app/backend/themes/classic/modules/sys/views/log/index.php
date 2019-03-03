@@ -54,17 +54,19 @@ if(empty($dataProvider->count))
 }
 ?>
 
-<div class="page">
-	<?= LinkPager::widget([
-	    'pagination' => $dataProvider->getPagination(),
-	    'options' => ['class' => 'page-list', 'tag' => 'div'],
-	    'activePageCssClass' => 'on',
-	    'firstPageLabel' => '首页',
-	    'lastPageLabel' => '尾页',
-	    'nextPageLabel' => '下页',
-	    'prevPageLabel' => '上页',
-	    'linkContainerOptions' => ['tag' => 'span'],
-	]);
-	?>
+<div class="bottom-toolbar clearfix">
+    <div class="page">
+        <?= LinkPager::widget([
+            'pagination' => $dataProvider->getPagination(),
+            'options' => ['class' => 'page-list', 'tag' => 'div'],
+            'activePageCssClass' => 'on',
+            'firstPageLabel' => '首页',
+            'lastPageLabel' => '尾页',
+            'nextPageLabel' => '下页',
+            'prevPageLabel' => '上页',
+            'linkContainerOptions' => ['tag' => 'span'],
+        ]);
+        ?>
+    </div>
 </div>
 <p class="cp tc"><?= Yii::$app->params['config_copyright'] ?></p>

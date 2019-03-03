@@ -6,6 +6,7 @@
  */
 namespace app\modules\account\controllers;
 
+use app\models\sys\Config;
 use app\widgets\phonecode\PhoneCodePopAction;
 use common\models\user\VerifyCodeForm;
 use Yii;
