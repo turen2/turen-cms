@@ -111,7 +111,7 @@ $this->registerJs($js);
                             <span class="qr-txt">手机版访问</span>
                         </p>
                     </a>
-                    <a href="javascript:;">
+                    <a href="javascript:;" style="display: none;">
                         <img class="wx" src="<?= $webUrl ?>images/common/nav_weixin.png">
                         <p class="nav-box nav-wx">
                             <img class="nav-qr" src="<?= $webUrl ?>images/common/xcx.png">

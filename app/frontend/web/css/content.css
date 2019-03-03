@@ -1249,6 +1249,89 @@
 
 /* 首页热门服务end */
 
+/* 首页百科 */
+.hot-article-list {
+    border: 1px solid #e8e8e8;
+    border-top: 4px solid #e8e8e8;
+    padding: 10px 0;
+    overflow: hidden;
+}
+
+.hot-article-list .h-n-box {
+    width: 396px;
+    padding: 0 25px;
+    float: left;
+    border-right: 1px solid #e8e8e8;
+}
+.hot-article-list .h-n-box .tit {
+    padding: 15px 0 30px;
+}
+.hot-article-list .h-n-box .tit h3 {
+    width:100px;
+    font-size:18px;
+    color:#0099e9;
+    float:left;
+}
+.hot-article-list .h-n-box .tit a {
+    width:50px;
+    float:right;
+    color:#555;
+    text-align:right;
+    line-height:26px;
+}
+.hot-article-list .h-n-box dl,.hot-article-list .h-n-box dl dt,.hot-article-list .h-n-box dl dd {
+    float:left;
+    overflow:hidden;
+}
+.hot-article-list .h-n-box dl {
+    padding-bottom:10px;
+    float:left;
+}
+.hot-article-list .h-n-box dl dt {
+
+}
+.hot-article-list .h-n-box dl dd {
+    margin-left: 15px;
+    width: 190px;
+}
+.hot-article-list .h-n-box dl dd a {
+    font-size:14px;
+    display:block;
+}
+.hot-article-list .h-n-box dl dd p {
+    height:54px;
+    line-height:18px;
+    overflow:hidden;
+    color:#999;
+    margin-top:5px;
+}
+.hot-article-list .h-n-box dl dd span {
+    color:#bbb;
+    margin-top:10px;
+}
+.hot-article-list .h-n-box .list {
+    border-top:1px dotted #ccc;
+    float:left;
+    padding:5px 0;
+}
+.hot-article-list .h-n-box .list a {
+    font-size:14px;
+    display:block;
+}
+.hot-article-list .h-n-box .list p {
+    height:36px;
+    line-height:18px;
+    overflow:hidden;
+    color:#999;
+    margin-top:5px;
+}
+.hot-article-list .h-n-box .list span {
+    color:#bbb;
+    margin-top:10px;
+    white-space:nowrap;
+}
+/* 首页百科end */
+
 /* 首页新闻 */
 .news-center {
     padding: 30px 0;

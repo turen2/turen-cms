@@ -12,7 +12,7 @@ use common\models\cms\Info;
 class PageController extends \app\components\Controller
 {
     /**
-     * 单页详情
+     * 单页详情，通用单页面输出
      * @param $slug
      * @return string
      * @throws NotFoundHttpException
@@ -22,6 +22,19 @@ class PageController extends \app\components\Controller
         $model = $this->findModel($slug);
         return $this->render('info', [
             'model' => $model,
+        ]);
+    }
+
+    /**
+     * 专用单页面，关于我们
+     */
+    public function actionAboutUs()
+    {
+        $model = null;
+        $jobModels = [];
+        return $this->render('about-us', [
+            'model' => $model,
+            'jobModels' => $jobModels,
         ]);
     }
 

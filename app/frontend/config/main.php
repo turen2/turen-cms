@@ -24,7 +24,7 @@ return [
     'sourceLanguage' => 'en-US', // 默认源语言
     'language' => 'zh-CN', // 默认当前环境使用的语言
     'controllerNamespace' => 'app\controllers',
-    'defaultRoute' => 'site/home',//'banjia/home/default', // 默认路由，后台默认首页
+    'defaultRoute' => 'banjia/home/default',//'site/home', // 默认路由，后台默认首页
     'layout' => 'main', // 默认布局
     'bootstrap' => [
         'log',

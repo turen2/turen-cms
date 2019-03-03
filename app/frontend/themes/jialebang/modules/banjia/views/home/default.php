@@ -73,7 +73,7 @@ $('.case-banner .swiper-slide img').hover(
     }
 );
 
-//热门服务
+//精选服务
 $('.hot-item li').mouseenter(function() {
 	$(this).find('.divA').stop().animate({bottom:'-60px'});
 	$(this).find('.a2').css({left:'0'});
@@ -187,12 +187,12 @@ $this->registerJs($js);
             <li>
                 <i class="insqzxfw_img2"></i>
                 <b>在线方案</b>
-                <p>纯在客服沟通定制专业方案</p>
+                <p>客服在线定制最优方案</p>
             </li>
             <li>
                 <i class="insqzxfw_img3"></i>
                 <b>售后保障</b>
-                <p>服务全程客服跟进，服务质量有保障</p>
+                <p>全程客服跟踪，服务质量有保障</p>
             </li>
             <li class="last">
                 <i class="insqzxfw_img4"></i>
@@ -200,23 +200,19 @@ $this->registerJs($js);
                 <p>预约即可享受9折优惠</p>
             </li>
         </ul>
-        <div class="insqzxfw_but"><a href="https://www.jiazhuang.com/baojia_3/" target="_blank">申请装修服务</a></div>
+        <div class="insqzxfw_but" style="display: none;"><a href="https://www.jiazhuang.com/baojia_3/" target="_blank">马上预约</a></div>
     </div>
 </div>
 
-
-
-<div class="hot-item container">
-    <div class="turen-head">
-        <h2 class="fl">热门服务<span class="txt">一站式的服务</span></h2>
-    </div>
+<div class="container block hot-item">
+    <div class="head-title"><h2>精选服务<span class="txt">热门精选服务到家</span></h2></div>
     <ul class="clearfix">
         <li>
             <a href="javascript:;" class="a1">
                 <img src="<?= $webUrl ?>images/gift/10556208_161709842590030.jpg">
                 <div class="divA">
                     <p class="p1">
-                        迪拜六日跟团游
+                        居民搬家
                     </p>
                     <p class="p2">
                         香港直飞+精选阿联酋航空(A380豪华客机)+当晚抵达全程入住4晚五星酒店！
@@ -224,7 +220,7 @@ $this->registerJs($js);
                     <p class="p3">
                         ¥
                         <span>
-                            6999
+                            120
                         </span>
                         起
                     </p>
@@ -232,7 +228,7 @@ $this->registerJs($js);
             </a>
             <a href="javascript:;" class="a2">
                 <p class="p4">
-                    迪拜六日跟团游
+                    居民搬家
                 </p>
                 <p class="p5">
                     香港直飞+精选阿联酋航空(A380豪华客机)+当晚抵达全
@@ -242,7 +238,7 @@ $this->registerJs($js);
                 <p class="p6">
                     ¥
                     <span>
-                        6999
+                        120
                     </span>
                     起
                 </p>
@@ -256,7 +252,7 @@ $this->registerJs($js);
                 <img src="<?= $webUrl ?>images/gift/10552347_231610350949916.jpg">
                 <div class="divA">
                     <p class="p1">
-                        埃及+迪拜10日跟团游
+                        办公室搬迁
                     </p>
                     <p class="p2">
                         全程4-5星酒店/金字塔/博特馆/度假圣地红海洪加达/迪拜/阿布扎比一次走遍！
@@ -264,7 +260,7 @@ $this->registerJs($js);
                     <p class="p3">
                         ¥
                         <span>
-                            8399
+                            199
                         </span>
                         起
                     </p>
@@ -272,7 +268,7 @@ $this->registerJs($js);
             </a>
             <a href="javascript:;" class="a2">
                 <p class="p4">
-                    埃及+迪拜10日跟团游
+                    办公室搬迁
                 </p>
                 <p class="p5">
                     全程4-5星酒店/金字塔/博特馆/度假圣地红海洪加达
@@ -282,7 +278,7 @@ $this->registerJs($js);
                 <p class="p6">
                     ¥
                     <span>
-                        8399
+                        199
                     </span>
                     起
                 </p>
@@ -296,7 +292,7 @@ $this->registerJs($js);
                 <img src="<?= $webUrl ?>images/gift/10527181_887630653793940.jpg">
                 <div class="divA">
                     <p class="p1">
-                        土耳其10日跟团游
+                        厂房搬迁
                     </p>
                     <p class="p2">
                         全程五星/免费车载WIFI/棉花堡/爱琴海/ 特洛伊古城/伊斯坦布尔风情!
@@ -304,7 +300,7 @@ $this->registerJs($js);
                     <p class="p3">
                         ¥
                         <span>
-                            8499
+                            599
                         </span>
                         起
                     </p>
@@ -312,7 +308,7 @@ $this->registerJs($js);
             </a>
             <a href="javascript:;" class="a2">
                 <p class="p4">
-                    土耳其10日跟团游
+                    厂房搬迁
                 </p>
                 <p class="p5">
                     全程五星/免费车载WIFI/棉花堡/爱琴海/
@@ -322,7 +318,7 @@ $this->registerJs($js);
                 <p class="p6">
                     ¥
                     <span>
-                        8499
+                        599
                     </span>
                     起
                 </p>
@@ -336,7 +332,7 @@ $this->registerJs($js);
                 <img src="<?= $webUrl ?>images/gift/224607_162375013321817.jpg">
                 <div class="divA">
                     <p class="p1">
-                        泰国曼谷+金沙岛+芭堤雅6日跟团游
+                        仓库搬迁
                     </p>
                     <p class="p2">
                         香港往返/深圳往返【德国啤酒屋】+品尝当地著名【78层自助餐】/品质保证
@@ -344,7 +340,7 @@ $this->registerJs($js);
                     <p class="p3">
                         ¥
                         <span>
-                            2199
+                            380
                         </span>
                         起
                     </p>
@@ -352,7 +348,7 @@ $this->registerJs($js);
             </a>
             <a href="javascript:;" class="a2">
                 <p class="p4">
-                    泰国曼谷+金沙+芭堤雅6日跟团游
+                    仓库搬迁
                 </p>
                 <p class="p5">
                     香港往返/深圳往返【德国啤酒屋】+品尝当地著名
@@ -362,7 +358,7 @@ $this->registerJs($js);
                 <p class="p6">
                     ¥
                     <span>
-                        2199
+                        380
                     </span>
                     起
                 </p>
@@ -376,7 +372,7 @@ $this->registerJs($js);
                 <img src="<?= $webUrl ?>images/gift/10527181_887630653793940.jpg">
                 <div class="divA">
                     <p class="p1">
-                        土耳其10日跟团游
+                        长途搬家
                     </p>
                     <p class="p2">
                         全程五星/免费车载WIFI/棉花堡/爱琴海/ 特洛伊古城/伊斯坦布尔风情!
@@ -384,7 +380,7 @@ $this->registerJs($js);
                     <p class="p3">
                         ¥
                         <span>
-                            8499
+                            198
                         </span>
                         起
                     </p>
@@ -392,7 +388,7 @@ $this->registerJs($js);
             </a>
             <a href="javascript:;" class="a2">
                 <p class="p4">
-                    土耳其10日跟团游
+                    长途搬家
                 </p>
                 <p class="p5">
                     全程五星/免费车载WIFI/棉花堡/爱琴海/
@@ -402,7 +398,7 @@ $this->registerJs($js);
                 <p class="p6">
                     ¥
                     <span>
-                        8499
+                        198
                     </span>
                     起
                 </p>
@@ -416,7 +412,7 @@ $this->registerJs($js);
                 <img src="<?= $webUrl ?>images/gift/224607_162375013321817.jpg">
                 <div class="divA">
                     <p class="p1">
-                        泰国曼谷+金沙岛+芭堤雅6日跟团游
+                        空调移机
                     </p>
                     <p class="p2">
                         香港往返/深圳往返【德国啤酒屋】+品尝当地著名【78层自助餐】/品质保证
@@ -424,7 +420,7 @@ $this->registerJs($js);
                     <p class="p3">
                         ¥
                         <span>
-                            2199
+                            99
                         </span>
                         起
                     </p>
@@ -432,7 +428,7 @@ $this->registerJs($js);
             </a>
             <a href="javascript:;" class="a2">
                 <p class="p4">
-                    泰国曼谷+金沙+芭堤雅6日跟团游
+                    空调移机
                 </p>
                 <p class="p5">
                     香港往返/深圳往返【德国啤酒屋】+品尝当地著名
@@ -442,7 +438,7 @@ $this->registerJs($js);
                 <p class="p6">
                     ¥
                     <span>
-                        2199
+                        99
                     </span>
                     起
                 </p>
@@ -454,7 +450,94 @@ $this->registerJs($js);
     </ul>
 </div>
 
-<div class="container news-center">
+<div class="container block hot-article">
+    <div class="head-title"><h2>搬家百科<span class="txt">快速获得搬家经验</span></h2></div>
+    <div class="hot-article-list">
+        <div class="h-n-box">
+            <div class="tit">
+                <h3>搬家百科</h3>
+                <a href="jiaju">更多&gt;</a></div>
+            <dl class="clearfix">
+                <dt>
+                    <a href="jiaju/191878.html">
+                        <img src="/images/test/dybwnoke.png" width="140" height="110" alt="实木家具日常保养攻略 实木家具保养技巧"></a>
+                </dt>
+                <dd>
+                    <a href="jiaju/191878.html" class="ellipsis">实木家具日常保养攻略 实木家具保养技巧</a>
+                    <p>平时在打扫卫生时，所使用的清洁工具不到碰撞到家具表面，也不用一些坚硬的金属制品或利器与家具发生摩擦。否则会</p>
+                    <span>2018-09-19</span></dd>
+            </dl>
+            <div class="list">
+                <a href="jiaju/191867.html" class="ellipsis">挑选浴室柜注意事项</a>
+                <p>浴室柜的台面是很容易受到磨损的地方，所以我们一定要选择那种耐刮耐磨、质地坚硬的台面，现在比较多见的浴室柜台</p>
+                <span>2018-09-14</span></div>
+            <div class="list">
+                <a href="jiaju/191862.html" class="ellipsis">橡木家具保养小贴士 橡木家具选购技巧</a>
+                <p>橡木质地均匀而又紧密，纹理美丽而又独特，木质纹理具有极强的装饰效果。橡木家具有独特的木纹，木纹越清晰价值越</p>
+                <span>2018-09-13</span></div>
+            <div class="list">
+                <a href="jiaju/191838.html" class="ellipsis">挑选书柜要点攻略 购买书柜的小贴士</a>
+                <p>书柜外形多种多样，也各有利弊。在购买前，消费者需预先考虑的是，书柜的功能是仅摆放书籍，还是摆放、储物与展示</p>
+                <span>2018-09-06</span></div>
+        </div>
+        <div class="h-n-box">
+            <div class="tit">
+                <h3>行业动态</h3>
+                <a href="jiadian">更多&gt;</a></div>
+            <dl class="clearfix">
+                <dt>
+                    <a href="jiadian/191883.html">
+                        <img src="/images/test/oykmbsvc.png" width="140" height="110" alt="购买电视柜技巧 挑选电视柜注意事项"></a>
+                </dt>
+                <dd>
+                    <a href="jiadian/191883.html" class="ellipsis">购买电视柜技巧 挑选电视柜注意事项</a>
+                    <p>我们都知道电器都是要散热的，所以电视柜材料也是要散热的才比较好。线路的安置也是我们购买电视柜的注意事项，一</p>
+                    <span>2018-09-20</span></dd>
+            </dl>
+            <div class="list">
+                <a href="jiadian/191844.html" class="ellipsis">使用加湿器注意事项 清洁加湿器的方法</a>
+                <p>不是随便什么水都可以放进加湿器里面的，各种加湿器对水质都有一定的要求，一般都是使用纯净水或者蒸馏水。大家根</p>
+                <span>2018-09-07</span></div>
+            <div class="list">
+                <a href="jiadian/191826.html" class="ellipsis">液晶电视怎么挑选 液晶电视挑选攻略</a>
+                <p>消费者可以直接忽略厂商提供的亮度和对比度参数，直接以自己的目测感受为主，方法为在5米以外的距离，查看屏幕显</p>
+                <span>2018-09-04</span></div>
+            <div class="list">
+                <a href="jiadian/191738.html" class="ellipsis">空调清洗方法 空调清洗注意事项</a>
+                <p>经过一整个夏天的考验，我们的空调再给我们带来凉爽的同时，自己已然是满是灰尘，有的家庭却并不以为意，很少主动</p>
+                <span>2018-08-16</span></div>
+        </div>
+        <div class="h-n-box" style="border-right:0;">
+            <div class="tit">
+                <h3>常见问题</h3>
+                <a href="jiancai">更多&gt;</a></div>
+            <dl class="clearfix">
+                <dt>
+                    <a href="jiancai/191873.html">
+                        <img src="/images/test/yzsgehpt.png" width="140" height="110" alt="挑选洗手盆方法 购买洗手盆小贴士"></a>
+                </dt>
+                <dd>
+                    <a href="jiancai/191873.html" class="ellipsis">挑选洗手盆方法 购买洗手盆小贴士</a>
+                    <p>在挑选玻璃洗手盆时不用过于执着其厚度，不一定是越厚的玻璃质量越好，一般厚度为12到15mm的厚度足够了，同</p>
+                    <span>2018-09-17</span></dd>
+            </dl>
+            <div class="list">
+                <a href="jiancai/191856.html" class="ellipsis">挑选沙发注意事项大全 购买沙发攻略</a>
+                <p>沙发的承重力决定了沙发的使用寿命，而沙发的框架又直接决定了沙发的承重力。沙发结构的稳固度的关键在于其内部框</p>
+                <span>2018-09-11</span></div>
+            <div class="list">
+                <a href="jiancai/191808.html" class="ellipsis">挑选卫浴要注意哪些方面 挑选卫浴注意事项大全</a>
+                <p>面盆选购要配合浴室的整体装修环境，现在的大部分浴室以铺贴瓷砖、地砖为主，所以，陶瓷材质的面盆也是目前市场上</p>
+                <span>2018-08-30</span></div>
+            <div class="list">
+                <a href="jiancai/191792.html" class="ellipsis">挑选卫浴注意事项大全 挑选卫浴技巧介绍</a>
+                <p>选浴室柜主要就是考虑防污能力及釉面工艺，其次就是看款式与整体是否统一，还有柜门开关和抽屉阻尼使用是否顺滑，</p>
+                <span>2018-08-27</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="container news-center" style="display: none;">
     <div class="clearfix">
         <dl class="box">
             <dt>
@@ -501,28 +584,7 @@ $this->registerJs($js);
 </div>
 
 <div class="work-case container">
-    <div class="img-top clearfix">
-        <h2 class="fl">现场案例动态<span class="txt">一站式的服务、服务后期持续跟进</span></h2>
-        <div class="img-nav fr">
-            <ul class="clearfix">
-                <li>
-                    <a href="javascript:;" target="_blank">玄关</a>
-                    <span class="line-p">|</span>
-                </li>
-                <li>
-                    <a href="javascript:;" target="_blank">玄关</a>
-                    <span class="line-p">|</span>
-                </li>
-                <li>
-                    <a href="javascript:;" target="_blank">玄关</a>
-                    <span class="line-p">|</span>
-                </li>
-                <li>
-                    <a class="more-info" href="javascript:;" target="_blank">更多效果图 &gt;</a>
-                </li>
-            </ul>
-        </div>
-    </div>
+    <div class="head-title"><h2>现场案例动态<span class="txt">一站式的服务、服务后期持续跟进</span></h2></div>
     <div class="case-box clearfix">
         <div class="case-banner">
             <a class="arrow arrow-left" href="#"><span></span></a>
@@ -650,18 +712,18 @@ $this->registerJs($js);
     <div class="head-title"><h2>用户好评<span class="txt">缩小的子标题</span></h2></div>
     <div class="comment-list">
         <p>评论列表</p>
-        <p>首页客户好评：https://2.swiper.com.cn/demo/senior/index.html</p>
+        <p></p>
     </div>
 </div>
 
 <div class="container block work-star">
-    <div class="head-title"><h2>劳动之星<span class="txt">缩小的子标题</span></h2></div>
+    <div class="head-title"><h2>嘉乐邦团队<span class="txt">搬家我们是认真的</span></h2></div>
     <div class="star-list">
-        <p>模范列表</p>
+        <p>嘉乐邦团队之星介绍</p>
     </div>
 </div>
 
-<div class="container bao-zhang">
+<div class="container bao-zhang" style="display: none;">
     <div class="turen-head">
         <h2 class="fl">关于服务保障<span class="txt">一站式的服务</span></h2>
     </div>
