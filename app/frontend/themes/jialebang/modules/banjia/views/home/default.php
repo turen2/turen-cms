@@ -89,6 +89,24 @@ $('.hot-item li').mouseenter(function() {
 	$(this).children('.a2').find('.p6').css({transform:'scale(1.3)'});
 	$(this).children('.a2').find('.p7').css({bottom:'-50px'});
 });
+
+//用户好评滚动
+var commentSwiper = new Swiper('.home-comment-slide .swiper-container', {
+    loop: true,//循环
+    autoplay : 3200,//可选选项，自动滑动
+    pagination: '.home-comment-slide .pagination',
+    grabCursor: true,
+    paginationClickable: true,
+    autoplayDisableOnInteraction: true,//用户操作后，autoplay将禁止
+});
+$('.home-comment-slide .arrow-left').on('click', function(e){
+    e.preventDefault()
+    commentSwiper.swipePrev()
+});
+$('.home-comment-slide .arrow-right').on('click', function(e){
+    e.preventDefault()
+    commentSwiper.swipeNext()
+});
 EOF;
 $this->registerJs($js);
 ?>
@@ -176,7 +194,10 @@ $this->registerJs($js);
 </div>
 
 <div class="container block work-flow">
-    <div class="head-title"><h2>服务流程<span class="txt">标准化质量输出</span></h2></div>
+    <div class="head-title">
+        <h2><span>服务流程</span><hr></h2>
+        <p class="txt">标准化质量输出</p>
+    </div>
     <div class="flow-content">
         <ul class="clearfix">
             <li class="first">
@@ -205,7 +226,10 @@ $this->registerJs($js);
 </div>
 
 <div class="container block hot-item">
-    <div class="head-title"><h2>精选服务<span class="txt">热门精选服务到家</span></h2></div>
+    <div class="head-title">
+        <h2><span>精选服务</span><hr></h2>
+        <p class="txt">热门精选服务到家</p>
+    </div>
     <ul class="clearfix">
         <li>
             <a href="javascript:;" class="a1">
@@ -451,7 +475,10 @@ $this->registerJs($js);
 </div>
 
 <div class="container block hot-article">
-    <div class="head-title"><h2>搬家百科<span class="txt">快速获得搬家经验</span></h2></div>
+    <div class="head-title">
+        <h2><span>搬家百科</span><hr></h2>
+        <p class="txt">快速获得搬家经验</p>
+    </div>
     <div class="hot-article-list">
         <div class="h-n-box">
             <div class="tit">
@@ -537,7 +564,7 @@ $this->registerJs($js);
     </div>
 </div>
 
-<div class="container news-center" style="display: none;">
+<div class="container block news-center" style="display: none;">
     <div class="clearfix">
         <dl class="box">
             <dt>
@@ -583,8 +610,11 @@ $this->registerJs($js);
     </div>
 </div>
 
-<div class="work-case container">
-    <div class="head-title"><h2>现场案例动态<span class="txt">一站式的服务、服务后期持续跟进</span></h2></div>
+<div class="work-case block container">
+    <div class="head-title">
+        <h2><span>现场案例动态</span><hr></h2>
+        <p class="txt">一站式的服务、服务后期持续跟进</p>
+    </div>
     <div class="case-box clearfix">
         <div class="case-banner">
             <a class="arrow arrow-left" href="#"><span></span></a>
@@ -675,57 +705,90 @@ $this->registerJs($js);
     </div>
 </div>
 
-<div class="container" style="background: #000;color: white">
-    <br />
-    下单滚动效果：http://ask.17house.com/c-all/1.html
-    <br />
-    幻灯片轮播+免费咨询（http://91.jiaju.sina.com.cn/bj/）
-    <br />
-    全局链接：
-    <br />
-    <a href="<?= Url::to(['/banjia/news/list']) ?>" target="_blank">新闻news</a>
-    <br />
-    <a href="<?= Url::to(['/banjia/baike/list']) ?>" target="_blank">百科baike</a>
-    <br />
-    <a href="<?= Url::to(['/banjia/faqs/index']) ?>" target="_blank">问答faqs</a>
-    <br />
-    <a href="<?= Url::to(['/banjia/service/detail']) ?>" target="_blank">服务service</a>
-    <br />
-    <a href="<?= Url::to(['/banjia/calculator/index']) ?>" target="_blank">计价器calculator</a>
-    <br />
-    <a href="<?= Url::to(['/banjia/case/list']) ?>" target="_blank">项目case</a>
-    <br />
-    <a href="<?= Url::to(['/banjia/page/info']) ?>" target="_blank">通用简单页面page</a>
-    <br />
-    <a href="<?= Url::to(['/banjia/calendar/index']) ?>" target="_blank">吉日日历calendar</a>
-    <br />
-    <a href="<?= Url::to(['/banjia/case/list']) ?>" target="_blank">案例</a>
-
-    <br />所有使用装修之家的：弹出窗口样式，各种确认窗口，填写窗口
-
-    订单滚动+公司公告列表，滚动：http://shenzhen.17house.com/xftc/
-    <br />
-    头部：https://wenda.tobosu.com/
-</div>
-
 <div class="container block user-comment">
-    <div class="head-title"><h2>用户好评<span class="txt">缩小的子标题</span></h2></div>
+    <div class="head-title">
+        <h2><span>用户好评</span><hr></h2>
+        <p class="txt">针对您定制最合适的搬家方案</p>
+    </div>
     <div class="comment-list">
-        <p>评论列表</p>
-        <p></p>
+        <div class="home-comment-slide">
+            <a class="arrow arrow-left" title="向左滑动" href="#"></a>
+            <a class="arrow arrow-right" title="向右滑动" href="#"></a>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="user-info">
+                            <img class="info-img" src="/images/test/tt1.png" />
+                            <div class="info-txt">
+                                <div class="info-txt-p br5">它是谁，说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么</div>
+                                <div>
+                                    <h6>嘉乐邦企业级解决方案</h6>
+                                    <span>全国布局100+城市，一二三线城市全覆盖</span>
+                                    <span>一个账户，全国用车</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="user-info">
+                            <img class="info-img" src="/images/test/tt2.png" />
+                            <div class="info-txt">
+                                <div class="info-txt-p">它是谁，说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么</div>
+                                <div>
+                                    <h6>嘉乐邦企业级解决方案</h6>
+                                    <span>全国布局100+城市，一二三线城市全覆盖</span>
+                                    <span>一个账户，全国用车</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="user-info">
+                            <img class="info-img" src="/images/test/tt4.png" />
+                            <div class="info-txt">
+                                <div class="info-txt-p">它是谁，说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么</div>
+                                <div>
+                                    <h6>嘉乐邦企业级解决方案</h6>
+                                    <span>全国布局100+城市，一二三线城市全覆盖</span>
+                                    <span>一个账户，全国用车</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="user-info">
+                            <img class="info-img" src="/images/test/tt5.png" />
+                            <div class="info-txt">
+                                <div class="info-txt-p">它是谁，说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么</div>
+                                <div>
+                                    <h6>嘉乐邦企业级解决方案</h6>
+                                    <span>全国布局100+城市，一二三线城市全覆盖</span>
+                                    <span>一个账户，全国用车</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pagination"></div>
+            </div>
+        </div>
     </div>
 </div>
 
 <div class="container block work-star">
-    <div class="head-title"><h2>嘉乐邦团队<span class="txt">搬家我们是认真的</span></h2></div>
+    <div class="head-title">
+        <h2><span>嘉乐邦团队</span><hr></h2>
+        <p class="txt">搬家我们是认真的</p>
+    </div>
     <div class="star-list">
         <p>嘉乐邦团队之星介绍</p>
     </div>
 </div>
 
 <div class="container bao-zhang" style="display: none;">
-    <div class="turen-head">
-        <h2 class="fl">关于服务保障<span class="txt">一站式的服务</span></h2>
+    <div class="head-title">
+        <h2><span>关于服务保障</span><hr></h2>
+        <p class="txt">一站式的服务</p>
     </div>
     <div class="clearfix">
         <ul class="bao-zhang-list clearfix">

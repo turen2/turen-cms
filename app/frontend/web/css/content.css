@@ -1027,24 +1027,43 @@
 /* 问答功能end */
 
 /* 首页公共部分 */
-.turen-head {
-    height: 60px;
+.turen-home .head-title {
+    margin-top: 42px;
+    margin-bottom: 16px;
+    text-align: center;
 }
-
-.turen-head h2 {
-    font-size: 24px;
+.turen-home .head-title h2 {
+    position: relative;
+    width: 600px;
+    margin: 15px auto 0 auto;
     font-weight: normal;
-    color: #333;
-    line-height: 60px;
 }
-
-.turen-head .txt {
-    font-size: 12px;
-    line-height: 1.5;
-    color: #999;
-    margin: 25px 0px 0px 10px;
+.turen-home .head-title h2 span {
+    position: relative;
+    background-color: #fff !important;
+    z-index: 1;
+    padding: 0 30px;
+    font-size: 26px;
+    top: -5px;
 }
-
+.turen-home .head-title h2 hr {
+    position: absolute;
+    width: 100%;
+    display: block;
+    border: none;
+    top: 50%;
+    height: 1px;
+    background: #d9d9d9;
+}
+.turen-home .head-title .txt {
+    margin-top: 10px;
+    color: #888;
+    font-size: 14px;
+}
+.turen-home .work-star {
+    height: 300px;
+    background: orangered;
+}
 /* 首页公共部分end */
 
 /* 服务流程 */
@@ -1330,6 +1349,109 @@
     margin-top:10px;
     white-space:nowrap;
 }
+/* 用户好评 */
+.home-comment-slide {
+    position: relative;
+}
+
+.home-comment-slide .swiper-container {
+    height: 380px;
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+}
+
+.home-comment-slide .swiper-container .user-info {
+    margin-left: 51px;
+    margin-right: 51px;
+    height: 380px;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    background: white;
+}
+
+.home-comment-slide .swiper-container .swiper-slide .info-img {
+    display: block;
+    width: 498px;
+    height: 312px;
+    float: left;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.home-comment-slide .swiper-container .swiper-slide .info-txt {
+    margin-left: 498px;
+    width: 590px;
+    height: 380px;
+}
+
+.home-comment-slide .swiper-container .swiper-slide .info-txt-p {
+    height: 150px;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding: 20px;
+    line-height: 20px;
+    background: #F9F9F9;
+    color: #666;
+}
+
+.home-comment-slide .swiper-container .swiper-slide .info-txt h6 {
+    color: #0099e9;
+    margin: 36px 0px 15px 15px;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.home-comment-slide .swiper-container .swiper-slide .info-txt span {
+    display: block;
+    color: black;
+    margin: 15px;
+    font-size: 14px;
+}
+
+.home-comment-slide .swiper-container .pagination {
+    position: absolute;
+    z-index: 20;
+    left: 68%;
+    bottom: 50px;
+}
+
+.home-comment-slide .swiper-container .swiper-pagination-switch {
+    display: inline-block;
+    border: 1px solid #ff5555;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    margin-right: 10px;
+    opacity: 0.8;
+    background: #fff;
+    border: 1px solid #666666;
+    cursor: pointer;
+}
+
+.home-comment-slide .swiper-container .swiper-active-switch {
+    background: #0099e9;
+}
+
+.home-comment-slide .arrow {
+    position: absolute;
+    z-index: 2;
+    bottom: 137px;
+    width: 24px;
+    height: 40px;
+    background: url('../images/common/btn_mian_arrow.png') no-repeat;
+}
+
+.home-comment-slide .arrow-left {
+    background-position: 100% 50%;
+    right: -24px;
+}
+
+.home-comment-slide .arrow-right {
+    background-position: 0 50%;
+    left: -24px;
+}
+/* 用户好评end */
 /* 首页百科end */
 
 /* 首页新闻 */

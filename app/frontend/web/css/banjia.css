@@ -11,30 +11,6 @@
     width: 330px;
     background: red;
 }
-.turen-home .head-title h2 {
-    height: 60px;
-    line-height: 60px;
-    font-size: 22px;
-    font-weight: normal;
-    text-align: center;
-    color: #333;
-    margin-top: 30px;
-    margin-bottom: 10px;
-}
-.turen-home .head-title .txt {
-    font-size: 12px;
-    line-height: 1.5;
-    color: #999;
-    margin: 25px 0px 0px 10px;
-}
-.turen-home .user-comment {
-    height: 300px;
-    background: black;
-}
-.turen-home .work-star {
-    height: 300px;
-    background: orangered;
-}
 /* 首页end */
 
 /* 计价器 */
