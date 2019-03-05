@@ -4,6 +4,8 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
+
+use app\widgets\phonecode\PhoneCodePopWidget;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
@@ -12,7 +14,6 @@ use yii\widgets\LinkPager;
 use yii\widgets\LinkSorter;
 use yii\widgets\ListView;
 use app\widgets\SideBoxListWidget;
-use app\widgets\phonecode\VerifyCodeWidget;
 use app\assets\LayerAsset;
 
 $this->title = '常见问答';
@@ -181,7 +182,7 @@ $this->registerJs($js);
 ?>
 
 <?php //只提供了一个弹窗模板，和对应的验证码生成action ?>
-<?= VerifyCodeWidget::widget([
+<?= PhoneCodePopWidget::widget([
     'templateId' => 'verifycode-tpl',
 ]); ?>
 

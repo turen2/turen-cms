@@ -1049,37 +1049,37 @@
     border-bottom: solid 2px #0099e9;
     color: #0099e9;
 }
-.aboutCentent {
+.about-centent {
     margin-bottom: 20px;
 }
-.aboutInfor p {
+.about-infor p {
     line-height: 24px;
     font-size: 14px;
     color: #333;
 }
-.aboutInfor>p:first-child {
+.about-infor>p:first-child {
     padding-top: 40px;
 }
-.website_color {
+.website-color {
     color: #0099e9 !important;
 }
-.aboutInfor ul {
+.about-infor ul {
     margin: 30px 0 38px;
     overflow: hidden;
 }
-.aboutInfor ul li {
+.about-infor ul li {
     width: 23%;
     float: left;
     height: 160px;
     margin-right: 20px;
 }
-.aboutInfor ul li h4 {
+.about-infor ul li h4 {
     font-size: 20px;
     color: #0099e9;
     font-weight: 400;
     margin-bottom: 15px;
 }
-.addOurs {
+.add-ours {
     max-width: 1140px;
     margin: 0 auto;
     padding: 0 20px;

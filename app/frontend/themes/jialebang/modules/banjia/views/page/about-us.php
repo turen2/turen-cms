@@ -6,6 +6,15 @@
  */
 $this->title = '关于我们';
 $webUrl = Yii::getAlias('@web/');
+
+$js = <<<EOF
+$('.aboutnav li').on('click', function() {
+    var i = $(this).index();
+    $('.aboutnav li').removeClass('on').eq(i).addClass('on');
+    $('.tabbox-content').hide().eq(i).show();
+});
+EOF;
+$this->registerJs($js);
 ?>
 
 <div class="about-us-banner"></div>
@@ -17,17 +26,17 @@ $webUrl = Yii::getAlias('@web/');
         </ul>
     </div>
     <div class="tabbox">
-        <div class="aboutInfor" style="display: block; margin-top: 0rem;">
-            <p class="aboutCentent">嘉乐邦创立于2013年8月，是一家典型的“互联网+生活服务”平台，在成立之前就获得了雷军/顺为资本的天使投资，提供优质家庭生活服务和企业后勤服务，用户可以在线预约保洁服务、家电清洗、家居保养、保姆、月嫂、育儿嫂、老人陪护、除甲醛、搬家、维修安装、空气治理等服务，并覆盖了北京、上海、广州、深圳、杭州、成都、南京、西安、重庆等80多个城市。</p>
-            <p class="aboutCentent">公司通过高频的保洁服务为入口打品牌，建立标准化的业务研究体系、培训体系和品控体系，并不断在供给侧进行创新改革，获得了良好的市场口碑和地位。2015年初，随着互联网家装及互联网公寓的兴起，公司正式进入企业服务市场，并陆续搭建了基于企业保洁为入口，企业养护服务、企业送水、绿植养护、企业用车等为辅的企业后勤一站式服务平台。公司技术团队实力雄厚，通过自主开发的智能调度系统有效的提高了阿姨及第三方商家的服务效率，阿姨平均每月比传统方式多挣30%以上。</p>
+        <div class="tabbox-content about-infor" style="display: block;">
+            <p class="about-centent">嘉乐邦创立于2013年8月，是一家典型的“互联网+生活服务”平台，在成立之前就获得了雷军/顺为资本的天使投资，提供优质家庭生活服务和企业后勤服务，用户可以在线预约保洁服务、家电清洗、家居保养、保姆、月嫂、育儿嫂、老人陪护、除甲醛、搬家、维修安装、空气治理等服务，并覆盖了北京、上海、广州、深圳、杭州、成都、南京、西安、重庆等80多个城市。</p>
+            <p class="about-centent">公司通过高频的保洁服务为入口打品牌，建立标准化的业务研究体系、培训体系和品控体系，并不断在供给侧进行创新改革，获得了良好的市场口碑和地位。2015年初，随着互联网家装及互联网公寓的兴起，公司正式进入企业服务市场，并陆续搭建了基于企业保洁为入口，企业养护服务、企业送水、绿植养护、企业用车等为辅的企业后勤一站式服务平台。公司技术团队实力雄厚，通过自主开发的智能调度系统有效的提高了阿姨及第三方商家的服务效率，阿姨平均每月比传统方式多挣30%以上。</p>
             <p>使命：</p>
-            <p class="website_color">让家庭生活更美好</p>
+            <p class="website-color">让家庭生活更美好</p>
             <p>我们专注地服务于注重生活品质的中高端人群，帮他们从繁杂的家务中解放出来，让他们有更多的时间去打拼事业，去陪伴家人。</p>
-            <p class="website_color">让企业办公更愉悦</p>
-            <p class="aboutCentent">我们致力于提高中小企业的后勤服务体验，提供更高品质、更高效率、更低成本的一站式整体服务，让企业后勤更高效，办公更愉悦。</p>
+            <p class="website-color">让企业办公更愉悦</p>
+            <p class="about-centent">我们致力于提高中小企业的后勤服务体验，提供更高品质、更高效率、更低成本的一站式整体服务，让企业后勤更高效，办公更愉悦。</p>
             <p>愿景：</p>
             <p>价值观：</p>
-            <p class="website_color aboutCentent">必胜、激情、担当、坚持、团队合作、拥抱变化</p>
+            <p class="website-color about-centent">必胜、激情、担当、坚持、团队合作、拥抱变化</p>
 
             <p>公司地址：深圳深圳深圳深圳深圳深圳深圳深圳深圳深圳</p>
             <p>客服电话：400-000-0000</p>
@@ -55,7 +64,7 @@ $webUrl = Yii::getAlias('@web/');
                 </li>
             </ul>
         </div>
-        <div class="addOurs" style="margin-top: 0rem;">
+        <div class="tabbox-content add-ours" style="display: none;">
             <div class="addtop">
                 <p>公司长期招聘出色并富有战斗力的手机开发攻城湿、PHP攻城湿、运维攻城湿、运营客服经理、市场推广经理等。</p>
                 <p>有兴趣请发邮件至 <a href="mailto:ayb_hr@jialebang100.com">ayb_hr@jialebang100.com</a>，并注明申请职位名称。我们这帮家伙有多靠谱，只有你进来才知道。</p>
