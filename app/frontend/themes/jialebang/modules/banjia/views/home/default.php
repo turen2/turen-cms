@@ -92,8 +92,8 @@ $('.hot-item li').mouseenter(function() {
 
 //用户好评滚动
 var commentSwiper = new Swiper('.home-comment-slide .swiper-container', {
-    loop: true,//循环
-    autoplay : 3200,//可选选项，自动滑动
+    loop: true,//循环切换
+    //autoplay : 2000,//可选选项，自动滑动
     pagination: '.home-comment-slide .pagination',
     grabCursor: true,
     paginationClickable: true,
@@ -720,7 +720,7 @@ $this->registerJs($js);
                         <div class="user-info">
                             <img class="info-img" src="/images/test/tt1.png" />
                             <div class="info-txt">
-                                <div class="info-txt-p br5">它是谁，说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么</div>
+                                <div class="info-txt-p br5">李总，精密仪器加工厂老板，每天需要拉两三趟货往不同的下游工厂，李总与一家物流公司签订了合同，即使单趟也按来回双程收费，受制于物流公司只有4.2米或以上货车，即时出货量不多，也无可奈何赔上大车价格。“运输成本下不来，赚再多也是赔。”李总说。</div>
                                 <div>
                                     <h6>嘉乐邦企业级解决方案</h6>
                                     <span>全国布局100+城市，一二三线城市全覆盖</span>
@@ -733,7 +733,7 @@ $this->registerJs($js);
                         <div class="user-info">
                             <img class="info-img" src="/images/test/tt2.png" />
                             <div class="info-txt">
-                                <div class="info-txt-p">它是谁，说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么</div>
+                                <div class="info-txt-p">李总，精密仪器加工厂老板，每天需要拉两三趟货往不同的下游工厂，李总与一家物流公司签订了合同，即使单趟也按来回双程收费，受制于物流公司只有4.2米或以上货车，即时出货量不多，也无可奈何赔上大车价格。“运输成本下不来，赚再多也是赔。”李总说。</div>
                                 <div>
                                     <h6>嘉乐邦企业级解决方案</h6>
                                     <span>全国布局100+城市，一二三线城市全覆盖</span>
@@ -746,7 +746,7 @@ $this->registerJs($js);
                         <div class="user-info">
                             <img class="info-img" src="/images/test/tt4.png" />
                             <div class="info-txt">
-                                <div class="info-txt-p">它是谁，说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么</div>
+                                <div class="info-txt-p">李总，精密仪器加工厂老板，每天需要拉两三趟货往不同的下游工厂，李总与一家物流公司签订了合同，即使单趟也按来回双程收费，受制于物流公司只有4.2米或以上货车，即时出货量不多，也无可奈何赔上大车价格。“运输成本下不来，赚再多也是赔。”李总说。</div>
                                 <div>
                                     <h6>嘉乐邦企业级解决方案</h6>
                                     <span>全国布局100+城市，一二三线城市全覆盖</span>
@@ -759,7 +759,7 @@ $this->registerJs($js);
                         <div class="user-info">
                             <img class="info-img" src="/images/test/tt5.png" />
                             <div class="info-txt">
-                                <div class="info-txt-p">它是谁，说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么说了什么</div>
+                                <div class="info-txt-p">李总，精密仪器加工厂老板，每天需要拉两三趟货往不同的下游工厂，李总与一家物流公司签订了合同，即使单趟也按来回双程收费，受制于物流公司只有4.2米或以上货车，即时出货量不多，也无可奈何赔上大车价格。“运输成本下不来，赚再多也是赔。”李总说。</div>
                                 <div>
                                     <h6>嘉乐邦企业级解决方案</h6>
                                     <span>全国布局100+城市，一二三线城市全覆盖</span>
@@ -775,13 +775,96 @@ $this->registerJs($js);
     </div>
 </div>
 
-<div class="container block work-star">
+<div class="container block work-star" style="display: none;">
     <div class="head-title">
         <h2><span>嘉乐邦团队</span><hr></h2>
         <p class="txt">搬家我们是认真的</p>
     </div>
     <div class="star-list">
         <p>嘉乐邦团队之星介绍</p>
+    </div>
+</div>
+
+<div class="container block service-company">
+    <div class="head-title">
+        <h2><span>重要合作客户</span><hr></h2>
+        <p class="txt">大企业背书，服务值得信赖</p>
+    </div>
+    <div class="company-list">
+        <ul class="logo-show">
+            <li>
+                <p class="logo-box">
+                    <img src="/images/test/case_5_11.png" alt="招商基金">
+                </p>
+                <p>招商基金</p>
+            </li>
+            <li>
+                <p class="logo-box">
+                    <img src="/images/test/case_5_11.png" alt="招商基金">
+                </p>
+                <p>招商基金</p>
+            </li>
+            <li>
+                <p class="logo-box">
+                    <img src="/images/test/case_5_11.png" alt="招商基金">
+                </p>
+                <p>招商基金</p>
+            </li>
+            <li>
+                <p class="logo-box">
+                    <img src="/images/test/case_5_11.png" alt="招商基金">
+                </p>
+                <p>招商基金</p>
+            </li>
+            <li>
+                <p class="logo-box">
+                    <img src="/images/test/case_5_11.png" alt="招商基金">
+                </p>
+                <p>招商基金</p>
+            </li>
+            <li>
+                <p class="logo-box">
+                    <img src="/images/test/case_5_11.png" alt="招商基金">
+                </p>
+                <p>招商基金</p>
+            </li>
+            <li>
+                <p class="logo-box">
+                    <img src="/images/test/case_5_11.png" alt="招商基金">
+                </p>
+                <p>招商基金</p>
+            </li>
+            <li>
+                <p class="logo-box">
+                    <img src="/images/test/case_5_11.png" alt="招商基金">
+                </p>
+                <p>招商基金</p>
+            </li>
+            <li>
+                <p class="logo-box">
+                    <img src="/images/test/case_5_11.png" alt="招商基金">
+                </p>
+                <p>招商基金</p>
+            </li>
+            <li>
+                <p class="logo-box">
+                    <img src="/images/test/case_5_11.png" alt="招商基金">
+                </p>
+                <p>招商基金</p>
+            </li>
+            <li>
+                <p class="logo-box">
+                    <img src="/images/test/case_5_11.png" alt="招商基金">
+                </p>
+                <p>招商基金</p>
+            </li>
+            <li>
+                <p class="logo-box">
+                    <img src="/images/test/case_5_11.png" alt="招商基金">
+                </p>
+                <p>招商基金</p>
+            </li>
+        </ul>
     </div>
 </div>
 
