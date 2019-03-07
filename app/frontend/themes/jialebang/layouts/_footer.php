@@ -45,7 +45,7 @@ $webUrl = Yii::getAlias('@web/');
     				<h3>手机版访问</h3>
     				<div class="inner-con">
     					<div class="wap-qrcode">
-    						<img src="<?= $webUrl ?>images/qrcode.png" />
+    						<img src="<?= $webUrl ?>images/qr/qrcode1.png" />
     						<p>手机版一扫"掌"握！</p>
     					</div>
     				</div>

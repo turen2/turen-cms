@@ -104,9 +104,9 @@ $this->registerJs($js);
                 </ul>
                 <div class="nav-qrcode">
                     <a href="javascript:;">
-                        <img class="wap" src="<?= $webUrl ?>images/common/nav_app.png">
+                        <img class="wap" src="<?= $webUrl ?>images/common/nav_mobile.png">
                         <p class="nav-box nav-wap">
-                            <img class="nav-qr" src="<?= $webUrl ?>images/common/xcx.png">
+                            <img class="nav-qr" src="<?= $webUrl ?>images/qr/qrcode2.png">
                             <br />
                             <span class="qr-txt">手机版访问</span>
                         </p>
@@ -114,7 +114,7 @@ $this->registerJs($js);
                     <a href="javascript:;" style="display: none;">
                         <img class="wx" src="<?= $webUrl ?>images/common/nav_weixin.png">
                         <p class="nav-box nav-wx">
-                            <img class="nav-qr" src="<?= $webUrl ?>images/common/xcx.png">
+                            <img class="nav-qr" src="<?= $webUrl ?>images/qr/qrcode2.png">
                             <br />
                             <span class="qr-txt">官方客服</span>
                         </p>

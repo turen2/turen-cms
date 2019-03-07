@@ -61,7 +61,7 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel]);
 		<img alt="" src="<?= empty($model->picurl)?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($model->picurl, true, AliyunOss::OSS_STYLE_NAME180) ?>" style="height: 60px;">
 		</span></td>
 		<td><?= $model->title; ?></td>
-		<td><?= $model->getAdTypeName().' ['.$model->ad_type_id.']'; ?></td>
+		<td><?= $model->getAdTypeName(false, true).' ['.$model->ad_type_id.']'; ?></td>
 		<td><?= $model->admode; ?></td>
 		<td><?= EditItemWidget::widget([
 		    'model' => $model,

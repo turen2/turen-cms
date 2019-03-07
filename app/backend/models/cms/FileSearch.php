@@ -65,6 +65,9 @@ class FileSearch extends File
                 ],
             ],
         ]);
+
+        //清空behaviors行为
+        $this->detachBehavior('columnParent');
         
         $this->load($params);
 

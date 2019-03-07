@@ -1,0 +1,50 @@
+/* 布局样式 */
+
+.baike-list,
+.baike-detail,
+.news-list,
+.news-detail,
+.case-list,
+.case-detail,
+.faqs-index,
+.faqs-ask,
+.tag-list,
+.calendar-index,
+.page-info {
+    padding-bottom: 35px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ebebeb;
+}
+
+.turen-box {
+    overflow: hidden;
+}
+
+.turen-box .sidebox {
+    width: 285px;
+    float: left;
+}
+
+.turen-box .midcontent {
+    width: 885px;
+    float: left;
+    background-color: #fff;
+    padding-bottom: 20px;
+}
+
+.baike-detail .midcontent {
+    background: transparent;
+}
+
+.turen-page {
+    background-color: #fff;
+}
+
+/* 布局结构有：s2m左小右大，m2s左大右小，sms左右侧栏中间大 */
+.turen-box.s2m .midcontent {
+    margin-left: 20px;
+}
+.turen-box.m2s .sidebox {
+    margin-left: 20px;
+}
+

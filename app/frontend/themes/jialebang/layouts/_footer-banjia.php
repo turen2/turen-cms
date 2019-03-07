@@ -7,9 +7,11 @@
 
 use app\assets\ToTopAsset;
 use common\models\cms\Block;
+use common\models\ext\LinkType;
 use common\models\ext\Link;
 use common\models\ext\Nav;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 $webUrl = Yii::getAlias('@web/');
 ToTopAsset::register($this);
@@ -60,10 +62,13 @@ if($blockModel) {
     				</div>
     			</div>
     			<div class="inner-block third">
-    				<h3>了解家乐邦<span class="more-friend-link"><a target="_blank" href="http://turen.com/banjia/faqs/index.html" class="external">更多帮助 »</a></span></h3>
+                    <?php
+                    $bottomLinkType = LinkType::findOne(['id' => Yii::$app->params['config_face_banjia_cn_bottom_link_type_id']]);
+                    $bottomLinks = Link::find()->current()->where(['link_type_id' => Yii::$app->params['config_face_banjia_cn_bottom_link_type_id']])->orderBy(['orderid' => SORT_DESC])->all();
+                    ?>
+    				<h3><?= is_null($bottomLinkType)?'':$bottomLinkType->typename ?><span class="more-friend-link"><a target="_blank" href="<?= Url::to(['/banjia/faqs/index']) ?>" class="external">更多帮助 »</a></span></h3>
     				<ul class="wp-tag-cloud">
                         <?php
-                        $bottomLinks = Link::find()->current()->where(['link_type_id' => Yii::$app->params['config_face_banjia_cn_bottom_link_type_id']])->orderBy(['orderid' => SORT_DESC])->all();
                         foreach ($bottomLinks as $bottomLink) {
                             echo '<li>'.Html::a($bottomLink->webname, $bottomLink->linkurl).'</li>';
                         }
@@ -74,7 +79,7 @@ if($blockModel) {
     				<h3>手机版访问</h3>
     				<div class="inner-con">
     					<div class="wap-qrcode">
-    						<img src="<?= $webUrl ?>images/qrcode.png" />
+    						<img src="<?= $webUrl ?>images/qr/qrcode1.png" />
     						<p>手机版一扫"掌"握！</p>
     					</div>
     				</div>
@@ -120,7 +125,7 @@ if($blockModel) {
             <p>
                 <img src="<?= $webUrl ?>images/xcx.png">
                 <span>扫描小程序</span>
-                <em>看装修直播</em>
+                <em>看搬家直播</em>
             </p>
             <p>
                 <img src="<?= $webUrl ?>images/shequn.png">

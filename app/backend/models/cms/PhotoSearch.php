@@ -66,6 +66,9 @@ class PhotoSearch extends Photo
             ],
         ]);
 
+        //清空behaviors行为
+        $this->detachBehavior('columnParent');
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -87,6 +90,7 @@ class PhotoSearch extends Photo
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->keyword])
+            ->andFilterWhere(['like', 'flag', $this->flag])
             ->andFilterWhere(['like', 'slug', $this->keyword])
             ->andFilterWhere(['like', 'source', $this->keyword])
             ->andFilterWhere(['like', 'author', $this->keyword])

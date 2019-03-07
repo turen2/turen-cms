@@ -98,7 +98,7 @@ $this->registerJs($js);
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('adtext')?><?php if($model->isAttributeRequired('adtext')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'adtext', ['class' => 'input']) ?>
+                <?= Html::activeTextarea($model, 'adtext', ['class' => 'textdesc']) ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>

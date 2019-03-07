@@ -15,18 +15,31 @@ $('.aboutnav li').on('click', function() {
 });
 EOF;
 $this->registerJs($js);
+
+$part = Yii::$app->getRequest()->get('part', 'pa');//pa、pb、pc、pd
 ?>
+
+<style>
+    .tabbox .tabbox-content {
+        display: none;
+    }
+    .aboutnav .<?= $part ?>, .tabbox .<?= $part ?> {
+        display: block;
+    }
+</style>
 
 <div class="about-us-banner"></div>
 <div class="container">
     <div class="aboutnav">
         <ul>
-            <li class="on">关于嘉乐邦</li>
-            <li class="">加入我们</li>
+            <li class="<?= $part == 'pa'?'on':'' ?>">关于嘉乐邦</li>
+            <li class="<?= $part == 'pb'?'on':'' ?>">加入我们</li>
+<!--            <li class="<?= $part == 'pc'?'on':'' ?>">加入我们</li>-->
+<!--            <li class="<?= $part == 'pd'?'on':'' ?>">加入我们</li>-->
         </ul>
     </div>
     <div class="tabbox">
-        <div class="tabbox-content about-infor" style="display: block;">
+        <div class="pa tabbox-content about-infor">
             <p class="about-centent">嘉乐邦创立于2013年8月，是一家典型的“互联网+生活服务”平台，在成立之前就获得了雷军/顺为资本的天使投资，提供优质家庭生活服务和企业后勤服务，用户可以在线预约保洁服务、家电清洗、家居保养、保姆、月嫂、育儿嫂、老人陪护、除甲醛、搬家、维修安装、空气治理等服务，并覆盖了北京、上海、广州、深圳、杭州、成都、南京、西安、重庆等80多个城市。</p>
             <p class="about-centent">公司通过高频的保洁服务为入口打品牌，建立标准化的业务研究体系、培训体系和品控体系，并不断在供给侧进行创新改革，获得了良好的市场口碑和地位。2015年初，随着互联网家装及互联网公寓的兴起，公司正式进入企业服务市场，并陆续搭建了基于企业保洁为入口，企业养护服务、企业送水、绿植养护、企业用车等为辅的企业后勤一站式服务平台。公司技术团队实力雄厚，通过自主开发的智能调度系统有效的提高了阿姨及第三方商家的服务效率，阿姨平均每月比传统方式多挣30%以上。</p>
             <p>使命：</p>
@@ -64,7 +77,7 @@ $this->registerJs($js);
                 </li>
             </ul>
         </div>
-        <div class="tabbox-content add-ours" style="display: none;">
+        <div class="pb tabbox-content add-ours">
             <div class="addtop">
                 <p>公司长期招聘出色并富有战斗力的手机开发攻城湿、PHP攻城湿、运维攻城湿、运营客服经理、市场推广经理等。</p>
                 <p>有兴趣请发邮件至 <a href="mailto:ayb_hr@jialebang100.com">ayb_hr@jialebang100.com</a>，并注明申请职位名称。我们这帮家伙有多靠谱，只有你进来才知道。</p>

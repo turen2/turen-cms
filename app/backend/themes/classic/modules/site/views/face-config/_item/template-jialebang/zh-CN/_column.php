@@ -81,3 +81,18 @@ $value = isset($config[$name])?$config[$name]:null;
         Yii::$app->params['<?=$name?>']
     </td>
 </tr>
+
+<?php
+//-----------------------------------------------
+$name = 'config_face_banjia_cn_about_us_column_id';
+$value = isset($config[$name])?$config[$name]:null;
+?>
+<tr>
+    <td class="first-column">搬家站搬家关于我们</td>
+    <td class="second-column" width="33%">
+        <?= Html::dropDownList($name, $value, ArrayHelper::merge([null => '请选择一个配置'], $columnArray), ['id' => $name, 'encode' => false]) ?>
+    </td>
+    <td style="border-bottom: 1px dashed #efefef;">
+        Yii::$app->params['<?=$name?>']
+    </td>
+</tr>

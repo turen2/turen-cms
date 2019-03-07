@@ -66,6 +66,9 @@ class VideoSearch extends Video
             ],
         ]);
 
+        //清空behaviors行为
+        $this->detachBehavior('columnParent');
+
         $this->load($params);
 
         if (!$this->validate()) {

@@ -1197,29 +1197,29 @@
     margin-bottom: 20px;
 }
 
-.work-flow .insqzxfw_img1 {
+.work-flow .insqzxfw-img1 {
     background: url(../images/n002.jpg) no-repeat 45px 0;
 }
 
-.work-flow .insqzxfw_img2 {
+.work-flow .insqzxfw-img2 {
     background: url(../images/n002.jpg) no-repeat -255px 0;
 }
 
-.work-flow .insqzxfw_img3 {
+.work-flow .insqzxfw-img3 {
     background: url(../images/n002.jpg) no-repeat -575px 0;
 }
 
-.work-flow .insqzxfw_img4 {
+.work-flow .insqzxfw-img4 {
     background: url(../images/n002.jpg) no-repeat -888px 0;
 }
 
-.work-flow .insqzxfw_but {
+.work-flow .insqzxfw-but {
     width: 200px;
     height: 60px;
     margin: 0 auto;
 }
 
-.work-flow .insqzxfw_but a {
+.work-flow .insqzxfw-but a {
     background-color: #5dc560;
     display: block;
     width: 200px;
@@ -1232,7 +1232,7 @@
     border-radius: 20px;
 }
 
-.work-flow .insqzxfw_but a:hover {
+.work-flow .insqzxfw-but a:hover {
     background-color: #22ad38;
 }
 /* 首页服务流程end */
@@ -1327,6 +1327,8 @@
 
 .hot-item ul li .a2 .p5 {
     width: 390px;
+    padding-left: 20px;
+    padding-right: 20px;
     text-align: center;
     line-height: 20px;
     position: absolute;
@@ -2020,14 +2022,14 @@
 
 .home-slogan-top {
     top: 45px;
-    left: 117px;
+    left: 147px;
     font-size: 23px;
     font-weight: 600;
 }
 
 .home-slogan-bottom {
     top: 81px;
-    left: 120px;
+    left: 150px;
     font-size: 17px;
 }
 
@@ -2042,8 +2044,7 @@
 
 .home-img {
     position: absolute;
-    height: 204px;
-    width: 212px;
+    height: 220px;
     vertical-align: bottom;
     bottom: 0;
     left: 0;

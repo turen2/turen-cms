@@ -41,10 +41,6 @@ $configTabArr = [
         'view' => 'column',
     ],
     [
-        'name' => '单页绑定',
-        'view' => 'page',
-    ],
-    [
         'name' => '类别绑定',
         'view' => 'cate',
     ],

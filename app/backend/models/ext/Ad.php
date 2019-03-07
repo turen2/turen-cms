@@ -137,16 +137,18 @@ class Ad extends \app\models\base\Ext
             'lang' => '多语言',
         ];
     }
-    
+
     /**
      * 获取所有分类名称
-     * @return array|string|mixed
+     * @param bool $isAll
+     * @param bool $hasSize
+     * @return string
      */
-    public function getAdTypeName($isAll = false) {
+    public function getAdTypeName($isAll = false, $hasSize = false) {
         if(empty(self::$_adTypeName)) {
             $arrAdType = AdType::find()->current()->orderBy(['orderid' => SORT_DESC])->asArray()->all();
             foreach ($arrAdType as $type) {
-                self::$_adTypeName[$type['id']] = $type['typename'];
+                self::$_adTypeName[$type['id']] = $type['typename'].($hasSize?(' '.$type['width'].'x'.$type['height']):'');
             }
         }
         

@@ -123,7 +123,7 @@ $this->registerJs($js);
                         <?php foreach ($mainAds as $index => $mainAd) { ?>
                             <div class="swiper-slide">
                                 <a href="<?= $mainAd['linkurl'] ?>">
-                                    <img height="370px" alt="<?= $mainAd['title'] ?>" src="<?= empty($mainAd['picurl'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($mainAd['picurl'], true) ?>" />
+                                    <img height="370px" title="<?= $mainAd['title'] ?>" src="<?= empty($mainAd['picurl'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($mainAd['picurl'], true) ?>" />
                                 </a>
                             </div>
                         <?php } ?>
@@ -201,27 +201,27 @@ $this->registerJs($js);
     <div class="flow-content">
         <ul class="clearfix">
             <li class="first">
-                <i class="insqzxfw_img1"></i>
+                <i class="insqzxfw-img1"></i>
                 <b>免费咨询</b>
                 <p>预约成功，安排上门服务</p>
             </li>
             <li>
-                <i class="insqzxfw_img2"></i>
+                <i class="insqzxfw-img2"></i>
                 <b>在线方案</b>
                 <p>客服在线定制最优方案</p>
             </li>
             <li>
-                <i class="insqzxfw_img3"></i>
+                <i class="insqzxfw-img3"></i>
                 <b>售后保障</b>
                 <p>全程客服跟踪，服务质量有保障</p>
             </li>
             <li class="last">
-                <i class="insqzxfw_img4"></i>
+                <i class="insqzxfw-img4"></i>
                 <b>优惠活动</b>
                 <p>预约即可享受9折优惠</p>
             </li>
         </ul>
-        <div class="insqzxfw_but" style="display: none;"><a href="https://www.jiazhuang.com/baojia_3/" target="_blank">马上预约</a></div>
+        <div class="insqzxfw-but" style="display: none;"><a href="" target="_blank">马上预约</a></div>
     </div>
 </div>
 
@@ -231,246 +231,35 @@ $this->registerJs($js);
         <p class="txt">热门精选服务到家</p>
     </div>
     <ul class="clearfix">
-        <li>
-            <a href="javascript:;" class="a1">
-                <img src="<?= $webUrl ?>images/gift/10556208_161709842590030.jpg">
-                <div class="divA">
-                    <p class="p1">
-                        居民搬家
-                    </p>
-                    <p class="p2">
-                        香港直飞+精选阿联酋航空(A380豪华客机)+当晚抵达全程入住4晚五星酒店！
-                    </p>
-                    <p class="p3">
-                        ¥
-                        <span>
-                            120
-                        </span>
-                        起
-                    </p>
-                </div>
-            </a>
-            <a href="javascript:;" class="a2">
-                <p class="p4">
-                    居民搬家
-                </p>
-                <p class="p5">
-                    香港直飞+精选阿联酋航空(A380豪华客机)+当晚抵达全
-                    <br>
-                    程入住4晚五星酒店！
-                </p>
-                <p class="p6">
-                    ¥
-                    <span>
-                        120
-                    </span>
-                    起
-                </p>
-                <p class="p7">
-                    查看详情&gt;
-                </p>
-            </a>
-        </li>
-        <li>
-            <a href="javascript:;" class="a1">
-                <img src="<?= $webUrl ?>images/gift/10552347_231610350949916.jpg">
-                <div class="divA">
-                    <p class="p1">
-                        办公室搬迁
-                    </p>
-                    <p class="p2">
-                        全程4-5星酒店/金字塔/博特馆/度假圣地红海洪加达/迪拜/阿布扎比一次走遍！
-                    </p>
-                    <p class="p3">
-                        ¥
-                        <span>
-                            199
-                        </span>
-                        起
-                    </p>
-                </div>
-            </a>
-            <a href="javascript:;" class="a2">
-                <p class="p4">
-                    办公室搬迁
-                </p>
-                <p class="p5">
-                    全程4-5星酒店/金字塔/博特馆/度假圣地红海洪加达
-                    <br>
-                    /迪拜/阿布扎比一次走遍！
-                </p>
-                <p class="p6">
-                    ¥
-                    <span>
-                        199
-                    </span>
-                    起
-                </p>
-                <p class="p7">
-                    查看详情&gt;
-                </p>
-            </a>
-        </li>
-        <li class="last">
-            <a href="javascript:;" class="a1">
-                <img src="<?= $webUrl ?>images/gift/10527181_887630653793940.jpg">
-                <div class="divA">
-                    <p class="p1">
-                        厂房搬迁
-                    </p>
-                    <p class="p2">
-                        全程五星/免费车载WIFI/棉花堡/爱琴海/ 特洛伊古城/伊斯坦布尔风情!
-                    </p>
-                    <p class="p3">
-                        ¥
-                        <span>
-                            599
-                        </span>
-                        起
-                    </p>
-                </div>
-            </a>
-            <a href="javascript:;" class="a2">
-                <p class="p4">
-                    厂房搬迁
-                </p>
-                <p class="p5">
-                    全程五星/免费车载WIFI/棉花堡/爱琴海/
-                    <br>
-                    特洛伊古城/伊斯坦布尔风情!！
-                </p>
-                <p class="p6">
-                    ¥
-                    <span>
-                        599
-                    </span>
-                    起
-                </p>
-                <p class="p7">
-                    查看详情&gt;
-                </p>
-            </a>
-        </li>
-        <li>
-            <a href="javascript:;" class="a1">
-                <img src="<?= $webUrl ?>images/gift/224607_162375013321817.jpg">
-                <div class="divA">
-                    <p class="p1">
-                        仓库搬迁
-                    </p>
-                    <p class="p2">
-                        香港往返/深圳往返【德国啤酒屋】+品尝当地著名【78层自助餐】/品质保证
-                    </p>
-                    <p class="p3">
-                        ¥
-                        <span>
-                            380
-                        </span>
-                        起
-                    </p>
-                </div>
-            </a>
-            <a href="javascript:;" class="a2">
-                <p class="p4">
-                    仓库搬迁
-                </p>
-                <p class="p5">
-                    香港往返/深圳往返【德国啤酒屋】+品尝当地著名
-                    <br>
-                    【78层自助餐】/品质保证
-                </p>
-                <p class="p6">
-                    ¥
-                    <span>
-                        380
-                    </span>
-                    起
-                </p>
-                <p class="p7">
-                    查看详情&gt;
-                </p>
-            </a>
-        </li>
-        <li>
-            <a href="javascript:;" class="a1">
-                <img src="<?= $webUrl ?>images/gift/10527181_887630653793940.jpg">
-                <div class="divA">
-                    <p class="p1">
-                        长途搬家
-                    </p>
-                    <p class="p2">
-                        全程五星/免费车载WIFI/棉花堡/爱琴海/ 特洛伊古城/伊斯坦布尔风情!
-                    </p>
-                    <p class="p3">
-                        ¥
-                        <span>
-                            198
-                        </span>
-                        起
-                    </p>
-                </div>
-            </a>
-            <a href="javascript:;" class="a2">
-                <p class="p4">
-                    长途搬家
-                </p>
-                <p class="p5">
-                    全程五星/免费车载WIFI/棉花堡/爱琴海/
-                    <br>
-                    特洛伊古城/伊斯坦布尔风情!！
-                </p>
-                <p class="p6">
-                    ¥
-                    <span>
-                        198
-                    </span>
-                    起
-                </p>
-                <p class="p7">
-                    查看详情&gt;
-                </p>
-            </a>
-        </li>
-        <li class="last">
-            <a href="javascript:;" class="a1">
-                <img src="<?= $webUrl ?>images/gift/224607_162375013321817.jpg">
-                <div class="divA">
-                    <p class="p1">
-                        空调移机
-                    </p>
-                    <p class="p2">
-                        香港往返/深圳往返【德国啤酒屋】+品尝当地著名【78层自助餐】/品质保证
-                    </p>
-                    <p class="p3">
-                        ¥
-                        <span>
-                            99
-                        </span>
-                        起
-                    </p>
-                </div>
-            </a>
-            <a href="javascript:;" class="a2">
-                <p class="p4">
-                    空调移机
-                </p>
-                <p class="p5">
-                    香港往返/深圳往返【德国啤酒屋】+品尝当地著名
-                    <br>
-                    【78层自助餐】/品质保证
-                </p>
-                <p class="p6">
-                    ¥
-                    <span>
-                        99
-                    </span>
-                    起
-                </p>
-                <p class="p7">
-                    查看详情&gt;
-                </p>
-            </a>
-        </li>
+        <?php $hotServices = Ad::AdListByAdTypeId(Yii::$app->params['config_face_banjia_cn_home_hot_service_ad_type_id']); ?>
+        <?php if($hotServices) { ?>
+            <?php foreach ($hotServices as $index => $hotService) { ?>
+                <?php
+                $tt = explode('||', $hotService['adtext']);
+                $tt1 = isset($tt[0])?$tt[0]:'';
+                $tt2 = isset($tt[1])?$tt[1]:'';
+                ?>
+
+                <li class="<?= ($index%3 == 2)?'last':'' ?>">
+                    <a href="<?= $hotService['linkurl'] ?>" class="a1">
+                        <img title="<?= $hotService['title'] ?>" src="<?= empty($hotService['picurl'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($hotService['picurl'], true) ?>" />
+                        <div class="divA">
+                            <p class="p1"><?= $hotService['title'] ?></p>
+                            <p class="p2"><?= $tt1 ?></p>
+                            <p class="p3"><?= $tt2 ?></p>
+                        </div>
+                    </a>
+                    <a href="<?= $hotService['linkurl'] ?>" class="a2">
+                        <p class="p4"><?= $hotService['title'] ?></p>
+                        <p class="p5"><?= $tt1 ?></p>
+                        <p class="p6"><?= $tt2 ?></p>
+                        <p class="p7">查看详情&gt;</p>
+                    </a>
+                </li>
+            <?php } ?>
+        <?php } else { ?>
+            未设置精选服务
+        <?php } ?>
     </ul>
 </div>
 
@@ -621,33 +410,22 @@ $this->registerJs($js);
             <a class="arrow arrow-right" href="#"><span></span></a>
             <div class="swiper-container">
                 <div class="swiper-wrapper">
+                    <?php $caseMainAds = Ad::AdListByAdTypeId(Yii::$app->params['config_face_banjia_cn_home_case_main_ad_type_id']); ?>
+                    <?php if($caseMainAds) { ?>
+                    <?php foreach ($caseMainAds as $index => $caseMainAd) { ?>
                     <div class="swiper-slide">
                         <a href="javascript:;" target="_blank">
-                            <img src="//tgi1.jia.com/122/269/22269481.jpg" alt="夏季来临">
+                            <img title="<?= $caseMainAd['title'] ?>" src="<?= empty($caseMainAd['picurl'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($caseMainAd['picurl'], true) ?>" />
                             <div class="back-screen">
-                                <p class="big-font">夏季来临</p>
-                                <p class="small-font">快给家里降点温</p>
+                                <p class="big-font"><?= $caseMainAd['title'] ?></p>
+                                <p class="small-font"><?= $caseMainAd['adtext'] ?></p>
                             </div>
                         </a>
                     </div>
-                    <div class="swiper-slide">
-                        <a href="javascript:;" target="_blank">
-                            <img src="//tgi12.jia.com/122/269/22269485.jpg" alt="打造粉色之家">
-                            <div class="back-screen">
-                                <p class="big-font">打造粉色之家</p>
-                                <p class="small-font">圆你一个公主梦</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="javascript:;" target="_blank">
-                            <img src="//tgi1.jia.com/122/269/22269481.jpg" alt="夏季来临">
-                            <div class="back-screen">
-                                <p class="big-font">夏季来临</p>
-                                <p class="small-font">快给家里降点温</p>
-                            </div>
-                        </a>
-                    </div>
+                    <?php } ?>
+                    <?php } else { ?>
+                        未设置首页案例主幻灯内容
+                    <?php } ?>
                 </div>
             </div>
             <div class="pagination"></div>
