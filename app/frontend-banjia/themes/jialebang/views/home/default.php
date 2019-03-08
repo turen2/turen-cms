@@ -699,7 +699,7 @@ $this->registerJs($js);
         <div class="home-data-box">
             <ul>
                 <li>
-                    <span class="pos1"><span class="f40">950</span>万公里</span>
+                    <span class="pos1"><span class="f40">15</span>万公里</span>
                     <span class="pos2"><i class="fa fa-map-o"></i> 累积搬运里程</span>
                 </li>
                 <li>
