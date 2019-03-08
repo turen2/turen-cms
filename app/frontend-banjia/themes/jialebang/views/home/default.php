@@ -6,7 +6,11 @@
  */
 use app\assets\Swiper2Asset;
 use common\helpers\ImageHelper;
+use common\models\cms\Article;
+use common\models\cms\Photo;
 use common\models\ext\Ad;
+use yii\helpers\Json;
+use yii\helpers\StringHelper;
 use yii\helpers\Url;
 
 $this->title = '嘉乐邦首页';
@@ -272,83 +276,109 @@ $this->registerJs($js);
         <div class="h-n-box">
             <div class="tit">
                 <h3>搬家百科</h3>
-                <a href="jiaju">更多&gt;</a></div>
-            <dl class="clearfix">
-                <dt>
-                    <a href="jiaju/191878.html">
-                        <img src="/images/test/dybwnoke.png" width="140" height="110" alt="实木家具日常保养攻略 实木家具保养技巧"></a>
-                </dt>
-                <dd>
-                    <a href="jiaju/191878.html" class="ellipsis">实木家具日常保养攻略 实木家具保养技巧</a>
-                    <p>平时在打扫卫生时，所使用的清洁工具不到碰撞到家具表面，也不用一些坚硬的金属制品或利器与家具发生摩擦。否则会</p>
-                    <span>2018-09-19</span></dd>
-            </dl>
-            <div class="list">
-                <a href="jiaju/191867.html" class="ellipsis">挑选浴室柜注意事项</a>
-                <p>浴室柜的台面是很容易受到磨损的地方，所以我们一定要选择那种耐刮耐磨、质地坚硬的台面，现在比较多见的浴室柜台</p>
-                <span>2018-09-14</span></div>
-            <div class="list">
-                <a href="jiaju/191862.html" class="ellipsis">橡木家具保养小贴士 橡木家具选购技巧</a>
-                <p>橡木质地均匀而又紧密，纹理美丽而又独特，木质纹理具有极强的装饰效果。橡木家具有独特的木纹，木纹越清晰价值越</p>
-                <span>2018-09-13</span></div>
-            <div class="list">
-                <a href="jiaju/191838.html" class="ellipsis">挑选书柜要点攻略 购买书柜的小贴士</a>
-                <p>书柜外形多种多样，也各有利弊。在购买前，消费者需预先考虑的是，书柜的功能是仅摆放书籍，还是摆放、储物与展示</p>
-                <span>2018-09-06</span></div>
+                <a href="<?= Url::to(['baike/list']) ?>" target="_blank">更多&gt;</a>
+            </div>
+            <?php $baikeList = Article::ActiveList(Article::class, 	Yii::$app->params['config_face_banjia_cn_home_baike_column_id'], 5, Yii::$app->params['config_face_banjia_cn_home_baike_column_flag']); ?>
+            <?php foreach ($baikeList as $index => $baike) { ?>
+                <?php
+                if(empty($baike['description'])) {
+                    $des = $baike['content'];//去除图片链接
+                } else {
+                    $des = $baike['description'];
+                }
+                $note = StringHelper::truncate(strip_tags($des), 42);
+                ?>
+                <?php if(empty($index)) { ?>
+                    <dl class="clearfix">
+                        <dt>
+                            <a href="<?= Url::to(['baike/detail', 'slug' => $baike['slug']]) ?>">
+                                <img title="<?= $baike['title'] ?>" width="140" height="110" src="<?= empty($baike['picurl'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($baike['picurl'], true) ?>" />
+                            </a>
+                        </dt>
+                        <dd>
+                            <a href="<?= Url::to(['baike/detail', 'slug' => $baike['slug']]) ?>" class="ellipsis"><?= $baike['title'] ?></a>
+                            <p><?= $note ?></p>
+                            <span><?= Yii::$app->getFormatter()->asDate($baike['posttime']) ?></span>
+                        </dd>
+                    </dl>
+                <?php } else { ?>
+                    <div class="list">
+                        <a href="<?= Url::to(['baike/detail', 'slug' => $baike['slug']]) ?>" class="ellipsis"><?= $baike['title'] ?></a>
+                        <p><?= $note ?></p>
+                        <span><?= Yii::$app->getFormatter()->asDate($baike['posttime']) ?></span>
+                    </div>
+                <?php } ?>
+            <?php } ?>
         </div>
         <div class="h-n-box">
             <div class="tit">
                 <h3>行业动态</h3>
-                <a href="jiadian">更多&gt;</a></div>
-            <dl class="clearfix">
-                <dt>
-                    <a href="jiadian/191883.html">
-                        <img src="/images/test/oykmbsvc.png" width="140" height="110" alt="购买电视柜技巧 挑选电视柜注意事项"></a>
-                </dt>
-                <dd>
-                    <a href="jiadian/191883.html" class="ellipsis">购买电视柜技巧 挑选电视柜注意事项</a>
-                    <p>我们都知道电器都是要散热的，所以电视柜材料也是要散热的才比较好。线路的安置也是我们购买电视柜的注意事项，一</p>
-                    <span>2018-09-20</span></dd>
-            </dl>
-            <div class="list">
-                <a href="jiadian/191844.html" class="ellipsis">使用加湿器注意事项 清洁加湿器的方法</a>
-                <p>不是随便什么水都可以放进加湿器里面的，各种加湿器对水质都有一定的要求，一般都是使用纯净水或者蒸馏水。大家根</p>
-                <span>2018-09-07</span></div>
-            <div class="list">
-                <a href="jiadian/191826.html" class="ellipsis">液晶电视怎么挑选 液晶电视挑选攻略</a>
-                <p>消费者可以直接忽略厂商提供的亮度和对比度参数，直接以自己的目测感受为主，方法为在5米以外的距离，查看屏幕显</p>
-                <span>2018-09-04</span></div>
-            <div class="list">
-                <a href="jiadian/191738.html" class="ellipsis">空调清洗方法 空调清洗注意事项</a>
-                <p>经过一整个夏天的考验，我们的空调再给我们带来凉爽的同时，自己已然是满是灰尘，有的家庭却并不以为意，很少主动</p>
-                <span>2018-08-16</span></div>
+                <a href="<?= Url::to(['news/list']) ?>" target="_blank">更多&gt;</a>
+            </div>
+            <?php $newsList = Article::ActiveList(Article::class, Yii::$app->params['config_face_banjia_cn_home_news_column_id'], 5, Yii::$app->params['config_face_banjia_cn_home_news_column_flag']); ?>
+            <?php foreach ($newsList as $index => $news) { ?>
+                <?php
+                if(empty($news['description'])) {
+                    $des = $news['content'];//去除图片链接
+                } else {
+                    $des = $news['description'];
+                }
+                $note = StringHelper::truncate(strip_tags($des), 42);
+                ?>
+                <?php if(empty($index)) { ?>
+                    <dl class="clearfix">
+                        <dt>
+                            <a href="<?= Url::to(['news/detail', 'slug' => $news['slug']]) ?>">
+                                <img title="<?= $news['title'] ?>" width="140" height="110" src="<?= empty($news['picurl'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($baike['picurl'], true) ?>" />
+                            </a>
+                        </dt>
+                        <dd>
+                            <a href="<?= Url::to(['news/detail', 'slug' => $news['slug']]) ?>" class="ellipsis"><?= $news['title'] ?></a>
+                            <p><?= $note ?></p>
+                            <span><?= Yii::$app->getFormatter()->asDate($news['posttime']) ?></span>
+                        </dd>
+                    </dl>
+                <?php } else { ?>
+                    <div class="list">
+                        <a href="<?= Url::to(['news/detail', 'slug' => $news['slug']]) ?>" class="ellipsis"><?= $news['title'] ?></a>
+                        <p><?= $note ?></p>
+                        <span><?= Yii::$app->getFormatter()->asDate($news['posttime']) ?></span>
+                    </div>
+                <?php } ?>
+            <?php } ?>
         </div>
         <div class="h-n-box" style="border-right:0;">
             <div class="tit">
-                <h3>常见问题</h3>
-                <a href="jiancai">更多&gt;</a></div>
+                <h3>帮助中心</h3>
+                <a href="<?= Url::to(['help/index']) ?>" target="_blank">更多&gt;</a>
+            </div>
             <dl class="clearfix">
                 <dt>
                     <a href="jiancai/191873.html">
-                        <img src="/images/test/yzsgehpt.png" width="140" height="110" alt="挑选洗手盆方法 购买洗手盆小贴士"></a>
+                        <img src="<?= $webUrl ?>images/test/yzsgehpt.png" width="140" height="110" alt="挑选洗手盆方法 购买洗手盆小贴士">
+                    </a>
                 </dt>
                 <dd>
                     <a href="jiancai/191873.html" class="ellipsis">挑选洗手盆方法 购买洗手盆小贴士</a>
                     <p>在挑选玻璃洗手盆时不用过于执着其厚度，不一定是越厚的玻璃质量越好，一般厚度为12到15mm的厚度足够了，同</p>
-                    <span>2018-09-17</span></dd>
+                    <span>2018-09-17</span>
+                </dd>
             </dl>
             <div class="list">
                 <a href="jiancai/191856.html" class="ellipsis">挑选沙发注意事项大全 购买沙发攻略</a>
                 <p>沙发的承重力决定了沙发的使用寿命，而沙发的框架又直接决定了沙发的承重力。沙发结构的稳固度的关键在于其内部框</p>
-                <span>2018-09-11</span></div>
+                <span>2018-09-11</span>
+            </div>
             <div class="list">
                 <a href="jiancai/191808.html" class="ellipsis">挑选卫浴要注意哪些方面 挑选卫浴注意事项大全</a>
                 <p>面盆选购要配合浴室的整体装修环境，现在的大部分浴室以铺贴瓷砖、地砖为主，所以，陶瓷材质的面盆也是目前市场上</p>
-                <span>2018-08-30</span></div>
+                <span>2018-08-30</span>
+            </div>
             <div class="list">
                 <a href="jiancai/191792.html" class="ellipsis">挑选卫浴注意事项大全 挑选卫浴技巧介绍</a>
                 <p>选浴室柜主要就是考虑防污能力及釉面工艺，其次就是看款式与整体是否统一，还有柜门开关和抽屉阻尼使用是否顺滑，</p>
-                <span>2018-08-27</span></div>
+                <span>2018-08-27</span>
+            </div>
         </div>
     </div>
 </div>
@@ -414,7 +444,7 @@ $this->registerJs($js);
                     <?php if($caseMainAds) { ?>
                     <?php foreach ($caseMainAds as $index => $caseMainAd) { ?>
                     <div class="swiper-slide">
-                        <a href="javascript:;" target="_blank">
+                        <a href="<?= $caseMainAd['linkurl'] ?>" target="_blank">
                             <img title="<?= $caseMainAd['title'] ?>" src="<?= empty($caseMainAd['picurl'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($caseMainAd['picurl'], true) ?>" />
                             <div class="back-screen">
                                 <p class="big-font"><?= $caseMainAd['title'] ?></p>
@@ -431,58 +461,23 @@ $this->registerJs($js);
             <div class="pagination"></div>
         </div>
         <div class="case-recommend">
-            <div class="list-left">
-                <a href="javascript:;" target="_blank">
-                    <img src="//tgi13.jia.com/122/269/22269527.jpg" alt="搬搬家案例搬家案例家案例">
+            <?php $caseDynamicList = Photo::ActiveList(Photo::class, 	Yii::$app->params['config_face_banjia_cn_home_case_column_id'], 6, Yii::$app->params['config_face_banjia_cn_home_case_column_flag']); ?>
+            <?php foreach ($caseDynamicList as $index => $caseDynamic) { ?>
+            <div class="list-left<?= ($index%3 != 2)?'':' mr0' ?>">
+                <a href="<?= empty($caseDynamic['linkurl'])?Url::to(['case/detail', 'slug' => $caseDynamic['slug']]):$caseDynamic['linkurl'] ?>"<?= empty($caseDynamic['linkurl'])?'':' target="_blank"' ?>>
+                    <img title="<?= $caseDynamic['title'] ?>" src="<?= empty($caseDynamic['picurl'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($caseDynamic['picurl'], true) ?>" />
                     <div class="case-gloab">
-                        <span class="case-gloab-title">搬搬家案例搬家案例家案例</span>
+                        <span class="case-gloab-title"><?= $caseDynamic['title'] ?></span>
                     </div>
                 </a>
             </div>
-            <div class="list-left">
-                <a href="javascript:;" target="_blank">
-                    <img src="//tgi13.jia.com/122/269/22269527.jpg" alt="搬搬家案例搬家案例家案例">
-                    <div class="case-gloab">
-                        <span class="case-gloab-title">搬搬家案例搬家案例家案例</span>
-                    </div>
-                </a>
-            </div>
-            <div class="list-left mr0">
-                <a href="javascript:;" target="_blank">
-                    <img src="//tgi13.jia.com/122/269/22269527.jpg" alt="搬搬家案例搬家案例家案例">
-                    <div class="case-gloab">
-                        <span class="case-gloab-title">搬搬家案例搬家案例家案例</span>
-                    </div>
-                </a>
-            </div>
-            <div class="list-left">
-                <a href="javascript:;" target="_blank">
-                    <img src="//tgi1.jia.com/122/269/22269542.jpg" alt="家政清洁家政清洁家政清洁">
-                    <div class="case-gloab">
-                        <span class="case-gloab-title">家政清洁家政清洁家政清洁</span>
-                    </div>
-                </a>
-            </div>
-            <div class="list-left">
-                <a href="javascript:;" target="_blank">
-                    <img src="//tgi1.jia.com/122/269/22269542.jpg" alt="家政清洁家政清洁家政清洁">
-                    <div class="case-gloab">
-                        <span class="case-gloab-title">家政清洁家政清洁家政清洁</span>
-                    </div>
-                </a>
-            </div>
-            <div class="list-left mr0">
-                <a href="javascript:;" target="_blank">
-                    <img src="//tgi1.jia.com/122/269/22269542.jpg" alt="家政清洁家政清洁家政清洁">
-                    <div class="case-gloab">
-                        <span class="case-gloab-title">家政清洁家政清洁家政清洁</span>
-                    </div>
-                </a>
-            </div>
+            <?php } ?>
         </div>
     </div>
 </div>
 
+<?php $userConments = Ad::AdListByAdTypeId(Yii::$app->params['config_face_banjia_cn_home_conment_ad_type_id']); ?>
+<?php if($userConments) { ?>
 <div class="container block user-comment">
     <div class="head-title">
         <h2><span>用户好评</span><hr></h2>
@@ -494,64 +489,36 @@ $this->registerJs($js);
             <a class="arrow arrow-right" title="向右滑动" href="#"></a>
             <div class="swiper-container">
                 <div class="swiper-wrapper">
+                    <?php foreach ($userConments as $index => $userConment) { ?>
+                    <?php
+                        //解析json
+                        try {
+                            $userSayContent = Json::decode($userConment['adtext']);
+                        } catch (\Exception $e) {
+                            continue;//异常直接跳过本次解析
+                        }
+                        ?>
                     <div class="swiper-slide">
                         <div class="user-info">
-                            <img class="info-img" src="/images/test/tt1.png" />
+                            <img class="info-img" title="<?= $userConment['title'] ?>" src="<?= empty($userConment['picurl'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($userConment['picurl'], true) ?>" />
                             <div class="info-txt">
-                                <div class="info-txt-p br5">李总，精密仪器加工厂老板，每天需要拉两三趟货往不同的下游工厂，李总与一家物流公司签订了合同，即使单趟也按来回双程收费，受制于物流公司只有4.2米或以上货车，即时出货量不多，也无可奈何赔上大车价格。“运输成本下不来，赚再多也是赔。”李总说。</div>
+                                <div class="info-txt-p br5"><?= $userSayContent['say_content'] ?></div>
                                 <div>
-                                    <h6>嘉乐邦企业级解决方案</h6>
-                                    <span>全国布局100+城市，一二三线城市全覆盖</span>
-                                    <span>一个账户，全国用车</span>
+                                    <h6><?= $userConment['title'] ?></h6>
+                                    <span><?= $userSayContent['sub_title1'] ?></span>
+                                    <span><?= $userSayContent['sub_title2'] ?></span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-slide">
-                        <div class="user-info">
-                            <img class="info-img" src="/images/test/tt2.png" />
-                            <div class="info-txt">
-                                <div class="info-txt-p">李总，精密仪器加工厂老板，每天需要拉两三趟货往不同的下游工厂，李总与一家物流公司签订了合同，即使单趟也按来回双程收费，受制于物流公司只有4.2米或以上货车，即时出货量不多，也无可奈何赔上大车价格。“运输成本下不来，赚再多也是赔。”李总说。</div>
-                                <div>
-                                    <h6>嘉乐邦企业级解决方案</h6>
-                                    <span>全国布局100+城市，一二三线城市全覆盖</span>
-                                    <span>一个账户，全国用车</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="user-info">
-                            <img class="info-img" src="/images/test/tt4.png" />
-                            <div class="info-txt">
-                                <div class="info-txt-p">李总，精密仪器加工厂老板，每天需要拉两三趟货往不同的下游工厂，李总与一家物流公司签订了合同，即使单趟也按来回双程收费，受制于物流公司只有4.2米或以上货车，即时出货量不多，也无可奈何赔上大车价格。“运输成本下不来，赚再多也是赔。”李总说。</div>
-                                <div>
-                                    <h6>嘉乐邦企业级解决方案</h6>
-                                    <span>全国布局100+城市，一二三线城市全覆盖</span>
-                                    <span>一个账户，全国用车</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="user-info">
-                            <img class="info-img" src="/images/test/tt5.png" />
-                            <div class="info-txt">
-                                <div class="info-txt-p">李总，精密仪器加工厂老板，每天需要拉两三趟货往不同的下游工厂，李总与一家物流公司签订了合同，即使单趟也按来回双程收费，受制于物流公司只有4.2米或以上货车，即时出货量不多，也无可奈何赔上大车价格。“运输成本下不来，赚再多也是赔。”李总说。</div>
-                                <div>
-                                    <h6>嘉乐邦企业级解决方案</h6>
-                                    <span>全国布局100+城市，一二三线城市全覆盖</span>
-                                    <span>一个账户，全国用车</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
                 <div class="pagination"></div>
             </div>
         </div>
     </div>
 </div>
+<?php } ?>
 
 <?php $seviceCompanies = Ad::AdListByAdTypeId(Yii::$app->params['config_face_banjia_cn_home_service_company_ad_type_id']); ?>
 <?php if($seviceCompanies) { ?>
@@ -730,7 +697,24 @@ $this->registerJs($js);
 <div class="home-data-show">
     <div class="container content-wrapper">
         <div class="home-data-box">
-            <img src="<?= $webUrl ?>images/common/index__data_mini.png">
+            <ul>
+                <li>
+                    <span class="pos1"><span class="f40">950</span>万公里</span>
+                    <span class="pos2"><i class="fa fa-map-o"></i> 累积搬运里程</span>
+                </li>
+                <li>
+                    <span class="pos1"><span class="f40">3000</span>多户</span>
+                    <span class="pos2"><i class="fa fa-heart-o"></i> 服务中国家庭</span>
+                </li>
+                <li>
+                    <span class="pos1"><span class="f40">230</span>多家</span>
+                    <span class="pos2"><i class="fa fa-tasks"></i> 合作企业</span>
+                </li>
+                <li>
+                    <span class="pos1"><span class="f40">4.8</span>分</span>
+                    <span class="pos2"><i class="fa fa-star-o"></i> 平均服务星级</span>
+                </li>
+            </ul>
         </div>
         <div class="home-img-box">
             <img src="<?= $webUrl ?>images/common/index_data_represent.png" class="home-img">

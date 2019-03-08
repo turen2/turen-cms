@@ -2018,14 +2018,14 @@
 
 .home-slogan-top {
     top: 45px;
-    left: 147px;
+    left: 160px;
     font-size: 23px;
     font-weight: 600;
 }
 
 .home-slogan-bottom {
     top: 81px;
-    left: 150px;
+    left: 180px;
     font-size: 17px;
 }
 
@@ -2048,14 +2048,32 @@
 
 .home-data-box {
     position: absolute;
-    right: 0;
-    top: 50px;
+    right: -40px;
+    top: 60px;
 }
 
-.home-data-box img {
+.home-data-box ul {
+    color: white;
+    font-size: 16px;
+}
+
+.home-data-box li {
+    float: left;
+    width: 168px;
+}
+
+.home-data-box .pos1 {
     display: block;
-    width: 618px;
-    height: 73px;
+}
+
+.home-data-box .pos2 {
+    display: block;
+    margin-top: 16px;
+}
+
+.home-data-box .pos1 .f40 {
+    font-size: 40px;
+    font-weight: bold;
 }
 
 .footer {

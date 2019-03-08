@@ -75,7 +75,7 @@ $this->registerJs($js);
     	<div class="container clearfix">
     		<!-- logon -->
             <a href="<?= Yii::$app->homeUrl ?>" class="logo fl">
-            	<img src="/images/logo.png">
+            	<img src="<?= $webUrl ?>images/logo.png">
         	</a>
         	
             <!-- 主导航 -->

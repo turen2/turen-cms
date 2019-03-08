@@ -6,6 +6,7 @@
  */
 namespace common\models\cms;
 
+use common\behaviors\ListBehavior;
 use Yii;
 
 /**
@@ -43,6 +44,29 @@ use Yii;
  */
 class Video extends \common\components\ActiveRecord
 {
+    public function behaviors()
+    {
+        return [
+            'activeList' => [
+                'class' => ListBehavior::class,//动态绑定一个静态方法
+            ],
+        ];
+    }
+
+    /**
+     * 根据参数，返回栏目内容
+     * @param $className cms栏目类
+     * @param $columnId 栏目id
+     * @param null $listNum 限定返回的数量
+     * @param null $flag 指定标识
+     * @return mixed
+     */
+    public static function ActiveList($className, $columnId, $listNum = null, $flag = null)
+    {
+        $model = new self();
+        return $model->columnList($className, $columnId, $listNum, $flag);//以行为绑定的方式，实现静态调用，实现方法重用
+    }
+
     /**
      * {@inheritdoc}
      */

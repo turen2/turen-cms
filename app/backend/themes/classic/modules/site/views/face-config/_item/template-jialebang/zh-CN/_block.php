@@ -18,7 +18,7 @@ $name = 'config_face_banjia_cn_left_top_block_id';
 $value = isset($config[$name])?$config[$name]:null;
 ?>
 <tr>
-    <td class="first-column">搬家站左上角公告</td>
+    <td class="first-column">左上角公告</td>
     <td class="second-column" width="33%">
         <?= Html::dropDownList($name, $value, ArrayHelper::merge([null => '请选择一个配置'], $blockArray), ['id' => $name]) ?>
     </td>
@@ -33,7 +33,7 @@ $name = 'config_face_banjia_cn_left_bottom_block_id';
 $value = isset($config[$name])?$config[$name]:null;
 ?>
 <tr>
-    <td class="first-column">搬家站左下角关于我们</td>
+    <td class="first-column">左下角关于我们</td>
     <td class="second-column" width="33%">
         <?= Html::dropDownList($name, $value, ArrayHelper::merge([null => '请选择一个配置'], $blockArray), ['id' => $name]) ?>
     </td>

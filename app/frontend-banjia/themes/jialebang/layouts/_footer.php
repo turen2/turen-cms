@@ -107,7 +107,7 @@ if($blockModel) {
 
 <div class="call-me">
     <div class="center-box container">
-        <span class="left-part"><img src="/images/logo.png"></span>
+        <span class="left-part"><img src="<?= $webUrl ?>images/logo.png"></span>
         <span class="mid-part">仅需3秒钟马上出发，一站式服务！</span>
         <span class="right-part"><i>Customer Hot Line</i><b>400-400-4000</b></span>
         <a href="" id="custon_button1" class="call-btn">立即咨询</a>

@@ -30,7 +30,7 @@ $name = 'config_face_banjia_cn_home_main_ad_type_id';
 $value = isset($config[$name])?$config[$name]:null;
 ?>
 <tr>
-    <td class="first-column">搬家站点首页主幻灯片广告位</td>
+    <td class="first-column">首页主幻灯片广告位</td>
     <td class="second-column" width="33%">
         <?= Html::dropDownList($name, $value, ArrayHelper::merge([null => '请选择一个配置'], $adTypeArray), ['id' => $name, 'encode' => false]) ?>
     </td>
@@ -44,7 +44,7 @@ $name = 'config_face_banjia_cn_home_hot_service_ad_type_id';
 $value = isset($config[$name])?$config[$name]:null;
 ?>
 <tr>
-    <td class="first-column">搬家站点首页精选服务广告位</td>
+    <td class="first-column">首页精选服务广告位</td>
     <td class="second-column" width="33%">
         <?= Html::dropDownList($name, $value, ArrayHelper::merge([null => '请选择一个配置'], $adTypeArray), ['id' => $name, 'encode' => false]) ?>
     </td>
@@ -58,7 +58,7 @@ $name = 'config_face_banjia_cn_home_conment_ad_type_id';
 $value = isset($config[$name])?$config[$name]:null;
 ?>
 <tr>
-    <td class="first-column">搬家站点首页用户好评广告位</td>
+    <td class="first-column">首页用户好评广告位</td>
     <td class="second-column" width="33%">
         <?= Html::dropDownList($name, $value, ArrayHelper::merge([null => '请选择一个配置'], $adTypeArray), ['id' => $name, 'encode' => false]) ?>
     </td>
@@ -72,7 +72,7 @@ $name = 'config_face_banjia_cn_home_service_company_ad_type_id';
 $value = isset($config[$name])?$config[$name]:null;
 ?>
 <tr>
-    <td class="first-column">搬家站点首页重要客户广告位</td>
+    <td class="first-column">首页重要客户广告位</td>
     <td class="second-column" width="33%">
         <?= Html::dropDownList($name, $value, ArrayHelper::merge([null => '请选择一个配置'], $adTypeArray), ['id' => $name, 'encode' => false]) ?>
     </td>
@@ -86,7 +86,7 @@ $name = 'config_face_banjia_cn_home_case_main_ad_type_id';
 $value = isset($config[$name])?$config[$name]:null;
 ?>
 <tr>
-    <td class="first-column">搬家站点首页案例主广告位</td>
+    <td class="first-column">首页案例主广告位</td>
     <td class="second-column" width="33%">
         <?= Html::dropDownList($name, $value, ArrayHelper::merge([null => '请选择一个配置'], $adTypeArray), ['id' => $name, 'encode' => false]) ?>
     </td>
