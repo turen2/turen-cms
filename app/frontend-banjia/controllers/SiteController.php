@@ -30,11 +30,11 @@ class SiteController extends Controller
                 'view' => 'error',
             ],
             //获取手机验证码
-            'phone-code' => [
-                'class' => PhoneCodePopAction::class,
-                'phone' => $params['phone'],
-                'maxNum' => 6,
-            ],
+//            'phone-code' => [
+//                'class' => PhoneCodePopAction::class,
+//                'phone' => $params['phone'],
+//                'maxNum' => 6,
+//            ],
         ];
     }
 }

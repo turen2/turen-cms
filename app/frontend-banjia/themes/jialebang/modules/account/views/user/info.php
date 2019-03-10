@@ -5,7 +5,7 @@
  * @author developer qq:980522557
  */
 
-$this->title = '账户中心';
+$this->title = '客户中心';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

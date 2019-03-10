@@ -37,6 +37,13 @@ return [
         //用户中心模块
         'account' => [
             'class' => 'app\modules\account\Module',
+            'as access' => [
+                'class' => 'app\modules\account\filters\AccessFilter',
+                'except' => [],//allowAction方法替代了
+                'denyCallback' => function($action) {
+                    //fb('未审核嘛');
+                }
+            ],
         ],
     ],
     'components' => [
@@ -54,6 +61,7 @@ return [
          'user' => [
              'identityClass' => 'common\models\user\User',
              'enableAutoLogin' => true,
+             'loginUrl' => ['account/user/login'],
              'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
          ],
         'session' => [

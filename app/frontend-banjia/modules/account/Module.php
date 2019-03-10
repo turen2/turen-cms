@@ -15,6 +15,13 @@ class Module extends \yii\base\Module
 {
     public $layout = '/main';
 
+    public $allowRoutes = [
+        'user/login',//登录
+        'user/signup',//注册
+        'user/logout',//登出
+        'user/forget',//忘记密码
+    ];
+
     /**
      * {@inheritdoc}
      */
@@ -27,8 +34,6 @@ class Module extends \yii\base\Module
     {
         parent::init();
 
-
         // custom initialization code goes here
     }
-
 }

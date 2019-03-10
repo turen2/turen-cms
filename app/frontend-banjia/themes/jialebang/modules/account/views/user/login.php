@@ -10,14 +10,18 @@ use yii\captcha\Captcha;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-$this->title = '用户登录';
+$this->title = '客户登录';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<br />
-<br />
-
 <div class="container">
+    <?php
+    $warning = Yii::$app->getSession()->getFlash('warning');
+    if(!empty($warning)) {
+        echo '<p style="color: red;">'.$warning.'</p>';
+    }
+    ?>
+
     <div class="login-form">
         <?php $form = ActiveForm::begin(['enableAjaxValidation' => false, 'id' => 'loginForm', 'options' => ['class' => 'login-form']]); ?>
         <?php if(Yii::$app->params['config_login_mode'] == User::USER_PHONE_MODE) { ?>
@@ -35,9 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'rememberMe')->checkbox() ?>
 
-        <?php if($model->hasErrors()) { ?>
-            <div class="alert alert-warning hide">忘记密码请联系管理员。</div>
-        <?php } ?>
+        <p><?= Html::a('忘记密码？', ['user/forget'], ['target' => '_blank']) ?></p>
 
         <?= Html::submitButton('登 录', ['class' => 'btn btn-block btn-primary', 'style' => "cursor:pointer;"]) ?>
         <?php ActiveForm::end(); ?>

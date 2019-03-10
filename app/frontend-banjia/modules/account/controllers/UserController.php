@@ -6,23 +6,32 @@
  */
 namespace app\modules\account\controllers;
 
-use app\models\sys\Config;
-use app\widgets\phonecode\PhoneCodePopAction;
-use common\models\user\VerifyCodeForm;
 use Yii;
+use common\models\user\VerifyCodeForm;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
 use common\models\user\LoginForm;
 use common\models\user\SignupForm;
 
 /**
- * Site controller
+ * User controller
  */
 class UserController extends \app\components\Controller
 {
     const SIGNUP_VERIFY_CODE = 'signup_verify_code';
+
+    //允许无条件通过验证
+    public function allowAction()
+    {
+        return [
+            'login',
+            'signup',
+            'logout',
+            'forget',
+            'captcha',
+            'error',
+        ];
+    }
 
     /**
      * @inheritdoc
@@ -86,13 +95,12 @@ class UserController extends \app\components\Controller
 
     /**
      * Displays homepage.
-     * 用户中心
+     * 用户中心首页
      *
      * @return mixed
      */
     public function actionInfo()
     {
-//        echo "访问成功";
         return $this->render('info');
     }
 
@@ -150,6 +158,18 @@ class UserController extends \app\components\Controller
         return $this->render('signup', [
             'signupModel' => $signupModel,
             'verifyModel' => $verifyModel,
+        ]);
+    }
+
+    /**
+     * 找回密码
+     * @return string
+     */
+    public function actionForget()
+    {
+        $model = null;
+        return $this->render('forget', [
+            'model' => $model,
         ]);
     }
 
