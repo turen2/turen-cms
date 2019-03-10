@@ -156,7 +156,7 @@ $dlength = 90;
                     'moreLink' => Url::to(['/case/list']),
 
                     'columnType' => 'photo',
-                    'flagName' => '',
+                    'flagName' => Yii::$app->params['config_face_banjia_cn_sidebox_current_photo_column_flag'],
                     'columnId' => 	76,//现场案例
                     'listNum' => 6,
                     'route' => ['/case/detail'],

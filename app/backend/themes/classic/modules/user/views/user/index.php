@@ -61,7 +61,7 @@ $this->title = '用户管理';
 		<img alt="" src="<?= empty($model->avatar)?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($model->avatar, true, AliyunOss::OSS_STYLE_NAME180) ?>" style="height: 60px;">
 		</span></td>
 		<td><?= $model->username; ?><br /><?= $model->sex?'帅哥':'美女'; ?> [<?= $model->user_id; ?>]</td>
-		<td><?= $model->mobile; ?><br /><?= $model->email; ?></td>
+		<td><?= $model->phone; ?><br /><?= $model->email; ?></td>
 		<td><?= empty($model->level)?'未指定':$model->level->level_name; ?><br /><?= empty($model->group)?'未指定':$model->group->ug_name; ?></td>
 		<td><?= $model->point; ?></td>
 		<td><?= $model->login_ip; ?></td>

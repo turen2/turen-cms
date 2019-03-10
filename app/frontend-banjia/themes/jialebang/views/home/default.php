@@ -68,7 +68,7 @@ $('.case-list .list-left').hover(
 	   $(this).stop().animate({opacity:1},"fast").css({flter:"Alpha(Opacity=100)"});
     }
 );
-$('.case-banner .swiper-slide img').hover(
+$('.case-banner .swiper-slide img, .case-recommend .list-left img').hover(
     function () {
         $(this).removeClass("removeimg").addClass("fadeimg");
     },
@@ -329,7 +329,7 @@ $this->registerJs($js);
                     <dl class="clearfix">
                         <dt>
                             <a href="<?= Url::to(['news/detail', 'slug' => $news['slug']]) ?>">
-                                <img title="<?= $news['title'] ?>" width="140" height="110" src="<?= empty($news['picurl'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($baike['picurl'], true) ?>" />
+                                <img title="<?= $news['title'] ?>" width="140" height="110" src="<?= empty($news['picurl'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($news['picurl'], true) ?>" />
                             </a>
                         </dt>
                         <dd>
@@ -352,33 +352,37 @@ $this->registerJs($js);
                 <h3>帮助中心</h3>
                 <a href="<?= Url::to(['help/index']) ?>" target="_blank">更多&gt;</a>
             </div>
-            <dl class="clearfix">
-                <dt>
-                    <a href="jiancai/191873.html">
-                        <img src="<?= $webUrl ?>images/test/yzsgehpt.png" width="140" height="110" alt="挑选洗手盆方法 购买洗手盆小贴士">
-                    </a>
-                </dt>
-                <dd>
-                    <a href="jiancai/191873.html" class="ellipsis">挑选洗手盆方法 购买洗手盆小贴士</a>
-                    <p>在挑选玻璃洗手盆时不用过于执着其厚度，不一定是越厚的玻璃质量越好，一般厚度为12到15mm的厚度足够了，同</p>
-                    <span>2018-09-17</span>
-                </dd>
-            </dl>
-            <div class="list">
-                <a href="jiancai/191856.html" class="ellipsis">挑选沙发注意事项大全 购买沙发攻略</a>
-                <p>沙发的承重力决定了沙发的使用寿命，而沙发的框架又直接决定了沙发的承重力。沙发结构的稳固度的关键在于其内部框</p>
-                <span>2018-09-11</span>
-            </div>
-            <div class="list">
-                <a href="jiancai/191808.html" class="ellipsis">挑选卫浴要注意哪些方面 挑选卫浴注意事项大全</a>
-                <p>面盆选购要配合浴室的整体装修环境，现在的大部分浴室以铺贴瓷砖、地砖为主，所以，陶瓷材质的面盆也是目前市场上</p>
-                <span>2018-08-30</span>
-            </div>
-            <div class="list">
-                <a href="jiancai/191792.html" class="ellipsis">挑选卫浴注意事项大全 挑选卫浴技巧介绍</a>
-                <p>选浴室柜主要就是考虑防污能力及釉面工艺，其次就是看款式与整体是否统一，还有柜门开关和抽屉阻尼使用是否顺滑，</p>
-                <span>2018-08-27</span>
-            </div>
+            <?php $helpList = Article::ActiveList(Article::class, Yii::$app->params['config_face_banjia_cn_home_help_column_id'], 5, Yii::$app->params['config_face_banjia_cn_home_help_column_flag']); ?>
+            <?php foreach ($helpList as $index => $help) { ?>
+                <?php
+                if(empty($help['description'])) {
+                    $des = $help['content'];//去除图片链接
+                } else {
+                    $des = $help['description'];
+                }
+                $note = StringHelper::truncate(strip_tags($des), 42);
+                ?>
+                <?php if(empty($index)) { ?>
+                    <dl class="clearfix">
+                        <dt>
+                            <a href="<?= Url::to(['news/detail', 'slug' => $help['slug']]) ?>">
+                                <img title="<?= $help['title'] ?>" width="140" height="110" src="<?= empty($help['picurl'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($help['picurl'], true) ?>" />
+                            </a>
+                        </dt>
+                        <dd>
+                            <a href="<?= Url::to(['news/detail', 'slug' => $help['slug']]) ?>" class="ellipsis"><?= $help['title'] ?></a>
+                            <p><?= $note ?></p>
+                            <span><?= Yii::$app->getFormatter()->asDate($help['posttime']) ?></span>
+                        </dd>
+                    </dl>
+                <?php } else { ?>
+                    <div class="list">
+                        <a href="<?= Url::to(['news/detail', 'slug' => $help['slug']]) ?>" class="ellipsis"><?= $help['title'] ?></a>
+                        <p><?= $note ?></p>
+                        <span><?= Yii::$app->getFormatter()->asDate($help['posttime']) ?></span>
+                    </div>
+                <?php } ?>
+            <?php } ?>
         </div>
     </div>
 </div>

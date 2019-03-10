@@ -17,7 +17,7 @@ use common\components\ActiveRecord;
  * @property string $user_id 用户id
  * @property string $username 用户名
  * @property string $email 电子邮件
- * @property string $mobile 手机
+ * @property string $phone 手机
  * @property string $password 密码
  * @property string $password_hash 密文
  * @property string $password_reset_token 改密码token
@@ -50,6 +50,9 @@ use common\components\ActiveRecord;
  */
 class User extends ActiveRecord implements IdentityInterface
 {
+    const USER_PHONE_MODE = 1;//仅手机验证模型
+    const USER_EMAIL_MODE = 2;//仅邮箱验证模型
+
     /**
      * {@inheritdoc}
      */
@@ -64,12 +67,11 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'email', 'mobile', 'password', 'avatar', 'company', 'license', 'telephone', 'intro', 'address', 'zipcode', 'point', 'reg_ip', 'login_ip', 'qq_id', 'weibo_id', 'wx_id', 'login_time', 'reg_time'], 'required'],
-            [['level_id', 'ug_id', 'sex', 'point', 'status', 'delstate', 'deltime', 'login_time', 'reg_time'], 'integer'],
+            [['level_id', 'ug_id', 'sex', 'point', 'status', 'delstate', 'deltime', 'reg_time'], 'integer'],
             [['intro'], 'string'],
             [['username', 'password', 'qq_id', 'weibo_id', 'wx_id'], 'string', 'max' => 32],
             [['email'], 'string', 'max' => 40],
-            [['mobile', 'telephone', 'reg_ip', 'login_ip'], 'string', 'max' => 20],
+            [['phone', 'telephone', 'reg_ip', 'login_ip'], 'string', 'max' => 20],
             [['avatar', 'company', 'address'], 'string', 'max' => 100],
             [['trade', 'address_prov', 'address_city', 'zipcode'], 'string', 'max' => 10],
             [['license'], 'string', 'max' => 150],
@@ -87,7 +89,7 @@ class User extends ActiveRecord implements IdentityInterface
             'user_id' => '用户id',
             'username' => '用户名',
             'email' => '电子邮件',
-            'mobile' => '手机',
+            'phone' => '手机',
             'password' => '密码',
             'password_hash' => '密文',
             'password_reset_token' => '改密码token',
@@ -122,7 +124,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     public static function findIdentity($id)
     {
-        return static::findOne(['id' => $id, 'status' => static::STATUS_ON]);
+        return static::findOne(['user_id' => $id, 'status' => static::STATUS_ON]);
     }
 
     public static function findIdentityByAccessToken($token, $type = null)
@@ -132,24 +134,34 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * 用户名/邮箱/手机号，查询用户
-     * @param $verifyName
+     * 手机号码获取用户模型
+     * @param $phone
      * @return User|null
      */
-    public static function findByVerifyName($verifyName)
+    public static function findByPhone($phone)
     {
-        return static::findOne(['and', ['status' => static::STATUS_ON], ['or', ['username' => $verifyName], ['mobile' => $verifyName], ['email' => $verifyName]]]);
+        return static::findOne(['status' => static::STATUS_ON, 'phone' => $phone]);
     }
 
     /**
-     * Finds user by username
-     *
+     * 邮箱码获取用户模型
+     * @param $email
+     * @return User|null
+     */
+    public static function findByEmail($email)
+    {
+        //echo User::find()->where(['status' => static::STATUS_ON, 'email' => $email])->createCommand()->getRawSql();exit;
+        return static::findOne(['status' => static::STATUS_ON, 'email' => $email]);
+    }
+
+    /**
+     * 用户名获取用户模型
      * @param string $username
      * @return static|null
      */
     public static function findByUsername($username)
     {
-        return static::findOne(['username' => $username, 'status' => static::STATUS_ON]);
+        return static::findOne(['status' => static::STATUS_ON, 'username' => $username]);
     }
 
     /**

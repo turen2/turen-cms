@@ -85,6 +85,18 @@ class UserController extends \app\components\Controller
     }
 
     /**
+     * Displays homepage.
+     * 用户中心
+     *
+     * @return mixed
+     */
+    public function actionInfo()
+    {
+//        echo "访问成功";
+        return $this->render('info');
+    }
+
+    /**
      * Logs in a user.
      *
      * @return mixed
@@ -106,18 +118,6 @@ class UserController extends \app\components\Controller
     }
 
     /**
-     * Displays homepage.
-     * 用户中心
-     *
-     * @return mixed
-     */
-    public function actionInfo()
-    {
-//        echo "访问成功";
-        return $this->render('info');
-    }
-
-    /**
      * Logs out the current user.
      *
      * @return mixed
@@ -128,39 +128,6 @@ class UserController extends \app\components\Controller
 
         return $this->goHome();
     }
-
-    /**
-     * 验证，注册验证码
-     */
-    public function actionSignupVerifyCode()
-    {
-        $verifyModel = new VerifyCodeForm();
-
-        if($verifyModel->load(Yii::$app->request->post()) && $result = $verifyModel->validate()) {
-            //验证成功//写入session
-            Yii::$app->session->set(self::SIGNUP_VERIFY_CODE, true);
-        }
-
-        return $this->asJson($result);
-    }
-
-    //Yii::$app->session->set(self::SIGNUP_VERIFY_CODE, true);
-    public function actionSendPhoneCode()
-    {
-        $action = Yii::createObject([
-            'class' => PhoneCodePopAction::class,
-            'phone' => '13725514524',
-            'maxNum' => 6,
-        ]);
-
-//        $action = new PhoneCodePopAction([
-//
-//        ]);
-
-        return $action->run();
-    }
-
-
 
     /**
      * Signs user up.
@@ -233,5 +200,36 @@ class UserController extends \app\components\Controller
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
+    }
+
+    /**
+     * 验证，注册验证码
+     */
+    public function actionSignupVerifyCode()
+    {
+        $verifyModel = new VerifyCodeForm();
+
+        if($verifyModel->load(Yii::$app->request->post()) && $result = $verifyModel->validate()) {
+            //验证成功//写入session
+            Yii::$app->session->set(self::SIGNUP_VERIFY_CODE, true);
+        }
+
+        return $this->asJson($result);
+    }
+
+    //Yii::$app->session->set(self::SIGNUP_VERIFY_CODE, true);
+    public function actionSendPhoneCode()
+    {
+        $action = Yii::createObject([
+            'class' => PhoneCodePopAction::class,
+            'phone' => '13725514524',
+            'maxNum' => 6,
+        ]);
+
+//        $action = new PhoneCodePopAction([
+//
+//        ]);
+
+        return $action->run();
     }
 }

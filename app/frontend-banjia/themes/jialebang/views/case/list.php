@@ -86,7 +86,7 @@ $this->title = $columnModel->cname;
                     'moreLink' => Url::to(['/case/list']),
                     
                     'columnType' => 'photo',
-                    'flagName' => '推荐',
+                    'flagName' => Yii::$app->params['config_face_banjia_cn_sidebox_current_photo_column_flag'],
                     'columnId' => $columnModel->id,//当前的栏目
                     'route' => ['/case/detail'],
                 ]); ?>

@@ -48,9 +48,13 @@ $this->registerJs($js);
                 </span>
             </div>
         	<ul class="head-list fr">
-                <li><a href="<?= Url::to(['/account/user/login']) ?>">请登录</a></li>
-                <li class="line">|</li>
-                <li><a href="<?= Url::to(['/account/user/signup']) ?>">免费注册</a></li>
+                <?php if(Yii::$app->getUser()->isGuest) { ?>
+                    <li><a href="<?= Url::to(['/account/user/login']) ?>">请登录</a></li>
+                    <li class="line">|</li>
+                    <li><a href="<?= Url::to(['/account/user/signup']) ?>">免费注册</a></li>
+                <?php } else { ?>
+                    <li style="padding-right: 12px;">欢迎 <?= Yii::$app->getUser()->getIdentity()->username ?> [<a style="display: inline;padding: 0 2px 0 2px;" href="<?= Url::to(['/account/user/logout']) ?>">退出</a>]</li>
+                <?php } ?>
                 <li class="line">|</li>
                 <li class="drop">
                     <a class="drop-title" href="<?= Url::to(['/account/user/info']) ?>">账户中心<b></b></a>

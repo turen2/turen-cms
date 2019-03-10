@@ -26,7 +26,7 @@ class SiteController extends Controller
             //错误界面
             'error' => [
                 'class' => 'yii\web\ErrorAction',
-                'layout' => '/main-banjia',
+                'layout' => 'main',
                 'view' => 'error',
             ],
             //获取手机验证码

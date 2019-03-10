@@ -40,7 +40,7 @@ $this->title = $columnModel->cname;
                     'htmlClass' => 'baike-article-list',
                     
                     'columnType' => 'article',
-                    'flagName' => '推荐',
+                    'flagName' => Yii::$app->params['config_face_banjia_cn_sidebox_baike_column_flag'],
                     'columnId' => 	Yii::$app->params['config_face_banjia_cn_sidebox_baike_column_id'],//搬家百科
                     'route' => ['/baike/detail'],
                 ]); ?>

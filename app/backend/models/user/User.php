@@ -18,7 +18,7 @@ use app\widgets\laydate\LaydateBehavior;
  * @property string $user_id 用户id
  * @property string $username 用户名
  * @property string $email 电子邮件
- * @property string $mobile 手机
+ * @property string $phone 手机
  * @property string $password 密码
  * @property int $level_id 会员等级
  * @property int $ug_id 会员组
@@ -86,7 +86,7 @@ class User extends \app\models\base\User
         return [
             [['username'], 'required'],
             [['level_id', 'ug_id', 'sex', 'point', 'login_time', 'status', 'deltime', 'delstate', 'reg_time'], 'integer'],
-            [['intro', 'username', 'password', 'qq_id', 'weibo_id', 'wx_id', 'email', 'mobile', 'telephone', 'reg_ip', 'login_ip', 'avatar', 'company', 'address', 'trade', 'address_prov', 'address_city', 'zipcode', 'license', 'address_country'], 'string'],
+            [['intro', 'username', 'password', 'qq_id', 'weibo_id', 'wx_id', 'email', 'phone', 'telephone', 'reg_ip', 'login_ip', 'avatar', 'company', 'address', 'trade', 'address_prov', 'address_city', 'zipcode', 'license', 'address_country'], 'string'],
             [['sex', 'point'], 'default', 'value' => 0],
             [['status'], 'default', 'value' => self::STATUS_ON],
             [['delstate'], 'default', 'value' => self::STATUS_OFF],
@@ -102,7 +102,7 @@ class User extends \app\models\base\User
             'user_id' => '用户id',
             'username' => '用户名',
             'email' => '电子邮件',
-            'mobile' => '手机',
+            'phone' => '手机',
             'password' => '密码',
             'level_id' => '会员等级',
             'ug_id' => '会员组',

@@ -1395,13 +1395,12 @@
     text-align:right;
     line-height:26px;
 }
-.hot-article-list .h-n-box dl,.hot-article-list .h-n-box dl dt,.hot-article-list .h-n-box dl dd {
+.hot-article-list .h-n-box dl dt,.hot-article-list .h-n-box dl dd {
     float:left;
     overflow:hidden;
 }
 .hot-article-list .h-n-box dl {
     padding-bottom:10px;
-    float:left;
 }
 .hot-article-list .h-n-box dl dt {
 
@@ -1427,7 +1426,6 @@
 }
 .hot-article-list .h-n-box .list {
     border-top:1px dotted #ccc;
-    float:left;
     padding:5px 0;
 }
 .hot-article-list .h-n-box .list a {
@@ -1671,14 +1669,14 @@
     position: relative;
 }
 
-.case-banner img.fadeimg {
+.case-banner img.fadeimg, .case-recommend .list-left img.fadeimg {
     transition: transform 1s linear 0;
     transform: scaleX(1.08) scaleY(1.08);
     -webkit-transition: -webkit-transform 1s linear;
     -webkit-transform: scaleX(1.08) scaleY(1.08)
 }
 
-.case-banner img.removeimg {
+.case-banner img.removeimg, .case-recommend .list-left img.removeimg {
     transition: transform .5s linear 0;
     transform: scaleX(1) scaleY(1);
     -webkit-transition: -webkit-transform .5s linear;
@@ -1686,14 +1684,18 @@
 }
 
 .case-banner .back-screen {
-    padding: 7px 10px 0 10px;
+    padding: 0 10px 0 10px;
     width: 478px;
     height: 73px;
-    background: url(https://ued.jia.com/image/jiahome/2015/opactiy.png) repeat;
+    background: url(../images/common/opactiy.png) repeat;
     position: absolute;
     bottom: 0;
     left: 0;
     color: #fff;
+}
+
+.case-banner .back-screen p {
+    margin-top: 6px;
 }
 
 .case-banner .pagination {
@@ -1768,6 +1770,7 @@
 }
 
 .case-recommend .case-gloab {
+    background: url(../images/common/opactiy.png) repeat;
     width: 100%;
     height: 35px;
     line-height: 35px;

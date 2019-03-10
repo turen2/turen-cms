@@ -4,6 +4,9 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
+
+use common\models\user\User;
+use yii\captcha\Captcha;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -29,21 +32,59 @@ EOF;
 $this->registerJs($js);
 ?>
 
-<?= VerifyCodeWidget::widget([
-    'templateId' => 'verify-code-form-box',
-    'verifyUrl' => Url::to(['/account/user/signup-verify-code']),
-]); ?>
+<br />
+<br />
 
 <div class="container">
     <div class="signup-form">
         <?php $form = ActiveForm::begin(['enableAjaxValidation' => false, 'id' => 'loginForm', 'options' => ['class' => 'login-form']]); ?>
-        <?= $form->field($signupModel, 'phone')->textInput(['placeholder' => $signupModel->getAttributeLabel('phone')]) ?>
+        <?php if(Yii::$app->params['config_login_mode'] == User::USER_PHONE_MODE) { ?>
+            <?= $form->field($signupModel, 'phone')->textInput(['placeholder' => $signupModel->getAttributeLabel('phone')]) ?>
+        <?php } elseif(Yii::$app->params['config_login_mode'] == User::USER_EMAIL_MODE) { ?>
+            <?= $form->field($signupModel, 'email')->textInput(['placeholder' => $signupModel->getAttributeLabel('email')]) ?>
+        <?php } ?>
         <?= $form->field($signupModel, 'password')->passwordInput(['placeholder' => $signupModel->getAttributeLabel('password')]) ?>
-        <?= $form->field($signupModel, 'phoneCode')->passwordInput(['placeholder' => $signupModel->getAttributeLabel('phoneCode')]) ?>
-        <a href="javascript:;" class="get-verify-code">获取验证码</a>
-        <br />
+        <?= $form->field($signupModel, 'rePassword')->passwordInput(['placeholder' => $signupModel->getAttributeLabel('rePassword')]) ?>
+        <?= $form->field($signupModel, 'verifyCode')->widget(Captcha::class, [
+            'captchaAction' => '/account/user/captcha',
+            'template' => '{input} {image}',
+            'options' => ['class' => 'form-control', 'style' => 'width: 228px;', 'placeholder' => $signupModel->getAttributeLabel('verifyCode')],
+            'imageOptions' => ['title' => '点击刷新', 'alt' => '验证码', 'style' => 'cursor: pointer;'],
+        ]) ?>
         <?= Html::submitButton('注 册', ['class' => 'btn btn-block btn-primary', 'style' => "cursor:pointer;"]) ?>
         <?php ActiveForm::end(); ?>
     </div>
 </div>
 
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

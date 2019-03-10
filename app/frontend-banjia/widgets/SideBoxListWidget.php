@@ -27,7 +27,7 @@ class SideBoxListWidget extends \yii\base\Widget
     public $infoId;//单页面对应的columnid
     public $blockId;//碎片id
 
-    public $flagName;//目前支持：推荐，置顶，最新，最热，相关，还看，六个标签
+    public $flagName;//栏目标签
     public $columnId;//文章图片视频文件产品对应的columnid
     public $listNum = 10;//列表类型最多显示多少条信息
     public $route = ['/'];
@@ -113,13 +113,17 @@ class SideBoxListWidget extends \yii\base\Widget
     protected function boxList($className)
     {
         $query = $className::find()->where(['columnid' => $this->columnId]);
-        if(in_array($this->flagName, ['推荐', '置顶', '相关', '还看'])) {
-            $query->andFilterWhere(['like', 'flag', $this->flagName])->orderBy(['orderid' => SORT_DESC]);
-        } elseif($this->flagName == '最新') {
+        if(!empty($this->flagName)) {
+            $query->andFilterWhere(['like', 'flag', $this->flagName]);
+        }
+        $query->orderBy(['orderid' => SORT_DESC]);
+        /*
+        elseif($this->flagName == '最新') {
             $query->orderBy(['posttime' => SORT_DESC]);
         } elseif($this->flagName == '最热') {
             $query->orderBy(['hits' => SORT_DESC]);
         }
+        */
         $query->limit($this->listNum);
 
         //echo $query->createCommand()->getRawSql();exit;

@@ -29,7 +29,7 @@ $rules[Html::getInputName($model, 'username')] = ['required' => true];
 $rules[Html::getInputName($model, 'point')] = ['digits' => true];
 $rules[Html::getInputName($model, 'email')] = ['email' => true];
 $rules[Html::getInputName($model, 'zipcode')] = ['isZipCode' => true];
-$rules[Html::getInputName($model, 'mobile')] = ['isPhone' => true];
+$rules[Html::getInputName($model, 'phone')] = ['isPhone' => true];
 $rules = Json::encode($rules);
 $messages = Json::encode($messages);
 $js = <<<EOF
@@ -114,9 +114,9 @@ $this->registerJs($js);
     		</td>
     	</tr>
     	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('mobile')?><?php if($model->isAttributeRequired('mobile')) { ?><span class="maroon">*</span><?php } ?></td>
+    		<td class="first-column"><?= $model->getAttributeLabel('phone')?><?php if($model->isAttributeRequired('phone')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'mobile', ['class' => 'input']) ?>
+    			<?= Html::activeInput('text', $model, 'phone', ['class' => 'input']) ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>

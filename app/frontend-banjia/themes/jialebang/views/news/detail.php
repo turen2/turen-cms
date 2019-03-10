@@ -142,7 +142,7 @@ $dlength = 90;
                         'htmlClass' => 'detail-add',
                         'columnType' => 'article',
                         'columnId' => $model->columnid,
-                        'flagName' => '相关',
+                        'flagName' => Yii::$app->params['config_face_banjia_cn_sidebox_current_article_column_flag'],
                         'listNum' => 6,
                         'route' => ['/baike/detail'],
                     ]); ?>
@@ -157,7 +157,7 @@ $dlength = 90;
                     'moreLink' => Url::to(['/case/list']),
 
                     'columnType' => 'photo',
-                    'flagName' => '',
+                    'flagName' => Yii::$app->params['config_face_banjia_cn_sidebox_current_photo_column_flag'],
                     'columnId' => 	76,//现场案例
                     'listNum' => 6,
                     'route' => ['/case/detail'],

@@ -100,7 +100,7 @@ if($blockModel) {
                 }
                 ?>
             </p>
-        	<p class="footer-c">2016-<?= date('Y') ?> <?= Yii::$app->params['config_copyright'] ?> - <?= Yii::$app->params['config_icp_code'] ?> <a target="_blank" href="http://www.turen2.com">技术支持</a></p>
+        	<p class="footer-c">2016-<?= date('Y') ?> <?= Yii::$app->params['config_copyright'] ?> - <?= Yii::$app->params['config_icp_code'] ?> <a target="_blank" href="http://www.turen2.com">技术支持</a> <span><?php echo number_format( (microtime(true) - YII_BEGIN_TIME), 3) . 's'; ?></span></p>
         </div>
     </div>
 </div>

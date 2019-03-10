@@ -99,7 +99,7 @@ return [
         //异常处理
         'errorHandler' => [
             'class' => 'yii\web\ErrorHandler',
-            'errorAction' => 'banjia/site/error',//默认显示pc版路由
+            'errorAction' => 'site/error',//默认显示pc版路由
         ],
         //伪静态管理
         'urlManager' => [
