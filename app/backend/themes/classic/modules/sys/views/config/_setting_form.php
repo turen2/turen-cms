@@ -60,6 +60,14 @@ $configTabArr = [
         'name' => '产品配置',
         'view' => '_item/_prod',
     ],
+    [
+        'name' => '第三方配置',
+        'view' => '_item/_third',
+    ],
+    [
+        'name' => '消息配置',
+        'view' => '_item/_msg',
+    ],
 ];
 
 //统计当前数组数量
@@ -100,10 +108,10 @@ echo Tips::widget([
 		<!--使用DIV兼容chrome firefox等浏览器-->
 		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="form-table">
 			<?php
+            echo $this->render($configTabText['view'], [
+                'config' => isset($configs[$configTabId])?$configs[$configTabId]:[],
+            ]);
 			if(isset($configs[$configTabId])) {
-			    echo $this->render($configTabText['view'], [
-			        'config' => $configs[$configTabId],
-			    ]);
     			$i = 1;
     			foreach ($configs[$configTabId] as $row) {
     			    if($row['visible']) {

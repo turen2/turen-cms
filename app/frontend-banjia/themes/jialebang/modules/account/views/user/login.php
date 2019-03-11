@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $form->field($model, 'verifyCode')->widget(Captcha::class, [
             'captchaAction' => '/account/user/captcha',
             'template' => '{input} {image}',
-            'options' => ['class' => 'form-control', 'style' => 'width: 228px;', 'placeholder' => $model->getAttributeLabel('verifyCode')],
+            'options' => ['class' => 'form-control', 'placeholder' => $model->getAttributeLabel('verifyCode')],
             'imageOptions' => ['title' => '点击刷新', 'alt' => '验证码', 'style' => 'cursor: pointer;'],
         ]) ?>
 

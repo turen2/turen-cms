@@ -166,7 +166,6 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * Finds user by password reset token
-     *
      * @param string $token password reset token
      * @return static|null
      */
@@ -184,7 +183,6 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * Finds out if password reset token is valid
-     *
      * @param string $token password reset token
      * @return boolean
      */
@@ -227,7 +225,6 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * Generates password hash from password and sets it to the model
-     *
      * @param string $password
      */
     public function setPassword($password)

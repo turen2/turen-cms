@@ -71,28 +71,6 @@ $config = [
             'directoryLevel' => 2,//多层目录，提高存储效率
             'cachePath' => '@common/runtime/cache',//全局使用一套缓存目录，数据库缓存，redis，memcahced等不需要单独设置
         ],
-        //配置这个组件是为了console控制台应用中可以运行rbac数据库升级程序，公共配置一下，具体应用中会被覆盖
-        'mailer' => [// 公共发送邮件配置
-            'class' => 'yii\swiftmailer\Mailer',//这个类中配置模板
-            //'viewPath' => '@common/mail',
-            //开发调试用的（邮件在@runtime/mail目录下）
-            'useFileTransport' => false,//这句一定有，false发送邮件，true只是生成邮件在runtime文件夹下，不发邮件
-            //'fileTransportPath' => '@common/runtime/mail',//配合FileTransport，指定邮件内容的缓冲位置
-            'enableSwiftMailerLogging' => true,//显示log
-            'transport' => [
-                'class' => 'Swift_SmtpTransport',
-                'host' => '',
-                'username' => '',
-                'password' => '',
-                'port' => '',
-                //'encryption' => 'tls',//tls or ssl(tls可以认为是ssl的升级版)
-            ],
-            'messageConfig'=> [//这部分可以在send发邮件时临时配置
-                'charset' => 'UTF-8',
-                'from'=>['' => ''],
-                //'bcc' => ['aaa@163.com'=>'aaa'],//加密超送，(cc为普通超送)
-            ],
-        ],
         /*
         'authManager' => [
             'class' => 'yii\rbac\DbManager',

@@ -7,11 +7,9 @@
 
 use common\models\user\User;
 use yii\captcha\Captcha;
-use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\assets\LayerAsset;
-use app\widgets\verifycode\VerifyCodeWidget;
 
 $this->title = '免费注册';
 $this->params['breadcrumbs'][] = $this->title;
@@ -48,7 +46,7 @@ $this->registerJs($js);
         <?= $form->field($signupModel, 'verifyCode')->widget(Captcha::class, [
             'captchaAction' => '/account/user/captcha',
             'template' => '{input} {image}',
-            'options' => ['class' => 'form-control', 'style' => 'width: 228px;', 'placeholder' => $signupModel->getAttributeLabel('verifyCode')],
+            'options' => ['class' => 'form-control', 'placeholder' => $signupModel->getAttributeLabel('verifyCode')],
             'imageOptions' => ['title' => '点击刷新', 'alt' => '验证码', 'style' => 'cursor: pointer;'],
         ]) ?>
         <?= Html::submitButton('注 册', ['class' => 'btn btn-block btn-primary', 'style' => "cursor:pointer;"]) ?>

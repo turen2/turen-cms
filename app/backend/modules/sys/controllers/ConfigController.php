@@ -82,7 +82,7 @@ class ConfigController extends \app\components\Controller
                 //修改配置名
                 Config::updateAll(['varname' => 'config_'.$model->varname], ['varname' => $model->varname]);
                 //更新缓存
-                Config::UpdateCache();
+                //Config::UpdateCache();
                 
                 Yii::$app->getSession()->setFlash('success', $model->varinfo.' 已经添加成功！');
                 return $this->redirect(['setting']);

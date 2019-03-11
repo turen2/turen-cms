@@ -7,19 +7,19 @@
 namespace app\modules\account\controllers;
 
 use Yii;
-use common\models\user\VerifyCodeForm;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
+use common\models\user\VerifyCodeForm;
 use common\models\user\LoginForm;
 use common\models\user\SignupForm;
+use common\models\user\ForgetForm;
+use common\models\user\ResetForm;
 
 /**
  * User controller
  */
 class UserController extends \app\components\Controller
 {
-    const SIGNUP_VERIFY_CODE = 'signup_verify_code';
-
     //允许无条件通过验证
     public function allowAction()
     {
@@ -27,81 +27,43 @@ class UserController extends \app\components\Controller
             'login',
             'signup',
             'logout',
-            'forget',
             'captcha',
             'error',
+            'forget',//邮箱发送验证邮件
+            'reset',//邮箱重新密码
+            'result',//响应结果
+            'phone-password',//手机重置密码
         ];
     }
-
-    /**
-     * @inheritdoc
-     */
-/*
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::class,
-                'only' => ['logout', 'signup'],
-                'rules' => [
-                    [
-                        'actions' => ['signup'],
-                        'allow' => true,
-                        'roles' => ['?'],
-                    ],
-                    [
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::class,
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
-        ];
-    }
-*/
 
     /**
      * @inheritdoc
      */
     public function actions()
     {
-        $params = Yii::$app->getRequest()->queryParams;
         return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
                 'minLength' => 4,
                 'maxLength' => 4,
             ],
-            //获取手机验证码
-            /*
-            'phone-code' => [
-                'class' => PhoneCodePopAction::class,
-                'phone' => $params['phone'],
-                'maxNum' => 6,
-            ],
-            */
         ];
     }
 
     /**
-     * Displays homepage.
      * 用户中心首页
-     *
-     * @return mixed
+     * @return string
+     * @throws \Throwable
      */
     public function actionInfo()
     {
-        return $this->render('info');
+        $userModel = Yii::$app->getUser()->getIdentity();
+        $userInfoModel = null;
+        return $this->render('info', [
+            '$userModel' => $userModel,
+            '$userInfoModel' => $userInfoModel,
+        ]);
     }
 
     /**
@@ -162,94 +124,61 @@ class UserController extends \app\components\Controller
     }
 
     /**
-     * 找回密码
-     * @return string
+     * 忘记密码
+     * @return mixed
      */
     public function actionForget()
     {
-        $model = null;
+        $model = new ForgetForm();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->sendEmail()) {
+                return $this->redirect(['user/result', 'type' => 'success', 'title' => '邮箱发送成功', 'text' => '邮箱已发送，请查收并继续完成下一步操作']);
+            } else {
+                return $this->redirect(['user/result', 'type' => 'error', 'title' => '邮箱发送失败', 'text' => '发送错误，请输入正确的邮箱地址再试']);
+            }
+        }
+
         return $this->render('forget', [
             'model' => $model,
         ]);
     }
 
     /**
-     * Requests password reset.
-     *
-     * @return mixed
-     */
-    public function actionRequestPasswordReset()
-    {
-        $model = new PasswordResetRequestForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
-
-                return $this->goHome();
-            } else {
-                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for the provided email address.');
-            }
-        }
-
-        return $this->render('requestPasswordResetToken', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
      * Resets password.
-     *
      * @param string $token
      * @return mixed
      * @throws BadRequestHttpException
      */
-    public function actionResetPassword($token)
+    public function actionReset($token)
     {
         try {
-            $model = new ResetPasswordForm($token);
+            $model = new ResetForm($token);
         } catch (InvalidArgumentException $e) {
             throw new BadRequestHttpException($e->getMessage());
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
-            Yii::$app->session->setFlash('success', 'New password saved.');
-
-            return $this->goHome();
+            return $this->redirect(['user/result', 'type' => 'success', 'title' => '密码重置成功', 'text' => '密码重置成功，请使用新密码登录']);
         }
 
-        return $this->render('resetPassword', [
+        return $this->render('reset', [
             'model' => $model,
         ]);
     }
 
     /**
-     * 验证，注册验证码
+     * 响应结果页面
+     * @param string $type
+     * @param string $title
+     * @param string $text
+     * @return string
      */
-    public function actionSignupVerifyCode()
+    public function actionResult($type = 'success', $title = '', $text = '')
     {
-        $verifyModel = new VerifyCodeForm();
-
-        if($verifyModel->load(Yii::$app->request->post()) && $result = $verifyModel->validate()) {
-            //验证成功//写入session
-            Yii::$app->session->set(self::SIGNUP_VERIFY_CODE, true);
-        }
-
-        return $this->asJson($result);
-    }
-
-    //Yii::$app->session->set(self::SIGNUP_VERIFY_CODE, true);
-    public function actionSendPhoneCode()
-    {
-        $action = Yii::createObject([
-            'class' => PhoneCodePopAction::class,
-            'phone' => '13725514524',
-            'maxNum' => 6,
+        return $this->render('result', [
+            'type' => $type,
+            'title' => $title,
+            'text' => $text,
         ]);
-
-//        $action = new PhoneCodePopAction([
-//
-//        ]);
-
-        return $action->run();
     }
 }

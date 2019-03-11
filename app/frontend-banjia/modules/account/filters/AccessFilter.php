@@ -1,11 +1,13 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 namespace app\modules\account\filters;
 
-use common\models\merchant\Merchant;
 use Yii;
 use yii\base\ActionFilter;
-use yii\web\ForbiddenHttpException;
 
 /**
  * 用法与用量：过滤器中只有以下返回：1.return;    2.return true;     3.return false;   三种
@@ -17,6 +19,7 @@ use yii\web\ForbiddenHttpException;
  *     return [
  *         'access' => [
  *             'class' => \app\modules\account\filters\AccessFilter::class,
+ *             'denyCallback' => function($action) {...},
  *         ],
  *     ];
  * }
@@ -24,24 +27,20 @@ use yii\web\ForbiddenHttpException;
  */
 class AccessFilter extends ActionFilter
 {
-    public $denyCallback;
+    public $denyCallback;//回调函数
     
     /**
      * @param Action $action the action to be executed.
      * @return boolean whether the action should continue to be executed.
      * 上述过滤器激活，isActive返回true时，过滤器有效执行beforeAction
+     * 返回true下一个filter继续执行，返回false导致action和下一个filter都没有机会执行
      */
-    public function beforeAction($action)//返回true下一个filter继续执行，返回false导致action和下一个filter都没有机会执行
+    public function beforeAction($action)
     {
         $user = Yii::$app->user;
         if (Yii::$app->user->getIsGuest()) {//未登录
             Yii::$app->session->setFlash('warning', '您还未登录，请先登录再操作！');
-            //设置登录后的跳转路径
-            $loginUrl = (array) $user->loginUrl;
-            if ($loginUrl[0] !== Yii::$app->requestedRoute) {
-                return Yii::$app->getResponse()->redirect($user->loginUrl)->send();//send()直接返回，保留flash信息
-            }
-            //$user->loginRequired();//这种模式，会消除flash信息
+            $user->loginRequired();//跳转到登录，并保留当前将访问的地址
         }
 
         return true;//正常返回beforeAction

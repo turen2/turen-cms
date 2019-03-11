@@ -29,12 +29,12 @@ class SiteController extends Controller
                 'layout' => 'main',
                 'view' => 'error',
             ],
-            //获取手机验证码
-//            'phone-code' => [
-//                'class' => PhoneCodePopAction::class,
-//                'phone' => $params['phone'],
-//                'maxNum' => 6,
-//            ],
+            //获取手机验证码//问答验证
+            'phone-code' => [
+                'class' => PhoneCodePopAction::class,
+                'phone' => $params['phone'],
+                'maxNum' => 6,
+            ],
         ];
     }
 }

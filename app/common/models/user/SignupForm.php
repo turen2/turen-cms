@@ -86,13 +86,9 @@ class SignupForm extends Model
             $user->email = $this->email;
         }
         $user->reg_time = time();
-        $user->status = User::
+        $user->status = User::STATUS_ON;
         $user->setPassword($this->password);
         $user->generateAuthKey();
-
-        var_dump($user->save());
-        var_dump($user->getErrors());exit;
-
 
         return $user->save() ? $user : null;
     }

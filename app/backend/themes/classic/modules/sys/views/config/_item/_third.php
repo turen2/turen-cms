@@ -1,0 +1,14 @@
+<?php
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
+use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
+
+$config = ArrayHelper::index($config, 'varname');
+?>
+
+短信、
+邮箱、OSS、第三方登录。
