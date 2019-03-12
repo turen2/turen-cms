@@ -26,11 +26,11 @@ var homeMainAdSwiper = new Swiper('.home-main-ad .swiper-container', {
     paginationClickable: true,//导航可操作帧
     autoplayDisableOnInteraction: true,//用户操作后，autoplay将禁止
 });
-$('.home-main-ad .arrow-left').on('click', function(e){
+$('.home-main-ad .arrow-right').on('click', function(e){
     e.preventDefault();
     homeMainAdSwiper.swipeNext();
 });
-$('.home-main-ad .arrow-right').on('click', function(e){
+$('.home-main-ad .arrow-left').on('click', function(e){
     e.preventDefault();
     homeMainAdSwiper.swipePrev();
 });
@@ -52,11 +52,11 @@ var caseSwiper = new Swiper('.case-banner .swiper-container', {
     paginationClickable: true,
     autoplayDisableOnInteraction: true,//用户操作后，autoplay将禁止
 });
-$('.case-banner .arrow-left').on('click', function(e){
+$('.case-banner .arrow-right').on('click', function(e){
     e.preventDefault()
     caseSwiper.swipePrev()
 });
-$('.case-banner .arrow-right').on('click', function(e){
+$('.case-banner .arrow-left').on('click', function(e){
     e.preventDefault()
     caseSwiper.swipeNext()
 });

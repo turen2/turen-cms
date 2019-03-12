@@ -57,7 +57,7 @@ class LoginForm extends Model
     public function attributeLabels()
     {
         $labels = [
-            'email' => '邮箱',
+            'email' => '邮箱地址',
             'phone' => '手机号码',
             'password' => '用户密码',
             'rememberMe' => '下次自动登录',

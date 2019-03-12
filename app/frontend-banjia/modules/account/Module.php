@@ -13,7 +13,7 @@ use Yii;
  */
 class Module extends \yii\base\Module
 {
-    public $layout = '/main';
+    public $layout = '/easy_main';
 
     public $allowRoutes = [
         'user/login',//登录

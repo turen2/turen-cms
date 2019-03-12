@@ -79,7 +79,7 @@ $this->registerJs($js);
     	<div class="container clearfix">
     		<!-- logon -->
             <a href="<?= Yii::$app->homeUrl ?>" class="logo fl">
-            	<img src="<?= $webUrl ?>images/logo.png">
+            	<img src="<?= empty(Yii::$app->params['config_frontend_logo'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl(Yii::$app->params['config_frontend_logo'], true) ?>">
         	</a>
         	
             <!-- 主导航 -->

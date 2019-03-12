@@ -15,6 +15,7 @@ use common\models\site\FaceConfig;
 use common\models\sys\Template;
 use common\models\sys\MultilangTpl;
 use yii\caching\TagDependency;
+use yii\swiftmailer\Mailer;
 
 /**
  * 系统初始化生成了全局参数以"config_init_"为前缀
@@ -54,11 +55,8 @@ class Init extends \yii\base\Component implements \yii\base\BootstrapInterface
         
         //3.系统缓存
         $this->initConfig();//根据语言获取后台配置参数
-
-        //4.组件参数初始化
-        $this->initComponentArg($app);
         
-        //5.模板选择
+        //4.模板选择
         $this->initTemplate();//初始化模板系统，并产生一个模板常量
         
         //5.界面缓存
@@ -150,21 +148,6 @@ class Init extends \yii\base\Component implements \yii\base\BootstrapInterface
     protected function initConfig()
     {
         Yii::$app->params = ArrayHelper::merge(Yii::$app->params, Config::CacheList());
-    }
-
-    protected function initComponentArg($app)
-    {
-        //邮箱
-//       $app->mailer->transport->host = $app->params['config_smtp_host'];
-//       $app->mailer->transport->port = $app->params['config_smtp_port'];//465
-//       $app->mailer->transport->encryption = $app->params['config_smtp_encryption'];//tls or ssl(tls可以认为是ssl的升级版)
-//       $app->mailer->transport->username = $app->params['config_smtp_email'];
-//       $app->mailer->transport->password = $app->params['config_stmp_password'];
-//
-//        var_dump(Yii::$app->mailer->transport);exit;
-
-        //$app->
-
     }
     
     protected function initTemplate()

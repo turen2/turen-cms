@@ -51,7 +51,7 @@ class Config extends \app\models\base\Sys
                         }
                     }
                     
-                    return $this->vartype;
+                    return $this->varvalue;
                 }
             ],
         ];

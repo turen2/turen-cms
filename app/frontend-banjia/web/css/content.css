@@ -195,7 +195,7 @@
     margin-right: 10px;
     opacity: 0.8;
     background: #fff;
-    border: 1px solid #fff;
+    border: 1px solid #cccccc;
     cursor: pointer;
 }
 
@@ -851,7 +851,7 @@
     margin-right: 8px;
     opacity: 0.8;
     background: #fff;
-    border: 1px solid #fff;
+    border: 1px solid #cccccc;
     cursor: pointer;
 }
 
@@ -1523,7 +1523,6 @@
 
 .home-comment-slide .swiper-container .swiper-pagination-switch {
     display: inline-block;
-    border: 1px solid #ff5555;
     width: 10px;
     height: 10px;
     border-radius: 10px;
@@ -1713,7 +1712,7 @@
     background: #fff;
     margin: 0 5px;
     opacity: 0.8;
-    border: 1px solid #fff;
+    border: 1px solid #cccccc;
     cursor: pointer;
 }
 
@@ -2084,3 +2083,294 @@
 }
 
 /* 首页底部代言end */
+
+/* 简易样式 */
+.easy-header {
+    height: 70px;
+    line-height: 70px;
+    border-bottom: 1px solid #f2f2f2;
+}
+.easy-logo {
+    display: block;
+    height: 68px;
+}
+
+.easy-footer {
+    text-align: center;
+    padding: 50px 0 30px 0;
+}
+.easy-footer .easy-footer-nav {
+    margin: 15px;
+}
+.easy-footer .easy-footer-nav a {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.easy-footer .easy-footer-c {
+    margin: 15px;
+}
+/* 简易样式end */
+
+/* 登录 */
+.login-wrap {
+    margin-top: 20px;
+}
+
+.login-wrap .ad-box {
+    float: left;
+}
+
+.login-wrap .form-box {
+    width: 380px;
+    margin-top: 20px;
+    margin-left: 700px;
+    border: 1px solid #eee;
+}
+
+.login-ad-banner, .login-ad-banner .swiper-slide {
+    position: relative;
+}
+
+.login-ad-banner, .login-ad-banner .swiper-container, .login-ad-banner .swiper-slide img {
+    display: block;
+    width: 582px;
+    height: 496px;
+}
+
+.login-ad-banner .arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+}
+
+.login-ad-banner .arrow-left {
+    left: 0;
+}
+
+.login-ad-banner .arrow-right {
+    right: 0;
+}
+
+.login-ad-banner .arrow span {
+    margin-top: -32px;
+    display: block;
+    top: 50%;
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    opacity: 0.2;
+    -webkit-transition: opacity .5s ease;
+    transition: opacity .5s ease;
+}
+
+.login-ad-banner a.arrow:hover span {
+    opacity: 1;
+}
+
+.login-ad-banner .arrow-left span {
+    left: 0;
+    background: url(../images/swiper2/left.png) no-repeat center center;
+}
+
+.login-ad-banner .arrow-right span {
+    right: 0;
+    background: url(../images/swiper2/right.png) no-repeat center center;
+}
+.login-ad-banner .swiper-pagination-switch {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 8px;
+    background: #fff;
+    margin: 0 5px;
+    opacity: 0.8;
+    border: 1px solid #cccccc;
+    cursor: pointer;
+}
+.login-ad-banner .swiper-active-switch {
+    background: #0099e9;
+}
+.login-ad-banner .pagination {
+    position: absolute;
+    z-index: 20;
+    bottom: 10px;
+    right: 45%;
+}
+.form-box .form-tab {
+    height: 52px;
+    border-bottom: 1px solid #ddd;
+}
+.form-box .form-tab .tab-li {
+    float: left;
+    width: 50%;
+    height: 50px;
+}
+.form-box .form-tab .tab-li a {
+    display: block;
+    text-align: center;
+    height: 50px;
+    line-height: 52px;
+    font-size: 18px;
+    color: #999;
+    text-decoration: none;
+    position: relative;
+    bottom: -2px;
+}
+.form-box .form-tab .tab-li.on a {
+    color: #0099e9;
+    border-bottom: 1px solid #0099e9;
+}
+.form-box .form-error {
+    position: absolute;
+    top: 8px;
+    max-height: 32px;
+    padding: 4px 6px 4px 12px;
+    border: 1px solid #ffddbc;
+    background: #fffceb;
+}
+.form-box .form-content {
+    position: relative;
+    padding: 40px 40px 0;
+}
+.form-box dl {
+    position: relative;
+    width: 298px;
+    height: 44px;
+    padding: 12px 0;
+    line-height: 44px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+.form-box .top1 {
+    top: -1px;
+}
+.form-box .top2 {
+    top: -2px;
+}
+.form-box .top3 {
+    top: -3px;
+}
+.form-box dt {
+    float: left;
+    width: 90px;
+    height: 20px;
+    line-height: 20px;
+    padding-left: 10px;
+    text-align: right;
+}
+.form-box dt em {
+    padding: 0 7px;
+}
+.form-box dd {
+    position: relative;
+    float: left;
+    width: 206px;
+    height: 20px;
+    line-height: 20px;
+}
+.form-box dd img {
+    position: absolute;
+    top: -12px;
+    right: 0;
+    z-index: 50;
+}
+.form-box .input-text, .form-box .input-yzm, .form-box .input-jym {
+    width: 200px;
+    position: absolute;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 10px;
+    left: 0;
+    z-index: 2;
+    background: transparent;
+    outline: 0 none;
+    border: none;
+    color: #333;
+}
+.form-box .placeholder {
+    position: absolute;
+    height: 20px;
+    line-height: 20px;
+    left: 10px;
+    z-index: 1;
+    color: #ccc;
+}
+.form-box .rem-check {
+    margin: 10px;
+    margin-left: 0;
+}
+.form-box .rem-check input {
+    position: relative;
+    top: 2px;
+}
+.form-box .rem-check a {
+    color: #0099e9;
+}
+.form-box .btn-settlement {
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #0099e9;
+    outline: 0 none;
+    cursor: pointer;
+}
+.form-box .link-box {
+    height: 34px;
+    line-height: 34px;
+}
+.form-box .link-box .forget-pass, .form-box .link-box .sign-up {
+    color: #007fd7;
+}
+.form-box .link-box .forget-pass {
+    float: right;
+}
+.form-box .login-short {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    margin: 0;
+    border-top: 1px dotted #ddd;
+}
+.login-short h3 {
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1;
+    color: #666;
+    padding: 0 0 12px 0;
+}
+
+.login-short li {
+    float: left;
+    height: 33px;
+    width: 33px;
+    margin-right: 18px;
+    background: url(../images/common/member.png) -13px -24px no-repeat;
+}
+
+.login-short li a {
+    display: block;
+    height: 33px;
+}
+
+.login-short .qq {
+    background-position: -13px -24px;
+}
+
+.login-short .sina {
+    background-position: -49px -24px;
+}
+
+.login-short .weixin {
+    position: relative;
+    background-position: -85px -24px;
+}
+
+/* 登录end */

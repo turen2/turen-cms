@@ -8,11 +8,6 @@
 // 原理：有些参数是跟随系统本身的，这类配置项不需要在系统后台进行配置，直接配置在此文件中即可、
 // 配置在系统后台可管理的所有参数，在配置文件中必须要有一一对应的值，而且数据库配置优先级最高。
 return [
-    // 不列入config后台管理的配置项【更新不够频次】
-    'config.adminEmail' => 'xiayouqiao2008@163.com',
-    'config.supportEmail' => 'xiayouqiao2008@163.com',
-    'config.userPasswordResetTokenExpire' => '3600', // 找回密码的token值有效期为1小时
-    
     // 创始人列表
     'config.founderList' => [10],
     

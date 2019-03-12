@@ -10,4 +10,7 @@ return [
 
     //找回密码时验证邮件有效期
     'config.userPasswordResetTokenExpire' => 1800,//30分钟
+
+    //邮件发送者邮箱//与发送人保持一致
+    'config.supportEmail' => 'xiayouqiao2008@163.com',
 ];

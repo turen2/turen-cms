@@ -44,6 +44,8 @@ class UserController extends \app\components\Controller
         return [
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
+                'width' => 100,
+                'height' => 42,
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
                 'minLength' => 4,
                 'maxLength' => 4,
@@ -106,11 +108,11 @@ class UserController extends \app\components\Controller
      */
     public function actionSignup()
     {
-        $signupModel = new SignupForm();
-        $verifyModel = new VerifyCodeForm();
+        $model = new SignupForm();
+        //$verifyModel = new VerifyCodeForm();
 
-        if ($signupModel->load(Yii::$app->request->post())) {
-            if ($user = $signupModel->signup()) {
+        if ($model->load(Yii::$app->request->post())) {
+            if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
                     return $this->goHome();
                 }
@@ -118,8 +120,8 @@ class UserController extends \app\components\Controller
         }
 
         return $this->render('signup', [
-            'signupModel' => $signupModel,
-            'verifyModel' => $verifyModel,
+            'model' => $model,
+            //'verifyModel' => $verifyModel,
         ]);
     }
 

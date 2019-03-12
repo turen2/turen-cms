@@ -8,6 +8,7 @@ namespace common\models\user;
 
 use Yii;
 use yii\base\Model;
+use yii\helpers\Url;
 
 /**
  * Signup form
@@ -19,6 +20,7 @@ class SignupForm extends Model
     public $password;//密码
     public $rePassword;//重复密码
     public $verifyCode;//验证码
+    public $agreeProtocol = 1;//同意协议
 
     /**
      * @inheritdoc
@@ -26,7 +28,7 @@ class SignupForm extends Model
     public function rules()
     {
         $rules = [
-            [['password', 'rePassword', 'verifyCode'], 'required'],
+            [['password', 'rePassword', 'verifyCode', 'agreeProtocol'], 'required'],
             [['password', 'rePassword'], 'string', 'min' => 6],
             ['verifyCode', 'captcha',
                 'skipOnEmpty' => false,
@@ -59,8 +61,9 @@ class SignupForm extends Model
             'phone' => '手机号码',
             'email' => '邮箱地址',
             'password' => '输入密码',
-            'rePassword' => '重复输入密码',
+            'rePassword' => '确认密码',
             'verifyCode' => '验证码',
+            'agreeProtocol' => '我已阅读并同意"'.Yii::$app->params['config_site_name'].'"的',
         ];
 
         return $labels;

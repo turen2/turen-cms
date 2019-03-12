@@ -24,7 +24,7 @@ $('#config-vartype input').on('click', function() {
 ");
 
 //设置选项卡项
-$configTabArr = ['基本设置', '附件设置', '性能设置', '核心设置', '界面配置', '产品配置', '第三方配置', '消息配置'];
+$configTabArr = ['基本设置', '附件设置', '性能设置', '核心设置', '界面配置', '产品配置', '消息配置'];
 //统计当前数组数量
 $configTabNum = count($configTabArr);
 

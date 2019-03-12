@@ -61,10 +61,6 @@ $configTabArr = [
         'view' => '_item/_prod',
     ],
     [
-        'name' => '第三方配置',
-        'view' => '_item/_third',
-    ],
-    [
         'name' => '消息配置',
         'view' => '_item/_msg',
     ],

@@ -20,4 +20,12 @@ class HelpController extends Controller
 
         return $this->render('index');
     }
+
+    public function actionDetail($slug)
+    {
+        $model = null;
+        return $this->render('detail', [
+            'model' => $model,
+        ]);
+    }
 }

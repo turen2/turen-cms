@@ -68,14 +68,20 @@ class ForgetForm extends Model
         */
 
         //发送邮件
-        return Yii::$app->mailer
-            ->compose(
-                ['html' => 'resetForm-html', 'text' => 'resetForm-text'],
-                ['user' => $user]
-            )
-            ->setFrom([Yii::$app->params['config_support_email'] => Yii::$app->params['config_site_name']])
-            ->setTo($this->email)
-            ->setSubject('重置密码 - ' . Yii::$app->params['config_site_name'])
-            ->send();
+        try {
+            Yii::$app->mailer
+                ->compose(
+                    ['html' => 'resetForm-html', 'text' => 'resetForm-text'],
+                    ['user' => $user]
+                )
+                ->setFrom([Yii::$app->params['config.supportEmail'] => Yii::$app->params['config_site_name']])
+                ->setTo($this->email)
+                ->setSubject('重置密码 - ' . Yii::$app->params['config_site_name'])
+                ->send();
+        } catch (\Exception $e) {
+            return false;
+        }
+
+        return true;
     }
 }

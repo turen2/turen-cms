@@ -16,7 +16,6 @@ use yii\web\YiiAsset;
 
 FontAwesomeAsset::register($this);
 YiiAsset::register($this);
-PinAsset::register($this);
 AppBanjiaAsset::register($this);
 
 $webUrl = Yii::getAlias('@web/');
@@ -47,13 +46,13 @@ $webUrl = Yii::getAlias('@web/');
 <?php $this->beginBody() ?>
 <!--[if lt IE 9]><div class="alert alert-danger topframe" role="alert">你的浏览器实在<strong>太太太旧了</strong>，请 <a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a> 以保障您的上网安全。</div><![endif]-->
 
-<?= $this->render('_header') ?>
+<?= $this->render('_easy_header') ?>
 
 <div class="turen-<?= Yii::$app->controller->id ?>">
     <?= $content ?>
 </div>
 
-<?= $this->render('_footer') ?>
+<?= $this->render('_easy_footer') ?>
 
 <?php $this->endBody() ?>
 </body>

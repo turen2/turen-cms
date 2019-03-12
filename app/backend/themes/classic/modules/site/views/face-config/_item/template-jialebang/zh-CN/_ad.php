@@ -94,3 +94,17 @@ $value = isset($config[$name])?$config[$name]:null;
         Yii::$app->params['<?=$name?>']
     </td>
 </tr>
+<?php
+//-----------------------------------------------
+$name = 'config_face_banjia_cn_login_signup_ad_type_id';
+$value = isset($config[$name])?$config[$name]:null;
+?>
+<tr>
+    <td class="first-column">登录/注册广告位</td>
+    <td class="second-column" width="33%">
+        <?= Html::dropDownList($name, $value, ArrayHelper::merge([null => '请选择一个配置'], $adTypeArray), ['id' => $name, 'encode' => false]) ?>
+    </td>
+    <td style="border-bottom: 1px dashed #efefef;">
+        Yii::$app->params['<?=$name?>']
+    </td>
+</tr>

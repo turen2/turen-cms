@@ -5,5 +5,4 @@
  * @author developer qq:980522557
  */
 return [
-    'adminEmail' => 'admin@example.com',
 ];

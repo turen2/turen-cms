@@ -9,24 +9,13 @@ $config = [
         //全局短信服务组件
         'sms' => [
             'class' => 'common\components\AliyunSms',
-            'accessKeyId' => 'LTAIkRLpfMVeKOes',
-            'accessKeySecret' => 'sfLejz73JL9FKOD7ucZa4su7nnHlkK',
         ],
         'msg' => [
             'class' => 'common\components\AliyunMsg',
-            'accessKeyId' => 'LTAIkRLpfMVeKOes',
-            'accessKeySecret' => 'sfLejz73JL9FKOD7ucZa4su7nnHlkK',
         ],
         //阿里云oss开放存储
         'aliyunoss' => [
             'class' => 'common\components\AliyunOss',
-            'bucket' => '',
-            'isCName' => false,
-            'endpoint' => '',
-            'useHttps' => false,
-            'customDomain' => '',//绑定自有域名
-            'accessKeyId' => '',
-            'accessKeySecret' => '',
         ],
         //mysql锁机制
         /*
@@ -39,7 +28,6 @@ $config = [
         'queue' => [
             //'class' => 'yii\queue\file\Queue',//队列类型
             //'path' => '@common/runtime/queue',//存储路径
-            
             'class' => 'yii\queue\db\Queue',//队列类型
             'channel' => 'queue_channel',//队列通道
             'db' => 'db',//对接的数据库资源为db库
@@ -52,19 +40,6 @@ $config = [
         */
         'db' => [//线上正式环境
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=;dbname=',
-            'username' => '',
-            'password' => '',
-            'charset' => 'utf8',
-            'tablePrefix' => '',//前缀
-            //Schema
-            //'enableSchemaCache' => true,
-            //'schemaCacheDuration' => 3600,
-            //'schemaCache' => 'cache',//指定存储对象
-            //Query
-            //'enableQueryCache' => true,
-            //'queryCacheDuration' => 3600,
-            //'queryCache' => 'cache',//指定存储对象
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',//通用的，与环境、应用都无关，全局一样
