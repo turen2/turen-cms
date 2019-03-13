@@ -1030,6 +1030,10 @@
     height: 399px;
     background: url('../images/common/about-us-banner.png') no-repeat 50% 0%;
 }
+.about-us-countent {
+    background-color: white;
+    padding: 0 50px 20px 50px;
+}
 .aboutnav {
     border-bottom: solid 1px #dedede;
     font-size: 16px;

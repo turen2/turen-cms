@@ -15,6 +15,8 @@ use app\components\Controller;
  */
 class HelpController extends Controller
 {
+    public $layout = '/easy_main';
+
     public function actionIndex()
     {
 

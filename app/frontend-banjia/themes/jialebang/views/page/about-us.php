@@ -30,7 +30,7 @@ $part = Yii::$app->getRequest()->get('part', 'pa');//pa、pb、pc、pd
 </style>
 
 <div class="about-us-banner"></div>
-<div class="container">
+<div class="about-us-countent container">
     <div class="aboutnav">
         <ul>
             <li class="<?= $part == 'pa'?'on':'' ?>"><?= $model->title ?></li>
