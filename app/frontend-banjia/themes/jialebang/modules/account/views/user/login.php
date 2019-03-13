@@ -33,6 +33,19 @@ $('.login-ad-banner .arrow-left').on('click', function(e){
     e.preventDefault()
     loginSwiper.swipeNext()
 });
+
+//placeholder效果
+$('.editable .input-text').each(function(i){
+    if($(this).val() == '') {
+        $(this).next('.placeholder').show();
+    }
+}).on('focus', function() {
+    $(this).next('.placeholder').hide();
+}).on('blur', function() {
+    if($(this).val() == '') {
+        $(this).next('.placeholder').show();
+    }
+});
 EOF;
 $this->registerJs($js);
 ?>
@@ -85,33 +98,34 @@ $this->registerJs($js);
                     <div class="form-error"><i></i><label class="text"><?= $error ?></label></div>
                 <?php } ?>
                 <?php if(Yii::$app->params['config_login_mode'] == User::USER_PHONE_MODE) { ?>
-                    <dl class="clearfix">
+                    <dl class="editable clearfix">
                         <dt><?= $model->getAttributeLabel('phone') ?>：</dt>
                         <dd>
                             <?= Html::activeTextInput($model, 'phone', ['class' => 'input-text']) ?>
-                            <span class="placeholder">用户名/手机号</span>
+                            <span class="placeholder">请输入用户名/手机号</span>
                         </dd>
                     </dl>
                 <?php } elseif(Yii::$app->params['config_login_mode'] == User::USER_EMAIL_MODE) { ?>
-                    <dl class="clearfix">
+                    <dl class="editable clearfix">
                         <dt><?= $model->getAttributeLabel('email') ?>：</dt>
                         <dd>
                             <?= Html::activeTextInput($model, 'email', ['class' => 'input-text']) ?>
-                            <span class="placeholder">用户名/邮箱</span>
+                            <span class="placeholder">请输入用户名/邮箱</span>
                         </dd>
                     </dl>
                 <?php } ?>
-                <dl class="top1 clearfix">
+                <dl class="editable top1 clearfix">
                     <dt><?= $model->getAttributeLabel('password') ?>：</dt>
                     <dd>
-                        <?= Html::activePasswordInput($model, 'password', ['class' => 'input-text']) ?>
+                        <?= Html::activePasswordInput($model, 'password', ['class' => 'input-text', 'autocomplete' => 'off']) ?>
                         <span class="placeholder">请输入密码</span>
                     </dd>
                 </dl>
-                <dl class="top2 clearfix">
+                <dl class="editable top2 clearfix">
                     <dt><?= $model->getAttributeLabel('verifyCode') ?>：</dt>
                     <dd>
-                        <?= Html::activePasswordInput($model, 'verifyCode', ['class' => 'input-text']) ?>
+                        <?= Html::activeTextInput($model, 'verifyCode', ['class' => 'input-text', 'autocomplete' => 'off']) ?>
+                        <span class="placeholder">请输入验证码</span>
                         <?= Captcha::widget([
                                 'model' => $model,
                                 'attribute' => 'verifyCode',
@@ -120,7 +134,6 @@ $this->registerJs($js);
                                 'options' => ['class' => 'form-control', 'placeholder' => $model->getAttributeLabel('verifyCode')],
                                 'imageOptions' => ['title' => '点击刷新', 'alt' => '验证码', 'style' => 'cursor: pointer;'],
                         ]) ?>
-                        <span class="placeholder">请输入验证码</span>
                     </dd>
                 </dl>
                 <p class="rem-check">

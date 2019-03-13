@@ -15,6 +15,7 @@ use yii\base\Model;
 class ForgetForm extends Model
 {
     public $email;
+    public $verifyCode;//验证码
 
     /**
      * @inheritdoc
@@ -30,7 +31,25 @@ class ForgetForm extends Model
                 'filter' => ['status' => User::STATUS_ON],
                 'message' => '您输入的邮箱地址有误，请重试。',
             ],
+            ['verifyCode', 'captcha',
+                'skipOnEmpty' => false,
+                'caseSensitive' => false,
+                'captchaAction' => 'account/user/captcha',
+            ],
         ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        $labels = [
+            'email' => '用户邮箱',
+            'verifyCode' => '验证码',
+        ];
+
+        return $labels;
     }
 
     /**

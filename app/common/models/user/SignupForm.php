@@ -9,6 +9,7 @@ namespace common\models\user;
 use Yii;
 use yii\base\Model;
 use yii\helpers\Url;
+use yii\validators\CompareValidator;
 
 /**
  * Signup form
@@ -30,6 +31,7 @@ class SignupForm extends Model
         $rules = [
             [['password', 'rePassword', 'verifyCode', 'agreeProtocol'], 'required'],
             [['password', 'rePassword'], 'string', 'min' => 6],
+            ['agreeProtocol', 'compare', 'compareValue' => 1, 'type' => CompareValidator::TYPE_NUMBER, 'message' => '必须同意用户协议'],
             ['verifyCode', 'captcha',
                 'skipOnEmpty' => false,
                 'caseSensitive' => false,
@@ -59,7 +61,7 @@ class SignupForm extends Model
     {
         $labels = [
             'phone' => '手机号码',
-            'email' => '邮箱地址',
+            'email' => '用户邮箱',
             'password' => '输入密码',
             'rePassword' => '确认密码',
             'verifyCode' => '验证码',
@@ -77,6 +79,7 @@ class SignupForm extends Model
     public function signup()
     {
         if (!$this->validate()) {
+            //var_dump($this->getErrors());exit;
             return null;
         }
         

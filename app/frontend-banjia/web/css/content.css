@@ -2111,7 +2111,7 @@
 }
 /* 简易样式end */
 
-/* 登录 */
+/* 登录/注册/找回密码 */
 .login-wrap {
     margin-top: 20px;
 }
@@ -2220,7 +2220,11 @@
     color: #0099e9;
     border-bottom: 1px solid #0099e9;
 }
-.form-box .form-error {
+.form-box .form-content {
+    position: relative;
+    padding: 40px 40px 0;
+}
+.form-error {
     position: absolute;
     top: 8px;
     max-height: 32px;
@@ -2228,11 +2232,7 @@
     border: 1px solid #ffddbc;
     background: #fffceb;
 }
-.form-box .form-content {
-    position: relative;
-    padding: 40px 40px 0;
-}
-.form-box dl {
+.editable {
     position: relative;
     width: 298px;
     height: 44px;
@@ -2241,16 +2241,16 @@
     border: 1px solid #ddd;
     font-size: 14px;
 }
-.form-box .top1 {
+.editable.top1 {
     top: -1px;
 }
-.form-box .top2 {
+.editable.top2 {
     top: -2px;
 }
-.form-box .top3 {
+.editable.top3 {
     top: -3px;
 }
-.form-box dt {
+.editable dt {
     float: left;
     width: 90px;
     height: 20px;
@@ -2258,23 +2258,23 @@
     padding-left: 10px;
     text-align: right;
 }
-.form-box dt em {
+.editable dt em {
     padding: 0 7px;
 }
-.form-box dd {
+.editable dd {
     position: relative;
     float: left;
     width: 206px;
     height: 20px;
     line-height: 20px;
 }
-.form-box dd img {
+.editable dd img {
     position: absolute;
     top: -12px;
     right: 0;
     z-index: 50;
 }
-.form-box .input-text, .form-box .input-yzm, .form-box .input-jym {
+.editable .input-text {
     width: 200px;
     position: absolute;
     height: 20px;
@@ -2287,7 +2287,7 @@
     border: none;
     color: #333;
 }
-.form-box .placeholder {
+.editable .placeholder {
     position: absolute;
     height: 20px;
     line-height: 20px;
@@ -2306,7 +2306,7 @@
 .form-box .rem-check a {
     color: #0099e9;
 }
-.form-box .btn-settlement {
+.btn-settlement {
     display: block;
     height: 40px;
     line-height: 40px;
@@ -2373,4 +2373,164 @@
     background-position: -85px -24px;
 }
 
-/* 登录end */
+.flow-way {
+    color: #ccc;
+    width: 1000px;
+    margin: 60px auto 90px;
+}
+
+.section-point {
+    display: block;
+    width: 23px;
+    height: 23px;
+    background: url(../images/common/midiu.png) no-repeat;
+    float: left;
+    position: relative
+}
+
+.section-txt {
+    position: absolute;
+    bottom: -33px;
+    left: -22px;
+    width: 73px;
+    font-size: 14px;
+}
+
+.split-line {
+    display: block;
+    width: 290px;
+    height: 5px;
+    background: #eee;
+    float: left;
+    margin: 10px 3px 0 3px
+}
+
+.on-here {
+    background: url(../images/common/on-red.png) no-repeat
+}
+
+.on-here .section-txt {
+    color: #666;
+}
+
+.pass-there {
+    background: #ffcccc
+}
+
+.fpass-content {
+    padding: 30px 55px 70px;
+    border: 7px solid #e5e5e5
+}
+
+.fpass-content h3 {
+    font-size: 14px;
+    color: #999;
+    border-bottom: 1px solid #d6d6d6;
+    padding-bottom: 5px;
+}
+
+.fpass-content h3 .fpass-title {
+    font-size: 20px;
+    color: #333;
+    padding-right: 10px;
+}
+
+.fpass-case {
+    position: relative;
+    padding: 35px 0 0 35px;
+}
+
+.fpass-detais {
+    width: 350px;
+    margin: 0 auto;
+}
+
+
+.fpass-detais .some-j .fpass-error {
+    right: -164px;
+}
+
+.fpass-content .editable {
+    width: 350px;
+}
+
+.fpass-content .editable dd img {
+    right: -36px;
+}
+
+.fpass-content .editable .input-text {
+    width: 258px;
+}
+
+.fpass-content .btn-settlement {
+    margin-top: 18px;
+}
+
+.fpass-error {
+    border: 1px solid #ff3300;
+    height: 43px;
+    line-height: 43px;
+    background: #fff5f2;
+    padding: 0 10px 0 40px;
+    float: left;
+    margin-top: 15px;
+    color: #ff3806;
+    position: relative;
+}
+
+.fpass-error a {
+    color: #007fd7;
+}
+
+.fpass-error a:hover {
+    color: #dd0000;
+    text-decoration: underline;
+}
+
+.fpass-error span {
+    display: block;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: url(../images/common/blank-icons.png) no-repeat;
+    left: 15px;
+    top: 15px;
+}
+
+.fpass-error .fork {
+    background-position: -2px -224px;
+}
+
+.fpass-error .exca-mark {
+    background-position: -22px -224px;
+}
+
+.fpass-error lable {
+    color: #ff3300;
+}
+
+.fpass-detais .fpass-error {
+    position: absolute;
+    right: -248px;
+    top: 7px;
+    margin: 0;
+    background: #fff5f2;
+    color: #666;
+    display: none;
+}
+
+.fpass-error i {
+    display: block;
+    width: 11px;
+    height: 10px;
+    background: url(../images/common/blank-icons.png) no-repeat -71px -225px;
+    left: -11px;
+    top: -1px;
+    position: absolute;
+}
+
+.there-error {
+    border-color: #ff6666;
+    z-index: 10;
+}
+/* 登录/注册/找回密码 end */

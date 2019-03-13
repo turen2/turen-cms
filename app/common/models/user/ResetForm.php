@@ -10,12 +10,12 @@ use yii\base\InvalidArgumentException;
 class ResetForm extends Model
 {
     public $password;
+    public $verifyCode;//验证码
 
     /**
      * @var \common\models\User
      */
     private $_user;
-
 
     /**
      * Creates a form model given a token.
@@ -44,7 +44,25 @@ class ResetForm extends Model
         return [
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
+            ['verifyCode', 'captcha',
+                'skipOnEmpty' => false,
+                'caseSensitive' => false,
+                'captchaAction' => 'account/user/captcha',
+            ],
         ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        $labels = [
+            'password' => '新密码',
+            'verifyCode' => '验证码',
+        ];
+
+        return $labels;
     }
 
     /**

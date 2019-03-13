@@ -31,7 +31,7 @@ class UserController extends \app\components\Controller
             'error',
             'forget',//邮箱发送验证邮件
             'reset',//邮箱重新密码
-            'result',//响应结果
+            'forget-result',//密码找回响应结果
             'phone-password',//手机重置密码
         ];
     }
@@ -134,9 +134,9 @@ class UserController extends \app\components\Controller
         $model = new ForgetForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
-                return $this->redirect(['user/result', 'type' => 'success', 'title' => '邮箱发送成功', 'text' => '邮箱已发送，请查收并继续完成下一步操作']);
+                return $this->redirect(['user/forget-result', 'type' => 'success', 'point' => 2, 'title' => '邮箱发送成功', 'text' => '邮箱已发送，请查收并继续完成下一步操作']);
             } else {
-                return $this->redirect(['user/result', 'type' => 'error', 'title' => '邮箱发送失败', 'text' => '发送错误，请输入正确的邮箱地址再试']);
+                return $this->redirect(['user/forget-result', 'type' => 'error', 'point' => 2, 'title' => '邮箱发送失败', 'text' => '发送错误，请输入正确的邮箱地址再试']);
             }
         }
 
@@ -160,7 +160,7 @@ class UserController extends \app\components\Controller
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
-            return $this->redirect(['user/result', 'type' => 'success', 'title' => '密码重置成功', 'text' => '密码重置成功，请使用新密码登录']);
+            return $this->redirect(['user/forget-result', 'type' => 'success', 'point' => 4, 'title' => '密码重置成功', 'text' => '密码重置成功，请使用新密码登录']);
         }
 
         return $this->render('reset', [
@@ -175,12 +175,13 @@ class UserController extends \app\components\Controller
      * @param string $text
      * @return string
      */
-    public function actionResult($type = 'success', $title = '', $text = '')
+    public function actionForgetResult($type = 'success', $title = '', $text = '', $point = 1)
     {
-        return $this->render('result', [
+        return $this->render('forget-result', [
             'type' => $type,
             'title' => $title,
             'text' => $text,
+            'point' => $point,
         ]);
     }
 }
