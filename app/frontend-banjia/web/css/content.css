@@ -2538,3 +2538,42 @@
     z-index: 10;
 }
 /* 登录/注册/找回密码 end */
+
+/* help center */
+.turen-help .turen-box {
+    margin-top: 25px;
+}
+.help-side {
+    padding: 0 10px 20px 10px;
+    margin-top: -10px;
+}
+.help-side li {
+    padding: 16px 0;
+    border-bottom: 1px #cccccc dashed;
+}
+.help-side li a {
+    display: block;
+}
+.help-box {
+    padding: 45px;
+}
+.help-box .hlist h5 {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.help-box .hlist p {
+    font-size: 14px;
+    color: #999999;
+    margin-bottom: 26px;
+}
+.help-box .htitle {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.help-box .hcontent {
+    padding-top: 16px;
+}
+
+/* help center end */
