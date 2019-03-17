@@ -23,7 +23,7 @@ var loginSwiper = new Swiper('.login-ad-banner .swiper-container', {
     pagination: '.login-ad-banner .pagination',
     grabCursor: true,
     paginationClickable: true,
-    autoplayDisableOnInteraction: false,//用户操作后，autoplay将禁止
+    autoplayDisableOnInteraction: false,//客户操作后，autoplay将禁止
 });
 $('.login-ad-banner .arrow-right').on('click', function(e){
     e.preventDefault()
@@ -102,7 +102,7 @@ $this->registerJs($js);
                         <dt><?= $model->getAttributeLabel('phone') ?>：</dt>
                         <dd>
                             <?= Html::activeTextInput($model, 'phone', ['class' => 'input-text']) ?>
-                            <span class="placeholder">请输入用户名/手机号</span>
+                            <span class="placeholder">请输入客户名/手机号</span>
                         </dd>
                     </dl>
                 <?php } elseif(Yii::$app->params['config_login_mode'] == User::USER_EMAIL_MODE) { ?>
@@ -110,7 +110,7 @@ $this->registerJs($js);
                         <dt><?= $model->getAttributeLabel('email') ?>：</dt>
                         <dd>
                             <?= Html::activeTextInput($model, 'email', ['class' => 'input-text']) ?>
-                            <span class="placeholder">请输入用户名/邮箱</span>
+                            <span class="placeholder">请输入客户名/邮箱</span>
                         </dd>
                     </dl>
                 <?php } ?>
@@ -143,7 +143,7 @@ $this->registerJs($js);
                     <?= Html::submitButton('登    录', ['class' => 'btn-settlement', 'style' => "cursor:pointer;"]) ?>
                 </div>
                 <div class="link-box">
-                    <?= Html::a('新用户注册', ['user/signup'], ['class' => 'sign-up']) ?>
+                    <?= Html::a('新客户注册', ['user/signup'], ['class' => 'sign-up']) ?>
                     <?= Html::a('忘记密码？', ['user/forget'], ['class' => 'forget-pass', 'target' => '_blank']) ?>
                 </div>
             <?php ActiveForm::end(); ?>

@@ -13,5 +13,9 @@ namespace app\modules\account\controllers;
  */
 class OrderController extends \app\components\Controller
 {
-
+    public function actionList()
+    {
+        return $this->render('list', [
+        ]);
+    }
 }

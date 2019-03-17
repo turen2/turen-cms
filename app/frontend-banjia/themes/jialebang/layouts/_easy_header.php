@@ -24,7 +24,7 @@ EOF;
 $this->registerJs($js);
 ?>
 
-<div class="head-top" style="display: none;">
+<div class="head-top" style="display: <?= $this->hideHeaderTop?'none':'block'; ?>">
     <div class="container clearfix">
         <div class="head-note fl">
                 <span class="fl">
@@ -56,7 +56,7 @@ $this->registerJs($js);
             <?php } ?>
             <li class="line">|</li>
             <li class="drop">
-                <a class="drop-title" href="<?= Url::to(['/account/user/info']) ?>">客户中心<b></b></a>
+                <a class="drop-title" href="<?= Url::to(['/account/center/info']) ?>">客户中心<b></b></a>
                 <div class="drop-content">
                     <a href="<?= Url::to(['/account/order/list']) ?>" rel="nofollow">服务订单</a>
                     <a href="<?= Url::to(['/account/ticket/list']) ?>" rel="nofollow">工单管理</a>

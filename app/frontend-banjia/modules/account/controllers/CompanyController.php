@@ -13,5 +13,9 @@ namespace app\modules\account\controllers;
  */
 class CompanyController extends \app\components\Controller
 {
-    
+    public function actionInfo()
+    {
+        return $this->render('info', [
+        ]);
+    }
 }

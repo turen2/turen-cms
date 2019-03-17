@@ -7,15 +7,15 @@
 namespace app\modules\account\controllers;
 
 /**
- * 工单管理
- * Class TicketController
+ * 安全中心
+ * Class MsgController
  * @package app\modules\account\controllers
  */
-class TicketController extends \app\components\Controller
+class SafeController extends \app\components\Controller
 {
-    public function actionList()
+    public function actionInfo()
     {
-        return $this->render('list', [
+        return $this->render('info', [
         ]);
     }
 }

@@ -8,7 +8,8 @@ $this->title = $name;
     .error-page {
         font: normal 9pt "Verdana";
         color: #000;
-        background: #fff;
+        padding: 10px;
+        background: #f5f5f5;
     }
 
     .error-page h1 {

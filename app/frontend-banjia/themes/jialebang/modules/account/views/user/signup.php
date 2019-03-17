@@ -25,7 +25,7 @@ var loginSwiper = new Swiper('.login-ad-banner .swiper-container', {
     pagination: '.login-ad-banner .pagination',
     grabCursor: true,
     paginationClickable: true,
-    autoplayDisableOnInteraction: false,//用户操作后，autoplay将禁止
+    autoplayDisableOnInteraction: false,//客户操作后，autoplay将禁止
 });
 $('.login-ad-banner .arrow-right').on('click', function(e){
     e.preventDefault()
@@ -90,7 +90,7 @@ $this->registerJs($js);
 
     <div class="form-box">
         <ul class="form-tab clearfix">
-            <li class="tab-li"><a href="javascript:;">免费注册新用户</a></li>
+            <li class="tab-li"><a href="javascript:;">免费注册新客户</a></li>
             <li class="tab-li"><a href="javascript:;"></a></li>
         </ul>
         <div class="form-content">
@@ -161,7 +161,7 @@ $this->registerJs($js);
                 </dd>
             </dl>
             <p class="rem-check">
-                <?= Html::activeCheckbox($model, 'agreeProtocol', ['label' => $model->getAttributeLabel('agreeProtocol').Html::a(' 用户协议', ['help/detail', 'slug' => 'user-protocol'], ['target' => '_blank'])]) ?>
+                <?= Html::activeCheckbox($model, 'agreeProtocol', ['label' => $model->getAttributeLabel('agreeProtocol').Html::a(' 客户协议', ['help/detail', 'slug' => 'user-protocol'], ['target' => '_blank'])]) ?>
             </p>
             <div class="btn-box">
                 <?= Html::submitButton('注    册', ['class' => 'btn-settlement', 'style' => "cursor:pointer;"]) ?>

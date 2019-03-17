@@ -15,6 +15,8 @@ use Yii;
  */
 class View extends \yii\web\View
 {
+    public $hideHeaderTop = false;//是否隐藏头部导航条
+
     public function init()
     {
         parent::init();

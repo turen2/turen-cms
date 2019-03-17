@@ -2575,5 +2575,39 @@
 .help-box .hcontent {
     padding-top: 16px;
 }
-
 /* help center end */
+
+/* user center */
+.user-center {
+    padding-top: 20px;
+    background: #f5f5f5;
+}
+.user-center .user-side {
+    width: 250px;
+    float: left;
+}
+.user-center .user-content {
+    width: 920px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    float: left;
+    background-color: #fff;
+    padding: 20px 30px;
+}
+.user-side .sidelist {
+    padding: 20px;
+}
+.user-side .sidelist li a {
+    display: block;
+    padding-left: 10px;
+    height: 36px;
+    line-height: 36px;
+    font-size: 14px;
+}
+.user-side .sidelist li a.on {
+    background: #EEEEEE;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+/* user center end */
