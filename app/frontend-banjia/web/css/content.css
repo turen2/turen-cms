@@ -2351,28 +2351,29 @@
     padding: 0 0 12px 0;
 }
 
-.login-short li {
+.auth-clients li {
     float: left;
     height: 33px;
     width: 33px;
     margin-right: 18px;
-    background: url(../images/common/member.png) -13px -24px no-repeat;
 }
 
-.login-short li a {
+.auth-clients li a {
     display: block;
     height: 33px;
+    background: url(../images/common/member.png) -13px -24px no-repeat;
+    text-indent: -999em;
 }
 
-.login-short .qq {
+.auth-clients .QQ {
     background-position: -13px -24px;
 }
 
-.login-short .sina {
+.auth-clients .Weibo {
     background-position: -49px -24px;
 }
 
-.login-short .weixin {
+.auth-clients .Weixin, .auth-clients .weixin-mp {
     position: relative;
     background-position: -85px -24px;
 }

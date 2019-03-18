@@ -8,6 +8,7 @@
 use app\assets\Swiper2Asset;
 use common\models\ext\Ad;
 use common\models\user\User;
+use yii\authclient\widgets\AuthChoice;
 use yii\captcha\Captcha;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -150,11 +151,10 @@ $this->registerJs($js);
 
             <div class="login-short">
                 <h3>使用合作账号登录：</h3>
-                <ul class="clearfix">
-                    <li class="qq"><a href=""></a></li>
-                    <li class="sina"><a href=""></a></li>
-                    <li class="weixin"><a href=""></a></li>
-                </ul>
+                <?= AuthChoice::widget([
+                    'baseAuthUrl' => ['/account/user/auth'],
+                    'popupMode' => true,
+                ]) ?>
             </div>
         </div>
     </div>
