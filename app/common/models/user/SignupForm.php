@@ -31,6 +31,7 @@ class SignupForm extends Model
         $rules = [
             [['password', 'rePassword', 'verifyCode', 'agreeProtocol'], 'required'],
             [['password', 'rePassword'], 'string', 'min' => 6],
+            ['rePassword','compare','compareAttribute'=>'password'],
             ['agreeProtocol', 'compare', 'compareValue' => 1, 'type' => CompareValidator::TYPE_NUMBER, 'message' => '必须同意用户协议'],
             ['verifyCode', 'captcha',
                 'skipOnEmpty' => false,

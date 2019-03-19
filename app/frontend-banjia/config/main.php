@@ -59,7 +59,6 @@ return [
                     'id' => 'qq',
                     'clientId' => '101557951',
                     'clientSecret' => 'fec22b0a14d3ae851ceae97ea4ba5c03',
-                    //'returnUrl' => 'http://common.sunsult.com/merchant/auth.html',//比较特殊
                     'viewOptions' => [
                         'widget' => [
                             'class' => 'common\components\oauth\item\AuthItem',
@@ -71,8 +70,8 @@ return [
                 'weibo' => [
                     'class' => 'common\components\oauth\WeiboAuth',
                     'id' => 'weibo',
-                    'clientId' => '4153868605',
-                    'clientSecret' => 'f9f8c3ee6f9a290e3b15e6d459fd3dc4',
+                    'clientId' => '2382137345',
+                    'clientSecret' => 'ab69a142ea74cda9bc87d09b8220ccf3',
                     'viewOptions' => [
                         'widget' => [
                             'class' => 'common\components\oauth\item\AuthItem',

@@ -11,13 +11,6 @@ class AuthItem extends AuthChoiceItem
     //public $client;
     //public $authChoice;
     
-    public function init()
-    {
-        parent::init();
-        
-        //
-    }
-    
     //设置weiget挂件view路径
 //     public function getViewPath()
 //     {

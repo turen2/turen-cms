@@ -99,7 +99,9 @@ $this->registerJs($js);
             <?php
             $errors = $model->getFirstErrors();
             $error = '';
-            if(isset($errors['email'])) {
+            if(isset($errors['verifyCode'])) {
+                $error = $errors['verifyCode'];
+            } elseif(isset($errors['email'])) {
                 $error = $errors['email'];
             } elseif(isset($errors['phone'])) {
                 $error = $errors['phone'];
@@ -107,8 +109,6 @@ $this->registerJs($js);
                 $error = $errors['password'];
             } elseif(isset($errors['rePassword'])) {
                 $error = $errors['rePassword'];
-            } elseif(isset($errors['verifyCode'])) {
-                $error = $errors['verifyCode'];
             } elseif(isset($errors['agreeProtocol'])) {
                 $error = $errors['agreeProtocol'];
             }

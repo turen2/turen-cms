@@ -257,6 +257,76 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * 绑定第三方登录注册的数据
+     * @param integer $id
+     * @param array $openid
+     * @param array $userInfo
+     * @return void|boolean
+     */
+    public static function BindAuthData($id, $openid, $userInfo)
+    {
+        if($id == 'weibo') {//微博
+            $model = new Weibo();
+            $model->uid = $userInfo['id'];
+            $model->screen_name = $userInfo['screen_name'];
+            $model->name = $userInfo['name'];
+            $model->province = intval($userInfo['province']);
+            $model->city = intval($userInfo['city']);
+            $model->location = $userInfo['location'];
+            $model->description = $userInfo['description'];
+            $model->profile_image_url = $userInfo['profile_image_url'];
+            $model->profile_url = $userInfo['profile_url'];
+            $model->gender = $userInfo['gender'];
+            $model->verified = intval($userInfo['verified']);
+            $model->avatar_large = $userInfo['avatar_large'];
+            $model->avatar_hd = $userInfo['avatar_hd'];
+            $model->save(false);
+        } elseif($id == 'qq') {//扣扣
+            $model = new Qq();
+            $model->uid = $openid;
+            $model->nickname = $userInfo['nickname'];
+            $model->gender = $userInfo['gender'];
+            $model->province = $userInfo['province'];
+            $model->city = $userInfo['city'];
+            $model->year = $userInfo['year'];
+            $model->figureurl = $userInfo['figureurl'];
+            $model->figureurl_1 = $userInfo['figureurl_1'];
+            $model->figureurl_2 = $userInfo['figureurl_2'];
+            $model->figureurl_qq_1 = $userInfo['figureurl_qq_1'];
+            $model->figureurl_qq_2 = $userInfo['figureurl_qq_2'];
+            $model->save(false);
+        } elseif($id == 'wx') {//微信
+
+        } else {
+            return ;//后续加上
+        }
+
+        return true;
+    }
+
+    /**
+     * 返回指定的第三方绑定数据
+     * @param string $id
+     * @param string $openid
+     * @return NULL| Model
+     */
+    public static function FindAuthData($id, $openid)
+    {
+        $model = null;
+        if($id == 'weibo') {//微博
+            $model = Weibo::findOne(['uid' => $openid]);
+        } elseif($id == 'qq') {//扣扣
+            $model = Qq::findOne(['uid' => $openid]);
+        } elseif($id == 'wx') {//微信
+
+        } else {
+            //后续加上
+        }
+
+        return $model;
+    }
+
+    /**
      * {@inheritdoc}
      * @return UserQuery the active query used by this AR class.
      */

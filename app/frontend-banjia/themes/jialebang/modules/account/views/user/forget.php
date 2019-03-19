@@ -44,10 +44,10 @@ $this->registerJs($js);
                 <?php
                 $errors = $model->getFirstErrors();
                 $error = '';
-                if(isset($errors['email'])) {
-                    $error = $errors['email'];
-                } elseif(isset($errors['verifyCode'])) {
+                if(isset($errors['verifyCode'])) {
                     $error = $errors['verifyCode'];
+                } elseif(isset($errors['email'])) {
+                    $error = $errors['email'];
                 }
                 if($errors) { ?>
                     <div class="form-error"><i></i><label class="text"><?= $error ?></label></div>

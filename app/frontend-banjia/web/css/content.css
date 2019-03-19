@@ -2423,8 +2423,9 @@
 }
 
 .fpass-content {
-    padding: 30px 55px 70px;
-    border: 7px solid #e5e5e5
+    padding: 30px 55px 35px;
+    border: 7px solid #e5e5e5;
+    margin-top: 90px;
 }
 
 .fpass-content h3 {
@@ -2441,15 +2442,41 @@
 }
 
 .fpass-case {
-    position: relative;
-    padding: 35px 0 0 35px;
-}
-
-.fpass-detais {
     width: 350px;
     margin: 0 auto;
 }
 
+.fpass-case .ext-account {
+    text-align: center;
+    padding: 20px;
+    padding-bottom: 0;
+}
+
+.ext-account .img-box {
+    width: 134px;
+    height: 134px;
+    margin: 0 auto;
+    background: url(../images/common/img-boxbg.png);
+}
+
+.ext-account img {
+    width: 100px;
+    padding-top: 15px;
+}
+
+.ext-account h6 {
+    margin: 10px 0;
+}
+
+.fpass-detais {
+    position: relative;
+    padding: 35px 0;
+}
+
+.fpass-detais .result-text {
+    font-size: 14px;
+    line-height: 18px;
+}
 
 .fpass-detais .some-j .fpass-error {
     right: -164px;

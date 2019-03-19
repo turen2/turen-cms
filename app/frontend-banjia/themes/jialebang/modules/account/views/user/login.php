@@ -86,14 +86,14 @@ $this->registerJs($js);
                 <?php
                 $errors = $model->getFirstErrors();
                 $error = '';
-                if(isset($errors['email'])) {
+                if(isset($errors['verifyCode'])) {
+                    $error = $errors['verifyCode'];
+                } elseif(isset($errors['email'])) {
                     $error = $errors['email'];
                 } elseif(isset($errors['phone'])) {
                     $error = $errors['phone'];
                 } elseif(isset($errors['password'])) {
                     $error = $errors['password'];
-                } elseif(isset($errors['verifyCode'])) {
-                    $error = $errors['verifyCode'];
                 }
                 if($errors) { ?>
                     <div class="form-error"><i></i><label class="text"><?= $error ?></label></div>
