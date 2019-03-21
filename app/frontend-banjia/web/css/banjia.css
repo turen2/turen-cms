@@ -32,36 +32,6 @@
 }
 /* 计价器end */
 
-/* 业务详情 */
-.service-item {
-    margin-top: 15px;
-    border-bottom: 1px solid #eee;
-}
-.service-item ul {
-    width: 910px;
-    margin: 0 auto;
-}
-.service-item li {
-    float: left;
-    display: block;
-    height: 100px;
-    width: 130px;
-    background: yellow;
-}
-.service .detail {
-    width: 860px;
-    height: 600px;
-    float: left;
-    background: pink;
-}
-.service .form {
-    width: 330px;
-    height: 450px;
-    margin-left: 860px;
-    background: orange;
-}
-/* 业务详情end */
-
 .bdshare-button-style0-16 {
     zoom: 1;
 }

@@ -50,8 +50,8 @@ class UEditorWidget extends InputWidget
                     'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
                     'simpleupload', 'insertimage', 'insertvideo', 'attachment', 'map', '|',
                     'pagebreak', 'template', 'background', '|',
-                    //'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols',  '|',
-                    'date', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain',
+                    //'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols',  '|',
+                    'date', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', 'inserttable',
                 ],
             ]
         ];

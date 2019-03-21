@@ -9,6 +9,8 @@ namespace common\helpers;
 
 use Yii;
 use yii\helpers\ArrayHelper;
+use yii\helpers\FileHelper;
+use yii\helpers\Json;
 
 class Util
 {
@@ -188,5 +190,17 @@ class Util
             $str = preg_replace('/<{img}>/', $link, $str, 1); 
         }
          return $str;
+    }
+
+    public static function CreateProvinceSelector($province)
+    {
+        $data = Json::decode(file_get_contents(FileHelper::normalizePath(Yii::getAlias('@app/web/js/pack.json'))));
+        if(isset($data[$province])) {
+
+            var_dump(array_keys($data[$province]));
+            //exit;
+        }
+
+        return false;
     }
 }

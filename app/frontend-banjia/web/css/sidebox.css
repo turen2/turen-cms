@@ -17,7 +17,7 @@
     font-size: 16px;
     color: #333;
     line-height: 48px;
-    border-bottom: 1px solid #0099e9;
+    border-bottom: 1px solid #ff6f20;
     box-sizing: content-box;
     cursor: default;
 }
@@ -29,7 +29,7 @@
     line-height: 56px;
 }
 .tab-sidebox-title a.link:hover {
-    color: #0099e9;
+    color: #ff6f20;
 }
 .tab-sidebox-content {
     padding: 0 20px;
@@ -82,7 +82,7 @@
     font-size: 16px;
     color: #333;
     line-height: 48px;
-    border-bottom: 1px solid #929292;
+    border-bottom: 1px solid #ff6f20;
     box-sizing: content-box;
     cursor: default;
 }
@@ -172,8 +172,8 @@
 .manual-sidebox-tab .flow-now .flow-left span{
     width: 12px;
     height: 12px;
-    background-color: #0099e9;
-    border: 1px solid #0099e9;
+    background-color: #ff6f20;
+    border: 1px solid #ff6f20;
     box-sizing: border-box;
     margin-left: 0;
 }
@@ -213,7 +213,7 @@
 }
 .sidebox-article li a:hover,
 .sidebox-file li a:hover{
-    color: #0099e9;
+    color: #ff6f20;
 }
 .sidebox-article li a i,
 .sidebox-file li a i{
@@ -231,7 +231,7 @@
 }
 .sidebox-article li a i.active,
 .sidebox-file li a i.active{
-    background-color: #0099e9;
+    background-color: #ff6f20;
     color: #fff;
 }
 /* 文章、文件侧边栏end */
@@ -351,6 +351,6 @@
 
 .label-sidebox ul li a:hover{
     background-color: #d9edf7;
-    color: #0099e9;
+    color: #ff6f20;
 }
 /* 标签侧边栏end */

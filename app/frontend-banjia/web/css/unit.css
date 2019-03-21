@@ -27,7 +27,7 @@
 }
 
 .breadcrumb-box ul li:hover>a{
-    color: #0099e9;
+    color: #ff6f20;
 }
 /* 面包屑导航end */
 
@@ -58,7 +58,7 @@
 
 .pagination-box .active a {
     background: #f6f6f6;
-    color: #0099e9;
+    color: #ff6f20;
 }
 
 .pagination-box ul li a:hover{
@@ -156,13 +156,13 @@
     display: block;
     height: 36px;
     line-height: 36px;
-    background-color: #0099e9;
+    background-color: #ff6f20;
     color: white;
     font-size: 14px;
     text-align: center;
     margin: auto 16px;
 }
 .verifycode-form .submit-now.loading {
-    background: #0099e9 url(../images/load/loading2.gif) no-repeat 65% 50%;
+    background: #ff6f20 url(../images/load/loading2.gif) no-repeat 65% 50%;
 }
 /* 弹窗验证码end */

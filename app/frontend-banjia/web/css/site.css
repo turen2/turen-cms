@@ -76,7 +76,7 @@
 }
 .main-nav .item-nav .link a:hover {
     padding: 1px 4px;
-    color: #0099e9;
+    color: #ff6f20;
     background: #FFF;
     border-radius: 10px;
 }
@@ -119,8 +119,8 @@
 
 .slidform .slidbox-type-wrap span.on {
     margin: 0px 10px;
-    color: #0099e9;
-    border-bottom-color: #0099e9;
+    color: #ff6f20;
+    border-bottom-color: #ff6f20;
 }
 
 .slidform .slidbox-form-text {
@@ -250,7 +250,7 @@
 }
 
 .slidform .slidbox-form-wrap .slidbox-input input:focus {
-    border-color: #0099e9;
+    border-color: #ff6f20;
 }
 
 .slidform .slidbox-input label {
@@ -351,7 +351,7 @@
 }
 
 .slidform .slidbox-user2know a:hover {
-    color: #0099e9;
+    color: #ff6f20;
     text-decoration: underline;
 }
 
@@ -360,7 +360,7 @@
     width: 275px;
     margin: 0 auto;
     height: 40px;
-    background: #0099e9;
+    background: #ff6f20;
     line-height: 40px;
     color: #fff;
     font-size: 16px;
@@ -490,7 +490,7 @@
     width: 25px;
     height: 10px;
     border-radius: 10px;
-    background: #0099e9;
+    background: #ff6f20;
     margin: 0 10px;
     opacity: 0.8;
     border: 1px solid #fff;
@@ -612,7 +612,7 @@
     position:absolute;
     top:26px;
     left:-390px;
-    color:#0099e9;
+    color:#ff6f20;
     font-size:22px;
     font-weight:500;
     transition:all .2s .1s ease-out
@@ -988,7 +988,7 @@
     width: 10px;
     height: 10px;
     border-radius: 8px;
-    background: #0099e9;
+    background: #ff6f20;
     margin: 0 5px;
     opacity: 0.8;
     border: 1px solid #fff;

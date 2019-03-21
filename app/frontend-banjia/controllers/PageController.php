@@ -57,5 +57,4 @@ class PageController extends \app\components\Controller
             throw new NotFoundHttpException('请求页面不存在！');
         }
     }
-
 }

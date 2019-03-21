@@ -6,15 +6,23 @@
  */
 namespace app\controllers;
 
+use common\models\shop\Product;
+use yii\web\NotFoundHttpException;
+
 class ServiceController extends \app\components\Controller
 {
     /**
      * 服务详情
      * @return string
      */
-    public function actionDetail()
+    public function actionDetail($slug)
     {
-        return $this->render('detail');
+        $curModel = $this->findModel($slug);
+        $models = Product::find()->active()->orderBy(['orderid' => SORT_DESC])->all();
+        return $this->render('detail', [
+            'curModel' => $curModel,
+            'models' => $models,
+        ]);
     }
 
     /**
@@ -24,5 +32,15 @@ class ServiceController extends \app\components\Controller
     public function actionConsult()
     {
         return $this->render('consult');
+    }
+
+    protected function findModel($slug)
+    {
+        $model = Product::find()->active()->where(['slug' => $slug])->one();
+        if (!is_null($model)) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('请求页面不存在！');
+        }
     }
 }

@@ -76,6 +76,14 @@ $('.case-banner .swiper-slide img, .case-recommend .list-left img').hover(
         $(this).removeClass("fadeimg").addClass("removeimg");
     }
 );
+$('.hot-serve .overlay-panel').hover(
+    function () {
+        $(this).removeClass("removeimg").addClass("fadeimg").prev().removeClass("removeimg").addClass("fadeimg");
+    },
+    function () {
+        $(this).removeClass("removeimg").addClass("fadeimg").prev().removeClass("fadeimg").addClass("removeimg");
+    }
+);
 
 //精选服务
 $('.hot-item li').mouseenter(function() {
@@ -176,7 +184,7 @@ $this->registerJs($js);
                         <option value="其它类型">其它类型</option>
                     </select>
                 </div>
-                <a class="submit-btn" href="javascript:;">立即免费回电</a>
+                <a class="submit-btn br5" href="javascript:;">立即免费回电</a>
             </form>
             <div class="swiper-container">
                 <div class="swiper-wrapper">
@@ -229,6 +237,30 @@ $this->registerJs($js);
     </div>
 </div>
 
+<div class="container block hot-serve">
+    <div class="head-title">
+        <h2><span>精选服务</span><hr></h2>
+        <p class="txt">热门精选服务到家</p>
+    </div>
+    <ul class="clearfix">
+        <?php $hotServices = Ad::AdListByAdTypeId(Yii::$app->params['config_face_banjia_cn_home_hot_service_ad_type_id']); ?>
+        <?php if($hotServices) { ?>
+        <?php foreach ($hotServices as $index => $hotService) { ?>
+        <li class="card<?= ($index%4 == 3)?' last':'' ?>">
+            <div class="cover">
+                <img class="cover-image" alt="<?= $hotService['title'] ?>" title="<?= $hotService['title'] ?>" src="<?= empty($hotService['picurl'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($hotService['picurl'], true) ?>" />
+                <div class="overlay-panel">
+                    <h3 class="card-title"><?= $hotService['title'] ?></h3>
+                    <a class="hot-btn" title="<?= $hotService['title'] ?>" href="<?= $hotService['linkurl'] ?>">查看详情</a>
+                </div>
+            </div>
+        </li>
+        <?php } ?>
+        <?php } ?>
+    </ul>
+</div>
+
+<?php /*
 <div class="container block hot-item">
     <div class="head-title">
         <h2><span>精选服务</span><hr></h2>
@@ -266,6 +298,7 @@ $this->registerJs($js);
         <?php } ?>
     </ul>
 </div>
+ */ ?>
 
 <div class="container block hot-article">
     <div class="head-title">
@@ -278,7 +311,7 @@ $this->registerJs($js);
                 <h3>搬家百科</h3>
                 <a href="<?= Url::to(['baike/list']) ?>" target="_blank">更多&gt;</a>
             </div>
-            <?php $baikeList = Article::ActiveList(Article::class, 	Yii::$app->params['config_face_banjia_cn_home_baike_column_id'], 5, Yii::$app->params['config_face_banjia_cn_home_baike_column_flag']); ?>
+            <?php $baikeList = Article::ActiveList(Article::class, Yii::$app->params['config_face_banjia_cn_home_baike_column_id'], 5, Yii::$app->params['config_face_banjia_cn_home_baike_column_flag']); ?>
             <?php foreach ($baikeList as $index => $baike) { ?>
                 <?php
                 if(empty($baike['description'])) {
@@ -387,53 +420,53 @@ $this->registerJs($js);
     </div>
 </div>
 
-<div class="container block news-center" style="display: none;">
-    <div class="clearfix">
-        <dl class="box">
-            <dt>
-                <h3>家政知识</h3>
-                <a href="javascript:;" target="_blank" class="more">更多&gt;</a>
-            </dt>
-            <dd>
-                <p class="clearfix"><a href="javascript:;">常用的水槽类型 2018水槽品牌推荐</a><span class="news-date fr">2019-02-02</span></p>
-                <p class="clearfix"><a href="javascript:;">灰色地砖家政效果图 高级灰的名头可不是白叫的</a><span class="news-date fr">2019-02-02</span></p>
-                <p class="clearfix"><a href="javascript:;">钛合金门窗多少钱一平方 钛合金门窗优点有哪些</a><span class="news-date fr">2019-02-02</span></p>
-                <p class="clearfix"><a href="javascript:;">不锈钢厨房台面怎么样 不锈钢和石英石台面哪个好</a><span class="news-date fr">2019-02-02</span></p>
-                <p class="clearfix"><a href="javascript:;">三室两厅的家政案例 90平北欧风新房欣赏</a><span class="news-date fr">2019-02-02</span></p>
-            </dd>
-        </dl>
-        <dl class="box">
-            <dt>
-                <h3>
-                    建材知识
-                </h3>
-                <a href="javascript:;" target="_blank" class="more">更多&gt;</a>
-            </dt>
-            <dd>
-                <p class="clearfix"><a href="javascript:;">洁具品牌推荐 洁具选购技巧</a><span class="news-date fr">2019-02-02</span></p>
-                <p class="clearfix"><a href="javascript:;">门业厂家推荐 如何提防卖门奸商</a><span class="news-date fr">2019-02-02</span></p>
-                <p class="clearfix"><a href="javascript:;">toto 高仪 科勒哪个好 殿堂级卫浴实力大比拼</a><span class="news-date fr">2019-02-02</span></p>
-                <p class="clearfix"><a href="javascript:;">水磨石地面施工价格是多少 如何做好水磨石地面的施工</a><span class="news-date fr">2019-02-02</span></p>
-                <p class="clearfix"><a href="javascript:;">地砖效果图鉴赏 五款时尚美观地砖推荐</a><span class="news-date fr">2019-02-02</span></p>
-            </dd>
-        </dl>
-        <dl class="box last">
-            <dt>
-                <h3>家居知识</h3>
-                <a href="javascript:;" target="_blank" class="more">更多&gt;</a>
-            </dt>
-            <dd>
-                <p class="clearfix"><a href="javascript:;">生态板十大名牌排名榜 中国十大板材品牌排行</a><span class="news-date fr">2019-02-02</span></p>
-                <p class="clearfix"><a href="javascript:;">电视墙2018最新款造型 六款时尚电视墙效果图</a><span class="news-date fr">2019-02-02</span></p>
-                <p class="clearfix"><a href="javascript:;">橱柜门颜色效果图大全 八款橱柜常用色推荐</a><span class="news-date fr">2019-02-02</span></p>
-                <p class="clearfix"><a href="javascript:;">什么是简中式家装 简中式家装家政注意事项</a><span class="news-date fr">2019-02-02</span></p>
-                <p class="clearfix"><a href="javascript:;">坐便器坑距一般是多少 坐便器都有哪些品牌</a><span class="news-date fr">2019-02-02</span></p>
-            </dd>
-        </dl>
-    </div>
-</div>
+<!--<div class="container block news-center">-->
+<!--    <div class="clearfix">-->
+<!--        <dl class="box">-->
+<!--            <dt>-->
+<!--                <h3>家政知识</h3>-->
+<!--                <a href="javascript:;" target="_blank" class="more">更多&gt;</a>-->
+<!--            </dt>-->
+<!--            <dd>-->
+<!--                <p class="clearfix"><a href="javascript:;">常用的水槽类型 2018水槽品牌推荐</a><span class="news-date fr">2019-02-02</span></p>-->
+<!--                <p class="clearfix"><a href="javascript:;">灰色地砖家政效果图 高级灰的名头可不是白叫的</a><span class="news-date fr">2019-02-02</span></p>-->
+<!--                <p class="clearfix"><a href="javascript:;">钛合金门窗多少钱一平方 钛合金门窗优点有哪些</a><span class="news-date fr">2019-02-02</span></p>-->
+<!--                <p class="clearfix"><a href="javascript:;">不锈钢厨房台面怎么样 不锈钢和石英石台面哪个好</a><span class="news-date fr">2019-02-02</span></p>-->
+<!--                <p class="clearfix"><a href="javascript:;">三室两厅的家政案例 90平北欧风新房欣赏</a><span class="news-date fr">2019-02-02</span></p>-->
+<!--            </dd>-->
+<!--        </dl>-->
+<!--        <dl class="box">-->
+<!--            <dt>-->
+<!--                <h3>-->
+<!--                    建材知识-->
+<!--                </h3>-->
+<!--                <a href="javascript:;" target="_blank" class="more">更多&gt;</a>-->
+<!--            </dt>-->
+<!--            <dd>-->
+<!--                <p class="clearfix"><a href="javascript:;">洁具品牌推荐 洁具选购技巧</a><span class="news-date fr">2019-02-02</span></p>-->
+<!--                <p class="clearfix"><a href="javascript:;">门业厂家推荐 如何提防卖门奸商</a><span class="news-date fr">2019-02-02</span></p>-->
+<!--                <p class="clearfix"><a href="javascript:;">toto 高仪 科勒哪个好 殿堂级卫浴实力大比拼</a><span class="news-date fr">2019-02-02</span></p>-->
+<!--                <p class="clearfix"><a href="javascript:;">水磨石地面施工价格是多少 如何做好水磨石地面的施工</a><span class="news-date fr">2019-02-02</span></p>-->
+<!--                <p class="clearfix"><a href="javascript:;">地砖效果图鉴赏 五款时尚美观地砖推荐</a><span class="news-date fr">2019-02-02</span></p>-->
+<!--            </dd>-->
+<!--        </dl>-->
+<!--        <dl class="box last">-->
+<!--            <dt>-->
+<!--                <h3>家居知识</h3>-->
+<!--                <a href="javascript:;" target="_blank" class="more">更多&gt;</a>-->
+<!--            </dt>-->
+<!--            <dd>-->
+<!--                <p class="clearfix"><a href="javascript:;">生态板十大名牌排名榜 中国十大板材品牌排行</a><span class="news-date fr">2019-02-02</span></p>-->
+<!--                <p class="clearfix"><a href="javascript:;">电视墙2018最新款造型 六款时尚电视墙效果图</a><span class="news-date fr">2019-02-02</span></p>-->
+<!--                <p class="clearfix"><a href="javascript:;">橱柜门颜色效果图大全 八款橱柜常用色推荐</a><span class="news-date fr">2019-02-02</span></p>-->
+<!--                <p class="clearfix"><a href="javascript:;">什么是简中式家装 简中式家装家政注意事项</a><span class="news-date fr">2019-02-02</span></p>-->
+<!--                <p class="clearfix"><a href="javascript:;">坐便器坑距一般是多少 坐便器都有哪些品牌</a><span class="news-date fr">2019-02-02</span></p>-->
+<!--            </dd>-->
+<!--        </dl>-->
+<!--    </div>-->
+<!--</div>-->
 
-<div class="work-case block container">
+<div class="container block work-case">
     <div class="head-title">
         <h2><span>现场案例动态</span><hr></h2>
         <p class="txt">一站式的服务、服务后期持续跟进</p>
@@ -546,157 +579,157 @@ $this->registerJs($js);
 </div>
 <?php } ?>
 
-<div class="container bao-zhang" style="display: none;">
-    <div class="head-title">
-        <h2><span>关于服务保障</span><hr></h2>
-        <p class="txt">一站式的服务</p>
-    </div>
-    <div class="clearfix">
-        <ul class="bao-zhang-list clearfix">
-            <li>
-                <a href="" target="_blank">
-                    <dl class="mod-wrap mod-1">
-                        <dt>
-                            <img src="//oneimg3.jia.com/content/public/resource/12808457/2017/06/275196_field_7_1498455803.png" width="95" height="95">
-                        </dt>
-                        <dd>
-                            <h4>家政百事通</h4>
-                            <p>有问必答</p>
-                        </dd>
-                    </dl>
-                </a>
-            </li>
-            <li>
-                <a href="" target="_blank">
-                    <dl class="mod-wrap mod-2">
-                        <dt>
-                            <img src="//oneimg4.jia.com/content/public/resource/12808457/2017/05/275197_field_7_1495076838.jpg" width="95" height="95">
-                        </dt>
-                        <dd>
-                            <h4>
-                                买贵怎么办？
-                            </h4>
-                            <p>
-                                嘉乐邦网为您协议价护航
-                            </p>
-                        </dd>
-                    </dl>
-                </a>
-            </li>
-            <li>
-                <a href="" target="_blank">
-                    <dl class="mod-wrap mod-3">
-                        <dt>
-                            <img src="//oneimg5.jia.com/content/public/resource/12808457/2017/04/275198_field_7_1493092697.jpg" width="95" height="95">
-                        </dt>
-                        <dd>
-                            <h4>
-                                家政嘉乐邦协议服务
-                            </h4>
-                            <p>
-                                第三方监管为您护航
-                            </p>
-                        </dd>
-                    </dl>
-                </a>
-            </li>
-            <li>
-                <a href="" target="_blank">
-                    <dl class="mod-wrap mod-4">
-                        <dt>
-                            <img src="//oneimg1.jia.com/content/public/resource/12808457/2017/05/275199_field_7_1494299392.png" width="95" height="95">
-                        </dt>
-                        <dd>
-                            <h4>
-                                嘉乐邦家政学堂
-                            </h4>
-                            <p>
-                                家政百事通公益交流
-                            </p>
-                        </dd>
-                    </dl>
-                </a>
-            </li>
-            <li>
-                <a href="" target="_blank">
-                    <dl class="mod-wrap mod-5">
-                        <dt>
-                            <img src="//oneimg2.jia.com/content/public/resource/12808457/2017/06/275200_field_7_1498455723.png" width="95" height="95">
-                        </dt>
-                        <dd>
-                            <h4>
-                                纯公益免费验房
-                            </h4>
-                            <p>
-                                同小区满5户即可参加
-                            </p>
-                        </dd>
-                    </dl>
-                </a>
-            </li>
-            <li>
-                <a href="" target="_blank">
-                    <dl class="mod-wrap mod-6">
-                        <dt>
-                            <img src="//oneimg3.jia.com/content/public/resource/12808457/2017/06/275201_field_7_1496281383.png" width="95" height="95">
-                        </dt>
-                        <dd>
-                            <h4>
-                                新房质量检测
-                            </h4>
-                            <p>
-                                领取680元验房卡
-                            </p>
-                        </dd>
-                    </dl>
-                </a>
-            </li>
-        </ul>
-        <div class="right-list-box">
-            <div class="box-hd">
-                <h3 class="png-fix-bg">售后跟进</h3>
-                <a class="more" href="" target="_blank">更多&gt;&gt;</a>
-                <ul class="notice-list">
-                    <li>
-                        <span class="png-fix-bg">
-                            <a target="_blank" href="" title="[受理中]正适装饰无赖公司，骗子，大家一定不要被它坑了，骗走了血汗钱">
-                                [受理中]正适装饰无赖公司，骗子，大家一定不要被它坑了，骗走了血汗钱
-                            </a>
-                        </span>
-                    </li>
-                    <li>
-                        <span class="png-fix-bg">
-                            <a target="_blank" href="" title="[表扬]表扬嘉乐邦监徐勇平">
-                                [表扬]表扬嘉乐邦监徐勇平
-                            </a>
-                        </span>
-                    </li>
-                    <li>
-                        <span class="png-fix-bg">
-                            <a target="_blank" href="" title="[受理中]教训深刻">
-                                [受理中]教训深刻
-                            </a>
-                        </span>
-                    </li>
-                    <li>
-                        <span class="png-fix-bg">
-                            <a target="_blank" href="" title="[表扬]嘉乐邦洪亮　监理包公">
-                                [表扬]嘉乐邦洪亮　监理包公
-                            </a>
-                        </span>
-                    </li>
-                    <li>
-                        <span class="png-fix-bg last">
-                            <a target="_blank" href="" title="[已解决]与t6国际设计家政过程中有争议的问题现已解决">
-                                [已解决]与t6国际设计家政过程中有争议的问题现已解决
-                            </a>
-                        </span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+<!--<div class="container bao-zhang">-->
+<!--    <div class="head-title">-->
+<!--        <h2><span>关于服务保障</span><hr></h2>-->
+<!--        <p class="txt">一站式的服务</p>-->
+<!--    </div>-->
+<!--    <div class="clearfix">-->
+<!--        <ul class="bao-zhang-list clearfix">-->
+<!--            <li>-->
+<!--                <a href="" target="_blank">-->
+<!--                    <dl class="mod-wrap mod-1">-->
+<!--                        <dt>-->
+<!--                            <img src="//oneimg3.jia.com/content/public/resource/12808457/2017/06/275196_field_7_1498455803.png" width="95" height="95">-->
+<!--                        </dt>-->
+<!--                        <dd>-->
+<!--                            <h4>家政百事通</h4>-->
+<!--                            <p>有问必答</p>-->
+<!--                        </dd>-->
+<!--                    </dl>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a href="" target="_blank">-->
+<!--                    <dl class="mod-wrap mod-2">-->
+<!--                        <dt>-->
+<!--                            <img src="//oneimg4.jia.com/content/public/resource/12808457/2017/05/275197_field_7_1495076838.jpg" width="95" height="95">-->
+<!--                        </dt>-->
+<!--                        <dd>-->
+<!--                            <h4>-->
+<!--                                买贵怎么办？-->
+<!--                            </h4>-->
+<!--                            <p>-->
+<!--                                嘉乐邦网为您协议价护航-->
+<!--                            </p>-->
+<!--                        </dd>-->
+<!--                    </dl>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a href="" target="_blank">-->
+<!--                    <dl class="mod-wrap mod-3">-->
+<!--                        <dt>-->
+<!--                            <img src="//oneimg5.jia.com/content/public/resource/12808457/2017/04/275198_field_7_1493092697.jpg" width="95" height="95">-->
+<!--                        </dt>-->
+<!--                        <dd>-->
+<!--                            <h4>-->
+<!--                                家政嘉乐邦协议服务-->
+<!--                            </h4>-->
+<!--                            <p>-->
+<!--                                第三方监管为您护航-->
+<!--                            </p>-->
+<!--                        </dd>-->
+<!--                    </dl>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a href="" target="_blank">-->
+<!--                    <dl class="mod-wrap mod-4">-->
+<!--                        <dt>-->
+<!--                            <img src="//oneimg1.jia.com/content/public/resource/12808457/2017/05/275199_field_7_1494299392.png" width="95" height="95">-->
+<!--                        </dt>-->
+<!--                        <dd>-->
+<!--                            <h4>-->
+<!--                                嘉乐邦家政学堂-->
+<!--                            </h4>-->
+<!--                            <p>-->
+<!--                                家政百事通公益交流-->
+<!--                            </p>-->
+<!--                        </dd>-->
+<!--                    </dl>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a href="" target="_blank">-->
+<!--                    <dl class="mod-wrap mod-5">-->
+<!--                        <dt>-->
+<!--                            <img src="//oneimg2.jia.com/content/public/resource/12808457/2017/06/275200_field_7_1498455723.png" width="95" height="95">-->
+<!--                        </dt>-->
+<!--                        <dd>-->
+<!--                            <h4>-->
+<!--                                纯公益免费验房-->
+<!--                            </h4>-->
+<!--                            <p>-->
+<!--                                同小区满5户即可参加-->
+<!--                            </p>-->
+<!--                        </dd>-->
+<!--                    </dl>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a href="" target="_blank">-->
+<!--                    <dl class="mod-wrap mod-6">-->
+<!--                        <dt>-->
+<!--                            <img src="//oneimg3.jia.com/content/public/resource/12808457/2017/06/275201_field_7_1496281383.png" width="95" height="95">-->
+<!--                        </dt>-->
+<!--                        <dd>-->
+<!--                            <h4>-->
+<!--                                新房质量检测-->
+<!--                            </h4>-->
+<!--                            <p>-->
+<!--                                领取680元验房卡-->
+<!--                            </p>-->
+<!--                        </dd>-->
+<!--                    </dl>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--        <div class="right-list-box">-->
+<!--            <div class="box-hd">-->
+<!--                <h3 class="png-fix-bg">售后跟进</h3>-->
+<!--                <a class="more" href="" target="_blank">更多&gt;&gt;</a>-->
+<!--                <ul class="notice-list">-->
+<!--                    <li>-->
+<!--                        <span class="png-fix-bg">-->
+<!--                            <a target="_blank" href="" title="[受理中]正适装饰无赖公司，骗子，大家一定不要被它坑了，骗走了血汗钱">-->
+<!--                                [受理中]正适装饰无赖公司，骗子，大家一定不要被它坑了，骗走了血汗钱-->
+<!--                            </a>-->
+<!--                        </span>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <span class="png-fix-bg">-->
+<!--                            <a target="_blank" href="" title="[表扬]表扬嘉乐邦监徐勇平">-->
+<!--                                [表扬]表扬嘉乐邦监徐勇平-->
+<!--                            </a>-->
+<!--                        </span>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <span class="png-fix-bg">-->
+<!--                            <a target="_blank" href="" title="[受理中]教训深刻">-->
+<!--                                [受理中]教训深刻-->
+<!--                            </a>-->
+<!--                        </span>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <span class="png-fix-bg">-->
+<!--                            <a target="_blank" href="" title="[表扬]嘉乐邦洪亮　监理包公">-->
+<!--                                [表扬]嘉乐邦洪亮　监理包公-->
+<!--                            </a>-->
+<!--                        </span>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <span class="png-fix-bg last">-->
+<!--                            <a target="_blank" href="" title="[已解决]与t6国际设计家政过程中有争议的问题现已解决">-->
+<!--                                [已解决]与t6国际设计家政过程中有争议的问题现已解决-->
+<!--                            </a>-->
+<!--                        </span>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 <div class="home-data-show">
     <div class="container content-wrapper">
