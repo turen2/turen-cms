@@ -212,6 +212,14 @@
     background: url('../images/common/soso-arrow.png') no-repeat;
 }
 
+.home-main-ad .arrow:hover {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: alpha(opacity=100);
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    opacity: 1;
+}
+
 .home-main-ad .arrow-left {
     background-position: 100% 50%;
     right: 0;
@@ -2496,9 +2504,6 @@
     width: 315px;
     margin-left: 875px;
 }
-.service-box form {
-    padding: 16px 0;
-}
 .service-box .form .submit-btn {
     display: block;
     margin-top: 25px;
@@ -2509,4 +2514,59 @@
     color: #fff;
     font-size: 16px;
 }
+.free-jijia {
+    font-size: 14px;
+}
+.free-jijia .tab-sidebox-content {
+    padding-bottom: 20px;
+}
+.free-jijia .row {
+    margin: 15px 0 15px 0;
+}
+.free-jijia .form-label {
+    font-weight: bold;
+    font-size: 14px;
+}
+.free-jijia .row p {
+    margin-top: 8px;
+    line-height: 18px;
+}
+.free-jijia input, .free-jijia textarea, .free-jijia select, .free-jijia label {
+    border: 1px solid #ddd;
+}
+.free-jijia select, .free-jijia select {
+    padding: 4px;
+    margin-right: 2px;
+}
+.free-jijia textarea {
+    padding: 10px;
+    width: 100%;
+    height: 110px;
+}
+.free-jijia input {
+    padding: 5px;
+}
+.free-jijia label {
+    cursor: pointer;
+    padding: 3px;
+    display: inline-block;
+    zoom: 1;
+}
+.free-jijia .call-time input {
+    width: 160px;
+    background: url(../images/common/calendarBg.png) 138px no-repeat;
+    cursor: pointer;
+}
+#call-start select.city, #call-end select.city {
+    width: 80px;
+}
+#call-start select.area, #call-end select.area {
+    width: 80px;
+}
+#call-start select.street, #call-end select.street {
+    width: 100px;
+}
+
+
+
 /* 服务详情end */

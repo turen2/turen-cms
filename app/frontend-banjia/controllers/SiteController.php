@@ -7,6 +7,7 @@
 //站点通用控制器
 namespace app\controllers;
 
+use common\helpers\Util;
 use Yii;
 use app\components\Controller;
 use app\widgets\phonecode\PhoneCodePopAction;
@@ -21,7 +22,7 @@ class SiteController extends Controller
      */
     public function actions()
     {
-        $params = Yii::$app->getRequest()->queryParams;
+        $phone = Yii::$app->getRequest()->get('phone');
         return [
             //错误界面
             'error' => [
@@ -32,9 +33,17 @@ class SiteController extends Controller
             //获取手机验证码//问答验证
             'phone-code' => [
                 'class' => PhoneCodePopAction::class,
-                'phone' => $params['phone'],
+                'phone' => $phone,
                 'maxNum' => 6,
             ],
         ];
     }
+
+     public function actionIpAddress()
+     {
+         $this->asJson([
+             'state' => true,
+             'msg' => Util::IPAddess(),
+         ]);
+     }
 }

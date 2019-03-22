@@ -5,10 +5,12 @@
  * @author developer qq:980522557
  */
 
+use app\assets\DatetimePickerAsset;
 use app\assets\PinAsset;
 use app\assets\Swiper2Asset;
+use app\widgets\cascade\CascadeWidget;
 use common\helpers\ImageHelper;
-use common\helpers\Util;
+use yii\helpers\Html;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
@@ -16,6 +18,7 @@ $this->title = $curModel->title;
 
 Swiper2Asset::register($this);
 PinAsset::register($this);
+DatetimePickerAsset::register($this);
 $js = <<<EOF
 var swiper = new Swiper('.service-top-slide .swiper-container', {
     loop: false,//循环切换
@@ -44,6 +47,17 @@ $('.free-jijia').pin({
 $('.service-nav li').on('click', function() {
     $('.service-nav li').removeClass('on').eq($(this).index()).addClass('on');
 });
+
+//日期选择
+$.datetimepicker.setLocale('ch');
+$('.call-time input').datetimepicker({
+    'elem':'.call-time input',
+    format:'Y年m月d日 H:i',
+    allowTimes:[
+        '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'
+    ]
+});
+
 //测试
 //$(window).scroll(function() {
 //    console.log($('.service-slide-box').offset().top);
@@ -83,13 +97,7 @@ $this->registerJs($js);
             <div class="item">
                 <div class="title"><span>服务范围<b></b><em id="范围" name="范围"></em></span></div>
                 <div class="infotxt">
-                    <?php
-
-                    $province = Util::CreateProvinceSelector('广东省');
-
-
-
-                    ?>
+                    555555555555555
                 </div>
             </div>
             <div class="item">
@@ -227,24 +235,62 @@ $this->registerJs($js);
     <div class="form">
         <div class="tab-sidebox free-jijia">
             <div class="tab-sidebox-title">
-                <h3>免费计价</h3>
+                <h3>免费咨询</h3>
             </div>
             <div class="tab-sidebox-content" id="sidebox-jijia">
-                <form action="">
-                    <div class="row">
-                        <label>xxxxx</label>
-                        <input type="text" />
-                    </div>
-                    <div class="row">
-                        <label>xxxxx</label>
-                        <input type="text" />
-                    </div>
-                    <div class="row">
-                        <label>xxxxx</label>
-                        <input type="text" />
-                    </div>
-                    <a class="submit-btn br5" href="javascript:;">立即发送</a>
-                </form>
+                <?= Html::beginForm() ?>
+                <div class="row">
+                    <h6 class="form-label"><i class="fa fa-map-marker"></i> 起点：</h6>
+                    <?= CascadeWidget::widget([
+                        'province' => '广东省',
+                        'cities' => [
+                            '深圳市' => '深圳市',
+                            '广州市' => '广州市',
+                            '中山市' => '中山市',
+                            '东莞市' => '东莞市',
+                            '惠州市' => '惠州市',
+                            '佛山市' => '佛山市'
+                        ],
+                        'formId' => 'call-start',
+                    ]); ?>
+                </div>
+                <div class="row">
+                    <h6 class="form-label"><i class="fa fa-map-marker"></i> 终点：</h6>
+                    <?= CascadeWidget::widget([
+                        'province' => '广东省',
+                        'cities' => [
+                            '深圳市' => '深圳市',
+                            '广州市' => '广州市',
+                            '中山市' => '中山市',
+                            '东莞市' => '东莞市',
+                            '惠州市' => '惠州市',
+                            '佛山市' => '佛山市'
+                        ],
+                        'formId' => 'call-end',
+                    ]); ?>
+                </div>
+                <div class="row">
+                    <h6 class="form-label"><i class="fa fa-users"></i> 需要人数：</h6>
+                    <?= Html::radioList('userNumber', '2人', ['1人' => '1人', '2人' => '2人', '3人' => '3人', '4人' => '4人', '更多' => '更多'], ['tag' => 'p', 'class' => 'call-number']) ?>
+                </div>
+                <div class="row">
+                    <h6 class="form-label"><i class="fa fa-calendar-check-o"></i> 预约时间：</h6>
+                    <p class="call-time">
+                        <?= Html::textInput('callTime') ?>
+                    </p>
+                </div>
+                <div class="row">
+                    <h6 class="form-label"><i class="fa fa-file-excel-o"></i> 要求：</h6>
+                    <p class="call-order">
+                        <?= Html::textarea('callOrder', '请输入您的特殊要求', ['class' => '']) ?>
+                    </p>
+                </div>
+                <div class="row">
+                    <h6 class="form-label"><i class="fa fa-calculator"></i> 费用：</h6>
+                    <p class="call-price">线上统一9折起</p>
+                </div>
+                <a class="submit-btn br5" href="javascript:;">立即咨询</a>
+                <?= Html::endForm() ?>
             </div>
         </div>
     </div>

@@ -128,8 +128,8 @@ $this->registerJs($js);
         <?php $mainAds = Ad::AdListByAdTypeId(Yii::$app->params['config_face_banjia_cn_home_main_ad_type_id']); ?>
         <?php if($mainAds) { ?>
             <div class="home-main-ad">
-                <a class="arrow arrow-left" title="向左滑动" href="#"></a>
-                <a class="arrow arrow-right" title="向右滑动" href="#"></a>
+                <a class="arrow arrow-left opacity50" title="向左滑动" href="#"></a>
+                <a class="arrow arrow-right opacity50" title="向右滑动" href="#"></a>
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
                         <?php foreach ($mainAds as $index => $mainAd) { ?>

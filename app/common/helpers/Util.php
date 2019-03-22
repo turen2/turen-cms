@@ -11,6 +11,7 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
 use yii\helpers\Json;
+use yii\httpclient\Client;
 
 class Util
 {
@@ -192,13 +193,45 @@ class Util
          return $str;
     }
 
+    /**
+     * 省级联级数据
+     * @param $province
+     * @return bool
+     */
     public static function CreateProvinceSelector($province)
     {
         $data = Json::decode(file_get_contents(FileHelper::normalizePath(Yii::getAlias('@app/web/js/pack.json'))));
         if(isset($data[$province])) {
+            return $data[$province];
+        }
 
-            var_dump(array_keys($data[$province]));
-            //exit;
+        return false;
+    }
+
+    /**
+     * 远程请求ip定位
+     * @return array|bool
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function IPAddess() {
+        $url = 'http://ip.360.cn/IPShare/info';
+        //$url = 'http://ip.360.cn/IPQuery/ipquery';
+//        $ip = Yii::$app->getRequest()->getUserIP();
+//        if(in_array($ip, ['127.0.0.1', 'localhost'])) {
+//            $ip = '116.77.73.249';//默认为深圳
+//        }
+
+        $client = new Client();
+        $response = $client->createRequest()
+            ->setMethod('GET')
+            ->setUrl($url)
+//            ->setData(['ip' => $ip])
+            ->send();
+
+        if ($response->isOk) {
+            return [
+                'location' => $response->data['location'],
+            ];
         }
 
         return false;

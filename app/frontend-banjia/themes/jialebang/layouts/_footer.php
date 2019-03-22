@@ -120,20 +120,6 @@ if($blockModel) {
     <a href="javascript:;">联系客服</a>
     <a href="javascript:;">在线预约</a>
     <a href="javascript:;">免费报价</a>
-    <a href="javascript:;">
-        <div style="display: none; opacity: 0; left: -163px;">
-            <p>
-                <img src="<?= $webUrl ?>images/xcx.png">
-                <span>扫描小程序</span>
-                <em>看搬家直播</em>
-            </p>
-            <p>
-                <img src="<?= $webUrl ?>images/shequn.png">
-                <span>立即扫码入群</span>
-                <em>领一手优惠福利</em>
-            </p>
-            <img src="<?= $webUrl ?>images/fixe_ma_2.png">
-        </div>
-    </a>
+    <a href="javascript:;"></a>
     <a class="to-top" href="javascript:;"></a>
 </div>
