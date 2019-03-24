@@ -29,3 +29,5 @@ $webUrl = Yii::getAlias('@web/');
     </p>
     <p class="easy-footer-c">2016-<?= date('Y') ?> <?= Yii::$app->params['config_copyright'] ?> - <?= Yii::$app->params['config_icp_code'] ?> <a target="_blank" href="http://www.turen2.com">技术支持</a> <span><?php echo number_format( (microtime(true) - YII_BEGIN_TIME), 3) . 's'; ?></span></p>
 </div>
+
+<?= $this->render('_fixed_nav') ?>

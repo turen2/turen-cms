@@ -1,0 +1,401 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="robots" content="noarchive">
+<title>Yetii - Yet (E)Another JavaScript Tab Interface Implementation | kminek.pl</title>
+<meta name="description" content="Extremely lightweight and feature-rich DHTML tab interface."> 
+ 
+<style type="text/css">
+<!--
+@import 'white.css';
+@import 'custom.css';
+-->
+</style>
+
+<script type="text/javascript" src="yetii.js"></script>
+</head>
+
+<body>
+
+<div id="km-wrapper"><div id="km-wrapper-inner">
+
+
+
+
+
+<h1 class="km-def">Yetii<span></span></h1>
+
+
+
+<h2 class="km-def">Features</h2>
+
+
+
+<h2 class="km-def">Demo</h2>
+
+<p class="km-def">
+<a class="km-def" href="javascript:tabber1.previous()">&laquo; previous</a> |
+
+<a class="km-def" href="javascript:tabber1.next()">next &raquo;</a>
+</p>
+
+<!-- tabs -->
+
+<div id="demo" class="demolayout">
+
+<ul id="demo-nav" class="demolayout">
+<li><a href="#tab1">Define custom function</a></li>
+<li class="democlass"><a href="#tab2">Manually invoke tab showing method</a></li>
+<li><a href="#tab3">Nesting</a></li>
+<li><a href="#tab4">Next/Previous</a></li>
+
+</ul>
+    
+<div class="tabs-container">
+
+<div class="tab" id="tab1">
+<h2>Define custom function to run</h2>
+<p class="km-def">You can define custom function to run after certain tab is clicked:</p>
+<pre class="km-def"><span style="color: #000;">function customfunction(tabnumber) {
+if (tabnumber==3) alert('You clicked tab number 3'); 
+}
+
+var tabber1 = new Yetii({
+id: 'tab-container-1',
+callback: customfunction
+});
+</span></pre>
+</div>	
+
+<div class="tab" id="tab2">
+<h2>Manually invoke tab showing method</h2>
+<p class="km-def">If needed you can invoke tab showing method like this:</p> 
+
+<pre class="km-def"><span style="color: #000;">&lt;a href=&quot;#tab3&quot; onclick=&quot;tabber1.show(3); return false;&quot;&gt;show Tab 3&lt;/a&gt;</span></pre>
+<p class="km-def">Click <a class="km-def" href="#tab3" onclick="tabber1.show(3); return false;">here</a> to show Tab 3</p>
+</div>	
+
+<div class="tab" id="tab3">
+<h2>Nesting</h2>
+<p class="km-def">You can nest tab interfaces easily but remember to set different <code>tabclass</code> for nested interface:</p>
+
+<pre class="km-def">
+<span style="color: #000">var tabber2 = new Yetii({
+id: 'demo-nested',
+tabclass: 'tab-nested'
+});</span>
+</pre>
+
+<!-- nested -->
+
+<div id="demo-nested" class="demolayout">
+
+<ul id="demo-nested-nav" class="demolayout">
+<li><a href="#">Tab 1</a></li>
+<li><a href="#">Tab 2</a></li>
+</ul>
+
+<div class="tabs-container">
+
+<div class="tab-nested">
+<h2>Tab 1</h2>
+<p class="km-def">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+</div>	
+
+<div class="tab-nested">
+<h2>Tab 2</h2>
+<p class="km-def">It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+</div>	
+
+</div></div>
+
+<script type="text/javascript">
+
+var tabber2 = new Yetii({
+id: 'demo-nested',
+tabclass: 'tab-nested',
+interval: 2
+});
+
+</script>
+
+<!-- nested -->
+
+</div>	
+
+<div class="tab" id="tab4">
+<h2>Next/Previous</h2>
+<p class="km-def">Yetii also contains methods allowing to paginate between tabs using next/previous buttons:</p>
+<pre class="km-def">
+<span style="color: #000">var tabber1 = new Yetii({
+id: 'demo'
+});
+
+&lt;a href="javascript:tabber1.previous()"&gt;previous&lt;/a&gt; |
+&lt;a href="javascript:tabber1.next()"&gt;next&lt;/a&gt;</span></pre>
+</div>
+
+</div></div>
+
+<script type="text/javascript">
+
+function customfunction(tabnumber) {
+if (tabnumber==3) alert('You clicked tab number 3!');
+}
+
+
+
+var tabber1 = new Yetii({
+id: 'demo',
+callback: customfunction,
+persist: true
+});
+
+</script>
+
+<!-- tabs -->
+
+
+
+<h2 class="km-def">Basic usage</h2>
+
+<ol class="km-def">
+
+<li><p class="km-def"><a class="km-def" href="#download">Download yetii.js</a> and include it in your webpage within <code>&lt;head&gt;</code> section. Alternatively you can put <em>Yetii</em> code inside your <code>common.js</code> file.</p>
+<pre class="km-def">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;
+
+&quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;
+&lt;html&gt;
+&lt;head&gt;
+<span style="color: #000">&lt;script type=&quot;text/javascript&quot; src=&quot;yetii.js&quot;&gt;&lt;/script&gt;</span>
+&lt;/head&gt;</pre>
+</li>
+
+<li><p class="km-def">Prepare the markup:</p>
+
+<pre class="km-def">&lt;body&gt;
+
+<span style="color: #000">&lt;div <strong>id=&quot;tab-container-1&quot;</strong>&gt;
+
+    &lt;ul <strong>id=&quot;tab-container-1<span style="color: #00f">-nav</span>&quot;</strong>&gt;
+    &lt;li&gt;&lt;a href=&quot;#tab1&quot;&gt;tab 1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#tab2&quot;&gt;tab 2&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;div <strong>class=&quot;<span style="color: #00f">tab</span>&quot;</strong> id=&quot;tab1&quot;&gt;
+    &lt;h2&gt;tab 1&lt;/h2&gt;
+    &lt;p&gt;Lorem Ipsum is simply dummy text
+    of the printing and typesetting industry.&lt;/p&gt;
+    &lt;/div&gt;
+    
+    &lt;div <strong>class=&quot;<span style="color: #00f">tab</span>&quot;</strong> id=&quot;tab2&quot;&gt;
+    &lt;h2&gt;tab 2&lt;/h2&gt;
+    &lt;p&gt;It was popularised in the 1960s with 
+    the release of Letraset sheets.&lt;/p&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;</span>
+
+&lt;/body&gt;</pre>
+
+<p class="km-def">All tabs should have correct class applied (<code>tab</code> in above case but this is configurable). Also all tabs should be wrapped with a container with <code>id</code> specified (<code>tab-container-1</code> in above case). Unordered list inside a wrapper (which represents tabs buttons) should have an <code>id</code> constructed in following convention: <code>wrapper-id + '-nav'</code> (<code>tab-container-1-nav</code> in above case).</p>
+
+<p class="km-def">Note that <em>Yetii</em> will apply <code>active</code> class to selected tab link dynamically:</p>
+
+<pre class="km-def"><span style="color: #000">&lt;ul id=&quot;tab-container-1-nav&quot;&gt;
+&lt;li <strong style="color: #00f">class=&quot;activeli&quot;</strong>&gt;&lt;a <strong style="color: #00f">class=&quot;active&quot;</strong> href=&quot;#tab1&quot;&gt;tab 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#tab2&quot;&gt;tab 2&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</span></pre>
+
+<p class="km-def">By convention <em>Yetii</em> will also apply <code>activeli</code> class to list item holding selected tab link. All classes set in markup for list items and links are preserved when adding active classes. If you change default active class name from <code>active</code> to something else (i.e. <code>selected</code>), list item will be marked with <code>selectedli</code> class.</p>
+
+</li>
+
+<li><p class="km-def">Initialize <em>Yetii</em> object:</p>
+
+<pre class="km-def">&lt;body&gt;
+
+&lt;div <strong>id=&quot;tab-container-1&quot;</strong>&gt;
+
+    &lt;ul <strong>id=&quot;tab-container-1-nav&quot;</strong>&gt;
+    &lt;li&gt;&lt;a href=&quot;#tab1&quot;&gt;tab 1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#tab2&quot;&gt;tab 2&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;div <strong>class=&quot;tab&quot;</strong> id=&quot;tab1&quot;&gt;
+    &lt;h2&gt;tab 1&lt;/h2&gt;
+    &lt;p&gt;Lorem Ipsum is simply dummy text
+    of the printing and typesetting industry.&lt;/p&gt;
+    &lt;/div&gt;
+    
+    &lt;div <strong>class=&quot;tab&quot;</strong> id=&quot;tab2&quot;&gt;
+    &lt;h2&gt;tab 2&lt;/h2&gt;
+    &lt;p&gt;It was popularised in the 1960s with 
+    the release of Letraset sheets.&lt;/p&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+<span style="color: #000">&lt;script type=&quot;text/javascript&quot;&gt;
+var tabber1 = new Yetii({
+id: '<strong style="color: #00f">tab-container-1</strong>'
+});
+&lt;/script&gt;</span>
+
+&lt;/body&gt;</pre>
+
+
+</li>
+
+</ol>
+
+<h2 class="km-def">Advanced usage</h2>
+
+<ul class="km-def">
+<li>
+	<p class="km-def"><a name="initial" id="initial">If you would like to specify initial tab (i.e. second):</a></p>
+
+	<pre class="km-def"><span style="color: #000">var tabber1 = new Yetii({
+id: 'tab-container-1', 
+active: <strong style="color: #00f">2</strong>
+});</span></pre>
+</li>
+
+
+<li>
+
+<p class="km-def"><a name="customcss" id="customcss">If you would like to override default class names:</a></p>
+
+<pre class="km-def"><span style="color: #000">var tabber1 = new Yetii({
+id: 'tab-container-1', 
+active: 2,
+interval: 5,
+tabclass: '<strong style="color: #00f">mycustomclass</strong>',
+activeclass: '<strong style="color: #00f">mycustomactivetabclass</strong>'
+});</span></pre>
+</li>
+
+<li>
+	<p class="km-def"><a name="rotation" id="rotation">If you would like to turn on automatic tabs rotation (specify time interval in seconds):</a></p>
+
+	<pre class="km-def"><span style="color: #000">var tabber1 = new Yetii({
+id: 'tab-container-1', 
+active: 2,
+interval: <strong style="color: #00f">5</strong>
+});</span></pre>
+
+	<p class="km-def">Rotation <strong>stops</strong> when user starts interacting with tabs. However if you specify <code>wait</code> parameter:</p>
+
+	<pre class="km-def"><span style="color: #000">var tabber1 = new Yetii({
+id: 'tab-container-1', 
+active: 2,
+interval: <strong style="color: #00f">5</strong>,
+wait: <strong style="color: #00f">10</strong>
+});</span></pre>
+
+	<p class="km-def">and user clicks any tab, rotation <strong>will continue</strong> after the number of seconds defined by <code>wait</code> parameter.</p>
+</li>
+
+<li>
+<p class="km-def"><a name="nextprevious" id="nextprevious"><em>Yetii</em> also contains methods allowing to paginate between tabs using your own next/previous buttons (see Demo section):</a></p>
+<pre class="km-def"><span style="color: rgb(0, 0, 0);">var tabber1 = new Yetii({
+id: 'demo'
+});
+
+&lt;a href="javascript:<strong style="color: #00f">tabber1.previous()</strong>"&gt;previous&lt;/a&gt; |
+&lt;a href="javascript:<strong style="color: #00f">tabber1.next()</strong>"&gt;next&lt;/a&gt;
+</span></pre>
+
+</li>
+
+<li>
+<p class="km-def"><a name="nesting" id="nesting">You can nest tab interfaces easily but remember to set different <code>tabclass</code> for nested interface:</a></p>
+<pre class="km-def"><span style="color: rgb(0, 0, 0);">var tabber1 = new Yetii({
+id: 'demo'
+});
+
+var tabber2 = new Yetii({
+id: 'demo-nested',
+tabclass: '<strong style="color: #00f">tab-nested</strong>'
+});</span></pre>
+</li>
+
+<li>
+<p class="km-def"><a name="manualinvoke" id="manualinvoke">If needed you can invoke tab showing method like this:</a></p> 
+<pre class="km-def"><span style="color: rgb(0, 0, 0);">&lt;a href="#tab3" onclick="<strong style="color: #00f">tabber1.show(3); return false;</strong>"&gt;show Tab 3&lt;/a&gt;</span></pre>
+
+</li>
+
+<li>
+
+	<p class="km-def"><a name="customfunction" id="customfunction">You can define custom function to run after certain tab is clicked:</a></p>
+	<pre class="km-def"><span style="color: rgb(0, 0, 0);"><strong style="color: #00f">function customfunction(tabnumber) {
+if (tabnumber==3) alert('You clicked tab number 3'); 
+}</strong>
+
+var tabber1 = new Yetii({
+id: 'tab-container-1',
+callback: <strong style="color: #00f">customfunction</strong>
+});
+</span></pre>
+
+</li>
+
+<li>
+
+	<p class="km-def"><a name="customleavefunction" id="customleavefunction">You can define custom function to run when user leaves certain tab:</a></p>
+	<pre class="km-def"><span style="color: rgb(0, 0, 0);"><strong style="color: #00f">function customfunction(tabnumber) {
+if (tabnumber==1) alert('Leaving tab ' + i + ' ...'); 
+}</strong>
+
+var tabber1 = new Yetii({
+id: 'tab-container-1',
+leavecallback: <strong style="color: #00f">customfunction</strong>
+});
+</span></pre>
+
+</li>
+
+<li>
+
+	<p class="km-def"><a name="link" id="link">You can define a link on another page that selects a tab on the target page (one containing <em>Yetii</em> script) when the page is loaded. Assuming that you have placed following tab interface on <strong>page A</strong>:</a></p>
+	<pre class="km-def"><span style="color: rgb(0, 0, 0);">var tabber1 = new Yetii({
+id: 'tab-container-1'
+});
+</span></pre>
+	<p class="km-def">The following link (presumably on <strong>page B</strong>) causes the 2nd tab within the above <em>Yetii</em> instance to be selected by default when <strong>page A</strong> loads:</p>
+
+<pre class="km-def"><span style="color: rgb(0, 0, 0);">&lt;a href="pageA.html?<strong style="color: #00f">tab-container-1=2</strong>"&gt;2nd tab within tab-container-1 on page A&lt;/a&gt;</span></pre>	
+
+<p class="km-def">You can also use tab's DOM id instead of numerical value:</p>
+
+<pre class="km-def"><span style="color: rgb(0, 0, 0);">&lt;a href="pageA.html?<strong style="color: #00f">tab-container-1=tab2</strong>"&gt;2nd tab within tab-container-1 on page A&lt;/a&gt;</span></pre>	
+
+<p class="km-def">Also you can pass tab's DOM id inside location.hash:</p>
+
+<pre class="km-def"><span style="color: rgb(0, 0, 0);">&lt;a href="pageA.html<strong style="color: #00f">#tab2</strong>"&gt;2nd tab within tab-container-1 on page A&lt;/a&gt;</span></pre>		
+	
+</li>
+
+<li>
+ <p class="km-def"><a name="persistence" id="persistence">If you would like to turn on tab persistence feature (so the most recently clicked on tab is remembered even if the page is reloaded):</a></p> 
+<pre class="km-def"><span style="color: rgb(0, 0, 0);">var tabber1 = new Yetii({
+id: 'tab-container-1',
+<strong style="color: #00f">persist: true</strong>
+});
+</span></pre>
+
+	<p class="km-def">Persistence is based on session cookies (expiring as soon as one closes the browser). In situations where <strong>persistence is on</strong>, there is an <strong>URL parameter</strong> and also <code>active</code> parameter is specified, following importance hierarchy is used:</p>
+	<p class="km-def" style="text-align: center">&nbsp;</p>
+</li>
+</ul>
+
+
+ <script src="http://www.jq22.com/js/jq.js"></script>
+
+
+
+</body>
+</html>

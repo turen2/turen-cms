@@ -89,6 +89,20 @@ $(function () {
     */
     //alert($('html').attr('class'));
 });
+
+//返回顶部效果
+/*
+$(window).scroll(function() {//当屏幕滚动，触生 scroll 事件
+    var top1 = $(this).scrollTop();//获取相对滚动条顶部的偏移
+    if (top1 > 100) {//当偏移大于200px时让图标淡入（css设置为隐藏）
+        $(".back-top").stop().fadeIn();
+    }else{
+        //当偏移小于200px时让图标淡出
+        $(".back-top").stop().fadeOut();
+    }
+});
+*/
+
 /*
 $(function () {
     $('.nav li').hover(function () {
@@ -155,6 +169,9 @@ turen.com = (function($) {
                 _this: _this
             });
         },
+        scrollTop: function(time) {
+            $("body, html").animate({scrollTop: 0}, time);
+        },
     };
 
     // 私有方法
@@ -189,52 +206,3 @@ turen.com = (function($) {
 
     return pub;
 })(jQuery);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

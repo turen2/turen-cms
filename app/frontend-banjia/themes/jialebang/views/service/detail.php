@@ -52,8 +52,8 @@ $('.service-nav li').on('click', function() {
 $.datetimepicker.setLocale('ch');
 $('.call-time input').datetimepicker({
     'elem':'.call-time input',
-    format:'Y年m月d日 H:i',
-    allowTimes:[
+    'format':'Y年m月d日 H:i',
+    'allowTimes':[
         '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'
     ]
 });
@@ -241,6 +241,7 @@ $this->registerJs($js);
                 <?= Html::beginForm() ?>
                 <div class="row">
                     <h6 class="form-label"><i class="fa fa-map-marker"></i> 起点：</h6>
+                    <p id="call-start">
                     <?= CascadeWidget::widget([
                         'province' => '广东省',
                         'cities' => [
@@ -253,9 +254,11 @@ $this->registerJs($js);
                         ],
                         'formId' => 'call-start',
                     ]); ?>
+                    </p>
                 </div>
                 <div class="row">
                     <h6 class="form-label"><i class="fa fa-map-marker"></i> 终点：</h6>
+                    <p id="call-end">
                     <?= CascadeWidget::widget([
                         'province' => '广东省',
                         'cities' => [
@@ -268,6 +271,7 @@ $this->registerJs($js);
                         ],
                         'formId' => 'call-end',
                     ]); ?>
+                    </p>
                 </div>
                 <div class="row">
                     <h6 class="form-label"><i class="fa fa-users"></i> 需要人数：</h6>
@@ -276,18 +280,28 @@ $this->registerJs($js);
                 <div class="row">
                     <h6 class="form-label"><i class="fa fa-calendar-check-o"></i> 预约时间：</h6>
                     <p class="call-time">
-                        <?= Html::textInput('callTime') ?>
+                        <?= Html::textInput('callTime', date('Y年m月d日 H:i'), ['placeholder' => '选择日期']) ?>
+                    </p>
+                </div>
+                <div class="row">
+                    <h6 class="form-label"><i class="fa fa-truck"></i> 车型类型：</h6>
+                    <p class="call-truck">
+                        <?= Html::dropDownList('callTruck', null, [
+                                '小货车' => '小货车（0.8m x 3m x 2.5m）',
+                        ]) ?>
+                        <br />
+                        <a href="<?= Url::to(['page/info', 'slug' => 'chexing-shibei']) ?>" target="_blank"><i class="fa fa-info-circle"></i> 查看车型</a>
                     </p>
                 </div>
                 <div class="row">
                     <h6 class="form-label"><i class="fa fa-file-excel-o"></i> 要求：</h6>
                     <p class="call-order">
-                        <?= Html::textarea('callOrder', '请输入您的特殊要求', ['class' => '']) ?>
+                        <?= Html::textarea('callOrder', '', ['class' => '', 'placeholder' => '请输入您的特殊要求']) ?>
                     </p>
                 </div>
                 <div class="row">
                     <h6 class="form-label"><i class="fa fa-calculator"></i> 费用：</h6>
-                    <p class="call-price">线上统一9折起</p>
+                    <p class="call-price">线上下单统一9折起</p>
                 </div>
                 <a class="submit-btn br5" href="javascript:;">立即咨询</a>
                 <?= Html::endForm() ?>

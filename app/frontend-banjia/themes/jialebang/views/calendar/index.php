@@ -1,5 +1,9 @@
 <?php
-/* @var $this yii\web\View */
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 
 use app\assets\WnlAsset;
 use yii\widgets\Breadcrumbs;

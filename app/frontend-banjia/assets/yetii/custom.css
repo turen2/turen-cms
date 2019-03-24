@@ -1,0 +1,73 @@
+h1 {
+	position: relative;
+	overflow: hidden;
+	left: -15px;
+}
+
+h1 span {
+	display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1; 
+}
+
+h1, h1 span {
+	width: 294px;
+	height: 109px;
+	background-image: url(logo.gif);
+}
+
+/* demo */
+
+div.demolayout {
+	width: 100%;
+	margin: 0 0 20px 0;
+}
+
+ul.demolayout {
+	list-style-type: none;
+	width: 100%;
+	float: left;
+	background: url(pixel.gif) bottom left repeat-x;
+}
+
+ul.demolayout li {
+	margin: 0 2px 0 0;
+	float: left;
+}
+
+ul.demolayout a {
+	float: left;
+	display: block;
+	padding: 4px 8px;
+	border: 1px solid #ccc;
+	border-bottom: 0;
+	color: #666;
+	background: #eee;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+ul.demolayout a:hover {
+	background: #fff;
+}
+
+ul.demolayout a.active {
+	background: #fff;
+	padding-bottom: 5px;
+	cursor: default;
+	color: #00f;
+}
+
+.tabs-container {
+	clear: left;
+	border: 1px solid #ccc;
+	border-top: 0;
+	padding: 20px 8px 0 8px;
+}
+
+#demo h2 {
+	font-size: 100%;
+	margin: 0 0 20px 0;
+}

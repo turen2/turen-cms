@@ -13,25 +13,6 @@
 }
 /* 首页end */
 
-/* 计价器 */
-.calculator {
-    height: 800px;
-    margin-top: 15px;
-    background: #eee;
-}
-.calculator .side-btn {
-    float: left;
-    width: 100px;
-    height: 450px;
-    background: red;
-}
-.calculator .content {
-    margin-left: 100px;
-    height: 500px;
-    background: green;
-}
-/* 计价器end */
-
 .bdshare-button-style0-16 {
     zoom: 1;
 }

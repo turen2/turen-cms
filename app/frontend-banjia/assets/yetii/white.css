@@ -1,0 +1,99 @@
+/* globals */
+
+html, body, h1, h2, p, ul, ol, li, pre {
+	margin: 0;
+	padding: 0;
+}
+
+ul {
+	list-style-type: none;
+}
+
+code {
+	font-size: 100%;
+	color: #666;
+}
+
+/* layout */
+
+body {
+	background: url(bg.gif) 50% 0 repeat-y #F5F5F5;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: small;
+	color: #333;
+}
+
+#km-wrapper {
+	width: 768px;
+	margin: auto;
+	background: #fff;
+}
+
+#km-wrapper-inner {
+	padding: 40px 20px;
+}
+
+/* text styles */
+
+h1.km-def {
+	margin: 0 0 20px 0;
+	color: #000;
+}
+
+h2.km-def {
+	font-size: 100%;
+	margin: 30px 0 20px 0;
+	color: #000;
+}
+
+p.km-def {
+	margin: 0 0 20px 0;
+	line-height: 140%;
+}
+
+ul.km-def, ol.km-def {
+	margin: 0 0 20px 0;
+}
+
+ul.km-def li, ol.km-def li {
+	margin-left: 40px;
+	line-height: 140%;
+}
+
+ul.km-def {
+	list-style-type: square;
+}
+
+pre.km-def {
+	font-size: 100%;
+	color: #999;
+	margin: 0 0 20px 0;
+	border: 1px solid #ccc;
+	padding: 5px 10px;
+}
+
+/* links */
+
+a.km-def {
+	text-decoration: none;
+	font-weight: bold;
+	border-bottom: 1px solid #ccc;
+	color: #666;
+}
+
+a.km-def:hover {
+	background: #F3F3F3;
+	color: #000;
+	border-bottom: 1px solid #000;
+}
+
+/* misc */
+
+.new {
+	background: url(n_eng.gif) 100% 0 no-repeat;
+	padding-right: 25px;
+}
+
+img.km-def {
+	border: 2px solid #ccc;
+}

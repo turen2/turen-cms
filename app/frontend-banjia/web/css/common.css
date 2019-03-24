@@ -68,13 +68,14 @@ input:-webkit-autofill {
 /*清除浮动*/
 .clearfix:before,
 .clearfix:after {
-  content: ".";    
-  display: block;    
-  height: 0;    
-  overflow: hidden; 
+  content: ".";
+  display: block;
+  height: 0;
+  overflow: hidden;
 }
-.clearfix:after {clear: both;}
-
+.clearfix:after {
+    clear: both;
+}
 /*清除浮动*/
 .clearfix::after {
     content: "";
@@ -363,6 +364,22 @@ input:focus
     font-size: 12px;
     cursor: pointer;
 }
+.primary-btn {
+    display: block;
+    height: 38px;
+    line-height: 38px;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    font-style: normal;
+    background-color: #ff6f20;
+    margin: 0 auto;
+    cursor: pointer
+}
+.primary-btn:hover {
+    color: white;
+    background-color: #ff500b
+}
 /* 全局css end */
 
 /* 头部 */
@@ -610,7 +627,7 @@ input:focus
 	float: left;
 	height: 100px;
 	width: 120px;
-	padding-top: 5px;
+	padding-top: 10px;
 	text-align: center;
 }
 
@@ -629,15 +646,13 @@ input:focus
 }
 
 .nav-bg .header-nav-hide li img {
-	height: 70px;
+	height: 60px;
 }
 
 .nav-bg .header-nav-hide li span {
 	display: block;
     margin-top: 5px;
 }
-
-
 /* 头部end */
 
 /* 尾部 */
@@ -817,156 +832,146 @@ input:focus
 /* call me end */
 
 /* 右侧浮层 */
-.fixe-right {
+.fixed-nav {
     position: fixed;
-    right: 40px;
-    width: 60px;
-    height: 311px;
-    top: 26%;
-    background: rgb(255, 255, 255);
-    z-index: 25;
-    opacity: 1;
+    right: 130px;
+    top: 46%;
+    height: 366px;
+    width: 76px;
+    z-index: 100;
+    margin-top: -160px;
 }
 
-.fixe-right a {
-    display: block;
-    position: relative;
-    font-size: 12px;
-    line-height: 12px;
-    text-align: center;
-    color: rgb(136, 136, 136);
+.fixed-nav > ul > li {
     width: 100%;
+    height: 76px;
+    border: 1px solid #ddd;
+    border-top: 0;
 }
 
-.fixe-right a:nth-child(1) {
-    height: 64px;
-    border-top: 1px solid rgb(233, 233, 233);
-    border-right: 1px solid rgb(233, 233, 233);
-    border-bottom: none;
-    border-left: 1px solid rgb(233, 233, 233);
-    border-image: initial;
-    padding-top: 42px;
-    cursor: pointer;
-    z-index: 11;
-    background: url('../images/fixe_call.png') center center no-repeat rgb(255, 255, 255);
+.fixed-nav > ul > li:first-child {
+    border: 1px solid #ddd;
 }
 
-.fixe-right a:nth-child(1):hover {
-    background: url('../images/fixe_call_1.png') center center no-repeat #ff6f20;
-    border-color: #ff6f20;
-    color: #fff;
+.fixed-nav > ul > li a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-color: white;
+    overflow: hidden;
 }
 
-.fixe-right a:nth-child(2) {
-    height: 64px;
-    border-top: 1px solid rgb(233, 233, 233);
-    border-right: 1px solid rgb(233, 233, 233);
-    border-bottom: none;
-    border-left: 1px solid rgb(233, 233, 233);
-    border-image: initial;
-    padding-top: 42px;
-    cursor: pointer;
-    z-index: 11;
-    background: url('../images/fixe_about.png') center center no-repeat rgb(255, 255, 255);
+.fixed-nav > ul > li a:hover {
+    width: 74px;
+    height: 74px;
+    transform: scale(1.02);
+    box-shadow: 0px 0 11px #ddd;
+    border: 1px solid #e5e5e5;
 }
 
-.fixe-right a:nth-child(2):hover {
-    background: url('../images/fixe_about_1.png') center center no-repeat #ff6f20;
-    border-color: #ff6f20;
-    color: #fff;
+.fixed-nav > ul > li a span {
+    display: block;
+    width: 44px;
+    height: 37px;
+    margin: 0 auto;
+    margin-top: 9px;
 }
 
-.fixe-right a:nth-child(3) {
-    height: 64px;
-    border-top: 1px solid rgb(233, 233, 233);
-    border-right: 1px solid rgb(233, 233, 233);
-    border-bottom: none;
-    border-left: 1px solid rgb(233, 233, 233);
-    border-image: initial;
-    padding-top: 42px;
-    cursor: pointer;
-    z-index: 11;
-    background: url('../images/fixe_price.png') center center no-repeat;
+.fixed-nav > ul > li a span.s1 {
+    background: url("../images/common/sprit.png") no-repeat -11px -203px;
+    position: relative;
 }
 
-.fixe-right a:nth-child(3):hover {
-    background: url('../images/fixe_price_1.png') center center no-repeat #ff6f20;
-    border-color: #ff6f20;
-    color: #fff;
+.fixed-nav > ul > li a span.s2 {
+    background: url("../images/common/sprit.png") no-repeat -11px -282px;
 }
 
-.fixe-right a:nth-child(4) {
-    height: 64px;
-    border-top: 1px solid rgb(233, 233, 233);
-    border-right: 1px solid rgb(233, 233, 233);
-    border-bottom: none;
-    border-left: 1px solid rgb(233, 233, 233);
-    border-image: initial;
-    padding-top: 42px;
-    cursor: pointer;
-    z-index: 11;
-    background: url('../images/fixe_ma.png') center center no-repeat;
+.fixed-nav > ul > li a span.s3 {
+    background: url("../images/common/sprit.png") no-repeat -11px -355px;
 }
 
-.fixe-right a:nth-child(4):hover,.fixe-right a:nth-child(4).hover {
-    background: url('../images/fixe_ma_1.png') center center no-repeat #ff6f20;
-    border-color: #ff6f20;
-    color: #fff;
+.fixed-nav > ul > li a span.s4 {
+    background: url("../images/common/sprit.png") no-repeat -11px -432px;
 }
 
-.fixe-right a:nth-child(4) > div {
-    display: none;
+.fixed-nav > ul > li a span.s5 {
+    background: url("../images/common/sprit.png") no-repeat -11px -500px;
+}
+
+.fixed-nav > ul > li a .point {
+    width: 12px;
+    height: 12px;
+    background: #fd3c00;
+    border-radius: 100%;
+    margin: auto;
     position: absolute;
-    left: -195px;
-    top: -192px;
-    width: 175px;
-    height: 311px;
-    background: rgb(255, 255, 255);
-    box-shadow: 0px 0px 52px rgba(163, 163, 163, 0.15);
-    padding-top: 18px;
-    text-align:center;
-    font-size:14px;
-    opacity: 1;
-    color: #333;
+    right: 0;
+    top: 0;
 }
 
-.fixe-right a:nth-child(4).hover > div{
-    display:block;
-}
-.fixe-right a:nth-child(4) > div > p{
-    margin-bottom: 10px;
-}
-.fixe-right a:nth-child(4) > div > p > span {
-    display:block;
-    margin-top: 3px;
-    line-height:18px;
-}
-.fixe-right a:nth-child(4) > div > p:first-child{
-    letter-spacing:2px;
-}
-.fixe-right a:nth-child(4) > div > p > img {
-    width:95px;
-    height:95px;
-}
-.fixe-right a:nth-child(4) > div > p > em {
-    display:block;
-    color: #ffa31f;
-    line-height: 16px;
+.fixed-nav > ul > li a i {
     font-style: normal;
+    font-size: 12px;
+    color: #656565;
 }
 
-.fixe-right a:nth-child(4) > div > img {
+.fixed-nav .sub-encode:hover ul.encode {
+    display: block;
+}
+
+.fixed-nav ul.encode {
     position: absolute;
-    right: -12px;
-    bottom: 80px;
+    left: -175px;
+    top: 20px;
+    border: 1px solid #ddd;
+    background-color: white;
+    display: none;
+    box-shadow: 0px 0 11px #ddd;
 }
 
-.fixe-right a:nth-child(5) {
-    height: 55px;
-    border: 1px solid rgb(233, 233, 233);
-    padding-top: 45px;
-    cursor: pointer;
-    z-index: 25;
-    background: url('../images/fixe_top.png') center center no-repeat;
+.fixed-nav ul.encode::after {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #ddd;
+    background-color: white;
+    transform: rotate(45deg);
+    right: -9px;
+    top: 50%;
+    margin-top: -5px;
+    border-left: 0;
+    border-bottom: 0;
+}
+
+.fixed-nav ul.encode li {
+    width: 156px;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 13px;
+}
+
+.fixed-nav ul.encode li span {
+    display: block;
+    width: 105px;
+    height: 105px;
+    margin: 0 auto;
+}
+
+.fixed-nav ul.encode li span.wap img {
+    width: 104px;
+}
+
+.fixed-nav ul.encode li b {
+    font-size: 14px;
+    line-height: 26px;
+    margin-bottom: 5px;
+    color: #000;
+}
+
+.fixed-nav ul.encode li p {
+    font-size: 12px;
+    color: #666;
 }
 /* 右侧浮层end */

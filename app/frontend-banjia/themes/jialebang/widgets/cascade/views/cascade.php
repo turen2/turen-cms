@@ -56,22 +56,22 @@ function street(area)
 //console.log(area('深圳市'));
 //console.log(street('龙华区'));
 //联级操作
-$('#{$formId}').find("select[name='{$formId}[city]']").on('change', function() {
-    $('#{$formId}').find("select[name='{$formId}[street]']").html('<option value="">请选择街道</option>');
+$("select[name='{$formId}[city]']").on('change', function() {
+    $("select[name='{$formId}[street]']").html('<option value="">请选择街道</option>');
     var str1 = '<option value="">请选择城区</option>';
     var areaes1 = area($(this).val());
     for (var area1 in areaes1) {
         str1 += '<option value="'+areaes1[area1]+'">'+areaes1[area1]+'</option>';
     }
-    $('#{$formId}').find("select[name='{$formId}[area]']").html(str1);
+    $("select[name='{$formId}[area]']").html(str1);
 });
-$('#{$formId}').find("select[name='{$formId}[area]']").on('change', function() {
+$("select[name='{$formId}[area]']").on('change', function() {
     var str2 = '<option value="">请选择街道</option>';
     var areaes2 = street($(this).val());
     for (var area2 in areaes2) {
         str2 += '<option value="'+areaes2[area2]+'">'+areaes2[area2]+'</option>';
     }
-    $('#{$formId}').find("select[name='{$formId}[street]']").html(str2);
+    $("select[name='{$formId}[street]']").html(str2);
 });
 
 //初始化
@@ -82,10 +82,10 @@ $.ajax({
     success: function(data) {
         if(data.state) {
             var location = data.msg.location;
-            if($('#{$formId}').find("select[name='{$formId}[city]']").val() == '' && $('#{$formId}').find("select[name='{$formId}[area]']").val() == '' && $('#{$formId}').find("select[name='{$formId}[street]']").val() == '') {
+            if($("select[name='{$formId}[city]']").val() == '' && $("select[name='{$formId}[area]']").val() == '' && $("select[name='{$formId}[street]']").val() == '') {
                 for (var ii in cities) {
                     if(location.indexOf(cities[ii].slice(0, cities[ii].length-1)) >= 0){//搜索与匹配
-                        $('#{$formId}').find("select[name='{$formId}[city]']").val(cities[ii]).change();
+                        $("select[name='{$formId}[city]']").val(cities[ii]).change();
                     }
                 }
             }
@@ -96,8 +96,6 @@ EOF;
 $this->registerJs($js);
 ?>
 
-<p id="<?= $formId ?>">
 <?= Html::dropDownList($formId.'[city]', null, ArrayHelper::merge([null => '请选择城市'], $cities), ['class' => 'city']) ?>
 <?= Html::dropDownList($formId.'[area]', null, [null => '请选择城区'], ['class' => 'area']) ?>
 <?= Html::dropDownList($formId.'[street]', null, [null => '请选择街道'], ['class' => 'street']) ?>
-</p>

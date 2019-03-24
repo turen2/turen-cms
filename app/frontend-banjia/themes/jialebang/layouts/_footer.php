@@ -45,7 +45,7 @@ if($blockModel) {
     				</div>
     			</div>
     			<div class="inner-block second">
-    				<h3>主要业务</h3>
+    				<h3>精品业务</h3>
     				<div class="inner-con designer-recom">
     					<a href="" class="external" title="家政服务">
     						<img src="<?= $webUrl ?>images/nav/small-jzfw.png">
@@ -105,6 +105,8 @@ if($blockModel) {
     </div>
 </div>
 
+<?= $this->render('_fixed_nav') ?>
+
 <div class="call-me">
     <div class="center-box container">
         <span class="left-part"><img src="<?= $webUrl ?>images/logo.png"></span>
@@ -113,13 +115,4 @@ if($blockModel) {
         <a href="" id="custon_button1" class="call-btn">立即咨询</a>
         <a href="" class="bre-btn">立即下单</a>
     </div>
-</div>
-
-<!-- 快捷服务 -->
-<div class="fixe-right">
-    <a href="javascript:;">联系客服</a>
-    <a href="javascript:;">在线预约</a>
-    <a href="javascript:;">免费报价</a>
-    <a href="javascript:;"></a>
-    <a class="to-top" href="javascript:;"></a>
 </div>

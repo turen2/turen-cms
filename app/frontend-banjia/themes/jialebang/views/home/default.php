@@ -184,7 +184,7 @@ $this->registerJs($js);
                         <option value="其它类型">其它类型</option>
                     </select>
                 </div>
-                <a class="submit-btn br5" href="javascript:;">立即免费回电</a>
+                <a class="primary-btn br5" href="javascript:;">立即免费回电</a>
             </form>
             <div class="swiper-container">
                 <div class="swiper-wrapper">

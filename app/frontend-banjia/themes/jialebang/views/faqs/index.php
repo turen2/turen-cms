@@ -5,7 +5,7 @@
  * @author developer qq:980522557
  */
 
-use app\widgets\phonecode\CascadeWidget;
+use app\widgets\phonecode\PhoneCodePopWidget;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
@@ -182,7 +182,7 @@ $this->registerJs($js);
 ?>
 
 <?php //只提供了一个弹窗模板，和对应的验证码生成action ?>
-<?= CascadeWidget::widget([
+<?= PhoneCodePopWidget::widget([
     'templateId' => 'verifycode-tpl',
 ]); ?>
 
