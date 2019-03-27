@@ -1307,6 +1307,7 @@
 }
 .hot-serve .hot-btn:hover {
     background: #fff;
+    border: 1px solid #ff6f20;
     color: #ff6f20;
 }
 /* 首页热门服务end */
@@ -2562,6 +2563,22 @@
     display: inline-block;
     zoom: 1;
 }
+.free-jijia .call-number label {
+    border: 1px solid #d8d8d8;
+    padding: 4px 6px;
+    margin-right: 2px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.free-jijia .call-number label.on {
+    border: 1px solid #ff6f20;
+    background: #FFFFFF url(../images/common/jzfw_icon2_mini.jpg) no-repeat 101% 100%;
+}
+.free-jijia .call-number input {
+    display: none;
+}
 .free-jijia .call-time input {
     width: 160px;
     background: url(../images/common/calendarBg.png) 138px no-repeat;
@@ -2710,6 +2727,22 @@
     margin-right: 12px;
     border: 1px solid #d8d8d8;
     border-radius: 2px;
+}
+.calculator-middle .cl-radio label {
+    border: 1px solid #d8d8d8;
+    padding: 4px 6px;
+    margin-right: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.calculator-middle .cl-radio label.on {
+    border: 1px solid #ff6f20;
+    background: #FFFFFF url(../images/common/jzfw_icon2_mini.jpg) no-repeat 101% 100%;
+}
+.calculator-middle .cl-radio input {
+    display: none;
 }
 .calculator-middle .items .unit {
     position: absolute;

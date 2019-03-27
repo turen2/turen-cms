@@ -20,6 +20,15 @@ $('input[name="cl-time"]').datetimepicker({
         '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'
     ]
 });
+//初始化label
+$('.cl-radio input:checked').each(function() {
+    $(this).parent().addClass('on');
+});
+$('.cl-radio input').on('click', function() {
+    $('.cl-radio input').parent().removeClass('on');
+    $(this).parent().addClass('on');
+    //console.log($(this).val());
+});
 EOF;
 $this->registerJs($js);
 ?>
@@ -87,7 +96,7 @@ $this->registerJs($js);
                 '小货车' => '小货车',
                 '中货车' => '中货车',
                 '大货车' => '大货车',
-            ]) ?>
+            ], ['class' => 'cl-radio'], ['itemOptions' => ['labelOptions' => ['class' => 'br5']]]) ?>
         </div>
     </div>
     <span class="cue"></span>

@@ -58,6 +58,16 @@ $('.call-time input').datetimepicker({
     ]
 });
 
+//初始化label
+$('.call-number input:checked').each(function() {
+    $(this).parent().addClass('on');
+});
+$('.call-number input').on('click', function() {
+    $('.call-number input').parent().removeClass('on');
+    $(this).parent().addClass('on');
+    //console.log($(this).val());
+});
+
 //测试
 //$(window).scroll(function() {
 //    console.log($('.service-slide-box').offset().top);
@@ -274,7 +284,7 @@ $this->registerJs($js);
                     </p>
                 </div>
                 <div class="row">
-                    <h6 class="form-label"><i class="fa fa-users"></i> 需要人数：</h6>
+                    <h6 class="form-label"><i class="fa fa-users"></i> 搬运工人：</h6>
                     <?= Html::radioList('userNumber', '2人', ['1人' => '1人', '2人' => '2人', '3人' => '3人', '4人' => '4人', '更多' => '更多'], ['tag' => 'p', 'class' => 'call-number']) ?>
                 </div>
                 <div class="row">
