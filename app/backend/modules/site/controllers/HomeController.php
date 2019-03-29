@@ -7,6 +7,7 @@
 namespace app\modules\site\controllers;
 
 use Yii;
+use yii\filters\AccessControl;
 use yii\web\Response;
 use yii\db\Query;
 use app\models\sys\Log;

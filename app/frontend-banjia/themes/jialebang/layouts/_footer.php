@@ -79,8 +79,8 @@ if($blockModel) {
     				<h3>手机版访问</h3>
     				<div class="inner-con">
     					<div class="wap-qrcode">
-    						<img src="<?= $webUrl ?>images/qr/qrcode1.png" />
-    						<p>手机版一扫"掌"握！</p>
+                            <img src="<?= empty(Yii::$app->params['config_footer_phone_qr'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl(Yii::$app->params['config_footer_phone_qr'], true) ?>">
+                            <p>手机版一扫"掌"握！</p>
     					</div>
     				</div>
     			</div>

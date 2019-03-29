@@ -258,6 +258,7 @@ $this->registerJs($js);
         <?php } ?>
         <?php } ?>
     </ul>
+    <a target="_blank" class="broser-more" href="">浏览更多 <i class="iconfont jia-more1"></i></a>
 </div>
 
 <?php /*
@@ -309,7 +310,7 @@ $this->registerJs($js);
         <div class="h-n-box">
             <div class="tit">
                 <h3>搬家百科</h3>
-                <a href="<?= Url::to(['baike/list']) ?>" target="_blank">更多&gt;</a>
+                <a href="<?= Url::to(['baike/list']) ?>" target="_blank">更多<i class="iconfont jia-more1"></i></a>
             </div>
             <?php $baikeList = Article::ActiveList(Article::class, Yii::$app->params['config_face_banjia_cn_home_baike_column_id'], 5, Yii::$app->params['config_face_banjia_cn_home_baike_column_flag']); ?>
             <?php foreach ($baikeList as $index => $baike) { ?>
@@ -346,7 +347,7 @@ $this->registerJs($js);
         <div class="h-n-box">
             <div class="tit">
                 <h3>行业动态</h3>
-                <a href="<?= Url::to(['news/list']) ?>" target="_blank">更多&gt;</a>
+                <a href="<?= Url::to(['news/list']) ?>" target="_blank">更多<i class="iconfont jia-more1"></i></a>
             </div>
             <?php $newsList = Article::ActiveList(Article::class, Yii::$app->params['config_face_banjia_cn_home_news_column_id'], 5, Yii::$app->params['config_face_banjia_cn_home_news_column_flag']); ?>
             <?php foreach ($newsList as $index => $news) { ?>
@@ -383,7 +384,7 @@ $this->registerJs($js);
         <div class="h-n-box" style="border-right:0;">
             <div class="tit">
                 <h3>帮助中心</h3>
-                <a href="<?= Url::to(['help/index']) ?>" target="_blank">更多&gt;</a>
+                <a href="<?= Url::to(['help/index']) ?>" target="_blank">更多<i class="iconfont jia-more1"></i></a>
             </div>
             <?php $helpList = Article::ActiveList(Article::class, Yii::$app->params['config_face_banjia_cn_home_help_column_id'], 5, Yii::$app->params['config_face_banjia_cn_home_help_column_flag']); ?>
             <?php foreach ($helpList as $index => $help) { ?>
@@ -425,7 +426,7 @@ $this->registerJs($js);
 <!--        <dl class="box">-->
 <!--            <dt>-->
 <!--                <h3>家政知识</h3>-->
-<!--                <a href="javascript:;" target="_blank" class="more">更多&gt;</a>-->
+<!--                <a href="javascript:;" target="_blank" class="more">更多 <i class="iconfont jia-more1"></i></a>-->
 <!--            </dt>-->
 <!--            <dd>-->
 <!--                <p class="clearfix"><a href="javascript:;">常用的水槽类型 2018水槽品牌推荐</a><span class="news-date fr">2019-02-02</span></p>-->
@@ -440,7 +441,7 @@ $this->registerJs($js);
 <!--                <h3>-->
 <!--                    建材知识-->
 <!--                </h3>-->
-<!--                <a href="javascript:;" target="_blank" class="more">更多&gt;</a>-->
+<!--                <a href="javascript:;" target="_blank" class="more">更多 <i class="iconfont jia-more1"></i></a>-->
 <!--            </dt>-->
 <!--            <dd>-->
 <!--                <p class="clearfix"><a href="javascript:;">洁具品牌推荐 洁具选购技巧</a><span class="news-date fr">2019-02-02</span></p>-->
@@ -453,7 +454,7 @@ $this->registerJs($js);
 <!--        <dl class="box last">-->
 <!--            <dt>-->
 <!--                <h3>家居知识</h3>-->
-<!--                <a href="javascript:;" target="_blank" class="more">更多&gt;</a>-->
+<!--                <a href="javascript:;" target="_blank" class="more">更多 <i class="iconfont jia-more1"></i></a>-->
 <!--            </dt>-->
 <!--            <dd>-->
 <!--                <p class="clearfix"><a href="javascript:;">生态板十大名牌排名榜 中国十大板材品牌排行</a><span class="news-date fr">2019-02-02</span></p>-->
@@ -688,7 +689,7 @@ $this->registerJs($js);
 <!--        <div class="right-list-box">-->
 <!--            <div class="box-hd">-->
 <!--                <h3 class="png-fix-bg">售后跟进</h3>-->
-<!--                <a class="more" href="" target="_blank">更多&gt;&gt;</a>-->
+<!--                <a class="more" href="" target="_blank">更多 <i class="iconfont jia-more1"></i></a>-->
 <!--                <ul class="notice-list">-->
 <!--                    <li>-->
 <!--                        <span class="png-fix-bg">-->

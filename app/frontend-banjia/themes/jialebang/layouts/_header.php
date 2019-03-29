@@ -29,7 +29,7 @@ $this->registerJs($js);
         <div class="container clearfix">
         	<div class="head-note fl">
                 <span class="fl">
-                    <i class="fa fa-bullhorn"></i>
+                    <i class="iconfont jia-notice"></i>
                     <span class="primary-color">公告：</span>
                 </span>
                 <span class="scroll-note fl">
@@ -108,9 +108,9 @@ $this->registerJs($js);
                 </ul>
                 <div class="nav-qrcode">
                     <a href="javascript:;">
-                        <img class="wap" src="<?= $webUrl ?>images/common/nav_mobile.png">
+                        <i class="iconfont jia-Phone"></i>
                         <p class="nav-box nav-wap">
-                            <img class="nav-qr" src="<?= $webUrl ?>images/qr/qrcode2.png">
+                            <img class="nav-qr" src="<?= empty(Yii::$app->params['config_hedader_phone_qr'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl(Yii::$app->params['config_hedader_phone_qr'], true) ?>">
                             <br />
                             <span class="qr-txt">手机版访问</span>
                         </p>

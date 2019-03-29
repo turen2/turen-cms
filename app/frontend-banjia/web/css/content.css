@@ -161,6 +161,18 @@
 /* 百科列表主体内容end */
 
 /* 首页 */
+.turen-home .block {
+    margin-top: 15px;
+    margin-bottom: 50px;
+}
+.slide-form .call-form, .slide-form .main-slide {
+    height: 370px;
+}
+.slide-form .call-form {
+    margin-left: 860px;
+    width: 330px;
+    background: red;
+}
 .slide-form .main-slide {
     width: 860px;
 }
@@ -1310,6 +1322,16 @@
     border: 1px solid #ff6f20;
     color: #ff6f20;
 }
+.broser-more {
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    height: 20px;
+    line-height: 20px;
+}
+.broser-more img {
+    height: 20px;
+}
 /* 首页热门服务end */
 
 /* 首页百科 */
@@ -1342,6 +1364,9 @@
     color:#555;
     text-align:right;
     line-height:26px;
+}
+.hot-article-list .h-n-box .tit .iconfont {
+    font-size: 12px;
 }
 .hot-article-list .h-n-box dl dt,.hot-article-list .h-n-box dl dd {
     float:left;
@@ -2513,16 +2538,6 @@
 .service-box .form {
     width: 315px;
     margin-left: 875px;
-}
-.service-box .form .submit-btn {
-    display: block;
-    margin-top: 15px;
-    height: 36px;
-    line-height: 36px;
-    text-align: center;
-    background-color: #ff6f20;
-    color: #fff;
-    font-size: 16px;
 }
 .free-jijia {
     font-size: 14px;

@@ -404,6 +404,7 @@ input:focus
 
 .head-top .head-note {
     line-height: 34px;
+    height: 34px;
 }
 
 .head-top .scroll-note {
@@ -536,25 +537,26 @@ input:focus
 .nav-qrcode {
     float: right;
     width: 52px;
-    padding-top: 30px;
+    padding-top: 20px;
     margin-right: 13px;
 }
 
 .nav-qrcode a {
     position: relative;
     display: block;
-    float: left;
-    text-align: center;
-    width: 26px;
-    height: 24px;
-    margin-left: 14px;
+    height: 32px;
+    line-height: 32px;
+    width: 32px;
+}
+.nav-qrcode a .iconfont {
+    font-size: 32px;
 }
 
 .nav-qrcode a .nav-box {
     position: absolute;
     display: none;
     text-align: center;
-    top: 25px;
+    top: 28px;
     left: 0;
     z-index: 10;
     width: 140px;
@@ -573,7 +575,7 @@ input:focus
 }
 
 .nav-qrcode a .nav-wap {
-    left: -60px;
+    left: -53px;
 }
 
 .nav-qrcode a .nav-wx {

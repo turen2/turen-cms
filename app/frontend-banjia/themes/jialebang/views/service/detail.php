@@ -249,6 +249,7 @@ $this->registerJs($js);
             </div>
             <div class="tab-sidebox-content" id="sidebox-jijia">
                 <?= Html::beginForm() ?>
+                <?= Html::hiddenInput('serviceName', $slug); ?>
                 <div class="row">
                     <h6 class="form-label"><i class="fa fa-map-marker"></i> 起点：</h6>
                     <p id="call-start">
@@ -313,7 +314,7 @@ $this->registerJs($js);
                     <h6 class="form-label"><i class="fa fa-calculator"></i> 费用：</h6>
                     <p class="call-price">线上下单统一9折起</p>
                 </div>
-                <a class="submit-btn br5" href="javascript:;">立即咨询</a>
+                <a class="primary-btn br5" href="javascript:;">立即咨询</a>
                 <?= Html::endForm() ?>
             </div>
         </div>

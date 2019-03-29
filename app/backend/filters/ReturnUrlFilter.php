@@ -37,8 +37,9 @@ class ReturnUrlFilter extends ActionFilter
     public function beforeAction($action)
     {
         $session = Yii::$app->getSession();
-        
-        if(Yii::$app->getRequest()->isAjax) {//所有ajax不用记录
+
+        $id = $action->getUniqueId();
+        if(Yii::$app->getRequest()->isAjax || $id == 'error') {//所有ajax不用记录，通用错误页面不记录
             //nothing
             return true;
         }

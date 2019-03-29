@@ -61,3 +61,51 @@ $config = ArrayHelper::index($config, 'varname');
 		Yii::$app->params['<?php echo $config['config_backend_logo']['varname']; ?>']
 	</td>
 </tr>
+<tr>
+    <td class="first-column"><?= $config['config_hedader_phone_qr']['varinfo']; ?></td>
+    <td class="second-column" width="33%">
+        <?= JQueryFileUploadWidget::widget([
+            'name' => $config['config_hedader_phone_qr']['varname'],
+            'value' => $config['config_hedader_phone_qr']['varvalue'],
+            'options' => ['class' => 'input', 'readonly' => true],
+            'url' => ['fileupload', 'param' => 'value'],
+            'uploadName' => 'logourl',
+            'fileOptions' => [
+                'accept' => '*',//选择文件时的windows过滤器
+                'multiple' => false,//单图
+                'isImage' => true,//图片文件
+            ],//单图
+            'clientOptions' => [
+                'acceptFileTypes' => new JsExpression('/(\.|\/)(gif|jpe?g|png|ai|txt|xls|xlsx|docx|doc|pdf|zip|rar|tar)$/i'),//限制上传的后缀名
+            ],
+        ]) ?>
+        <span class="cnote">切换模板后，请刷新整个页面</span>
+    </td>
+    <td style="border-bottom: 1px dashed #efefef;">
+        Yii::$app->params['<?php echo $config['config_hedader_phone_qr']['varname']; ?>']
+    </td>
+</tr>
+<tr>
+    <td class="first-column"><?= $config['config_footer_phone_qr']['varinfo']; ?></td>
+    <td class="second-column" width="33%">
+        <?= JQueryFileUploadWidget::widget([
+            'name' => $config['config_footer_phone_qr']['varname'],
+            'value' => $config['config_footer_phone_qr']['varvalue'],
+            'options' => ['class' => 'input', 'readonly' => true],
+            'url' => ['fileupload', 'param' => 'value'],
+            'uploadName' => 'logourl',
+            'fileOptions' => [
+                'accept' => '*',//选择文件时的windows过滤器
+                'multiple' => false,//单图
+                'isImage' => true,//图片文件
+            ],//单图
+            'clientOptions' => [
+                'acceptFileTypes' => new JsExpression('/(\.|\/)(gif|jpe?g|png|ai|txt|xls|xlsx|docx|doc|pdf|zip|rar|tar)$/i'),//限制上传的后缀名
+            ],
+        ]) ?>
+        <span class="cnote">切换模板后，请刷新整个页面</span>
+    </td>
+    <td style="border-bottom: 1px dashed #efefef;">
+        Yii::$app->params['<?php echo $config['config_footer_phone_qr']['varname']; ?>']
+    </td>
+</tr>

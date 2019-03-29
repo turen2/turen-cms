@@ -6,7 +6,6 @@
  */
 namespace app\components;
 
-//后台统一控制器
 class Controller extends \yii\web\Controller
 {
     /**

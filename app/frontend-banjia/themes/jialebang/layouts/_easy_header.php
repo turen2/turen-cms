@@ -28,7 +28,7 @@ $this->registerJs($js);
     <div class="container clearfix">
         <div class="head-note fl">
                 <span class="fl">
-                    <i class="fa fa-bullhorn"></i>
+                    <i class="iconfont jia-notice"></i>
                     <span class="primary-color">公告：</span>
                 </span>
             <span class="scroll-note fl">

@@ -22,6 +22,7 @@ class ServiceController extends \app\components\Controller
         return $this->render('detail', [
             'curModel' => $curModel,
             'models' => $models,
+            'slug' => $slug,
         ]);
     }
 

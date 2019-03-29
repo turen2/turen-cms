@@ -8,13 +8,13 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use app\assets\IconfontAsset;
 use app\assets\PinAsset;
 use yii\helpers\Html;
 use app\assets\AppBanjiaAsset;
-use app\assets\FontAwesomeAsset;
 use yii\web\YiiAsset;
 
-FontAwesomeAsset::register($this);
+IconfontAsset::register($this);
 YiiAsset::register($this);
 AppBanjiaAsset::register($this);
 
