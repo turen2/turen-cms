@@ -6,6 +6,7 @@
  */
 
 use app\assets\ToTopAsset;
+use common\helpers\ImageHelper;
 use common\models\cms\Block;
 use common\models\ext\LinkType;
 use common\models\ext\Link;
