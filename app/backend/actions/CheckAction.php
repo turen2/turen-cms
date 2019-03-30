@@ -14,7 +14,7 @@ use app\helpers\BackCommonHelper;
 class CheckAction extends Action
 {
     public $className;//要切换的模型
-    public $id;//主键id值
+    public $kid;//主键id值
     
     public $openName = '显示';
     public $closeName = '隐藏';
@@ -24,7 +24,7 @@ class CheckAction extends Action
     public function run()
     {
         //校验参数
-        if(is_null($this->className) || is_null($this->id) || is_null($this->field)) {
+        if(is_null($this->className) || is_null($this->kid) || is_null($this->field)) {
             throw new InvalidArgumentException('传递的参数有误。');
         }
         
@@ -37,7 +37,7 @@ class CheckAction extends Action
             $query = $query->current();
         }
         
-        $model = $query->where([$primayKey => $this->id])->one();
+        $model = $query->where([$primayKey => $this->kid])->one();
         $model->{$this->field} = !$model->{$this->field};
         $model->save(false);//效果在界面上有显示
         

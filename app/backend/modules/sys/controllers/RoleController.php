@@ -6,6 +6,7 @@
  */
 namespace app\modules\sys\controllers;
 
+use app\models\cms\DiyModel;
 use Yii;
 use app\models\sys\Role;
 use app\models\sys\RoleSearch;
@@ -27,7 +28,7 @@ class RoleController extends Controller
             'check' => [
                 'class' => CheckAction::class,
                 'className' => Role::class,
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
                 'openName' => '有效',
                 'closeName' => '无效',
             ],
@@ -81,6 +82,7 @@ class RoleController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'diyModels' => DiyModel::find()->active()->asArray()->all(),
             ]);
         }
     }
@@ -106,6 +108,7 @@ class RoleController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'diyModels' => DiyModel::find()->active()->asArray()->all(),
             ]);
         }
     }

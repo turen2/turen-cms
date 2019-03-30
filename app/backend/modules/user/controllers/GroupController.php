@@ -29,7 +29,7 @@ class GroupController extends Controller
             'simple-move' => [
                 'class' => SimpleMoveAction::class,
                 'className' => Group::class,
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
                 'type' => $request->get('type'),
                 'orderid' => $request->get('orderid'),
                 'nameField' => 'ug_name',

@@ -54,9 +54,9 @@ $this->title = '帮助标记管理';
 			<input type="text" name="flag[]" id="flag[]" class="inputd" value="<?= $model->flag; ?>" />
 		</td>
 		<td align="center">
-			<a href="<?=Url::to(['simple-move', 'type' => HelpFlag::ORDER_UP_TYPE, 'id' => $model->id, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>
+			<a href="<?=Url::to(['simple-move', 'type' => HelpFlag::ORDER_UP_TYPE, 'kid' => $model->id, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>
 			<input type="text" name="orderid[]" id="orderid[]" class="inputls" value="<?= $model->orderid; ?>">
-			<a href="<?=Url::to(['simple-move', 'type' => HelpFlag::ORDER_DOWN_TYPE, 'id' => $model->id, 'orderid' => $model->orderid])?>" class="right-arrow" title="下降排序"></a>
+			<a href="<?=Url::to(['simple-move', 'type' => HelpFlag::ORDER_DOWN_TYPE, 'kid' => $model->id, 'orderid' => $model->orderid])?>" class="right-arrow" title="下降排序"></a>
 		</td>
 		<td class="action end-column">
 			<span class="nb"><?=$delstr?></span>

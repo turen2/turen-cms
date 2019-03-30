@@ -40,7 +40,7 @@ class CommentController extends Controller
             'check' => [
                 'class' => CheckAction::class,
                 'className' => Comment::class,
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
             ],
             'ueditor' => [
                 'class' => UEditorAction::class,

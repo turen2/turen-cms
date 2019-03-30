@@ -21,7 +21,6 @@ use yii\helpers\StringHelper;
  */
 class Role extends \app\models\base\Sys
 {
-    
     public $keyword;
     
     public static $RoleItems;
@@ -69,25 +68,74 @@ class Role extends \app\models\base\Sys
             'status' => '角色状态',
         ];
     }
+
+    /**
+     * 初始化路由数组
+     */
+    protected function initRoles()
+    {
+        if(is_null(static::$RoleItems)) {
+            foreach (RoleItem::find()->asArray()->all() as $item) {
+                static::$RoleItems[$item['role_id']][] = $item['route'].(empty($item['role_params'])?'':'?'.$item['role_params']);
+            }
+        }
+    }
     
     /**
      * 判断权限是否包含
      * @param string $route
      * @return boolean
      */
-    public function checkPerm($route)
+    public function checkPerm($pattern, $isFounder = false)//checkPerm
     {
-        if(!isset(static::$RoleItems[$this->role_id])) {
-            static::$RoleItems[$this->role_id] = array_keys(ArrayHelper::map(RoleItem::find()->select(['route'])->where(['role_id' => $this->role_id])->all(), 'route', 'role_id'));
+        $this->initRoles();
+
+        //菜单需要判断是否为创始人
+        if($isFounder && in_array(Yii::$app->getUser()->id, Yii::$app->params['config.founderList'])) {
+            return true;
         }
-        
-        foreach (static::$RoleItems[$this->role_id] as $pattern) {
-            if (StringHelper::matchWildcard($pattern, $route)) {
-                return true;
+
+        foreach (static::$RoleItems[$this->role_id] as $route) {
+            if(strpos($pattern, '?') !== false) {
+                if($pattern == $route) {
+                    return true;
+                }
+                /*
+                $pattern = explode('&', $pattern);
+                $roleParams = $pattern[1];
+                $pattern = $pattern[0];
+                if (StringHelper::matchWildcard($pattern, $route) && $roleParams == ) {
+                    return true;
+                }
+                */
+            } else {
+                if (StringHelper::matchWildcard($pattern, $route)) {
+                    return true;
+                }
             }
         }
         
         return false;
+    }
+
+    /**
+     * 返回指定角色的所有匹配路由，或指定角色和控制器的匹配动作
+     * @return array
+     */
+    public function routeAll()
+    {
+        $this->initRoles();
+
+        $controllerActions = [];
+        foreach (static::$RoleItems[$this->role_id] as $pattern) {
+            $roleArr = explode('/', $pattern);
+            if(!empty($roleArr)) {
+                $action = array_pop($roleArr);
+                $controllerActions[implode('/', $roleArr)][] = $action;
+            }
+        };
+
+        return $controllerActions;
     }
 
     /**

@@ -27,7 +27,7 @@ $this->title = '自定义模型';
 	<?php foreach ($dataProvider->getModels() as $key => $model) {
 		$options = [
 	        'title' => '点击进行启用和禁用操作',
-		    'data-url' => Url::to(['check', 'id' => $model->dm_id]),
+		    'data-url' => Url::to(['check', 'kid' => $model->dm_id]),
 	        'onclick' => 'turen.com.updateStatus(this)',
         ];
 		$checkstr = Html::a(($model->status?'启用':'禁用'), 'javascript:;', $options);

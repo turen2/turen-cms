@@ -8,9 +8,10 @@
 
 namespace app\filters;
 
-use app\models\sys\Role;
-use app\models\sys\RoleItem;
 use Yii;
+use app\models\sys\Role;
+use yii\helpers\ArrayHelper;
+use app\helpers\BackCommonHelper;
 
 class AccessControl extends \yii\filters\AccessControl
 {
@@ -25,7 +26,7 @@ class AccessControl extends \yii\filters\AccessControl
         }
 
         //权限控制
-        foreach ($this->sysAccessRules() as $i => $rule) {
+        foreach ($this->sysAccessRules($action) as $i => $rule) {
             $this->rules[] = Yii::createObject(array_merge($this->ruleConfig, $rule));//统一生成规则对象
         }
 
@@ -53,7 +54,7 @@ class AccessControl extends \yii\filters\AccessControl
         return false;
     }
 
-    protected function sysAccessRules()
+    protected function sysAccessRules($action)
     {
         $rules = [];
         //权限管理系统基础权限
@@ -71,23 +72,57 @@ class AccessControl extends \yii\filters\AccessControl
         $userModel = $this->user->identity;
         $roleModel = Role::find()->where(['role_id' => $userModel->role_id])->active()->one();
         if($roleModel) {
-            $controllerActions = [];
-            foreach (RoleItem::findAll(['role_id' => $userModel->role_id]) as $item) {
-                $roleArr = explode('/', $item->route);
-                if(count($roleArr) == 3) {
-                    $controllerActions[$roleArr[0].'/'.$roleArr[1]][] = $roleArr[2];
-                } else {
-                    continue;
-                }
-            };
+            $routeStr = Yii::$app->requestedRoute;
+            $routeArr = explode('/', $routeStr);
+            $controllerName = substr($routeStr, 0, strlen($routeStr) - strlen(array_pop($routeArr)) - 1);
+            $controllerActions = $roleModel->routeAll();
 
-            foreach ($controllerActions as $controller => $actions) {
+            //控制器和动作规则
+            if(isset($controllerActions[$controllerName])) {
+                //附加栏目规则
+                if($controllerName == 'cms/master-model') {
+                    $actions = [];
+                    $roleParams = [];
+                    foreach ($controllerActions[$controllerName] as $controllerAction) {
+                        if(strpos($controllerAction, '?') !== false) {
+                            $url = parse_url($controllerAction);
+                            $actions[] = $url['path'];
+                            $roleParams = ArrayHelper::merge($roleParams, BackCommonHelper::convertUrlQuery($url['query']));
+                        } else {
+                            $actions[] = $controllerAction;
+                        }
+                    }
+                    $rules[] = [
+                        'allow' => true,
+                        'controllers' => [$controllerName],
+                        'actions' => $actions,
+                        'roleParams' => $roleParams,//用于rbac
+                        'matchCallback' => function($_this, $action) {//用于自定义参数回调+roleParams参数传值
+                            return $_this->roleParams['mid'] == Yii::$app->request->queryParams['mid'];
+                        },
+                        'roles' => ['@'],//登录用户
+                    ];
+                } else {
+                    $rules[] = [
+                        'allow' => true,
+                        'controllers' => [$controllerName],
+                        'actions' => array_unique($controllerActions[$controllerName]),
+                        'roles' => ['@'],//登录用户
+                    ];
+                }
+
+                //栏目规则【后期开发...】
+                /*
                 $rules[] = [
                     'allow' => true,
-                    'controllers' => [$controller],
-                    'actions' => array_unique($actions),
-                    'roles' => ['@'],
+                    'controllers' => [$controllerName],
+                    'actions' => array_unique($controllerActions[$controllerName]),
+                    'roleParams' => function($rule) {
+                        return ['column_id' => 7];
+                    },
+                    'roles' => ['@'],//登录用户
                 ];
+                */
             }
         }
 

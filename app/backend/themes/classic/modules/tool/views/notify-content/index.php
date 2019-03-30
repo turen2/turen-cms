@@ -34,7 +34,7 @@ $this->title = '通知内容列表';
 	<?php foreach ($dataProvider->getModels() as $key => $model) {
 		$options = [
 	        'title' => '点击进行有效和无效操作',
-	        'data-url' => Url::to(['check', 'id' => $model->nc_id]),
+	        'data-url' => Url::to(['check', 'kid' => $model->nc_id]),
 	        'onclick' => 'turen.com.updateStatus(this)',
         ];
 		$checkstr = Html::a(($model->nc_status?'启用':'禁用'), 'javascript:;', $options);

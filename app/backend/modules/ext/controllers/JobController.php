@@ -29,14 +29,14 @@ class JobController extends Controller
             'edit-item' => [
                 'class' => EditItemAction::class,
                 'className' => Job::class,
-                'id' => $request->post('id'),
+                'kid' => $request->post('kid'),
                 'field' => 'orderid',
                 'value' => $request->post('value'),
             ],
             'check' => [
                 'class' => CheckAction::class,
                 'className' => Job::class,
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
             ],
             'ueditor' => [
                 'class' => UEditorAction::class,

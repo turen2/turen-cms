@@ -28,7 +28,7 @@ class HelpFlagController extends Controller
             'simple-move' => [
                 'class' => SimpleMoveAction::class,
                 'className' => HelpFlag::class,
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
                 'type' => $request->get('type'),
                 'orderid' => $request->get('orderid'),
                 'nameField' => 'flagname',

@@ -28,7 +28,7 @@ class LinkTypeController extends Controller
             'move' => [
                 'class' => MoveAction::class,
                 'className' => LinkType::class,
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
                 'pid' => $request->get('pid'),
                 'type' => $request->get('type'),
                 'orderid' => $request->get('orderid'),
@@ -37,7 +37,7 @@ class LinkTypeController extends Controller
             'check' => [
                 'class' => CheckAction::class,
                 'className' => LinkType::class,
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
             ],
         ];
     }

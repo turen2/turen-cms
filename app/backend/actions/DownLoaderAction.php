@@ -18,7 +18,7 @@ use app\components\phpoffice\DataExport;
 
 class DownLoaderAction extends Action
 {
-    public $id;
+    public $kid;
     
     private $_model;
     
@@ -29,7 +29,7 @@ class DownLoaderAction extends Action
         parent::init();
         
         $this->_identity = Yii::$app->user->getIdentity();
-        $this->_model = Report::findOne(['id' => $this->id]);
+        $this->_model = Report::findOne(['id' => $this->kid]);
         if(empty($this->_model)) {
             throw new NotFoundHttpException(Yii::t('common', 'Not Found The File.'));
         }

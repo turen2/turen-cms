@@ -28,7 +28,7 @@ class HelpCateController extends Controller
             'move' => [
                 'class' => MoveAction::class,
                 'className' => HelpCate::class,
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
                 'pid' => $request->get('pid'),
                 'type' => $request->get('type'),
                 'orderid' => $request->get('orderid'),
@@ -37,7 +37,7 @@ class HelpCateController extends Controller
             'check' => [
                 'class' => CheckAction::class,
                 'className' => HelpCate::class,
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
             ],
         ];
     }

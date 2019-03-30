@@ -17,5 +17,6 @@ $this->title = '添加新角色';
 <div class="role-create">
     <?= $this->render('_form', [
         'model' => $model,
+        'diyModels' => $diyModels,
     ]) ?>
 </div>

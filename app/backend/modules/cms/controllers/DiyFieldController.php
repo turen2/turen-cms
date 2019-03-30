@@ -28,7 +28,7 @@ class DiyFieldController extends Controller
             'simple-move' => [
                 'class' => SimpleMoveAction::class,
                 'className' => DiyField::class,
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
                 'type' => $request->get('type'),
                 'orderid' => $request->get('orderid'),
                 'nameField' => 'fd_title',
@@ -52,7 +52,7 @@ class DiyFieldController extends Controller
                 'className' => DiyField::class,
                 'openName' => '启用',
                 'closeName' => '禁用',
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
             ],
             'list-check' => [
                 'class' => CheckAction::class,
@@ -60,7 +60,7 @@ class DiyFieldController extends Controller
                 'openName' => '列表显示',
                 'closeName' => '列表隐藏',
                 'field' => 'list_status',
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
             ],
         ];
     }

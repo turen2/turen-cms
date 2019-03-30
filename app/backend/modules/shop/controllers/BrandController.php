@@ -42,14 +42,14 @@ class BrandController extends Controller
             'edit-item' => [
                 'class' => EditItemAction::class,
                 'className' => Brand::class,
-                'id' => $request->post('id'),
+                'kid' => $request->post('kid'),
                 'field' => 'orderid',
                 'value' => $request->post('value'),
             ],
             'check' => [
                 'class' => CheckAction::class,
                 'className' => Brand::class,
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
             ],
             'fileupload' => [
                 'class' => FileUploadAction::class,

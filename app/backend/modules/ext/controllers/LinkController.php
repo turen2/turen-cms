@@ -29,14 +29,14 @@ class LinkController extends Controller
             'edit-item' => [
                 'class' => EditItemAction::class,
                 'className' => Link::class,
-                'id' => $request->post('id'),
+                'kid' => $request->post('kid'),
                 'field' => 'orderid',
                 'value' => $request->post('value'),
             ],
             'check' => [
                 'class' => CheckAction::class,
                 'className' => Link::class,
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
             ],
             'fileupload' => [
                 'class' => FileUploadAction::class,

@@ -37,7 +37,7 @@ $this->title = '栏目管理';
 {
 	$options = [
         'title' => '点击进行显示和隐藏操作',
-        'data-url' => Url::to(['check', 'id' => $model->id]),
+        'data-url' => Url::to(['check', 'kid' => $model->id]),
         'onclick' => 'turen.com.updateStatus(this)',
     ];
 	$checkstr = Html::a(($model->status?'显示':'隐藏'), 'javascript:;', $options);
@@ -71,9 +71,9 @@ $this->title = '栏目管理';
 					<span class="info-type-txt"> <i title="栏目属于[<?=Column::ColumnConvert('id2name', $model->type, '未定义')?>]类型">[<?=Column::ColumnConvert('id2name', $model->type, '未定义')?>]</i></span>
 				</td>
 				<td width="20%" align="center">
-					<a href="<?=Url::to(['move', 'type' => Column::ORDER_UP_TYPE, 'id' => $model->id, 'pid' => $model->parentid, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>
+					<a href="<?=Url::to(['move', 'type' => Column::ORDER_UP_TYPE, 'kid' => $model->id, 'pid' => $model->parentid, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>
 					<input type="text" name="orderid[]" id="orderid[]" class="inputls" value="<?= $model->orderid; ?>">
-					<a href="<?=Url::to(['move', 'type' => Column::ORDER_DOWN_TYPE, 'id' => $model->id, 'pid' => $model->parentid, 'orderid' => $model->orderid])?>" class="right-arrow" title="下降排序"></a>
+					<a href="<?=Url::to(['move', 'type' => Column::ORDER_DOWN_TYPE, 'kid' => $model->id, 'pid' => $model->parentid, 'orderid' => $model->orderid])?>" class="right-arrow" title="下降排序"></a>
 				</td>
 				<td width="32%" class="action end-column">
 					<span><a href="<?= Url::to(['create', 'pid' => $model->id]) ?>">添加子栏目</a></span> | 

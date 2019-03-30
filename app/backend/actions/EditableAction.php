@@ -35,7 +35,7 @@ class EditableAction extends Action
 {
     public $className;//要切换的模型
     public $keyField = '';
-    public $id;//主键id值
+    public $kid;//主键id值
     
     public $field;//指定要修改的字段名
     public $value;//指定一个值
@@ -56,7 +56,7 @@ class EditableAction extends Action
     public function run()
     {
         //校验参数
-        if(is_null($this->className) || is_null($this->id) || is_null($this->field) || is_null($this->value)) {
+        if(is_null($this->className) || is_null($this->kid) || is_null($this->field) || is_null($this->value)) {
             throw new InvalidArgumentException(Yii::t('common', 'Parameter Error.'));
         }
         
@@ -68,11 +68,11 @@ class EditableAction extends Action
         $className = $this->className;
         $command = Yii::$app->getDb()->createCommand();
         $params = [];
-        $command->update($className::tableName(), [$this->field => $this->value], [$this->keyField => $this->id], $params);
+        $command->update($className::tableName(), [$this->field => $this->value], [$this->keyField => $this->kid], $params);
 
         //$model->update(false, [$this->field])
         if($command->execute()) {//更新不验证，且只更新一个字段
-        	return ['output' => $this->findModel($this->id)->{$this->field}, 'message' => ''];
+        	return ['output' => $this->findModel($this->kid)->{$this->field}, 'message' => ''];
         } else {
             return ['output' => '', 'message' => '修改失败'];
         }

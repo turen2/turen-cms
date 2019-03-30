@@ -49,14 +49,14 @@ class ProductController extends Controller
             'edit-item' => [
                 'class' => EditItemAction::class,
                 'className' => Product::class,
-                'id' => $request->post('id'),
+                'kid' => $request->post('kid'),
                 'field' => 'orderid',
                 'value' => $request->post('value'),
             ],
             'check' => [
                 'class' => CheckAction::class,
                 'className' => Product::class,
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
                 'openName' => '上架',
                 'closeName' => '禁售',
             ],

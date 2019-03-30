@@ -41,7 +41,7 @@ class DiyModelController extends Controller
                 'className' => DiyModel::class,
                 'openName' => '启用',
                 'closeName' => '禁用',
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
             ],
             'validate-title' => [
                 'class' => ValidateAction::class,

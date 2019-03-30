@@ -47,7 +47,7 @@ class NotifyContentController extends Controller
                 'closeName' => '禁用',
                 'field' => 'nc_status',
                 'className' => NotifyContent::class,
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
             ],
             'ueditor' => [
                 'class' => UEditorAction::class,

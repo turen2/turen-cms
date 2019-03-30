@@ -30,7 +30,7 @@ class ColumnController extends Controller
             'move' => [
                 'class' => MoveAction::class,
                 'className' => Column::class,
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
                 'pid' => $request->get('pid'),
                 'type' => $request->get('type'),
                 'orderid' => $request->get('orderid'),
@@ -39,7 +39,7 @@ class ColumnController extends Controller
             'check' => [
                 'class' => CheckAction::class,
                 'className' => Column::class,
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
             ],
             'fileupload' => [
                 'class' => FileUploadAction::class,

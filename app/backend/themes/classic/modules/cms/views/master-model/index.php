@@ -46,7 +46,7 @@ $this->title = $diyModel->dm_title.'列表';
 	<?php foreach ($dataProvider->getModels() as $key => $model) {
 		$options = [
 	        'title' => '点击进行显示和隐藏操作',
-	        'data-url' => Url::to(['check', 'id' => $model->id, 'mid' => $diyModel->dm_id]),
+	        'data-url' => Url::to(['check', 'kid' => $model->id, 'mid' => $diyModel->dm_id]),
 	        'onclick' => 'turen.com.updateStatus(this)',
         ];
 		$checkstr = Html::a(($model->status?'显示':'隐藏'), 'javascript:;', $options);

@@ -1,4 +1,3 @@
-/******************************* 回收站start *******************************/
 //显示回收站
 function RecycleShow(url)
 {
@@ -11,6 +10,9 @@ function RecycleShow(url)
 			$(".loading4").show();
 			$("#recycle").show();
 			$("#recycle .list").html('<div class="loading">列表加载中...</div>');
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			$.notify(XMLHttpRequest.responseText, 'error');
 		},
 		success:RecycleDone
 	});
@@ -42,6 +44,9 @@ function Recycle(url, _this)
 		type: "post",
 		data: {id: id},
 		dataType:"html",
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			$.notify(XMLHttpRequest.responseText, 'error');
+		},
 		success:RecycleDone
 	});
 }
@@ -67,6 +72,9 @@ function RecycleCheck(url)
 		type: "post",
 		data: {ids: ids},
 		dataType:"html",
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			$.notify(XMLHttpRequest.responseText, 'error');
+		},
 		success:RecycleDone
 	});
 }
@@ -78,6 +86,9 @@ function RecycleEmpty(url)
 		url : url,
 		type: "post",
 		dataType:"html",
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			$.notify(XMLHttpRequest.responseText, 'error');
+		},
 		success:RecycleDone
 	});
 }
@@ -87,10 +98,6 @@ function RecycleDone(data)
 {
 	$("#recycle .list").html(data);
 }
-
-
-
-
 
 //操作所有
 function RecycleResetAll(url)
@@ -112,7 +119,9 @@ function RecycleResetAll(url)
 		url : url,
 		type: "get",
 		dataType:"html",
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			$.notify(XMLHttpRequest.responseText, 'error');
+		},
 		success:RecycleDone
 	});
 }
-/******************************* 回收站end *******************************/

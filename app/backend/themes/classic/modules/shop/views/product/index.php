@@ -48,7 +48,7 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel]);
 	<?php foreach ($dataProvider->getModels() as $key => $model) {
 		$options = [
 	        'title' => '点击进行上架和禁售操作',
-	        'data-url' => Url::to(['check', 'id' => $model->id]),
+	        'data-url' => Url::to(['check', 'kid' => $model->id]),
 	        'onclick' => 'turen.com.updateStatus(this)',
         ];
 		$checkstr = Html::a(($model->status?'上架':'禁售'), 'javascript:;', $options);

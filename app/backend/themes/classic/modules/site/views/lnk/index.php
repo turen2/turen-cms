@@ -58,9 +58,9 @@ $this->title = '快捷链接管理';
 			<input type="text" name="lnk_ico[]" id="lnk_ico[]" class="inputd" value="<?= Html::encode($model->lnk_ico); ?>" />
 		</td>
 		<td align="center">
-			<a href="<?=Url::to(['simple-move', 'type' => Lnk::ORDER_UP_TYPE, 'id' => $model->lnk_id, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>
+			<a href="<?=Url::to(['simple-move', 'type' => Lnk::ORDER_UP_TYPE, 'kid' => $model->lnk_id, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>
 			<input type="text" name="orderid[]" id="orderid[]" class="inputls" value="<?= $model->orderid; ?>">
-			<a href="<?=Url::to(['simple-move', 'type' => Lnk::ORDER_DOWN_TYPE, 'id' => $model->lnk_id, 'orderid' => $model->orderid])?>" class="right-arrow" title="下降排序"></a>
+			<a href="<?=Url::to(['simple-move', 'type' => Lnk::ORDER_DOWN_TYPE, 'kid' => $model->lnk_id, 'orderid' => $model->orderid])?>" class="right-arrow" title="下降排序"></a>
 		</td>
 		<td class="action end-column">
 			<span class="nb"><?=$delstr?></span>

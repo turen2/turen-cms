@@ -24,7 +24,9 @@ class BackCommonHelper {
     
     public static function CheckPermBox(\app\models\sys\Role $model, $route, $name)
     {
-        return '<input type="checkbox" id="perm-'.(str_replace('/', '-', $route)).'" name="Perm[route][]" value="'.$route.'" '.(($model->checkPerm($route))?'checked="checked"':'').' /><label for="perm-'.(str_replace('/', '-', $route)).'"> '.$name.'</label>';
+        return '<input type="checkbox" id="perm-'.(str_replace('/', '-', $route)).'"'.
+            ' name="Perm[route][]" value="'.$route.'" '.(($model->checkPerm($route))?'checked="checked"':'').' />'.
+            '<label for="perm-'.(str_replace('/', '-', $route)).'"> '.$name.'</label>';
     }
     
     /**
@@ -41,5 +43,28 @@ class BackCommonHelper {
 //         $oldFields = $fields;
 //         ArrayHelper::removeValue($fields, $field);
 //         return $oldFields != $fields;
+    }
+
+    public static function convertUrlQuery($query)
+    {
+        $queryParts = explode('&', $query);
+
+        $params = [];
+        foreach ($queryParts as $param) {
+            $item = explode('=', $param);
+            $params[$item[0]] = $item[1];
+        }
+
+        return $params;
+    }
+
+    public static function getUrlQuery($array_query)
+    {
+        $tmp = [];
+        foreach ($array_query as $k => $param) {
+            $tmp[] = $k . '=' . $param;
+        }
+        $params = implode('&', $tmp);
+        return $params;
     }
 }

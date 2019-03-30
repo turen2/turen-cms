@@ -47,7 +47,7 @@ class NotifyGroupController extends Controller
                 'closeName' => '禁用',
                 'field' => 'ng_status',
                 'className' => NotifyGroup::class,
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
             ],
         ];
     }

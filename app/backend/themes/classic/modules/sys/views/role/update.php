@@ -15,5 +15,6 @@ $this->title = '编辑角色: ' . $model->role_name;
 <div class="role-update">
     <?= $this->render('_form', [
         'model' => $model,
+        'diyModels' => $diyModels,
     ]) ?>
 </div>

@@ -264,7 +264,6 @@ a:focus {
 
 .header .user .user-panel .arrow {
 	display: block;
-	height: 16px;
 	font-size: 20px;
     color: #fff;
 }
@@ -343,15 +342,6 @@ a:focus {
 
 .header .user .user-panel .panel .actbtn a.logout {
 	right: 11px;
-}
-
-.header .user .auth-user {
-	display: none;
-	width: 14px;
-	height: 13px;
-	float: left;
-	margin: 5px 0 0 15px;
-	background: url(./images/authBg.png) no-repeat;
 }
 
 .header .fun {

@@ -32,6 +32,13 @@ var validator = $("#submitform").validate({
 		error.appendTo(element.parent());
 	}
 });
+
+$('.selectall').on('click', function() {
+    $(this).parents('.second-column').find("input[type='checkbox']").attr('checked', true);
+});
+$('.selectnotall').on('click', function() {
+    $(this).parents('.second-column').find("input[type='checkbox']").attr('checked', false);
+});
 EOF;
 $this->registerJs($js);
 ?>
@@ -87,7 +94,7 @@ $this->registerJs($js);
                 </div>
                 <div class="purview-list">
                     <span><?= BackCommonHelper::CheckPermBox($model, 'site/face-config/setting', '查看') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/face-config/batch', '批量提交') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/face-config/batch', '批量操作') ?></span>
                 </div>
                 <div class="purview-title">
                     <strong>专题管理</strong>
@@ -98,7 +105,11 @@ $this->registerJs($js);
                     <span><?= BackCommonHelper::CheckPermBox($model, 'site/topic/delete', '删除') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'site/topic/update', '编辑') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'site/topic/check', '修改状态') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/topic/batch', '批量提交') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/topic/batch', '批量操作') ?></span>
+                </div>
+                <div class="purviewSel">
+                    <a href="javascript:;" class="selectall">全选</a>&nbsp;&nbsp;
+                    <a href="javascript:;" class="selectnotall">反选</a>
                 </div>
             </td>
         </tr>
@@ -115,7 +126,7 @@ $this->registerJs($js);
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/column/update', '编辑') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/column/check', '修改状态') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/column/move', '快捷移动') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/column/batch', '批量提交') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/column/batch', '批量操作') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/column/fileupload', '单图上传') ?></span>
                 </div>
                 <div class="purview-title">
@@ -128,7 +139,7 @@ $this->registerJs($js);
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/cate/update', '编辑') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/cate/check', '修改状态') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/cate/move', '快捷移动') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/cate/batch', '批量提交') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/cate/batch', '批量操作') ?></span>
                 </div>
                 <div class="purview-title">
                     <strong>单面信息管理</strong>
@@ -150,11 +161,12 @@ $this->registerJs($js);
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/article/update', '编辑') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/article/check', '修改状态') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/article/edit-item', '简单编辑') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/article/batch', '批量提交') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/article/batch', '批量操作') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/article/fileupload', '缩略图上传') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/article/multiple-fileupload', '多图上传') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/article/ueditor', '编辑器图片上传') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/article/get-tags', 'ajax标签列表') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/article/recycle', '回收站') ?></span>
                 </div>
                 <div class="purview-title">
                     <strong>图片信息管理</strong>
@@ -166,11 +178,12 @@ $this->registerJs($js);
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/photo/update', '编辑') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/photo/check', '修改状态') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/photo/edit-item', '简单编辑') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/photo/batch', '批量提交') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/photo/batch', '批量操作') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/photo/fileupload', '缩略图上传') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/photo/multiple-fileupload', '多图上传') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/photo/ueditor', '编辑器图片上传') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/photo/get-tags', 'ajax标签列表') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/photo/recycle', '回收站') ?></span>
                 </div>
                 <div class="purview-title">
                     <strong>视频管理</strong>
@@ -182,10 +195,11 @@ $this->registerJs($js);
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/video/update', '编辑') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/video/check', '修改状态') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/video/edit-item', '简单编辑') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/video/batch', '批量提交') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/video/batch', '批量操作') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/video/fileupload', '缩略图上传') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/video/ueditor', '编辑器图片上传') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/video/get-tags', 'ajax标签列表') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/video/recycle', '回收站') ?></span>
                 </div>
                 <div class="purview-title">
                     <strong>下载管理</strong>
@@ -197,11 +211,12 @@ $this->registerJs($js);
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/file/update', '编辑') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/file/check', '修改状态') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/file/edit-item', '简单编辑') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/file/batch', '批量提交') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/file/batch', '批量操作') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/file/fileupload', '缩略图上传') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/file/multiple-fileupload', '多图上传') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/file/ueditor', '编辑器图片上传') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/file/get-tags', 'ajax标签列表') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/file/recycle', '回收站') ?></span>
                 </div>
                 <div class="purview-title">
                     <strong>碎片数据管理</strong>
@@ -212,7 +227,7 @@ $this->registerJs($js);
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/block/delete', '删除') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/block/update', '编辑') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/block/check', '修改状态') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/block/batch', '批量提交') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/block/batch', '批量操作') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/block/fileupload', '缩略图上传') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/block/ueditor', '编辑器图片上传') ?></span>
                 </div>
@@ -226,7 +241,7 @@ $this->registerJs($js);
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/flag/update', '编辑') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/flag/check', '修改状态') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/flag/move', '快捷移动') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/flag/batch', '批量提交') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/flag/batch', '批量操作') ?></span>
                 </div>
                 <div class="purview-title">
                     <strong>信息来源管理</strong>
@@ -234,44 +249,62 @@ $this->registerJs($js);
                 <div class="purview-list">
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/src/index', '查看/新增/编辑') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/src/delete', '删除') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/src/batch', '批量操作') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/src/move', '快捷移动') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/src/batch', '批量提交') ?></span>
                 </div>
                 <div class="purview-title">
                     <strong>自定义模型</strong>
                 </div>
                 <div class="purview-list">
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/model/index', '查看') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/model/create', '新增') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/model/delete', '删除') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/model/update', '编辑') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/model/check', '修改状态') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/diy-model/index', '查看') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/diy-model/create', '新增') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/diy-model/delete', '删除') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/diy-model/update', '编辑') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/diy-model/check', '修改状态') ?></span>
                 </div>
                 <div class="purview-title">
                     <strong>自定义字段</strong>
                 </div>
                 <div class="purview-list">
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/field/index', '查看') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/field/create', '新增') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/field/delete', '删除') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/field/update', '编辑') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/field/check', '修改状态') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/field/move', '快捷移动') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/field/batch', '批量提交') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/diy-field/index', '查看') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/diy-field/create', '新增') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/diy-field/delete', '删除') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/diy-field/update', '编辑') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/diy-field/check', '修改状态') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/diy-field/move', '快捷移动') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/diy-field/batch', '批量操作') ?></span>
+                </div>
+                <div class="purviewSel">
+                    <a href="javascript:;" class="selectall">全选</a>&nbsp;&nbsp;
+                    <a href="javascript:;" class="selectnotall">反选</a>
                 </div>
             </td>
         </tr>
         <tr>
             <td class="first-column">附加模型权限管理：</td>
             <td class="second-column">
-                <!--
-                循环自定义模型
-                -->
-                <div class="purview-title">
-                    <strong>占位</strong>
-                </div>
-                <div class="purview-list">
-                    <span><?php // BackCommonHelper::CheckPermBox($model, 'shop/default/*', '占位') ?></span>
+                <?php foreach ($diyModels as $diyModel) { ?>
+                    <div class="purview-title">
+                        <strong><?= $diyModel['dm_title'] ?></strong>
+                    </div>
+                    <div class="purview-list">
+                        <span><?= BackCommonHelper::CheckPermBox($model, 'cms/master-model/index?mid='.$diyModel['dm_id'], '查看') ?></span>
+                        <span><?= BackCommonHelper::CheckPermBox($model, 'cms/master-model/create?mid='.$diyModel['dm_id'], '新增') ?></span>
+                        <span><?= BackCommonHelper::CheckPermBox($model, 'cms/master-model/delete?mid='.$diyModel['dm_id'], '删除') ?></span>
+                        <span><?= BackCommonHelper::CheckPermBox($model, 'cms/master-model/update?mid='.$diyModel['dm_id'], '编辑') ?></span>
+                        <span><?= BackCommonHelper::CheckPermBox($model, 'cms/master-model/check?mid='.$diyModel['dm_id'], '修改状态') ?></span>
+                        <span><?= BackCommonHelper::CheckPermBox($model, 'cms/master-model/edit-item?mid='.$diyModel['dm_id'], '简单编辑') ?></span>
+                        <span><?= BackCommonHelper::CheckPermBox($model, 'cms/master-model/move?mid='.$diyModel['dm_id'], '快捷移动') ?></span>
+                        <span><?= BackCommonHelper::CheckPermBox($model, 'cms/master-model/batch?mid='.$diyModel['dm_id'], '批量操作') ?></span>
+                        <span><?= BackCommonHelper::CheckPermBox($model, 'cms/master-model/get-tags?mid='.$diyModel['dm_id'], 'ajax标签列表') ?></span>
+                        <span><?= BackCommonHelper::CheckPermBox($model, 'cms/master-model/fileupload?mid='.$diyModel['dm_id'], '缩略图上传') ?></span>
+                        <span><?= BackCommonHelper::CheckPermBox($model, 'cms/master-model/multiple-fileupload?mid='.$diyModel['dm_id'], '多图上传') ?></span>
+                        <span><?= BackCommonHelper::CheckPermBox($model, 'cms/master-model/ueditor?mid='.$diyModel['dm_id'], '编辑器图片上传') ?></span>
+                    </div>
+                <?php } ?>
+                <div class="purviewSel">
+                    <a href="javascript:;" class="selectall">全选</a>&nbsp;&nbsp;
+                    <a href="javascript:;" class="selectnotall">反选</a>
                 </div>
             </td>
         </tr>
@@ -288,7 +321,7 @@ $this->registerJs($js);
                     <span><?= BackCommonHelper::CheckPermBox($model, 'ext/nav/update', '编辑') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'ext/nav/check', '修改状态') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'ext/nav/move', '快捷移动') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'ext/nav/batch', '批量提交') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'ext/nav/batch', '批量操作') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'ext/nav/fileupload', '缩略图上传') ?></span>
                 </div>
                 <div class="purview-title">
@@ -301,7 +334,7 @@ $this->registerJs($js);
                     <span><?= BackCommonHelper::CheckPermBox($model, 'ext/ad-type/update', '编辑') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'ext/ad-type/check', '修改状态') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'ext/ad-type/move', '快捷移动') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'ext/ad-type/batch', '批量提交') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'ext/ad-type/batch', '批量操作') ?></span>
                 </div>
                 <div class="purview-title">
                     <strong>广告管理</strong>
@@ -313,7 +346,7 @@ $this->registerJs($js);
                     <span><?= BackCommonHelper::CheckPermBox($model, 'ext/ad/update', '编辑') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'ext/ad/check', '修改状态') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'ext/ad/edit-item', '简单编辑') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'ext/ad/batch', '批量提交') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'ext/ad/batch', '批量操作') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'ext/ad/fileupload', '缩略图上传') ?></span>
                 </div>
                 <div class="purview-title">
@@ -326,7 +359,7 @@ $this->registerJs($js);
                     <span><?= BackCommonHelper::CheckPermBox($model, 'ext/link-type/update', '编辑') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'ext/link-type/check', '状态') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'ext/link-type/move', '快捷移动') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'ext/link-type/batch', '批量提交') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'ext/link-type/batch', '批量操作') ?></span>
                 </div>
                 <div class="purview-title">
                     <strong>友情链接管理</strong>
@@ -338,7 +371,7 @@ $this->registerJs($js);
                     <span><?= BackCommonHelper::CheckPermBox($model, 'ext/link/update', '编辑') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'ext/link/check', '修改状态') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'ext/link/edit-item', '简单编辑') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'ext/link/batch', '批量提交') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'ext/link/batch', '批量操作') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'ext/link/fileupload', '缩略图上传') ?></span>
                 </div>
                 <div class="purview-title">
@@ -351,7 +384,7 @@ $this->registerJs($js);
                     <span><?= BackCommonHelper::CheckPermBox($model, 'ext/job/update', '编辑') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'ext/job/check', '修改状态') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'ext/job/edit-item', '简单编辑') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'ext/job/batch', '批量提交') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'ext/job/batch', '批量操作') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'ext/job/ueditor', '编辑器图片上传') ?></span>
                 </div>
                 <div class="purview-title">
@@ -363,9 +396,13 @@ $this->registerJs($js);
                     <span><?= BackCommonHelper::CheckPermBox($model, 'ext/vote/delete', '删除') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'ext/vote/update', '编辑') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'ext/vote/check', '修改状态') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'ext/vote/edit-item', '投票简单编辑') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'ext/vote/batch', '投票批量提交') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'ext/vote/edit-item', '简单编辑') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'ext/vote/batch', '批量操作') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'ext/vote/ueditor', '编辑器图片上传') ?></span>
+                </div>
+                <div class="purviewSel">
+                    <a href="javascript:;" class="selectall">全选</a>&nbsp;&nbsp;
+                    <a href="javascript:;" class="selectnotall">反选</a>
                 </div>
             </td>
         </tr>
@@ -373,10 +410,61 @@ $this->registerJs($js);
             <td class="first-column">产品与订单管理：</td>
             <td class="second-column">
                 <div class="purview-title">
-                    <strong>占位</strong>
+                    <strong>产品分类</strong>
                 </div>
                 <div class="purview-list">
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/default/*', '占位') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/product-cate/index', '查看') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/product-cate/create', '新增') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/product-cate/delete', '删除') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/product-cate/update', '编辑') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/product-cate/check', '修改状态') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/product-cate/batch', '批量操作') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/product-cate/fileupload', '缩略图上传') ?></span>
+                </div>
+                <div class="purview-title">
+                    <strong>产品管理</strong>
+                </div>
+                <div class="purview-list">
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/product/index', '查看') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/product/create', '新增') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/product/delete', '删除') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/product/update', '编辑') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/product/check', '修改状态') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/product/batch', '批量操作') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'ext/product/edit-item', '简单编辑') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/product/fileupload', '缩略图上传') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/product/multiple-fileupload', '多图上传') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'ext/product/ueditor', '编辑器图片上传') ?></span>
+                </div>
+                <div class="purview-title">
+                    <strong>产品属性</strong>
+                </div>
+                <div class="purview-list">
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/attribute/index', '查看') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/attribute/create', '新增') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/attribute/delete', '删除') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/attribute/update', '编辑') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/attribute/check', '修改状态') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/attribute/batch', '批量操作') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'ext/attribute/edit-item', '简单编辑') ?></span>
+                </div>
+                <div class="purview-title">
+                    <strong>产品品牌</strong>
+                </div>
+                <div class="purview-list">
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/brand/index', '查看') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/brand/create', '新增') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/brand/delete', '删除') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/brand/update', '编辑') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/brand/check', '修改状态') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/brand/batch', '批量操作') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'ext/brand/edit-item', '简单编辑') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'shop/brand/fileupload', '缩略图上传') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'ext/brand/ueditor', '编辑器图片上传') ?></span>
+                </div>
+                <div class="purviewSel">
+                    <a href="javascript:;" class="selectall">全选</a>&nbsp;&nbsp;
+                    <a href="javascript:;" class="selectnotall">反选</a>
                 </div>
             </td>
         </tr>
@@ -384,10 +472,41 @@ $this->registerJs($js);
             <td class="first-column">用户与咨询管理：</td>
             <td class="second-column">
                 <div class="purview-title">
-                    <strong>占位</strong>
+                    <strong>用户管理</strong>
                 </div>
                 <div class="purview-list">
-                    <span><?php // BackCommonHelper::CheckPermBox($model, 'shop/default/*', '占位') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'user/user/index', '查看') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'user/user/create', '新增') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'user/user/delete', '删除') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'user/user/update', '编辑') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'user/user/check', '修改状态') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'user/user/batch', '批量操作') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'user/user/fileupload', '缩略图上传') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'user/user/recycle', '回收站') ?></span>
+                </div>
+                <div class="purview-title">
+                    <strong>收藏管理</strong>
+                </div>
+                <div class="purview-list">
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'user/favorite/index', '查看') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'user/favorite/delete', '删除') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'user/favorite/batch', '批量操作') ?></span>
+                </div>
+                <div class="purview-title">
+                    <strong>用户评论</strong>
+                </div>
+                <div class="purview-list">
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'user/comment/index', '查看') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'user/comment/create', '新增') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'user/comment/delete', '删除') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'user/comment/update', '编辑') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'user/comment/check', '修改状态') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'user/comment/batch', '批量操作') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'user/comment/ueditor', '编辑器图片上传') ?></span>
+                </div>
+                <div class="purviewSel">
+                    <a href="javascript:;" class="selectall">全选</a>&nbsp;&nbsp;
+                    <a href="javascript:;" class="selectnotall">反选</a>
                 </div>
             </td>
         </tr>
@@ -433,8 +552,8 @@ $this->registerJs($js);
                     <span><?= BackCommonHelper::CheckPermBox($model, 'sys/multilang-tpl/delete', '删除') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'sys/multilang-tpl/update', '编辑') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'sys/multilang-tpl/check', '修改状态') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'sys/multilang-tpl/move', '简单移动') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'sys/multilang-tpl/batch', '批量提交') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'sys/multilang-tpl/move', '上下排序') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'sys/multilang-tpl/batch', '批量操作') ?></span>
                 </div>
                 <div class="purview-title">
                     <strong>模板管理</strong>
@@ -448,6 +567,10 @@ $this->registerJs($js);
                     <span><?= BackCommonHelper::CheckPermBox($model, 'sys/template/fileupload', '缩略图上传') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'sys/template/multiple-fileupload', '多图上传') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'sys/template/ueditor', '编辑器图片上传') ?></span>
+                </div>
+                <div class="purviewSel">
+                    <a href="javascript:;" class="selectall">全选</a>&nbsp;&nbsp;
+                    <a href="javascript:;" class="selectnotall">反选</a>
                 </div>
             </td>
         </tr>
@@ -472,6 +595,10 @@ $this->registerJs($js);
                 <div class="purview-list">
                     <span><?= BackCommonHelper::CheckPermBox($model, 'tool/spider/*', '占位') ?></span>
                 </div>
+                <div class="purviewSel">
+                    <a href="javascript:;" class="selectall">全选</a>&nbsp;&nbsp;
+                    <a href="javascript:;" class="selectnotall">反选</a>
+                </div>
             </td>
         </tr>
         <tr>
@@ -482,6 +609,19 @@ $this->registerJs($js);
                 </div>
                 <div class="purview-list">
                     <span><?= BackCommonHelper::CheckPermBox($model, 'com/link/pinyin', '伪链接生成') ?></span>
+                </div>
+                <div class="purview-title">
+                    <strong>快捷链接</strong>
+                </div>
+                <div class="purview-list">
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/lnk/index', '查看/新增/编辑') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/lnk/delete', '删除') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/lnk/batch', '批量操作') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/lnk/move', '快捷移动') ?></span>
+                </div>
+                <div class="purviewSel">
+                    <a href="javascript:;" class="selectall">全选</a>&nbsp;&nbsp;
+                    <a href="javascript:;" class="selectnotall">反选</a>
                 </div>
             </td>
         </tr>
@@ -496,29 +636,56 @@ $this->registerJs($js);
                     <span><?= BackCommonHelper::CheckPermBox($model, 'sys/log/view', '详情') ?></span>
                 </div>
                 <div class="purview-title">
-                    <strong>占位</strong>
+                    <strong>开发日志管理</strong>
                 </div>
                 <div class="purview-list">
-                    <span><?php // BackCommonHelper::CheckPermBox($model, 'shop/default/*', '占位') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'sys/dev-log/index', '查看') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'sys/dev-log/create', '新增') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'sys/dev-log/ueditor', '编辑器图片上传') ?></span>
                 </div>
-
+                <div class="purview-title">
+                    <strong>帮助类别管理</strong>
+                </div>
+                <div class="purview-list">
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help-cate/index', '查看') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help-cate/create', '新增') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help-cate/delete', '删除') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help-cate/update', '编辑') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help-cate/check', '修改状态') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help-cate/move', '快捷移动') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help-cate/batch', '批量操作') ?></span>
+                </div>
+                <div class="purview-title">
+                    <strong>帮助信息管理</strong>
+                </div>
+                <div class="purview-list">
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help/index', '查看') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help/create', '新增') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help/delete', '删除') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help/update', '编辑') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help/check', '修改状态') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help/batch', '批量操作') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help/edit-item', '简单编辑') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help/fileupload', '缩略图上传') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help/multiple-fileupload', '多图上传') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help/ueditor', '编辑器图片上传') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help/get-tags', 'ajax标签列表') ?></span>
+                </div>
+                <div class="purview-title">
+                    <strong>帮助标记管理</strong>
+                </div>
+                <div class="purview-list">
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help-flag/index', '查看/新增/编辑') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help-flag/delete', '删除') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help-flag/batch', '批量操作') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help-flag/move', '快捷移动') ?></span>
+                </div>
                 <div class="purviewSel">
-                    <a href="javascript:;" onclick="SelModel(true)">全选</a>&nbsp;&nbsp;
-                    <a href="javascript:;" onclick="SelModel(false)">反选</a>
+                    <a href="javascript:;" class="selectall">全选</a>&nbsp;&nbsp;
+                    <a href="javascript:;" class="selectnotall">反选</a>
                 </div>
             </td>
         </tr>
-		<tr class="nb">
-			<td class="first-column">&nbsp</td>
-			<td class="second-column">
-                <ul class="tips-list">
-					<li>选中【查看】权限，即有该栏目内容信息列表页查看权限，不选择则栏目内容在管理列表中会被隐藏</li>
-					<li>选中【添加】权限，即有添加下级栏目与栏目内容权限</li>
-					<li>选中【修改】权限，即有信息列表管理页审核权限与栏目和栏目内容修改权限</li>
-					<li>选中【删除】权限，即有该栏目与栏目内容删除权限</li>
-				</ul>
-            </td>
-		</tr>
     	<tr class="nb">
     		<td></td>
     		<td>

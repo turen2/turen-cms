@@ -41,7 +41,7 @@ class AdminController extends Controller
             'check' => [
                 'class' => CheckAction::class,
                 'className' => Admin::class,
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
                 'openName' => '已审',
                 'closeName' => '未审',
             ],

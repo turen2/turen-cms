@@ -33,7 +33,7 @@ class HelpController extends Controller
             'check' => [
                 'class' => CheckAction::class,
                 'className' => Help::class,
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
             ],
             //获取标签
             'get-tags' => [
@@ -48,7 +48,7 @@ class HelpController extends Controller
             'edit-item' => [
                 'class' => EditItemAction::class,
                 'className' => Help::class,
-                'id' => $request->post('id'),
+                'kid' => $request->post('kid'),
                 'field' => 'orderid',
                 'value' => $request->post('value'),
             ],

@@ -68,7 +68,6 @@ $adminModel = Yii::$app->user->identity;
         				</div>
         			</div>
         		</div>
-        		<a href="" class="auth-user" title="标识功能待定" target="_blank" style="display: inline;"></a>
         	</div>
         	<div class="fun">
                 <div class="site-list">

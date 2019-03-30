@@ -6,6 +6,7 @@
  */
 namespace app\modules\site\controllers;
 
+use app\models\sys\Role;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Response;
@@ -60,15 +61,22 @@ class HomeController extends \app\components\Controller
     // 左侧主菜单
     public function actionMenu()
     {
-        $identify = '';//不同身份不同菜单
-        
+        $identify = '';//不同身份不同菜单【暂时使用一个菜单】
         Yii::$app->layout = 'menu-main';//使用单独的菜单布局
-        
-        //开启的模型别名叫：附加栏目
-        return $this->render('menu', [
-            'identify' => $identify,
-            'diyModels' => DiyModel::find()->active()->asArray()->all(),
-        ]);
+        //权限
+        if(Yii::$app->getUser()->getIsGuest()) {
+            return;//游客直接返回
+        }
+        $userModel = Yii::$app->getUser()->identity;
+        $roleModel = Role::find()->where(['role_id' => $userModel->role_id])->active()->one();
+        if($roleModel) {
+            return $this->render('menu', [//开启的模型别名叫：附加栏目
+                'identify' => $identify,
+                'roleModel' => $roleModel,
+                'diyModels' => DiyModel::find()->active()->asArray()->all(),
+            ]);
+        }
+        return;
     }
     
     // 默认主内容

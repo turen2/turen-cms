@@ -20,14 +20,14 @@ use app\models\cms\Article;
 class EditItemAction extends Action
 {
     public $className;//要切换的模型
-    public $id;//对象id值
+    public $kid;//对象id值
     public $field;//修改的字段
     public $value;//修改的结果
     
     public function run()
     {
         //校验参数
-        if(is_null($this->className) || is_null($this->id) || is_null($this->field) || is_null($this->value)) {
+        if(is_null($this->className) || is_null($this->kid) || is_null($this->field) || is_null($this->value)) {
             throw new InvalidArgumentException('传递的参数有误。');
         }
         
@@ -35,7 +35,7 @@ class EditItemAction extends Action
         $className = $this->className;
         $primayKey = $className::primaryKey()[0];
         
-        if($className::updateAll([$this->field => $this->value], [$primayKey => $this->id])) {
+        if($className::updateAll([$this->field => $this->value], [$primayKey => $this->kid])) {
             return Json::encode([
                 'state' => true,
                 'msg' => '修改成功',

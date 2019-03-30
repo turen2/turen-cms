@@ -40,7 +40,7 @@ class MasterModelController extends Controller
         }
         
         if(empty(self::$DiyModel)) {
-            throw new InvalidArgumentException('访问MasterModelController必须要mid的get/post参数');
+            throw new InvalidArgumentException('访问MasterModelController使用了非法mid值');
         }
     }
     
@@ -68,14 +68,14 @@ class MasterModelController extends Controller
             'edit-item' => [
                 'class' => EditItemAction::class,
                 'className' => MasterModel::class,
-                'id' => $request->post('id'),
+                'kid' => $request->post('kid'),
                 'field' => 'orderid',
                 'value' => $request->post('value'),
             ],
             'check' => [
                 'class' => CheckAction::class,
                 'className' => MasterModel::class,
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
             ],
             'fileupload' => [
                 'class' => FileUploadAction::class,

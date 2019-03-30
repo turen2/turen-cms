@@ -65,9 +65,9 @@ $this->title = '用户等级管理';
 			<input type="text" name="level_expval_max[]" id="level_expval_max[]" class="inputd" value="<?= $model->level_expval_max; ?>" />
 		</td>
 		<td align="center">
-			<a href="<?=Url::to(['simple-move', 'type' => Level::ORDER_UP_TYPE, 'id' => $model->level_id, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>
+			<a href="<?=Url::to(['simple-move', 'type' => Level::ORDER_UP_TYPE, 'kid' => $model->level_id, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>
 			<input type="text" name="orderid[]" id="orderid[]" class="inputls" value="<?= $model->orderid; ?>">
-			<a href="<?=Url::to(['simple-move', 'type' => Level::ORDER_DOWN_TYPE, 'id' => $model->level_id, 'orderid' => $model->orderid])?>" class="right-arrow" title="下降排序"></a>
+			<a href="<?=Url::to(['simple-move', 'type' => Level::ORDER_DOWN_TYPE, 'kid' => $model->level_id, 'orderid' => $model->orderid])?>" class="right-arrow" title="下降排序"></a>
 		</td>
 		<td class="action end-column">
 			<span class="nb"><?=$default?> | <?=$delstr?></span>

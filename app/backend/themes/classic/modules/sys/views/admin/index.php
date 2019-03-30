@@ -28,7 +28,7 @@ $this->title = '管理者列表';
 	foreach ($models as $key => $model) {
 		$options = [
 		    'title' => '点击进行显示和隐藏操作',
-		    'data-url' => Url::to(['check', 'id' => $model->id]),
+		    'data-url' => Url::to(['check', 'kid' => $model->id]),
 		    'onclick' => ($model->isFounder())?'$.notify(\'创始人不允许审核\', \'warn\')':'turen.com.updateStatus(this)',
 		];
 		$checkstr = Html::a(($model->status?'已审':'未审'), 'javascript:;', $options);

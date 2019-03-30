@@ -213,7 +213,7 @@ turen.com = (function($) {
                     	$.notify(data.msg, 'warn');
                     }
                 };
-                commonRemote(url, {id: id, value: orderid}, callback, _this);
+                commonRemote(url, {kid: id, value: orderid}, callback, _this);
         	} else {
         		box.addClass('active');
             	box.find('.edit-btn').html('<i class="fa fa-check-square-o"></i>');
@@ -271,6 +271,12 @@ turen.com = (function($) {
             context: _this,
             cache: false,
             data: data,
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                //console.log(XMLHttpRequest);
+                //console.log(textStatus);
+                //console.log(errorThrown);
+                $.notify(XMLHttpRequest.responseText, 'error');
+            },
             success: function(res) {
                 if (res['state']) {
                     if(callback) {

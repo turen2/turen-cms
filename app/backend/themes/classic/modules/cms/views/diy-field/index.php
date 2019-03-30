@@ -40,7 +40,7 @@ $this->topAlert = '<div class="alert alert-warning">注意：编辑字段时一�
 	<?php foreach ($dataProvider->getModels() as $key => $model) {
 		$options = [
 	        'title' => '点击进行显示和隐藏操作',
-	        'data-url' => Url::to(['check', 'id' => $model->id]),
+	        'data-url' => Url::to(['check', 'kid' => $model->id]),
 	        'onclick' => 'turen.com.updateStatus(this)',
         ];
 		$checkstr = Html::a(($model->status?'启用':'禁用'), 'javascript:;', $options);
@@ -71,9 +71,9 @@ $this->topAlert = '<div class="alert alert-warning">注意：编辑字段时一�
 		<td><?= $model->fd_type ?><?= in_array($model->fd_type, ['text', 'mediumtext', 'filearr'])?'':'['.$model->fd_long.']'; ?></td>
 		<td><?= DiyField::RuleList($model->fd_check) ?></td>
 		<td align="center">
-			<a href="<?=Url::to(['simple-move', 'type' => DiyField::ORDER_UP_TYPE, 'id' => $model->id, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>
+			<a href="<?=Url::to(['simple-move', 'type' => DiyField::ORDER_UP_TYPE, 'kid' => $model->id, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>
 			<input type="text" name="orderid[]" id="orderid[]" class="inputls" value="<?= $model->orderid; ?>">
-			<a href="<?=Url::to(['simple-move', 'type' => DiyField::ORDER_DOWN_TYPE, 'id' => $model->id, 'orderid' => $model->orderid])?>" class="right-arrow" title="下降排序"></a>
+			<a href="<?=Url::to(['simple-move', 'type' => DiyField::ORDER_DOWN_TYPE, 'kid' => $model->id, 'orderid' => $model->orderid])?>" class="right-arrow" title="下降排序"></a>
 		</td>
 		<td class="action end-column"><span><?= $checkstr; ?></span> | <span><a href="<?= Url::to(['update', 'id' => $model->id]) ?>">修改</a></span> | <span class="nb"><?= $delstr; ?></span></td>
 	</tr>

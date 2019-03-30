@@ -9,7 +9,6 @@ namespace app\assets;
 use yii\web\AssetBundle;
 
 //这个js库，在jquery中已经自带了
-
 class RecycleAsset extends AssetBundle
 {
     //这个属性是设置不能被web访问资源
@@ -24,5 +23,8 @@ class RecycleAsset extends AssetBundle
         'js/recycle.js',
     ];
     
-    public $depends = ['yii\web\JqueryAsset',];
+    public $depends = [
+        //'yii\web\JqueryAsset',
+        'app\assets\NotifyAsset'
+    ];
 }

@@ -58,9 +58,9 @@ $this->title = '用户组列表';
 			<input type="hidden" name="id[]" id="id[]" value="<?= $model->ug_id; ?>">
 		</td>
 		<td align="center">
-			<a href="<?=Url::to(['simple-move', 'type' => Group::ORDER_UP_TYPE, 'id' => $model->ug_id, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>
+			<a href="<?=Url::to(['simple-move', 'type' => Group::ORDER_UP_TYPE, 'kid' => $model->ug_id, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>
 			<input type="text" name="orderid[]" id="orderid[]" class="inputls" value="<?= $model->orderid; ?>">
-			<a href="<?=Url::to(['simple-move', 'type' => Group::ORDER_DOWN_TYPE, 'id' => $model->ug_id, 'orderid' => $model->orderid])?>" class="right-arrow" title="下降排序"></a>
+			<a href="<?=Url::to(['simple-move', 'type' => Group::ORDER_DOWN_TYPE, 'kid' => $model->ug_id, 'orderid' => $model->orderid])?>" class="right-arrow" title="下降排序"></a>
 		</td>
 		<td class="action end-column">
 			<span class="nb"><?=$default?> | <?=$delstr?></span>

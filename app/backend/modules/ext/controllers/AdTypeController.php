@@ -28,7 +28,7 @@ class AdTypeController extends Controller
             'move' => [
                 'class' => MoveAction::class,
                 'className' => AdType::class,
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
                 'pid' => $request->get('pid'),
                 'type' => $request->get('type'),
                 'orderid' => $request->get('orderid'),
@@ -37,7 +37,7 @@ class AdTypeController extends Controller
             'check' => [
                 'class' => CheckAction::class,
                 'className' => AdType::class,
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
             ],
         ];
     }

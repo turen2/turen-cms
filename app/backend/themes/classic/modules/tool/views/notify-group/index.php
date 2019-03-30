@@ -30,7 +30,7 @@ $this->title = '消息队列';
 	<?php foreach ($dataProvider->getModels() as $key => $model) {
 		$options = [
 	        'title' => '点击进行发送和暂停操作',
-	        'data-url' => Url::to(['check', 'id' => $model->ng_id]),
+	        'data-url' => Url::to(['check', 'kid' => $model->ng_id]),
 	        'onclick' => 'turen.com.updateStatus(this)',
         ];
 		$checkstr = Html::a(($model->ng_status?'启用':'禁用'), 'javascript:;', $options);

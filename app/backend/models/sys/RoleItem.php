@@ -9,13 +9,14 @@ namespace app\models\sys;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
+use yii\helpers\Json;
 
 /**
  * This is the model class for table "{{%sys_role_item}}".
  *
  * @property string $role_id 角色id
  * @property string $route 路由名称
- * @property string $column_id 栏目id
+ * @property string $role_params 附加参数
  */
 class RoleItem extends \app\models\base\Sys
 {
@@ -45,8 +46,9 @@ class RoleItem extends \app\models\base\Sys
         //静态默认值由规则来赋值
         return [
             [['route'], 'required'],
-            [['role_id', 'column_id'], 'integer'],
+            [['role_id'], 'integer'],
             [['route'], 'string', 'max' => 50],
+            [['role_params'], 'string', 'max' => 100],
         ];
     }
 
@@ -58,7 +60,7 @@ class RoleItem extends \app\models\base\Sys
         return [
             'role_id' => '角色ID',
             'route' => '路由名称',
-            'column_id' => '栏目ID',
+            'role_params' => '附加参数',
         ];
     }
     
@@ -77,8 +79,18 @@ class RoleItem extends \app\models\base\Sys
             foreach ($data['route'] as $route) {
                 $model->isNewRecord = true;
                 $model->role_id = $roleId;
-                $model->route = $route;
-                //$model->column_id
+
+                if(strpos($route, '?') !== false) {
+                    //$routeArr = explode('?', $route);
+                    //$model->route = $routeArr[0];
+                    //$model->role_params = $routeArr[1];
+                    $route = parse_url($route);
+                    $model->route = $route['path'];
+                    $model->role_params = $route['query'];
+                } else {
+                    $model->route = $route;
+                    $model->role_params = '';
+                }
                 
                 $model->save(false);
             }

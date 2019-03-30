@@ -36,14 +36,14 @@ class VideoController extends Controller
             'edit-item' => [
                 'class' => EditItemAction::class,
                 'className' => Video::class,
-                'id' => $request->post('id'),
+                'kid' => $request->post('kid'),
                 'field' => 'orderid',
                 'value' => $request->post('value'),
             ],
             'check' => [
                 'class' => CheckAction::class,
                 'className' => Video::class,
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
             ],
             'batch' => [
                 'class' => BatchAction::class,

@@ -42,7 +42,7 @@ class UserController extends Controller
             'check' => [
                 'class' => CheckAction::class,
                 'className' => User::class,
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
                 'openName' => '正常',
                 'closeName' => '禁止',
             ],

@@ -28,7 +28,7 @@ class CateController extends Controller
             'move' => [
                 'class' => MoveAction::class,
                 'className' => Cate::class,
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
                 'pid' => $request->get('pid'),
                 'type' => $request->get('type'),
                 'orderid' => $request->get('orderid'),
@@ -37,7 +37,7 @@ class CateController extends Controller
             'check' => [
                 'class' => CheckAction::class,
                 'className' => Cate::class,
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
             ],
         ];
     }

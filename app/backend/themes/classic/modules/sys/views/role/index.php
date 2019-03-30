@@ -28,7 +28,7 @@ $this->title = '角色管理';
 	<?php foreach ($dataProvider->getModels() as $key => $model) {
 		$options = [
 	        'title' => '点击设置为有效和无效操作',
-		    'data-url' => Url::to(['check', 'id' => $model->role_id]),
+		    'data-url' => Url::to(['check', 'kid' => $model->role_id]),
 	        'onclick' => 'turen.com.updateStatus(this)',
         ];
 		$checkstr = Html::a(($model->status?'有效':'无效'), 'javascript:;', $options);

@@ -28,7 +28,7 @@ class LnkController extends Controller
             'simple-move' => [
                 'class' => SimpleMoveAction::class,
                 'className' => Lnk::class,
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
                 'type' => $request->get('type'),
                 'orderid' => $request->get('orderid'),
                 'nameField' => 'lnk_name',

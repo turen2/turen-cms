@@ -14,7 +14,7 @@ use app\helpers\BackCommonHelper;
 class MoveAction extends Action
 {
     public $className;//要切换的模型
-    public $id;//主键id值
+    public $kid;//主键id值
     public $pid;//父id值
     public $orderid;//当前项的排序值
     public $type;//up上移 | down下移
@@ -33,7 +33,7 @@ class MoveAction extends Action
         $className = $this->className;
         $primayKey = $className::primaryKey()[0];//主键
         
-        if(is_null($this->id) || is_null($this->pid) || is_null($this->orderid) || is_null($this->type)) {
+        if(is_null($this->kid) || is_null($this->pid) || is_null($this->orderid) || is_null($this->type)) {
             throw new InvalidArgumentException('传递的参数有误。');
         }
         
@@ -51,14 +51,14 @@ class MoveAction extends Action
         }
         
         $row = $query->asArray()->one();
-        $currentModel = $className::findOne([$primayKey => $this->id]);
+        $currentModel = $className::findOne([$primayKey => $this->kid]);
         
         if(!empty($row)) {
             $newid = $row[$primayKey];
             $neworderid = $row[$this->orderidField];
             
             $command = Yii::$app->getDb()->createCommand();
-            $command->update($className::tableName(), [$this->orderidField => $neworderid], $primayKey.' = :id', [':id' => $this->id])->execute();
+            $command->update($className::tableName(), [$this->orderidField => $neworderid], $primayKey.' = :id', [':id' => $this->kid])->execute();
             $command->update($className::tableName(), [$this->orderidField => $this->{$this->orderidField}], $primayKey.' = :id', [':id' => $newid])->execute();
             
             Yii::$app->getSession()->setFlash('success', $currentModel->{$this->nameField}.' 移动成功。');

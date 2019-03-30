@@ -28,7 +28,7 @@ class SrcController extends Controller
             'simple-move' => [
                 'class' => SimpleMoveAction::class,
                 'className' => Src::class,
-                'id' => $request->get('id'),
+                'kid' => $request->get('kid'),
                 'type' => $request->get('type'),
                 'orderid' => $request->get('orderid'),
                 'nameField' => 'srcname',

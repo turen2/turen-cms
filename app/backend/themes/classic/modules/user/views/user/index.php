@@ -42,7 +42,7 @@ $this->title = '用户管理';
 	<?php foreach ($dataProvider->getModels() as $key => $model) {
 		$options = [
 	        'title' => '点击进行显示和隐藏操作',
-	        'data-url' => Url::to(['check', 'id' => $model->user_id]),
+	        'data-url' => Url::to(['check', 'kid' => $model->user_id]),
 	        'onclick' => 'turen.com.updateStatus(this)',
         ];
 		$checkstr = Html::a(($model->status?'正常':'禁止'), 'javascript:;', $options);

@@ -36,7 +36,7 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel]);
 	<?php foreach ($dataProvider->getModels() as $key => $model) {
 		$options = [
 	        'title' => '点击进行显示和隐藏操作',
-	        'data-url' => Url::to(['check', 'id' => $model->id]),
+	        'data-url' => Url::to(['check', 'kid' => $model->id]),
 	        'onclick' => 'turen.com.updateStatus(this)',
         ];
 		
@@ -57,9 +57,9 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel]);
 		<td><?= $model->flag; ?></td>
 		<td><?= Column::ColumnConvert('id2name', $model->type, '未定义'); ?></td>
 		<td align="center">
-			<a href="<?=Url::to(['simple-move', 'type' => Flag::ORDER_UP_TYPE, 'id' => $model->id, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>
+			<a href="<?=Url::to(['simple-move', 'type' => Flag::ORDER_UP_TYPE, 'kid' => $model->id, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>
 			<input type="text" name="orderid[]" id="orderid[]" class="inputls" value="<?= $model->orderid; ?>">
-			<a href="<?=Url::to(['simple-move', 'type' => Flag::ORDER_DOWN_TYPE, 'id' => $model->id, 'orderid' => $model->orderid])?>" class="right-arrow" title="下降排序"></a>
+			<a href="<?=Url::to(['simple-move', 'type' => Flag::ORDER_DOWN_TYPE, 'kid' => $model->id, 'orderid' => $model->orderid])?>" class="right-arrow" title="下降排序"></a>
 		</td>
 		<td><?= Yii::$app->getFormatter()->asDate($model->updated_at); ?></td>
 		<td class="action end-column"><span><a href="<?= Url::to(['update', 'id' => $model->id]) ?>">修改</a></span> | <span class="nb"><?= $delstr; ?></span></td>
