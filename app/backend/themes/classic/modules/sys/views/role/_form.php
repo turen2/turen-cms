@@ -261,6 +261,9 @@ $this->registerJs($js);
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/diy-model/delete', '删除') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/diy-model/update', '编辑') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/diy-model/check', '修改状态') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/diy-model/validate-name', 'ajax验证模型名称') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/diy-model/validate-tbname', 'ajax验证模型表名') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/diy-model/validate-title', 'ajax验证模型标题') ?></span>
                 </div>
                 <div class="purview-title">
                     <strong>自定义字段</strong>
@@ -273,6 +276,9 @@ $this->registerJs($js);
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/diy-field/check', '修改状态') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/diy-field/quick-move', '快捷移动') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'cms/diy-field/batch', '批量操作') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/diy-field/column-check-box-list', 'ajax获取栏目列表') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/diy-field/validate-name', 'ajax验证字段名称') ?></span>
+                    <span><?= BackCommonHelper::CheckPermBox($model, 'cms/diy-field/validate-title', 'ajax验证字段标题') ?></span>
                 </div>
                 <div class="purviewSel">
                     <a href="javascript:;" class="selectall">全选</a>&nbsp;&nbsp;

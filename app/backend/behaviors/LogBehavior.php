@@ -191,6 +191,12 @@ class LogBehavior extends Behavior
             'shop/brand' => '产品品牌',
             'shop/product-cate' => '产品分类',
             'shop/product-flag' => '产品标记',
+            'user/user' => '用户',
+            'cms/diy-model' => '附加栏目',
+            'site/help-flag' => '帮助标记',
+            'sys/multilang-tpl' => '多语言',
+            'user/comment' => '用户留言',
+            'user/favorite' => '用户收藏',
         ];
         
         $actions = [
@@ -200,9 +206,8 @@ class LogBehavior extends Behavior
             'delete' => '删除{name}',
             'check' => '{name}显示隐藏',
             'batch' => '批量{name}删除或排序',
-            'quick-move' => '快捷{name}',
-            'move' => '移动{name}',
-            'recycle' => '查看{name}回收站',
+            'quick-move' => '快捷移动{name}',
+            'recycle' => '{name}回收站操作',
             'get-tags' => '获取{name}标签',
             'fileupload' => '上传{name}单图',
             'multiple-fileupload' => '上传{name}多图',

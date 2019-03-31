@@ -328,7 +328,6 @@ fieldset[disabled] input[type=checkbox], fieldset[disabled] input[type=radio], i
 #login-verifycode-image {
 	padding: 0;
 	position: absolute;
-	background-color: #f3f7f9;
     border: none;
 	right: 0;
 	top: 17px;

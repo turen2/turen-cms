@@ -4,6 +4,15 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
+
+use app\models\cms\Article;
+use app\models\cms\Column;
+use app\models\cms\File;
+use app\models\cms\Info;
+use app\models\cms\Photo;
+use app\models\cms\Video;
+use app\models\shop\Product;
+use app\models\user\User;
 use yii\helpers\Url;
 use yii\web\JqueryAsset;
 use yii\helpers\Html;
@@ -112,38 +121,52 @@ $baseUrl = Yii::getAlias('@web');
 		<div class="quick-box">
 			<h2 class="title">发布统计<span><a href="<?= Url::to(['cms/column/index'])?>">更多 <i class="fa fa-angle-double-right"></i></a></span></h2>
 			<div class="box">
+                <?php
+                $c1 = Column::find()->current()->count('id');
+                $c2 = 0;
+                $c3 = Column::find()->alias('c')->leftJoin(Info::tableName().' as i', 'c.id = i.columnid')->count('c.id');
+                $c4 = Article::find()->current()->count('id');
+                $c5 = Photo::find()->current()->count('id');
+                $c6 = File::find()->current()->count('id');
+                $c7 = Video::find()->current()->count('id');
+                $c8 = Product::find()->current()->count('id');
+                $c9 = User::find()->count('user_id');
+                $c10 = 0;
+                ?>
     			<table width="100%" border="0" cellspacing="0" cellpadding="0">
-    				<tbody><tr>
-    					<td width="80" height="33">网站栏目数：</td>
-    					<td class="num">13</td>
-    					<td width="80" height="33">网站栏目数：</td>
-    					<td class="num">13</td>
-    				</tr>
-    				<tr>
-    					<td height="33">单页信息数：</td>
-    					<td class="num">5</td>
-    					<td height="33">单页信息数：</td>
-    					<td class="num">5</td>
-    				</tr>
-    				<tr>
-    					<td height="33">列表信息数：</td>
-    					<td class="num">19</td>
-    					<td height="33">列表信息数：</td>
-    					<td class="num">19</td>
-    				</tr>
-    				<tr>
-    					<td height="33">图片信息数：</td>
-    					<td class="num">15</td>
-    					<td height="33">图片信息数：</td>
-    					<td class="num">15</td>
-    				</tr>
-    				<tr class="nb">
-    					<td height="33">注册会员数：</td>
-    					<td class="num">1</td>
-    					<td height="33">注册会员数：</td>
-    					<td class="num">1</td>
-    				</tr>
-    			</tbody></table>
+    				<tbody>
+                        <tr>
+                            <td width="80" height="33">网站栏目数：</td>
+                            <td class="num"><?= $c1 ?></td>
+                            <td width="80" height="33">网站专题数：</td>
+                            <td class="num"><?= $c2 ?></td>
+                        </tr>
+                        <tr>
+                            <td height="33">简单页面数：</td>
+                            <td class="num"><?= $c3 ?></td>
+                            <td height="33">文章列表数：</td>
+                            <td class="num"><?= $c4 ?></td>
+                        </tr>
+                        <tr>
+                            <td height="33">图片图集数：</td>
+                            <td class="num"><?= $c5 ?></td>
+                            <td height="33">文件下载数：</td>
+                            <td class="num"><?= $c6 ?></td>
+                        </tr>
+                        <tr>
+                            <td height="33">视频数：</td>
+                            <td class="num"><?= $c7 ?></td>
+                            <td height="33">产品数：</td>
+                            <td class="num"><?= $c8 ?></td>
+                        </tr>
+                        <tr class="nb">
+                            <td height="33">会员数：</td>
+                            <td class="num"><?= $c9 ?></td>
+                            <td height="33">订单数：</td>
+                            <td class="num"><?= $c10 ?></td>
+                        </tr>
+                    </tbody>
+                </table>
 			</div>
 		</div>
 		<div class="quick-box">

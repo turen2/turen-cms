@@ -54,10 +54,12 @@ class AdminController extends Controller
                 'width' => 120,
                 'height' => 40,
                 'padding' => 0,
+                'transparent' => true,
                 'foreColor' => 0x62A8EA,
                 'minLength' => 3,
                 'maxLength' => 4,
                 'offset' => 0,//每个字母相隔像素
+                'fontFile' => '@app/web/fonts/WishfulWaves.ttf',
             ],
         ];
     }

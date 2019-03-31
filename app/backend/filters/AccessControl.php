@@ -64,6 +64,11 @@ class AccessControl extends \yii\filters\AccessControl
             'actions' => ['index', 'menu'],
             'roles' => ['@'],
         ];
+        $rules[] = [
+            'allow' => true,
+            'actions' => ['diyfield-fileupload', 'diyfield-multiple-fileupload', 'diyfield-ueditor'],//对外开放所有自定义字段，单图、多图、编辑器图片
+            'roles' => ['@'],
+        ];
         if($this->user->getIsGuest()) {//游客直接返回
             return $rules;
         }

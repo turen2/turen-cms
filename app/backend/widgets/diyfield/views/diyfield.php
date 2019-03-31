@@ -65,7 +65,7 @@ foreach ($fieldModels as $fieldModel) { ?>
     		            'model' => $model,
     		            'attribute' => $attribute,
     		            'clientOptions' => [
-        		            'serverUrl' => Url::to(['diyfield-ueditor']),
+        		            'serverUrl' => Url::to(['diyfield-ueditor', 'mid' => $mid]),
         		            'initialContent' => '',
         		            'initialFrameWidth' => '738',
         		            'initialFrameHeight' => '280',
@@ -96,7 +96,7 @@ foreach ($fieldModels as $fieldModel) { ?>
     		            'model' => $model,
     		            'attribute' => $attribute,
     		            'options' => ['class' => 'input', 'readonly' => true],
-    		            'url' => ['diyfield-fileupload', 'param' => 'value'],
+    		            'url' => ['diyfield-fileupload', 'mid' => $mid],
     		            'uploadName' => DiyField::FIELD_UPLOAD_NAME,
     		            'fileOptions' => [
         		            'accept' => '*',//选择文件时的windows过滤器
@@ -114,7 +114,7 @@ foreach ($fieldModels as $fieldModel) { ?>
     		            'attribute' => $attribute,
     		            'pics' => $model->diyFieldMultiFile($attribute),
     		            'options' => ['class' => 'input', 'readonly' => true],
-    		            'url' => ['diyfield-multiple-fileupload', 'param' => 'value'],
+    		            'url' => ['diyfield-multiple-fileupload', 'mid' => $mid],
     		            'uploadName' => DiyField::FIELD_MULTI_UPLOAD_NAME,
     		            'fileOptions' => [
         		            'accept' => '*',//选择文件时的windows过滤器

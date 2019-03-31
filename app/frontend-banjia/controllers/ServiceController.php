@@ -27,12 +27,19 @@ class ServiceController extends \app\components\Controller
     }
 
     /**
-     * 生成咨询单，并发短信，邮件，微信通知等
-     * @return string
+     * 全局咨询入口，生成咨询单，并发短信，邮件，微信通知等
+     * 类型ajax
+     * @return json
      */
     public function actionConsult()
     {
-        return $this->render('consult');
+
+
+        return $this->asJson([
+            'state' => true,
+            'code' => '200',
+            'result' => [],
+        ]);
     }
 
     protected function findModel($slug)

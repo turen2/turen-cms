@@ -56,6 +56,7 @@ class DiyFieldWidget extends \yii\base\Widget
         }
         //组织数据
         $id = Column::ColumnConvert('class2id', $className);//所属模型
+
         if($isNewRecord) {
             $fieldModels = DiyField::FieldModelList($id);//取模型id对应的所有字段
         } else {
@@ -63,7 +64,12 @@ class DiyFieldWidget extends \yii\base\Widget
         }
         
         //渲染模板
-        return $this->render('diyfield', ['fieldModels' => $fieldModels, 'model' => $this->model, 'isNewRecord' => $isNewRecord]);
+        return $this->render('diyfield', [
+            'fieldModels' => $fieldModels,
+            'model' => $this->model,
+            'isNewRecord' => $isNewRecord,
+            'mid' => $id,
+        ]);
     }
     
     /**

@@ -66,6 +66,10 @@ class UserController extends \app\components\Controller
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
                 'minLength' => 4,
                 'maxLength' => 4,
+                'transparent' => true,
+                'backColor' => 0xFFFFFF,
+                'foreColor' => 0xFF6F20,
+                'fontFile' => '@app/web/fonts/WishfulWaves.ttf',
             ],
             //第三方登录
 

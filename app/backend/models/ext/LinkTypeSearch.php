@@ -62,6 +62,7 @@ class LinkTypeSearch extends LinkType
             'sort' => [
                 //'class' => Sort::class,
                 'defaultOrder' => [
+                    'orderid' => SORT_DESC,
                     'updated_at' => SORT_DESC,
                 ],
             ],

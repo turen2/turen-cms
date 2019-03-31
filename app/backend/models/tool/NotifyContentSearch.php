@@ -62,6 +62,7 @@ class NotifyContentSearch extends NotifyContent
             'sort' => [
                 //'class' => Sort::class,
                 'defaultOrder' => [
+                    'orderid' => SORT_DESC,
                     'updated_at' => SORT_DESC,
                 ],
             ],
