@@ -39,7 +39,7 @@ class ProductCateController extends Controller
     {
         $request = Yii::$app->getRequest();
         return [
-            'move' => [
+            'quick-move' => [
                 'class' => MoveAction::class,
                 'className' => ProductCate::class,
                 'kid' => $request->get('kid'),

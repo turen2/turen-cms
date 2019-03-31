@@ -25,7 +25,7 @@ class AdTypeController extends Controller
     {
         $request = Yii::$app->getRequest();
         return [
-            'move' => [
+            'quick-move' => [
                 'class' => MoveAction::class,
                 'className' => AdType::class,
                 'kid' => $request->get('kid'),

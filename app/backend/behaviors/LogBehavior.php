@@ -200,7 +200,7 @@ class LogBehavior extends Behavior
             'delete' => '删除{name}',
             'check' => '{name}显示隐藏',
             'batch' => '批量{name}删除或排序',
-            'simple-move' => '移动{name}',
+            'quick-move' => '快捷{name}',
             'move' => '移动{name}',
             'recycle' => '查看{name}回收站',
             'get-tags' => '获取{name}标签',

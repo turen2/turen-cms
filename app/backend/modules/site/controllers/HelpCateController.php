@@ -25,7 +25,7 @@ class HelpCateController extends Controller
     {
         $request = Yii::$app->getRequest();
         return [
-            'move' => [
+            'quick-move' => [
                 'class' => MoveAction::class,
                 'className' => HelpCate::class,
                 'kid' => $request->get('kid'),

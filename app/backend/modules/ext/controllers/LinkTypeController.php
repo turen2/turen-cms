@@ -25,7 +25,7 @@ class LinkTypeController extends Controller
     {
         $request = Yii::$app->getRequest();
         return [
-            'move' => [
+            'quick-move' => [
                 'class' => MoveAction::class,
                 'className' => LinkType::class,
                 'kid' => $request->get('kid'),

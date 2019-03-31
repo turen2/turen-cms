@@ -77,8 +77,6 @@ class HelpFlagSearch extends HelpFlag
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            
-            'orderid' => $this->orderid,
         ]);
 
         $query->andFilterWhere(['like', 'flag', $this->flag])

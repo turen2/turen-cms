@@ -27,7 +27,7 @@ class NavController extends Controller
     {
         $request = Yii::$app->getRequest();
         return [
-            'move' => [
+            'quick-move' => [
                 'class' => MoveAction::class,
                 'className' => Nav::class,
                 'kid' => $request->get('kid'),

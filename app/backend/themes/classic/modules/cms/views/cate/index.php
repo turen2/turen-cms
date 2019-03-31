@@ -64,9 +64,9 @@ $this->title = '类别管理';
     					<?php } ?>
     				</td>
     				<td width="20%" align="center">
-    					<a href="<?=Url::to(['move', 'type' => Cate::ORDER_UP_TYPE, 'kid' => $model->id, 'pid' => $model->parentid, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>
+    					<a href="<?=Url::to(['quick-move', 'type' => Cate::ORDER_UP_TYPE, 'kid' => $model->id, 'pid' => $model->parentid, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>
     					<input type="text" name="orderid[]" id="orderid[]" class="inputls" value="<?= $model->orderid; ?>">
-    					<a href="<?=Url::to(['move', 'type' => Cate::ORDER_DOWN_TYPE, 'kid' => $model->id, 'pid' => $model->parentid, 'orderid' => $model->orderid])?>" class="right-arrow" title="下降排序"></a>
+    					<a href="<?=Url::to(['quick-move', 'type' => Cate::ORDER_DOWN_TYPE, 'kid' => $model->id, 'pid' => $model->parentid, 'orderid' => $model->orderid])?>" class="right-arrow" title="下降排序"></a>
     				</td>
     				<td width="32%" class="action end-column">
     					<span><a href="<?= Url::to(['create', 'pid' => $model->id]) ?>">添加子类别</a></span> | 

@@ -25,7 +25,7 @@ class HelpFlagController extends Controller
         $request = Yii::$app->getRequest();
         return [
             //简单排序
-            'simple-move' => [
+            'quick-move' => [
                 'class' => SimpleMoveAction::class,
                 'className' => HelpFlag::class,
                 'kid' => $request->get('kid'),
@@ -73,11 +73,14 @@ class HelpFlagController extends Controller
                     if(isset($flagnames[$i]) && isset($flags[$i]) && isset($orderids[$i])) {
                         //修改
                         $model = HelpFlag::find()->andWhere(['id' => $ids[$i]])->one();
-                        $model && $model->updateAttributes([
+                        $values = [
                             'flagname' => $flagnames[$i],
                             'flag' => $flags[$i],
-                            'orderid' => $orderids[$i],
-                        ]);
+                        ];
+                        if(!empty($orderids[$i])) {
+                            $values['orderid'] = $orderids[$i];
+                        }
+                        $model && $model->updateAttributes($values);
                     }
                     $tip = '批量修改成功！';
                 }
@@ -89,9 +92,12 @@ class HelpFlagController extends Controller
             if(!empty($flagnameadd) && !empty($flagadd)) {
                 //新建
                 $model = new HelpFlag();
+                $model->loadDefaultValues();
                 $model->flagname = $flagnameadd;
                 $model->flag = $flagadd;
-                $model->orderid = $orderidadd;
+                if(!empty($orderidadd)) {
+                    $model->orderid = $orderidadd;
+                }
                 $model->save(false);
                 
                 $tip .= ' '.$flagnameadd.' 添加成功！';

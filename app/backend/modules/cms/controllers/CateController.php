@@ -25,7 +25,7 @@ class CateController extends Controller
     {
         $request = Yii::$app->getRequest();
         return [
-            'move' => [
+            'quick-move' => [
                 'class' => MoveAction::class,
                 'className' => Cate::class,
                 'kid' => $request->get('kid'),

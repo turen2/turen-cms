@@ -25,7 +25,7 @@ class SrcController extends Controller
         $request = Yii::$app->getRequest();
         return [
             //简单排序
-            'simple-move' => [
+            'quick-move' => [
                 'class' => SimpleMoveAction::class,
                 'className' => Src::class,
                 'kid' => $request->get('kid'),

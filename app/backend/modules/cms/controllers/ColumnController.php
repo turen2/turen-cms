@@ -27,7 +27,7 @@ class ColumnController extends Controller
     {
         $request = Yii::$app->getRequest();
         return [
-            'move' => [
+            'quick-move' => [
                 'class' => MoveAction::class,
                 'className' => Column::class,
                 'kid' => $request->get('kid'),

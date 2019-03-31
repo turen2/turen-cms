@@ -42,6 +42,7 @@ class OrderDefaultBehavior extends \yii\base\Behavior
             $maxModel = $query->orderBy([$this->orderidField => SORT_DESC])->one();
             if($maxModel) {
                 $value = $maxModel->{$this->orderidField} + 1;
+                //var_dump($value);exit;
             } else {
                 $value = Yii::$app->params['config.orderid'];//配置默认值
             }

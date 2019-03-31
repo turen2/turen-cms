@@ -59,9 +59,9 @@ $this->title = '多语言管理';
 		<td><?= $model->back_default?'<span class="badge badge-success">是</span>':'<span class="badge">否</span>'; ?></td>
 		<td><?= $model->front_default?'<span class="badge badge-success">是</span>':'<span class="badge">否</span>'; ?></td>
 		<td align="center">
-			<a href="<?=Url::to(['simple-move', 'type' => MultilangTpl::ORDER_UP_TYPE, 'kid' => $model->id, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>
+			<a href="<?=Url::to(['quick-move', 'type' => MultilangTpl::ORDER_UP_TYPE, 'kid' => $model->id, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>
 			<input type="text" name="orderid[]" id="orderid[]" class="inputls" value="<?= $model->orderid; ?>">
-			<a href="<?=Url::to(['simple-move', 'type' => MultilangTpl::ORDER_DOWN_TYPE, 'kid' => $model->id, 'orderid' => $model->orderid])?>" class="right-arrow" title="下降排序"></a>
+			<a href="<?=Url::to(['quick-move', 'type' => MultilangTpl::ORDER_DOWN_TYPE, 'kid' => $model->id, 'orderid' => $model->orderid])?>" class="right-arrow" title="下降排序"></a>
 		</td>
 		<td class="action end-column"><span><?= $checkstr ?></span> | <span><a href="<?= Url::to(['update', 'id' => $model->id]) ?>">修改</a></span> | <span class="nb"><?= $delstr; ?></span></td>
 	</tr>

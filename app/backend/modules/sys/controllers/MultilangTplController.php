@@ -45,7 +45,7 @@ class MultilangTplController extends Controller
                 'closeName' => '前台隐藏',
             ],
             //简单排序
-            'simple-move' => [
+            'quick-move' => [
                 'class' => SimpleMoveAction::class,
                 'className' => MultilangTpl::class,
                 'kid' => $request->get('kid'),

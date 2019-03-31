@@ -25,7 +25,7 @@ class DiyFieldController extends Controller
         $request = Yii::$app->getRequest();
         return [
             //简单排序
-            'simple-move' => [
+            'quick-move' => [
                 'class' => SimpleMoveAction::class,
                 'className' => DiyField::class,
                 'kid' => $request->get('kid'),
