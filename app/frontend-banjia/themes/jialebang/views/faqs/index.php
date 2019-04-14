@@ -16,7 +16,8 @@ use yii\widgets\ListView;
 use app\widgets\SideBoxListWidget;
 use app\assets\LayerAsset;
 
-$this->title = '常见问答';
+$this->columnModel = $columnModel;
+
 $links = [];
 $links[] = ['label' => '<li class="active"><span>&gt;</span></li>'];
 $links[] = ['label' => $this->title];

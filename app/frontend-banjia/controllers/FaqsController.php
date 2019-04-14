@@ -6,13 +6,14 @@
  */
 namespace app\controllers;
 
-use app\widgets\phonecode\PhoneCodePopAction;
-use common\models\diy\FaqsForm;
 use Yii;
+use yii\filters\VerbFilter;
+use common\models\diy\FaqsForm;
 use common\models\diy\Faqs;
 use common\models\diy\FaqsSearch;
+use common\models\cms\Column;
 use app\components\Controller;
-use yii\filters\VerbFilter;
+use app\widgets\phonecode\PhoneCodePopAction;
 
 /**
  * FaqsController implements the CRUD actions for Faqs model.
@@ -65,6 +66,7 @@ class FaqsController extends Controller
                 'model' => new FaqsForm(),
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
+                'columnModel' => Column::find()->current()->where(['id' => Yii::$app->params['config_face_banjia_cn_faqs_column_id']])->one(),
             ]);
         }
     }

@@ -838,7 +838,6 @@ input:focus
     position: fixed;
     right: 130px;
     top: 46%;
-    height: 366px;
     width: 76px;
     z-index: 100;
     margin-top: -160px;

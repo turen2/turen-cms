@@ -13,7 +13,7 @@ use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 use common\models\cms\Column;
 
-$this->title = $model->title;
+$this->currentModel = $model;
 
 Swiper2Asset::register($this);
 $js = <<<EOF

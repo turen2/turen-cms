@@ -4,19 +4,20 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
+use yii\helpers\Json;
+use yii\helpers\StringHelper;
+use yii\helpers\Url;
 use app\assets\Swiper2Asset;
+use app\assets\ValidationAsset;
 use common\helpers\ImageHelper;
 use common\models\cms\Article;
 use common\models\cms\Photo;
 use common\models\ext\Ad;
-use yii\helpers\Json;
-use yii\helpers\StringHelper;
-use yii\helpers\Url;
 
-$this->title = '嘉乐邦首页';
 $webUrl = Yii::getAlias('@web/');
 
 Swiper2Asset::register($this);
+ValidationAsset::register($this);
 $js = <<<EOF
 //主幻灯片
 var homeMainAdSwiper = new Swiper('.home-main-ad .swiper-container', {
@@ -119,6 +120,10 @@ $('.home-comment-slide .arrow-right').on('click', function(e){
     e.preventDefault()
     commentSwiper.swipeNext()
 });
+
+$('.online-price .primary-btn').on('click', function() {
+    alert('ddde');
+});
 EOF;
 $this->registerJs($js);
 ?>
@@ -150,11 +155,7 @@ $this->registerJs($js);
     <div class="call-form">
         <div class="home-pulish">
             <h3 class="title">轻松获取在线报价</h3>
-            <form action="" class="">
-                <div class="form-items">
-                    <span class="label">手机号码</span>
-                    <input type="text" name="phone" maxlength="11" placeholder="请输入手机号码" />
-                </div>
+            <form action="" class="online-price">
                 <div class="form-items">
                     <span class="label">区域选择</span>
                     <select name="area">
@@ -184,8 +185,13 @@ $this->registerJs($js);
                         <option value="其它类型">其它类型</option>
                     </select>
                 </div>
+                <div class="form-items">
+                    <span class="label">手机号码</span>
+                    <input type="text" name="phone" maxlength="11" placeholder="请输入手机号码" />
+                </div>
                 <a class="primary-btn br5" href="javascript:;">立即免费回电</a>
             </form>
+            <!-- widget缓存 -->
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">1分钟前王先生****4527已预约</div>

@@ -5,7 +5,7 @@
  * @author developer qq:980522557
  */
 
-$this->title = '帮助中心';
+$this->columnModel = $columnModel;
 $webUrl = Yii::getAlias('@web/');
 
 use app\widgets\SideBoxListWidget;

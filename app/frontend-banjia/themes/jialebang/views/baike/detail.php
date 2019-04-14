@@ -15,7 +15,7 @@ use app\widgets\SideBoxListWidget;
 use app\widgets\SideLabelListWidget;
 use app\widgets\ContentMoreWidget;
 
-$this->title = $model->title;
+$this->currentModel = $model;
 $dlength = 90;
 ?>
 

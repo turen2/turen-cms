@@ -144,6 +144,11 @@ class File extends \common\components\ActiveRecord
         ];
     }
 
+    public function getColumn()
+    {
+        return $this->hasOne(Column::class, ['id' => 'columnid']);
+    }
+
     /**
      * {@inheritdoc}
      * @return FileQuery the active query used by this AR class.

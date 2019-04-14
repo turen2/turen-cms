@@ -133,6 +133,11 @@ class Article extends \common\components\ActiveRecord
         ];
     }
 
+    public function getColumn()
+    {
+        return $this->hasOne(Column::class, ['id' => 'columnid']);
+    }
+
     /**
      * {@inheritdoc}
      * @return ArticleQuery the active query used by this AR class.

@@ -6,6 +6,7 @@
  */
 namespace common\models\shop;
 
+use common\models\cms\Column;
 use Yii;
 
 /**
@@ -141,6 +142,11 @@ class Product extends \common\components\ActiveRecord
             'created_at' => Yii::t('app', '添加时间'),
             'updated_at' => Yii::t('app', '编辑时间'),
         ];
+    }
+
+    public function getColumn()
+    {
+        return $this->hasOne(Column::class, ['id' => 'columnid']);
     }
 
     /**

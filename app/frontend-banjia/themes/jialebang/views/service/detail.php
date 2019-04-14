@@ -14,7 +14,10 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-$this->title = $curModel->title;
+$this->currentModel = $curModel;
+
+//$this->title = $curModel->title;
+//$this->title = $curModel->title;
 
 Swiper2Asset::register($this);
 PinAsset::register($this);

@@ -38,7 +38,10 @@ $webUrl = Yii::getAlias('@web/');
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <?= Html::csrfMetaTags() ?>
+    <?php $this->initSeo() ?>
     <title><?= Html::encode($this->title) ?> - <?= Yii::$app->params['config_site_name'] ?></title>
+    <meta content="<?= Html::encode($this->keywords) ?>" name="keywords">
+    <meta content="<?= Html::encode($this->description) ?>" name="description">
     <link type="image/x-icon" href="<?= $webUrl ?>favicon.ico" rel="shortcut icon">
     <?php $this->head() ?>
     <?= $this->render('_config') ?>

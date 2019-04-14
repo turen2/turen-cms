@@ -6,6 +6,7 @@
  */
 
 use app\models\cms\Column;
+use app\models\cms\DiyModel;
 use common\helpers\BuildHelper;
 use common\models\cms\Flag;
 use yii\helpers\ArrayHelper;
@@ -311,5 +312,31 @@ $selectOptions['options'] = $options;
     <td style="border-bottom: 1px dashed #efefef;">
         Yii::$app->params['<?=$name?>']<br />
         Yii::$app->params['<?=$flagName?>']
+    </td>
+</tr>
+
+<?php
+//-----------------------------------------------
+$name = 'config_face_banjia_cn_faqs_column_id';
+$value = isset($config[$name])?$config[$name]:null;
+$columnArray = [];
+$selectOptions = ['id' => $name, 'encode' => false, 'options' => []];
+$options = [];
+foreach ($list as $id => $item) {
+    if(Column::ColumnConvert('class2id', 'app\models\cms\MasterModel_7') != $models[$id]->type) {
+        $options[$id] = ['disabled' => true];
+    }
+    //按照新的关系，重新排序
+    $columnArray[$id] = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $item['level']-1).(empty($item['level']-1)?'':'|-').($models[$id]->cname);
+}
+$selectOptions['options'] = $options;
+?>
+<tr>
+    <td class="first-column">常见问答</td>
+    <td class="second-column" width="33%">
+        <?= Html::dropDownList($name, $value, ArrayHelper::merge([null => '请选择一个配置'], $columnArray), $selectOptions) ?>
+    </td>
+    <td style="border-bottom: 1px dashed #efefef;">
+        Yii::$app->params['<?=$name?>']
     </td>
 </tr>

@@ -13,7 +13,7 @@ use yii\widgets\LinkPager;
 use yii\widgets\LinkSorter;
 use yii\widgets\ListView;
 
-$this->title = $columnModel->cname;
+$this->columnModel = $columnModel;
 ?>
 <div class="baike-list">
     <div class="container">

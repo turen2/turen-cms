@@ -5,7 +5,7 @@
  * @author developer qq:980522557
  */
 
-$this->title = $model->title;
+$this->currentModel = $model;
 $webUrl = Yii::getAlias('@web/');
 
 $js = <<<EOF

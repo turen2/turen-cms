@@ -13,7 +13,8 @@ use yii\widgets\ListView;
 use app\widgets\SideBoxListWidget;
 use app\widgets\SideLabelListWidget;
 
-$this->title = $columnModel->cname;
+$this->columnModel = $columnModel;
+
 ?>
 <div class="baike-list">
     <div class="container">

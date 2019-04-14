@@ -6,12 +6,14 @@
  * Time: 22:58
  */
 
+use app\assets\LayerAsset;
 use app\widgets\cascade\CascadeWidget;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\JqueryAsset;
 
 JqueryAsset::register($this);
+LayerAsset::register($this);
 $js = <<<EOF
     //摇摆效果
     function yaoyiyao(obj)
@@ -42,9 +44,36 @@ $js = <<<EOF
         
         
         //手机验证码（附加数字验证码）
+        /**
+        $('form[data-ajax-submit]').on('submit', function(event) {
+        var form = $(this);
+        if (event.eventPhase === 2) { // This phase is when the validation is passed
+            $.ajax({ // actually the ajax request
+                url: form.attr('action'),
+                data: form.serialize(),
+                type: form.attr('method')
+            }); 
+        }
+        event.preventDefault(); // Prevents default submit behaviour
+    });
+    */
+        
+        //test
+        $.ajax({
+            url: 'http://turen.com/site/phone-verify-code.html',
+            type: 'GET',
+            dataType: 'html',
+            context: $(this),
+            cache: false,
+            data: {},
+            success: function(res) {
+                $('.service-content').html(res);
+            }
+        });
         
         
         //提交数据
+        /*
         if(!hasError) {
             $.ajax({
                 url: CONFIG.com.consultUrl,
@@ -62,6 +91,7 @@ $js = <<<EOF
                 }
             });
         }
+        */
     });
 EOF;
 $this->registerJs($js);
@@ -71,7 +101,6 @@ $this->registerJs($js);
         <h3>免费咨询</h3>
     </div>
     <div class="tab-sidebox-content">
-        <?= Html::beginForm() ?>
         <?= Html::hiddenInput('serviceName', $slug); ?>
         <div class="row">
             <h6 class="form-label"><i class="iconfont jia-coordinates"></i> 起点：</h6>
@@ -139,6 +168,5 @@ $this->registerJs($js);
             <p class="call-price">线上下单统一9折起</p>
         </div>
         <a id="free-jia-btn" class="primary-btn br5" href="javascript:;">立即咨询</a>
-        <?= Html::endForm() ?>
     </div>
 </div>

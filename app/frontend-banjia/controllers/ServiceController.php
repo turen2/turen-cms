@@ -6,11 +6,29 @@
  */
 namespace app\controllers;
 
+use common\models\com\VerifyConsult;
 use common\models\shop\Product;
+use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
 
 class ServiceController extends \app\components\Controller
 {
+    /**
+     * @inheritdoc
+     * 强制使用post进行删除操作，post受csrf保护
+     */
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'consult' => ['POST'],
+                ],
+            ],
+        ];
+    }
+
     /**
      * 服务详情
      * @return string
@@ -26,8 +44,27 @@ class ServiceController extends \app\components\Controller
         ]);
     }
 
+    public function actionVerifyConsult()
+    {
+        $model = new VerifyConsult();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+
+            //验证成功，录入数据到咨询订单系统
+
+            return $this->asJson([
+                'state' => true,
+                'code' => '200',
+                'result' => '',
+            ]);
+        } else {
+            return $this->renderAjax('_phone_verify', [
+                'model' => $model,
+            ]);
+        }
+    }
+
     /**
-     * 全局咨询入口，生成咨询单，并发短信，邮件，微信通知等
+     *
      * 类型ajax
      * @return json
      */
@@ -38,7 +75,7 @@ class ServiceController extends \app\components\Controller
         return $this->asJson([
             'state' => true,
             'code' => '200',
-            'result' => [],
+            'result' => print_r(\Yii::$app->request->cookies),
         ]);
     }
 

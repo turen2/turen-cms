@@ -11,7 +11,7 @@ use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use common\models\cms\Column;
 
-$this->title = $model->title;
+$this->currentModel = $model;
 ?>
 <div class="page-info">
     <div class="container">

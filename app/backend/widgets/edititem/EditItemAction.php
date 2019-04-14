@@ -20,7 +20,7 @@ use app\models\cms\Article;
 class EditItemAction extends Action
 {
     public $className;//要切换的模型
-    public $kid;//对象id值
+    public $kid;//对象kid值
     public $field;//修改的字段
     public $value;//修改的结果
     

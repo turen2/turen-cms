@@ -6,6 +6,7 @@
  */
 namespace common\models\diy;
 
+use common\models\cms\Column;
 use Yii;
 
 /**
@@ -87,6 +88,11 @@ class Faqs extends \common\components\ActiveRecord
             'created_at' => Yii::t('app', '添加时间'),
             'diyfield_ask_content' => Yii::t('app', '问答内容'),
         ];
+    }
+
+    public function getColumn()
+    {
+        return $this->hasOne(Column::class, ['id' => 'columnid']);
     }
 
     /**

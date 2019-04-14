@@ -14,6 +14,8 @@ use yii\widgets\Breadcrumbs;
 use yii\widgets\LinkPager;
 use yii\widgets\LinkSorter;
 
+$this->columnModel = $columnModel;
+
 WaterfallAsset::register($this);
 $currentUrl = Url::current(['wallpage' => 'wall_page']);//在当前url基础上增加一个新参数！！！使用wall_page点位链接，支持伪静态
 $js = <<<EOF
@@ -42,8 +44,6 @@ $('#photo-water-list ul').waterfall({
 });
 EOF;
 $this->registerJs($js);
-
-$this->title = $columnModel->cname;
 ?>
 
 <script type="text/x-handlebars-template" id="waterfall-tpl">

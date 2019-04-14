@@ -6,7 +6,7 @@
  */
 /* @var $this yii\web\View */
 
-$this->title = '百科详情';
+$this->currentModel = $model;
 
 use app\widgets\ContentMoreWidget;
 use common\models\cms\Column;
