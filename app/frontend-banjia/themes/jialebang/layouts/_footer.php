@@ -108,6 +108,20 @@ if($blockModel) {
 
 <?= $this->render('_fixed_nav') ?>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="call-me">
     <div class="center-box container">
         <span class="left-part"><img src="<?= $webUrl ?>images/logo.png"></span>

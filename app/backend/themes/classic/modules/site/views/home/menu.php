@@ -14,16 +14,6 @@ MenuAsset::register($this);
 
 $this->title = '菜单栏';
 ?>
-
-<div class="quick-btn"> 
-    <span class="quick-btn-left">
-    	<?= Html::a('<i class="fa fa-list"></i> 添文章', ['/cms/article/index'], ['target' => 'main'])?>
-    </span> 
-    <span class="quick-btn-right">
-    	<?= Html::a('<i class="fa fa-photo"></i> 添图片', ['/cms/photo/index'], ['target' => 'main'])?>
-    </span> 
-</div>
-
 <div class="tGradient"></div>
 <div id="scrollmenu">
 	<div class="scrollbar">
@@ -139,7 +129,7 @@ $this->title = '菜单栏';
                             ['label' => '用户管理', 'url' => ['/user/user/index'], 'visible' => $roleModel->checkPerm('user/user/index', true)],
                             ['label' => '用户收藏', 'url' => ['/user/favorite/index'], 'visible' => $roleModel->checkPerm('user/favorite/index', true)],
                             ['label' => '用户评论', 'url' => ['/user/comment/index'], 'visible' => $roleModel->checkPerm('user/comment/index', true)],
-                            ['label' => '投诉建议', 'url' => ['/user/message/index'], 'visible' => $roleModel->checkPerm('user/message/index', true)],
+
                         ],
                     ]) ?>
 					<div class="hr_1"> </div>
@@ -148,6 +138,8 @@ $this->title = '菜单栏';
                         'encodeLabels' => false,
                         'items' => [
                             ['label' => '线上咨询', 'url' => ['/user/inquiry/index'], 'visible' => $roleModel->checkPerm('user/order/index', true)],
+                            ['label' => '联系我们', 'url' => ['/user/contact/index'], 'visible' => $roleModel->checkPerm('user/contact/index', true)],
+                            ['label' => '投诉建议', 'url' => ['/user/complaint/index'], 'visible' => $roleModel->checkPerm('user/complaint/index', true)],
                             ['label' => '<i class="fa fa-wrench"></i>', 'template' => '<a target="main" title="用户组管理" class="menu-wrench group" href="{url}">{label}</a>', 'url' => ['/user/group/index'], 'visible' => $roleModel->checkPerm('user/group/index', true)],
                             ['label' => '<i class="fa fa-wrench"></i>', 'template' => '<a target="main" title="用户等级管理" class="menu-wrench level" href="{url}">{label}</a>', 'url' => ['/user/level/index'], 'visible' => $roleModel->checkPerm('user/level/index', true)],
                         ],

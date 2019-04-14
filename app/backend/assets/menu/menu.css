@@ -72,42 +72,6 @@ a:focus {
 	height: 5px;
 }
 
-/*快捷按钮*/
-.quick-btn {
-	width: 180px;
-	height: 30px;
-	margin: 20px auto 18px;
-}
-
-.quick-btn a {
-	display: block;
-	font-size: 16px;
-	color: #b5b5b5;
-}
-
-.quick-btn a {
-	transition-duration: 300ms;
-}
-
-.quick-btn a:hover {
-	text-decoration: underline;
-	color: #333;
-}
-
-.quick-btn-left, .quick-btn-right {
-	width: 80px;
-	line-height: 30px;
-	text-align: right;
-}
-
-.quick-btn-left {
-	float: left;
-}
-
-.quick-btn-right {
-	float: right;
-}
-
 /*菜单盒子*/
 .menubox {
 	width: 190px;
@@ -181,10 +145,10 @@ a:focus {
     bottom: 27px;
 }
 .menubox .menu-wrench.group {
-    bottom: 27px;
+    bottom: 82px;
 }
 .menubox .menu-wrench.level {
-    bottom: 55px;
+    bottom: 110px;
 }
 .menubox .menu-wrench.notify-content {
     bottom: 54px;
@@ -196,7 +160,7 @@ a:focus {
 /*导航条*/
 #scrollmenu {
 	width: 190px;
-	margin: 0 auto;
+	margin: 15px auto;
 }
 
 #scrollmenu .viewport {

@@ -4,11 +4,14 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
+
+use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\helpers\StringHelper;
 use yii\helpers\Url;
 use app\assets\Swiper2Asset;
 use app\assets\ValidationAsset;
+use app\assets\LayerAsset;
 use common\helpers\ImageHelper;
 use common\models\cms\Article;
 use common\models\cms\Photo;
@@ -18,6 +21,7 @@ $webUrl = Yii::getAlias('@web/');
 
 Swiper2Asset::register($this);
 ValidationAsset::register($this);
+LayerAsset::register($this);
 $js = <<<EOF
 //主幻灯片
 var homeMainAdSwiper = new Swiper('.home-main-ad .swiper-container', {
@@ -121,8 +125,66 @@ $('.home-comment-slide .arrow-right').on('click', function(e){
     commentSwiper.swipeNext()
 });
 
-$('.online-price .primary-btn').on('click', function() {
-    alert('ddde');
+var validator = $('form.online-price').validate({
+	rules: {
+        area: {
+            required: true,
+        },
+        type: {
+            required: true,
+        },
+        phone: {
+            required: true,
+            isPhone: true,
+        },
+    },
+	messages: {
+	    area: {
+            required: '<i class="iconfont jia-close_b"></i>请选择起点'
+        },
+        type: {
+            required: '<i class="iconfont jia-close_b"></i>请选择服务'
+        },
+        phone: {
+            required: '<i class="iconfont jia-close_b"></i>手机号码必填',
+            isPhone: '<i class="iconfont jia-close_b"></i>号码格式有误',
+        },
+    },
+    errorElement: 'p',
+	errorPlacement: function(error, element) {
+		error.appendTo(element.parent());
+	},
+	submitHandler: function(form) {
+        layer.open({
+            type: 1
+            ,title: false
+            //,title: '安全验证'
+            ,anim: -1//无动画
+            //,shade: false//无背景遮布
+            ,area: ['416px', '286px'] //宽高
+            ,content: $('#fllow-wap-tpl'),//模板
+        });
+        
+        //ajax提交
+        $.ajax({
+            url: $(form).attr('action'),
+            type: 'POST',
+            dataType: 'json',
+            context: $(form),
+            cache: false,
+            data: $(form).serialize(),
+            success: function(res) {
+                if (res['state']) {
+                    
+                } else {
+                    
+                }
+            }
+        });
+        
+        form.reset();
+        return false;
+    }  
 });
 EOF;
 $this->registerJs($js);
@@ -155,42 +217,53 @@ $this->registerJs($js);
     <div class="call-form">
         <div class="home-pulish">
             <h3 class="title">轻松获取在线报价</h3>
-            <form action="" class="online-price">
+
+            <?= $form = Html::beginForm(['home/call-price'], 'POST', ['class' => 'online-price']) ?>
                 <div class="form-items">
                     <span class="label">区域选择</span>
-                    <select name="area">
-                        <option value="-1">选择区域</option>
-                        <option value="深圳市">深圳市</option>
-                        <option value="广州市">广州市</option>
-                        <option value="东莞市">东莞市</option>
-                        <option value="珠海市">珠海市</option>
-                        <option value="中山市">中山市</option>
-                        <option value="惠州市">惠州市</option>
-                        <option value="其它区域">其它区域</option>
-                    </select>
+                    <?= Html::dropDownList('area', null, [
+                        null => '选择区域',
+                        '深圳市' => '深圳市',
+                        '广州市' => '广州市',
+                        '东莞市' => '东莞市',
+                        '珠海市' => '珠海市',
+                        '中山市' => '中山市',
+                        '惠州市' => '惠州市',
+                        '其它区域' => '其它区域',
+                    ]) ?>
                 </div>
                 <div class="form-items">
                     <span class="label">业务类型</span>
-                    <select name="type">
-                        <option value="-1">选择区域</option>
-                        <option value="居民搬家">居民搬家</option>
-                        <option value="办公室搬迁">办公室搬迁</option>
-                        <option value="厂房搬迁">厂房搬迁</option>
-                        <option value="学校搬迁">学校搬迁</option>
-                        <option value="钢琴搬运">钢琴搬运</option>
-                        <option value="仓库搬迁">仓库搬迁</option>
-                        <option value="服务器搬迁">服务器搬迁</option>
-                        <option value="空调移机">空调移机</option>
-                        <option value="长途搬家">长途搬家</option>
-                        <option value="其它类型">其它类型</option>
-                    </select>
+                    <?= Html::dropDownList('type', null, [
+                        null => '选择业务类型',
+                        '居民搬家' => '居民搬家',
+                        '办公室搬迁' => '办公室搬迁',
+                        '厂房搬迁' => '厂房搬迁',
+                        '学校搬迁' => '学校搬迁',
+                        '钢琴搬运' => '钢琴搬运',
+                        '仓库搬迁' => '仓库搬迁',
+                        '服务器搬迁' => '服务器搬迁',
+                        '空调移机' => '空调移机',
+                        '长途搬家' => '长途搬家',
+                        '其它类型' => '其它类型',
+                    ]) ?>
                 </div>
                 <div class="form-items">
                     <span class="label">手机号码</span>
-                    <input type="text" name="phone" maxlength="11" placeholder="请输入手机号码" />
+                    <?= Html::textInput('phone', '', ['placeholder' => '请输入手机号码']) ?>
                 </div>
-                <a class="primary-btn br5" href="javascript:;">立即免费回电</a>
-            </form>
+                <?= Html::submitButton('立即免费回电', ['class' => 'primary-btn br5']) ?>
+            <?= Html::endForm() ?>
+
+            <!-- 弹出框 -->
+            <div id="fllow-wap-tpl" style="display: none;" class="follow-wap">
+                <p class="p1"> <i class="iconfont jia-yes_b"></i> 提交成功！</p>
+                <p class="p3">稍后客服将来电，免费为您提供定制服务</p>
+                <div class="fllow-img"><img src="<?= empty(Yii::$app->params['config_footer_phone_qr'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl(Yii::$app->params['config_footer_phone_qr'], true) ?>" /> </div>
+                <p class="p2"> 手机扫一扫，手机版更便捷</p>
+                <p class="p4">更多搬运服务、用车用人服务，供您使用！</p>
+            </div>
+
             <!-- widget缓存 -->
             <div class="swiper-container">
                 <div class="swiper-wrapper">
