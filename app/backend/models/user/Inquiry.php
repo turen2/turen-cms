@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 namespace app\models\user;
 
 use Yii;
@@ -29,18 +33,17 @@ use app\behaviors\OrderDefaultBehavior;
 class Inquiry extends \app\models\base\User
 {
 	public $keyword;
-	
-	public function behaviors()
-	{
-	    return [
-	        //动态值由此属性行为处理
-	        'defaultPosttime' => [
-	            'class' => TimestampBehavior::class,
-	            'createdAtAttribute' => 'ui_submit_time',
-	            'updatedAtAttribute' => false,
-	        ],
-	    ];
-	}
+	public $username;
+
+    //ui_type类型：1首页预约，2价格计算器预约，3业务详情预约
+	const INQUIRY_TYPE_QUICK = 1;//快捷预约
+    const INQUIRY_TYPE_JIJIA = 2;//计算器预约
+    const INQUIRY_TYPE_SERVICE = 3;//业务详情预约
+
+    //ui_state处理状态：1未处理，2待处理，3已处理
+    const INQUIRY_STATE_NOTHING = 1;
+    const INQUIRY_STATE_WAITING = 2;
+    const INQUIRY_STATE_OK = 3;
 
     /**
      * @inheritdoc
@@ -100,14 +103,32 @@ class Inquiry extends \app\models\base\User
         ];
     }
 
+    public static function getStateNameList()
+    {
+        return [
+            static::INQUIRY_STATE_NOTHING => '未处理',
+            static::INQUIRY_STATE_WAITING => '待处理',
+            static::INQUIRY_STATE_OK => '已处理',
+        ];
+    }
+
     /**
      * 返回预约状态名称
      * @return string
      */
     public function getStateName()
     {
+        $list = static::getStateNameList();
+        return isset($list[$this->ui_state])?$list[$this->ui_state]:'未设置';
+    }
 
-        return '待处理';
+    public static function getTypeNameList()
+    {
+        return [
+            static::INQUIRY_TYPE_QUICK => '快捷预约',
+            static::INQUIRY_TYPE_JIJIA => '计算器预约',
+            static::INQUIRY_TYPE_SERVICE => '业务详情预约',
+        ];
     }
 
     /**
@@ -116,13 +137,13 @@ class Inquiry extends \app\models\base\User
      */
     public function getTypeName()
     {
-
-        return '预约类型';
+        $list = static::getTypeNameList();
+        return isset($list[$this->ui_type])?$list[$this->ui_type]:'未设置';
     }
 
-    public function getUserName()
+    public function getUser()
     {
-        return 'Jorry007';
+        return $this->hasOne(User::class, ['user_id' => 'user_id']);
     }
 
     /**

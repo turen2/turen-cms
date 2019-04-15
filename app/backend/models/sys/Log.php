@@ -32,6 +32,7 @@ use app\behaviors\InsertLangBehavior;
 class Log extends \app\models\base\Sys
 {
 	public $keyword;
+	public $username;
 	
 	public function behaviors()
 	{
@@ -108,6 +109,11 @@ class Log extends \app\models\base\Sys
             'created_at' => '创建时间',
             'lang' => '多语言',
         ];
+    }
+
+    public function getAdmin()
+    {
+        return $this->hasOne(Admin::class, ['id' => 'admin_id']);
     }
 
     /**

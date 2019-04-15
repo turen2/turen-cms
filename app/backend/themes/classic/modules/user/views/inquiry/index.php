@@ -1,14 +1,14 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
-
-/* @var $this yii\web\View */
-/* @var $searchModel app\models\user\InquirySearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '预约/询盘';
 ?>
@@ -18,15 +18,15 @@ $this->title = '预约/询盘';
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="data-table">
 	<tr align="left" class="head">
 		<td width="4%" class="first-column">ID</td>
-        <td width="10%">预约名称</td>
+        <td width="10%"><?= $dataProvider->sort->link('ui_title', ['label' => '预约名称']) ?></td>
         <td width="16%">内容</td>
         <td width="6%">是否回复</td>
         <td width="10%">备注</td>
         <td width="5%">类型</td>
         <td width="10%">所属用户</td>
-        <td width="8%">提交日期</td>
-        <td width="8%">回复日期</td>
-		<td width="8%">备注日期</td>
+        <td width="8%"><?= $dataProvider->sort->link('ui_submit_time', ['label' => '提交日期']) ?></td>
+        <td width="8%"><?= $dataProvider->sort->link('ui_answer_time', ['label' => '回复日期']) ?></td>
+		<td width="8%"><?= $dataProvider->sort->link('ui_remark_time', ['label' => '备注日期']) ?></td>
 		<td width="25%" class="end-column">操作</td>
 	</tr>
 	<?php foreach ($dataProvider->getModels() as $key => $model) { ?>
@@ -49,7 +49,7 @@ $this->title = '预约/询盘';
         <td><?= empty($model->ui_answer)?'否':'是'; ?></td>
         <td><?= $model->ui_remark; ?></td>
         <td><?= $model->getTypeName(); ?></td>
-        <td><?= $model->getUserName(); ?></td>
+        <td><?= $model->username; ?></td>
         <td><?= empty($model->ui_submit_time)?'未提交':str_replace(' ', '<br />', Yii::$app->getFormatter()->asDatetime($model->ui_submit_time)); ?></td>
         <td><?= empty($model->ui_answer_time)?'未回复':Yii::$app->getFormatter()->asDate($model->ui_answer_time); ?></td>
         <td><?= empty($model->ui_remark_time)?'未备注':Yii::$app->getFormatter()->asDate($model->ui_remark_time); ?></td>
@@ -65,7 +65,6 @@ if(empty($dataProvider->count))
 ?>
 
 <div class="bottom-toolbar clearfix">
-	<?= Html::a('添加新预约', ['create'], ['class' => 'data-btn']) ?>
 	<div class="page">
     	<?= LinkPager::widget([
     	    'pagination' => $dataProvider->getPagination(),
@@ -87,7 +86,6 @@ if(empty($dataProvider->count))
 			<span class="sel-area">
 				<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
 			</span>
-			<?= Html::a('添加新预约', ['create'], ['class' => 'data-btn']) ?>
 			<span class="page-small">
 			<?= LinkPager::widget([
 			    'pagination' => $dataProvider->getPagination(),

@@ -274,7 +274,7 @@ input {
 
 
 ::-webkit-scrollbar-track:vertical {
-	background: 000;
+	background: #000;
 }
 
 ::-webkit-scrollbar-track-piece {
@@ -911,7 +911,7 @@ input[type="button"]:focus, input[type="submit"]:focus {
 }
 
 .toolbar-tab ul li.line {
-	width: 20px;
+	width: 10px;
 }
 
 .toolbar-tab .search {
@@ -2325,4 +2325,28 @@ span.fileinput-button input {
 .font-14i i {
 	font-size: 14px;
 }
-
+.view-list .tool-list {
+	font-size: 14px;
+	margin-left: 20px;
+}
+.view-list table {
+	margin-top: 20px;
+	border-top: 1px solid #efefef;
+}
+.view-list table textarea {
+	width: 450px;
+	height: 90px;
+	padding: 10px;
+	border: 1px solid #dddddd;
+}
+.view-list td, .view-list th {
+	padding: 8px;
+	border-bottom: 1px dashed #efefef;
+}
+.view-list .view-label {
+	width: 8%;
+	text-align: right;
+}
+.view-list .view-text {
+	text-align: left;
+}

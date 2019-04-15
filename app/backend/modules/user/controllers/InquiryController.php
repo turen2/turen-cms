@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 namespace app\modules\user\controllers;
 
 use Yii;
@@ -45,12 +49,43 @@ class InquiryController extends Controller
         ]);
     }
 
+    /**
+     * view a Inquiry model
+     * @param $id
+     * @return string
+     * @throws NotFoundHttpException
+     */
     public function actionView($id)
     {
         $model = $this->findModel($id);
 
         return $this->render('view', [
             'model' => $model,
+        ]);
+    }
+
+    /**
+     * ajax edit a Inquiry model
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException
+     */
+    public function actionEdit()
+    {
+        $id = Yii::$app->getRequest()->get('id');
+        $field = Yii::$app->getRequest()->post('field');
+        $timeField = Yii::$app->getRequest()->post('time_field', null);
+        $value = Yii::$app->getRequest()->post('value');
+
+        $model = $this->findModel($id);
+        $model->{$field} = $value;
+        if(!empty($timeField)) {
+            $model->{$timeField} = time();
+        }
+        $model->save(false);
+
+        return $this->asJson([
+            'state' => true,
+            'msg' => '编辑成功',
         ]);
     }
 
@@ -63,7 +98,7 @@ class InquiryController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Inquiry::findOne($id)) !== null) {
+        if (($model = Inquiry::find()->where(['ui_id' => $id])->with('user')->one()) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('此请求页面不存在。');

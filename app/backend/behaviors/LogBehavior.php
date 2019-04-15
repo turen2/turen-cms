@@ -197,12 +197,16 @@ class LogBehavior extends Behavior
             'sys/multilang-tpl' => '多语言',
             'user/comment' => '用户留言',
             'user/favorite' => '用户收藏',
+            'user/inquiry' => '线上咨询',
+            'user/contact' => '联系我们',
+            'user/complaint' => '投诉建议',
         ];
         
         $actions = [
             'index' => '{name}',
             'create' => '添加新{name}',
             'update' => '编辑{name}',
+            'edit' => '编辑{name}',
             'delete' => '删除{name}',
             'check' => '{name}显示隐藏',
             'batch' => '批量{name}删除或排序',

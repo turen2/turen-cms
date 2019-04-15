@@ -50,6 +50,21 @@ class LogController extends Controller
     }
 
     /**
+     * view a Inquiry model
+     * @param $id
+     * @return string
+     * @throws NotFoundHttpException
+     */
+    public function actionView($id)
+    {
+        $model = $this->findModel($id);
+
+        return $this->render('view', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
      * Finds the Log model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
@@ -58,7 +73,7 @@ class LogController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Log::findOne($id)) !== null) {
+        if (($model = Log::find()->where(['log_id' => $id])->with('admin')->one()) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('请求页面不存在！');

@@ -1,10 +1,5 @@
 <?php
 /**
- * @author xia.jorry
- * 
- * 注意：文件上传时，需要做上传记录，但取文件时，不需要走任何的验证！
- * 
- *//**
  * @link http://www.turen2.com/
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557

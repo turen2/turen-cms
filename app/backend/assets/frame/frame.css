@@ -46,8 +46,22 @@ a:focus {
 	outline: none;
 }
 
+.clearfix:before, .clearfix:after, .cl:before, .cl:after {
+	content: ".";
+	display: block;
+	height: 0;
+	overflow: hidden;
+}
+.clearfix:after, .cl:after {clear: both;}
+
 .cl {
 	clear: both;
+}
+
+.br5 {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 }
 
 /*布局样式*/
@@ -217,7 +231,7 @@ a:focus {
 }
 
 .header a {
-	transition-duration: 300ms;
+
 }
 
 .header .logo {
@@ -356,6 +370,7 @@ a:focus {
 	margin-left: 20px;
     font-size: 16px;
     color: #FFF;
+	width: 26px;
 }
 
 .header .fun a.df:hover {
@@ -438,7 +453,7 @@ a:focus {
 
 /*站点列表*/
 .site-list {
-	display: inline;
+	float: left;
 }
 
 .site-list a {
@@ -543,4 +558,33 @@ a:focus {
     top: -12px;
     padding: 2px 5px;
     z-index: 1;
+}
+.message-alert-box {
+	position: absolute;
+	display: none;
+	padding-top: 10px;
+	top: 20px;
+}
+.message-alert-box .message-box {
+	padding: 10px;
+	background: #fff;
+	box-shadow: 0 0 8px #999;
+	border: 1px solid #999;
+	font-size: 12px;
+	padding: 5px 0;
+	overflow: hidden;
+}
+.message-alert-box .message-box a {
+	color: #444;
+	text-decoration: none;
+	width: 100px;
+	height: 20px;
+	overflow: hidden;
+	display: block;
+	line-height: 20px;
+	padding: 6px 0 6px 12px;
+	border-bottom: 1px dotted #ddd
+}
+.message-alert-box .message-box a:hover {
+	background: #eee
 }

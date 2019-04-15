@@ -67,8 +67,8 @@ class HomeController extends Controller
             $model->user_id = Yii::$app->getUser()->getId();
             $model->ui_ipaddress = $address['location'];
             $model->ui_browser = Yii::$app->getRequest()->userAgent;
-            $model->ui_type = '1';
-            $model->ui_state = '0';
+            $model->ui_type = Inquiry::INQUIRY_TYPE_QUICK;//快捷预约
+            $model->ui_state = Inquiry::INQUIRY_STATE_NOTHING;//待处理
             $model->ui_submit_time = time();
             $model->save(false);
         }

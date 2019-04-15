@@ -23,6 +23,16 @@ use Yii;
  */
 class Inquiry extends \common\components\ActiveRecord
 {
+    //ui_type类型：1首页预约，2价格计算器预约，3业务详情预约
+    const INQUIRY_TYPE_QUICK = 1;//快捷预约
+    const INQUIRY_TYPE_JIJIA = 2;//计算器预约
+    const INQUIRY_TYPE_SERVICE = 3;//业务详情预约
+
+    //ui_state处理状态：1未处理，2待处理，3已处理
+    const INQUIRY_STATE_NOTHING = 1;
+    const INQUIRY_STATE_WAITING = 2;
+    const INQUIRY_STATE_OK = 3;
+
     /**
      * {@inheritdoc}
      */

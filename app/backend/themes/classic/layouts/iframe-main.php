@@ -4,6 +4,8 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
+
+use app\models\user\Inquiry;
 use yii\helpers\Html;
 
 use yii\helpers\Url;
@@ -24,11 +26,22 @@ FontAwesomeAsset::register($this);
 FrameAsset::register($this);
 
 $baseUrl = Yii::getAlias('@web');
-// $this->registerJs("
-//         $(document).ready(function() {
-//             //
-//         })
-// ");
+$js = <<<EOF
+var fun = $('.fun');
+var link = fun.find('.message-alert');
+var droplist = $('.message-alert-box');
+
+link.mouseover(function () {
+    if (droplist.is(":hidden")) {
+        droplist.show().css("left", 140);
+    }
+});
+fun.mouseleave(function () {
+    droplist.hide();
+});
+EOF;
+$this->registerJs($js);
+
 //用户相关，重点注意
 if (Yii::$app->user->getIsGuest()) {
     return;//后面的代码将不再执行，返回void
@@ -70,7 +83,7 @@ $adminModel = Yii::$app->user->identity;
         		</div>
         	</div>
         	<div class="fun">
-                <div class="site-list">
+                <div class="site-list clearfix">
                     <?php 
                     $multilangTplModels = MultilangTpl::find()->all();
                     if($multilangTplModels) {
@@ -88,14 +101,26 @@ $adminModel = Yii::$app->user->identity;
                     }
                     ?>
             	</div>
-            	<a href="javascript:;" class="message-alert df" title="消息提醒"><i class="fa fa-bell-o"></i><span class="label label-danger">8</span></a>
-            	
+                <?php
+                $inquiryNum = Inquiry::find()->where(['ui_state' => Inquiry::INQUIRY_STATE_NOTHING])->count('ui_id');
+                $contactNum = 0;
+                $complaintNum = 0;
+                $notifyNum = $inquiryNum + $contactNum + $complaintNum;
+                ?>
+            	<a href="javascript:;" class="message-alert df" title="消息提醒"><i class="fa fa-bell-o"></i><span class="label label-danger"><?= $notifyNum ?></span></a>
         		<a href="<?= Yii::$app->params['config_site_url'] ?>" target="_blank" class="home-link df" title="网站首页"><i class="fa fa-desktop"></i></a>
         		<a href="javascript:;" id="lockscreen" class="lock-screen df" title="锁屏"><i class="fa fa-lock"></i></a>
-        		
-        		<?= $this->render('//layouts/_nav.php', [], $this->context) //alias、//主题路径、当前模块路径、相对路径 ?>
-        		
-        		<a href="http://www.turen2.com/" target="_blank" class="web-link df" title="官方网站"><i class="fa fa-life-ring"></i></a>
+        		<a href="http://www.turen2.com/" target="_blank" class="web-link df" title="土人开源系统"><i class="fa fa-life-ring"></i></a>
+
+                <div class="message-alert-box">
+                    <div class="message-box br5">
+                        <a target="main" href="<?= Url::to(['/user/inquiry/index']) ?>">在线预约(<?= $inquiryNum ?>)</a>
+                        <a target="main" href="<?= Url::to(['/user/contact/index']) ?>">联系我们(<?= $contactNum ?>)</a>
+                        <a target="main" href="<?= Url::to(['/user/complaint/index']) ?>">投诉建议(<?= $complaintNum ?>)</a>
+                    </div>
+                </div>
+
+                <?php // $this->render('//layouts/_nav.php', [], $this->context) //alias、//主题路径、当前模块路径、相对路径 ?>
         	</div>
         </div>
         
