@@ -3,7 +3,7 @@ $config = [
     'timeZone' => 'Asia/Shanghai',
     'vendorPath' => dirname(dirname(dirname(__DIR__))) . '/vendor',
     'bootstrap' => [
-        //'queue',//全局队列
+        'queue',//全局队列
     ],
     'components' => [
         //全局短信服务组件
@@ -18,26 +18,23 @@ $config = [
             'class' => 'common\components\AliyunOss',
         ],
         //mysql锁机制
-        /*
-        'mutex' => [
-            'class' => 'yii\mutex\MysqlMutex',
-        ],
-        */
+//        'mutex' => [
+//            'class' => 'yii\mutex\MysqlMutex',
+//        ],
         //队列
-        /*
         'queue' => [
-            //'class' => 'yii\queue\file\Queue',//队列类型
-            //'path' => '@common/runtime/queue',//存储路径
+            //'class' => 'yii\queue\file\Queue',//文件类型队列
+            //'path' => '@common/runtime/queue',//文件存储路径
             'class' => 'yii\queue\db\Queue',//队列类型
-            'channel' => 'queue_channel',//队列通道
+            'channel' => 'jialebang100_channel',//队列通道
             'db' => 'db',//对接的数据库资源为db库
-            'mutex' => 'mutex',//锁机制
+            'tableName' => '{{%queue}}', // Table name
+            'mutex' => 'yii\mutex\MysqlMutex',//锁机制
             'deleteReleased' => false,//清除发布的信息
             'serializer' => 'yii\queue\serializers\JsonSerializer',//存储格式
             'ttr' => 300,//重试停留时间
             'attempts' => 1,//默认重试次数
         ],
-        */
         'db' => [//线上正式环境
             'class' => 'yii\db\Connection',
         ],

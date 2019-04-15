@@ -6,12 +6,13 @@
  */
 namespace app\controllers;
 
-use common\helpers\Util;
-use common\models\user\Inquiry;
 use Yii;
-use app\components\Controller;
 use yii\filters\VerbFilter;
 use yii\helpers\Json;
+use common\helpers\Util;
+use common\models\user\Inquiry;
+use common\queue\SmtpMailJob;
+use app\components\Controller;
 
 /**
  * Home controller for the `banjia` module
@@ -74,7 +75,16 @@ class HomeController extends Controller
         }
 
         //通知队列
-
+        Yii::$app->queue->push(new SmtpMailJob([
+            'template' => 'notify',//模板名称
+            'params' => [
+                '电话' => $phone,
+                '位置' => $area,
+                '业务类型' => $type,
+            ],
+            'sendTo' => '980522557@qq.com',
+            'subject' => '有新预约，请查收',
+        ]));
 
         return $this->asJson([
             'state' => true,
