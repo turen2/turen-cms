@@ -8,7 +8,7 @@ use yii\helpers\Html;
 ?>
 <div class="new-notify">
     <p>有新预约，请查收：</p>
-    <p>
-        <?php var_dump($data) ?>
-    </p>
+    <?php foreach ($params as $key => $param) { ?>
+        <p><?= $key ?>：<?= $param ?></p>
+    <?php } ?>
 </div>

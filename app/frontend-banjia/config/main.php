@@ -47,6 +47,34 @@ return [
         ],
     ],
     'components' => [
+        //家乐邦邮箱队列
+        'jialebangMailQueue' => [
+            //'class' => 'yii\queue\file\Queue',//文件类型队列
+            //'path' => '@app/runtime/queue',//文件存储路径
+            'class' => 'yii\queue\db\Queue',//队列类型
+            'channel' => 'jialebang_mail_channel',//队列通道
+            'db' => 'db',//对接的数据库资源为db库
+            'tableName' => '{{%queue}}', // Table name
+            'mutex' => 'yii\mutex\MysqlMutex',//锁机制
+            'deleteReleased' => false,//清除发布的信息
+            'serializer' => 'yii\queue\serializers\JsonSerializer',//存储格式
+            'ttr' => 30,//重试停留时间
+            'attempts' => 3,//默认重试次数
+        ],
+        //家乐邦短信队列
+        'jialebangSmsQueue' => [
+            //'class' => 'yii\queue\file\Queue',//文件类型队列
+            //'path' => '@app/runtime/queue',//文件存储路径
+            'class' => 'yii\queue\db\Queue',//队列类型
+            'channel' => 'jialebang_sms_channel',//队列通道
+            'db' => 'db',//对接的数据库资源为db库
+            'tableName' => '{{%queue}}', // Table name
+            'mutex' => 'yii\mutex\MysqlMutex',//锁机制
+            'deleteReleased' => false,//清除发布的信息
+            'serializer' => 'yii\queue\serializers\JsonSerializer',//存储格式
+            'ttr' => 30,//重试停留时间
+            'attempts' => 3,//默认重试次数
+        ],
         'devicedetect' => [
             'class' => 'alexandernst\devicedetect\DeviceDetect',
         ],

@@ -3,41 +3,13 @@ $config = [
     'timeZone' => 'Asia/Shanghai',
     'vendorPath' => dirname(dirname(dirname(__DIR__))) . '/vendor',
     'bootstrap' => [
-        'queue',//全局队列
+        //
     ],
     'components' => [
-        //全局短信服务组件
-        'sms' => [
-            'class' => 'common\components\AliyunSms',
-        ],
-        'msg' => [
-            'class' => 'common\components\AliyunMsg',
-        ],
-        //阿里云oss开放存储
-        'aliyunoss' => [
-            'class' => 'common\components\AliyunOss',
-        ],
         //mysql锁机制
 //        'mutex' => [
 //            'class' => 'yii\mutex\MysqlMutex',
 //        ],
-        //队列
-        'queue' => [
-            //'class' => 'yii\queue\file\Queue',//文件类型队列
-            //'path' => '@common/runtime/queue',//文件存储路径
-            'class' => 'yii\queue\db\Queue',//队列类型
-            'channel' => 'jialebang100_channel',//队列通道
-            'db' => 'db',//对接的数据库资源为db库
-            'tableName' => '{{%queue}}', // Table name
-            'mutex' => 'yii\mutex\MysqlMutex',//锁机制
-            'deleteReleased' => false,//清除发布的信息
-            'serializer' => 'yii\queue\serializers\JsonSerializer',//存储格式
-            'ttr' => 300,//重试停留时间
-            'attempts' => 1,//默认重试次数
-        ],
-        'db' => [//线上正式环境
-            'class' => 'yii\db\Connection',
-        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',//通用的，与环境、应用都无关，全局一样
             'directoryLevel' => 2,//多层目录，提高存储效率

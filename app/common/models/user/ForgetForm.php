@@ -6,6 +6,7 @@
  */
 namespace common\models\user;
 
+use console\queue\SmtpMailJob;
 use Yii;
 use yii\base\Model;
 
@@ -86,20 +87,17 @@ class ForgetForm extends Model
             ->send();
         */
 
-        //发送邮件
-        try {
-            Yii::$app->mailer
-                ->compose(
-                    ['html' => 'resetForm-html', 'text' => 'resetForm-text'],
-                    ['user' => $user]
-                )
-                ->setFrom([Yii::$app->params['config.supportEmail'] => Yii::$app->params['config_site_name']])
-                ->setTo($this->email)
-                ->setSubject('重置密码 - ' . Yii::$app->params['config_site_name'])
-                ->send();
-        } catch (\Exception $e) {
-            return false;
-        }
+        //邮件通知队列
+        Yii::$app->jialebangMailQueue->push(new SmtpMailJob([
+            'template' => GLOBAL_LANG.'/resetForm',//语言标识模板名称
+            'params' => [
+                'username' => $user->username,
+                'resetLink' => Yii::$app->urlManager->createAbsoluteUrl(['account/user/reset', 'token' => $user->password_reset_token])
+            ],
+            'sendTo' => trim($this->email),
+            'from' => [Yii::$app->params['config.supportEmail'] => Yii::$app->params['config_site_name']],
+            'subject' => '重置密码 - ' . Yii::$app->params['config_site_name'],
+        ]));
 
         return true;
     }

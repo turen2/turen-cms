@@ -1,11 +1,10 @@
 <?php
 
-$params = array_merge(
-    require(__DIR__ . '/../../common/config/params.php'),
-    //require(__DIR__ . '/../../common/config/params-local.php'),
-    require(__DIR__ . '/params.php')
-    //require(__DIR__ . '/params-local.php')
-);
+//$params = array_merge(
+//    require(__DIR__ . '/params.php')
+//);
+
+$params = require(__DIR__ . '/params.php');
 
 return [
     'id' => 'app-console',
@@ -13,6 +12,8 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => [
         'log',
+        'jialebangMailQueue',//邮件队列
+        'jialebangSmsQueue',//短信队列
     ],
     'controllerNamespace' => 'console\controllers',
     'controllerMap' => [
@@ -21,35 +22,45 @@ return [
             'class' => 'yii\console\controllers\MigrateController',
             'migrationPath' => null,
             'migrationNamespaces' => [
-                // ...
+                // ...升级队列数据库数据
                 'yii\queue\db\migrations',
             ],
         ],
     ],
     'components' => [
-        'db' => [//本地环境
-            'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=turen_cms',
-            'username' => 'root',
-            'password' => '123456',
-            'charset' => 'utf8',
-            'tablePrefix' => 'ss_',//前缀
-            //Schema
-            //'enableSchemaCache' => true,
-            //'schemaCacheDuration' => 3600,
-            //'schemaCache' => 'cache',//指定存储对象
-            //Query
-            //'enableQueryCache' => true,
-            //'queryCacheDuration' => 3600,
-            //'queryCache' => 'cache',//指定存储对象
+        //家乐邦邮箱队列
+        'jialebangMailQueue' => [
+            //'class' => 'yii\queue\file\Queue',//文件类型队列
+            //'path' => '@app/runtime/queue',//文件存储路径
+            'class' => 'yii\queue\db\Queue',//队列类型
+            'channel' => 'jialebang_mail_channel',//队列通道
+            'db' => 'db',//对接的数据库资源为db库
+            'tableName' => '{{%queue}}', // Table name
+            'mutex' => 'yii\mutex\MysqlMutex',//锁机制
+            'deleteReleased' => false,//清除发布的信息
+            'serializer' => 'yii\queue\serializers\JsonSerializer',//存储格式
+            'ttr' => 30,//重试停留时间
+            'attempts' => 3,//默认重试次数
         ],
-//        'redis' => [
-//            'class' => 'yii\redis\Connection',
-//            'hostname' => '2ca982b60ad643e3.redis.rds.aliyuncs.com',
-//            'port' => 6379,
-//            'password' => 'SiSabpt530560',
-//            'database' => 9,
-//        ],
+        //家乐邦短信队列
+        'jialebangSmsQueue' => [
+            //'class' => 'yii\queue\file\Queue',//文件类型队列
+            //'path' => '@app/runtime/queue',//文件存储路径
+            'class' => 'yii\queue\db\Queue',//队列类型
+            'channel' => 'jialebang_sms_channel',//队列通道
+            'db' => 'db',//对接的数据库资源为db库
+            'tableName' => '{{%queue}}', // Table name
+            'mutex' => 'yii\mutex\MysqlMutex',//锁机制
+            'deleteReleased' => false,//清除发布的信息
+            'serializer' => 'yii\queue\serializers\JsonSerializer',//存储格式
+            'ttr' => 30,//重试停留时间
+            'attempts' => 3,//默认重试次数
+        ],
+        'cache' => [
+            'class' => 'yii\caching\FileCache',//通用的，与环境、应用都无关，全局一样
+            'directoryLevel' => 2,//多层目录，提高存储效率
+            'cachePath' => '@app/runtime/cache',//全局使用一套缓存目录，数据库缓存，redis，memcahced等不需要单独设置
+        ],
         'formatter' => [
             // 处理本地化格式，包括时间、货币、语言习惯
             'class' => 'yii\i18n\Formatter',
