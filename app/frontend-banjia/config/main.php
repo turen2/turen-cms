@@ -78,66 +78,6 @@ return [
         'devicedetect' => [
             'class' => 'alexandernst\devicedetect\DeviceDetect',
         ],
-        //第三方登录
-        'authClientCollection' => [
-            'class' => 'yii\authclient\Collection',
-            'clients' => [
-                'qq' => [
-                    'class' => 'common\components\oauth\QQAuth',
-                    'id' => 'qq',
-                    'clientId' => '101557951',
-                    'clientSecret' => 'fec22b0a14d3ae851ceae97ea4ba5c03',
-                    'viewOptions' => [
-                        'widget' => [
-                            'class' => 'common\components\oauth\item\AuthItem',
-                        ],
-                        'popupWidth' => 627,
-                        'popupHeight' => 400,
-                    ],
-                ],
-                'weibo' => [
-                    'class' => 'common\components\oauth\WeiboAuth',
-                    'id' => 'weibo',
-                    'clientId' => '2382137345',
-                    'clientSecret' => 'ab69a142ea74cda9bc87d09b8220ccf3',
-                    'viewOptions' => [
-                        'widget' => [
-                            'class' => 'common\components\oauth\item\AuthItem',
-                        ],
-                        'popupWidth' => 627,
-                        'popupHeight' => 400,
-                    ],
-                ],
-                'weixin' => [
-                    'class' => 'common\components\oauth\WeixinAuth',
-                    'id' => 'wx',
-                    'clientId' => '111',
-                    'clientSecret' => '111',
-                    'viewOptions' => [
-                        'widget' => [
-                            'class' => 'common\components\oauth\item\AuthItem',
-                        ],
-                        'popupWidth' => 627,
-                        'popupHeight' => 400,
-                    ],
-                ],
-                /*
-                'weixin-mp' => [
-                    'class' => 'common\components\oauth\WeixinMpAuth',
-                    'id' => 'wxp',
-                    'clientId' => '111',
-                    'clientSecret' => '111',
-                    'viewOptions' => [
-                        'widget' => [
-                            'class' => 'common\components\oauth\item\AuthItem',
-                        ],
-                        'popupWidth' => 627,
-                        'popupHeight' => 400,
-                    ],
-                ],
-                */
-            ]
-        ],
         'request' => [
             'class' => 'yii\web\Request',
             'cookieValidationKey' => 'OUX1YppF-bHW9cm86EAmg4MwmBQ6Xvni',
