@@ -31,7 +31,7 @@ $this->registerJs($js);
 ?>
 <div class="container bind-account">
     <div class="fpass-content">
-        <h3><span class="fpass-title"><?= Html::encode($this->title) ?></span>请输入您在创建账户时提供的邮箱</h3>
+        <h3><span class="fpass-title"><?= Html::encode($this->title) ?></span>请输入您在创建账户时提供的手机号</h3>
         <div class="fpass-case">
             <div class="ext-account">
                 <div class="img-box">
@@ -46,8 +46,8 @@ $this->registerJs($js);
                 $error = '';
                 if(isset($errors['verifyCode'])) {
                     $error = $errors['verifyCode'];
-                } elseif(isset($errors['email'])) {
-                    $error = $errors['email'];
+                } elseif(isset($errors['phone'])) {
+                    $error = $errors['phone'];
                 } elseif(isset($errors['password'])) {
                     $error = $errors['password'];
                 } elseif(isset($errors['rePassword'])) {
@@ -57,8 +57,8 @@ $this->registerJs($js);
                     <div class="form-error"><i class="iconfont jia-caution_b"></i><label class="text"><?= $error ?></label></div>
                 <?php } ?>
                 <div class="editable">
-                    <?= Html::activeTextInput($model, 'email', ['class' => 'input-text', 'autofocus' => true]) ?>
-                    <span class="placeholder">请输入邮箱</span>
+                    <?= Html::activeTextInput($model, 'phone', ['class' => 'input-text', 'autofocus' => true]) ?>
+                    <span class="placeholder">请输入手机号</span>
                 </div>
                 <div class="editable">
                     <?= Html::activePasswordInput($model, 'password', ['class' => 'input-text', 'autofocus' => true]) ?>
@@ -74,7 +74,7 @@ $this->registerJs($js);
                     <?= Captcha::widget([
                         'model' => $model,
                         'attribute' => 'verifyCode',
-                        'captchaAction' => '/account/user/captcha',
+                        'captchaAction' => '/account/passport/captcha',
                         'template' => '{image}',
                         'options' => ['class' => 'form-control', 'placeholder' => $model->getAttributeLabel('verifyCode')],
                         'imageOptions' => ['title' => '点击刷新', 'alt' => '验证码', 'style' => 'cursor: pointer;'],

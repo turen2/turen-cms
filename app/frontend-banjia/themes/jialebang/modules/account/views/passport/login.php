@@ -6,12 +6,13 @@
  */
 
 use app\assets\ValidationAsset;
+use common\models\ext\Ad;
 use yii\authclient\widgets\AuthChoice;
 use yii\captcha\Captcha;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-$this->title = '用户登录';
+$this->title = '账户登录';
 $this->params['breadcrumbs'][] = $this->title;
 
 ValidationAsset::register($this);
@@ -32,9 +33,9 @@ $('.editable .input-text').each(function(i){
 //验证提示效果
 var validator = $('#loginForm').validate({
 	rules: {
-        "LoginForm[email]": {
+        "LoginForm[phone]": {
             "required": true,
-            "email": true
+            "isPhone": true
         },
         "LoginForm[password]": {
             "required": true,
@@ -45,9 +46,8 @@ var validator = $('#loginForm').validate({
         },
     },
 	messages: {
-	    "LoginForm[email]": {
-            "required": '<i class="iconfont jia-close_b"></i>用户名/邮箱必填',
-            "email": '<i class="iconfont jia-close_b"></i>电子邮箱格式不正确'
+	    "LoginForm[phone]": {
+            "required": '<i class="iconfont jia-close_b"></i>用户名/手机号码必填'
         },
         "LoginForm[password]": {
             "required": '<i class="iconfont jia-close_b"></i>密码必填',
@@ -77,8 +77,8 @@ $this->registerJs($js);
 
     <div class="form-box">
         <ul class="form-tab clearfix">
-            <li class="tab-li on"><a href="javascript:;" class="sign-in">账号登录</a></li>
-            <li class="tab-li"><?= Html::a('新用户注册', ['user/signup'], ['class' => 'sign-up']) ?></li>
+            <li class="tab-li on"><a href="javascript:;" class="sign-in">账户登录</a></li>
+            <li class="tab-li"><?= Html::a('手机快捷登录', ['passport/quick'], ['class' => 'sign-quick']) ?></li>
         </ul>
         <div class="form-content">
             <?php $form = ActiveForm::begin(['enableAjaxValidation' => false, 'id' => 'loginForm', 'options' => ['class' => 'login-form']]); ?>
@@ -87,17 +87,18 @@ $this->registerJs($js);
                 $error = '';
                 if(isset($errors['verifyCode'])) {
                     $error = $errors['verifyCode'];
-                } elseif(isset($errors['email'])) {
-                    $error = $errors['email'];
+                } elseif(isset($errors['phone'])) {
+                    $error = $errors['phone'];
                 } elseif(isset($errors['password'])) {
                     $error = $errors['password'];
                 }
                 if($errors) { ?>
                     <div class="form-error"><i class="iconfont jia-caution_b"></i><label class="text"><?= $error ?></label></div>
                 <?php } ?>
+
                 <div class="editable">
-                    <?= Html::activeTextInput($model, 'email', ['class' => 'input-text']) ?>
-                    <span class="placeholder">请输入用户名/邮箱</span>
+                    <?= Html::activeTextInput($model, 'phone', ['class' => 'input-text']) ?>
+                    <span class="placeholder">请输入用户名/手机号</span>
                 </div>
                 <div class="editable">
                     <?= Html::activePasswordInput($model, 'password', ['class' => 'input-text', 'autocomplete' => 'off']) ?>
@@ -109,7 +110,7 @@ $this->registerJs($js);
                     <?= Captcha::widget([
                             'model' => $model,
                             'attribute' => 'verifyCode',
-                            'captchaAction' => '/account/user/captcha',
+                            'captchaAction' => '/account/passport/captcha',
                             'template' => '{image}',
                             'options' => ['class' => 'form-control', 'placeholder' => $model->getAttributeLabel('verifyCode')],
                             'imageOptions' => ['title' => '点击刷新', 'alt' => '验证码', 'style' => 'cursor: pointer;'],
@@ -122,14 +123,15 @@ $this->registerJs($js);
                     <?= Html::submitButton('登    录', ['class' => 'btn-settlement', 'style' => "cursor:pointer;"]) ?>
                 </div>
                 <div class="link-box">
-                    <?= Html::a('忘记密码？', ['user/forget'], ['class' => 'forget-pass-link', 'target' => '_blank']) ?>
+                    <?= Html::a('新客户注册', ['passport/signup'], ['class' => 'sign-up-link', 'target' => '_blank']) ?>
+                    <?= Html::a('忘记密码？', ['passport/forget'], ['class' => 'forget-pass-link fr', 'target' => '_blank']) ?>
                 </div>
             <?php ActiveForm::end(); ?>
 
             <div class="login-short">
                 <h3>使用合作账号登录：</h3>
                 <?= AuthChoice::widget([
-                    'baseAuthUrl' => ['/account/user/auth'],
+                    'baseAuthUrl' => ['/account/passport/auth'],
                     'popupMode' => true,
                 ]) ?>
             </div>

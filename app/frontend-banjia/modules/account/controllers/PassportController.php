@@ -6,26 +6,30 @@
  */
 namespace app\modules\account\controllers;
 
+use common\phonecode\ValidateCaptchaAction;
 use Yii;
 use yii\authclient\BaseClient;
-use yii\base\InvalidArgumentException;
+use yii\captcha\CaptchaAction;
 use yii\helpers\Json;
 use yii\helpers\Url;
+use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
 use yii\web\NotAcceptableHttpException;
 use yii\web\NotFoundHttpException;
 
 use common\models\user\User;
-use common\models\user\user\LoginForm;
-use common\models\user\user\SignupForm;
-use common\models\user\user\ForgetForm;
-use common\models\user\user\ResetForm;
-use common\models\user\user\BindForm;
+use common\models\user\passport\LoginForm;
+use common\models\user\passport\PhoneLoginForm;
+use common\models\user\passport\SignupForm;
+use common\models\user\passport\ForgetForm;
+use common\models\user\passport\ResetForm;
+use common\models\user\passport\BindForm;
+use common\phonecode\PhoneCodeAction;
 
 /**
- * User controller
+ * Passport controller
  */
-class UserController extends \app\components\Controller
+class PassportController extends \app\components\Controller
 {
     const SECURITY_AUTH_KEY = '20190318byjorry';
 
@@ -35,7 +39,7 @@ class UserController extends \app\components\Controller
         Yii::$app->view->hideHeaderTop = true;
 
         //模式判断
-        if(Yii::$app->params['config_login_mode'] != User::USER_EMAIL_MODE) {
+        if(Yii::$app->params['config_login_mode'] != User::USER_PHONE_MODE) {
             throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist!'));
         }
     }
@@ -45,9 +49,12 @@ class UserController extends \app\components\Controller
     {
         return [
             'login',
+            'quick',
             'signup',
             'logout',
             'captcha',
+            'validate-captcha',//验证图片验证码
+            'phone-code',//发短信验证码
             'forget',//邮箱发送验证邮件
             'reset',//邮箱重新密码
             'forget-result',//密码找回响应结果
@@ -65,9 +72,12 @@ class UserController extends \app\components\Controller
      */
     public function actions()
     {
+        $phone = Yii::$app->getRequest()->get('phone');//ajax手机号码
+        $verifycode = Yii::$app->getRequest()->get('verifycode');//图形验证码
         return [
+            //生成图片验证码
             'captcha' => [
-                'class' => 'yii\captcha\PhoneCodeAction',
+                'class' => CaptchaAction::class,
                 'width' => 80,
                 'height' => 38,
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
@@ -77,6 +87,21 @@ class UserController extends \app\components\Controller
                 'backColor' => 0xFFFFFF,
                 'foreColor' => 0xFF6F20,
                 'fontFile' => '@app/web/fonts/WishfulWaves.ttf',
+            ],
+            //验证图片验证码
+            'validate-captcha' => [
+                'class' => ValidateCaptchaAction::class,
+                'verifycode' => $verifycode,
+                'skipOnEmpty' => false,
+                'caseSensitive' => false,
+                'captchaAction' => 'account/passport/captcha',
+            ],
+            //发送手机验证码
+            'phone-code' => [
+                'class' => PhoneCodeAction::class,
+                'verifycode' => $verifycode,
+                'phone' => $phone,
+                'maxNum' => 6,
             ],
             //第三方登录
 
@@ -91,8 +116,8 @@ class UserController extends \app\components\Controller
                 //'redirectView' => '',//指定跳转模板
                 'successCallback' => [$this, 'successCallback'],//验证成功回调处理
                 'cancelCallback' => [$this, 'cancelCallback'],//取消之后执行的回调
-                'successUrl' => Url::to(['user/auth-result', 'title' => '授权成功并已登录', 'text' => '授权成功并已登录']),//默认跳转
-                'cancelUrl' => Url::to(['user/auth-result', 'title' => '已取消授权登录', 'text' => '已取消授权登录']),
+                'successUrl' => Url::to(['passport/auth-result', 'title' => '授权成功并已登录', 'text' => '授权成功并已登录']),//默认跳转
+                'cancelUrl' => Url::to(['passport/auth-result', 'title' => '已取消授权登录', 'text' => '已取消授权登录']),
             ],
         ];
     }
@@ -129,7 +154,7 @@ class UserController extends \app\components\Controller
         $user = User::findOne([$field => $openid]);//查询用户，是否绑定，并登录
         if(empty($user)) {
             //没有用户信息！绑定并注册//且防篡改
-            $this->action->successUrl = Url::to(['user/bind', 'token' => Yii::$app->getSecurity()->hashData(Json::encode($securityData), self::SECURITY_AUTH_KEY)]);
+            $this->action->successUrl = Url::to(['passport/bind', 'token' => Yii::$app->getSecurity()->hashData(Json::encode($securityData), self::SECURITY_AUTH_KEY)]);
         } else {
             //已经绑定的用户，进入此控制器即表示授权完成，直接回调为true即可
             Yii::$app->getUser()->login($user, 30 * 24 * 3600);//30天有效//Yii::$app->params['user.effectivetime']
@@ -195,7 +220,7 @@ class UserController extends \app\components\Controller
                 Yii::$app->getUser()->login($user, 30 * 24 * 3600);
                 Yii::$app->getSession()->remove('_oauth_bind');
 
-                return $this->redirect(['user/auth-result', 'title' => '绑定成功并已经登录', 'text' => '绑定成功并已经登录']);//绑定成功页面
+                return $this->redirect(['passport/auth-result', 'title' => '绑定成功并已经登录', 'text' => '绑定成功并已经登录']);//绑定成功页面
             }
         }
 
@@ -215,7 +240,7 @@ class UserController extends \app\components\Controller
     }
 
     /**
-     * Logs in a user.
+     * Logs in a user by account.
      *
      * @return mixed
      */
@@ -230,6 +255,27 @@ class UserController extends \app\components\Controller
             return $this->goBack();
         } else {
             return $this->render('login', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    /**
+     * Logs in a user by phone.
+     *
+     * @return mixed
+     */
+    public function actionQuick()
+    {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $model = new PhoneLoginForm();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->goBack();
+        } else {
+            return $this->render('quick', [
                 'model' => $model,
             ]);
         }
@@ -281,13 +327,13 @@ class UserController extends \app\components\Controller
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
-
+        
         $model = new ForgetForm();
-        if($model->load(Yii::$app->request->post()) && $model->validate()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
-                return $this->redirect(['user/forget-result', 'type' => 'success', 'point' => 2, 'title' => '邮箱发送成功', 'text' => '邮箱已发送，请查收并继续完成下一步操作']);
+                return $this->redirect(['passport/forget-result', 'type' => 'success', 'point' => 2, 'title' => '邮箱发送成功', 'text' => '邮箱已发送，请查收并继续完成下一步操作']);
             } else {
-                return $this->redirect(['user/forget-result', 'type' => 'error', 'point' => 2, 'title' => '邮箱发送失败', 'text' => '发送错误，请输入正确的邮箱地址再试']);
+                return $this->redirect(['passport/forget-result', 'type' => 'error', 'point' => 2, 'title' => '邮箱发送失败', 'text' => '发送错误，请输入正确的邮箱地址再试']);
             }
         }
 
@@ -315,7 +361,7 @@ class UserController extends \app\components\Controller
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
-            return $this->redirect(['user/forget-result', 'type' => 'success', 'point' => 4, 'title' => '密码重置成功', 'text' => '密码重置成功，请使用新密码登录']);
+            return $this->redirect(['passport/forget-result', 'type' => 'success', 'point' => 4, 'title' => '密码重置成功', 'text' => '密码重置成功，请使用新密码登录']);
         }
 
         return $this->render('reset', [

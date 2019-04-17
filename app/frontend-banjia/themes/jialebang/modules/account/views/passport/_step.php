@@ -5,7 +5,6 @@
  * @author developer qq:980522557
  */
 ?>
-
 <?php if($point == 1) { ?>
 <div class="flow-way clearfix">
     <span class="section-point on-here">

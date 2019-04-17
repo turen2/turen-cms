@@ -34,7 +34,7 @@
                 <div class="fl">
                     <input type="text" id="verifycode-code" name="code" placeholder="手机验证码" />
                 </div>
-                <span id="get-verifycode">获取验证码</span>
+                <span id="get-verifycode" class="verifycode-btn">获取验证码</span>
             </div>
             <span class="cue"></span>
         </div>

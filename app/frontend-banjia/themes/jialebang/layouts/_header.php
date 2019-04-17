@@ -7,6 +7,7 @@
 use common\models\cms\Block;
 use common\models\ext\Nav;
 use common\helpers\ImageHelper;
+use common\models\user\User;
 use yii\helpers\HtmlPurifier;
 use yii\helpers\Url;
 use app\assets\LimarqueeAsset;
@@ -49,11 +50,11 @@ $this->registerJs($js);
             </div>
         	<ul class="head-list fr">
                 <?php if(Yii::$app->getUser()->isGuest) { ?>
-                    <li><a href="<?= Url::to(['/account/user/login']) ?>">请登录</a></li>
+                    <li><a href="<?= Url::to(['/account/'.(Yii::$app->params['config_login_mode'] == User::USER_PHONE_MODE?'passport':'user').'/login']) ?>">请登录</a></li>
                     <li class="line">|</li>
-                    <li><a href="<?= Url::to(['/account/user/signup']) ?>">免费注册</a></li>
+                    <li><a href="<?= Url::to(['/account/'.(Yii::$app->params['config_login_mode'] == User::USER_PHONE_MODE?'passport':'user').'/signup']) ?>">免费注册</a></li>
                 <?php } else { ?>
-                    <li style="padding-right: 12px;">欢迎 <?= Yii::$app->getUser()->getIdentity()->username ?> [<a style="display: inline;padding: 0 2px 0 2px;" href="<?= Url::to(['/account/user/logout']) ?>" data-method="post">退出</a>]</li>
+                    <li style="padding-right: 12px;">欢迎 <?= Yii::$app->getUser()->getIdentity()->username ?> [<a style="display: inline;padding: 0 2px 0 2px;" href="<?= Url::to(['/account/'.(Yii::$app->params['config_login_mode'] == User::USER_PHONE_MODE?'passport':'user').'/logout']) ?>" data-method="post">退出</a>]</li>
                 <?php } ?>
                 <li class="line">|</li>
                 <li class="drop">

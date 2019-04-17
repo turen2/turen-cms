@@ -5,6 +5,7 @@
  * @author developer qq:980522557
  */
 
+use common\models\user\User;
 use yii\helpers\Url;
 
 $route = Yii::$app->controller->getRoute();
@@ -41,7 +42,7 @@ $links = [
         'isPost' => false,
     ],
     [
-        'route' => 'account/user/logout',
+        'route' => 'account/'.(Yii::$app->params['config_login_mode'] == User::USER_PHONE_MODE?'passport':'user').'/logout',
         'label' => '<i class="iconfont jia-ico-exit"></i> 退出',
         'isPost' => true,
     ],

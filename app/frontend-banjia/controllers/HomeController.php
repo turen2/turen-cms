@@ -75,7 +75,7 @@ class HomeController extends Controller
         }
 
         //通知队列
-        foreach (explode('|', Yii::$app->params['config_email_notify_online_call_price']) as $sendTo) {
+        foreach (explode("\r\n", Yii::$app->params['config_email_notify_online_call_price']) as $sendTo) {
             $sendTo = trim($sendTo);
             if(!empty($sendTo)) {
                 Yii::$app->jialebangMailQueue->push(new SmtpMailJob([

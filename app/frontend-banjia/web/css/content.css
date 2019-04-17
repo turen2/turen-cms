@@ -272,6 +272,10 @@
     left: 60px;
 }
 
+.call-form .home-pulish .form-items .iconfont {
+    font-size: 14px;
+}
+
 .call-form .home-pulish .form-items .label {
 
 }
@@ -2000,78 +2004,65 @@
 }
 .form-box .form-content {
     position: relative;
-    padding: 40px 40px 0;
+    padding: 15px 40px 0;
 }
 .form-error {
     position: absolute;
-    top: 8px;
-    max-height: 32px;
-    padding: 4px 6px 4px 12px;
+    top: 4px;
+    left: 59px;
+    padding: 4px 6px;
     border: 1px solid #ffddbc;
     background: #fffceb;
 }
 .editable {
     position: relative;
-    width: 298px;
-    height: 44px;
-    padding: 12px 0;
-    line-height: 44px;
-    border: 1px solid #ddd;
     font-size: 14px;
-}
-.editable.top1 {
-    top: -1px;
-}
-.editable.top2 {
-    top: -2px;
-}
-.editable.top3 {
-    top: -3px;
-}
-.editable dt {
-    float: left;
-    width: 90px;
-    height: 20px;
-    line-height: 20px;
-    padding-left: 10px;
-    text-align: right;
-}
-.editable dt em {
-    padding: 0 7px;
-}
-.editable dd {
-    position: relative;
-    float: left;
-    width: 206px;
-    height: 20px;
-    line-height: 20px;
-}
-.editable dd img {
-    position: absolute;
-    top: -12px;
-    right: 0;
-    z-index: 50;
+    margin: 20px;
 }
 .editable .input-text {
-    width: 200px;
-    position: absolute;
-    height: 20px;
-    line-height: 20px;
+    width: 100%;
+    height: 38px;
+    line-height: 38px;
     padding: 0 10px;
-    left: 0;
-    z-index: 2;
+    border: 1px solid #DDDDDD;
     background: transparent;
     outline: 0 none;
-    border: none;
     color: #333;
 }
 .editable .placeholder {
     position: absolute;
     height: 20px;
     line-height: 20px;
+    top: 10px;
     left: 10px;
-    z-index: 1;
     color: #ccc;
+    z-index: -1;
+}
+.editable em {
+    padding: 0 7px;
+}
+.editable p.error {
+    position: absolute;
+    top: 38px;
+    left: 0;
+    height: 20px;
+    line-height: 20px;
+    color: red;
+    font-size: 12px;
+}
+.editable .iconfont {
+    font-size: 14px;
+}
+.editable img {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.editable .verifycode-btn {
+    position: absolute;
+    font-size: 12px;
+    top: 10px;
+    right: 10px;
 }
 .form-box .rem-check {
     margin: 10px;
@@ -2105,11 +2096,8 @@
     height: 34px;
     line-height: 34px;
 }
-.form-box .link-box .forget-pass, .form-box .link-box .sign-up {
+.form-box .link-box .forget-pass-link, .form-box .link-box .sign-up-link {
     color: #007fd7;
-}
-.form-box .link-box .forget-pass {
-    float: right;
 }
 .form-box .login-short {
     padding-top: 12px;
@@ -2202,6 +2190,11 @@
     margin-top: 90px;
 }
 
+.fpass-content .form-error {
+    top: 20px;
+    left: 20px;
+}
+
 .fpass-content h3 {
     font-size: 14px;
     color: #999;
@@ -2256,16 +2249,8 @@
     right: -164px;
 }
 
-.fpass-content .editable {
-    width: 350px;
-}
-
 .fpass-content .editable dd img {
     right: -36px;
-}
-
-.fpass-content .editable .input-text {
-    width: 258px;
 }
 
 .fpass-content .btn-settlement {

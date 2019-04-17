@@ -29,12 +29,23 @@ $('.editable .input-text').each(function(i){
     }
 });
 
+//验证码操作
+//var layerIndex = null;
+//var verifyCodeBtn = $('.get-verify-code');
+//verifyCodeBtn.on('click', function() {
+//    layer.tips('只想提示地精准些', '.get-verify-code', {
+//        tips: 1,
+//        time: 4000,
+//        content: $('#verify-code-form-box').html(),
+//    });
+//});
+
 //验证提示效果
-var validator = $('#loginForm').validate({
+var validator = $('#signupForm').validate({
 	rules: {
-        "SignupForm[email]": {
+        "SignupForm[phone]": {
             "required": true,
-            "email": true
+            "isPhone": true
         },
         "SignupForm[password]": {
             "required": true,
@@ -47,25 +58,25 @@ var validator = $('#loginForm').validate({
         },
         "SignupForm[verifyCode]": {
             "required": true
-        },
+        }
     },
 	messages: {
-	    "SignupForm[email]": {
-            "required": '<i class="iconfont jia-close_b"></i>用户名/邮箱必填',
-            "email": '<i class="iconfont jia-close_b"></i>电子邮箱格式不正确'
+	    "SignupForm[phone]": {
+            "required": '<i class="iconfont jia-close_b"></i>用户名/手机号码必填',
+            "isPhone": '<i class="iconfont jia-close_b"></i>手机号码格式错误'
         },
         "SignupForm[password]": {
             "required": '<i class="iconfont jia-close_b"></i>密码必填',
             "minlength": '<i class="iconfont jia-close_b"></i>密码不能小于6位'
         },
         "SignupForm[rePassword]": {
-            "required": '<i class="iconfont jia-close_b"></i>确认密码必填',
-            "minlength": '<i class="iconfont jia-close_b"></i>确认密码不能小于6位',
+            "required": '<i class="iconfont jia-close_b"></i>密码必填',
+            "minlength": '<i class="iconfont jia-close_b"></i>密码不能小于6位',
             "equalTo": '<i class="iconfont jia-close_b"></i>两次输入的密码不一致'
         },
         "SignupForm[verifyCode]": {
             "required": '<i class="iconfont jia-close_b"></i>验证码必填'
-        },
+        }
     },
     errorElement: 'p',
 	errorPlacement: function(error, element) {
@@ -91,14 +102,14 @@ $this->registerJs($js);
             <li class="tab-li"><a href="javascript:;"></a></li>
         </ul>
         <div class="form-content">
-            <?php $form = ActiveForm::begin(['enableAjaxValidation' => false, 'id' => 'loginForm', 'options' => ['class' => 'login-form']]); ?>
+            <?php $form = ActiveForm::begin(['enableAjaxValidation' => false, 'id' => 'signupForm', 'options' => ['class' => 'signup-form']]); ?>
             <?php
             $errors = $model->getFirstErrors();
             $error = '';
             if(isset($errors['verifyCode'])) {
                 $error = $errors['verifyCode'];
-            } elseif(isset($errors['email'])) {
-                $error = $errors['email'];
+            } elseif(isset($errors['phone'])) {
+                $error = $errors['phone'];
             } elseif(isset($errors['password'])) {
                 $error = $errors['password'];
             } elseif(isset($errors['rePassword'])) {
@@ -110,8 +121,8 @@ $this->registerJs($js);
                 <div class="form-error"><i class="iconfont jia-caution_b"></i><label class="text"><?= $error ?></label></div>
             <?php } ?>
             <div class="editable">
-                <?= Html::activeTextInput($model, 'email', ['class' => 'input-text']) ?>
-                <span class="placeholder">请输入邮箱</span>
+                <?= Html::activeTextInput($model, 'phone', ['class' => 'input-text']) ?>
+                <span class="placeholder">请输入手机号码</span>
             </div>
             <div class="editable">
                 <?= Html::activePasswordInput($model, 'password', ['class' => 'input-text', 'autocomplete' => 'off']) ?>
@@ -127,7 +138,7 @@ $this->registerJs($js);
                 <?= Captcha::widget([
                     'model' => $model,
                     'attribute' => 'verifyCode',
-                    'captchaAction' => '/account/user/captcha',
+                    'captchaAction' => '/account/passport/captcha',
                     'template' => '{image}',
                     'options' => ['class' => 'form-control', 'placeholder' => $model->getAttributeLabel('verifyCode')],
                     'imageOptions' => ['title' => '点击刷新', 'alt' => '验证码', 'style' => 'cursor: pointer;'],
@@ -140,14 +151,14 @@ $this->registerJs($js);
                 <?= Html::submitButton('注    册', ['class' => 'btn-settlement', 'style' => "cursor:pointer;"]) ?>
             </div>
             <div class="link-box">
-                <?= Html::a('已有账号直接登录', ['user/login'], ['class' => 'sign-up-link']) ?>
+                <?= Html::a('已有账号直接登录', ['passport/login'], ['class' => 'sign-up-link']) ?>
             </div>
             <?php ActiveForm::end(); ?>
 
             <div class="login-short">
                 <h3>使用合作账号登录：</h3>
                 <?= AuthChoice::widget([
-                    'baseAuthUrl' => ['/account/user/auth'],
+                    'baseAuthUrl' => ['/account/passport/auth'],
                     'popupMode' => true,
                 ]) ?>
             </div>

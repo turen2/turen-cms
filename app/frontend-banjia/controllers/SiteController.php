@@ -40,7 +40,7 @@ class SiteController extends Controller
                 'maxNum' => 6,
             ],
             'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
+                'class' => 'yii\captcha\PhoneCodeAction',
                 'width' => 100,
                 'height' => 42,
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
@@ -65,6 +65,7 @@ class SiteController extends Controller
     /**
      * 全局手机验证码
      */
+    /*
      public function actionPhoneVerifyCode()
      {
          $model = new VerifyConsult();
@@ -88,4 +89,5 @@ class SiteController extends Controller
              ]);
          }
      }
+    */
 }

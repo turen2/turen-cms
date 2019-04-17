@@ -134,34 +134,24 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * 手机号码获取用户模型
+     * 手机号码/用户名获取用户模型
      * @param $phone
      * @return User|null
      */
     public static function findByPhone($phone)
     {
-        return static::findOne(['status' => static::STATUS_ON, 'phone' => $phone]);
+        //['and', 'type=1', ['or', 'id=1', 'id=2']]
+        return static::find()->where(['and', 'status='.static::STATUS_ON, ['or', 'phone='.Yii::$app->db->quoteValue($phone), 'username='.Yii::$app->db->quoteValue($phone)]])->one();
     }
 
     /**
-     * 邮箱码获取用户模型
+     * 邮箱码/用户名获取用户模型
      * @param $email
      * @return User|null
      */
     public static function findByEmail($email)
     {
-        //echo User::find()->where(['status' => static::STATUS_ON, 'email' => $email])->createCommand()->getRawSql();exit;
-        return static::findOne(['status' => static::STATUS_ON, 'email' => $email]);
-    }
-
-    /**
-     * 用户名获取用户模型
-     * @param string $username
-     * @return static|null
-     */
-    public static function findByUsername($username)
-    {
-        return static::findOne(['status' => static::STATUS_ON, 'username' => $username]);
+        return static::find()->where(['and', 'status='.static::STATUS_ON, ['or', 'email='.Yii::$app->db->quoteValue($email), 'username='.Yii::$app->db->quoteValue($email)]])->one();
     }
 
     /**

@@ -45,6 +45,7 @@ class PhoneCodePopAction extends Action
                 'msg' => '手机号码格式有误',
             ]);
         }
+
         //发短信
         $code = Functions::PhoneCode(6);
         $phoneCode = [
@@ -52,6 +53,15 @@ class PhoneCodePopAction extends Action
             'code' => $code,
             't' => time(),
         ];
+
+        //设计验证码会话，且发短信加入队列任务
+        $session->set(self::PHONE_CODE_PARAM, $phoneCode);
+        $this->controller->asJson([
+            'state' => true,
+            'code' => 200,
+            'msg' => '验证码已经发送',//返回验证码
+        ]);
+
         if($rep = $this->sendPhoneCode($this->phone, $code) === true) {
             $session->set(self::PHONE_CODE_PARAM, $phoneCode);
             $this->controller->asJson([
@@ -71,8 +81,8 @@ class PhoneCodePopAction extends Action
     protected function sendPhoneCode($phone, $code)
     {
         //发送
-        $signName = '豹品淘';
-        $templateCode = 'SMS_91980004';
+        $signName = '嘉乐邦100';
+        $templateCode = 'SMS_163720482';
         $phoneNumbers = $phone;
         $templateParam = ['code' => $code];
 
