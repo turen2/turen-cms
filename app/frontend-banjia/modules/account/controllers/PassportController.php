@@ -6,10 +6,8 @@
  */
 namespace app\modules\account\controllers;
 
-use common\phonecode\ValidateCaptchaAction;
 use Yii;
 use yii\authclient\BaseClient;
-use yii\captcha\CaptchaAction;
 use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\base\InvalidArgumentException;
@@ -25,6 +23,7 @@ use common\models\user\passport\ForgetForm;
 use common\models\user\passport\ResetForm;
 use common\models\user\passport\BindForm;
 use common\phonecode\PhoneCodeAction;
+use common\phonecode\ValidateCaptchaAction;
 
 /**
  * Passport controller
@@ -77,9 +76,10 @@ class PassportController extends \app\components\Controller
         return [
             //生成图片验证码
             'captcha' => [
-                'class' => CaptchaAction::class,
+                'class' => 'yii\captcha\CaptchaAction',
                 'width' => 80,
                 'height' => 38,
+                'padding' => 4,
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
                 'minLength' => 4,
                 'maxLength' => 4,

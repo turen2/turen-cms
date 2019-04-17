@@ -67,9 +67,10 @@ class UserController extends \app\components\Controller
     {
         return [
             'captcha' => [
-                'class' => 'yii\captcha\PhoneCodeAction',
+                'class' => 'yii\captcha\CaptchaAction',
                 'width' => 80,
                 'height' => 38,
+                'padding' => 4,
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
                 'minLength' => 4,
                 'maxLength' => 4,

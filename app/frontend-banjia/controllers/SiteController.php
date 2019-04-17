@@ -7,13 +7,10 @@
 //站点通用控制器
 namespace app\controllers;
 
-use common\helpers\Util;
-use common\models\com\VerifyConsult;
 use Yii;
 use app\components\Controller;
 use app\widgets\phonecode\PhoneCodePopAction;
-use yii\web\Response;
-use yii\widgets\ActiveForm;
+use common\helpers\Util;
 
 /**
  * Site controller
@@ -40,9 +37,10 @@ class SiteController extends Controller
                 'maxNum' => 6,
             ],
             'captcha' => [
-                'class' => 'yii\captcha\PhoneCodeAction',
+                'class' => 'yii\captcha\CaptchaAction',
                 'width' => 100,
                 'height' => 42,
+                'padding' => 4,
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
                 'minLength' => 4,
                 'maxLength' => 4,

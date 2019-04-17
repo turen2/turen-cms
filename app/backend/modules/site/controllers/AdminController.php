@@ -12,7 +12,6 @@ use yii\filters\VerbFilter;
 use app\models\sys\Admin;
 use app\components\Controller;
 use app\models\sys\form\Login;
-use yii\web\User;
 
 /**
  * AdminController implements the CRUD actions for Admin model.
@@ -47,16 +46,16 @@ class AdminController extends Controller
     {
         return [
             'captcha' => [
-                'class' => 'yii\captcha\PhoneCodeAction',
+                'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
                 'minLength' => 4,
                 'maxLength' => 4,
                 'width' => 120,
                 'height' => 40,
-                'padding' => 0,
+                'padding' => 4,
                 'transparent' => true,
                 'foreColor' => 0x62A8EA,
-                'minLength' => 3,
+                'minLength' => 4,
                 'maxLength' => 4,
                 'offset' => 0,//每个字母相隔像素
                 'fontFile' => '@app/web/fonts/WishfulWaves.ttf',

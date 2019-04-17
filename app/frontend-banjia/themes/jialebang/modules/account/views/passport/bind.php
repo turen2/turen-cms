@@ -5,7 +5,6 @@
  * @author developer qq:980522557
  */
 
-use common\models\user\User;
 use yii\captcha\Captcha;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;

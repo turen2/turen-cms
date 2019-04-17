@@ -7,7 +7,6 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\captcha\Captcha;
-use yii\base\Widget;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */

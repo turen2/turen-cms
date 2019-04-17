@@ -65,7 +65,7 @@ class UserController extends Controller
                 'class' => 'yii\web\ErrorAction',
             ],
             'captcha' => [
-                'class' => 'yii\captcha\PhoneCodeAction',
+                'class' => 'yii\captcha\Captcha',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];

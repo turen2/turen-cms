@@ -6,7 +6,6 @@
  */
 
 use app\assets\ValidationAsset;
-use common\models\ext\Ad;
 use yii\authclient\widgets\AuthChoice;
 use yii\captcha\Captcha;
 use yii\helpers\Html;
