@@ -72,6 +72,7 @@ class PassportController extends \app\components\Controller
     {
         $phone = Yii::$app->getRequest()->get('phone');//ajax手机号码
         $verifycode = Yii::$app->getRequest()->get('verifycode');//图形验证码
+        $signTemplate = Yii::$app->getRequest()->get('signTemplate');//短信签名模板
         return [
             //生成图片验证码
             'captcha' => [
@@ -101,6 +102,7 @@ class PassportController extends \app\components\Controller
                 'verifycode' => $verifycode,
                 'phone' => $phone,
                 'maxNum' => 6,
+                'signTemplate' => $signTemplate,
             ],
             //第三方登录
 

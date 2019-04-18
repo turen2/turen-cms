@@ -55,7 +55,7 @@ var verifycodePhone = $('#verifycode-phone');//手机号码表单
 var verifycodeCode = $('#verifycode-code');//验证码表单
 var phoneReg = /(^1[3|4|5|7|8]\d{9}$)|(^09\d{8}$)/;//手机号正则
 var codeReg = /^\d+$/;
-var count = 60; //间隔函数，1秒执行
+var count = 99; //间隔函数，1秒执行
 var InterValObj1; //timer变量，控制时间
 var curCount1;//当前剩余秒数
 var btnStatus = 1;//按钮状态

@@ -6,6 +6,7 @@
  */
 namespace app\controllers;
 
+use console\queue\AlismsJob;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\helpers\Json;
@@ -72,23 +73,43 @@ class HomeController extends Controller
             $model->ui_state = Inquiry::INQUIRY_STATE_NOTHING;//待处理
             $model->ui_submit_time = time();
             $model->save(false);
-        }
 
-        //通知队列
-        foreach (explode("\r\n", Yii::$app->params['config_email_notify_online_call_price']) as $sendTo) {
-            $sendTo = trim($sendTo);
-            if(!empty($sendTo)) {
-                Yii::$app->jialebangMailQueue->push(new SmtpMailJob([
-                    'template' => GLOBAL_LANG.'/notify',//语言标识模板名称
-                    'params' => [
-                        '电话' => $phone,
-                        '位置' => $area,
-                        '业务类型' => $type,
-                    ],
-                    'sendTo' => $sendTo,
-                    'from' => [Yii::$app->params['config.supportEmail'] => Yii::$app->params['config_site_name']],
-                    'subject' => '有新的快捷预约 - ' . Yii::$app->params['config_site_name'],
-                ]));
+            //邮件通知队列
+            foreach (explode("\r\n", Yii::$app->params['config_email_notify_online_call_price']) as $sendTo) {
+                $sendTo = trim($sendTo);
+                if(!empty($sendTo)) {
+                    Yii::$app->jialebangMailQueue->push(new SmtpMailJob([
+                        'template' => GLOBAL_LANG.'/notify',//语言标识模板名称
+                        'params' => [
+                            '电话' => $phone,
+                            '位置' => $area,
+                            '业务类型' => $type,
+                        ],
+                        'sendTo' => $sendTo,
+                        'from' => [Yii::$app->params['config.supportEmail'] => Yii::$app->params['config_site_name']],
+                        'subject' => '有新的快捷预约 - ' . Yii::$app->params['config_site_name'],
+                    ]));
+                }
+            }
+
+            //短信通知队列
+            //有新预约订单了，用户：${name}，地址：${address}，电话：${phone}，业务：${event}，请及时处理以免造成损失。
+            $signTemplate = Yii::$app->params['call_price_notify'];
+            foreach (explode("\r\n", Yii::$app->params['config_sms_notify_online_call_price']) as $sendTo) {
+                $sendTo = trim($sendTo);
+                if(!empty($sendTo)) {
+                    Yii::$app->jialebangSmsQueue->push(new AlismsJob([
+                        'phoneNumber' => $sendTo,
+                        'signName' => $signTemplate['signName'],
+                        'templateCode' => $signTemplate['templateCode'],
+                        'templateParams' => [
+                            'name' => '未知',
+                            'address' => $area,
+                            'phone' => $phone,
+                            'event' => $type,
+                        ],
+                    ]));
+                }
             }
         }
 

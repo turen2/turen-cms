@@ -43,7 +43,11 @@ class BindForm extends Model
             [['phone', 'password', 'rePassword', 'phoneCode', 'protocol'], 'required'],
             ['phone', 'trim'],
             ['phone', 'match','pattern'=>'/^[1][3578][0-9]{9}$/'],
-            //['phone', 'unique', 'targetClass' => '\common\models\user\User'],//如果手机号码已经存在，则需要做资料转移操作！
+            ['phone', 'exist',
+                'targetClass' => User::class,
+                'filter' => ['status' => User::STATUS_ON],
+                'message' => '您输入的手机号码有误，请重试。',
+            ],
             ['password', 'string', 'min' => 6],
             ['rePassword','compare','compareAttribute'=>'password', 'message' => '再次输入的密码不一致'],
             ['protocol', 'validateProtocol'],

@@ -78,7 +78,7 @@ var verifycodeImage = $('#forgetform-verifycode-image');
 
 var phone = /^[1][3578][0-9]{9}$/;//手机号码规则
 var codeReg = /^\d+$/;//整数规则
-var count = 60; //间隔函数，1秒执行
+var count = 99; //间隔函数，1秒执行
 var InterValObj1; //timer变量，控制时间
 var curCount1;//当前剩余秒数
 var btnStatus = 1;//按钮状态
@@ -153,10 +153,12 @@ getCodeBtn.on('click', function() {
         dataType: 'json',
         context: $(this),
         cache: false,
-        data: {phone: $.trim(phoneInput.val()), verifycode: $.trim(successVerifyCode)},
+        data: {phone: $.trim(phoneInput.val()), verifycode: $.trim(successVerifyCode), signTemplate: 'forget_code'},
         success: function(res) {
             if (res['state']) {
                 console.log(res.msg);
+                //验证码框获取焦点
+                phoneCodeInput.focus();
             } else {
                 btnStatus = 1;//启用按钮
                 getCodeBtn.html("重新发送");

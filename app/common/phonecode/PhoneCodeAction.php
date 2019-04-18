@@ -16,19 +16,19 @@ class PhoneCodeAction extends Action
 {
     const VERIFY_CODE_PARAM = 'VerifyCode58258fsJHGv66HDy7';//数字验证码
     const PHONE_CODE_PARAM = 'PhoneCode9494FSKh54';
-    const PHONE_CODE_VALID_TIME = 60;//验证码有效时间
+    const PHONE_CODE_VALID_TIME = 100;//验证码有效时间
     const PHONE_MATCH_PATTERN = '/^[1][35678][0-9]{9}$/';
 
     public $verifycode;//上一次的图形验证码
     public $phone;//手机号码
-
     public $maxNum = 6;//数字验证码最大多少位
+    public $signTemplate;//短信签名模板
 
     public function init()
     {
         parent::init();
 
-        if(empty($this->maxNum) || empty($this->phone) || empty($this->verifycode)) {
+        if(empty($this->maxNum) || empty($this->phone) || empty($this->verifycode) || empty($this->signTemplate)) {
             throw new InvalidConfigException(self::class.'参数配置有误');
         }
     }
@@ -66,10 +66,11 @@ class PhoneCodeAction extends Action
         //测试
         //file_put_contents('D:\xampp\aaa.txt', $code);
         //push到短信发送队列
+        $signTemplate = Yii::$app->params[trim($this->signTemplate)];
         Yii::$app->jialebangSmsQueue->push(new AlismsJob([
             'phoneNumber' => $this->phone,
-            'signName' => '嘉乐邦100',
-            'templateCode' => 'SMS_163720482',
+            'signName' => $signTemplate['signName'],
+            'templateCode' => $signTemplate['templateCode'],
             'templateParams' => ['code' => $code],
         ]));
 
