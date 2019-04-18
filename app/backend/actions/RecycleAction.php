@@ -101,7 +101,10 @@ class RecycleAction extends Action
                 $reset = Url::to(['recycle', 'type' => self::RECYCLE_TYPE_RESET]);
                 $del = Url::to(['recycle', 'type' => self::RECYCLE_TYPE_DEL]);
                 
-                $title = '删除日期：'.$deltime."\n".'所属栏目：'.Column::ColumnName($model->columnid);
+                $title = '删除日期：'.$deltime;
+                if(isset($model->columnid)) {
+                    $title .= "\n".'所属栏目：'.Column::ColumnName($model->columnid);
+                }
                 
                 $str .= <<<EOF
 <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="data-table">

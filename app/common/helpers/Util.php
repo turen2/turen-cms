@@ -236,4 +236,46 @@ class Util
 
         return false;
     }
+
+    /**
+     * 验证是否是一个合格的Url
+     * @param $url
+     * @param array $validSchemes
+     * @param bool $enableIDN
+     * @return bool
+     */
+    public static function ValidationUrl($url, $validSchemes = ['http', 'https'], $enableIDN = false)
+    {
+        $defaultScheme = 'http';
+        $pattern = '/^{schemes}:\/\/(([A-Z0-9][A-Z0-9_-]*)(\.[A-Z0-9][A-Z0-9_-]*)+)(?::\d{1,5})?(?:$|[?\/#])/i';
+
+        if (is_string($url) && strlen($url) < 2000) {
+            if ($defaultScheme !== null && strpos($url, '://') === false) {
+                $url = $defaultScheme . '://' . $url;
+            }
+
+            if (strpos($pattern, '{schemes}') !== false) {
+                $pattern = str_replace('{schemes}', '(' . implode('|', $validSchemes) . ')', $pattern);
+            } else {
+                $pattern = $pattern;
+            }
+
+            if ($enableIDN) {
+                $url = preg_replace_callback('/:\/\/([^\/]+)/', function ($matches) {
+                    $idn = idn_to_ascii($matches[1], IDNA_NONTRANSITIONAL_TO_ASCII, INTL_IDNA_VARIANT_UTS46);
+                    if (PHP_VERSION_ID < 50600) {
+                        // TODO: drop old PHP versions support
+                        $idn = idn_to_ascii($matches[1]);
+                    }
+                    return '://' . $idn;
+                }, $url);
+            }
+
+            if (preg_match($pattern, $url)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

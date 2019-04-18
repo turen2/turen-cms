@@ -374,7 +374,8 @@ input:focus
     font-style: normal;
     background-color: #ff6f20;
     margin: 0 auto;
-    cursor: pointer
+    cursor: pointer;
+    border: none;
 }
 .primary-btn:hover {
     color: white;

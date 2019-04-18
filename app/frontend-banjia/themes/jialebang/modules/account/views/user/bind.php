@@ -8,10 +8,12 @@
 use yii\captcha\Captcha;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use app\assets\ValidationAsset;
 
 $this->title = '绑定账号';
 $this->params['breadcrumbs'][] = $this->title;
 
+ValidationAsset::register($this);
 $js = <<<EOF
 //placeholder效果
 $('.editable .input-text').each(function(i){
@@ -23,6 +25,54 @@ $('.editable .input-text').each(function(i){
 }).on('blur', function() {
     if($(this).val() == '') {
         $(this).next('.placeholder').show();
+    }
+});
+
+//验证提示效果
+var validator = $('#bindForm').validate({
+	rules: {
+        "BindForm[email]": {
+            "required": true,
+            "email": true
+        },
+        "BindForm[password]": {
+            "required": true,
+            "minlength": 6
+        },
+        "BindForm[rePassword]": {
+            "required": true,
+            "minlength": 6,
+            "equalTo": "#bindform-password"
+        },
+        "BindForm[verifyCode]": {
+            "required": true
+        }
+    },
+	messages: {
+	    "BindForm[email]": {
+            "required": '<i class="iconfont jia-close_b"></i>用户名/邮箱必填',
+            "email": '<i class="iconfont jia-close_b"></i>电子邮箱格式不正确'
+        },
+        "BindForm[password]": {
+            "required": '<i class="iconfont jia-close_b"></i>密码必填',
+            "minlength": '<i class="iconfont jia-close_b"></i>密码不能小于6位'
+        },
+        "BindForm[rePassword]": {
+            "required": '<i class="iconfont jia-close_b"></i>确认密码必填',
+            "minlength": '<i class="iconfont jia-close_b"></i>确认密码不能小于6位',
+            "equalTo": '<i class="iconfont jia-close_b"></i>两次输入的密码不一致'
+        },
+        "BindForm[verifyCode]": {
+            "required": '<i class="iconfont jia-close_b"></i>验证码必填'
+        }
+    },
+    errorElement: 'p',
+	errorPlacement: function(error, element) {
+		error.appendTo(element.parent());
+	},
+	submitHandler: function(form) {
+        //form.submit();
+        return true;
     }
 });
 EOF;
@@ -39,7 +89,7 @@ $this->registerJs($js);
                 <h6 class="user-h6"><?= $tmodel->getDisplayName() ?>，欢迎您！</h6>
             </div>
             <div class="fpass-detais">
-                <?php $form = ActiveForm::begin(['id' => 'bind-form']); ?>
+                <?php $form = ActiveForm::begin(['id' => 'bindForm']); ?>
                 <?php
                 $errors = $model->getFirstErrors();
                 $error = '';
@@ -60,12 +110,12 @@ $this->registerJs($js);
                     <span class="placeholder">请输入邮箱</span>
                 </div>
                 <div class="editable">
-                    <?= Html::activePasswordInput($model, 'password', ['class' => 'input-text', 'autofocus' => true]) ?>
+                    <?= Html::activePasswordInput($model, 'password', ['class' => 'input-text', 'autofocus' => false]) ?>
                     <span class="placeholder">请输入密码</span>
                 </div>
                 <div class="editable">
-                    <?= Html::activePasswordInput($model, 'rePassword', ['class' => 'input-text', 'autofocus' => true]) ?>
-                    <span class="placeholder">请输入确认密码</span>
+                    <?= Html::activePasswordInput($model, 'rePassword', ['class' => 'input-text', 'autofocus' => false]) ?>
+                    <span class="placeholder">请确认密码</span>
                 </div>
                 <div class="editable">
                     <?= Html::activeTextInput($model, 'verifyCode', ['class' => 'input-text', 'autocomplete' => 'off']) ?>
@@ -79,7 +129,7 @@ $this->registerJs($js);
                         'imageOptions' => ['title' => '点击刷新', 'alt' => '验证码', 'style' => 'cursor: pointer;'],
                     ]) ?>
                 </div>
-                <?= Html::submitButton('下一步', ['class' => 'btn-settlement']) ?>
+                <?= Html::submitButton('下一步', ['class' => 'btn-settlement primary-btn br5']) ?>
                 <?php ActiveForm::end(); ?>
             </div>
         </div>

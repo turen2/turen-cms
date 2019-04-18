@@ -217,7 +217,6 @@ phoneCodeInput.on('focus', function() {
         return;
     }
 });
-
 EOF;
 $this->registerJs($js);
 ?>
@@ -237,10 +236,10 @@ $this->registerJs($js);
                 <?php
                 $errors = $model->getFirstErrors();
                 $error = '';
-                if(isset($errors['phone'])) {
-                    $error = $errors['phone'];
-                } elseif(isset($errors['phoneCode'])) {
+                if(isset($errors['phoneCode'])) {
                     $error = $errors['phoneCode'];
+                } elseif(isset($errors['phone'])) {
+                    $error = $errors['phone'];
                 }
                 if($errors) { ?>
                     <div class="form-error"><i class="iconfont jia-caution_b"></i><label class="text"><?= $error ?></label></div>
@@ -271,7 +270,7 @@ $this->registerJs($js);
                     <?= Html::activeCheckbox($model, 'rememberMe') ?>
                 </p>
                 <div class="btn-box">
-                    <?= Html::submitButton('登    录', ['class' => 'btn-settlement', 'style' => "cursor:pointer;"]) ?>
+                    <?= Html::submitButton('登    录', ['class' => 'btn-settlement primary-btn br5', 'style' => "cursor:pointer;"]) ?>
                 </div>
                 <div class="link-box">
                     <?= Html::a('新客户注册', ['passport/signup'], ['class' => 'sign-up-link', 'target' => '_blank']) ?>

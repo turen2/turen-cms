@@ -8,8 +8,8 @@ namespace common\models\user\passport;
 
 use Yii;
 use yii\base\Model;
-use console\queue\SmtpMailJob;
 use common\models\user\User;
+use common\phonecode\PhoneCodeValidator;
 
 /**
  * Forget form
@@ -17,6 +17,7 @@ use common\models\user\User;
 class ForgetForm extends Model
 {
     public $phone;
+    public $phoneCode;//手机验证码
     public $verifyCode;//验证码
 
     private $_user;
@@ -27,18 +28,21 @@ class ForgetForm extends Model
     public function rules()
     {
         return [
-            ['phone', 'required'],
+            [['phone', 'phoneCode'], 'required'],
             ['phone', 'trim'],
+            ['phone', 'match','pattern'=>'/^[1][3578][0-9]{9}$/'],
             ['phone', 'exist',
                 'targetClass' => User::class,
                 'filter' => ['status' => User::STATUS_ON],
-                'message' => '您输入的邮箱地址有误，请重试。',
+                'message' => '您输入的手机号码有误，请重试。',
             ],
-            ['verifyCode', 'captcha',
-                'skipOnEmpty' => false,
-                'caseSensitive' => false,
-                'captchaAction' => 'account/user/captcha',
-            ],
+            ['phoneCode', PhoneCodeValidator::class],//自定义验证器
+
+//            ['verifyCode', 'captcha',
+//                'skipOnEmpty' => false,
+//                'caseSensitive' => false,
+//                'captchaAction' => 'account/user/captcha',
+//            ],
         ];
     }
 
@@ -48,19 +52,19 @@ class ForgetForm extends Model
     public function attributeLabels()
     {
         $labels = [
-            'phone' => '用户邮箱',
-            'verifyCode' => '验证码',
+            'phone' => '手机号码',
+            'phoneCode' => '手机验证码',
+            'verifyCode' => '图形验证码',
         ];
 
         return $labels;
     }
 
     /**
-     * Sends an email with a link, for resetting the password.
-     *
-     * @return bool whether the email was send
+     * 生成一个临时token码，用于修改密码之前的认证工作
+     * @return bool
      */
-    public function sendEmail()
+    public function generateToken()
     {
         /* @var $user User */
         $user = $this->getUser();
@@ -76,29 +80,7 @@ class ForgetForm extends Model
             }
         }
 
-        /* 测试
-        return Yii::$app->mailer->compose()
-            ->setFrom([Yii::$app->params['config.supportEmail'] => Yii::$app->params['config_site_name']])
-            ->setTo($this->email)
-            ->setSubject('重置密码 - '.Yii::$app->params['config_site_name'])
-            ->setTextBody('Plain text content')
-            ->setHtmlBody('<b>HTML content</b>')
-            ->send();
-        */
-
-        //邮件通知队列
-        Yii::$app->jialebangMailQueue->push(new SmtpMailJob([
-            'template' => GLOBAL_LANG.'/resetForm',//语言标识模板名称
-            'params' => [
-                'username' => $user->username,
-                'resetLink' => Yii::$app->urlManager->createAbsoluteUrl(['account/user/reset', 'token' => $user->password_reset_token])
-            ],
-            'sendTo' => trim($this->email),
-            'from' => [Yii::$app->params['config.supportEmail'] => Yii::$app->params['config_site_name']],
-            'subject' => '重置密码 - ' . Yii::$app->params['config_site_name'],
-        ]));
-
-        return true;
+        return $user->password_reset_token;
     }
 
     /**

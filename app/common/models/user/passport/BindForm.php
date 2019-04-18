@@ -9,16 +9,18 @@ namespace common\models\user\passport;
 use Yii;
 use yii\base\Model;
 use common\models\user\User;
+use common\phonecode\PhoneCodeValidator;
 
 /**
  * Bind form
  */
 class BindForm extends Model
 {
-    public $email;
+    public $phone;
     public $password;
     public $rePassword;
     public $verifyCode;
+    public $phoneCode;
     public $protocol = true;//协议
     
     //场景
@@ -38,17 +40,19 @@ class BindForm extends Model
     public function rules()
     {
         return [
-            [['email', 'password', 'rePassword', 'verifyCode', 'protocol'], 'required'],
-            ['email', 'trim'],
-            ['email','email'],
+            [['phone', 'password', 'rePassword', 'phoneCode', 'protocol'], 'required'],
+            ['phone', 'trim'],
+            ['phone', 'match','pattern'=>'/^[1][3578][0-9]{9}$/'],
+            //['phone', 'unique', 'targetClass' => '\common\models\user\User'],//如果手机号码已经存在，则需要做资料转移操作！
             ['password', 'string', 'min' => 6],
             ['rePassword','compare','compareAttribute'=>'password', 'message' => '再次输入的密码不一致'],
-            ['verifyCode', 'captcha',
-                'skipOnEmpty' => false,
-                'caseSensitive' => false,
-                'captchaAction' => 'account/user/captcha',
-            ],
             ['protocol', 'validateProtocol'],
+            ['phoneCode', PhoneCodeValidator::class],//自定义验证器
+//            ['verifyCode', 'captcha',
+//                'skipOnEmpty' => false,
+//                'caseSensitive' => false,
+//                'captchaAction' => 'account/passport/captcha',
+//            ],
         ];
     }
 
@@ -66,10 +70,11 @@ class BindForm extends Model
     public function attributeLabels()
     {
         return [
-            'email' => '用户邮件',
+            'phone' => '手机号码',
             'password' => '密码',
             'rePassword' => '确认密码',
-            'verifyCode' => '验证码',
+            'verifyCode' => '图形验证码',
+            'phoneCode' => '手机验证码',
             'protocol' => '商户协议',
         ];
     }
@@ -85,23 +90,47 @@ class BindForm extends Model
         //注册新账号，并绑定第三方登录
         $name = $tmodel->getDisplayName();
         $user = new User();
-        $user->username = empty($name)?$this->email:$name;
+        $user->username = empty($name)?$this->phone:$name;
         $user->avatar = $tmodel->getDisplayAvatar();
         $user->{$field} = $openid;
-        $user->email = $this->email;
+        $user->phone = $this->phone;
         //$user->address_prov = $this->province;
         //$user->address_city = $this->city;
         $user->setPassword($this->password);
         $user->generateAuthKey();
         $user->save(false);
+
+        $this->transferUserData($user, $tmodel);
+
         return $user;
+    }
+
+    /**
+     * 用户资料转移
+     * @param $user
+     * @param $tmodel
+     * @return bool
+     */
+    protected function transferUserData($user, $tmodel)
+    {
+        //'$tmodel'=>$user
+
+        //基本资料
+
+        //预约资料
+
+        //订单资料
+
+        //资质资料
+
+        return true;
     }
 
     /*
     public function bind()
     {
         $user = Yii::$app->getUser()->getIdentity();
-        $user->email = $this->email;
+        $user->phone = $this->phone;
         $user->username = '';//注册不用填写姓名
         //$user->address_prov = $this->province;
         //$user->address_city = $this->city;

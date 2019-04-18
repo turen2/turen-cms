@@ -4,6 +4,8 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
+
+use common\helpers\Util;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
@@ -58,7 +60,7 @@ $this->title = '用户管理';
 			<input type="checkbox" name="checkid[]" id="checkid[]" value="<?= $model->user_id; ?>">
 		</td>
 		<td><span class="thumbs">
-		<img alt="" src="<?= empty($model->avatar)?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($model->avatar, true, AliyunOss::OSS_STYLE_NAME180) ?>" style="height: 60px;">
+		<img alt="" src="<?= (Util::ValidationUrl($model->avatar))?$model->avatar:(empty($model->avatar)?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($model->avatar, true, AliyunOss::OSS_STYLE_NAME180)) ?>" style="height: 60px;">
 		</span></td>
 		<td><?= $model->username; ?><br /><?= $model->sex?'帅哥':'美女'; ?> [<?= $model->user_id; ?>]</td>
 		<td><?= $model->phone; ?><br /><?= $model->email; ?></td>

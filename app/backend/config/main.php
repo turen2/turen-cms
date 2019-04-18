@@ -32,10 +32,8 @@ return [
     //系统初始化时预处理核心组件后，调用此组件的接口bootstrap()方法
     'bootstrap' => [
         'log',
-        //'queue',//队列
         //'app\bootstrap\initSysten',//php 7.2不支持
         //'app\bootstrap\initConfig',
-        
         [
             'class' => InitSysten::class,//初始化环境：模板、语言、缓存
         ],

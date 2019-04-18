@@ -119,7 +119,7 @@ $this->registerJs($js);
             </div>
             <div class="editable">
                 <?= Html::activePasswordInput($model, 'rePassword', ['class' => 'input-text', 'autocomplete' => 'off']) ?>
-                <span class="placeholder">请输入确认密码</span>
+                <span class="placeholder">请确认密码</span>
             </div>
             <div class="editable">
                 <?= Html::activeTextInput($model, 'verifyCode', ['class' => 'input-text', 'autocomplete' => 'off']) ?>
@@ -137,7 +137,7 @@ $this->registerJs($js);
                 <?= Html::activeCheckbox($model, 'agreeProtocol', ['label' => $model->getAttributeLabel('agreeProtocol').Html::a(' 用户协议', ['help/detail', 'slug' => 'user-protocol'], ['target' => '_blank'])]) ?>
             </p>
             <div class="btn-box">
-                <?= Html::submitButton('注    册', ['class' => 'btn-settlement', 'style' => "cursor:pointer;"]) ?>
+                <?= Html::submitButton('注    册', ['class' => 'btn-settlement primary-btn br5', 'style' => "cursor:pointer;"]) ?>
             </div>
             <div class="link-box">
                 <?= Html::a('已有账号直接登录', ['user/login'], ['class' => 'sign-up-link']) ?>

@@ -119,7 +119,7 @@ $this->registerJs($js);
                     <?= Html::activeCheckbox($model, 'rememberMe') ?>
                 </p>
                 <div class="btn-box">
-                    <?= Html::submitButton('登    录', ['class' => 'btn-settlement', 'style' => "cursor:pointer;"]) ?>
+                    <?= Html::submitButton('登    录', ['class' => 'btn-settlement primary-btn br5', 'style' => "cursor:pointer;"]) ?>
                 </div>
                 <div class="link-box">
                     <?= Html::a('忘记密码？', ['user/forget'], ['class' => 'forget-pass-link', 'target' => '_blank']) ?>

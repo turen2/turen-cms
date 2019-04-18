@@ -89,7 +89,7 @@ class GroupController extends Controller
                 $model = new Group();
                 $model->ug_name = $ug_nameadd;
                 $model->orderid = $orderidadd;
-                $model->save(false);
+                $model->save();
                 
                 $tip .= ' '.$ug_nameadd.' 添加成功！';
             }
@@ -168,7 +168,7 @@ class GroupController extends Controller
         Group::updateAll(['is_default' => Group::STATUS_OFF], ['lang' => GLOBAL_LANG]);
         
         $model->is_default = Group::STATUS_ON;
-        $model->save(false);
+        $model->save(false);//只更新一个字段，不需要影响到行为和事件
         
         Yii::$app->getSession()->setFlash('success', $model->ug_name.' 已经设为默认！');
         return $this->redirect($returnUrl);

@@ -94,7 +94,7 @@ $this->registerJs($js);
                         'imageOptions' => ['title' => '点击刷新', 'alt' => '验证码', 'style' => 'cursor: pointer;'],
                     ]) ?>
                 </div>
-                <?= Html::submitButton('确认', ['class' => 'btn-settlement']) ?>
+                <?= Html::submitButton('确认', ['class' => 'btn-settlement primary-btn br5']) ?>
                 <?php ActiveForm::end(); ?>
             </div>
         </div>

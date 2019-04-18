@@ -8,10 +8,12 @@
 use yii\captcha\Captcha;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use app\assets\ValidationAsset;
 
 $this->title = '重置密码';
 $this->params['breadcrumbs'][] = $this->title;
 
+ValidationAsset::register($this);
 $js = <<<EOF
 //placeholder效果
 $('.editable .input-text').each(function(i){
@@ -25,6 +27,40 @@ $('.editable .input-text').each(function(i){
         $(this).next('.placeholder').show();
     }
 });
+
+//验证提示效果
+var validator = $('#resetForm').validate({
+	rules: {
+        "ResetForm[password]": {
+            "required": true,
+            "minlength": 6
+        },
+        "ResetForm[rePassword]": {//不能为空，而且还必须正确
+            "required": true,
+            "minlength": 6,
+            "equalTo": "#resetform-password"
+        }
+    },
+	messages: {
+	    "ResetForm[password]": {
+            "required": '<i class="iconfont jia-close_b"></i>新密码必填',
+            "minlength": '<i class="iconfont jia-close_b"></i>新密码不能小于6位'
+        },
+        "ResetForm[rePassword]": {
+            "required": '<i class="iconfont jia-close_b"></i>确认新密码必填',
+            "minlength": '<i class="iconfont jia-close_b"></i>确认新密码不能小于6位',
+            "equalTo": '<i class="iconfont jia-close_b"></i>两次输入的密码不一致'
+        }
+    },
+    errorElement: 'p',
+	errorPlacement: function(error, element) {
+		error.appendTo(element.parent());
+	},
+	submitHandler: function(form) {
+        //form.submit();
+        return true;
+    }
+});
 EOF;
 $this->registerJs($js);
 ?>
@@ -34,12 +70,12 @@ $this->registerJs($js);
         <h3><span class="fpass-title"><?= Html::encode($this->title) ?></span></h3>
         <div class="fpass-case">
             <div class="fpass-detais">
-                <?php $form = ActiveForm::begin(['id' => 'reset-form']); ?>
+                <?php $form = ActiveForm::begin(['id' => 'resetForm']); ?>
                 <?php
                 $errors = $model->getFirstErrors();
                 $error = '';
-                if(isset($errors['verifyCode'])) {
-                    $error = $errors['verifyCode'];
+                if(isset($errors['rePassword'])) {
+                    $error = $errors['rePassword'];
                 } elseif(isset($errors['password'])) {
                     $error = $errors['password'];
                 }
@@ -47,22 +83,14 @@ $this->registerJs($js);
                     <div class="form-error"><i class="iconfont jia-caution_b"></i><label class="text"><?= $error ?></label></div>
                 <?php } ?>
                 <div class="editable">
-                    <?= Html::activePasswordInput($model, 'password', ['class' => 'input-text', 'autofocus' => true]) ?>
+                    <?= Html::activePasswordInput($model, 'password', ['class' => 'input-text', 'autofocus' => false]) ?>
                     <span class="placeholder">请输入新密码</span>
                 </div>
                 <div class="editable">
-                    <?= Html::activeTextInput($model, 'verifyCode', ['class' => 'input-text', 'autocomplete' => 'off']) ?>
-                    <span class="placeholder">请输入验证码</span>
-                    <?= Captcha::widget([
-                        'model' => $model,
-                        'attribute' => 'verifyCode',
-                        'captchaAction' => '/account/passport/captcha',
-                        'template' => '{image}',
-                        'options' => ['class' => 'form-control', 'placeholder' => $model->getAttributeLabel('verifyCode')],
-                        'imageOptions' => ['title' => '点击刷新', 'alt' => '验证码', 'style' => 'cursor: pointer;'],
-                    ]) ?>
+                    <?= Html::activePasswordInput($model, 'rePassword', ['class' => 'input-text', 'autofocus' => false]) ?>
+                    <span class="placeholder">请确认新密码</span>
                 </div>
-                <?= Html::submitButton('确认', ['class' => 'btn-settlement']) ?>
+                <?= Html::submitButton('确认', ['class' => 'btn-settlement primary-btn br5']) ?>
                 <?php ActiveForm::end(); ?>
             </div>
         </div>

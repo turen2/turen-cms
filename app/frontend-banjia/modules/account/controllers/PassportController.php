@@ -57,7 +57,6 @@ class PassportController extends \app\components\Controller
             'forget',//邮箱发送验证邮件
             'reset',//邮箱重新密码
             'forget-result',//密码找回响应结果
-            'phone-password',//手机重置密码
 
             //第三方验证与绑定
             'auth',
@@ -77,9 +76,9 @@ class PassportController extends \app\components\Controller
             //生成图片验证码
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
-                'width' => 80,
+                'width' => 90,
                 'height' => 38,
-                'padding' => 4,
+                'padding' => 6,
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
                 'minLength' => 4,
                 'maxLength' => 4,
@@ -330,10 +329,10 @@ class PassportController extends \app\components\Controller
         
         $model = new ForgetForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail()) {
-                return $this->redirect(['passport/forget-result', 'type' => 'success', 'point' => 2, 'title' => '邮箱发送成功', 'text' => '邮箱已发送，请查收并继续完成下一步操作']);
+            if($token = $model->generateToken()) {
+                return $this->redirect(['passport/reset', 'token' => $token]);
             } else {
-                return $this->redirect(['passport/forget-result', 'type' => 'error', 'point' => 2, 'title' => '邮箱发送失败', 'text' => '发送错误，请输入正确的邮箱地址再试']);
+                return $this->redirect(['passport/forget-result', 'type' => 'error', 'point' => 2, 'title' => '找回密码失败', 'text' => '找回密码失败，请稍后再试']);
             }
         }
 

@@ -11,7 +11,7 @@ use common\models\user\User;
 class ResetForm extends Model
 {
     public $password;
-    public $verifyCode;//验证码
+    public $rePassword;
 
     /**
      * @var \common\models\User
@@ -43,13 +43,9 @@ class ResetForm extends Model
     public function rules()
     {
         return [
-            ['password', 'required'],
-            ['password', 'string', 'min' => 6],
-            ['verifyCode', 'captcha',
-                'skipOnEmpty' => false,
-                'caseSensitive' => false,
-                'captchaAction' => 'account/user/captcha',
-            ],
+            [['password', 'rePassword'], 'required'],
+            [['password', 'rePassword'], 'string', 'min' => 6],
+            ['rePassword','compare','compareAttribute'=>'password'],
         ];
     }
 
@@ -60,7 +56,7 @@ class ResetForm extends Model
     {
         $labels = [
             'password' => '新密码',
-            'verifyCode' => '验证码',
+            'rePassword' => '确认新密码',
         ];
 
         return $labels;

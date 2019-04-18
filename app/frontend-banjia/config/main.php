@@ -60,6 +60,7 @@ return [
             'serializer' => 'yii\queue\serializers\JsonSerializer',//存储格式
             'ttr' => 30,//重试停留时间
             'attempts' => 3,//默认重试次数
+            'as log' => \yii\queue\LogBehavior::class,//错误日志 默认为 console/runtime/logs/app.log
         ],
         //家乐邦短信队列
         'jialebangSmsQueue' => [
@@ -74,6 +75,7 @@ return [
             'serializer' => 'yii\queue\serializers\JsonSerializer',//存储格式
             'ttr' => 30,//重试停留时间
             'attempts' => 3,//默认重试次数
+            'as log' => \yii\queue\LogBehavior::class,//错误日志 默认为 console/runtime/logs/app.log
         ],
         'devicedetect' => [
             'class' => 'alexandernst\devicedetect\DeviceDetect',

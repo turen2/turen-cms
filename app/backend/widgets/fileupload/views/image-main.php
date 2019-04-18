@@ -1,4 +1,6 @@
 <?php
+
+use common\helpers\Util;
 use yii\helpers\Html;
 use common\components\AliyunOss;
 
@@ -32,7 +34,7 @@ $webUrl = Yii::getAlias('@web');
         </a>
         <?php } else { ?>
         <a href="javascript:;">
-            <img class="thumbnail" title="<?= $pic ?>" src="<?= Yii::$app->aliyunoss->getObjectUrl($pic, true, AliyunOss::OSS_STYLE_NAME180) ?>">
+            <img class="thumbnail" title="<?= $pic ?>" src="<?= Util::ValidationUrl($pic)?$pic:Yii::$app->aliyunoss->getObjectUrl($pic, true, AliyunOss::OSS_STYLE_NAME180) ?>">
             <em title="删除这张图片" class="closebtn">×</em>
         </a>
         <?php } ?>

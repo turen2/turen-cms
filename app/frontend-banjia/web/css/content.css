@@ -2077,20 +2077,8 @@
 }
 .btn-settlement {
     display: block;
-    height: 40px;
-    line-height: 40px;
     width: 100%;
-    text-align: center;
     font-size: 16px;
-    color: #fff;
-    border: none;
-    -webkit-border-radius: 5px;
-    -o-border-radius: 5px;
-    -ms-border-radius: 5px;
-    border-radius: 5px;
-    background-color: #ff6f20;
-    outline: 0 none;
-    cursor: pointer;
 }
 .form-box .link-box {
     height: 34px;

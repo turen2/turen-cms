@@ -55,6 +55,11 @@ class User extends \app\models\base\User
 	            'class' => LaydateBehavior::class,
 	            'timeAttribute' => 'reg_time',
 	        ],
+            'timemap' => [//仅仅为了提供一个touch方法
+                'class' => TimestampBehavior::class,
+                'createdAtAttribute' => false,
+                'updatedAtAttribute' => false
+            ],
 	    ];
 	}
 
