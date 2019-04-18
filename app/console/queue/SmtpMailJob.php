@@ -69,6 +69,7 @@ class SmtpMailJob extends BaseObject implements \yii\queue\JobInterface
                 ->compose(['html' => $this->template.'-html', 'text' => $this->template.'-text'], ['params' => $this->params])
                 ->setFrom($this->from)
                 ->setTo($this->sendTo)
+                //->setReplyTo(['test@qq.com' => '测试标题'])//默认回复地址
                 ->setSubject($this->subject)
                 ->send();
         } catch (\Exception $e) {

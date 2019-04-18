@@ -41,7 +41,7 @@ class HomeController extends Controller
         //echo Yii::$app->getViewPath();exit;
 
         //var_dump(Yii::$app->getView()->theme->pathMap);exit;
-        
+
         return $this->render('default');
     }
 
@@ -61,6 +61,7 @@ class HomeController extends Controller
             '位置' => $area,
             '业务类型' => $type,
         ]);
+
         $address = Util::IPAddess();
         if(!Inquiry::find()->where(['ui_content' => $content])->exists()) {
             $model = new Inquiry();

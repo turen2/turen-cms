@@ -5,6 +5,8 @@
  * @author developer qq:980522557
  */
 use yii\helpers\Html;
+
+$this->title = '嘉乐邦预约通知';
 ?>
 <div class="new-notify">
     <p>有新预约，请查收：</p>

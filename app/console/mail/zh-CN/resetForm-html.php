@@ -5,6 +5,8 @@
  * @author developer qq:980522557
  */
 use yii\helpers\Html;
+
+$this->title = '嘉乐邦预约通知';
 ?>
 <div class="password-reset">
     <p>您好 <?= Html::encode($params['username']) ?>,</p>
