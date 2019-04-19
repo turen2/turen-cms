@@ -6,6 +6,7 @@
  */
 namespace app\bootstrap;
 
+use common\models\user\User;
 use Yii;
 use yii\db\Query;
 use yii\base\InvalidConfigException;
@@ -148,6 +149,9 @@ class Init extends \yii\base\Component implements \yii\base\BootstrapInterface
     protected function initConfig()
     {
         Yii::$app->params = ArrayHelper::merge(Yii::$app->params, Config::CacheList());
+
+        //系统登录模式纠正
+        Yii::$app->user->loginUrl = (Yii::$app->params['config_login_mode'] == User::USER_PHONE_MODE)?['/account/passport/login']:['/account/user/login'];
     }
     
     protected function initTemplate()
