@@ -48,8 +48,15 @@ $links = [
     ],
 ];
 ?>
-<ul class="sidelist">
-    <?php foreach ($links as $link) { ?>
-        <li><a href="<?= Url::to(['/'.$link['route']]) ?>" class="<?= ($link['route'] == $route)?'on':'' ?>" data-method="<?= $link['isPost']?'post':'' ?>"><?= $link['label'] ?></a></li>
-    <?php } ?>
-</ul>
+<div class="user-side">
+    <div class="menu-head">
+        <h3>客户中心</h3>
+    </div>
+    <div class="menu-list">
+        <ul>
+            <?php foreach ($links as $link) { ?>
+                <li><a href="<?= Url::to(['/'.$link['route']]) ?>" class="<?= ($link['route'] == $route)?'on':'' ?>" data-method="<?= $link['isPost']?'post':'' ?>"><?= $link['label'] ?></a></li>
+            <?php } ?>
+        </ul>
+    </div>
+</div>

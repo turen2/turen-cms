@@ -5,29 +5,20 @@
  * @author developer qq:980522557
  */
 
-$this->title = '用户中心';
+$this->title = '企业资质';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="user-center">
     <div class="container clearfix">
-        <div class="user-side">
-            <div class="tab-sidebox about-us">
-                <div class="tab-sidebox-title">
-                    <h3>用户中心</h3>
-                </div>
-                <div class="">
-                    <?= $this->render('../_account_sidebox') ?>
-                </div>
-            </div>
-        </div>
+        <?= $this->render('../_account_sidebox', ['route' => 'center']) ?>
         <div class="user-content info">
-            <div>企业资质</div>
-            <p>
-                用户中心侧边导航：http://www.jq22.com/demo/jQuery-menu20160120/#
-                <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-                <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-            </p>
+            <div class="user-content-head">
+                <div class="title"><?= $this->title ?></div>
+            </div>
+            <div class="user-content-body">
+                body
+            </div>
         </div>
     </div>
 </div>

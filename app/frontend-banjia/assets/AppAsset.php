@@ -18,12 +18,10 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/global.css',//重置样式
         'css/common.css',//全局通用样式
-        'css/site.css',//详情样式
     ];
     
     public $js = [
         'js/common.js',
-        'js/site.js',
     ];
     
     public $depends = [

@@ -114,7 +114,7 @@ class HomeController extends Controller
                         'signName' => $signTemplate['signName'],
                         'templateCode' => $signTemplate['templateCode'],
                         'templateParams' => [
-                            'name' => '未知',
+                            'name' => Yii::$app->getUser()->isGuest?'未知':Yii::$app->getUser()->getIdentity()->username,
                             'address' => $area,
                             'phone' => $phone,
                             'event' => $type,
