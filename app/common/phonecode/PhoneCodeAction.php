@@ -67,6 +67,10 @@ class PhoneCodeAction extends Action
         //file_put_contents('D:\xampp\aaa.txt', $code);
         //push到短信发送队列
         $signTemplate = Yii::$app->params[trim($this->signTemplate)];
+
+        Yii::$app->jialebangSmsQueue->ttr(10);
+        Yii::$app->jialebangSmsQueue->delay(0);
+        Yii::$app->jialebangSmsQueue->priority(98);
         Yii::$app->jialebangSmsQueue->push(new AlismsJob([
             'phoneNumber' => $this->phone,
             'signName' => $signTemplate['signName'],

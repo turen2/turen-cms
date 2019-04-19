@@ -35,6 +35,11 @@ class PhoneLoginForm extends Model
             ['phone', 'match','pattern'=>'/^[1][3578][0-9]{9}$/'],
             ['rememberMe', 'boolean'],
             ['phoneCode', PhoneCodeValidator::class],//自定义验证器
+            ['phone', 'exist',
+                'targetClass' => User::class,
+                'filter' => ['status' => User::STATUS_ON],
+                'message' => '此账户不存在，请重试。',
+            ],
 
             //图形验证码，不需要再验证
 //            ['verifyCode', 'captcha',
@@ -70,7 +75,11 @@ class PhoneLoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
+            $user = $this->getUser();
+            if(empty($user)) {
+                $this->addError('phone', '请输入正确的账号或密码！');
+            }
+            return Yii::$app->user->login($user, $this->rememberMe ? 3600 * 24 * 30 : 0);
         } else {
             return false;
         }

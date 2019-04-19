@@ -27,7 +27,13 @@ class LoginForm extends Model
     public function rules()
     {
         $rules = [
-            [['password', 'verifyCode'], 'required'],
+            [['phone', 'password', 'verifyCode'], 'required'],
+            ['phone','match','pattern'=>'/^[1][3578][0-9]{9}$/'],
+            ['phone', 'exist',
+                'targetClass' => User::class,
+                'filter' => ['status' => User::STATUS_ON],
+                'message' => '此账户不存在，请重试。',
+            ],
             ['rememberMe', 'boolean'],
             ['password', 'validatePassword'],
             [['password', 'verifyCode'], 'trim'],
@@ -37,10 +43,6 @@ class LoginForm extends Model
                 'captchaAction' => 'account/passport/captcha',
             ],
         ];
-
-        $rules[] = ['phone', 'required'];
-        $rules[] = ['phone', 'string', 'min' => 6, 'max' => 20];
-        $rules[] = ['phone','match','pattern'=>'/^[1][3578][0-9]{9}$/'];
 
         return $rules;
     }
@@ -85,6 +87,10 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
+            $user = $this->getUser();
+            if(empty($user)) {
+                $this->addError('phone', '请输入正确的账号或密码！');
+            }
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
         } else {
             return false;

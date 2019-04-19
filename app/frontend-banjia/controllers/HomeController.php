@@ -79,6 +79,11 @@ class HomeController extends Controller
             foreach (explode("\r\n", Yii::$app->params['config_email_notify_online_call_price']) as $sendTo) {
                 $sendTo = trim($sendTo);
                 if(!empty($sendTo)) {
+                    //设置重试间隔时间、延迟时间、优先级。
+                    Yii::$app->jialebangMailQueue->ttr(10);
+                    Yii::$app->jialebangMailQueue->delay(0);
+                    Yii::$app->jialebangMailQueue->priority(100);
+
                     Yii::$app->jialebangMailQueue->push(new SmtpMailJob([
                         'template' => GLOBAL_LANG.'/notify',//语言标识模板名称
                         'params' => [
@@ -99,6 +104,11 @@ class HomeController extends Controller
             foreach (explode("\r\n", Yii::$app->params['config_sms_notify_online_call_price']) as $sendTo) {
                 $sendTo = trim($sendTo);
                 if(!empty($sendTo)) {
+                    //设置重试间隔时间、延迟时间、优先级。
+                    Yii::$app->jialebangSmsQueue->ttr(10);
+                    Yii::$app->jialebangSmsQueue->delay(0);
+                    Yii::$app->jialebangSmsQueue->priority(99);
+
                     Yii::$app->jialebangSmsQueue->push(new AlismsJob([
                         'phoneNumber' => $sendTo,
                         'signName' => $signTemplate['signName'],

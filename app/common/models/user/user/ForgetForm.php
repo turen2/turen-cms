@@ -88,6 +88,9 @@ class ForgetForm extends Model
         */
 
         //邮件通知队列
+        Yii::$app->jialebangMailQueue->ttr(10);
+        Yii::$app->jialebangMailQueue->delay(0);
+        Yii::$app->jialebangMailQueue->priority(100);
         Yii::$app->jialebangMailQueue->push(new SmtpMailJob([
             'template' => GLOBAL_LANG.'/resetForm',//语言标识模板名称
             'params' => [

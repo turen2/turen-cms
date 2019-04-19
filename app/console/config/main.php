@@ -39,8 +39,8 @@ return [
             'mutex' => 'yii\mutex\MysqlMutex',//锁机制
             'deleteReleased' => false,//清除发布的信息
             'serializer' => 'yii\queue\serializers\JsonSerializer',//存储格式
-            'ttr' => 30,//重试停留时间
-            'attempts' => 3,//默认重试次数
+            'ttr' => 10,//重试停留时间
+            'attempts' => 4,//默认重试次数
             'as log' => \yii\queue\LogBehavior::class,//错误日志 默认为 console/runtime/logs/app.log
         ],
         //家乐邦短信队列
@@ -54,8 +54,8 @@ return [
             'mutex' => 'yii\mutex\MysqlMutex',//锁机制
             'deleteReleased' => false,//清除发布的信息
             'serializer' => 'yii\queue\serializers\JsonSerializer',//存储格式
-            'ttr' => 30,//重试停留时间
-            'attempts' => 3,//默认重试次数
+            'ttr' => 10,//重试停留时间
+            'attempts' => 4,//默认重试次数
             'as log' => \yii\queue\LogBehavior::class,//错误日志 默认为 console/runtime/logs/app.log
         ],
         'cache' => [
