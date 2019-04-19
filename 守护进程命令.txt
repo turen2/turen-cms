@@ -1,0 +1,10 @@
+守护进程命令
+nohup php /www/wwwroot/jialebang100.com/yii jialebang-mail-queue/listen > nohup_mail.txt &
+nohup php /www/wwwroot/jialebang100.com/yii jialebang-sms-queue/listen > nohup_sms.txt &
+
+查看进程
+ps -ef | grep php
+
+杀死进程
+kill pid
+
