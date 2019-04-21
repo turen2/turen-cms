@@ -28,7 +28,7 @@ $this->currentModel = $model;
             ]) ?>
         </div>
         <div class="turen-box m2s clearfix">
-            <div class="midcontent">
+            <div class="midcontent card">
                 <div class="detail-text">
                     <div class="detail-title">
                         <?= Html::tag('h3', $model->title) ?>

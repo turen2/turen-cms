@@ -7,7 +7,7 @@
  * Time: 18:31
  */
 ?>
-<div class="manual-sidebox">
+<div class="manual-sidebox card">
     <div class="manual-sidebox-title">
         <h3>搬家流程</h3>
     </div>

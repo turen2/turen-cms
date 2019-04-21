@@ -15,7 +15,7 @@ use yii\helpers\Url;
 <div class="user-center">
     <div class="container clearfix">
         <?= $this->render('../_account_sidebox', ['route' => 'center']) ?>
-        <div class="user-content info">
+        <div class="user-content card info">
             <div class="user-content-head">
                 <div class="title"><?= $this->title ?></div>
             </div>
@@ -28,7 +28,7 @@ use yii\helpers\Url;
                         <a href="">退款管理</a>
                     </li>
                 </ul>
-                <?= Html::beginForm(Url::to([]), 'get', ['class' => 'form-inline']) ?>
+                <?= Html::beginForm(Url::to(), 'get', ['class' => 'form-inline']) ?>
                 <div class="form-group">
                     <input name="q" type="text" value="" class="form-control" placeholder="输入商品名称搜索" />
                     <button type="submit"><i class="cd-icon cd-icon-search"></i></button>

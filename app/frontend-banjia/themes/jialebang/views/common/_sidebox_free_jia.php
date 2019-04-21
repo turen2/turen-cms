@@ -96,7 +96,7 @@ $js = <<<EOF
 EOF;
 $this->registerJs($js);
 ?>
-<div id="sidebox-jijia" class="tab-sidebox free-jijia">
+<div id="sidebox-jijia" class="tab-sidebox free-jijia card">
     <div class="tab-sidebox-title">
         <h3>免费咨询</h3>
     </div>

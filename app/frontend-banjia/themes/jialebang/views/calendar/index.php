@@ -40,7 +40,7 @@ $jsDataBaseUrl = $jsBaseUrl.'/js/lhl/';//Yii::$app->request->hostInfo.
         </div>
 
         <div class="turen-box m2s clearfix">
-            <div class="midcontent">
+            <div class="midcontent card">
                 <div class="detail-text">
                     <div class="detail-title">
                         <h3>吉日查询</h3>
@@ -378,7 +378,7 @@ $jsDataBaseUrl = $jsBaseUrl.'/js/lhl/';//Yii::$app->request->hostInfo.
                 </div>
             </div>
             <div class="sidebox">
-                <div class="tab-sidebox">
+                <div class="tab-sidebox card">
                     <div class="tab-sidebox-title">
                         <h3>搬家费用测算</h3>
                     </div>

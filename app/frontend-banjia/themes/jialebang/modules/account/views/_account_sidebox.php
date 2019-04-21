@@ -53,7 +53,7 @@ $links = [
     ],
 ];
 ?>
-<div class="user-side">
+<div class="user-side card">
     <div class="menu-head">
         <h3>客户中心</h3>
     </div>

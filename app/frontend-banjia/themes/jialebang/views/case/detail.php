@@ -50,7 +50,7 @@ $this->registerJs($js);
             ]) ?>
         </div>
         <div class="turen-box m2s clearfix">
-            <div class="midcontent">
+            <div class="midcontent card">
                 <div class="detail-text">
                     <div class="detail-title">
                         <?= Html::tag('h3', $model->title) ?>
@@ -141,7 +141,7 @@ $this->registerJs($js);
             </div>
 
             <div class="sidebox">
-                <div class="tab-sidebox">
+                <div class="tab-sidebox card">
                     <div class="tab-sidebox-title">
                         <h3>搬家费用测算</h3>
                     </div>

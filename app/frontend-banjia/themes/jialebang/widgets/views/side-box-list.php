@@ -8,7 +8,7 @@
  */
 ?>
 
-<div class="<?= $style ?>-sidebox <?= $htmlClass ?>">
+<div class="<?= $style ?>-sidebox <?= $htmlClass ?> card">
     <?php if($style == 'tab') { ?>
         <div class="<?= $style ?>-sidebox-title">
             <h3><?= $title ?></h3>
