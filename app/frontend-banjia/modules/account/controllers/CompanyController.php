@@ -6,6 +6,8 @@
  */
 namespace app\modules\account\controllers;
 
+use common\models\account\CompanyForm;
+
 /**
  * 企业资质
  * Class CompanyController
@@ -15,7 +17,9 @@ class CompanyController extends \app\components\Controller
 {
     public function actionInfo()
     {
+        $model = new CompanyForm();
         return $this->render('info', [
+            'model' => $model,
         ]);
     }
 }

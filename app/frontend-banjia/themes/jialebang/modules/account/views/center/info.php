@@ -5,12 +5,23 @@
  * @author developer qq:980522557
  */
 
-use app\assets\Jcrop;use yii\helpers\Html;
+use app\assets\Jcrop;
+use common\models\user\User;
+use yii\helpers\Html;
 
 $this->title = '基本资料';
 $this->params['breadcrumbs'][] = $this->title;
 
 Jcrop::register($this);//图片剪切
+$js = <<<EOF
+$('#profile-avatar').on('mouseover', function() {
+    $('.image-upload-mask').removeClass('hide');
+});
+$('.image-upload-mask').on('mouseleave', function() {
+    $(this).addClass('hide');
+});
+EOF;
+$this->registerJs($js);
 ?>
 
 <div class="user-center">
@@ -22,42 +33,31 @@ Jcrop::register($this);//图片剪切
             </div>
             <div class="user-content-body">
                 <?= $form = Html::beginForm() ?>
-                    <div class="image-upload">
-                        <img class="avatar" id="profile-avatar"src="">
-                        <div class="image-upload-mask">
-                            <div class="image-upload-content">
+                    <div class="form-group image-upload">
+                        <img class="avatar br4" id="profile-avatar"src="https://xue.koubei.com/files/default/2019/04-19/162933d392fa460322.jpg" />
+                        <div class="image-upload-mask br4 hide">
+                            <div class="image-upload-text">
                                 <i class="icon icon-camera"></i>修改头像
                             </div>
                         </div>
-                        <label class="image-upload-label">
-                            <input type="file" name="file" />
-                        </label>
+                        <?= Html::activeFileInput($model, 'avatar',  ['class' => 'form-control text hide']) ?>
                         <p class="image-upload-tip">请上传jpg, gif, png格式的图片, 建议图片大小不超过2MB</p>
                     </div>
                     <div class="form-group">
-                        <label for="">用户名</label>
-                        <input type="text" id="" name="nickname" class="form-control" value="Jorry有桥笨小孩">
+                        <label for=""><?= Html::activeLabel($model, 'username') ?></label>
+                        <?= Html::activeTextInput($model, 'username',  ['class' => 'form-control text']) ?>
                     </div>
                     <div class="form-group">
-                        <label for="">真实姓名</label>
-                        <input type="text" id="" name="" class="form-control" value="">
+                        <label><?= Html::activeLabel($model, 'sex') ?></label>
+                        <?= Html::activeRadioList($model, 'sex', [0 => '女性', 1 => '男性'], ['class' => 'form-control radio', 'separator' => '&nbsp;&nbsp;']) ?>
                     </div>
                     <div class="form-group">
-                        <label>性别</label>
-                        <div class="radio-group">
-                            <label class="radio " for="">
-                                <input type="radio" id="" name="" value="male" data-toggle="radio">男
-                            </label>
-                            <label class="radio " for="">
-                                <input type="radio" id="" name="" value="female" data-toggle="radio">女
-                            </label>
-                        </div>
+                        <label><?= Html::activeLabel($model, 'intro') ?></label>
+                        <?= Html::activeTextarea($model, 'intro', ['class' => 'form-control textarea']) ?>
                     </div>
                     <div class="form-group">
-                        <label for="">自我介绍</label>
-                        <textarea id="" name="" rows="10" class="form-control"></textarea>
+                        <button id="user-center-save-btn" data-loading-text="正在保存..." type="submit" class="primary-btn br5">保存</button>
                     </div>
-                    <button id="user-center-save-btn" data-loading-text="正在保存..." type="submit" class="btn-primary">保存</button>
                 <?= Html::endForm() ?>
             </div>
         </div>

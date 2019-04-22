@@ -117,6 +117,13 @@ input:-webkit-autofill {
 }
 
 /*四个圆角5px*/
+.br4 {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+/*四个圆角5px*/
 .br5 {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -373,13 +380,29 @@ input:focus
     text-align: center;
     font-style: normal;
     background-color: #ff6f20;
-    margin: 0 auto;
     cursor: pointer;
+    padding: 0px 15px;
     border: none;
 }
 .primary-btn:hover {
     color: white;
     background-color: #ff500b
+}
+.default-btn {
+    display: block;
+    height: 38px;
+    line-height: 38px;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    font-style: normal;
+    border: 1px solid #ff6f20;
+    cursor: pointer;
+    padding: 0px 15px;
+}
+.default-btn:hover {
+    color: white;
+    border: 1px solid #ff500b;
 }
 /* 全局css end */
 

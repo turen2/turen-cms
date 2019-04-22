@@ -6,6 +6,7 @@
  */
 namespace app\modules\account\controllers;
 
+use common\models\account\InfoForm;
 use Yii;
 
 /**
@@ -21,10 +22,12 @@ class CenterController extends \app\components\Controller
     public function actionInfo()
     {
         $userModel = Yii::$app->getUser()->getIdentity();
-        $userInfoModel = null;
+        $model = new InfoForm([
+            'sex' => true
+        ]);
         return $this->render('info', [
-            '$userModel' => $userModel,
-            '$userInfoModel' => $userInfoModel,
+            'userModel' => $userModel,
+            'model' => $model,
         ]);
     }
 }
