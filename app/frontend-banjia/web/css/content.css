@@ -282,6 +282,7 @@
 
 .call-form .home-pulish .primary-btn {
     margin-top: 20px;
+    padding: 9px 12px;
     display: block;
     width: 100%;
     border: none;
@@ -2675,6 +2676,10 @@
     line-height: 18px;
     background: #eeeeee;
     padding: 8px;
+}
+.free-jijia .primary-btn {
+    display: block;
+    padding: 9px 12px;
 }
 .calculator-middle .tit {
     font-size: 22px;

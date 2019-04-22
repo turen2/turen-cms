@@ -27,13 +27,13 @@ $links = [
         'isPost' => false,
     ],
     [
-        'route' => 'account/company/info',
-        'label' => '<i class="iconfont jia-identityauthentication"></i> 企业资质',
+        'route' => 'account/msg/list',
+        'label' => '<i class="iconfont jia-task"></i> 消息中心',
         'isPost' => false,
     ],
     [
-        'route' => 'account/msg/list',
-        'label' => '<i class="iconfont jia-task"></i> 消息中心',
+        'route' => 'account/company/info',
+        'label' => '<i class="iconfont jia-identityauthentication"></i> 企业资质',
         'isPost' => false,
     ],
     [

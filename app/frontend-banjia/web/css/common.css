@@ -369,46 +369,48 @@ input:focus
 }
 
 /* 按钮 */
-.btn {
-    padding: 0 10px;
-    height: 23px;
-    line-height: 23px;
-    border: 1px solid #f42424;
+.outline-btn {
     display: inline-block;
-    color: #f42424;
+    padding: 6px 12px;
+    border: 1px solid #ff6f20;
+    color: #ff6f20;
     background-color: #fff;
     margin-right: 5px;
     font-size: 12px;
     cursor: pointer;
 }
+.outline-btn:hover {
+    color: white;
+    background-color: #ff500b;
+    border-color: #ff500b;
+}
 .primary-btn {
-    display: block;
-    height: 38px;
-    line-height: 38px;
+    display: inline-block;
+    padding: 6px 12px;
     color: white;
     font-size: 14px;
     text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
     font-style: normal;
     background-color: #ff6f20;
     cursor: pointer;
-    padding: 0px 15px;
-    border: none;
+    border: 1px solid transparent;
 }
 .primary-btn:hover {
     color: white;
     background-color: #ff500b
 }
 .default-btn {
-    display: block;
-    height: 38px;
-    line-height: 38px;
+    display: inline-block;
+    padding: 6px 12px;
     color: white;
     font-size: 14px;
     text-align: center;
     font-style: normal;
     border: 1px solid #ff6f20;
     cursor: pointer;
-    padding: 0px 15px;
+    border: 1px solid transparent;
 }
 .default-btn:hover {
     color: white;

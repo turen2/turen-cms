@@ -21,7 +21,7 @@
 }
 
 .turen-box {
-    overflow: hidden;
+
 }
 
 .turen-box .sidebox {
@@ -43,8 +43,10 @@
 /* 布局结构有：s2m左小右大，m2s左大右小，sms左右侧栏中间大 */
 .turen-box.s2m .midcontent {
     margin-left: 20px;
+    padding-bottom: 10px;
 }
 .turen-box.m2s .sidebox {
     margin-left: 20px;
+    padding-bottom: 10px;
 }
 

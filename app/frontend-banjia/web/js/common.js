@@ -173,6 +173,10 @@ var csrfToken = turen.getCsrfToken();
 */
 turen.com = (function($) {
     var pub = {
+        //checkbox全选
+        checkAll: function(status) {
+            $("input[type='checkbox'][name^='checkid'][disabled!='true']").attr('checked', status);
+        },
         //状态更新
         updateStatus: function(_this) {
             _this = $(_this);

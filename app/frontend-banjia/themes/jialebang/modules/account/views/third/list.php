@@ -21,27 +21,27 @@ use yii\helpers\Url;
             </div>
             <div class="user-content-body">
                 <div class="setting">
-                    <span class="icon"><i class="cd-icon cd-icon-weixin"></i></span>
+                    <span class="icon"><i class="iconfont jia-weibo"></i></span>
                     <span class="title">微信登录</span>
                     <span class="action">
                         <span class="status status-done">已绑定</span>
-                        <a class="default-btn" href="">取消绑定</a>
+                        <a class="default-btn br5" href="">取消绑定</a>
                     </span>
                 </div>
                 <div class="setting">
-                    <span class="icon"><i class="cd-icon cd-icon-alipay"></i></span>
+                    <span class="icon"><i class="iconfont jia-qq"></i></span>
                     <span class="title">QQ登录</span>
                     <span class="action">
                         <span class="status">未绑定</span>
-                        <a class="default-btn" href="">绑定帐号</a>
+                        <a class="default-btn br5" href="">绑定帐号</a>
                     </span>
                 </div>
                 <div class="setting">
-                    <span class="icon"><i class="cd-icon cd-icon-weixin"></i></span>
+                    <span class="icon"><i class="iconfont jia-wechat1"></i></span>
                     <span class="title">微博登录</span>
                     <span class="action">
                         <span class="status status-done">已绑定</span>
-                        <a class="default-btn" href="">取消绑定</a>
+                        <a class="default-btn br5" href="">取消绑定</a>
                     </span>
                 </div>
             </div>
