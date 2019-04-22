@@ -16,7 +16,7 @@ use yii\helpers\Url; ?>
 <div class="container">
     <div class="turen-box s2m clearfix">
         <div class="sidebox">
-            <div class="tab-sidebox about-us">
+            <div class="tab-sidebox about-us card">
                 <div class="tab-sidebox-title">
                     <h3><?= $columnModel->cname ?></h3>
                 </div>
@@ -37,7 +37,7 @@ use yii\helpers\Url; ?>
                 'blockId' => Yii::$app->params['config_face_banjia_cn_sidebox_contact_us_block_id'],
             ]); ?>
         </div>
-        <div class="midcontent">
+        <div class="midcontent card">
             <div class="help-box">
             <?php if($slug) { ?>
                 <h4 class="htitle"><?= $currentModel->title ?></h4>

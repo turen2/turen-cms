@@ -204,7 +204,7 @@ $this->registerJs($js);
 
         <div class="turen-box">
             <div class="turen-box m2s clearfix">
-                <div class="midcontent">
+                <div class="midcontent card">
                     <div class="detail-text">
                         <div class="detail-title">
                             <h3>常见问答</h3>

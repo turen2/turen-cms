@@ -40,7 +40,7 @@ $part = Yii::$app->getRequest()->get('part', 'pa');//pa、pb、pc、pd
         </ul>
     </div>
     <div class="tabbox">
-        <div class="pa tabbox-content about-infor">
+        <div class="pa tabbox-content about-infor card">
             <?= $model->content ?>
         </div>
         <div class="pb tabbox-content add-ours">

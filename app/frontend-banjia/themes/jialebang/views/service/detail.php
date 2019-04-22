@@ -113,19 +113,19 @@ $this->registerJs($js);
             </ul>
         </div>
         <div class="service-content">
-            <div class="item">
+            <div class="item card">
                 <div class="title"><span>服务范围<b></b><em id="范围" name="范围"></em></span></div>
                 <div class="infotxt">
                     <?= $curModel->diyfield_service_item ?>
                 </div>
             </div>
-            <div class="item">
+            <div class="item card">
                 <div class="title"><span>服务价格<b></b><em id="价格" name="价格"></em></span></div>
                 <div class="infotxt xtable">
                     <?= $curModel->diyfield_service_price ?>
                 </div>
             </div>
-            <div class="item last">
+            <div class="item card last">
                 <div class="title"><span>服务详情<b></b><em id="详情" name="详情"></em></span></div>
                 <div class="infotxt">
                     <?= $curModel->content ?>

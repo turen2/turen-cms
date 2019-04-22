@@ -36,7 +36,7 @@ $dlength = 90;
         </div>
         <div class="turen-box m2s clearfix">
             <div class="midcontent">
-                <div class="detail-text">
+                <div class="detail-text card">
                     <div class="detail-title">
                         <?php
                         $options = ['style' => ''];

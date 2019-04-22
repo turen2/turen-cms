@@ -9,7 +9,7 @@
 use yii\helpers\Html;
 ?>
 
-<div class="<?= $htmlClass ?>">
+<div class="<?= $htmlClass ?> card">
     <h3><?= $title ?></h3>
     <ul>
         <?php

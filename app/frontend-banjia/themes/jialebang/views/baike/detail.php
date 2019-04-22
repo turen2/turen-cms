@@ -34,7 +34,7 @@ $dlength = 90;
             ]) ?>
         </div>
         <div class="turen-box m2s clearfix">
-            <div class="midcontent">
+            <div class="midcontent card">
                 <div class="detail-text">
                     <div class="detail-title">
                         <?php

@@ -60,7 +60,7 @@ $this->columnModel = $columnModel;
                     'route' => ['/tag/list', 'type' => 'article'],
                 ]); ?>
             </div>
-            <div class="midcontent">
+            <div class="midcontent card">
                 <?= ListView::widget([
                     'layout' => "<div class=\"turen-sort\">{sorter}</div>\n<div class=\"turen-items\"><ul>{items}</ul></div>\n<div class=\"pagination-box clearfix\">{pager}</div>",
                     'dataProvider' => $dataProvider,

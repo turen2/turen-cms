@@ -13,7 +13,7 @@ use yii\helpers\Html; ?>
 <div class="user-center">
     <div class="container clearfix">
         <?= $this->render('../_account_sidebox', ['route' => 'center']) ?>
-        <div class="user-content info">
+        <div class="user-content card info">
             <div class="user-content-head">
                 <div class="title"><?= $this->title ?></div>
             </div>

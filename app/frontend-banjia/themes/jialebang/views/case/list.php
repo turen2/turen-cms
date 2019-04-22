@@ -99,7 +99,7 @@ $this->registerJs($js);
                     'route' => ['/tag/list', 'type' => 'photo'],
                 ]); ?>
             </div>
-            <div class="midcontent">
+            <div class="midcontent card">
                 <div class="turen-sort">
                     <?= LinkSorter::widget([
                         'sort' => $dataProvider->sort,

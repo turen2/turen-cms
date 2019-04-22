@@ -13,7 +13,7 @@ use yii\helpers\Url;
 ?>
 
 <?php if($boxlist) {?>
-<div class="detail-box <?= $htmlClass ?>">
+<div class="detail-box <?= $htmlClass ?> card">
     <h5>
         <b><?= $title ?></b>
         <?php if($moreLink) { ?>

@@ -32,13 +32,18 @@ $links = [
         'isPost' => false,
     ],
     [
+        'route' => 'account/msg/list',
+        'label' => '<i class="iconfont jia-task"></i> 消息中心',
+        'isPost' => false,
+    ],
+    [
         'route' => 'account/safe/info',
         'label' => '<i class="iconfont jia-security"></i> 账户安全',
         'isPost' => false,
     ],
     [
-        'route' => 'account/msg/list',
-        'label' => '<i class="iconfont jia-task"></i> 消息中心',
+        'route' => 'account/third/list',
+        'label' => '<i class="iconfont jia-windcontrol"></i> 第三方登录',
         'isPost' => false,
     ],
     [
@@ -48,7 +53,7 @@ $links = [
     ],
 ];
 ?>
-<div class="user-side">
+<div class="user-side card">
     <div class="menu-head">
         <h3>客户中心</h3>
     </div>
