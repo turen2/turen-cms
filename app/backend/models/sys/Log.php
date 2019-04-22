@@ -32,7 +32,6 @@ use app\behaviors\InsertLangBehavior;
 class Log extends \app\models\base\Sys
 {
 	public $keyword;
-	public $username;
 	
 	public function behaviors()
 	{
@@ -76,16 +75,15 @@ class Log extends \app\models\base\Sys
         //[['status'], 'default', 'value' => self::STATUS_ON],
         //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return [
-            [['log_id', 'get_data', 'post_data', 'ip', 'agent', 'created_at'], 'required'],
-            [['log_id', 'admin_id'], 'integer'],
-            [['get_data', 'post_data', 'agent'], 'string'],
-            [['username'], 'string', 'max' => 80],
+            [['log_id', 'admin_id', 'created_at'], 'integer'],
+            [['username', 'get_data', 'post_data', 'agent'], 'string'],
             [['route'], 'string', 'max' => 100],
             [['name'], 'string', 'max' => 150],
             [['method'], 'string', 'max' => 10],
             [['lang'], 'string', 'max' => 8],
-            [['ip', 'created_at'], 'string', 'max' => 50],
-            [['md5'], 'string', 'max' => 32],
+            [['ip'], 'string', 'max' => 50],
+            [['md5'], 'string', 'max' => 40],
+            [['username'], 'safe'],
         ];
     }
 

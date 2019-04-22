@@ -6,9 +6,12 @@
  */
 namespace app\behaviors;
 
+use app\models\cms\DiyModel;
+use app\models\cms\MasterModel;
 use Yii;
 use yii\base\Behavior;
 use yii\base\Application;
+use yii\db\Query;
 use yii\helpers\Json;
 use app\models\sys\Log;
 
@@ -56,7 +59,7 @@ class LogBehavior extends Behavior
         $actionId = $event->action->id;//！！！此处有一bug,当传递参数键为id时，action优化获取参数值，而不是action标识
         
         $httpType = Yii::$app->getRequest()->getMethod();
-        
+
         //写入操作日志
         if(Yii::$app->getUser()->isGuest) {
             return;
@@ -102,6 +105,7 @@ class LogBehavior extends Behavior
         $isPost = $request->isPost;
         $ip = $request->getUserIP();
         $agent = $request->getUserAgent();
+        $mid = Yii::$app->getRequest()->get('mid', null);//自定义模型参数
         $md5 = md5($agent.$ip.$route.Yii::$app->getUser()->id.GLOBAL_LANG).($isPost?'1':'0');//代理+IP+路由+当前操作者+站点+语言
         
         $key = 'log_duration'.Yii::$app->getUser()->id.GLOBAL_LANG;
@@ -111,22 +115,21 @@ class LogBehavior extends Behavior
             //重复刷新，nothing
             return;
         } else {
-            $mesage = $this->logMessage($route, $moduleId, $controllerId, $actionId, $httpType);
-            
-            $model = new Log();
-            $model->admin_id = Yii::$app->getUser()->id;
-            $model->username = Yii::$app->getUser()->getIdentity()->username;
-            $model->route = $route;
-            $model->name = $mesage['name'];
-            $model->method = $request->method;
-            $model->get_data = $this->isGetData?Json::encode($request->get()):'';
-            $model->post_data = ($isPost && $this->isPostData)?Json::encode($request->post()):'';
-            $model->ip = (in_array($ip, ['localhost', '::1']))?'127.0.0.1':$ip;
-            $model->agent = $agent;
-            $model->md5 = $md5;
-            $model->created_at = microtime(true);
-            
-            $model->save(false);//不用验证，直接入库
+            $mesage = $this->logMessage($route, $moduleId, $controllerId, $actionId, $httpType, $mid);
+
+            Yii::$app->db->createCommand()->insert(Log::tableName(), [
+                'admin_id' => Yii::$app->getUser()->id,
+                'username' => Yii::$app->getUser()->getIdentity()->username,
+                'route' => $route,
+                'name' => $mesage['name'],
+                'method' => $request->method,
+                'get_data' => $this->isGetData?Json::encode($request->get()):'',
+                'post_data' => ($isPost && $this->isPostData)?Json::encode($request->post()):'',
+                'ip' => (in_array($ip, ['localhost', '::1']))?'127.0.0.1':$ip,
+                'agent' => $agent,
+                'md5' => $md5,
+                'created_at' => time(),
+            ])->execute();
             
             Yii::$app->cache->set($key, [
                 't' => microtime(true)*1000,//访止高频率恶意请求
@@ -140,12 +143,11 @@ class LogBehavior extends Behavior
      * @param string $route
      * @return string[]
      */
-    protected function logMessage($route, $moduleId, $controllerId, $actionId, $httpType)
+    protected function logMessage($route, $moduleId, $controllerId, $actionId, $httpType, $mid = null)
     {
         //$httpType POST | GET
-        
         $message = ['name' => '暂无描述', 'content' => ''];
-        
+
         //1.先处理精确特殊的路由请求
         $mesages = [
             //默认页
@@ -170,6 +172,8 @@ class LogBehavior extends Behavior
             'cms/photo' => '图片',
             'cms/src' => '信息来源',
             'cms/video' => '视频',
+            'cms/master-model' => $this->diyModelMessage($mid),
+            'cms/diy-field' => '自定义字段',
             'ext/ad' => '广告',
             'ext/ad-type' => '广告位',
             'ext/job' => '招聘',
@@ -240,5 +244,18 @@ class LogBehavior extends Behavior
         }
         
         return $message;
+    }
+
+    /**
+     * 自定义模型信息
+     */
+    protected function diyModelMessage($mid) {
+        $title = '';
+        $model = DiyModel::find()->select(['dm_title'])->where(['dm_id' => $mid])->one();
+        if($model) {
+            $title = $model->dm_title;
+        }
+
+        return $title;
     }
 }

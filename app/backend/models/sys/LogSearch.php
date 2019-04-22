@@ -91,7 +91,7 @@ class LogSearch extends Log
             ->andFilterWhere(['like', 'agent', $this->agent])
             ->andFilterWhere(['like', 'md5', $this->md5]);
         
-        //echo $dataProvider->query->createCommand()->rawSql;
+//        echo $dataProvider->query->createCommand()->rawSql;
 
         return $dataProvider;
     }

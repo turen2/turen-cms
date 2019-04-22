@@ -6,15 +6,16 @@
  */
 namespace app\modules\sys\controllers;
 
-use app\models\cms\DiyModel;
 use Yii;
+use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
 use app\models\sys\Role;
 use app\models\sys\RoleSearch;
 use app\components\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use app\actions\CheckAction;
 use app\models\sys\RoleItem;
+use app\models\cms\DiyModel;
+use app\models\sys\Admin;
 
 /**
  * RoleController implements the CRUD actions for Role model.
@@ -127,7 +128,7 @@ class RoleController extends Controller
         $state = true;
         $msg = $model->role_name.' 已经成功删除！';
         
-        if($state && SiteAdmin::find()->where(['role_id' => $id])->count('id') > 0) {
+        if($state && Admin::find()->where(['role_id' => $id])->count('id') > 0) {
             $state = false;
             $msg = '此角色已经作用在指定的站点上，请先解绑站点。';
         }
