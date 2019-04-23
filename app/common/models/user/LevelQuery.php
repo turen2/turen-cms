@@ -7,11 +7,11 @@
 namespace common\models\user;
 
 /**
- * This is the ActiveQuery class for [[Inquiry]].
+ * This is the ActiveQuery class for [[Level]].
  *
- * @see Inquiry
+ * @see Level
  */
-class InquiryQuery extends \common\components\ActiveQuery
+class LevelQuery extends \common\components\ActiveQuery
 {
-
+	//自定义专用方法
 }

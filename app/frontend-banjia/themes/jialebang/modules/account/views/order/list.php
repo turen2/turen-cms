@@ -8,10 +8,61 @@
 $this->title = '服务订单';
 $this->params['breadcrumbs'][] = $this->title;
 
-use yii\helpers\Html;
 use yii\helpers\Url;
+use app\assets\LayerAsset;
+use yii\widgets\LinkPager;
+use app\assets\NotifyAsset;
+use common\models\user\Inquiry;
+use common\helpers\ImageHelper;
+
+LayerAsset::register($this);
+NotifyAsset::register($this);
+
+$js = <<<EOF
+$.notify.defaults({
+    autoHideDelay: 2000,
+    showDuration: 400,
+    hideDuration: 200,
+    globalPosition: 'top center'
+});
+
+$('.link-pop').on('click', function() {
+    var html = '';
+    //同步ajax
+    $.ajax({
+        url: $(this).data('url'),
+        type: 'GET',
+        async: false,//使用同步请求，锁住浏览器
+        dataType: 'html',
+        context: $(this),
+        cache: false,
+        data: {},
+        success: function(res) {
+            html = res;
+        }
+    });
+    
+    layer.open({
+        type: 1,
+        title: '服务详情',
+        closeBtn: 1,
+        shadeClose: true,
+        shade: 0.5,
+        area: '480px', //宽高//此处只取宽
+        skin: 'jia-modal',
+        content: html,
+        btn: ['关闭'],
+        btn1: function(index, layero) { //按钮【按钮一】的回调
+            layer.close(index);
+        }
+    });
+});
+
+EOF;
+$this->registerJs($js);
 ?>
 
+<?php //$this->render('_search', ['model' => $searchModel]); ?>
 <div class="user-center">
     <div class="container clearfix">
         <?= $this->render('../_account_sidebox', ['route' => 'center']) ?>
@@ -21,103 +72,74 @@ use yii\helpers\Url;
             </div>
             <div class="user-content-body">
                 <ul class="tabs">
-                    <li class="active">
-                        <a href="">服务单列表</a>
+                    <li class="<?= empty($searchModel->ui_state)?'active':'' ?>">
+                        <a href="<?= Url::current(['state' => null]) ?>">服务单列表</a>
                     </li>
-                    <li>
-                        <a href="">已处理</a>
+                    <li class="<?= ($searchModel->ui_state == Inquiry::INQUIRY_STATE_OK)?'active':'' ?>">
+                        <a href="<?= Url::current(['state' => Inquiry::INQUIRY_STATE_OK]) ?>">已处理</a>
                     </li>
-                    <li>
-                        <a href="">待处理</a>
+                    <li class="<?= ($searchModel->ui_state == Inquiry::INQUIRY_STATE_WAITING)?'active':'' ?>">
+                        <a href="<?= Url::current(['state' => Inquiry::INQUIRY_STATE_WAITING]) ?>">待处理</a>
                     </li>
-                    <li>
-                        <a href="">未处理</a>
+                    <li class="<?= ($searchModel->ui_state == Inquiry::INQUIRY_STATE_NOTHING)?'active':'' ?>">
+                        <a href="<?= Url::current(['state' => Inquiry::INQUIRY_STATE_NOTHING]) ?>">未处理</a>
                     </li>
                 </ul>
                 <div class="table-responsive">
                     <table class="table" id="orders-table">
                         <thead>
                             <tr>
-                                <th style="width: 70px;">服务图片</th>
-                                <th width="25%">服务名称</th>
-                                <th>服务单号</th>
-                                <th class="tr">价格</th>
-                                <th>创建时间</th>
-                                <th>订单状态</th>
+                                <th style="width: 100px;">服务图片</th>
+                                <th width="20%">服务项目</th>
+                                <th><?= $dataProvider->sort->link('ui_service_num', ['label' => '服务单号']) ?></th>
+                                <th><?= $dataProvider->sort->link('ui_submit_time', ['label' => '创建时间']) ?></th>
+                                <th><?= $dataProvider->sort->link('ui_state', ['label' => '状态']) ?></th>
                                 <th style="width:86px">操作</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php foreach ($dataProvider->getModels() as $key => $model) { ?>
                             <tr>
-                                <td><img src="http://img01.lingdangpet.cn/cms-images/product/2019_03_24/6fb9e5db668cd9c2cd130dd6a34b1128==150x150.png" style="width: 70px;" /> </td>
+                                <td><img src="<?= empty($model->ui_picurl)?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($model->ui_picurl, true) ?>" style="height: 60px;" /> </td>
+
+                                <td><?= $model->ui_title ?></td>
+                                <td><?= $model->ui_service_num ?></td>
+                                <td><?= Yii::$app->getFormatter()->asDate($model->ui_submit_time, 'Y-m-d') ?></td>
                                 <td>
-                                    <a class="link" href="" target="_blank">菜单优化，新餐饮下的一本万利</a>
-                                </td>
-                                <td>2019041917040584235</td>
-                                <td class="tr">24.00  元</td>
-                                <td>2019-4-19</td>
-                                <td>
-                                    <span class="status status-disabled">待处理</span>
+                                    <span class="status status-disabled"><?= $model->getStateName() ?></span>
                                 </td>
                                 <td>
                                     <div class="table-action">
                                         <div class="action-item">
-                                            <a href="javascript:;" class="link-primary">订单详情</a>
+                                            <a href="javascript:;" data-url="<?= Url::to(['/account/order/detail', 'id' => $model->ui_id]) ?>" class="link-pop">订单详情</a>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <td><img src="http://img01.lingdangpet.cn/cms-images/product/2019_03_24/6fb9e5db668cd9c2cd130dd6a34b1128==150x150.png" style="width: 70px;" /> </td>
-                                <td>
-                                    <a class="link" href="" target="_blank">菜单优化，新餐饮下的一本万利</a>
-                                </td>
-                                <td>2019041917040584235</td>
-                                <td class="tr">24.00  元</td>
-                                <td>2019-4-19</td>
-                                <td>
-                                    <span class="status status-disabled">已处理</span>
-                                </td>
-                                <td>
-                                    <div class="table-action">
-                                        <div class="action-item">
-                                            <a href="javascript:;" class="link-primary">订单详情</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><img src="http://img01.lingdangpet.cn/cms-images/product/2019_03_24/6fb9e5db668cd9c2cd130dd6a34b1128==150x150.png" style="width: 70px;" /> </td>
-                                <td>
-                                    <a class="link" href="" target="_blank">菜单优化，新餐饮下的一本万利</a>
-                                </td>
-                                <td>2019041917040584235</td>
-                                <td class="tr">24.00  元</td>
-                                <td>2019-4-19</td>
-                                <td>
-                                    未处理
-                                </td>
-                                <td>
-                                    <div class="table-action">
-                                        <div class="action-item">
-                                            <a href="javascript:;" class="link-primary">订单详情</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+                            <?php } ?>
+
+                            <?php if(empty($dataProvider->count)) { ?>
+                                <tr>
+                                    <td colspan="6" class="empty">暂时没有相关的记录</td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
                 <div class="pagination-nav clearfix">
-                    <a href="javascript:;" class="default-btn br5">修改</a>
-                    <ul class="pagination fr">
-                        <li><a class="br4" href="">首页</a></li>
-                        <li><a class="br4" href="">上一页</a></li>
-                        <li><a class="br4" href="">1</a></li>
-                        <li><a class="br4" href="">2</a></li>
-                        <li><a class="br4" href="">下一页</a></li>
-                        <li><a class="br4" href="">末页</a></li>
-                    </ul>
+                    <?= LinkPager::widget([
+                        'pagination' => $dataProvider->getPagination(),
+                        'options' => ['class' => 'pagination fr', 'tag' => 'ul'],
+                        'activePageCssClass' => 'on',
+                        'firstPageLabel' => '首页',
+                        'lastPageLabel' => '尾页',
+                        'nextPageLabel' => '下页',
+                        'prevPageLabel' => '上页',
+                        'linkContainerOptions' => ['tag' => 'li'],
+                        'linkOptions' => ['class' => 'br4'],
+                        'disabledListItemSubTagOptions' => ['class' => 'br4'],
+                    ]);
+                    ?>
                 </div>
             </div>
         </div>

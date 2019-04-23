@@ -8,8 +8,6 @@
 $this->title = '消息中心';
 $this->params['breadcrumbs'][] = $this->title;
 
-
-
 $js = <<<EOF
 $('.select-all').on('click', function() {
     var status = $(this).prop('checked');

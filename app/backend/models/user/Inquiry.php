@@ -17,8 +17,11 @@ use app\behaviors\OrderDefaultBehavior;
  * This is the model class for table "{{%user_inquiry}}".
  *
  * @property string $ui_id 留言id
+ * @property string $ui_service_num 服务单号
  * @property string $ui_title 预约标题
+ * @property string $ui_picurl 服务主图
  * @property string $ui_content 预约内容
+ * @property int $ui_product_id 关联服务产品id
  * @property string $user_id 关系用户
  * @property string $ui_ipaddress 来源地址
  * @property string $ui_browser 客户端信息
@@ -73,8 +76,8 @@ class Inquiry extends \app\models\base\User
         //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return [
             [['ui_title', 'ui_content', 'ui_ipaddress', 'ui_browser', 'ui_answer', 'ui_remark'], 'required'],
-            [['user_id', 'ui_type', 'ui_state', 'ui_submit_time', 'ui_answer_time', 'ui_remark_time'], 'integer'],
-            [['ui_browser', 'ui_answer', 'ui_remark'], 'string'],
+            [['user_id', 'ui_type', 'ui_state', 'ui_submit_time', 'ui_answer_time', 'ui_remark_time', 'ui_product_id'], 'integer'],
+            [['ui_browser', 'ui_answer', 'ui_remark', 'ui_service_num', 'ui_picurl'], 'string'],
             [['ui_title'], 'string', 'max' => 30],
             [['ui_content'], 'string', 'max' => 50],
             [['ui_ipaddress'], 'string', 'max' => 20],
@@ -88,8 +91,11 @@ class Inquiry extends \app\models\base\User
     {
         return [
             'ui_id' => 'id',
+            'ui_service_num' => '服务单号',
             'ui_title' => '预约标题',
+            'ui_picurl' => '服务主图',
             'ui_content' => '预约内容',
+            'ui_product_id' => '服务产品id',
             'user_id' => '用户',
             'ui_ipaddress' => '来源',
             'ui_browser' => '客户端',

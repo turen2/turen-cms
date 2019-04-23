@@ -8,17 +8,21 @@ namespace app\assets;
 
 use yii\web\AssetBundle;
 
-class IconfontAsset extends AssetBundle
+class NotifyAsset extends AssetBundle
 {
+    //这个属性是设置不能被web访问资源
+    public $sourcePath = '@app/assets/notify/';
+    
     //这两个则是设置外部资源或者web可访问资源
 //     public $basePath = '@webroot';
 //     public $baseUrl = '@web';
     
-    public $css = [
-        '//at.alicdn.com/t/font_936824_6vnvfojd49p.css',
+    public $css = [];
+    public $js = [
+        'notify.min.js',
     ];
     
-    public $js = [];
-    
-    public $depends = [];
+    public $depends = [
+        'yii\web\JqueryAsset',
+    ];
 }

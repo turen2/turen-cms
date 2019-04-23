@@ -7,11 +7,11 @@
 namespace common\models\user;
 
 /**
- * This is the ActiveQuery class for [[Inquiry]].
+ * This is the ActiveQuery class for [[Group]].
  *
- * @see Inquiry
+ * @see Group
  */
-class InquiryQuery extends \common\components\ActiveQuery
+class GroupQuery extends \common\components\ActiveQuery
 {
-
+	//自定义专用方法
 }

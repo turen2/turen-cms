@@ -13,9 +13,8 @@ namespace app\modules\account\controllers;
  */
 class MsgController extends \app\components\Controller
 {
-    public function actionList()
-    {
-        return $this->render('list', [
-        ]);
-    }
+//    public function actionList()
+//    {
+//        return $this->render('list', []);
+//    }
 }

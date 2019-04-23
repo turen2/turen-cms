@@ -5,6 +5,7 @@
  * @author developer qq:980522557
  */
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\helpers\StringHelper;
@@ -234,19 +235,7 @@ $this->registerJs($js);
                 </div>
                 <div class="form-items">
                     <span class="label">业务类型</span>
-                    <?= Html::dropDownList('type', null, [
-                        null => '选择业务类型',
-                        '居民搬家' => '居民搬家',
-                        '办公室搬迁' => '办公室搬迁',
-                        '厂房搬迁' => '厂房搬迁',
-                        '学校搬迁' => '学校搬迁',
-                        '钢琴搬运' => '钢琴搬运',
-                        '仓库搬迁' => '仓库搬迁',
-                        '服务器搬迁' => '服务器搬迁',
-                        '空调移机' => '空调移机',
-                        '长途搬家' => '长途搬家',
-                        '其它类型' => '其它类型',
-                    ]) ?>
+                    <?= Html::dropDownList('type', null, ArrayHelper::merge([null => '选择业务类型'], ArrayHelper::map($productList, 'id', 'title'))) ?>
                 </div>
                 <div class="form-items">
                     <span class="label">手机号码</span>

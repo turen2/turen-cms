@@ -317,7 +317,23 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * {@inheritdoc}
+     * 一对一，对应会员组
+     */
+    public function getGroup()
+    {
+        return $this->hasOne(Group::class, ['ug_id' => 'ug_id']);
+    }
+
+    /**
+     * 一对一，对应会员等级
+     */
+    public function getLevel()
+    {
+        return $this->hasOne(Level::class, ['level_id' => 'level_id']);
+    }
+
+    /**
+     * @inheritdoc
      * @return UserQuery the active query used by this AR class.
      */
     public static function find()

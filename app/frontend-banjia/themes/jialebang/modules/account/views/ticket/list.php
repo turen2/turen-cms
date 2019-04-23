@@ -23,9 +23,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             <tr>
                                 <th width="16%">工单编号</th>
                                 <th>问题内容</th>
-                                <th>价格</th>
                                 <th>创建时间</th>
-                                <th>订单状态</th>
+                                <th>状态</th>
                                 <th style="width:86px">操作</th>
                             </tr>
                         </thead>
@@ -35,7 +34,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <td>
                                     <a class="link" href="" target="_blank">菜单优化，新餐饮下的一本万利</a>
                                 </td>
-                                <td class="tr">24.00  元</td>
                                 <td>2019-4-19</td>
                                 <td>
                                     <span class="status status-disabled">交易关闭</span>
@@ -53,7 +51,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <td>
                                     <a class="link" href="" target="_blank">菜单优化，新餐饮下的一本万利</a>
                                 </td>
-                                <td class="tr">24.00  元</td>
                                 <td>2019-4-19</td>
                                 <td>
                                     <span class="status status-disabled">交易关闭</span>
@@ -71,7 +68,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <td>
                                     <a class="link" href="" target="_blank">菜单优化，新餐饮下的一本万利</a>
                                 </td>
-                                <td class="tr">24.00  元</td>
                                 <td>2019-4-19</td>
                                 <td>
                                     <span class="status status-disabled">交易关闭</span>

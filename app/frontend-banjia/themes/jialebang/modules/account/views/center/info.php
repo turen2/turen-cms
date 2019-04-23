@@ -32,27 +32,26 @@ $this->registerJs($js);
                 <div class="title"><?= $this->title ?></div>
             </div>
             <div class="user-content-body">
+                <?= $this->render('../_alert') ?>
                 <?= $form = Html::beginForm() ?>
                     <div class="form-group image-upload">
                         <img class="avatar br4" id="profile-avatar"src="https://xue.koubei.com/files/default/2019/04-19/162933d392fa460322.jpg" />
                         <div class="image-upload-mask br4 hide">
-                            <div class="image-upload-text">
-                                <i class="icon icon-camera"></i>修改头像
-                            </div>
+                            <div class="image-upload-text"><i class="iconfont jia-camera"></i> 修改头像</div>
                         </div>
-                        <?= Html::activeFileInput($model, 'avatar',  ['class' => 'form-control text hide']) ?>
+                        <?= Html::activeFileInput($model, 'avatar',  ['class' => 'form-control text']) ?>
                         <p class="image-upload-tip">请上传jpg, gif, png格式的图片, 建议图片大小不超过2MB</p>
                     </div>
                     <div class="form-group">
-                        <label for=""><?= Html::activeLabel($model, 'username') ?></label>
+                        <?= Html::activeLabel($model, 'username') ?>
                         <?= Html::activeTextInput($model, 'username',  ['class' => 'form-control text']) ?>
                     </div>
                     <div class="form-group">
-                        <label><?= Html::activeLabel($model, 'sex') ?></label>
+                        <?= Html::activeLabel($model, 'sex') ?>
                         <?= Html::activeRadioList($model, 'sex', [0 => '女性', 1 => '男性'], ['class' => 'form-control radio', 'separator' => '&nbsp;&nbsp;']) ?>
                     </div>
                     <div class="form-group">
-                        <label><?= Html::activeLabel($model, 'intro') ?></label>
+                        <?= Html::activeLabel($model, 'intro') ?>
                         <?= Html::activeTextarea($model, 'intro', ['class' => 'form-control textarea']) ?>
                     </div>
                     <div class="form-group">

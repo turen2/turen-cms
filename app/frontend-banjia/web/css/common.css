@@ -365,7 +365,7 @@ input:focus
     left: 0;
     right: 0;
     top: 0;
-    z-index: 1000;
+    z-index: 99999;
 }
 
 /* 按钮 */
@@ -1012,3 +1012,104 @@ input:focus
     color: #666;
 }
 /* 右侧浮层end */
+
+/* 自定义模态框 */
+.jia-modal {
+
+}
+.jia-modal .layui-layer-title {
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    padding: 24px 24px 8px;
+    height: auto;
+    line-height: 1;
+}
+.jia-modal.layui-layer {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+.jia-modal.layui-layer-page .layui-layer-content {
+    word-wrap: break-word;
+    overflow: hidden;
+    padding: 24px 24px 0;
+    font-size: 14px;
+}
+.jia-modal .layui-layer-setwin {
+    top: 25px;
+    right: 20px;
+}
+.jia-modal .layui-layer-btn {
+    padding: 8px 24px 24px;
+}
+.jia-modal .layui-layer-btn .layui-layer-btn0 {
+    color: #fff;
+    background: #ff723d;
+    border-color: #ff723d;
+}
+.jia-modal .layui-layer-btn a {
+    font-size: 14px;
+    padding: 12px 18px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    height: auto;
+    line-height: 1;
+    margin: 0;
+    margin-left: 10px;
+}
+.jia-modal .table>tbody>tr>td {
+    height: 40px!important;
+    border-bottom: none!important;
+}
+.jia-modal .table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 24px;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.jia-modal .table td {
+    word-wrap: break-word;
+    word-break: break-all;
+}
+.jia-modal .table th {
+    text-align: left;
+}
+.jia-modal .table > tbody > tr > td, .jia-modal .table > tbody > tr > th, .jia-modal .table > thead > tr > td, .jia-modal .table > thead > tr > th {
+    font-size: 12px;
+}
+.jia-modal .table > tbody > tr > th, .jia-modal .table > thead > tr > th {
+    background: #f5f5f5;
+    font-weight: 700;
+    border: none;
+    padding: 10px;
+    line-height: 20px;
+    vertical-align: middle;
+}
+.jia-modal .table > tbody > tr > th:first-child, .jia-modal .table > thead > tr > th:first-child {
+    border-top-left-radius: 4px;
+}
+.jia-modal .table > tbody > tr > th:last-child, .jia-modal .table > thead > tr > th:last-child {
+    border-top-right-radius: 4px;
+}
+.jia-modal .table > tbody > tr, .jia-modal .table > tbody > tr:hover {
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+}
+.jia-modal .table > tbody > tr:hover {
+    background: #fafafa;
+}
+.jia-modal .table > tbody > tr > td {
+    line-height: 20px;
+    padding: 6px;
+    height: 50px;
+    vertical-align: middle;
+    border-top: 0;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+/* 自定义模态框end */

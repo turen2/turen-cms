@@ -278,4 +278,12 @@ class Util
 
         return false;
     }
+
+    /**
+     * 生成简单的单号
+     */
+    public static function GenerateSimpleOrderNumber($type = '', $ext = '')
+    {
+        return date('ymdHis').$ext.$type;
+    }
 }

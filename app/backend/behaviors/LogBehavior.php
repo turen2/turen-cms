@@ -185,6 +185,7 @@ class LogBehavior extends Behavior
             'site/help-cate' => '系统帮助分类',
             'site/help' => '系统帮助',
             'site/lnk' => '快捷方式',
+            'site/face-config' => '界面配置',
             'sys/admin' => '管理者',
             'sys/config' => '系统配置',
             'sys/dev-log' => '开发日志',
@@ -239,6 +240,9 @@ class LogBehavior extends Behavior
                 $message['name'] = $message['name'].(($httpType == 'POST')?',提交':',进入表单');
             }
             if($actionId == 'update') {
+                $message['name'] = $message['name'].(($httpType == 'POST')?',提交':',进入表单');
+            }
+            if($actionId == 'batch') {
                 $message['name'] = $message['name'].(($httpType == 'POST')?',提交':',进入表单');
             }
         }

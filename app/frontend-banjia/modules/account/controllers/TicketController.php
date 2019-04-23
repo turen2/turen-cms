@@ -18,4 +18,14 @@ class TicketController extends \app\components\Controller
         return $this->render('list', [
         ]);
     }
+
+    protected function findModel($id)
+    {
+        $model = Article::find()->current()->delstate(Article::IS_NOT_DEL)->andWhere(['id' => $id])->one();
+        if (!is_null($model)) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('请求页面不存在！');
+        }
+    }
 }

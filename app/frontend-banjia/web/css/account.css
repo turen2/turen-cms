@@ -168,7 +168,7 @@
     cursor: default;
 }
 
-.user-content .pagination > li > a {
+.user-content .pagination > li > a, .user-content .pagination > li > span {
     border: 1px solid #DDDDDD;
     position: relative;
     float: left;
@@ -185,18 +185,28 @@
     transition: all .3s ease;
 }
 
-.user-content .pagination > li > a:hover {
+.user-content .pagination > li > a:hover, .user-content .pagination > li.on > a {
     opacity: .8;
     transform: translateY(-1px);
     -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .2);
     -moz-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .2);
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .2);
+    color: #ff6f20;
 }
 
 .user-content .pagination > li > a > i {
     font-size: 14px;
     line-height: 18px;
     vertical-align: middle;
+}
+.user-content .table-responsive th a {
+    padding-right: 21px;
+}
+.user-content .table-responsive th a.asc {
+    background: url(../images/common/sort_asc.png) no-repeat 100% 50%;
+}
+.user-content .table-responsive th a.desc {
+    background: url(../images/common/sort_desc.png) no-repeat 100% 50%;
 }
 /* 通用部分end */
 
@@ -374,12 +384,15 @@
     -o-transition: all .3s ease;
     transition: all .3s ease;
 }
-.user-content .table-responsive {
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+.table-responsive {
     margin-bottom: 20px;
     overflow-x: visible;
     min-height: auto;
 }
-.user-content .table-responsive > .table {
+.table-responsive > .table {
     border: 0;
     margin-bottom: 0;
 }
@@ -431,39 +444,10 @@
     border-top: 0;
     border-bottom: 1px solid #f5f5f5;
 }
-.user-content .table .table-sort {
-    cursor: pointer;
-}
-.user-content .table .table-sort.checked, .user-content .table .table-sort:hover {
-    background: #eee;
-}
-.user-content .table .table-sort .table-sort-icon {
-    display: inline-block;
-}
-.user-content .table .table-sort i {
-    font-size: 12px;
-    font-weight: 400;
-    color: rgba(0, 0, 0, .32);
-}
-.user-content .table .table-sort i.active {
-    color: #43bc60;
-}
-.user-content .table .table-sort i + i {
-    margin-left: -4px;
-}
-.user-content .table .table-action {
-    padding: 2px 0;
-}
-.user-content .table .table-action .table-action-item, .user-content .table .table-action .table-action__item {
-    padding-right: 4px;
-    line-height: 8px;
-    display: inline-block;
-}
-.user-content .table .table-action .table-action-item + .table-action-item, .user-content .table .table-action .table-action-item + .table-action__item, .user-content .table .table-action .table-action__item + .table-action-item, .user-content .table .table-action .table-action__item + .table-action__item {
-    padding-left: 8px;
-    -webkit-box-shadow: inset 1px 0 0 0 rgba(0, 0, 0, .08);
-    -moz-box-shadow: inset 1px 0 0 0 rgba(0, 0, 0, .08);
-    box-shadow: inset 1px 0 0 0 rgba(0, 0, 0, .08);
+.user-content .table > tbody > tr > td.empty {
+    padding: 50px 0;
+    text-align: center;
+    border-bottom: none;
 }
 .user-content .table > tbody > tr.pagination-batch > td {
     padding-top: 20px;
@@ -619,6 +603,17 @@
 .user-content .setting .action .default-btn:hover {
     -webkit-box-shadow: 0 1px 3px rgba(26,26,26,.3);
     box-shadow: 0 1px 3px rgba(26,26,26,.3);
+}
+
+.turen-safe .jia-modal .layui-layer-btn0 {
+    color: #666666;
+    border: 1px solid #dedede;
+    background-color: #f1f1f1;
+}
+.turen-safe .jia-modal .layui-layer-btn1 {
+    color: #fff;
+    background: #ff723d;
+    border-color: #ff723d;
 }
 /* 账户安全/第三方登录end */
 

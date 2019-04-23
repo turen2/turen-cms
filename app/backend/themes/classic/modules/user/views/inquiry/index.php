@@ -60,7 +60,7 @@ $this->title = '预约/询盘';
 <?php //判断无记录样式
 if(empty($dataProvider->count))
 {
-	echo '<div class="data-empty">暂时没有相关的记录</div>';
+    echo '<div class="data-empty">暂时没有相关的记录</div>';
 }
 ?>
 

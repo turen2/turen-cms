@@ -63,7 +63,7 @@ $this->registerJs($js);
                         <a href="<?= Url::to(['/account/order/list']) ?>" rel="nofollow">服务订单</a>
                         <a href="<?= Url::to(['/account/ticket/list']) ?>" rel="nofollow">工单管理</a>
                         <a href="<?= Url::to(['/account/company/info']) ?>" rel="nofollow">企业资质</a>
-                        <a href="<?= Url::to(['/account/msg/list']) ?>" rel="nofollow">消息中心</a>
+<!--                        <a href="--><?php //echo Url::to(['/account/msg/list']) ?><!--" rel="nofollow">消息中心</a>-->
                     </div>
                 </li>
                 <li class="line">|</li>
