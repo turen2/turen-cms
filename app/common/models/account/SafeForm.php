@@ -23,12 +23,12 @@ class SafeForm extends Model
 
     //绑定手机号码
     //当前密码
-    public $newPhone;//新手机号码
+    public $phone;//新手机号码
     public $phoneCode;//手机验证码
 
     //绑定邮件
     //当前密码
-    public $newEmail;//新用户邮件
+    public $email;//新用户邮件
     public $emailCode;//邮件验证码
 
     /**
@@ -37,24 +37,25 @@ class SafeForm extends Model
     public function rules()
     {
         $rules = [
+            ['currentPassword', 'validateCurrentPassword', 'on' => ['update_password', 'bind_phone', 'bind_email']],
+
             [['currentPassword', 'password', 'rePassword'], 'trim', 'on' => 'update_password'],
             [['currentPassword', 'password', 'rePassword'], 'required', 'on' => 'update_password'],
             [['currentPassword', 'password', 'rePassword'], 'string', 'min' => 6, 'on' => 'update_password'],//方式一，直接用on指定场景
             ['password', 'compare', 'compareAttribute' => 'rePassword', 'operator' => '==', 'on' => 'update_password'],
-            ['currentPassword', 'validateCurrentPassword', 'on' => 'update_password'],
 
             [['currentPassword'], 'trim', 'on' => 'bind_phone'],
-            [['newPhone', 'phoneCode'], 'required', 'on' => 'bind_phone'],
-            ['newPhone', 'unique',
+            [['phone', 'phoneCode'], 'required', 'on' => 'bind_phone'],
+            ['phone', 'unique',
                 'targetClass' => User::class,
                 'filter' => ['not', ['user_id' => Yii::$app->getUser()->getIdentity()->getId()]],//排除自身
                 'on' => 'bind_phone',
             ],
-            ['phoneCode', PhoneCodeValidator::class, 'on' => 'bind_phone'],//自定义手机验证码
+            //['phoneCode', PhoneCodeValidator::class, 'on' => 'bind_phone'],//自定义手机验证码
 
             [['currentPassword'], 'trim', 'on' => 'bind_email'],
-            [['newEmail', 'emailCode'], 'required', 'on' => 'bind_email'],
-            ['newEmail', 'unique',
+            [['email', 'emailCode'], 'required', 'on' => 'bind_email'],
+            ['email', 'unique',
                 'targetClass' => User::class,
                 'filter' => ['not', ['user_id' => Yii::$app->getUser()->getIdentity()->getId()]],//排除自身
                 'on' => 'bind_email',
@@ -95,9 +96,9 @@ class SafeForm extends Model
             'currentPassword' => '当前密码',
             'password' => '新密码',
             'rePassword' => '确认密码',
-            'newPhone' => '新手机号码',
+            'phone' => '新手机号码',
             'phoneCode' => '手机验证码',
-            'newEmail' => '新邮箱地址',
+            'email' => '新邮箱地址',
             'emailCode' => '邮件验证码',
         ];
 

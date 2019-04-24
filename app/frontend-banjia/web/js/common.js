@@ -290,23 +290,147 @@ turen.user = (function($) {
             }
 
             if(!hasError) {
-                $.ajax({
-                    url: $(_this).attr('action'),
-                    type: $(_this).attr('method'),
-                    async: true,//异步请求
-                    dataType: 'json',
-                    context: $(this),
-                    cache: false,
-                    data: $(_this).find('input').serializeArray(),//系列化所有表单数据
-                    success: function(res) {
-                        if(res.state) {
-                            layer.closeAll();
-                            $.notify(res.msg, 'success');
-                        } else {
-                            $.notify(res.msg, "error");
-                        }
+                var url = $(_this).attr('action');
+                var type = $(_this).attr('method');
+                var data = $(_this).find('input').serializeArray();
+                var _this = $(_this);
+                var callback = function(res, _this) {
+                    if(res.state) {
+                        layer.closeAll();
+                        $.notify(res.msg, 'success');
+                    } else {
+                        $.notify(res.msg, 'error');
                     }
-                });
+                };
+                commonRemote(url, data, callback, $(_this), type);
+            }
+
+            return false;
+        },
+        phoneCheck: function(_this) {
+            var phoneReg = /^[1][3578][0-9]{9}$/;//手机号码规则
+            //每次都要清理错误
+            $(_this).find('p.error').remove();
+            var error = '';
+            var hasError = false;
+
+            var currentPassword = $(_this).find('input[name="SafeForm[currentPassword]"]');
+            error = '';
+            if(!currentPassword.val().length > 5) {
+                error = '当前密码不能小于6位';
+            }
+            if(!currentPassword.val().length > 0) {
+                //验证提示
+                error = '当前密码必填';
+            }
+            if(error != '') {
+                hasError = true;
+                currentPassword.parent('.form-group').append('<p class="error"><i class="iconfont jia-close_b"></i>'+error+'</p>');
+            }
+
+            var phone = $(_this).find('input[name="SafeForm[phone]"]');
+            error = '';
+            if(!phoneReg.test(phone.val())) {//格式判断
+                error = '新手机号码格式不正确';
+            }
+            if(!phone.val().length > 0) {
+                //验证提示
+                error = '新手机号码必填';
+            }
+            if(error != '') {
+                hasError = true;
+                phone.parent('.form-group').append('<p class="error"><i class="iconfont jia-close_b"></i>' + error + '</p>');
+            }
+
+            var phoneCode = $(_this).find('input[name="SafeForm[phoneCode]"]');
+            error = '';
+            if(!phoneCode.val().length > 0) {
+                //验证提示
+                error = '手机验证码必填';
+            }
+            if(error != '') {
+                hasError = true;
+                phoneCode.parent('.form-group').append('<p class="error"><i class="iconfont jia-close_b"></i>'+error+'</p>');
+            }
+
+            if(!hasError) {
+                var url = $(_this).attr('action');
+                var type = $(_this).attr('method');
+                var data = $(_this).find('input').serializeArray();
+                var _this = $(_this);
+                var callback = function(res, _this) {
+                    if(res.state) {
+                        layer.closeAll();
+                        $.notify(res.msg, 'success');
+                    } else {
+                        $.notify(res.msg, 'error');
+                    }
+                };
+                commonRemote(url, data, callback, $(_this), type);
+            }
+
+            return false;
+        },
+        emailCheck: function(_this) {
+            var emailReg = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;//邮箱地址规则
+            //每次都要清理错误
+            $(_this).find('p.error').remove();
+            var error = '';
+            var hasError = false;
+
+            var currentPassword = $(_this).find('input[name="SafeForm[currentPassword]"]');
+            error = '';
+            if(!currentPassword.val().length > 5) {
+                error = '当前密码不能小于6位';
+            }
+            if(!currentPassword.val().length > 0) {
+                //验证提示
+                error = '当前密码必填';
+            }
+            if(error != '') {
+                hasError = true;
+                currentPassword.parent('.form-group').append('<p class="error"><i class="iconfont jia-close_b"></i>'+error+'</p>');
+            }
+
+            var email = $(_this).find('input[name="SafeForm[email]"]');
+            error = '';
+            if(!emailReg.test(email.val())) {//格式判断
+                error = '新邮箱地址格式不正确';
+            }
+            if(!email.val().length > 0) {
+                //验证提示
+                error = '新邮箱地址必填';
+            }
+            if(error != '') {
+                hasError = true;
+                email.parent('.form-group').append('<p class="error"><i class="iconfont jia-close_b"></i>' + error + '</p>');
+            }
+
+            var emailCode = $(_this).find('input[name="SafeForm[emailCode]"]');
+            error = '';
+            if(!emailCode.val().length > 0) {
+                //验证提示
+                error = '邮箱证码必填';
+            }
+            if(error != '') {
+                hasError = true;
+                emailCode.parent('.form-group').append('<p class="error"><i class="iconfont jia-close_b"></i>'+error+'</p>');
+            }
+
+            if(!hasError) {
+                var url = $(_this).attr('action');
+                var type = $(_this).attr('method');
+                var data = $(_this).find('input').serializeArray();
+                var _this = $(_this);
+                var callback = function(res, _this) {
+                    if(res.state) {
+                        layer.closeAll();
+                        $.notify(res.msg, 'success');
+                    } else {
+                        $.notify(res.msg, 'error');
+                    }
+                };
+                commonRemote(url, data, callback, $(_this), type);
             }
 
             return false;
@@ -314,30 +438,28 @@ turen.user = (function($) {
     };
 
     // 私有方法
-    function commonRemote(settings) {
-        var defaultSetting = {
-            url: null,
-            data: null,
-            callback: null,
-            _this: null,
-            type: 'POST'
-        };
-        $.extend(defaultSetting, settings);
+    function commonRemote(url ,data, callback, _this, type = 'POST') {
         data[csrfParam] = csrfToken;
         $.ajax({
-            url: defaultSetting.url,
-            type: defaultSetting.type,
+            url: url,
+            type: type,
             dataType: 'json',
-            context: defaultSetting._this,
+            context: _this,
             cache: false,
-            data: defaultSetting.data,
+            data: data,
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                //console.log(XMLHttpRequest);
+                //console.log(textStatus);
+                //console.log(errorThrown);
+                $.notify(XMLHttpRequest.responseText, 'error');
+            },
             success: function(res) {
                 if (res['state']) {
                     if(callback) {
                         callback(res, _this);
                     }
                 } else {
-                    //$.notify(res['msg'], 'warn');
+                    $.notify(res['msg'], 'warn');
                 }
             }
         });
