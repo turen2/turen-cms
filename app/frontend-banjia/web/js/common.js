@@ -169,7 +169,7 @@ var csrfParam = turen.getCsrfParam();
 var csrfToken = turen.getCsrfToken();
 
 /*
-对应后台，创建以下模块turen.com、turen.cms、turen.ext、turen.shop、turen.sys、turen.tool
+对应后台，创建以下模块turen.com、turen.cms、turen.ext、turen.shop、turen.sys、turen.tool、turen.user
 */
 turen.com = (function($) {
     var pub = {
@@ -199,6 +199,118 @@ turen.com = (function($) {
         scrollTop: function(time) {
             $("body, html").animate({scrollTop: 0}, time);
         },
+    };
+
+    // 私有方法
+    function commonRemote(settings) {
+        var defaultSetting = {
+            url: null,
+            data: null,
+            callback: null,
+            _this: null,
+            type: 'POST'
+        };
+        $.extend(defaultSetting, settings);
+        data[csrfParam] = csrfToken;
+        $.ajax({
+            url: defaultSetting.url,
+            type: defaultSetting.type,
+            dataType: 'json',
+            context: defaultSetting._this,
+            cache: false,
+            data: defaultSetting.data,
+            success: function(res) {
+                if (res['state']) {
+                    if(callback) {
+                        callback(res, _this);
+                    }
+                } else {
+                    //$.notify(res['msg'], 'warn');
+                }
+            }
+        });
+    }
+
+    return pub;
+})(jQuery);
+
+turen.user = (function($) {
+    var pub = {
+        //公共方法
+        passwordCheck: function(_this) {
+            //每次都要清理错误
+            $(_this).find('p.error').remove();
+            var error = '';
+            var hasError = false;
+
+            var currentPassword = $(_this).find('input[name="SafeForm[currentPassword]"]');
+            error = '';
+            if(!currentPassword.val().length > 5) {
+                error = '当前密码不能小于6位';
+            }
+            if(!currentPassword.val().length > 0) {
+                //验证提示
+                error = '当前密码必填';
+            }
+            if(error != '') {
+                hasError = true;
+                currentPassword.parent('.form-group').append('<p class="error"><i class="iconfont jia-close_b"></i>'+error+'</p>');
+            }
+
+            var password = $(_this).find('input[name="SafeForm[password]"]');
+            error = '';
+            if(!password.val().length > 5) {
+                error = '新密码不能小于6位';
+            }
+            if(!password.val().length > 0) {
+                //验证提示
+                error = '新密码必填';
+            }
+            if(error != '') {
+                hasError = true;
+                password.parent('.form-group').append('<p class="error"><i class="iconfont jia-close_b"></i>' + error + '</p>');
+            }
+
+            var rePassword = $(_this).find('input[name="SafeForm[rePassword]"]');
+            error = '';
+            if(!rePassword.val().length > 5) {
+                error = '确认密码不能小于6位';
+            }
+            if(!rePassword.val().length > 0) {
+                //验证提示
+                error = '确认密码必填';
+            }
+            if(rePassword.val() != password.val()) {
+                //验证提示
+                error = '两次输入的密码不一致';
+            }
+            if(error != '') {
+                hasError = true;
+                rePassword.parent('.form-group').append('<p class="error"><i class="iconfont jia-close_b"></i>'+error+'</p>');
+            }
+
+            if(!hasError) {
+                $.ajax({
+                    url: $(_this).attr('action'),
+                    type: $(_this).attr('method'),
+                    async: true,//异步请求
+                    dataType: 'json',
+                    context: $(this),
+                    cache: false,
+                    data: $(_this).find('input').serializeArray(),//系列化所有表单数据
+                    success: function(res) {
+                        if(res.state) {
+                            layer.closeAll();
+                            $.notify(res.msg, 'success');
+                        } else {
+                            $.notify(res.msg, "error");
+                        }
+                    }
+                });
+            }
+
+            return false;
+        }
     };
 
     // 私有方法

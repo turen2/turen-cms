@@ -1048,7 +1048,7 @@ input:focus
     background: #ff723d;
     border-color: #ff723d;
 }
-.jia-modal .layui-layer-btn a {
+.jia-modal .layui-layer-btn a, .jia-modal .layui-layer-btn button {
     font-size: 14px;
     padding: 12px 18px;
     -webkit-border-radius: 4px;
@@ -1058,6 +1058,8 @@ input:focus
     line-height: 1;
     margin: 0;
     margin-left: 10px;
+    border: 1px solid #CCCCCC;
+    cursor: pointer;
 }
 .jia-modal .table>tbody>tr>td {
     height: 40px!important;

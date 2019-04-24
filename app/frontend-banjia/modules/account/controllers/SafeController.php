@@ -19,26 +19,32 @@ class SafeController extends \app\components\Controller
 {
     public function actionInfo()
     {
-        $model = new SafeForm(['scenario' => 'password']);
-        //$userModel = Yii::$app->getUser()->getIdentity();
-
+        $model = new SafeForm();
         return $this->render('info', [
             'model' => $model,
+            'userModel' => Yii::$app->getUser()->getIdentity(),
         ]);
     }
 
     public function actionUpdatePassword()
     {
-        $model = new SafeForm(['scenario' => 'password']);
+        $model = new SafeForm(['scenario' => 'update_password']);
         if($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $userModel = Yii::$app->getUser()->getIdentity();
             //修改
-            $userModel->setPassword($model->password);
             Yii::$app->getDb()->createCommand()->update(User::tableName(), [
-                'password_hash' => $userModel->password_hash,
-            ], ['user_id' => Yii::$app->getUser()->getId()])->execute();
+                'password_hash' => Yii::$app->security->generatePasswordHash($model->password),
+            ], [
+                'user_id' => Yii::$app->getUser()->getId(),
+            ])->execute();
         } else {
-            var_dump($model->getErrors());
+            $error = current($model->getErrors());
+            if(isset($error[0])) {
+                return $this->asJson([
+                    'state' => false,
+                    'code' => 200,
+                    'msg' => $error[0],
+                ]);
+            }
         }
 
         return $this->asJson([

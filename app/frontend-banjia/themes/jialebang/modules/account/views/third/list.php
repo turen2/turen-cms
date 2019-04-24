@@ -19,7 +19,7 @@ use yii\helpers\Url;
             <div class="user-content-head">
                 <div class="title"><?= $this->title ?></div>
             </div>
-            <div class="user-content-body">
+            <div class="user-content-body" style="margin-bottom: 60px;">
                 <div class="setting">
                     <span class="icon"><i class="iconfont jia-weibo"></i></span>
                     <span class="title">微信登录</span>

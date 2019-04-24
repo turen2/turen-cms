@@ -5,16 +5,18 @@
  * @author developer qq:980522557
  */
 
-use app\assets\LayerAsset;
-use app\assets\NotifyAsset;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use app\assets\LayerAsset;
+use app\assets\NotifyAsset;
+use app\assets\ValidationAsset;
 
 $this->title = '账户安全';
 $this->params['breadcrumbs'][] = $this->title;
 
 LayerAsset::register($this);
 NotifyAsset::register($this);
+ValidationAsset::register($this);
 
 $js = <<<EOF
 $.notify.defaults({
@@ -24,6 +26,7 @@ $.notify.defaults({
     globalPosition: 'top center'
 });
 
+//异步提交数据
 $('.setting a.default-btn').on('click', function() {
     var template = $(this).data('template');
     var url = $(this).data('url');
@@ -32,31 +35,17 @@ $('.setting a.default-btn').on('click', function() {
         type: 1,
         title: name,
         closeBtn: 1,
-        shadeClose: true,
+        shadeClose: true,//点击背景关闭窗口，模态框
         shade: 0.5,
+        move: false, //来禁止拖拽
         area: '480px', //宽高//此处只取宽
         skin: 'jia-modal',
-        content: $('#'+template),
-        btn: ['取消', '提交'],
-        btn1: function(index, layero) { //按钮【按钮一】的回调
-            layer.close(index);
+        content: $('#'+template).html(),//否则会出现多个id问题
+        success: function(index, layero) {
+            //
         },
-        btn2: function(index, layero) { //按钮【按钮二】的回调
-            layer.close(index);
-            //ajax提交
-            $.ajax({
-                url: url,
-                type: 'POST',
-                async: true,//异步请求
-                dataType: 'html',
-                context: $(this),
-                cache: false,
-                data: $('#'+template).find('input').serializeArray(),//系列化所有表单数据
-                success: function(res) {
-                    //
-                }
-            });
-            $.notify('修改成功！', 'success');
+        end: function(index, layero) {
+            //
         }
     });
 });
@@ -64,24 +53,83 @@ EOF;
 $this->registerJs($js);
 ?>
 <div id="password-template" style="display: none;">
-    <?= Html::beginForm() ?>
-        <div class="form-group">
-            <?= Html::activeLabel($model, 'currentPassword') ?>
-            <?= Html::activeTextInput($model, 'currentPassword',  ['class' => 'form-control text']) ?>
+    <?= Html::beginForm(Url::to(['/account/safe/update-password']), 'POST', ['onsubmit' => "return turen.user.passwordCheck(this);"]) ?>
+    <div class="form-group">
+        <?= Html::activeLabel($model, 'currentPassword') ?>
+        <?= Html::activeTextInput($model, 'currentPassword',  ['class' => 'form-control text']) ?>
+    </div>
+    <div class="form-group">
+        <?= Html::activeLabel($model, 'password') ?>
+        <?= Html::activePasswordInput($model, 'password',  ['class' => 'form-control text']) ?>
+    </div>
+    <div class="form-group">
+        <?= Html::activeLabel($model, 'rePassword') ?>
+        <?= Html::activePasswordInput($model, 'rePassword',  ['class' => 'form-control text']) ?>
+    </div>
+    <div class="form-group" style="margin: 0;">
+        <div class="layui-layer-btn" style="padding: 8px 0px 24px;">
+            <?= Html::submitButton('提交', ['class' => 'layui-layer-btn0']) ?>
+            <?= Html::button('取消', ['class' => 'layui-layer-btn1', 'onclick' => 'layer.closeAll();']) ?>
         </div>
-        <div class="form-group">
-            <?= Html::activeLabel($model, 'password') ?>
-            <?= Html::activeTextInput($model, 'password',  ['class' => 'form-control text']) ?>
-        </div>
-        <div class="form-group cd-mb24">
-            <?= Html::activeLabel($model, 'rePassword') ?>
-            <?= Html::activeTextInput($model, 'rePassword',  ['class' => 'form-control text']) ?>
-        </div>
+    </div>
     <?= Html::endForm() ?>
 </div>
-<div id="question-template" style="display: none;">bbbbbbbbbbbbb</div>
-<div id="phone-template" style="display: none;">ccccccccccccc</div>
-<div id="email-template" style="display: none;">ddddddddddddd</div>
+<div id="phone-template" style="display: none;">
+    <?= Html::beginForm(Url::to(['/account/safe/bind-phone']), 'POST', ['onsubmit' => "return turen.user.phoneCheck(this);"]) ?>
+    <?php if(!empty($userModel->phone)) { ?>
+        <div class="form-group">
+            <?= Html::label('原手机号') ?>
+            <?= Html::activeTextInput($userModel, 'phone',  ['class' => 'form-control text', 'disabled' => 'disabled']) ?>
+        </div>
+    <?php } ?>
+    <div class="form-group">
+        <?= Html::activeLabel($model, 'currentPassword') ?>
+        <?= Html::activeTextInput($model, 'currentPassword',  ['class' => 'form-control text']) ?>
+    </div>
+    <div class="form-group">
+        <?= Html::activeLabel($model, 'newPhone') ?>
+        <?= Html::activePasswordInput($model, 'newPhone',  ['class' => 'form-control text']) ?>
+    </div>
+    <div class="form-group">
+        <?= Html::activeLabel($model, 'phoneCode') ?>
+        <?= Html::activePasswordInput($model, 'phoneCode',  ['class' => 'form-control text']) ?>
+    </div>
+    <div class="form-group" style="margin: 0;">
+        <div class="layui-layer-btn" style="padding: 8px 0px 24px;">
+            <?= Html::submitButton('提交', ['class' => 'layui-layer-btn0']) ?>
+            <?= Html::button('取消', ['class' => 'layui-layer-btn1', 'onclick' => 'layer.closeAll();']) ?>
+        </div>
+    </div>
+    <?= Html::endForm() ?>
+</div>
+<div id="email-template" style="display: none;">
+    <?= Html::beginForm(Url::to(['/account/safe/bind-email']), 'POST', ['onsubmit' => "return turen.user.emailCheck(this);"]) ?>
+    <?php if(!empty($userModel->email)) { ?>
+        <div class="form-group">
+            <?= Html::label('原邮箱地址') ?>
+            <?= Html::activeTextInput($userModel, 'email',  ['class' => 'form-control text', 'disabled' => 'disabled']) ?>
+        </div>
+    <?php } ?>
+    <div class="form-group">
+        <?= Html::activeLabel($model, 'currentPassword') ?>
+        <?= Html::activeTextInput($model, 'currentPassword',  ['class' => 'form-control text']) ?>
+    </div>
+    <div class="form-group">
+        <?= Html::activeLabel($model, 'newEmail') ?>
+        <?= Html::activePasswordInput($model, 'newEmail',  ['class' => 'form-control text']) ?>
+    </div>
+    <div class="form-group">
+        <?= Html::activeLabel($model, 'emailCode') ?>
+        <?= Html::activePasswordInput($model, 'emailCode',  ['class' => 'form-control text']) ?>
+    </div>
+    <div class="form-group" style="margin: 0;">
+        <div class="layui-layer-btn" style="padding: 8px 0px 24px;">
+            <?= Html::submitButton('提交', ['class' => 'layui-layer-btn0']) ?>
+            <?= Html::button('取消', ['class' => 'layui-layer-btn1', 'onclick' => 'layer.closeAll();']) ?>
+        </div>
+    </div>
+    <?= Html::endForm() ?>
+</div>
 
 <div class="user-center">
     <div class="container clearfix">
@@ -90,7 +138,7 @@ $this->registerJs($js);
             <div class="user-content-head">
                 <div class="title"><?= $this->title ?></div>
             </div>
-            <div class="user-content-body">
+            <div class="user-content-body" style="margin-bottom: 60px;">
                 <div class="security warning">
                     <span class="icon"><i class="iconfont jia-caution_b"></i></span>
                     <span class="title">安全等级</span>
@@ -107,15 +155,6 @@ $this->registerJs($js);
                         <span class="status status-done">已设置</span>
                         <a href="javascript:;" data-url="<?= Url::to(['/account/safe/update-password']) ?>" data-template="password-template" class="default-btn br5 password-btn">修改</a>
                   </span>
-                </div>
-                <div class="setting">
-                    <span class="icon"><i class="iconfont jia-securityguarantee"></i></span>
-                    <span class="title">安全问题</span>
-                    <span class="content">设置安全问题，保护帐号密码安全，也可用于找回支付密码</span>
-                    <span class="action">
-                        <span class="status">未设置</span>
-                        <a href="javascript:;" data-url="<?= Url::to(['/account/safe/safe-question']) ?>" data-template="question-template" class="default-btn br5 question-btn">设置</a>
-                    </span>
                 </div>
                 <div class="setting">
                     <span class="icon"><i class="iconfont jia-Phone"></i></span>

@@ -48,6 +48,7 @@ $('.link-pop').on('click', function() {
         closeBtn: 1,
         shadeClose: true,
         shade: 0.5,
+        move: false, //来禁止拖拽
         area: '480px', //宽高//此处只取宽
         skin: 'jia-modal',
         content: html,
