@@ -36,7 +36,7 @@ class SignupForm extends Model
             [['password', 'rePassword'], 'string', 'min' => 6],
             ['rePassword','compare','compareAttribute'=>'password'],
             ['agreeProtocol', 'compare', 'compareValue' => 1, 'type' => CompareValidator::TYPE_NUMBER, 'message' => '必须同意用户协议'],
-            ['phoneCode', PhoneCodeValidator::class],//自定义验证器
+            ['phoneCode', PhoneCodeValidator::class, 'phoneAttribute' => 'phone'],//自定义验证器
 
 //            ['verifyCode', 'captcha',
 //                'skipOnEmpty' => false,

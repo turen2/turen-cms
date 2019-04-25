@@ -15,7 +15,7 @@ class IconfontAsset extends AssetBundle
 //     public $baseUrl = '@web';
     
     public $css = [
-        '//at.alicdn.com/t/font_936824_6vnvfojd49p.css',
+        '//at.alicdn.com/t/font_936824_2vkcf3gumih.css',
     ];
     
     public $js = [];

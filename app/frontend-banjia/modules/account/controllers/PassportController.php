@@ -14,7 +14,6 @@ use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
 use yii\web\NotAcceptableHttpException;
 use yii\web\NotFoundHttpException;
-
 use common\models\user\User;
 use common\models\user\passport\LoginForm;
 use common\models\user\passport\PhoneLoginForm;
@@ -23,7 +22,7 @@ use common\models\user\passport\ForgetForm;
 use common\models\user\passport\ResetForm;
 use common\models\user\passport\BindForm;
 use common\phonecode\PhoneCodeAction;
-use common\phonecode\ValidateCaptchaAction;
+use common\actions\ValidateCaptchaAction;
 
 /**
  * Passport controller

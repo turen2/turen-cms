@@ -22,7 +22,7 @@ ValidationAsset::register($this);
 $js = <<<EOF
 $.notify.defaults({
     autoHideDelay: 2000,
-    showDuration: 400,
+    showDuration: 600,
     hideDuration: 200,
     globalPosition: 'top center'
 });
@@ -43,10 +43,13 @@ $('.setting a.default-btn').on('click', function() {
         skin: 'jia-modal',
         content: $('#'+template).html(),//否则会出现多个id问题
         success: function(index, layero) {
-            //
+            //$(index[0]).find('#phone-code-btn').on('click', function() {
+                //console.log('发送手机验证码');
+            //});
+            
         },
         end: function(index, layero) {
-            //
+            //$('body').off('click', '#phone-code-btn');
         }
     });
 });
@@ -57,7 +60,7 @@ $this->registerJs($js);
     <?= Html::beginForm(Url::to(['/account/safe/update-password']), 'POST', ['onsubmit' => "return turen.user.passwordCheck(this);"]) ?>
     <div class="form-group">
         <?= Html::activeLabel($model, 'currentPassword') ?>
-        <?= Html::activeTextInput($model, 'currentPassword',  ['class' => 'form-control text']) ?>
+        <?= Html::activePasswordInput($model, 'currentPassword',  ['class' => 'form-control text']) ?>
     </div>
     <div class="form-group">
         <?= Html::activeLabel($model, 'password') ?>
@@ -85,7 +88,7 @@ $this->registerJs($js);
     <?php } ?>
     <div class="form-group">
         <?= Html::activeLabel($model, 'currentPassword') ?>
-        <?= Html::activePasswordInput($model, 'currentPassword',  ['class' => 'form-control text']) ?>
+        <?= Html::activePasswordInput($model, 'currentPassword',  ['class' => 'form-control text', 'id' => 'phone-currentPassword']) ?>
     </div>
     <div class="form-group">
         <?= Html::activeLabel($model, 'phone') ?>
@@ -94,6 +97,7 @@ $this->registerJs($js);
     <div class="form-group">
         <?= Html::activeLabel($model, 'phoneCode') ?>
         <?= Html::activeTextInput($model, 'phoneCode',  ['class' => 'form-control text']) ?>
+        <?= Html::a('获取动态码', 'javascript:;', ['id' => 'phone-code-btn', 'class' => 'verifycode-btn', 'data-url' => Url::to(['/account/safe/phone-code']), 'onclick' => 'turen.user.phoneCode(this);']) ?>
     </div>
     <div class="form-group" style="margin: 0;">
         <div class="layui-layer-btn" style="padding: 8px 0px 24px;">
@@ -113,7 +117,7 @@ $this->registerJs($js);
     <?php } ?>
     <div class="form-group">
         <?= Html::activeLabel($model, 'currentPassword') ?>
-        <?= Html::activePasswordInput($model, 'currentPassword',  ['class' => 'form-control text']) ?>
+        <?= Html::activePasswordInput($model, 'currentPassword',  ['class' => 'form-control text', 'id' => 'email-currentPassword']) ?>
     </div>
     <div class="form-group">
         <?= Html::activeLabel($model, 'email') ?>
@@ -122,6 +126,7 @@ $this->registerJs($js);
     <div class="form-group">
         <?= Html::activeLabel($model, 'emailCode') ?>
         <?= Html::activeTextInput($model, 'emailCode',  ['class' => 'form-control text']) ?>
+        <?= Html::a('获取动态码', 'javascript:;', ['id' => 'email-code-btn', 'class' => 'verifycode-btn', 'data-url' => Url::to(['/account/safe/email-code']), 'onclick' => 'turen.user.emailCode(this);']) ?>
     </div>
     <div class="form-group" style="margin: 0;">
         <div class="layui-layer-btn" style="padding: 8px 0px 24px;">
@@ -134,7 +139,7 @@ $this->registerJs($js);
 
 <div class="user-center">
     <div class="container clearfix">
-        <?= $this->render('../_account_sidebox', ['route' => 'center']) ?>
+        <?= $this->render('../_account_sidebox') ?>
         <div class="user-content card info">
             <div class="user-content-head">
                 <div class="title"><?= $this->title ?></div>

@@ -32,5 +32,10 @@ $params['bind_code'] = [
     'signName' => '嘉乐邦100',
     'templateCode' => 'SMS_163845334',
 ];
+//6.更新安全配置
+$params['update_code'] = [
+    'signName' => '嘉乐邦100',
+    'templateCode' => 'SMS_164266521',
+];
 
 return $params;

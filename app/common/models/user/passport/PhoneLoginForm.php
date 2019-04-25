@@ -34,7 +34,7 @@ class PhoneLoginForm extends Model
             [['phone', 'phoneCode'], 'trim'],
             ['phone', 'match','pattern'=>'/^[1][3578][0-9]{9}$/'],
             ['rememberMe', 'boolean'],
-            ['phoneCode', PhoneCodeValidator::class],//自定义验证器
+            ['phoneCode', PhoneCodeValidator::class, 'phoneAttribute' => 'phone'],//自定义验证器
             ['phone', 'exist',
                 'targetClass' => User::class,
                 'filter' => ['status' => User::STATUS_ON],

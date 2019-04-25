@@ -36,7 +36,7 @@ class ForgetForm extends Model
                 'filter' => ['status' => User::STATUS_ON],
                 'message' => '您输入的手机号码不存在，请重试。',
             ],
-            ['phoneCode', PhoneCodeValidator::class],//自定义验证器
+            ['phoneCode', PhoneCodeValidator::class, 'phoneAttribute' => 'phone'],//自定义验证器
 
 //            ['verifyCode', 'captcha',
 //                'skipOnEmpty' => false,

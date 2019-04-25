@@ -6,10 +6,11 @@
  */
 namespace common\models\account;
 
-use common\phonecode\PhoneCodeValidator;
 use Yii;
 use yii\base\Model;
 use common\models\user\User;
+use common\emailcode\EmailCodeValidator;
+use common\phonecode\PhoneCodeValidator;
 
 /**
  * safe form
@@ -51,7 +52,8 @@ class SafeForm extends Model
                 'filter' => ['not', ['user_id' => Yii::$app->getUser()->getIdentity()->getId()]],//排除自身
                 'on' => 'bind_phone',
             ],
-            //['phoneCode', PhoneCodeValidator::class, 'on' => 'bind_phone'],//自定义手机验证码
+            ['phone', 'validateEqualityCurrentPhone', 'on' => 'bind_phone'],
+            ['phoneCode', PhoneCodeValidator::class, 'phoneAttribute' => 'phone', 'on' => 'bind_phone'],//自定义手机验证码
 
             [['currentPassword'], 'trim', 'on' => 'bind_email'],
             [['email', 'emailCode'], 'required', 'on' => 'bind_email'],
@@ -60,7 +62,8 @@ class SafeForm extends Model
                 'filter' => ['not', ['user_id' => Yii::$app->getUser()->getIdentity()->getId()]],//排除自身
                 'on' => 'bind_email',
             ],
-            //['emailCode', PhoneCodeValidator::class, 'on' => 'bind_email'],//自定义手机验证码
+            ['email', 'validateEqualityCurrentEmail', 'on' => 'bind_email'],
+            ['emailCode', EmailCodeValidator::class, 'emailAttribute' => 'email', 'on' => 'bind_email'],//自定义手机验证码
         ];
 
         return $rules;
@@ -83,6 +86,40 @@ class SafeForm extends Model
             $user = Yii::$app->getUser()->getIdentity();
             if (!$user || !$user->validatePassword($this->currentPassword)) {
                 $this->addError($attribute, '当前密码错误，请重试');
+            }
+        }
+    }
+
+    /**
+     * 验证是否等于当前手机号码
+     * @param $attribute
+     * @param $params
+     */
+    public function validateEqualityCurrentPhone($attribute, $params)
+    {
+        if (!$this->hasErrors()) {
+            $user = Yii::$app->getUser()->getIdentity();
+            if($user) {
+                if ($user->phone == $this->phone) {
+                    $this->addError($attribute, '新手机号码与当前手机号码重复，请重试');
+                }
+            }
+        }
+    }
+
+    /**
+     * 验证是否等于当前邮箱
+     * @param $attribute
+     * @param $params
+     */
+    public function validateEqualityCurrentEmail($attribute, $params)
+    {
+        if (!$this->hasErrors()) {
+            $user = Yii::$app->getUser()->getIdentity();
+            if($user) {
+                if ($user->email == $this->email) {
+                    $this->addError($attribute, '新邮箱与当前邮箱重复，请重试');
+                }
             }
         }
     }

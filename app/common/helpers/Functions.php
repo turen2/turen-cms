@@ -118,20 +118,4 @@ class Functions
         $slug = empty($model->{$attribute})?'未设置':$model->{$attribute};
         return Yii::$app->params['config_site_url'].'/.../'.$label.'-<span class="slug-url">'.$slug.'</span>'.Yii::$app->params['config_site_url_suffix'];
     }
-
-    /**
-     * 生成随机验证码
-     * @param $num
-     * @return string
-     */
-    public static function PhoneCode($num)
-    {
-        $numbers = '1234567890';
-        $code = '';
-        for ($i = 0; $i < $num; ++$i) {
-            $code .= $numbers[mt_rand(0, 9)];
-        }
-
-        return $code;
-    }
 }

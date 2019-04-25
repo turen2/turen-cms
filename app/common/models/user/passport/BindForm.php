@@ -51,7 +51,7 @@ class BindForm extends Model
             ['password', 'string', 'min' => 6],
             ['rePassword','compare','compareAttribute'=>'password', 'message' => '再次输入的密码不一致'],
             ['protocol', 'validateProtocol'],
-            ['phoneCode', PhoneCodeValidator::class],//自定义验证器
+            ['phoneCode', PhoneCodeValidator::class, 'phoneAttribute' => 'phone'],//自定义验证器
 //            ['verifyCode', 'captcha',
 //                'skipOnEmpty' => false,
 //                'caseSensitive' => false,

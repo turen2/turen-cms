@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace common\phonecode;
+namespace common\actions;
 
 use Yii;
 use yii\base\Action;
@@ -12,6 +12,8 @@ use yii\base\InvalidConfigException;
 
 class ValidateCaptchaAction extends Action
 {
+    const VERIFY_CODE_PARAM = 'VerifyCode58258fsJHGv66HDy7';//数字验证码
+
     public $verifycode;
     public $captchaAction;
     public $skipOnEmpty = false;
@@ -33,7 +35,7 @@ class ValidateCaptchaAction extends Action
         $session = Yii::$app->getSession();
         if($valid) {
             //记录到phonecode中，以便通过短信发送前检验
-            $session->set(PhoneCodeAction::VERIFY_CODE_PARAM, $this->verifycode);
+            $session->set(self::VERIFY_CODE_PARAM, $this->verifycode);
             $this->controller->asJson([
                 'state' => true,
                 'code' => 200,

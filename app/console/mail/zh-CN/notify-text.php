@@ -5,7 +5,7 @@
  * @author developer qq:980522557
  */
 ?>
-有些预约，请查收：<?= PHP_EOL ?>
+有新预约，请查收：<?= PHP_EOL ?>
 <?php foreach ($params as $key => $param) { ?>
     <?= $key ?>：<?= $param ?>
     <?= PHP_EOL ?>

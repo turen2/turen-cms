@@ -386,7 +386,7 @@ input:focus
 }
 .primary-btn {
     display: inline-block;
-    padding: 6px 12px;
+    padding: 8px 12px;
     color: white;
     font-size: 14px;
     text-align: center;
@@ -1113,5 +1113,10 @@ input:focus
     border-top: 0;
     border-bottom: 1px solid #f5f5f5;
 }
-
 /* 自定义模态框end */
+
+/* notify通知 */
+body .notifyjs-corner {
+    z-index: 99999999;
+}
+/* notify通知end */

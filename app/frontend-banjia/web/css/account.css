@@ -635,6 +635,12 @@
     margin-left: 15px;
     margin-right: 15px;
 }
+.jia-modal .form-group .verifycode-btn {
+    position: absolute;
+    font-size: 12px;
+    bottom: 5px;
+    right: 10px;
+}
 .jia-modal .form-group .form-control.text {
     width: 100%;
 }

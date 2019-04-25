@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="user-center">
     <div class="container clearfix">
-        <?= $this->render('../_account_sidebox', ['route' => 'ticket']) ?>
+        <?= $this->render('../_account_sidebox') ?>
         <div class="user-content card info">
             <div class="user-content-head">
                 <div class="title"><?= $this->title ?><a href="" class="primary-btn br5 fr">新工单</a></div>

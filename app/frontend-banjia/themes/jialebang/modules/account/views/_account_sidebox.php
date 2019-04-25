@@ -8,7 +8,7 @@
 use common\models\user\User;
 use yii\helpers\Url;
 
-$route = Yii::$app->controller->getRoute();
+$route = (isset($route) && !empty($route))?$route:Yii::$app->controller->getRoute();
 
 $links = [
     [
@@ -38,12 +38,12 @@ $links = [
     ],
     [
         'route' => 'account/safe/info',
-        'label' => '<i class="iconfont jia-security"></i> 账户安全',
+        'label' => '<i class="iconfont jia-windcontrol"></i> 账户安全',
         'isPost' => false,
     ],
     [
         'route' => 'account/third/list',
-        'label' => '<i class="iconfont jia-windcontrol"></i> 第三方登录',
+        'label' => '<i class="iconfont jia-disanfangdenglu"></i> 第三方登录',
         'isPost' => false,
     ],
     [

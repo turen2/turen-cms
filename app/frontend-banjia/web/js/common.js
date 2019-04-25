@@ -249,7 +249,6 @@ turen.user = (function($) {
                 error = '当前密码不能小于6位';
             }
             if(!currentPassword.val().length > 0) {
-                //验证提示
                 error = '当前密码必填';
             }
             if(error != '') {
@@ -263,7 +262,6 @@ turen.user = (function($) {
                 error = '新密码不能小于6位';
             }
             if(!password.val().length > 0) {
-                //验证提示
                 error = '新密码必填';
             }
             if(error != '') {
@@ -277,11 +275,9 @@ turen.user = (function($) {
                 error = '确认密码不能小于6位';
             }
             if(!rePassword.val().length > 0) {
-                //验证提示
                 error = '确认密码必填';
             }
             if(rePassword.val() != password.val()) {
-                //验证提示
                 error = '两次输入的密码不一致';
             }
             if(error != '') {
@@ -320,7 +316,6 @@ turen.user = (function($) {
                 error = '当前密码不能小于6位';
             }
             if(!currentPassword.val().length > 0) {
-                //验证提示
                 error = '当前密码必填';
             }
             if(error != '') {
@@ -334,7 +329,6 @@ turen.user = (function($) {
                 error = '新手机号码格式不正确';
             }
             if(!phone.val().length > 0) {
-                //验证提示
                 error = '新手机号码必填';
             }
             if(error != '') {
@@ -345,7 +339,6 @@ turen.user = (function($) {
             var phoneCode = $(_this).find('input[name="SafeForm[phoneCode]"]');
             error = '';
             if(!phoneCode.val().length > 0) {
-                //验证提示
                 error = '手机验证码必填';
             }
             if(error != '') {
@@ -384,7 +377,6 @@ turen.user = (function($) {
                 error = '当前密码不能小于6位';
             }
             if(!currentPassword.val().length > 0) {
-                //验证提示
                 error = '当前密码必填';
             }
             if(error != '') {
@@ -398,7 +390,6 @@ turen.user = (function($) {
                 error = '新邮箱地址格式不正确';
             }
             if(!email.val().length > 0) {
-                //验证提示
                 error = '新邮箱地址必填';
             }
             if(error != '') {
@@ -409,7 +400,6 @@ turen.user = (function($) {
             var emailCode = $(_this).find('input[name="SafeForm[emailCode]"]');
             error = '';
             if(!emailCode.val().length > 0) {
-                //验证提示
                 error = '邮箱证码必填';
             }
             if(error != '') {
@@ -434,8 +424,153 @@ turen.user = (function($) {
             }
 
             return false;
+        },
+        phoneCode: function(_this) {
+            //按钮状态不可用
+            if(!phoneCodeBtnStatus) {
+                return false;
+            }
+
+            //初始化
+            var _this = $(_this);
+            var form = _this.parents('form');
+            var phoneReg = /^[1][3578][0-9]{9}$/;//手机号码规则
+
+            //验证码效果
+            var count = 99; //间隔函数，1秒执行
+            var InterValObj1; //timer变量，控制时间
+            var curCount1;//当前剩余秒数
+
+            //每次都要清理错误
+            form.find('p.error').remove();
+            var error = '';
+            var hasError = false;
+
+            var phone = form.find('input[name="SafeForm[phone]"]');
+            error = '';
+            if(!phoneReg.test(phone.val())) {//格式判断
+                error = '新手机号码格式不正确';
+            }
+            if(!phone.val().length > 0) {
+                error = '新手机号码必填';
+            }
+            if(error != '') {
+                hasError = true;
+                phone.parent('.form-group').append('<p class="error"><i class="iconfont jia-close_b"></i>' + error + '</p>');
+            }
+
+            if(!hasError) {
+                //发送验证码效果
+                //console.log('发送验证码');
+                curCount1 = count;
+                //设置button效果，开始计时
+                phoneCodeBtnStatus = 0;
+                _this.html( + curCount1 + "秒再获取");
+
+                var url = _this.data('url');
+                var type = 'GET';
+                var data = {phone: phone.val(), signTemplate: 'update_code'};
+                var callback = function(res, _this) {
+                    if(res.state) {
+                        _this.parents('form').find('input[name="SafeForm[phoneCode]"]').focus();
+                        $.notify(res.msg, 'success');
+                    } else {
+                        $.notify(res.msg, 'error');
+                        phoneCodeBtnStatus = 1;//启用按钮
+                        _this.html("重新发送");
+                    }
+                };
+                commonRemote(url, data, callback, _this, type);
+
+                InterValObj1 = window.setInterval(function() {
+                    if (curCount1 == 0) {
+                        window.clearInterval(InterValObj1);//停止计时器
+                        phoneCodeBtnStatus = 1;//启用按钮
+                        _this.html("重新发送");
+                    } else {
+                        curCount1--;
+                        _this.html( + curCount1 + "秒再获取");
+                    }
+                }, 1000);//启动计时器，1秒执行一次
+            }
+
+            return false;
+        },
+        emailCode: function(_this) {
+            //按钮状态不可用
+            if(!emailCodeBtnStatus) {
+                return false;
+            }
+
+            //初始化
+            var _this = $(_this);
+            var form = _this.parents('form');
+            var emailReg = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;//邮箱地址规则
+
+            //验证码效果
+            var count = 299; //间隔函数，1秒执行
+            var InterValObj1; //timer变量，控制时间
+            var curCount1;//当前剩余秒数
+
+            //每次都要清理错误
+            form.find('p.error').remove();
+            var error = '';
+            var hasError = false;
+
+            var email = form.find('input[name="SafeForm[email]"]');
+            error = '';
+            if(!emailReg.test(email.val())) {//格式判断
+                error = '新邮箱地址格式不正确';
+            }
+            if(!email.val().length > 0) {
+                error = '新邮箱地址必填';
+            }
+            if(error != '') {
+                hasError = true;
+                email.parent('.form-group').append('<p class="error"><i class="iconfont jia-close_b"></i>' + error + '</p>');
+            }
+
+            if(!hasError) {
+                //发送验证码效果
+                //console.log('发送验证码');
+                curCount1 = count;
+                //设置button效果，开始计时
+                emailCodeBtnStatus = 0;
+                _this.html( + curCount1 + "秒再获取");
+
+                var url = _this.data('url');
+                var type = 'GET';
+                var data = {email: email.val()};
+                var callback = function(res, _this) {
+                    if(res.state) {
+                        _this.parents('form').find('input[name="SafeForm[emailCode]"]').focus();
+                        $.notify(res.msg, 'success');
+                    } else {
+                        $.notify(res.msg, 'error');
+                        emailCodeBtnStatus = 1;//启用按钮
+                        _this.html("重新发送");
+                    }
+                };
+                commonRemote(url, data, callback, _this, type);
+
+                InterValObj1 = window.setInterval(function() {
+                    if (curCount1 == 0) {
+                        window.clearInterval(InterValObj1);//停止计时器
+                        emailCodeBtnStatus = 1;//启用按钮
+                        _this.html("重新发送");
+                    } else {
+                        curCount1--;
+                        _this.html( + curCount1 + "秒再获取");
+                    }
+                }, 1000);//启动计时器，1秒执行一次
+            }
+
+            return false;
         }
     };
+
+    var phoneCodeBtnStatus = 1;//手机验证码发送按钮状态，可用
+    var emailCodeBtnStatus = 1;//邮件证码发送按钮状态，可用
 
     // 私有方法
     function commonRemote(url ,data, callback, _this, type = 'POST') {
