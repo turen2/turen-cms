@@ -61,7 +61,7 @@ class QQAuth extends OAuth2 implements IAuth
 
     protected function defaultTitle()
     {
-        return 'QQ';
+        return 'QQ登录';
     }
 
     /**

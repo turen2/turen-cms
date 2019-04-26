@@ -59,7 +59,7 @@ class RenrenAuth extends OAuth2 implements IAuth
      */
     protected function defaultTitle()
     {
-        return 'Renren';
+        return '人人登录';
     }
 
 }

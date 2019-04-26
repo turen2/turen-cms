@@ -52,6 +52,6 @@ class WeiboAuth extends OAuth2 implements IAuth
 
     protected function defaultTitle()
     {
-        return 'Weibo';
+        return '微博登录';
     }
 }

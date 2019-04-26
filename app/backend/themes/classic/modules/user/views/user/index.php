@@ -67,7 +67,7 @@ $this->title = '用户管理';
 		<td><?= empty($model->level)?'未指定':$model->level->level_name; ?><br /><?= empty($model->group)?'未指定':$model->group->ug_name; ?></td>
 		<td><?= $model->point; ?></td>
 		<td><?= $model->login_ip; ?></td>
-		<td>qq_id<br />weibo_id<br />wx_id</td>
+		<td>qq_id<br />weibo_id<br />weixin_id</td>
 		<td><?= Yii::$app->getFormatter()->asDate($model->reg_time); ?></td>
 		<td><?= Yii::$app->getFormatter()->asDate($model->login_time); ?></td>
 		<td class="action end-column"><span><?= $checkstr; ?></span> | <span><a href="<?= Url::to(['update', 'id' => $model->user_id]) ?>">修改</a></span> | <span class="nb"><?= $delstr; ?></span></td>

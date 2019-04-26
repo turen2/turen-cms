@@ -30,7 +30,7 @@ $part = Yii::$app->getRequest()->get('part', 'pa');//pa、pb、pc、pd
 </style>
 
 <div class="about-us-banner"></div>
-<div class="about-us-countent container">
+<div class="about-us-countent container card">
     <div class="aboutnav">
         <ul>
             <li class="<?= $part == 'pa'?'on':'' ?>"><?= $model->title ?></li>
@@ -40,7 +40,7 @@ $part = Yii::$app->getRequest()->get('part', 'pa');//pa、pb、pc、pd
         </ul>
     </div>
     <div class="tabbox">
-        <div class="pa tabbox-content about-infor card">
+        <div class="pa tabbox-content about-infor">
             <?= $model->content ?>
         </div>
         <div class="pb tabbox-content add-ours">

@@ -111,7 +111,7 @@ class UserController extends \app\components\Controller
         $attributes = $client->getUserAttributes(); // basic info
         $userInfo = $client->getUserInfo(); // user extend info
 
-        //qq_id//weibo_id//wx_id
+        //qq_id//weibo_id//weixin_id
         $securityData = [
             'id' => $id,
             'openid' => $openid,

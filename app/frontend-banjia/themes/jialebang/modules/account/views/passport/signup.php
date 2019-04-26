@@ -313,11 +313,22 @@ $this->registerJs($js);
             <?php ActiveForm::end(); ?>
 
             <div class="login-short">
-                <h3>使用合作账号登录：</h3>
-                <?= AuthChoice::widget([
+                <h3>使用社交账号登录：</h3>
+                <?php
+                $authAuthChoice = AuthChoice::begin([
                     'baseAuthUrl' => ['/account/passport/auth'],
                     'popupMode' => true,
-                ]) ?>
+                ]);
+                foreach ($authAuthChoice->getClients() as $client) {
+                    $clientId = $client->getId();
+                    $htmlOptions = [];
+                    $htmlOptions['popupWidth'] = 627;
+                    $htmlOptions['popupHeight'] = 400;
+                    $htmlOptions['class'] = $clientId;
+                    echo $authAuthChoice->clientLink($client, '<span class="icon"><i class="iconfont jia-'.$clientId.'"></i></span>', $htmlOptions);
+                }
+                AuthChoice::end();
+                ?>
             </div>
         </div>
     </div>

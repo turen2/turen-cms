@@ -152,7 +152,7 @@ class WeixinMpAuth extends OAuth2 implements IAuth
 
     protected function defaultTitle()
     {
-        return 'WeixinMp';
+        return '公众号登录';
     }
 
     /**

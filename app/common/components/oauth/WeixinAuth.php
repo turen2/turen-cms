@@ -135,6 +135,6 @@ class WeixinAuth extends OAuth2 implements IAuth
 
     protected function defaultTitle()
     {
-        return 'Weixin';
+        return '微信扫码登录';
     }
 }

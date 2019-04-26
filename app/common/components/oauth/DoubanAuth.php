@@ -46,7 +46,7 @@ class DoubanAuth extends OAuth2 implements IAuth
 
     protected function defaultTitle()
     {
-        return 'Douban';
+        return '豆瓣登录';
     }
 
     /**

@@ -135,12 +135,13 @@ class PassportController extends \app\components\Controller
         $attributes = $client->getUserAttributes(); // basic info
         $userInfo = $client->getUserInfo(); // user extend info
 
-        //qq_id//weibo_id//wx_id
+        //qq_id//weibo_id//weixin_id
         $securityData = [
             'id' => $id,
             'openid' => $openid,
         ];
         $field = $id.'_id';
+        $token = Yii::$app->getSecurity()->hashData(Json::encode($securityData), Yii::$app->params['config.thirdBindRemark']);
 
         //会话标记，保证整个第三方登录在同一会话中！
         Yii::$app->getSession()->set('_oauth_bind', true);
@@ -150,11 +151,16 @@ class PassportController extends \app\components\Controller
             User::BindAuthData($id, $openid, $userInfo);
         }
 
+        //用户中心绑定bind操作
+        if(Yii::$app->getRequest()->get('action', null) == 'bind') {
+            return $this->redirect(Url::to(['account/third/bind', 'token' => $token]));
+        }
+
         //处理绑定
         $user = User::findOne([$field => $openid]);//查询用户，是否绑定，并登录
         if(empty($user)) {
             //没有用户信息！绑定并注册//且防篡改
-            $this->action->successUrl = Url::to(['passport/bind', 'token' => Yii::$app->getSecurity()->hashData(Json::encode($securityData), self::SECURITY_AUTH_KEY)]);
+            $this->action->successUrl = Url::to(['passport/bind', 'token' => $token]);
         } else {
             //已经绑定的用户，进入此控制器即表示授权完成，直接回调为true即可
             Yii::$app->getUser()->login($user, 30 * 24 * 3600);//30天有效//Yii::$app->params['user.effectivetime']

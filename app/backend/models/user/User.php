@@ -41,7 +41,7 @@ use app\widgets\laydate\LaydateBehavior;
  * @property string $login_ip 登录IP
  * @property string $qq_id 绑定QQ
  * @property string $weibo_id 绑定微博
- * @property string $wx_id 绑定微信
+ * @property string $weixin_id 绑定微信
  * @property string $status 用户状态
  */
 class User extends \app\models\base\User
@@ -91,7 +91,7 @@ class User extends \app\models\base\User
         return [
             [['username'], 'required'],
             [['level_id', 'ug_id', 'sex', 'point', 'login_time', 'status', 'deltime', 'delstate', 'reg_time'], 'integer'],
-            [['intro', 'username', 'password', 'qq_id', 'weibo_id', 'wx_id', 'email', 'phone', 'telephone', 'reg_ip', 'login_ip', 'avatar', 'company', 'address', 'trade', 'address_prov', 'address_city', 'zipcode', 'license', 'address_country'], 'string'],
+            [['intro', 'username', 'password', 'qq_id', 'weibo_id', 'weixin_id', 'email', 'phone', 'telephone', 'reg_ip', 'login_ip', 'avatar', 'company', 'address', 'trade', 'address_prov', 'address_city', 'zipcode', 'license', 'address_country'], 'string'],
             [['sex', 'point'], 'default', 'value' => 0],
             [['status'], 'default', 'value' => self::STATUS_ON],
             [['delstate'], 'default', 'value' => self::STATUS_OFF],
@@ -128,7 +128,7 @@ class User extends \app\models\base\User
             'login_ip' => '登录IP',
             'qq_id' => '绑定QQ',
             'weibo_id' => '绑定微博',
-            'wx_id' => '绑定微信',
+            'weixin_id' => '绑定微信',
             'status' => '用户状态',
             'login_time' => '登录时间',
             'reg_time' => '注册时间',

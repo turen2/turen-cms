@@ -41,7 +41,7 @@ use common\components\ActiveRecord;
  * @property string $login_ip 登录IP
  * @property string $qq_id 绑定QQ
  * @property string $weibo_id 绑定微博
- * @property string $wx_id 绑定微信
+ * @property string $weixin_id 绑定微信
  * @property int $status 状态，1为正常，0为黑名单
  * @property int $delstate 删除状态
  * @property string $deltime 删除时间
@@ -69,7 +69,7 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             [['level_id', 'ug_id', 'sex', 'point', 'status', 'delstate', 'deltime', 'reg_time'], 'integer'],
             [['intro'], 'string'],
-            [['username', 'password', 'qq_id', 'weibo_id', 'wx_id'], 'string', 'max' => 32],
+            [['username', 'password', 'qq_id', 'weibo_id', 'weixin_id'], 'string', 'max' => 32],
             [['email'], 'string', 'max' => 40],
             [['phone', 'telephone', 'reg_ip', 'login_ip'], 'string', 'max' => 20],
             [['avatar', 'company', 'address'], 'string', 'max' => 100],
@@ -113,7 +113,7 @@ class User extends ActiveRecord implements IdentityInterface
             'login_ip' => '登录IP',
             'qq_id' => '绑定QQ',
             'weibo_id' => '绑定微博',
-            'wx_id' => '绑定微信',
+            'weixin_id' => '绑定微信',
             'status' => '状态，1为正常，0为黑名单',
             'delstate' => '删除状态',
             'deltime' => '删除时间',

@@ -1120,3 +1120,21 @@ body .notifyjs-corner {
     z-index: 99999999;
 }
 /* notify通知end */
+
+/* 第三方登录 */
+.auth-link {
+    margin-right: 10px;
+}
+.auth-link .iconfont {
+    font-size: 28px;
+}
+.auth-link.qq .iconfont {
+    color: #6cc5f5;
+}
+.auth-link.weibo .iconfont {
+    color: #ed3e3e;
+}
+.auth-link.weixin .iconfont {
+    color: #93d179;
+}
+/* 第三方登录end */

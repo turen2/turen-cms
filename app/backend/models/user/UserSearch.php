@@ -23,7 +23,7 @@ class UserSearch extends User
     {
         return [
             [['user_id', 'level_id', 'ug_id', 'sex', 'point', 'reg_time', 'login_time', 'status', 'deltime', 'delstate'], 'integer'],
-            [['username', 'email', 'phone', 'password', 'avatar', 'company', 'trade', 'license', 'telephone', 'intro', 'address_prov', 'address_city', 'address_country', 'address', 'zipcode', 'reg_ip', 'login_ip', 'qq_id', 'weibo_id', 'wx_id', 'keyword'], 'safe'],
+            [['username', 'email', 'phone', 'password', 'avatar', 'company', 'trade', 'license', 'telephone', 'intro', 'address_prov', 'address_city', 'address_country', 'address', 'zipcode', 'reg_ip', 'login_ip', 'qq_id', 'weibo_id', 'weixin_id', 'keyword'], 'safe'],
         ];
     }
 
@@ -102,7 +102,7 @@ class UserSearch extends User
             ->andFilterWhere(['like', 'login_ip', $this->login_ip])
             ->andFilterWhere(['like', 'qq_id', $this->qq_id])
             ->andFilterWhere(['like', 'weibo_id', $this->weibo_id])
-            ->andFilterWhere(['like', 'wx_id', $this->wx_id]);
+            ->andFilterWhere(['like', 'weixin_id', $this->weixin_id]);
         
 //         echo $dataProvider->query->createCommand()->rawSql;exit;
 
