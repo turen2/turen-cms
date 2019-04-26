@@ -13,7 +13,7 @@ use yii\helpers\Json;
 
 /**
  * This is the model class for table "{{%sys_role_item}}".
- *
+ * @property string $id id
  * @property string $role_id 角色id
  * @property string $route 路由名称
  * @property string $role_params 附加参数
@@ -46,7 +46,7 @@ class RoleItem extends \app\models\base\Sys
         //静态默认值由规则来赋值
         return [
             [['route'], 'required'],
-            [['role_id'], 'integer'],
+            [['id', 'role_id'], 'integer'],
             [['route'], 'string', 'max' => 50],
             [['role_params'], 'string', 'max' => 100],
         ];
@@ -58,6 +58,7 @@ class RoleItem extends \app\models\base\Sys
     public function attributeLabels()
     {
         return [
+            'id' => 'ID',
             'role_id' => '角色ID',
             'route' => '路由名称',
             'role_params' => '附加参数',
@@ -75,8 +76,8 @@ class RoleItem extends \app\models\base\Sys
             self::deleteAll(['role_id' => $roleId]);
             
             $model = new self();
-            
             foreach ($data['route'] as $route) {
+                $model->id = null;
                 $model->isNewRecord = true;
                 $model->role_id = $roleId;
 
