@@ -6,15 +6,20 @@
  */
 
 use yii\captcha\Captcha;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use common\helpers\ImageHelper;
 use common\models\com\Feedback;
 use app\assets\LayerAsset;
 use app\assets\NotifyAsset;
+use common\models\user\FeedbackType;
 
+//问题类型
+$feedbackTypeList = ArrayHelper::map(FeedbackType::find()->active()->current()
+    ->where(['fkt_form_show' => FeedbackType::SHOW_YES])->orderBy(['orderid' => SORT_DESC])->asArray()->all(), 'fkt_id', 'fkt_form_name');
 //初始化，考虑一下session或者cookie值，防止刷新丢失。
-$feedbackModel = new Feedback(['type' => 1]);
+$feedbackModel = new Feedback();
 if(!Yii::$app->getUser()->getIsGuest()) {
     $userModel = Yii::$app->getUser()->getIdentity();
     $feedbackModel->contact = empty($userModel->phone)?$userModel->email:$userModel->phone;
@@ -54,6 +59,7 @@ $('#complaint-btn').on('click', function() {
 });
 
 //单选效果
+$('.feedback-wrap .radio-list input').eq(0).attr('checked', 'checked');//取第一个选中
 $('.feedback-wrap .radio-list input:checked').parent().addClass('on');//没弹窗之前的初始化
 $('body').on('click', '.radio-list label', function() {//弹出窗，DOM发生了变化，要从body扫描获取
     $(this).parent().find('label').removeClass('on').parent().find('label input:checked').parent().addClass('on');
@@ -95,11 +101,7 @@ $this->registerJs($js);
         <p class="fk-text">感谢您对我们工作的支持与帮助，提交成功后我们会尽快与您取得联系</p>
         <?= Html::beginForm(Url::to(['/home/feedback']), 'POST', ['onsubmit' => "return turen.com.feedbackCheck(this);"]) ?>
         <div class="form-group first">
-            <?= Html::activeRadioList($feedbackModel, 'type', [
-                '1' => '意见反馈',
-                '2' => '投诉举报',
-                '3' => '常见问题',
-            ], ['class' => 'radio-list clearfix']) ?>
+            <?= Html::activeRadioList($feedbackModel, 'type', $feedbackTypeList, ['class' => 'radio-list clearfix']) ?>
         </div>
         <div class="form-group">
             <?= Html::activeTextarea($feedbackModel,  'content', ['class' => 'form-control textarea']) ?>

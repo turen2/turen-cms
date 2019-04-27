@@ -30,7 +30,7 @@ use yii\helpers\Html;
         echo '<i class="fa fa-tags"></i> ';
         $flags = explode(',', $model->flag);
         foreach ($flags as $flag) {
-            echo '<a href="javascript:;">'.$flag.'</a>';
+            echo '<a href="javascript:;"><i class="iconfont jia-label"></i> '.$flag.'</a>';
         }
         echo '</span>';
     }

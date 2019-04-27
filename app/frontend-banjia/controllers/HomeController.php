@@ -43,8 +43,8 @@ class HomeController extends Controller
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
                 'width' => 60,
-                'height' => 32,
-                'padding' => 3,
+                'height' => 34,
+                'padding' => 2,
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
                 'minLength' => 4,
                 'maxLength' => 4,
@@ -63,10 +63,8 @@ class HomeController extends Controller
     public function actionDefault()
     {
         $productList = Product::find()->active()->orderBy(['orderid' => SORT_DESC])->all();
-        //$feedbackModel = new Feedback();
         return $this->render('default', [
             'productList' => $productList,
-            //'feedbackModel' => $feedbackModel,
         ]);
     }
 
@@ -119,9 +117,7 @@ class HomeController extends Controller
         $model = new Feedback();
         if($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
             //提交内容
-
-            //var_dump($model->attributes);
-
+            Feedback::SubmitFeedback($model);
         } else {//验证失败
             $state = false;
             $msg = $model->getErrors();

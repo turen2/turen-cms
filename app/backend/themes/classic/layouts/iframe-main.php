@@ -103,9 +103,8 @@ $adminModel = Yii::$app->user->identity;
             	</div>
                 <?php
                 $inquiryNum = Inquiry::find()->where(['ui_state' => Inquiry::INQUIRY_STATE_NOTHING])->count('ui_id');
-                $contactNum = 0;
-                $complaintNum = 0;
-                $notifyNum = $inquiryNum + $contactNum + $complaintNum;
+                $feedbackNum = 0;
+                $notifyNum = $inquiryNum + $feedbackNum;
                 ?>
             	<a href="javascript:;" class="message-alert df" title="消息提醒"><i class="fa fa-bell-o"></i><span class="label label-danger"><?= $notifyNum ?></span></a>
         		<a href="<?= Yii::$app->params['config_site_url'] ?>" target="_blank" class="home-link df" title="网站首页"><i class="fa fa-desktop"></i></a>
@@ -115,8 +114,7 @@ $adminModel = Yii::$app->user->identity;
                 <div class="message-alert-box">
                     <div class="message-box br5">
                         <a target="main" href="<?= Url::to(['/user/inquiry/index']) ?>">在线预约(<?= $inquiryNum ?>)</a>
-                        <a target="main" href="<?= Url::to(['/user/contact/index']) ?>">联系我们(<?= $contactNum ?>)</a>
-                        <a target="main" href="<?= Url::to(['/user/complaint/index']) ?>">投诉建议(<?= $complaintNum ?>)</a>
+                        <a target="main" href="<?= Url::to(['/user/feedback/index']) ?>">问题反馈(<?= $feedbackNum ?>)</a>
                     </div>
                 </div>
 

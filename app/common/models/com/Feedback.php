@@ -6,9 +6,10 @@
  */
 namespace common\models\com;
 
+use common\models\user\User;
 use Yii;
 use yii\base\Model;
-use common\models\user\User;
+use common\models\user\Feedback as FeedbackModel;
 
 /**
  * Feedback form
@@ -16,7 +17,7 @@ use common\models\user\User;
 class Feedback extends Model
 {
     //修改密码
-    public $type;//类型,1、2、3
+    public $type;
     public $content;//内容
     public $nickname;//称呼
     public $contact;//联系方式
@@ -66,9 +67,31 @@ class Feedback extends Model
      */
     public static function SubmitFeedback(Feedback $model)
     {
-        //Yii::$app->getDb()->createCommand()->insert()->execute();
-
         //判断是否内容重复，如果重复就提交已经提交过了。
+        //$md5 = md5($model->attributes);
+        //@TODO
+
+        //尝试关联用户账户
+        $userId = null;
+        if(Yii::$app->getUser()->isGuest) {
+            $userModel = User::find()->where(['or', 'phone='.$model->contact, 'email='.$model->contact])->one();
+            if($userModel) {
+                $userId = $userModel->user_id;
+            }
+        } else {
+            $userId = Yii::$app->getUser()->getId();
+        }
+
+        Yii::$app->getDb()->createCommand()->insert(FeedbackModel::tableName(), [
+            'fk_user_id' => $userId,
+            'fk_nickname' => $model->nickname,
+            'fk_contact' => $model->contact,
+            'fk_content' => $model->content,
+            'fk_type_id' => $model->type,
+            'fk_ip' => Yii::$app->getRequest()->getUserIP(),
+            'lang' => GLOBAL_LANG,
+            'created_at' => time(),
+        ])->execute();
 
         return true;
     }
