@@ -334,38 +334,38 @@
     color: red;
 }
 
-.follow-wap {
+.follow-wrap {
     text-align: center;
 }
 
-.follow-wap .p1 {
+.follow-wrap .p1 {
     font-size: 22px;
     line-height: 24px;
     color: #333;
     margin-top: 20px;
     margin-bottom: 12px;
 }
-.follow-wap .p1 .iconfont {
+.follow-wrap .p1 .iconfont {
     color: #ff6f20;
     font-size: 30px;
 }
-.follow-wap .p3 {
+.follow-wrap .p3 {
     font-size: 14px;
     color: #666;
     margin-bottom: 10px;
 }
-.follow-wap .fllow-img img {
+.follow-wrap .fllow-img img {
     width: 136px;
 }
-.follow-wap .fllow-img {
+.follow-wrap .fllow-img {
     margin-bottom: 3px;
 }
-.follow-wap .p2 {
+.follow-wrap .p2 {
     font-size: 16px;
     color: #666;
     margin-bottom: 10px;
 }
-.follow-wap .p4 {
+.follow-wrap .p4 {
     font-size: 12px;
     color: #999;
 }

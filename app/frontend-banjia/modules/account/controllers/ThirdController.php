@@ -38,7 +38,8 @@ class ThirdController extends \app\components\Controller
     {
         $userModel = Yii::$app->getUser()->getIdentity();
         $data = Yii::$app->security->validateData(urldecode($token), Yii::$app->params['config.thirdBindRemark']);
-        if(empty($userModel) || empty($data) || !Yii::$app->getSession()->get('_oauth_bind', false)) {
+        
+        if(Yii::$app->getUser()->isGuest || empty($data) || !Yii::$app->getSession()->get('_oauth_bind', false)) {
             throw new NotAcceptableHttpException('非法操作请求将不会处理！');
         }
 
@@ -46,7 +47,7 @@ class ThirdController extends \app\components\Controller
         $id = $data['id'];
         $openid = $data['openid'];
         $attribute = $id.'_id';
-        if(isset($userModel->{$attribute}) && !empty($userModel->{$attribute})) {
+        if(isset($userModel->{$attribute})) {
             Yii::$app->getDb()->createCommand()->update(User::tableName(), [
                 $attribute => $openid,
             ], [

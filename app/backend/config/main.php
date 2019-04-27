@@ -271,9 +271,6 @@ return [
         'class' => 'app\filters\AccessControl',
         'rules' => [],
         'except' => $params['config.notLoginNotaccessRoute'],//排除匹配项，其它都得验证权限
-
-        //'class' => 'app\filters\AcFilter',
-        //'except' => $params['config.notLoginNotaccessRoute'],
     ],
     //日志记录
     'as logBehavior' => [

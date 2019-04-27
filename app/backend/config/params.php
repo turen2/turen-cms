@@ -27,7 +27,7 @@ return [
     
     // 未登录无条件访问路由
     'config.notLoginNotaccessRoute' => [
-        'site/admin/*', // 登录注册改密码
+        'site/admin/*', // 登录注册找密码
         'site/other/*', // 统一错误处理/无权界面// 维护页面
         
         'debug/*',
@@ -36,7 +36,7 @@ return [
     
     // 已登录无条件访问路由
     'config.loginNotAccessRoute' => [
-        'site/home/*', // 登录注册改密码
+        'site/home/*',
     ],
     
     // 默认点击量

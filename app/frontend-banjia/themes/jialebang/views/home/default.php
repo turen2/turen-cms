@@ -163,7 +163,7 @@ var validator = $('form.online-price').validate({
             ,anim: -1//无动画
             //,shade: false//无背景遮布
             ,area: ['416px', '286px'] //宽高
-            ,content: $('#fllow-wap-tpl'),//模板
+            ,content: $('#fllow-wrap-tpl').html(),//模板
         });
         
         //ajax提交
@@ -176,9 +176,9 @@ var validator = $('form.online-price').validate({
             data: $(form).serialize(),
             success: function(res) {
                 if (res['state']) {
-                    
+                    //
                 } else {
-                    
+                    //
                 }
             }
         });
@@ -218,7 +218,6 @@ $this->registerJs($js);
     <div class="call-form">
         <div class="home-pulish">
             <h3 class="title">轻松获取在线报价</h3>
-
             <?= $form = Html::beginForm(['home/call-price'], 'POST', ['class' => 'online-price']) ?>
                 <div class="form-items">
                     <span class="label">区域选择</span>
@@ -245,12 +244,14 @@ $this->registerJs($js);
             <?= Html::endForm() ?>
 
             <!-- 弹出框 -->
-            <div id="fllow-wap-tpl" style="display: none;" class="follow-wap">
-                <p class="p1"> <i class="iconfont jia-yes_b"></i> 提交成功！</p>
-                <p class="p3">稍后客服将来电，免费为您提供定制服务</p>
-                <div class="fllow-img"><img src="<?= empty(Yii::$app->params['config_footer_phone_qr'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl(Yii::$app->params['config_footer_phone_qr'], true) ?>" /> </div>
-                <p class="p2"> 手机扫一扫，手机版更便捷</p>
-                <p class="p4">更多搬运服务、用车用人服务，供您使用！</p>
+            <div id="fllow-wrap-tpl" style="display: none;">
+                <div class="follow-wrap">
+                    <p class="p1"> <i class="iconfont jia-yes_b"></i> 提交成功！</p>
+                    <p class="p3">稍后客服将来电，免费为您提供定制服务</p>
+                    <div class="fllow-img"><img src="<?= empty(Yii::$app->params['config_footer_phone_qr'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl(Yii::$app->params['config_footer_phone_qr'], true) ?>" /> </div>
+                    <p class="p2"> 手机扫一扫，手机版更便捷</p>
+                    <p class="p4">更多搬运服务、用车用人服务，供您使用！</p>
+                </div>
             </div>
 
             <!-- widget缓存 -->

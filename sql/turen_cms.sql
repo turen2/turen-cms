@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2019-04-26 16:59:55
+Date: 2019-04-26 19:32:11
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -1068,7 +1068,7 @@ CREATE TABLE `ss_session` (
 -- Records of ss_session
 -- ----------------------------
 INSERT INTO `ss_session` VALUES ('7gk7m45c5rg7fjtrt6t48osqku', null, '', '1', '1556194619', 0x5F5F666C6173687C613A303A7B7D5F5F696E69745F706172616D737C613A323A7B733A31373A22636F6E6669675F696E69745F6C616E6773223B613A323A7B693A303B733A353A227A682D434E223B693A313B733A353A227A682D5457223B7D733A32343A22636F6E6669675F696E69745F64656661756C745F6C616E67223B733A353A227A682D434E223B7D5F5F69647C693A31303B5F5F72657475726E5F75726C5F726F7574657C733A33343A222F696E6465782E7068703F723D73697465253246686F6D6525324664656661756C74223B);
-INSERT INTO `ss_session` VALUES ('aavpl5vv0nuq95h5632q0be7nq', null, '', '1', '1556272747', 0x5F5F666C6173687C613A303A7B7D5F5F696E69745F706172616D737C613A323A7B733A31373A22636F6E6669675F696E69745F6C616E6773223B613A323A7B693A303B733A353A227A682D434E223B693A313B733A353A227A682D5457223B7D733A32343A22636F6E6669675F696E69745F64656661756C745F6C616E67223B733A353A227A682D434E223B7D5F5F72657475726E5F75726C7C733A313A222F223B5F5F636170746368612F736974652F61646D696E2F636170746368617C733A343A2266617975223B5F5F636170746368612F736974652F61646D696E2F63617074636861636F756E747C693A313B5F5F69647C693A31303B5F5F72657475726E5F75726C5F726F7574657C733A33353A222F696E6465782E7068703F723D737973253246636F6E66696725324673657474696E67223B);
+INSERT INTO `ss_session` VALUES ('aavpl5vv0nuq95h5632q0be7nq', null, '', '1', '1556272876', 0x5F5F666C6173687C613A303A7B7D5F5F696E69745F706172616D737C613A323A7B733A31373A22636F6E6669675F696E69745F6C616E6773223B613A323A7B693A303B733A353A227A682D434E223B693A313B733A353A227A682D5457223B7D733A32343A22636F6E6669675F696E69745F64656661756C745F6C616E67223B733A353A227A682D434E223B7D5F5F72657475726E5F75726C7C733A313A222F223B5F5F636170746368612F736974652F61646D696E2F636170746368617C733A343A2266617975223B5F5F636170746368612F736974652F61646D696E2F63617074636861636F756E747C693A313B5F5F69647C693A31303B5F5F72657475726E5F75726C5F726F7574657C733A33353A222F696E6465782E7068703F723D737973253246636F6E66696725324673657474696E67223B);
 
 -- ----------------------------
 -- Table structure for ss_shop_attribute
@@ -1718,7 +1718,7 @@ CREATE TABLE `ss_sys_log` (
   `lang` varchar(8) NOT NULL DEFAULT '' COMMENT '多语言',
   `created_at` varchar(50) NOT NULL DEFAULT '0' COMMENT '创建时间',
   PRIMARY KEY (`log_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15663 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15664 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ss_sys_log
@@ -1743,6 +1743,7 @@ INSERT INTO `ss_sys_log` VALUES ('15659', '10', 'admin', 'sys/config/setting', '
 INSERT INTO `ss_sys_log` VALUES ('15660', '10', 'admin', 'sys/config/batch', '批量系统配置删除或排序,提交', 'POST', '{\"r\":\"sys/config/batch\"}', '{\"_csrf-backend\":\"765x1V5CYR6-lNPQar0DtGyoo-xVsn2fzm990jlCWNWswAWXDjEZRtTs5ZQr6mz1FM3hpxHKFN6DAzmZfXohvA==\",\"config_site_name\":\"嘉乐邦100\",\"config_site_url\":\"http://www.jialebang100.com\",\"config_site_url_suffix\":\".html\",\"config_author\":\"进激的中年\",\"config_seo_title\":\"嘉乐邦100专业搬家运输\",\"config_seo_keyword\":\"土人开源,土人,土人系统,营销系统,建站,Yii,yiicms\",\"config_seo_description\":\"嘉乐邦100为业主提供专业的家政服务、管道疏通、环保除虫、搬家搬运等服务。\",\"config_copyright\":\"©版权所有：深圳市嘉乐邦家政平台\",\"config_hotline\":\"400-800-8888\",\"config_icp_code\":\"<a href=\\\"http://www.miitbeian.gov.cn\\\" target=\\\"_blank\\\">粤ICP备18143817号-1</a>\",\"config_open_site\":\"1\",\"config_close_note\":\"对不起，网站维护，请稍后登录。\\r\\n网站维护期间对您造成的不便，请谅解！\",\"config_upload_image_type\":\"gif|png|jpg|bmp\",\"config_upload_file_type\":\"zip|gz|rar|iso|doc|xls|ppt|wps|txt\",\"config_upload_media_type\":\"swf|flv|mpg|mp3|rm|rmvb|wmv|wma|wav\",\"config_max_file_size\":\"2097152\",\"config_image_resize\":\"1\",\"config_count_code\":\"\",\"config_qq_code\":\"\",\"config_page_size\":\"15\",\"config_open_comment\":\"1\",\"config_login_mode\":\"1\",\"config_frontend_logo\":\"cms-images/config/2019_03_12/6917c0916b48ddf111a9da1a632d9c80==180x80.png\",\"logourl\":\"\",\"config_backend_logo\":\"cms-images/config/2019_03_12/6917c0916b48ddf111a9da1a632d9c80==180x80.png\",\"config_hedader_phone_qr\":\"cms-images/config/2019_03_29/f26b8406b3f950190a12ca4fb5eed3aa==260x260.png\",\"config_footer_phone_qr\":\"cms-images/config/2019_03_29/f26b8406b3f950190a12ca4fb5eed3aa==260x260.png\",\"config_weight_unit_name\":\"g\",\"config_stock_warning\":\"10\",\"config_product_to_points\":\"10\",\"config_email_notify_signup\":\"\",\"config_sms_notify_signup\":\"\",\"config_email_notify_online_call_price\":\"980522557@qq.com\\r\\nxiaolingdang0807@qq.com\",\"config_sms_notify_online_call_price\":\"13728797679\\r\\n13530378360\\r\\n15118815075\\r\\n13590125438\\r\\n18576611717\\r\\n13725514524\",\"config_email_notify_jijiaqi\":\"\",\"config_sms_notify_jijiaqi\":\"\",\"config_email_notify_new_question\":\"\",\"config_sms_notify_new_question\":\"\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'ab983b5bddbd5773dcb06336ae8cb8741', '', '1556269141');
 INSERT INTO `ss_sys_log` VALUES ('15661', '10', 'admin', 'sys/role/index', '角色,查看列表', 'GET', '{\"r\":\"sys/role/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'b96390be654e3d4a8b0d7065edfb42360', '', '1556269145');
 INSERT INTO `ss_sys_log` VALUES ('15662', '10', 'admin', 'sys/config/setting', '查看系统配置', 'GET', '{\"r\":\"sys/config/setting\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '788b2baf099351bbf9bdbf1e68223afb0', '', '1556269147');
+INSERT INTO `ss_sys_log` VALUES ('15663', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '1e03e64684c7f00d363b831b5d6446e10', '', '1556269275');
 
 -- ----------------------------
 -- Table structure for ss_sys_menu
@@ -5697,15 +5698,15 @@ DROP TABLE IF EXISTS `ss_user_inquiry`;
 CREATE TABLE `ss_user_inquiry` (
   `ui_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '留言id',
   `ui_service_num` varchar(20) DEFAULT NULL COMMENT '服务单号',
-  `ui_title` varchar(30) NOT NULL COMMENT '预约标题',
-  `ui_picurl` varchar(100) NOT NULL DEFAULT '' COMMENT '服务主图',
-  `ui_content` varchar(50) NOT NULL COMMENT '预约内容',
+  `ui_title` varchar(30) NOT NULL DEFAULT '' COMMENT '预约标题',
+  `ui_picurl` varchar(120) NOT NULL DEFAULT '' COMMENT '服务主图',
+  `ui_content` text COMMENT '预约内容',
   `ui_product_id` int(11) unsigned DEFAULT NULL COMMENT '对应的服务产品',
   `user_id` int(11) unsigned DEFAULT NULL COMMENT '关系用户',
-  `ui_ipaddress` char(20) NOT NULL COMMENT '来源地址',
-  `ui_browser` text NOT NULL COMMENT '客户端信息',
-  `ui_answer` text NOT NULL COMMENT '回应',
-  `ui_remark` text NOT NULL COMMENT '备注（给自己看的）',
+  `ui_ipaddress` varchar(100) NOT NULL COMMENT '来源地址',
+  `ui_browser` text COMMENT '客户端信息',
+  `ui_answer` text COMMENT '回应',
+  `ui_remark` text COMMENT '备注（给自己看的）',
   `ui_type` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '类型：1首页预约，2价格计算器预约，3业务详情预约',
   `ui_state` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '处理状态：1未处理，2待处理，3已处理',
   `ui_submit_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '预约提交时间',

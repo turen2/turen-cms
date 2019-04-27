@@ -6,6 +6,7 @@
  */
 namespace app\controllers;
 
+use common\models\com\Feedback;
 use Yii;
 use yii\filters\VerbFilter;
 use common\models\user\Inquiry;
@@ -26,7 +27,31 @@ class HomeController extends Controller
                 'class' => VerbFilter::class,
                 'actions' => [
                     'call-price' => ['POST'],
+                    'feedback' => ['POST'],
                 ],
+            ],
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function actions()
+    {
+        return [
+            //生成图片验证码
+            'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction',
+                'width' => 60,
+                'height' => 32,
+                'padding' => 3,
+                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+                'minLength' => 4,
+                'maxLength' => 4,
+                'transparent' => true,
+                'backColor' => 0xFFFFFF,
+                'foreColor' => 0xFF6F20,
+                'fontFile' => '@app/web/fonts/WishfulWaves.ttf',
             ],
         ];
     }
@@ -38,13 +63,15 @@ class HomeController extends Controller
     public function actionDefault()
     {
         $productList = Product::find()->active()->orderBy(['orderid' => SORT_DESC])->all();
+        //$feedbackModel = new Feedback();
         return $this->render('default', [
             'productList' => $productList,
+            //'feedbackModel' => $feedbackModel,
         ]);
     }
 
     /**
-     * 首页询价
+     * 首页快捷预约
      * @return \yii\web\Response
      */
     public function actionCallPrice()
@@ -77,6 +104,32 @@ class HomeController extends Controller
         return $this->asJson([
             'state' => true,
             'msg' => $tt,
+        ]);
+    }
+
+    /**
+     * 全局问题反馈
+     * @return \yii\web\Response
+     */
+    public function actionFeedback()
+    {
+        $state = true;
+        $msg = '反馈已成功';
+
+        $model = new Feedback();
+        if($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
+            //提交内容
+
+            //var_dump($model->attributes);
+
+        } else {//验证失败
+            $state = false;
+            $msg = $model->getErrors();
+        }
+
+        return $this->asJson([
+            'state' => $state,
+            'msg' => $msg,
         ]);
     }
 }

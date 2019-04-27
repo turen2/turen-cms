@@ -77,8 +77,7 @@ class InquirySearch extends Inquiry
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'ui_id' => $this->ui_id,
-            'ui_type' => $this->ui_type,
+            'i.user_id' => Yii::$app->getUser()->getId(),
             'ui_state' => $this->ui_state,
         ]);
 

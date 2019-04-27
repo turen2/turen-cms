@@ -879,6 +879,11 @@ input:focus
     margin-top: -160px;
 }
 
+.fixed-nav .iconfont {
+    color: #ff6f20;
+    font-size: 35px;
+}
+
 .fixed-nav > ul > li {
     width: 100%;
     height: 76px;
@@ -913,27 +918,6 @@ input:focus
     height: 37px;
     margin: 0 auto;
     margin-top: 9px;
-}
-
-.fixed-nav > ul > li a span.s1 {
-    background: url("../images/common/sprit.png") no-repeat -11px -203px;
-    position: relative;
-}
-
-.fixed-nav > ul > li a span.s2 {
-    background: url("../images/common/sprit.png") no-repeat -11px -282px;
-}
-
-.fixed-nav > ul > li a span.s3 {
-    background: url("../images/common/sprit.png") no-repeat -11px -355px;
-}
-
-.fixed-nav > ul > li a span.s4 {
-    background: url("../images/common/sprit.png") no-repeat -11px -432px;
-}
-
-.fixed-nav > ul > li a span.s5 {
-    background: url("../images/common/sprit.png") no-repeat -11px -500px;
 }
 
 .fixed-nav > ul > li a .point {
@@ -1126,15 +1110,141 @@ body .notifyjs-corner {
     margin-right: 10px;
 }
 .auth-link .iconfont {
-    font-size: 28px;
+    font-size: 26px;
+    padding: 2px;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    border-radius: 16px;
 }
 .auth-link.qq .iconfont {
     color: #6cc5f5;
+    border: 1px solid #6cc5f5;
 }
 .auth-link.weibo .iconfont {
     color: #ed3e3e;
+    border: 1px solid #ed3e3e;
 }
 .auth-link.weixin .iconfont {
     color: #93d179;
+    border: 1px solid #93d179;
 }
 /* 第三方登录end */
+
+/* 全局问题反馈 */
+.feedback-pop.layui-layer {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+.feedback-wrap {
+    width: 760px;
+    padding: 30px;
+    background: #f8f8f8;
+}
+.feedback-wrap .fk-close {
+    display: block;
+    height: 50px;
+    width: 50px;
+    padding: 9px 0;
+    background: #e8e8e8;
+    text-align: center;
+    color: #cccccc;
+    float: right;
+    position: relative;
+    top: -30px;
+    right: -30px;
+}
+.feedback-wrap .fk-close .iconfont {
+    font-size: 28px;
+}
+.feedback-wrap .fk-title {
+    font-size: 24px;
+    text-align: center;
+}
+.feedback-wrap .fk-text {
+    font-size: 12px;
+    padding: 15px 0 25px;
+    text-align: center;
+}
+.feedback-wrap .success-text, .feedback-wrap .success-text .iconfont {
+    color: #43bc60;
+}
+.feedback-wrap .form-group, .feedback-wrap .form-group .col {
+    position: relative;
+}
+.feedback-wrap .form-group .placeholder {
+    position: absolute;
+    height: 20px;
+    line-height: 20px;
+    top: 7px;
+    left: 10px;
+    color: #ccc;
+    z-index: 0;
+}
+.feedback-wrap .form-group {
+    margin-bottom: 16px;
+}
+.feedback-wrap .form-group.first {
+
+}
+.feedback-wrap .form-group.last {
+    text-align: center;
+    margin-top: 36px;
+    margin-bottom: 6px;
+}
+.feedback-wrap .form-group .form-control  {
+    font-size: 14px;
+    border: 1px solid #d8d8d8;
+    padding: 8px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+.feedback-wrap .form-group .form-control.textarea {
+    height: 120px;
+    width: 100%;
+    resize: none;
+    overflow-x: hidden;
+}
+.feedback-wrap .form-group .col {
+    float: left;
+}
+.feedback-wrap .form-group .col .form-control.text {
+    margin-right: 8px;
+}
+.feedback-wrap .form-group p.error, .feedback-wrap .form-group .col p.error {
+    color: red;
+    font-size: 12px;
+}
+.feedback-wrap .form-group p.error .iconfont, .feedback-wrap .form-group .col p.error .iconfont {
+    font-size: 14px;
+}
+.feedback-wrap .form-group .col img {
+    position: absolute;
+    right: 10px;
+    top: 2px;
+}
+.feedback-wrap .form-group .radio-list label {
+    border: 1px solid #d8d8d8;
+    padding: 6px 8px;
+    margin-right: 8px;
+    font-size: 14px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    float: left;
+    cursor: pointer;
+    background: white;
+}
+.feedback-wrap .form-group .radio-list label.on {
+    border: 1px solid #ff6f20;
+    background: #FFFFFF url(../images/common/jzfw_icon2_mini.jpg) no-repeat 101% 100%;
+}
+.feedback-wrap .form-group .radio-list input {
+    display: none;
+}
+.feedback-wrap .form-group button {
+    font-size: 18px;
+    padding: 10px 30px;
+}
+/* 全局问题反馈end */

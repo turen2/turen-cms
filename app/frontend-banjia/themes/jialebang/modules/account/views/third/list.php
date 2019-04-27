@@ -25,7 +25,8 @@ $userModel = Yii::$app->getUser()->getIdentity();
             <div class="user-content-body" style="margin-bottom: 60px;padding-top: 16px;">
                 <?= $this->render('../_alert') ?>
                 <?php $authAuthChoice = AuthChoice::begin([
-                    'baseAuthUrl' => ['/account/passport/auth', 'action' => 'bind'],//绑定类型
+                    //'baseAuthUrl' => ['/account/passport/auth', 'action' => 'bind'],//绑定类型
+                    'baseAuthUrl' => ['/account/passport/auth'],
                     'popupMode' => true,
                     'options' => ['class' => 'third-clients'],
                 ]); ?>

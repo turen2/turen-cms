@@ -41,7 +41,7 @@ $('.setting a.default-btn').on('click', function() {
         move: false, //来禁止拖拽
         area: '480px', //宽高//此处只取宽
         skin: 'jia-modal',
-        content: $('#'+template).html(),//否则会出现多个id问题
+        content: $('#'+template),//否则会出现多个id问题，必须是对象，自动克隆
         success: function(index, layero) {
             //$(index[0]).find('#phone-code-btn').on('click', function() {
                 //console.log('发送手机验证码');

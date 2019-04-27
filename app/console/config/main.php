@@ -16,8 +16,8 @@ return [
         'jialebangSmsQueue',//短信队列
     ],
     'controllerNamespace' => 'console\controllers',
-    'controllerMap' => [
-        // ...
+    /*
+	'controllerMap' => [
         'migrate' => [
             'class' => 'yii\console\controllers\MigrateController',
             'migrationPath' => null,
@@ -27,6 +27,7 @@ return [
             ],
         ],
     ],
+	*/
     'components' => [
         //家乐邦邮箱队列
         'jialebangMailQueue' => [

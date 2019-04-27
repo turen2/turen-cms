@@ -152,8 +152,10 @@ class PassportController extends \app\components\Controller
         }
 
         //用户中心绑定bind操作
-        if(Yii::$app->getRequest()->get('action', null) == 'bind') {
-            return $this->redirect(Url::to(['account/third/bind', 'token' => $token]));
+        //if(Yii::$app->getRequest()->get('action', null) == 'bind') {
+        if(empty(Yii::$app->getUser()->isGuest)) {
+            $this->action->successUrl = Url::to(['/account/third/bind', 'token' => $token]);
+            return true;
         }
 
         //处理绑定

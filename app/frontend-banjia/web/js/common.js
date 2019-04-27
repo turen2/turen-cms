@@ -184,9 +184,8 @@ turen.com = (function($) {
             var callback = function(res, _this) {
                 if(res.state) {
                     _this.text(res.msg);
-                    //$.notify('已设置的状态为：'+res.msg+'！', 'success');//状态切换成功
                 } else {
-                    //$.notify(res.msg+'！', 'error');
+                    //
                 }
             };
             commonRemote({
@@ -199,33 +198,114 @@ turen.com = (function($) {
         scrollTop: function(time) {
             $("body, html").animate({scrollTop: 0}, time);
         },
+        feedbackCheck: function(_form) {
+            //每次都要清理错误
+            $(_form).find('p.error').remove();
+            var error = '';
+            var hasError = false;
+
+            var content = $(_form).find('textarea[name="Feedback[content]"]');
+            error = '';
+            if(!content.val().length > 0) {
+                error = '内容详情必填';
+            }
+            if(error != '') {
+                hasError = true;
+                content.parent('.form-group').append('<p class="error"><i class="iconfont jia-close_b"></i>'+error+'</p>');
+            }
+
+            var nickname = $(_form).find('input[name="Feedback[nickname]"]');
+            error = '';
+            if(!nickname.val().length > 0) {
+                error = '称呼必填';
+            }
+            if(error != '') {
+                hasError = true;
+                nickname.parent('.form-group .col').append('<p class="error"><i class="iconfont jia-close_b"></i>'+error+'</p>');
+            }
+
+            var contact = $(_form).find('input[name="Feedback[contact]"]');
+            error = '';
+            if(!contact.val().length > 0) {
+                error = '联系方式必填';
+            }
+            if(error != '') {
+                hasError = true;
+                contact.parent('.form-group .col').append('<p class="error"><i class="iconfont jia-close_b"></i>'+error+'</p>');
+            }
+
+            var verifyCode = $(_form).find('input[name="Feedback[verifyCode]"]');
+            error = '';
+            if(!verifyCode.val().length > 0) {
+                error = '验证码必填';
+            }
+            if(error != '') {
+                hasError = true;
+                verifyCode.parent('.form-group .col').append('<p class="error"><i class="iconfont jia-close_b"></i>'+error+'</p>');
+            }
+
+            if(!hasError) {
+                var settings = {
+                    url: $(_form).attr('action'),
+                    type: $(_form).attr('method'),
+                    dataType: 'json',
+                    data: $(_form).find('input, textarea').serializeArray(),
+                    cache: false,
+                    _this: $(_form),
+                    callback: function(res, _this) {
+                        if(res.state) {
+                            _this.parent('.feedback-wrap').find('.fk-text').html('<span class="success-text"><i class="iconfont jia-success2"></i>感谢您对我们工作的支持与帮助，提交已成功</span>');
+                            _this.find('.form-group.last button').hide();
+                        } else {
+                            for(var key in res.msg) {
+                                //错误数组error
+                                if(res.msg[key][0]) {
+                                    var value = res.msg[key][0];
+                                    if(key == 'content') {
+                                        _this.find('textarea[name="Feedback['+key+']"]').parent('.form-group').append('<p class="error"><i class="iconfont jia-close_b"></i>'+value+'</p>');
+                                    } else {
+                                        _this.find('input[name="Feedback['+key+']"]').parent('.form-group .col').append('<p class="error"><i class="iconfont jia-close_b"></i>'+value+'</p>');
+                                    }
+                                }
+                            }
+                        }
+                    }
+                };
+                commonRemote(settings);
+            }
+
+            return false;
+        }
     };
 
     // 私有方法
     function commonRemote(settings) {
         var defaultSetting = {
             url: null,
+            type: 'POST',
+            dataType: 'json',
             data: null,
+            cache: false,
             callback: null,
-            _this: null,
-            type: 'POST'
+            _this: null
         };
         $.extend(defaultSetting, settings);
-        data[csrfParam] = csrfToken;
+        var _this = defaultSetting._this;
+        //data[csrfParam] = csrfToken;
+
         $.ajax({
             url: defaultSetting.url,
             type: defaultSetting.type,
-            dataType: 'json',
+            dataType: defaultSetting.dataType,
             context: defaultSetting._this,
-            cache: false,
+            cache: defaultSetting.cache,
             data: defaultSetting.data,
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                $.notify(XMLHttpRequest.responseText, 'error');
+            },
             success: function(res) {
-                if (res['state']) {
-                    if(callback) {
-                        callback(res, _this);
-                    }
-                } else {
-                    //$.notify(res['msg'], 'warn');
+                if(defaultSetting.callback) {
+                    defaultSetting.callback(res, _this);
                 }
             }
         });
@@ -569,6 +649,7 @@ turen.user = (function($) {
         }
     };
 
+    //全局状态控制
     var phoneCodeBtnStatus = 1;//手机验证码发送按钮状态，可用
     var emailCodeBtnStatus = 1;//邮件证码发送按钮状态，可用
 

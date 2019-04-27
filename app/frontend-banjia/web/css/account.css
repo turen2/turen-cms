@@ -61,22 +61,22 @@
 .user-content-body {
     padding: 30px;
 }
-.form-group {
+.user-content .form-group, .jia-modal .form-group {
     margin-bottom: 32px;
     line-height: 1;
     position: relative;
 }
-.form-group label {
+.user-content .form-group label, .jia-modal .form-group label {
     font-size: 12px;
 }
-.form-group .form-control {
+.user-content .form-group .form-control, .jia-modal .form-group .form-control {
     display: block;
     width: 366px;
     font-size: 14px;
     padding: 5px 0 4px;
     padding-bottom: 3px;
 }
-.form-group .form-control.text {
+.user-content .form-group .form-control.text, .jia-modal .form-group .form-control.text {
     display: block;
     width: 366px;
     font-size: 14px;
@@ -85,10 +85,10 @@
     line-height: 20px;
     height: 30px;
 }
-.form-group .form-control:hover, .user-content .form-group .form-control:focus {
+.user-content .form-group .form-control:hover, .user-content .form-group .form-control:focus, .jia-modal .form-group .form-control:hover, .jia-modal .form-group .form-control:focus {
     outline: 0;
 }
-.form-group .form-control.radio {
+.user-content .form-group .form-control.radio, .jia-modal .form-group .form-control.radio {
     margin-top: 12px;
     margin-bottom: 4px;
     position: relative;
@@ -96,7 +96,7 @@
     font-weight: 500;
     line-height: 1;
 }
-.form-group .form-control.textarea {
+.user-content .form-group .form-control.textarea, .jia-modal .form-group .form-control.textarea {
     padding: 8px;
     margin-top: 8px;
     height: 100px;
@@ -105,7 +105,7 @@
     resize: none;
     overflow-x: hidden;
 }
-.form-group p.error {
+.user-content .form-group p.error, .jia-modal .form-group p.error {
     height: 20px;
     line-height: 20px;
     font-size: 12px;
@@ -370,7 +370,7 @@
 .user-content .tabs-panel.active {
     display: block;
 }
-.form-group-button button {
+.user-content .form-group-button button {
     position: absolute;
     top: 10px;
     right: 0;
@@ -386,10 +386,10 @@
     -o-transition: all .3s ease;
     transition: all .3s ease;
 }
-.form-group-button button > i {
+.user-content .form-group-button button > i {
     font-size: 14px;
 }
-.form-group-button button:hover {
+.user-content .form-group-button button:hover {
     cursor: pointer;
     opacity: .8;
     -webkit-transition: all .3s ease;
@@ -397,15 +397,15 @@
     -o-transition: all .3s ease;
     transition: all .3s ease;
 }
-.table-striped>tbody>tr:nth-of-type(odd) {
+.user-content .table-striped>tbody>tr:nth-of-type(odd) {
     background-color: #f9f9f9;
 }
-.table-responsive {
+.user-content .table-responsive {
     margin-bottom: 20px;
     overflow-x: visible;
     min-height: auto;
 }
-.table-responsive > .table {
+.user-content .table-responsive > .table {
     border: 0;
     margin-bottom: 0;
 }
@@ -467,10 +467,10 @@
     padding-bottom: 0;
     border-bottom: none;
 }
-.pagination-batch a {
+.user-content .pagination-batch a {
     padding: 4px 8px;
 }
-.pagination-batch a.no-effect, .pagination-batch a.no-effect:hover {
+.user-content .pagination-batch a.no-effect, .user-content .pagination-batch a.no-effect:hover {
     color: #dddddd;
     border-color: #dddddd;
     background: white;
