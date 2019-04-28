@@ -13,5 +13,5 @@ namespace common\models\user;
  */
 class WeiboQuery extends \common\components\ActiveQuery
 {
-
+    //自定义专用方法
 }

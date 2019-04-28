@@ -137,7 +137,7 @@ $this->title = '菜单栏';
                         'linkTemplate' => '<a target="main" href="{url}">{label}</a>',
                         'encodeLabels' => false,
                         'items' => [
-                            ['label' => '线上咨询', 'url' => ['/user/inquiry/index'], 'visible' => $roleModel->checkPerm('user/order/index', true)],
+                            ['label' => '服务订单', 'url' => ['/user/inquiry/index'], 'visible' => $roleModel->checkPerm('user/order/index', true)],
                             ['label' => '问题反馈', 'url' => ['/user/feedback/index'], 'visible' => $roleModel->checkPerm('user/feedback/index', true)],
                             ['label' => '<i class="fa fa-wrench"></i>', 'template' => '<a target="main" title="用户组管理" class="menu-wrench group" href="{url}">{label}</a>', 'url' => ['/user/group/index'], 'visible' => $roleModel->checkPerm('user/group/index', true)],
                             ['label' => '<i class="fa fa-wrench"></i>', 'template' => '<a target="main" title="用户等级管理" class="menu-wrench level" href="{url}">{label}</a>', 'url' => ['/user/level/index'], 'visible' => $roleModel->checkPerm('user/level/index', true)],

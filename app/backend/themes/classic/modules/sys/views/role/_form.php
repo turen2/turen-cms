@@ -512,7 +512,7 @@ $this->registerJs($js);
                     <span><?= BackCommonHelper::CheckPermBox($model, 'user/comment/ueditor', '编辑器图片上传') ?></span>
                 </div>
                 <div class="purview-title">
-                    <strong>线上咨询/询盘</strong>
+                    <strong>服务订单</strong>
                 </div>
                 <div class="purview-list">
                     <span><?= BackCommonHelper::CheckPermBox($model, 'user/inquiry/index', '查看列表') ?></span>

@@ -202,7 +202,7 @@ class LogBehavior extends Behavior
             'sys/multilang-tpl' => '多语言',
             'user/comment' => '用户留言',
             'user/favorite' => '用户收藏',
-            'user/inquiry' => '线上咨询',
+            'user/inquiry' => '服务订单',
             'user/contact' => '联系我们',
             'user/complaint' => '投诉建议',
         ];

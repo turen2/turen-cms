@@ -4,14 +4,14 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace common\models\user;
+namespace common\models\account;
 
 /**
- * This is the ActiveQuery class for [[Qq]].
+ * This is the ActiveQuery class for [[Msg]].
  *
- * @see Qq
+ * @see Msg
  */
-class QqQuery extends \common\components\ActiveQuery
+class MsgQuery extends \common\components\ActiveQuery
 {
     //自定义专用方法
 }

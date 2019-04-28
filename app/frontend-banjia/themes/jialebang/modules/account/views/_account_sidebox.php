@@ -26,11 +26,11 @@ $links = [
         'label' => '<i class="iconfont jia-File"></i> 工单管理',
         'isPost' => false,
     ],
-//    [
-//        'route' => 'account/msg/list',
-//        'label' => '<i class="iconfont jia-task"></i> 消息中心',
-//        'isPost' => false,
-//    ],
+    [
+        'route' => 'account/msg/list',
+        'label' => '<i class="iconfont jia-task"></i> 消息中心',
+        'isPost' => false,
+    ],
     [
         'route' => 'account/company/info',
         'label' => '<i class="iconfont jia-identityauthentication"></i> 企业资质',

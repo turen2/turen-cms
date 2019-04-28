@@ -81,6 +81,7 @@ $this->registerJs($js);
             <li class="tab-li"><?= Html::a('新用户注册', ['user/signup'], ['class' => 'sign-up']) ?></li>
         </ul>
         <div class="form-content">
+            <?= $this->render('../_alert') ?>
             <?php $form = ActiveForm::begin(['enableAjaxValidation' => false, 'id' => 'loginForm', 'options' => ['class' => 'login-form']]); ?>
                 <?php
                 $errors = $model->getFirstErrors();

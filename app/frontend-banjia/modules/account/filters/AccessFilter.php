@@ -41,6 +41,7 @@ class AccessFilter extends ActionFilter
         if (Yii::$app->user->getIsGuest()) {//未登录
             Yii::$app->session->setFlash('warning', '您还未登录，请先登录再操作！');
             $user->loginRequired();//跳转到登录，并保留当前将访问的地址
+            return;//直接返回，当前不处在控制器中，不能跳转
         }
 
         return true;//正常返回beforeAction

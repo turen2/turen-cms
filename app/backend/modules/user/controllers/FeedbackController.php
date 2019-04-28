@@ -1,9 +1,11 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 namespace app\modules\user\controllers;
 
-use app\models\user\User;
-use app\widgets\select2\Select2Action;
 use Yii;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -11,6 +13,8 @@ use app\models\user\Feedback;
 use app\models\user\FeedbackSearch;
 use app\components\Controller;
 use app\widgets\edititem\EditItemAction;
+use app\models\user\User;
+use app\widgets\select2\Select2Action;
 
 /**
  * FeedbackController implements the CRUD actions for Feedback model.

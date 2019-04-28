@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 namespace app\models\user;
 
 use Yii;
@@ -65,7 +69,7 @@ class FeedbackSearch extends Feedback
             'sort' => [
                 //'class' => Sort::class,
                 'defaultOrder' => [
-                    'orderid' => SORT_DESC,
+                    'created_at' => SORT_DESC,
                 ],
             ],
         ]);
