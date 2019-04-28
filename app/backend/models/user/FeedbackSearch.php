@@ -52,7 +52,7 @@ class FeedbackSearch extends Feedback
         //$query = Admin::findBySql($sql);
         //$query = Admin::find()->alias('a')->select(['a.*', 's.company as company', 's.domain as domain', 's.username as merchant'])->leftJoin(Site::tableName().' as s', ' a.test_id = s.testid');
         
-        $query = Feedback::find()->current();
+        $query = Feedback::find()->current()->with('feedbackType')->with('user');
 
         // add conditions that should always apply here
 

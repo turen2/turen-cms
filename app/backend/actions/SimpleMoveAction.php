@@ -17,14 +17,18 @@ class SimpleMoveAction extends Action
     public $kid;//主键id值
     public $type;//up上移 | down下移
     public $orderid;//指定一个值
-    
+
+    /**
+     * 显示一个或多个名称，传入字段数组即显示多个名称串
+     * @var string | array
+     */
     public $nameField = 'name';
     public $orderidField = 'orderid';//指定要修改的字段名
     
     public function run()
     {
         //校验参数
-        if(is_null($this->className)) {
+        if(is_null($this->className) || is_null($this->nameField) ) {
             throw new InvalidArgumentException('传递的参数有误。');
         }
         
@@ -51,6 +55,15 @@ class SimpleMoveAction extends Action
         
         $row = $query->asArray()->one();
         $currentModel = $className::findOne([$primayKey => $this->kid]);
+
+        $nameField = '';
+        if(is_array($this->nameField)) {
+            foreach ($this->nameField as $fieldName) {
+                $nameField .= $currentModel->{$fieldName}.' ';
+            }
+        } else {
+            $nameField = $currentModel->{$this->nameField}.' ';
+        }
         
         if($row) {
             $newid = $row[$primayKey];
@@ -59,10 +72,10 @@ class SimpleMoveAction extends Action
             $command = Yii::$app->getDb()->createCommand();
             $command->update($className::tableName(), [$this->orderidField => $neworderid], $primayKey.' = :id', [':id' => $this->kid])->execute();
             $command->update($className::tableName(), [$this->orderidField => $this->{$this->orderidField}], $primayKey.' = :id', [':id' => $newid])->execute();
-            
-            Yii::$app->getSession()->setFlash('success', $currentModel->{$this->nameField}.' 移动成功。');
+
+            Yii::$app->getSession()->setFlash('success', $nameField.'移动成功。');
         } else {
-            Yii::$app->getSession()->setFlash('error', $currentModel->{$this->nameField}.' 移动失败。');
+            Yii::$app->getSession()->setFlash('error', $nameField.'移动失败。');
         }
         
         $this->controller->redirect(['index']);

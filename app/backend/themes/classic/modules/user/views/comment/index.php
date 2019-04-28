@@ -52,7 +52,7 @@ $this->title = '评论列表';
 		$delstr = Html::a('删除', 'javascript:;', $options);
 	?>
 	<tr align="left" class="data-tr">
-		<td  class="first-column">
+		<td class="first-column">
 			<input type="checkbox" name="checkid[]" id="checkid[]" value="<?= $model->uc_id; ?>">
 		</td>
 		<td><?= $model->uc_id; ?></td>

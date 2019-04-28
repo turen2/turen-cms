@@ -56,7 +56,7 @@ $this->title = '用户管理';
 		$delstr = Html::a('删除', 'javascript:;', $options);
 	?>
 	<tr align="left" class="data-tr">
-		<td  class="first-column">
+		<td class="first-column">
 			<input type="checkbox" name="checkid[]" id="checkid[]" value="<?= $model->user_id; ?>">
 		</td>
 		<td><span class="thumbs">
@@ -89,7 +89,8 @@ if(empty($dataProvider->count))
     	<a href="javascript:turen.com.checkAll(true);">全选</a> - 
     	<a href="javascript:turen.com.checkAll(false);">反选</a>
     	<span class="op-name">操作：</span>
-    	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>
+    	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a> -
+        <a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'order'])?>', 'batchform');">排序</a>
 	</span>
 	<?= Html::a('添加新用户', ['create'], ['class' => 'data-btn']) ?>
 	<div class="page">

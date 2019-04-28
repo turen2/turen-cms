@@ -48,7 +48,7 @@ $this->title = '品牌管理';
 		$delstr = Html::a('删除', 'javascript:;', $options);
 	?>
 	<tr align="left" class="data-tr">
-		<td  class="first-column">
+		<td class="first-column">
 			<input type="checkbox" name="checkid[]" id="checkid[]" value="<?= $model->id; ?>">
 		</td>
 		<td><?= $model->id; ?></td>

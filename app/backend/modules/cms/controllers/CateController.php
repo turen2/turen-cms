@@ -126,21 +126,6 @@ class CateController extends Controller
     }
     
     /**
-     * Deletes an existing Cate model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $id
-     * @return mixed
-     */
-    public function actionCheck($id)
-    {
-        $model = $this->findModel($id);
-        $model->status = !$model->status;
-        $model->save(false);//效果在界面上有显示
-
-        return $this->redirect(['index']);
-    }
-    
-    /**
      * 批量提交并处理
      * @param string $type delete | order
      * @return \yii\web\Response

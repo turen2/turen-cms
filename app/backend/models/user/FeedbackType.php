@@ -77,6 +77,7 @@ class FeedbackType extends \app\models\base\User
         //[['status'], 'default', 'value' => self::STATUS_ON],
         //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return [
+            [['fkt_form_name', 'fkt_list_name'], 'required'],
             [['fkt_form_show', 'fkt_list_show', 'orderid', 'status', 'is_default', 'created_at', 'updated_at'], 'integer'],
             [['fkt_form_name', 'fkt_list_name', 'lang'], 'string'],
         ];

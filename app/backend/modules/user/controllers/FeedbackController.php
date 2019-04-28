@@ -2,12 +2,15 @@
 
 namespace app\modules\user\controllers;
 
+use app\models\user\User;
+use app\widgets\select2\Select2Action;
 use Yii;
+use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
 use app\models\user\Feedback;
 use app\models\user\FeedbackSearch;
 use app\components\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
+use app\widgets\edititem\EditItemAction;
 
 /**
  * FeedbackController implements the CRUD actions for Feedback model.
@@ -26,6 +29,33 @@ class FeedbackController extends Controller
                 'actions' => [
                     'delete' => ['POST'],
                 ],
+            ],
+        ];
+    }
+
+    public function actions()
+    {
+        $request = Yii::$app->getRequest();
+        $keyword = $request->get('keyword');
+        $page = $request->get('page');
+        return [
+            'edit-item' => [
+                'class' => EditItemAction::class,
+                'className' => Feedback::class,
+                'kid' => $request->post('kid'),
+                'field' => 'orderid',
+                'value' => $request->post('value'),
+            ],
+            //获取标签
+            'get-user-list' => [
+                'class' => Select2Action::class,
+                'className' => User::class,//要切换的模型【目前只支持单模型】
+                'limit' => 10,//每次请求返回限制数量
+                'page' => $page,
+                'searchFields' => ['username', 'phone', 'email'],//搜索的字段
+                'valField' => 'user_id',//返回作为值的字段
+                'showField' => 'username',//返回显示的字段
+                'keyword' => $keyword,//要搜索的内容
             ],
         ];
     }
@@ -53,9 +83,10 @@ class FeedbackController extends Controller
     public function actionCreate()
     {
         $model = new Feedback();
+        $model->loadDefaultValues();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-        	Yii::$app->getSession()->setFlash('success', $model->xxxxx.' 添加成功，结果将展示在列表。');
+        	Yii::$app->getSession()->setFlash('success', $model->fk_nickname.' 添加成功，结果将展示在列表。');
             return $this->redirect(['index']);
         } else {
             return $this->render('create', [
@@ -75,7 +106,7 @@ class FeedbackController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-        	Yii::$app->getSession()->setFlash('success', $model->xxxxx.' 已经修改成功！');
+        	Yii::$app->getSession()->setFlash('success', $model->fk_nickname.' 已经修改成功！');
             return $this->redirect(['index']);
         } else {
             return $this->render('update', [
@@ -83,18 +114,32 @@ class FeedbackController extends Controller
             ]);
         }
     }
-    
+
     /**
-     * Deletes an existing Feedback model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $id
-     * @return mixed
+     * 批量提交并处理
+     * @param string $type delete | order
+     * @return \yii\web\Response
      */
-    public function actionCheck($id)
+    public function actionBatch($type)
     {
-        $model = $this->findModel($id);
-        $model->status = !$model->status;
-        $model->save(false);//效果在界面上有显示
+        if($type == 'delete') {
+            $tips = '';
+            foreach (Feedback::find()->current()->andWhere(['fk_id' => Yii::$app->getRequest()->post('checkid', [])])->all() as $model) {
+                $model->delete();
+                $tips .= '<li>'.$model->fk_nickname.' 删除成功！</li>';
+            }
+            Yii::$app->getSession()->setFlash('success', '<ul>'.$tips.'</ul>');
+        } elseif($type == 'order') {//全局提交
+            $ids = Yii::$app->getRequest()->post('checkid', []);
+            $orders = Yii::$app->getRequest()->post('orderid', []);
+            foreach ($ids as $key => $id) {
+                if($model = Feedback::find()->current()->andWhere(['fk_id' => $id])->one()) {
+                    $model->orderid = $orders[$key];
+                    $model->save(false);
+                }
+            }
+            Yii::$app->getSession()->setFlash('success', '已完成批量排序操作！');
+        }
 
         return $this->redirect(['index']);
     }
@@ -113,11 +158,11 @@ class FeedbackController extends Controller
         if(Yii::$app->getRequest()->isAjax) {
             return $this->asJson([
                 'state' => true,
-                'msg' => $model->xxxxx.' 已经成功删除！',
+                'msg' => $model->fk_nickname.' 已经成功删除！',
             ]);
         }
         
-        Yii::$app->getSession()->setFlash('success', $model->xxxxx.' 已经成功删除！');
+        Yii::$app->getSession()->setFlash('success', $model->fk_nickname.' 已经成功删除！');
         return $this->redirect($returnUrl);
     }
 

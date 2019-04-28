@@ -20,7 +20,9 @@ echo "<?php\n";
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
+use yii\widgets\ActiveForm;
 use yii\widgets\LinkPager;
+use app\widgets\edititem\EditItemWidget;
 
 /* @var $this yii\web\View */
 <?= !empty($generator->searchModelClass) ? "/* @var \$searchModel " . ltrim($generator->searchModelClass, '\\') . " */\n" : '' ?>
@@ -31,23 +33,29 @@ $this->title = <?= $generator->generateString(Inflector::pluralize(Inflector::ca
 
 <?= "<?= " ?>$this->render('_search', ['model' => $searchModel]); ?>
 
+<?= "<?php " ?>$form = ActiveForm::begin([
+    'enableClientScript' => false,
+    'options' => ['id' => 'batchform'],
+]); ?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="data-table">
 	<tr align="left" class="head">
-		<td width="4%" class="first-column">ID</td>
+        <td width="4%" class="first-column"><input type="checkbox" name="checkid" id="checkid" onclick="turen.com.checkAll(this.checked);"></td>
+		<td width="4%"><?= "<?= " ?>$searchModel->getAttributeLabel('id') ?></td>
 		
 		<?php if (($tableSchema = $generator->getTableSchema()) === false) { ?>
         <?php foreach ($generator->getColumnNames() as $name) { ?>
 		<td width="17%"><?= $generator->getAttributeLabel($name)?></td>
 		<?php  } ?>
         <?php  } ?>
-		
-		<td width="10%">添加日期</td>
+
+        <td width="4%"><?= "<?= " ?>$dataProvider->sort->link('orderid', ['label' => $searchModel->getAttributeLabel('orderid')]) ?></td>
+        <td width="10%"><?= "<?= " ?>$dataProvider->sort->link('created_at', ['label' => $searchModel->getAttributeLabel('created_at')]) ?></td>
 		<td width="25%" class="end-column">操作</td>
 	</tr>
 	<?= "<?php " ?>foreach ($dataProvider->getModels() as $key => $model) {
 		$options = [
 	        'title' => '点击进行显示和隐藏操作',
-	        'data-url' => Url::to(['check', 'id' => $model->id]),
+	        'data-url' => Url::to(['check', 'kid' => $model->id]),
 	        'onclick' => 'turen.com.updateStatus(this)',
         ];
 		$checkstr = Html::a(($model->status?'显示':'隐藏'), 'javascript:;', $options);
@@ -59,19 +67,31 @@ $this->title = <?= $generator->generateString(Inflector::pluralize(Inflector::ca
 		$delstr = Html::a('删除', 'javascript:;', $options);
 	?>
 	<tr align="left" class="data-tr">
-		<td class="first-column"><?= "<?= " ?>$model->id; ?></td>
+        <td class="first-column">
+            <input type="checkbox" name="checkid[]" id="checkid[]" value="<?= "<?= " ?>$model->id; ?>">
+        </td>
+		<td><?= "<?= " ?>$model->id; ?></td>
 		
 		<?php if (($tableSchema = $generator->getTableSchema()) === false) { ?>
         <?php foreach ($generator->getColumnNames() as $name) { ?>
         <td><?= "<?= " ?>$model-><?= $name?>; ?></td>
         <?php  } ?>
         <?php  } ?>
-		
+
+        <td><?= "<?= " ?>EditItemWidget::widget([
+                'model' => $model,
+                'primaryKey' => 'id',
+                'attribute' => 'orderid',
+                'url' => Url::to(['/xxxx/xxxx/edit-item']),
+                'options' => [],
+            ]); ?></td>
 		<td><?= "<?= " ?>Yii::$app->getFormatter()->asDate($model->updated_at); ?></td>
 		<td class="action end-column"><span><?= "<?= " ?>$checkstr; ?></span> | <span><a href="<?= "<?= " ?>Url::to(['update', 'id' => $model->id]) ?>">修改</a></span> | <span class="nb"><?= "<?= " ?>$delstr; ?></span></td>
 	</tr>
 	<?= "<?php " ?>} ?>
 </table>
+<?= "<?php " ?>ActiveForm::end(); ?>
+
 <?= "<?php " ?>
 //判断无记录样式
 if(empty($dataProvider->count))
@@ -81,7 +101,15 @@ if(empty($dataProvider->count))
 ?>
 
 <div class="bottom-toolbar clearfix">
-	<?= "<?= " ?>Html::a('添加新开发日志', ['create'], ['class' => 'data-btn']) ?>
+    <span class="sel-area">
+    	<span class="sel-name">选择：</span>
+    	<a href="javascript:turen.com.checkAll(true);">全选</a> -
+    	<a href="javascript:turen.com.checkAll(false);">反选</a>
+    	<span class="op-name">操作：</span>
+    	<a href="javascript:turen.com.batchSubmit('<?= "<?= " ?>Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a> -
+        <a href="javascript:turen.com.batchSubmit('<?= "<?= " ?>Url::to(['batch', 'type' => 'order'])?>', 'batchform');">排序</a>
+	</span>
+	<?= "<?= " ?>Html::a('添加新xxxxxx', ['create'], ['class' => 'data-btn']) ?>
 	<div class="page">
     	<?= "<?= " ?>LinkPager::widget([
     	    'pagination' => $dataProvider->getPagination(),
@@ -101,9 +129,14 @@ if(empty($dataProvider->count))
 	<div class="qiuck-warp">
 		<div class="quick-area">
 			<span class="sel-area">
+				<span class="sel-name">选择：</span> <a href="javascript:turen.com.checkAll(true);">全选</a> -
+				<a href="javascript:turen.com.checkAll(false);">反选</a>
+				<span class="op-name">操作：</span>
+    			<a href="javascript:turen.com.batchSubmit('<?= "<?= " ?>Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a> -
+				<a href="javascript:turen.com.batchSubmit('<?= "<?= " ?>Url::to(['batch', 'type' => 'order'])?>', 'batchform');">排序</a> -
 				<span class="total">共 <?= "<?= " ?>$dataProvider->getTotalCount() ?> 条记录</span>
 			</span>
-			<?= "<?= " ?>Html::a('添加新开发日志', ['create'], ['class' => 'data-btn']) ?>
+			<?= "<?= " ?>Html::a('添加新xxxxxx', ['create'], ['class' => 'data-btn']) ?>
 			<span class="page-small">
 			<?= "<?= " ?>LinkPager::widget([
 			    'pagination' => $dataProvider->getPagination(),

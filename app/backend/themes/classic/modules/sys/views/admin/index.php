@@ -40,7 +40,7 @@ $this->title = '管理者列表';
 		$delstr = Html::a('删除', 'javascript:;', $options);
 	?>
 	<tr align="left" class="data-tr">
-		<td  class="first-column"><?php echo $model->id; ?></td>
+		<td class="first-column"><?php echo $model->id; ?></td>
 		<td><?= $model->username; ?></td>
 		<td><?= $model->roleName; ?></td>
 		<td><?= $model->phone; ?></td>

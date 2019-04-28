@@ -1,9 +1,10 @@
 <?php
 
-use app\models\user\FeedbackType;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\widgets\ActiveForm;
 use yii\widgets\LinkPager;
+use app\models\user\FeedbackType;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\user\FeedbackTypeSearch */
@@ -14,13 +15,18 @@ $this->title = '反馈类型列表';
 
 <?= $this->render('_search', ['model' => $searchModel]); ?>
 
+<?php $form = ActiveForm::begin([
+    'enableClientScript' => false,
+    'options' => ['id' => 'batchform'],
+]); ?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="data-table">
 	<tr align="left" class="head">
-		<td width="4%" class="first-column"><?= $dataProvider->sort->link('fkt_id', ['label' => 'ID']) ?></td>
-        <td width="20%"><?= $dataProvider->sort->link('fkt_form_show', ['label' => '表单显示名称']) ?></td>
-        <td width="20%"><?= $dataProvider->sort->link('fkt_list_show', ['label' => '列表显示名称']) ?></td>
-        <td width="10%" align="center"><?= $dataProvider->sort->link('orderid', ['label' => '排序']) ?></td>
-		<td width="10%">添加日期</td>
+        <td width="4%"  class="first-column"><input type="checkbox" name="checkid" id="checkid" onclick="turen.com.checkAll(this.checked);"></td>
+		<td width="4%"><?= $dataProvider->sort->link('fkt_id', ['label' => $searchModel->getAttributeLabel('fkt_id')]) ?></td>
+        <td width="20%"><?= $dataProvider->sort->link('fkt_form_show', ['label' => $searchModel->getAttributeLabel('fkt_form_name')]) ?></td>
+        <td width="20%"><?= $dataProvider->sort->link('fkt_list_show', ['label' => $searchModel->getAttributeLabel('fkt_list_name')]) ?></td>
+        <td width="10%" align="center"><?= $dataProvider->sort->link('orderid', ['label' => $searchModel->getAttributeLabel('orderid')]) ?></td>
+		<td width="10%"><?= $dataProvider->sort->link('created_at', ['label' => $searchModel->getAttributeLabel('created_at')]) ?></td>
 		<td width="25%" class="end-column">操作</td>
 	</tr>
 	<?php foreach ($dataProvider->getModels() as $key => $model) {
@@ -32,7 +38,7 @@ $this->title = '反馈类型列表';
 
 		$options = [
 	        'title' => '点击进行显示和隐藏操作',
-	        'data-url' => Url::to(['check', 'id' => $model->fkt_id]),
+	        'data-url' => Url::to(['check', 'kid' => $model->fkt_id]),
 	        'onclick' => 'turen.com.updateStatus(this)',
         ];
 		$checkstr = Html::a(($model->status?'显示':'隐藏'), 'javascript:;', $options);
@@ -44,7 +50,10 @@ $this->title = '反馈类型列表';
 		$delstr = Html::a('删除', 'javascript:;', $options);
 	?>
 	<tr align="left" class="data-tr">
-		<td class="first-column"><?= $model->fkt_id; ?></td>
+        <td class="first-column">
+            <input type="checkbox" name="checkid[]" id="checkid[]" value="<?= $model->fkt_id; ?>">
+        </td>
+		<td><?= $model->fkt_id; ?></td>
         <td><?= $model->fkt_form_name?$model->fkt_form_name:'未定义'; ?>[<?= $model->fkt_form_show?'显示':'隐藏'; ?>]</td>
         <td><?= $model->fkt_list_name?$model->fkt_list_name:'未定义'; ?>[<?= $model->fkt_list_show?'显示':'隐藏'; ?>]</td>
         <td align="center">
@@ -57,6 +66,8 @@ $this->title = '反馈类型列表';
 	</tr>
 	<?php } ?>
 </table>
+<?php ActiveForm::end(); ?>
+
 <?php //判断无记录样式
 if(empty($dataProvider->count))
 {
@@ -65,6 +76,14 @@ if(empty($dataProvider->count))
 ?>
 
 <div class="bottom-toolbar clearfix">
+    <span class="sel-area">
+    	<span class="sel-name">选择：</span>
+    	<a href="javascript:turen.com.checkAll(true);">全选</a> -
+    	<a href="javascript:turen.com.checkAll(false);">反选</a>
+    	<span class="op-name">操作：</span>
+    	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a> -
+        <a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'order'])?>', 'batchform');">排序</a>
+	</span>
 	<?= Html::a('添加新反馈类型', ['create'], ['class' => 'data-btn']) ?>
 	<div class="page">
     	<?= LinkPager::widget([
@@ -84,7 +103,12 @@ if(empty($dataProvider->count))
 <div class="quick-toolbar">
 	<div class="qiuck-warp">
 		<div class="quick-area">
-			<span class="sel-area">
+            <span class="sel-area">
+				<span class="sel-name">选择：</span> <a href="javascript:turen.com.checkAll(true);">全选</a> -
+				<a href="javascript:turen.com.checkAll(false);">反选</a>
+				<span class="op-name">操作：</span>
+    			<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a> -
+				<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'order'])?>', 'batchform');">排序</a> -
 				<span class="total">共 <?= $dataProvider->getTotalCount() ?> 条记录</span>
 			</span>
 			<?= Html::a('添加新反馈类型', ['create'], ['class' => 'data-btn']) ?>

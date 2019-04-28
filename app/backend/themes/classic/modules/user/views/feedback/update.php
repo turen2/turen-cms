@@ -6,7 +6,7 @@ use yii\widgets\Breadcrumbs;
 /* @var $this yii\web\View */
 /* @var $model app\models\user\Feedback */
 
-$this->title = '编辑 Feedback: ' . $model->fk_id;
+$this->title = '编辑: ' . $model->fk_nickname;
 ?>
 <div class="feedback-update">
     <?= $this->render('_form', [

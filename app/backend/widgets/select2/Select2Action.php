@@ -65,11 +65,11 @@ class Select2Action extends Action
         }
 
         foreach ($this->searchFields as $field) {
-            $query = $query->andFilterWhere(['like', $field, $this->keyword]);
+            $query = $query->orFilterWhere(['like', $field, $this->keyword]);
         }
         $count = $query->count();//总数
         $models = $query->limit($this->limit)->offset($this->limit*($this->page-1))->all();//分页
-        
+
         $results = [];
         foreach ($models as $model) {
             $results[] = [

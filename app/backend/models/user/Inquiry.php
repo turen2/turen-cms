@@ -24,7 +24,7 @@ use app\behaviors\OrderDefaultBehavior;
  * @property int $ui_product_id 关联服务产品id
  * @property string $user_id 关系用户
  * @property string $ui_ipaddress 来源地址
- * @property string $ui_browser 客户端信息
+ * @property string $ui_browser 用户端信息
  * @property string $ui_answer 回应
  * @property string $ui_remark 备注（给自己看的）
  * @property int $ui_type 类型：1首页预约，2价格计算器预约，3业务详情预约
@@ -98,7 +98,7 @@ class Inquiry extends \app\models\base\User
             'ui_product_id' => '服务产品id',
             'user_id' => '用户',
             'ui_ipaddress' => '来源',
-            'ui_browser' => '客户端',
+            'ui_browser' => '用户端',
             'ui_answer' => '回复',
             'ui_remark' => '备忘录',
             'ui_type' => '预约类型',

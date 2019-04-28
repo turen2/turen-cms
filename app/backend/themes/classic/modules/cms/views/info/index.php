@@ -27,7 +27,7 @@ $this->title = '单页信息管理';
 	</tr>
 	<?php foreach ($dataProvider->getModels() as $key => $model) { ?>
 	<tr align="left" class="data-tr">
-		<td  class="first-column"><?= $model->cid; ?></td>
+		<td class="first-column"><?= $model->cid; ?></td>
 		<td><?= $model->cname; ?></td>
 		<td><?= Functions::SlugUrl($model, 'slug', 'page') ?></td>
 		<td><?= Yii::$app->getFormatter()->asDate($model->posttime);; ?></td>

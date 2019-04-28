@@ -3,14 +3,14 @@
 namespace app\modules\user\controllers;
 
 use Yii;
+use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
+use common\components\AliyunOss;
+use app\actions\CheckAction;
+use app\widgets\ueditor\UEditorAction;
 use app\models\user\Comment;
 use app\models\user\CommentSearch;
 use app\components\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use app\actions\CheckAction;
-use app\widgets\ueditor\UEditorAction;
-use common\components\AliyunOss;
 
 /**
  * CommentController implements the CRUD actions for Comment model.

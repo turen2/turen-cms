@@ -1,12 +1,13 @@
 <?php
 
+use yii\helpers\Json;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use app\widgets\Tips;
 use app\components\ActiveRecord;
 use app\assets\ValidationAsset;
-use yii\helpers\Json;
+use app\models\user\FeedbackType;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\user\FeedbackType */
@@ -15,7 +16,8 @@ use yii\helpers\Json;
 ValidationAsset::register($this);
 
 $rules = $messages = [];
-$rules[Html::getInputName($model, 'xxxxx')] = ['required' => true];
+$rules[Html::getInputName($model, 'fkt_form_name')] = ['required' => true];
+$rules[Html::getInputName($model, 'fkt_list_name')] = ['required' => true];
 
 $rules = Json::encode($rules);
 $messages = Json::encode($messages);
@@ -44,26 +46,23 @@ $this->registerJs($js);
 ]); ?>
     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="feedback-type-form form-table">
     	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('fkt_id')?><?php if($model->isAttributeRequired('fkt_id')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'fkt_id', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('fkt_form_name')?><?php if($model->isAttributeRequired('fkt_form_name')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
     			<?= Html::activeInput('text', $model, 'fkt_form_name', ['class' => 'input']) ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('fkt_form_show')?><?php if($model->isAttributeRequired('fkt_form_show')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'fkt_form_show', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
+        <tr>
+            <td class="first-column"><?= $model->getAttributeLabel('fkt_form_show')?><?php if($model->isAttributeRequired('fkt_form_show')) { ?><span class="maroon">*</span><?php } ?></td>
+            <td class="second-column">
+                <?= Html::activeRadioList($model, 'fkt_form_show', [
+                    FeedbackType::SHOW_YES => '启用',
+                    FeedbackType::SHOW_NO => '关闭',
+                ], ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']);
+                ?>
+                <span class="cnote"></span>
+            </td>
+        </tr>
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('fkt_list_name')?><?php if($model->isAttributeRequired('fkt_list_name')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
@@ -71,55 +70,35 @@ $this->registerJs($js);
     			<span class="cnote"></span>
     		</td>
     	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('fkt_list_show')?><?php if($model->isAttributeRequired('fkt_list_show')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'fkt_list_show', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('lang')?><?php if($model->isAttributeRequired('lang')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'lang', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('orderid')?><?php if($model->isAttributeRequired('orderid')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'orderid', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('status')?><?php if($model->isAttributeRequired('status')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'status', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('is_default')?><?php if($model->isAttributeRequired('is_default')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'is_default', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('created_at')?><?php if($model->isAttributeRequired('created_at')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'created_at', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('updated_at')?><?php if($model->isAttributeRequired('updated_at')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'updated_at', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
+        <tr>
+            <td class="first-column"><?= $model->getAttributeLabel('fkt_list_show')?><?php if($model->isAttributeRequired('fkt_list_show')) { ?><span class="maroon">*</span><?php } ?></td>
+            <td class="second-column">
+                <?= Html::activeRadioList($model, 'fkt_list_show', [
+                    FeedbackType::SHOW_YES => '启用',
+                    FeedbackType::SHOW_NO => '关闭',
+                ], ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']);
+                ?>
+                <span class="cnote"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="first-column"><?= $model->getAttributeLabel('orderid')?><?php if($model->isAttributeRequired('orderid')) { ?><span class="maroon">*</span><?php } ?></td>
+            <td class="second-column">
+                <?= Html::activeInput('text', $model, 'orderid', ['class' => 'inputs']) ?>
+                <span class="cnote"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="first-column"><?= $model->getAttributeLabel('status')?><?php if($model->isAttributeRequired('status')) { ?><span class="maroon">*</span><?php } ?></td>
+            <td class="second-column">
+                <?= Html::activeRadioList($model, 'status', [
+                    FeedbackType::STATUS_ON => '显示',
+                    FeedbackType::STATUS_OFF => '隐藏',
+                ], ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']);
+                ?>
+                <span class="cnote"></span>
+            </td>
+        </tr>
     	<tr class="nb">
     		<td></td>
     		<td>

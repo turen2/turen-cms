@@ -1,12 +1,19 @@
 <?php
 
+use app\models\user\User;
+use yii\helpers\Json;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use app\widgets\Tips;
 use app\components\ActiveRecord;
 use app\assets\ValidationAsset;
-use yii\helpers\Json;
+use app\models\user\Feedback;
+use app\models\user\FeedbackType;
+use app\widgets\laydate\LaydateWidget;
+use app\widgets\select2\Select2Widget;
+use app\widgets\ueditor\UEditorWidget;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\user\Feedback */
@@ -15,7 +22,10 @@ use yii\helpers\Json;
 ValidationAsset::register($this);
 
 $rules = $messages = [];
-$rules[Html::getInputName($model, 'xxxxx')] = ['required' => true];
+$rules[Html::getInputName($model, 'fk_nickname')] = ['required' => true];
+$rules[Html::getInputName($model, 'fk_type_id')] = ['required' => true];
+$rules[Html::getInputName($model, 'fk_content')] = ['required' => true];
+$rules[Html::getInputName($model, 'fk_review')] = ['required' => true];
 
 $rules = Json::encode($rules);
 $messages = Json::encode($messages);
@@ -44,26 +54,28 @@ $this->registerJs($js);
 ]); ?>
     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="feedback-form form-table">
     	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('fk_id')?><?php if($model->isAttributeRequired('fk_id')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'fk_id', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('fk_user_id')?><?php if($model->isAttributeRequired('fk_user_id')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'fk_user_id', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('fk_nickname')?><?php if($model->isAttributeRequired('fk_nickname')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
     			<?= Html::activeInput('text', $model, 'fk_nickname', ['class' => 'input']) ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>
+        <tr>
+            <td class="first-column"><?= $model->getAttributeLabel('fk_user_id')?><?php if($model->isAttributeRequired('fk_user_id')) { ?><span class="maroon">*</span><?php } ?></td>
+            <td class="second-column">
+                <?= Select2Widget::widget([
+                    'model' => $model,
+                    'attribute' => 'fk_user_id',
+                    'route' => 'feedback/get-user-list',//路由
+                    //初始化关联表对象
+                    'modelClass' => User::class,//关联表类
+                    'primaryKey' => 'user_id',//默认关联表主键
+                    'showField' => 'username',//要显示的关联表字段
+                    'clientOptions' => ['width' => '285px'],
+                ]) ?>
+                <span class="cnote"></span>
+            </td>
+        </tr>
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('fk_contact')?><?php if($model->isAttributeRequired('fk_contact')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
@@ -74,87 +86,127 @@ $this->registerJs($js);
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('fk_content')?><?php if($model->isAttributeRequired('fk_content')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'fk_content', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('fk_show')?><?php if($model->isAttributeRequired('fk_show')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'fk_show', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('fk_type_id')?><?php if($model->isAttributeRequired('fk_type_id')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'fk_type_id', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('fk_ip')?><?php if($model->isAttributeRequired('fk_ip')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'fk_ip', ['class' => 'input']) ?>
+                <?= UEditorWidget::widget([
+                    'model' => $model,
+                    'attribute' => 'fk_content',
+                    'clientOptions' => [
+                        'serverUrl' => Url::to(['ueditor']),
+                        'initialContent' => '',
+                        'initialFrameWidth' => '738',
+                        'initialFrameHeight' => '280',
+                        'toolbars' => [
+                            [
+                                'fullscreen', 'source', '|',
+                                'undo', 'redo', '|',
+                                'bold', 'italic', 'underline', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', '|',
+                                'indent', 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
+                                'fontfamily', 'fontsize', '|','removeformat'
+                            ],
+                        ]
+                    ],
+                    //'readyEvent' => 'alert(\'abc\');console.log(ue);',
+                ]); ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('fk_review')?><?php if($model->isAttributeRequired('fk_review')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'fk_review', ['class' => 'input']) ?>
+                <?= UEditorWidget::widget([
+                    'model' => $model,
+                    'attribute' => 'fk_review',
+                    'clientOptions' => [
+                        'serverUrl' => Url::to(['ueditor']),
+                        'initialContent' => '',
+                        'initialFrameWidth' => '738',
+                        'initialFrameHeight' => '280',
+                        'toolbars' => [
+                            [
+                                'fullscreen', 'source', '|',
+                                'undo', 'redo', '|',
+                                'bold', 'italic', 'underline', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', '|',
+                                'indent', 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
+                                'fontfamily', 'fontsize', '|','removeformat'
+                            ],
+                        ]
+                    ],
+                    //'readyEvent' => 'alert(\'abc\');console.log(ue);',
+                ]); ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('fk_retime')?><?php if($model->isAttributeRequired('fk_retime')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'fk_retime', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('fk_sms')?><?php if($model->isAttributeRequired('fk_sms')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'fk_sms', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('fk_email')?><?php if($model->isAttributeRequired('fk_email')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'fk_email', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('lang')?><?php if($model->isAttributeRequired('lang')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'lang', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('orderid')?><?php if($model->isAttributeRequired('orderid')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'orderid', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('created_at')?><?php if($model->isAttributeRequired('created_at')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'created_at', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('updated_at')?><?php if($model->isAttributeRequired('updated_at')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'updated_at', ['class' => 'input']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
+        <tr>
+            <td class="first-column"><?= $model->getAttributeLabel('fk_retime')?><?php if($model->isAttributeRequired('fk_retime')) { ?><span class="maroon">*</span><?php } ?></td>
+            <td class="second-column">
+                <?= LaydateWidget::widget([
+                    'model' => $model,
+                    'attribute' => 'fk_retime',
+                    'value' => $model->dateTimeValue(),
+                    'options' => ['class' => 'inputms'],
+                ]) ?>
+                <span class="cnote"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="first-column"><?= $model->getAttributeLabel('fk_ip')?><?php if($model->isAttributeRequired('fk_ip')) { ?><span class="maroon">*</span><?php } ?></td>
+            <td class="second-column">
+                <?= Html::activeInput('text', $model, 'fk_ip', ['class' => 'input']) ?>
+                <span class="cnote"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="first-column"><?= $model->getAttributeLabel('fk_show')?><?php if($model->isAttributeRequired('fk_show')) { ?><span class="maroon">*</span><?php } ?></td>
+            <td class="second-column">
+                <?= Html::activeRadioList($model, 'fk_show', [
+                    Feedback::SEND_YES => '展示',
+                    Feedback::SEND_NO => '隐藏',
+                ], ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']);
+                ?>
+                <span class="cnote"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="first-column"><?= $model->getAttributeLabel('fk_sms')?><?php if($model->isAttributeRequired('fk_sms')) { ?><span class="maroon">*</span><?php } ?></td>
+            <td class="second-column">
+                <?= Html::activeRadioList($model, 'fk_sms', [
+                    Feedback::SEND_YES => '发送',
+                    Feedback::SEND_NO => '不发送',
+                ], ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']);
+                ?>
+                <span class="cnote"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="first-column"><?= $model->getAttributeLabel('fk_email')?><?php if($model->isAttributeRequired('fk_email')) { ?><span class="maroon">*</span><?php } ?></td>
+            <td class="second-column">
+                <?= Html::activeRadioList($model, 'fk_email', [
+                    Feedback::SEND_YES => '发送',
+                    Feedback::SEND_NO => '不发送',
+                ], ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']);
+                ?>
+                <span class="cnote"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="first-column"><?= $model->getAttributeLabel('fk_type_id')?><?php if($model->isAttributeRequired('fk_type_id')) { ?><span class="maroon">*</span><?php } ?></td>
+            <td class="second-column">
+                <?php
+                $list = [null => '请选择类型'];
+                foreach (FeedbackType::find()->active()->all() as $mm) {
+                    $list[$mm->fkt_id] = $mm->fkt_form_name.'/'.$mm->fkt_list_name;
+                }
+                ?>
+                <?= Html::activeDropDownList($model, 'fk_type_id', $list, ['class' => '']) ?>
+                <span class="cnote"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="first-column"><?= $model->getAttributeLabel('orderid')?><?php if($model->isAttributeRequired('orderid')) { ?><span class="maroon">*</span><?php } ?></td>
+            <td class="second-column">
+                <?= Html::activeInput('text', $model, 'orderid', ['class' => 'inputs']) ?>
+                <span class="cnote"></span>
+            </td>
+        </tr>
     	<tr class="nb">
     		<td></td>
     		<td>

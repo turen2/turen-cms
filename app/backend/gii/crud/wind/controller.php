@@ -7,7 +7,9 @@
 
 use yii\db\ActiveRecordInterface;
 use yii\helpers\StringHelper;
-
+use app\actions\CheckAction;
+use app\actions\SimpleMoveAction;
+use app\widgets\edititem\EditItemAction;
 
 /* @var $this yii\web\View */
 /* @var $generator yii\gii\generators\crud\Generator */
@@ -59,6 +61,35 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
                 'actions' => [
                     'delete' => ['POST'],
                 ],
+            ],
+        ];
+    }
+
+    public function actions()
+    {
+        $request = Yii::$app->getRequest();
+        return [
+            'check' => [
+                'class' => CheckAction::class,
+                'className' => <?= $modelClass ?>::class,
+                'kid' => $request->get('kid'),
+            ],
+            //简单排序
+            'quick-move' => [
+                'class' => SimpleMoveAction::class,
+                'className' => <?= $modelClass ?>::class,
+                'kid' => $request->get('kid'),
+                'type' => $request->get('type'),
+                'orderid' => $request->get('orderid'),
+                'nameField' => 'xxxxxxx',//标题字段
+            ],
+            //快捷编辑
+            'edit-item' => [
+                'class' => EditItemAction::class,
+                'className' => <?= $modelClass ?>::class,
+                'kid' => $request->post('kid'),
+                'field' => 'orderid',
+                'value' => $request->post('value'),
             ],
         ];
     }
@@ -133,11 +164,61 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
      * <?= implode("\n     * ", $actionParamComments) . "\n" ?>
      * @return mixed
      */
+    /*
     public function actionCheck(<?= $actionParams ?>)
     {
         $model = $this->findModel(<?= $actionParams ?>);
         $model->status = !$model->status;
         $model->save(false);//效果在界面上有显示
+
+        return $this->redirect(['index']);
+    }
+    */
+
+    /**
+    * 设置为默认
+    * @param integer $id
+    * @param array $returnUrl
+    * @return \yii\web\Response
+    */
+    public function actionSetDefault(<?= $actionParams ?> =>, $returnUrl = ['index'])
+    {
+        $model = $this->findModel(<?= $actionParams ?> =>);
+
+        <?= $actionParams ?>::updateAll(['is_default' => <?= $actionParams ?>::STATUS_OFF], ['lang' => GLOBAL_LANG]);
+
+        $model->is_default = <?= $actionParams ?>::STATUS_ON;
+        $model->save(false);//只更新一个字段，不需要影响到行为和事件
+
+        Yii::$app->getSession()->setFlash('success', $model->xxxxxx.' 已经设为默认！');
+        return $this->redirect($returnUrl);
+    }
+
+    /**
+    * 批量提交并处理
+    * @param string $type delete | order
+    * @return \yii\web\Response
+    */
+    public function actionBatch($type)
+    {
+        if($type == 'delete') {
+            $tips = '';
+            foreach (<?= $modelClass ?>::find()->current()->andWhere([<?= $actionParams ?> => Yii::$app->getRequest()->post('checkid', [])])->all() as $model) {
+                $model->delete();
+                $tips .= '<li>'.$model->xxxxxx.' 删除成功！</li>';
+            }
+            Yii::$app->getSession()->setFlash('success', '<ul>'.$tips.'</ul>');
+        } elseif($type == 'order') {//全局提交
+            $ids = Yii::$app->getRequest()->post('checkid', []);
+            $orders = Yii::$app->getRequest()->post('orderid', []);
+            foreach ($ids as $key => $id) {
+                if($model = <?= $modelClass ?>::find()->current()->andWhere([<?= $actionParams ?> => $id])->one()) {
+                    $model->orderid = $orders[$key];
+                    $model->save(false);
+                }
+            }
+            Yii::$app->getSession()->setFlash('success', '已完成批量排序操作！');
+        }
 
         return $this->redirect(['index']);
     }

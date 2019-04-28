@@ -30,12 +30,6 @@ $this->title = '快捷链接管理';
 		<td class="end-column">操作</td>
 	</tr>
 	
-	<?php if(empty($dataProvider->count)) { ?>
-	<tr align="center">
-		<td colspan="6" class="data-empty">暂时没有相关的记录</td>
-	</tr>
-	<?php } ?>
-	
 	<?php foreach ($dataProvider->getModels() as $key => $model) {
 		$options = [
     		'data-url' => Url::to(['delete', 'id' => $model->lnk_id, 'returnUrl' => Url::current()]),
@@ -44,7 +38,7 @@ $this->title = '快捷链接管理';
 		$delstr = Html::a('删除', 'javascript:;', $options);
 	?>
 	<tr align="left" class="data-tr">
-		<td  class="first-column">
+		<td class="first-column">
 			<input type="checkbox" name="checkid[]" id="checkid[]" value="<?= $model->lnk_id; ?>">
 		</td>
 		<td>
@@ -71,7 +65,7 @@ $this->title = '快捷链接管理';
 		<td colspan="6"><strong>新增一个快捷方式</strong></td>
 	</tr>
 	<tr align="left" class="data-tr-on">
-		<td  class="first-column">&nbsp;</td>
+		<td class="first-column">&nbsp;</td>
 		<td><input type="text" name="lnk_nameadd" id="lnk_nameadd" class="input" style="width: 200px;" /></td>
 		<td><input type="text" name="lnk_linkadd" id="lnk_linkadd" class="input" /></td>
 		<td><input type="text" name="lnk_icoadd" id="lnk_icoadd" class="input" style="width: 200px;" /></td>
@@ -80,6 +74,13 @@ $this->title = '快捷链接管理';
 	</tr>
 </table>
 <?php ActiveForm::end(); ?>
+
+<?php //判断无记录样式
+if(empty($dataProvider->count))
+{
+    echo '<div class="data-empty">暂时没有相关的记录</div>';
+}
+?>
 
 <div class="bottom-toolbar clearfix">
 	<span class="sel-area">
