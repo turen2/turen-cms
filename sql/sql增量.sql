@@ -34,3 +34,19 @@ CREATE TABLE `ss_user_feedback` (
   `updated_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
   PRIMARY KEY (`fk_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='联系我们';
+
+-- ----------------------------
+DROP TABLE IF EXISTS `ss_user_msg`;
+CREATE TABLE `ss_user_msg` (
+  `msg_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `msg_content` varchar(255) DEFAULT NULL COMMENT '消息内容，以json格式存储',
+  `msg_type` tinyint(2) unsigned NOT NULL DEFAULT '1' COMMENT '消息类型，1反馈通知，2优惠促销，3服务消息',
+  `msg_user_id` int(11) unsigned DEFAULT NULL COMMENT '用户id',
+  `msg_readtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '读取时间',
+  `msg_deltime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
+  `lang` varchar(8) NOT NULL DEFAULT '' COMMENT '多语言',
+  `orderid` int(11) unsigned NOT NULL DEFAULT '10' COMMENT '排序',
+  `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `updated_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`msg_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=133 DEFAULT CHARSET=utf8;

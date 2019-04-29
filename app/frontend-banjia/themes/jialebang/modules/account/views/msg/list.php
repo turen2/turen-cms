@@ -39,10 +39,10 @@ $('.pagination-batch').on('click', '.outline-btn:not(.no-effect):eq(0)', functio
     var form = $('#centerMsgForm');
     var checked = form.find('td input[type="checkbox"]:checked');
     $.ajax({
-        url: form.data('deleteurl'),
-        type: form.attr('method'),
+        url: $(this).data('deleteurl'),
+        type: 'POST',
         dataType: 'json',
-        context: form,
+        context: $(this),
         cache: false,
         data: checked.serializeArray(),
         error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -60,10 +60,10 @@ $('.pagination-batch').on('click', '.outline-btn:not(.no-effect):eq(1)', functio
     var form = $('#centerMsgForm');
     var checked = form.find('td input[type="checkbox"]:checked');
     $.ajax({
-        url: form.data('readurl'),
-        type: form.attr('method'),
+        url: $(this).data('readurl'),
+        type: 'POST',
         dataType: 'json',
-        context: form,
+        context: $(this),
         cache: false,
         data: checked.serializeArray(),
         error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -81,92 +81,49 @@ $('.pagination-batch').on('click', '.outline-btn:not(.no-effect):eq(1)', functio
 
 //弹窗查看详情
 $('.table-action a.link-primary').on('click', function() {
-    var form = $('#centerMsgForm');
-    //载入数据
-    var type = $(this).data('type');
-    var data = $.parseJSON(window.decodeURIComponent($(this).data('msg')));
-    var template = $('#msg-detail-tpl');
-    
-    template.find('.tpl-typename').html($(this).data('typename'));
-    template.find('.tpl-date').html($(this).data('date'));
-    
-    if(type == 1) {//反馈通知类型
-        template.find('.tpl-question').show().html(data.question);
-        template.find('.tpl-answer').show().html(data.answer);
-        template.find('.tpl-content').parent().hide();
-    } else {//消息类型
-        template.find('.tpl-content').show().html(data.content);
-        template.find('.tpl-question').parent().hide();
-        template.find('.tpl-answer').parent().hide();
-    }
-    
-    //获取当前对象
+    //当前点击对象
     var checked = $(this).parents('tr').find('td input[type="checkbox"]');
-    layer.open({
-        type: 1,
-        title: '消息详情',
-        closeBtn: 1,
-        shadeClose: true,
-        shade: 0.5,
-        move: false, //来禁止拖拽
-        area: '480px', //宽高//此处只取宽
-        skin: 'jia-modal',
-        content: $('#msg-detail-tpl'),
-        btn: ['关闭'],
-        btn1: function(index, layero) { //按钮【按钮一】的回调
-            layer.close(index);
+    var html = '';
+    $.ajax({
+        url: $(this).data('detailurl'),
+        type: 'GET',
+        //async: false,//使用同步请求，锁住浏览器
+        dataType: 'html',
+        context: $(this),
+        cache: false,
+        data: {},
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            $.notify(XMLHttpRequest.responseText, 'error');
         },
-        success: function() {
-            $.ajax({
-                url: form.data('readurl'),
-                type: form.attr('method'),
-                dataType: 'json',
-                context: form,
-                cache: false,
-                data: {checkid: checked.attr('value')},
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    $.notify(XMLHttpRequest.responseText, 'error');
-                },
-                success: function(res) {
-                    //将选中的消息置为已读
-                    checked.each(function(i){
-                        $(this).parent().parent().find('td.read').text('已读');
-                    });
+        success: function(res) {
+            //将选中的消息置为已读
+            checked.each(function(i){
+                $(this).parent().parent().find('td.read').text('已读');
+            });
+            
+            layer.open({
+                type: 1,
+                title: '消息详情',
+                closeBtn: 1,
+                shadeClose: true,
+                shade: 0.5,
+                move: false, //来禁止拖拽
+                area: '480px', //宽高//此处只取宽
+                skin: 'jia-modal',
+                content: res,
+                btn: ['关闭'],
+                btn1: function(index, layero) { //按钮【按钮一】的回调
+                    layer.close(index);
                 }
             });
         }
     });
+    
+    return false;
 });
 EOF;
 $this->registerJs($js);
 ?>
-
-<div id="msg-detail-tpl" style="display: none;">
-    <table class="table table-striped">
-        <tbody>
-        <tr>
-            <td width="25%">消息类型</td>
-            <td class="tpl-typename" width="75%"></td>
-        </tr>
-        <tr>
-            <td width="25%">反馈问题</td>
-            <td class="tpl-question" width="75%"></td>
-        </tr>
-        <tr>
-            <td width="25%">官方回复</td>
-            <td class="tpl-answer" width="75%"></td>
-        </tr>
-        <tr>
-            <td width="25%">消息详情</td>
-            <td class="tpl-content" width="75%"></td>
-        </tr>
-        <tr>
-            <td width="25%">发布时间</td>
-            <td class="tpl-date" width="75%"></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
 
 <div class="user-center">
     <div class="container clearfix">
@@ -177,7 +134,7 @@ $this->registerJs($js);
             </div>
             <div class="user-content-body">
                 <?= $this->render('_search', ['model' => $searchModel]); ?>
-                <?= $form = Html::beginForm('', 'POST', ['id' => 'centerMsgForm', 'data-deleteurl' => Url::to(['/account/msg/delete']), 'data-readurl' => Url::to(['/account/msg/read'])]) ?>
+                <?= $form = Html::beginForm('', 'POST', ['id' => 'centerMsgForm']) ?>
                 <div class="table-responsive">
                     <table class="table" id="tickets-table">
                         <thead>
@@ -201,7 +158,7 @@ $this->registerJs($js);
                                 <td>
                                     <div class="table-action">
                                         <div class="action-item">
-                                            <a href="javascript:;" data-type="<?= $model->msg_type ?>" data-typename="<?= Msg::TypeName($model->msg_type) ?>" data-msg="<?= urlencode($model->msg_content) ?>" data-date="<?= Yii::$app->getFormatter()->asDate($model->created_at) ?>" class="link-primary">订单详情</a>
+                                            <a href="javascript:;" data-detailurl="<?= Url::to(['/account/msg/detail', 'id' => $model->msg_id]) ?>" class="link-primary">消息详情</a>
                                         </div>
                                     </div>
                                 </td>
@@ -217,8 +174,8 @@ $this->registerJs($js);
                             <tr class="pagination-batch">
                                 <td><input class="select-all" type="checkbox" name="checkid[]" id="checkid[]" value=""></td>
                                 <td colspan="5">
-                                    <a class="outline-btn br4 no-effect" href="javascript:;">删除选中</a>
-                                    <a class="outline-btn br4 no-effect" href="javascript:;">设为已读</a>
+                                    <a class="outline-btn br4 no-effect" href="javascript:;" data-deleteurl="<?= Url::to(['/account/msg/delete']) ?>">删除选中</a>
+                                    <a class="outline-btn br4 no-effect" href="javascript:;" data-readurl="<?= Url::to(['/account/msg/read']) ?>">设为已读</a>
                                     <div class="pagination-nav fr clearfix">
                                         <?= LinkPager::widget([
                                             'pagination' => $dataProvider->getPagination(),

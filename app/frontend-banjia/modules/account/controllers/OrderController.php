@@ -18,6 +18,10 @@ use common\models\user\Inquiry;
  */
 class OrderController extends \app\components\Controller
 {
+    /**
+     * 服务订单列表
+     * @return string
+     */
     public function actionList()
     {
         $searchModel = new InquirySearch();
@@ -28,6 +32,12 @@ class OrderController extends \app\components\Controller
         ]);
     }
 
+    /**
+     * ajax返回详情
+     * @param $id
+     * @return string
+     * @throws NotFoundHttpException
+     */
     public function actionDetail($id)
     {
         $model = $this->findModel($id);

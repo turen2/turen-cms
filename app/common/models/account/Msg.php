@@ -10,6 +10,7 @@ use Yii;
 use yii\base\InvalidArgumentException;
 use yii\behaviors\TimestampBehavior;
 use common\behaviors\InsertLangBehavior;
+use yii\helpers\Html;
 use yii\helpers\Json;
 
 /**
@@ -120,9 +121,9 @@ class Msg extends \common\components\ActiveRecord
     {
         $content = Json::decode($content);
         if(isset($content['question'])) {
-            return $content['question'];
+            return strip_tags($content['question']);
         } else {
-            return $content['content'];
+            return strip_tags($content['content']);
         }
     }
 
@@ -147,6 +148,10 @@ class Msg extends \common\components\ActiveRecord
         if($type != static::MSG_TYPE_FEEDBACK && !isset($content['content'])) {
             throw new InvalidArgumentException('消息实体与类型格式不匹配');
         }
+
+        //isset($content['question']) && Html::encode($content['question']);
+        //isset($content['answer']) && Html::encode($content['answer']);
+        //isset($content['content']) && Html::encode($content['content']);
 
         Yii::$app->getDb()->createCommand()->insert(Msg::tableName(), [
             'msg_content' => Json::encode($content),

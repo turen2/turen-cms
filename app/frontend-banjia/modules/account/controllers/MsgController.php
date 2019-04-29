@@ -10,6 +10,7 @@ use Yii;
 use yii\filters\VerbFilter;
 use common\models\account\Msg;
 use common\models\account\MsgSearch;
+use yii\web\NotFoundHttpException;
 
 /**
  * 消息中心
@@ -46,6 +47,28 @@ class MsgController extends \app\components\Controller
         return $this->render('list', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
+     * ajax消息详情
+     * @param $id
+     * @return string
+     */
+    public function actionDetail($id)
+    {
+        $model = $this->findModel($id);
+        
+        //设置为已读
+        Yii::$app->getDb()->createCommand()->update(Msg::tableName(), [
+            'msg_readtime' => time(),
+        ], [
+            'msg_user_id' => Yii::$app->getUser()->getId(),
+            'msg_id' => $id,
+        ])->execute();
+
+        return $this->renderAjax('detail', [
+            'model' => $model,
         ]);
     }
 
@@ -94,6 +117,21 @@ class MsgController extends \app\components\Controller
     }
 
     /**
+     * 返回一个指定模型
+     * @param $id
+     * @return Msg|null
+     * @throws NotFoundHttpException
+     */
+    public function findModel($id)
+    {
+        if($model = Msg::findOne(['msg_id' => $id])) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('请求页面不存在！');
+        }
+    }
+
+    /**
      * 测试
      */
     public function actionCreate()
@@ -108,7 +146,7 @@ class MsgController extends \app\components\Controller
 
         //优惠消息
         $type = Msg::MSG_TYPE_DISCOUNT;
-        $content = ['content' => '优惠消息优惠消息优惠消息优惠消息优惠消息优惠消息优惠消息优惠消息优惠消息'];
+        $content = ['content' => '优惠消息优惠消息优惠消息<a href="">优惠消息</a>优惠消息优惠消息优惠消息优惠消息优惠消息'];
         Msg::SendMsg($type, $content, $userId, $lang);
 
         echo '添加成功';
