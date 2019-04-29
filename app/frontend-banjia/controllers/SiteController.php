@@ -59,33 +59,4 @@ class SiteController extends Controller
              'msg' => Util::IPAddess(),
          ]);
      }
-
-    /**
-     * 全局手机验证码
-     */
-    /*
-     public function actionPhoneVerifyCode()
-     {
-         $model = new VerifyConsult();
-         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-
-             //验证成功，录入数据到咨询订单系统
-
-             return $this->asJson([
-                 'state' => true,
-                 'code' => '200',
-                 'result' => '',
-             ]);
-         } else {
-             if($model->hasErrors()) {
-                 Yii::$app->response->format = Response::FORMAT_JSON;
-                 return ActiveForm::validate($model);
-             }
-
-             return $this->renderAjax('_phone_verify', [
-                 'model' => $model,
-             ]);
-         }
-     }
-    */
 }

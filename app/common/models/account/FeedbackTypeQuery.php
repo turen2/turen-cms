@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models\user;
+namespace common\models\account;
 
 /**
  * This is the ActiveQuery class for [[FeedbackType]].

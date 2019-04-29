@@ -6,12 +6,12 @@
  */
 namespace app\controllers;
 
-use common\models\com\Feedback;
 use Yii;
 use yii\filters\VerbFilter;
-use common\models\user\Inquiry;
+use common\models\account\Inquiry;
 use app\components\Controller;
 use common\models\shop\Product;
+use common\models\com\FeedbackForm;
 
 /**
  * Home controller for the `banjia` module
@@ -114,10 +114,10 @@ class HomeController extends Controller
         $state = true;
         $msg = '反馈已成功';
 
-        $model = new Feedback();
+        $model = new FeedbackForm();
         if($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
             //提交内容
-            Feedback::SubmitFeedback($model);
+            FeedbackForm::SubmitFeedback($model);
         } else {//验证失败
             $state = false;
             $msg = $model->getErrors();

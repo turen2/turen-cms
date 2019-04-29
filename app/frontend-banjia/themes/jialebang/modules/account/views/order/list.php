@@ -12,7 +12,7 @@ use yii\helpers\Url;
 use app\assets\LayerAsset;
 use yii\widgets\LinkPager;
 use app\assets\NotifyAsset;
-use common\models\user\Inquiry;
+use common\models\account\Inquiry;
 use common\helpers\ImageHelper;
 
 LayerAsset::register($this);

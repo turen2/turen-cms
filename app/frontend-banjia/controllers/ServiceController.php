@@ -6,7 +6,7 @@
  */
 namespace app\controllers;
 
-use common\models\com\VerifyConsult;
+use common\models\com\VerifyConsultForm;
 use common\models\shop\Product;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
@@ -46,7 +46,7 @@ class ServiceController extends \app\components\Controller
 
     public function actionVerifyConsult()
     {
-        $model = new VerifyConsult();
+        $model = new VerifyConsultForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
 
             //验证成功，录入数据到咨询订单系统

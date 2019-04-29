@@ -302,7 +302,7 @@ $this->registerJs($js);
                 <a href="javascript:;" class="verifycode-btn" id="phone-code-btn">获取动态码</a>
             </div>
             <p class="rem-check">
-                <?= Html::activeCheckbox($model, 'agreeProtocol', ['label' => $model->getAttributeLabel('agreeProtocol').Html::a(' 用户协议', ['help/detail', 'slug' => 'user-protocol'], ['target' => '_blank'])]) ?>
+                <?= Html::activeCheckbox($model, 'agreeProtocol', ['label' => $model->getAttributeLabel('agreeProtocol').Html::a(' 用户注册协议', ['/help/index', 'slug' => 'user-protocol'], ['target' => '_blank'])]) ?>
             </p>
             <div class="btn-box">
                 <?= Html::submitButton('注    册', ['class' => 'btn-settlement primary-btn br5', 'style' => "cursor:pointer;"]) ?>

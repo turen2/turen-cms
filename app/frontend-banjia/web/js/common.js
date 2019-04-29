@@ -204,7 +204,7 @@ turen.com = (function($) {
             var error = '';
             var hasError = false;
 
-            var content = $(_form).find('textarea[name="Feedback[content]"]');
+            var content = $(_form).find('textarea[name="FeedbackForm[content]"]');
             error = '';
             if(!content.val().length > 0) {
                 error = '内容详情必填';
@@ -214,7 +214,7 @@ turen.com = (function($) {
                 content.parent('.form-group').append('<p class="error"><i class="iconfont jia-close_b"></i>'+error+'</p>');
             }
 
-            var nickname = $(_form).find('input[name="Feedback[nickname]"]');
+            var nickname = $(_form).find('input[name="FeedbackForm[nickname]"]');
             error = '';
             if(!nickname.val().length > 0) {
                 error = '称呼必填';
@@ -224,7 +224,7 @@ turen.com = (function($) {
                 nickname.parent('.form-group .col').append('<p class="error"><i class="iconfont jia-close_b"></i>'+error+'</p>');
             }
 
-            var contact = $(_form).find('input[name="Feedback[contact]"]');
+            var contact = $(_form).find('input[name="FeedbackForm[contact]"]');
             error = '';
             if(!contact.val().length > 0) {
                 error = '联系方式必填';
@@ -234,7 +234,7 @@ turen.com = (function($) {
                 contact.parent('.form-group .col').append('<p class="error"><i class="iconfont jia-close_b"></i>'+error+'</p>');
             }
 
-            var verifyCode = $(_form).find('input[name="Feedback[verifyCode]"]');
+            var verifyCode = $(_form).find('input[name="FeedbackForm[verifyCode]"]');
             error = '';
             if(!verifyCode.val().length > 0) {
                 error = '验证码必填';
@@ -262,9 +262,9 @@ turen.com = (function($) {
                                 if(res.msg[key][0]) {
                                     var value = res.msg[key][0];
                                     if(key == 'content') {
-                                        _this.find('textarea[name="Feedback['+key+']"]').parent('.form-group').append('<p class="error"><i class="iconfont jia-close_b"></i>'+value+'</p>');
+                                        _this.find('textarea[name="FeedbackForm['+key+']"]').parent('.form-group').append('<p class="error"><i class="iconfont jia-close_b"></i>'+value+'</p>');
                                     } else {
-                                        _this.find('input[name="Feedback['+key+']"]').parent('.form-group .col').append('<p class="error"><i class="iconfont jia-close_b"></i>'+value+'</p>');
+                                        _this.find('input[name="FeedbackForm['+key+']"]').parent('.form-group .col').append('<p class="error"><i class="iconfont jia-close_b"></i>'+value+'</p>');
                                     }
                                 }
                             }

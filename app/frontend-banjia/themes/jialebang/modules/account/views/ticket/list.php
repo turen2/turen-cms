@@ -7,6 +7,10 @@
 
 $this->title = '工单管理';
 $this->params['breadcrumbs'][] = $this->title;
+
+use common\models\account\Ticket;
+use yii\helpers\Url;
+use yii\widgets\LinkPager;
 ?>
 
 <div class="user-center">
@@ -14,84 +18,53 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $this->render('../_account_sidebox') ?>
         <div class="user-content card info">
             <div class="user-content-head">
-                <div class="title"><?= $this->title ?><a href="" class="primary-btn br5 fr">新工单</a></div>
+                <div class="title"><?= $this->title ?><a href="<?= Url::to(['/account/ticket/create']) ?>" class="primary-btn br5 fr">新工单</a></div>
             </div>
             <div class="user-content-body">
                 <div class="table-responsive">
                     <table class="table" id="tickets-table">
                         <thead>
                             <tr>
-                                <th width="16%">工单编号</th>
-                                <th>问题内容</th>
-                                <th>创建时间</th>
-                                <th>状态</th>
+                                <th width="16%"><?= $dataProvider->sort->link('t_ticket_num', ['label' => $searchModel->getAttributeLabel('t_ticket_num')]) ?></th>
+                                <th width="40%"><?= $searchModel->getAttributeLabel('t_title') ?></th>
+                                <th><?= $dataProvider->sort->link('created_at', ['label' => $searchModel->getAttributeLabel('created_at')]) ?></th>
+                                <th><?= $searchModel->getAttributeLabel('t_status') ?></th>
                                 <th style="width:86px">操作</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php foreach ($dataProvider->getModels() as $key => $model) { ?>
                             <tr>
-                                <td>190419170425</td>
+                                <td><?= $model->t_ticket_num ?></td>
+                                <td><?= $model->t_title ?></td>
+                                <td><?= Yii::$app->getFormatter()->asDate($model->created_at) ?></td>
                                 <td>
-                                    <a class="link" href="" target="_blank">菜单优化，新餐饮下的一本万利</a>
-                                </td>
-                                <td>2019-4-19</td>
-                                <td>
-                                    <span class="status status-disabled">交易关闭</span>
+                                    <span class="status status-disabled"><?= Ticket::StatusName($model->t_status) ?></span>
                                 </td>
                                 <td>
                                     <div class="table-action">
                                         <div class="action-item">
-                                            <a href="javascript:;" class="link-primary">订单详情</a>
+                                            <a href="<?= Url::to(['/account/ticket/detail', 'id' => $model->t_id]) ?>" class="link-primary">工单详情</a>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>190419170425</td>
-                                <td>
-                                    <a class="link" href="" target="_blank">菜单优化，新餐饮下的一本万利</a>
-                                </td>
-                                <td>2019-4-19</td>
-                                <td>
-                                    <span class="status status-disabled">交易关闭</span>
-                                </td>
-                                <td>
-                                    <div class="table-action">
-                                        <div class="action-item">
-                                            <a href="javascript:;" class="link-primary">订单详情</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>190419170425</td>
-                                <td>
-                                    <a class="link" href="" target="_blank">菜单优化，新餐饮下的一本万利</a>
-                                </td>
-                                <td>2019-4-19</td>
-                                <td>
-                                    <span class="status status-disabled">交易关闭</span>
-                                </td>
-                                <td>
-                                    <div class="table-action">
-                                        <div class="action-item">
-                                            <a href="javascript:;" class="link-primary">订单详情</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
                 <div class="pagination-nav clearfix">
-                    <ul class="pagination fr">
-                        <li><a class="br4" href="">首页</a></li>
-                        <li><a class="br4" href="">上一页</a></li>
-                        <li><a class="br4" href="">1</a></li>
-                        <li><a class="br4" href="">2</a></li>
-                        <li><a class="br4" href="">下一页</a></li>
-                        <li><a class="br4" href="">末页</a></li>
-                    </ul>
+                    <?= LinkPager::widget([
+                        'pagination' => $dataProvider->getPagination(),
+                        'options' => ['class' => 'pagination fr'],
+                        'linkOptions' => ['class' => 'br4'],
+                        'disabledListItemSubTagOptions' => ['class' => 'br4'],
+                        'activePageCssClass' => 'on',
+                        'firstPageLabel' => '首页',
+                        'lastPageLabel' => '尾页',
+                        'nextPageLabel' => '下页',
+                        'prevPageLabel' => '上页',
+                    ]); ?>
                 </div>
             </div>
         </div>

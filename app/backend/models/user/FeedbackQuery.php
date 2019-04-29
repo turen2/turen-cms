@@ -9,7 +9,7 @@ namespace app\models\user;
 /**
  * This is the ActiveQuery class for [[Feedback]].
  *
- * @see Feedback
+ * @see FeedbackForm
  */
 class FeedbackQuery extends \app\components\ActiveQuery
 {

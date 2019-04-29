@@ -262,7 +262,7 @@ input:focus
 
 /* alert */
 .alert {
-    padding: 15px;
+    padding: 12px;
     margin-bottom: 20px;
     border: 1px solid transparent;
     border-radius: 4px

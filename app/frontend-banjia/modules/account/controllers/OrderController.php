@@ -7,9 +7,9 @@
 namespace app\modules\account\controllers;
 
 use Yii;
-use common\models\user\InquirySearch;
 use yii\web\NotFoundHttpException;
-use common\models\user\Inquiry;
+use common\models\account\InquirySearch;
+use common\models\account\Inquiry;
 
 /**
  * 服务订单管理

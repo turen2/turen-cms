@@ -1,11 +1,11 @@
 <?php
 
-namespace common\models\user;
+namespace common\models\account;
 
 /**
  * This is the ActiveQuery class for [[Feedback]].
  *
- * @see Feedback
+ * @see FeedbackForm
  */
 class FeedbackQuery extends \common\components\ActiveQuery
 {

@@ -4,11 +4,12 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace common\models\user;
+namespace common\models\account;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use common\models\user\User;
 
 /**
  * InquirySearch represents the model behind the search form about `app\models\user\Inquiry`.

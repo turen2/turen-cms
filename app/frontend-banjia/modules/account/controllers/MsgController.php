@@ -58,7 +58,7 @@ class MsgController extends \app\components\Controller
     public function actionDetail($id)
     {
         $model = $this->findModel($id);
-        
+
         //设置为已读
         Yii::$app->getDb()->createCommand()->update(Msg::tableName(), [
             'msg_readtime' => time(),
@@ -134,6 +134,7 @@ class MsgController extends \app\components\Controller
     /**
      * 测试
      */
+    /*
     public function actionCreate()
     {
         //$content, $type ,$userId, $lang
@@ -151,4 +152,5 @@ class MsgController extends \app\components\Controller
 
         echo '添加成功';
     }
+    */
 }

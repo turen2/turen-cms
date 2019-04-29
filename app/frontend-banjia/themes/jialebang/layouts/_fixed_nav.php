@@ -10,16 +10,16 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use common\helpers\ImageHelper;
-use common\models\com\Feedback;
+use common\models\com\FeedbackForm;
 use app\assets\LayerAsset;
 use app\assets\NotifyAsset;
-use common\models\user\FeedbackType;
+use common\models\account\FeedbackType;
 
 //问题类型
 $feedbackTypeList = ArrayHelper::map(FeedbackType::find()->active()->current()
     ->where(['fkt_form_show' => FeedbackType::SHOW_YES])->orderBy(['orderid' => SORT_DESC])->asArray()->all(), 'fkt_id', 'fkt_form_name');
 //初始化，考虑一下session或者cookie值，防止刷新丢失。
-$feedbackModel = new Feedback();
+$feedbackModel = new FeedbackForm();
 if(!Yii::$app->getUser()->getIsGuest()) {
     $userModel = Yii::$app->getUser()->getIdentity();
     $feedbackModel->contact = empty($userModel->phone)?$userModel->email:$userModel->phone;

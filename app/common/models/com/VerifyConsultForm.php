@@ -12,7 +12,7 @@ use yii\base\Model;
 /**
  * VerifyConsult form
  */
-class VerifyConsult extends Model
+class VerifyConsultForm extends Model
 {
     public $verifyCode;//数字验证码
     public $phone;//手机号

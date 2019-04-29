@@ -9,12 +9,12 @@ namespace common\models\com;
 use common\models\user\User;
 use Yii;
 use yii\base\Model;
-use common\models\user\Feedback as FeedbackModel;
+use common\models\account\Feedback as FeedbackModel;
 
 /**
  * Feedback form
  */
-class Feedback extends Model
+class FeedbackForm extends Model
 {
     //修改密码
     public $type;
@@ -62,10 +62,10 @@ class Feedback extends Model
 
     /**
      * 问题反馈数据收集表单模型
-     * @param Feedback $model
+     * @param FeedbackForm $model
      * @return bool
      */
-    public static function SubmitFeedback(Feedback $model)
+    public static function SubmitFeedback(FeedbackForm $model)
     {
         //判断是否内容重复，如果重复就提交已经提交过了。
         //$md5 = md5($model->attributes);
