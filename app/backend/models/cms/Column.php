@@ -167,11 +167,17 @@ class Column extends \app\models\base\Cms
             'lang' => '语言',
         ];
     }
-    
+
     /**
      * 转换器
      * 负责模型类、栏目、ID、名称、标记之间的转换
-     * @param string $type
+     * @param $type
+     * @param null $key
+     * @param string $default
+     * @return array|mixed|string
+     * @throws InvalidConfigException
+     *
+     * $type：
      * 'id2name' ID对应名称
      * 'id2mask' ID对应标记
      * 'id2class' ID对应模型类
@@ -179,7 +185,8 @@ class Column extends \app\models\base\Cms
      * 'class2id' 模型类对应ID
      * 'class2name' 模型类对应类名
      * .....
-     * @param $key 转化后获取其中一个值的时候所使用的键//不可以mask2id、mask2class、mask2name
+     * $key：
+     * 转化后获取其中一个值的时候所使用的键//不可以mask2id、mask2class、mask2name
      * return [] | int | string
      */
     public static function ColumnConvert($type, $key = null, $default = '')
@@ -257,11 +264,13 @@ class Column extends \app\models\base\Cms
             throw new InvalidConfigException(Column::class.'参数错误，参数为：'.$type);
         }
     }
-    
+
     /**
      * 获取栏目路由链接
-     * @param integer $key columnid值
-     * @return string link | ''
+     * @param $key
+     * @param Column $model
+     * @return string
+     * @throws InvalidConfigException
      */
     public static function ColumnLinkList($key, Column $model)
     {

@@ -3,6 +3,9 @@
 namespace common\models\account;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use common\helpers\Util;
+use common\behaviors\InsertLangBehavior;
 
 /**
  * This is the model class for table "{{%user_ticket}}".
@@ -10,6 +13,7 @@ use Yii;
  * @property string $t_id ID
  * @property string $t_ticket_num 工单号
  * @property string $t_title 工单标题
+ * @property string $t_files 主题文件
  * @property string $t_content 工单互动内容（数组序列化）
  * @property string $t_relate_id 关联对象，服务单id/预约单id
  * @property string $t_phone 手机通知
@@ -22,11 +26,11 @@ use Yii;
  * @property int $finished_at 完成时间
  * @property string $lang 多语言
  * @property int $created_at 创建时间
- * @property int $udpated_at 更新时间
+ * @property int $updated_at 更新时间
  */
 class Ticket extends \common\components\ActiveRecord
 {
-    //工单状态，1待处理，2有新回复，3待回复，4待您评价，5已关闭'
+    //工单状态，1待处理，2有新回复，3待回复，4待您评价，5已关闭
     const TICKET_STATUS_WAIT = 1;
     const TICKET_STATUS_NEWREVIEW = 2;
     const TICKET_STATUS_WAITREVIEW = 3;
@@ -37,6 +41,10 @@ class Ticket extends \common\components\ActiveRecord
     const TICKET_YES = 1;
     const TICKET_NO = 0;
 
+    //交互类型
+    const TICKET_TYPE_USER = 'user';
+    const TICKET_TYPE_ADMIN = 'admin';
+
     /**
      * {@inheritdoc}
      */
@@ -45,19 +53,36 @@ class Ticket extends \common\components\ActiveRecord
         return '{{%user_ticket}}';
     }
 
+    public function behaviors()
+    {
+        return [
+            'timemap' => [
+                'class' => TimestampBehavior::class,
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at'
+            ],
+            'insertlang' => [//自动填充多站点和多语言
+                'class' => InsertLangBehavior::class,
+                'insertLangAttribute' => 'lang',
+            ],
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['t_title'], 'required'],
-            [['t_relate_id', 't_user_id', 't_status', 't_star', 't_is_finish', 'finished_at', 'created_at', 'udpated_at'], 'integer'],
+            [['t_title', 't_relate_id'], 'required'],
+            [['t_user_id', 't_relate_id', 't_status', 't_star', 't_is_finish', 'finished_at', 'created_at', 'updated_at'], 'integer'],
             [['t_ticket_num'], 'string', 'max' => 20],
             [['t_title', 't_finish_comment'], 'string', 'max' => 200],
             [['t_phone'], 'string', 'max' => 11],
             [['t_email'], 'string', 'max' => 30],
-            [['t_content', 'lang'], 'string'],
+            [['t_phone'], 'match', 'pattern' => '/^[1][3578][0-9]{9}$/', 'message' => '手机号码格式错误'],
+            [['t_email'], 'email'],
+            [['t_content', 't_files', 'lang'], 'string'],
         ];
     }
 
@@ -70,10 +95,11 @@ class Ticket extends \common\components\ActiveRecord
             't_id' => 'ID',
             't_ticket_num' => '工单号',
             't_title' => '工单主题',
+            't_files' => '主题相关文件',
             't_content' => '工单互动内容',//（数组序列化）
-            't_relate_id' => '关联对象',//，服务单id/预约单id',
-            't_phone' => '手机通知',
-            't_email' => '邮件通知',
+            't_relate_id' => '服务单号',//，服务单id/预约单id',
+            't_phone' => '手机通知[可选]',
+            't_email' => '邮件通知[可选]',
             't_user_id' => '工单所属',
             't_status' => '工单状态',//，1待处理，2有新回复，3待回复，4待您评价，5已关闭
             't_star' => '星级',
@@ -82,7 +108,7 @@ class Ticket extends \common\components\ActiveRecord
             'finished_at' => '结单时间',
             'lang' => '多语言',
             'created_at' => '创建时间',
-            'udpated_at' => '更新时间',
+            'updated_at' => '更新时间',
         ];
     }
 
@@ -111,6 +137,25 @@ class Ticket extends \common\components\ActiveRecord
     {
         $statuses = static::StatusList();
         return isset($statuses[$status])?$statuses[$status]:'未设置';
+    }
+
+    /**
+     * 保存之后的操作
+     * @param bool $insert
+     * @param array $changedAttributes
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+
+        if(empty($this->t_ticket_num)) {
+            self::updateAll([
+                't_ticket_num' => Util::GenerateSimpleOrderNumber('GD', $this->t_id),
+                't_user_id' => Yii::$app->getUser()->getId(),
+            ], [
+                't_id' => $this->t_id,
+            ]);
+        }
     }
 
     /**

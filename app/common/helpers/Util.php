@@ -282,9 +282,9 @@ class Util
     /**
      * 生成简单的单号
      */
-    public static function GenerateSimpleOrderNumber($type = '', $ext = '')
+    public static function GenerateSimpleOrderNumber($prefix, $ext = '')
     {
-        return date('ymdHis').$ext.$type;
+        return $prefix.date('ymdHis').$ext;
     }
 
     /**

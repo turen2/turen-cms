@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2019-04-26 19:32:11
+Date: 2019-05-05 23:18:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -55,32 +55,32 @@ CREATE TABLE `ss_cascade_data` (
 DROP TABLE IF EXISTS `ss_cms_article`;
 CREATE TABLE `ss_cms_article` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '列表信息id',
-  `columnid` int(11) unsigned NOT NULL COMMENT '所属栏目id',
-  `parentid` int(11) unsigned NOT NULL COMMENT '所属栏目上级id',
-  `parentstr` varchar(80) NOT NULL COMMENT '所属栏目上级id字符串',
+  `columnid` int(11) unsigned DEFAULT NULL COMMENT '所属栏目id',
+  `parentid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '所属栏目上级id',
+  `parentstr` varchar(80) NOT NULL DEFAULT '' COMMENT '所属栏目上级id字符串',
   `cateid` int(11) unsigned DEFAULT NULL COMMENT '类别id',
   `catepid` int(11) unsigned DEFAULT NULL COMMENT '类别父id',
   `catepstr` varchar(80) DEFAULT NULL COMMENT '所属类别上级id字符串',
-  `title` varchar(80) NOT NULL COMMENT '标题',
+  `title` varchar(80) NOT NULL DEFAULT '' COMMENT '标题',
   `slug` varchar(200) NOT NULL DEFAULT '' COMMENT '链接别名',
-  `colorval` char(10) NOT NULL COMMENT '字体颜色',
-  `boldval` char(10) NOT NULL COMMENT '字体加粗',
-  `flag` varchar(30) NOT NULL COMMENT '属性',
-  `source` varchar(50) NOT NULL COMMENT '文章来源',
-  `author` varchar(50) NOT NULL COMMENT '作者编辑',
-  `linkurl` varchar(255) NOT NULL COMMENT '跳转链接',
-  `keywords` varchar(50) NOT NULL COMMENT '关键词',
-  `description` varchar(255) NOT NULL COMMENT '摘要',
-  `content` mediumtext NOT NULL COMMENT '详细内容',
-  `picurl` varchar(100) NOT NULL COMMENT '缩略图片',
-  `picarr` text NOT NULL COMMENT '组图',
-  `hits` mediumint(8) unsigned NOT NULL COMMENT '点击次数',
-  `orderid` int(10) unsigned NOT NULL COMMENT '排列排序',
-  `posttime` int(10) NOT NULL COMMENT '更新时间',
+  `colorval` char(10) NOT NULL DEFAULT '' COMMENT '字体颜色',
+  `boldval` char(10) NOT NULL DEFAULT '' COMMENT '字体加粗',
+  `flag` varchar(30) DEFAULT NULL COMMENT '属性',
+  `source` varchar(50) NOT NULL DEFAULT '' COMMENT '文章来源',
+  `author` varchar(50) NOT NULL DEFAULT '' COMMENT '作者编辑',
+  `linkurl` varchar(255) NOT NULL DEFAULT '' COMMENT '跳转链接',
+  `keywords` varchar(50) NOT NULL DEFAULT '' COMMENT '关键词',
+  `description` varchar(255) NOT NULL DEFAULT '' COMMENT '摘要',
+  `content` mediumtext COMMENT '详细内容',
+  `picurl` varchar(100) NOT NULL DEFAULT '' COMMENT '缩略图片',
+  `picarr` text COMMENT '组图',
+  `hits` mediumint(8) unsigned NOT NULL DEFAULT '100' COMMENT '点击次数',
+  `orderid` int(10) unsigned NOT NULL DEFAULT '10' COMMENT '排列排序',
+  `posttime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '审核状态',
   `delstate` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '删除状态',
-  `deltime` int(10) unsigned NOT NULL COMMENT '删除时间',
-  `lang` varchar(8) NOT NULL,
+  `deltime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
+  `lang` varchar(8) NOT NULL DEFAULT '' COMMENT '多语言',
   `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   `updated_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '编辑时间',
   PRIMARY KEY (`id`)
@@ -121,7 +121,7 @@ INSERT INTO `ss_cms_article` VALUES ('29', '90', '84', '0,84,', null, null, null
 INSERT INTO `ss_cms_article` VALUES ('30', '90', '84', '0,84,', null, null, null, '售后退款', '售后退款', '', '', '首推', '', 'admin', '', '', '', '<p>售后退款售后退款售后退款售后退款售后退款售后退款</p>', '', '', '100', '70', '1552186567', '1', '0', '0', 'zh-CN', '1552186567', '1552186567');
 INSERT INTO `ss_cms_article` VALUES ('31', '90', '84', '0,84,', null, null, null, '定金执行规则', '定金执行规则', '', '', '', '', 'admin', '', '', '', '<p>定金执行规则定金执行规则定金执行规则定金执行规则定金执行规则</p>', '', '', '100', '60', '1552186648', '1', '0', '0', 'zh-CN', '1552186648', '1552186648');
 INSERT INTO `ss_cms_article` VALUES ('32', '90', '84', '0,84,', null, null, null, '服务验货与签收', '服务验货与签收', '', '', '首推', '', 'admin', '', '', '', '<p>服务验货与签收服务验货与签收服务验货与签收服务验货与签收服务验货与签收服务验货与签收服务验货与签收</p>', '', '', '100', '90', '1552147200', '1', '0', '0', 'zh-CN', '1552186758', '1552186784');
-INSERT INTO `ss_cms_article` VALUES ('33', '90', '84', '0,84,', null, null, null, '嘉乐邦注册协议', '嘉乐邦注册协议', '', '', '', '', 'admin', '', '', '', '<p>嘉乐邦注册协议嘉乐邦注册协议嘉乐邦注册协议嘉乐邦注册协议嘉乐邦注册协议嘉乐邦注册协议</p>', '', '', '100', '50', '1552201945', '1', '0', '0', 'zh-CN', '1552201945', '1552201945');
+INSERT INTO `ss_cms_article` VALUES ('33', '90', '84', '0,84,', null, null, null, '嘉乐邦注册协议', 'user-protocol', '', '', '', '', 'admin', '', '', '', '<p>嘉乐邦注册协议嘉乐邦注册协议嘉乐邦注册协议嘉乐邦注册协议嘉乐邦注册协议嘉乐邦注册协议</p>', '', '', '100', '50', '1552147200', '1', '0', '0', 'zh-CN', '1552201945', '1556536156');
 
 -- ----------------------------
 -- Table structure for ss_cms_block
@@ -129,12 +129,12 @@ INSERT INTO `ss_cms_article` VALUES ('33', '90', '84', '0,84,', null, null, null
 DROP TABLE IF EXISTS `ss_cms_block`;
 CREATE TABLE `ss_cms_block` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '碎片数据id',
-  `title` varchar(30) NOT NULL COMMENT '碎片数据名称',
-  `picurl` varchar(80) NOT NULL COMMENT '碎片数据缩略图',
-  `linkurl` varchar(80) NOT NULL COMMENT '碎片数据连接',
-  `content` mediumtext NOT NULL COMMENT '碎片数据内容',
-  `posttime` int(10) unsigned NOT NULL COMMENT '发布时间',
-  `lang` varchar(8) NOT NULL,
+  `title` varchar(30) NOT NULL DEFAULT '' COMMENT '碎片数据名称',
+  `picurl` varchar(80) NOT NULL DEFAULT '' COMMENT '碎片数据缩略图',
+  `linkurl` varchar(80) NOT NULL DEFAULT '' COMMENT '碎片数据连接',
+  `content` mediumtext COMMENT '碎片数据内容',
+  `posttime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '发布时间',
+  `lang` varchar(8) NOT NULL DEFAULT '' COMMENT '多语言',
   `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   `updated_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '编辑时间',
   PRIMARY KEY (`id`)
@@ -153,26 +153,27 @@ INSERT INTO `ss_cms_block` VALUES ('3', '联系我们', '', '', '<h2><span style
 DROP TABLE IF EXISTS `ss_cms_cate`;
 CREATE TABLE `ss_cms_cate` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '二级类别id',
-  `parentid` int(11) unsigned NOT NULL COMMENT '类别上级id',
-  `parentstr` varchar(50) NOT NULL COMMENT '类别上级id字符串',
-  `catename` varchar(30) NOT NULL COMMENT '类别名称',
-  `linkurl` varchar(255) NOT NULL COMMENT '跳转链接',
-  `seotitle` varchar(80) NOT NULL COMMENT 'SEO标题',
-  `keywords` varchar(50) NOT NULL COMMENT 'SEO关键词',
-  `description` varchar(255) NOT NULL COMMENT 'SEO描述',
-  `orderid` int(11) unsigned NOT NULL COMMENT '排列排序',
+  `parentid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '类别上级id，顶级分类为0',
+  `parentstr` varchar(50) NOT NULL DEFAULT '' COMMENT '类别上级id字符串',
+  `catename` varchar(30) NOT NULL DEFAULT '' COMMENT '类别名称',
+  `linkurl` varchar(255) NOT NULL DEFAULT '' COMMENT '跳转链接',
+  `seotitle` varchar(80) NOT NULL DEFAULT '' COMMENT 'SEO标题',
+  `keywords` varchar(50) NOT NULL DEFAULT '' COMMENT 'SEO关键词',
+  `description` varchar(255) NOT NULL DEFAULT '' COMMENT 'SEO描述',
+  `orderid` int(11) unsigned NOT NULL DEFAULT '10' COMMENT '排列排序',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '审核状态',
-  `lang` varchar(8) NOT NULL COMMENT '多语言',
+  `lang` varchar(8) NOT NULL DEFAULT '' COMMENT '多语言',
   `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   `updated_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '编辑时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ss_cms_cate
 -- ----------------------------
-INSERT INTO `ss_cms_cate` VALUES ('3', '0', '0,', 'aaaaaaaaa', '', '', '', '', '100', '1', 'zh-CN', '1553925802', '1553925816');
-INSERT INTO `ss_cms_cate` VALUES ('4', '0', '0,', 'bbbbbbbbb', '', '', '', '', '100', '1', 'zh-CN', '1553925807', '1553925822');
+INSERT INTO `ss_cms_cate` VALUES ('6', '0', '0,', 'ffffffffffffffffff', '', '', '', '', '102', '1', 'zh-CN', '1556419074', '1556419074');
+INSERT INTO `ss_cms_cate` VALUES ('7', '0', '0,', 'aaaaaaaaaaaaaaaaaa', '', '', '', '', '103', '1', 'zh-CN', '1556419078', '1556419078');
+INSERT INTO `ss_cms_cate` VALUES ('8', '0', '0,', 'eeeeeeeeeeeee', '', '', '', '', '104', '1', 'zh-CN', '1556419081', '1556419081');
 
 -- ----------------------------
 -- Table structure for ss_cms_column
@@ -180,20 +181,20 @@ INSERT INTO `ss_cms_cate` VALUES ('4', '0', '0,', 'bbbbbbbbb', '', '', '', '', '
 DROP TABLE IF EXISTS `ss_cms_column`;
 CREATE TABLE `ss_cms_column` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '栏目id',
-  `parentid` int(11) unsigned NOT NULL COMMENT '栏目上级id',
-  `parentstr` varchar(50) NOT NULL COMMENT '栏目上级id字符串',
-  `type` tinyint(1) unsigned NOT NULL COMMENT '栏目类型',
-  `cname` varchar(30) NOT NULL COMMENT '栏目名称',
-  `linkurl` varchar(255) NOT NULL COMMENT '跳转链接',
-  `picurl` varchar(100) NOT NULL COMMENT '缩略图片',
-  `picwidth` varchar(5) NOT NULL COMMENT '缩略图宽度',
-  `picheight` varchar(5) NOT NULL COMMENT '缩略图高度',
-  `seotitle` varchar(80) NOT NULL COMMENT 'SEO标题',
-  `keywords` varchar(50) NOT NULL COMMENT 'SEO关键词',
-  `description` varchar(255) NOT NULL COMMENT 'SEO描述',
-  `orderid` int(11) unsigned NOT NULL COMMENT '排列排序',
+  `parentid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '栏目上级id',
+  `parentstr` varchar(50) NOT NULL DEFAULT '' COMMENT '栏目上级id字符串',
+  `type` tinyint(1) unsigned DEFAULT NULL COMMENT '栏目类型',
+  `cname` varchar(30) NOT NULL DEFAULT '' COMMENT '栏目名称',
+  `linkurl` varchar(255) NOT NULL DEFAULT '' COMMENT '跳转链接',
+  `picurl` varchar(100) NOT NULL DEFAULT '' COMMENT '缩略图片',
+  `picwidth` varchar(5) NOT NULL DEFAULT '' COMMENT '缩略图宽度',
+  `picheight` varchar(5) NOT NULL DEFAULT '' COMMENT '缩略图高度',
+  `seotitle` varchar(80) NOT NULL DEFAULT '' COMMENT 'SEO标题',
+  `keywords` varchar(50) NOT NULL DEFAULT '' COMMENT 'SEO关键词',
+  `description` varchar(255) NOT NULL DEFAULT '' COMMENT 'SEO描述',
+  `orderid` int(11) unsigned NOT NULL DEFAULT '10' COMMENT '排列排序',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '审核状态',
-  `lang` varchar(8) NOT NULL,
+  `lang` varchar(8) NOT NULL DEFAULT '' COMMENT '多语言',
   `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   `updated_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '编辑时间',
   PRIMARY KEY (`id`)
@@ -228,37 +229,37 @@ INSERT INTO `ss_cms_column` VALUES ('90', '84', '0,84,', '1', '帮助中心', ''
 DROP TABLE IF EXISTS `ss_cms_file`;
 CREATE TABLE `ss_cms_file` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '软件信息id',
-  `columnid` int(11) unsigned NOT NULL COMMENT '所属栏目id',
-  `parentid` int(11) unsigned NOT NULL COMMENT '所属栏目上级id',
-  `parentstr` varchar(80) NOT NULL COMMENT '所属栏目上级id字符串',
+  `columnid` int(11) unsigned DEFAULT NULL COMMENT '所属栏目id',
+  `parentid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '所属栏目上级id',
+  `parentstr` varchar(80) NOT NULL DEFAULT '' COMMENT '所属栏目上级id字符串',
   `cateid` int(11) unsigned DEFAULT NULL COMMENT '类别id',
   `catepid` int(11) unsigned DEFAULT NULL COMMENT '类别父id',
   `catepstr` varchar(80) DEFAULT NULL COMMENT '多级父id',
-  `title` varchar(80) NOT NULL COMMENT '标题',
+  `title` varchar(80) NOT NULL DEFAULT '' COMMENT '标题',
   `slug` varchar(200) NOT NULL DEFAULT '' COMMENT '访问链接',
-  `colorval` char(10) NOT NULL COMMENT '字体颜色',
-  `boldval` char(10) NOT NULL COMMENT '字体加粗',
-  `flag` varchar(30) NOT NULL COMMENT '属性',
-  `source` varchar(50) NOT NULL COMMENT '文章来源',
-  `author` varchar(50) NOT NULL COMMENT '作者编辑',
-  `filetype` char(4) NOT NULL COMMENT '文件类型',
-  `filesize` varchar(10) NOT NULL COMMENT '软件大小',
-  `website` varchar(255) NOT NULL COMMENT '官方网站',
-  `demourl` varchar(255) NOT NULL COMMENT '演示地址',
-  `dlurl` varchar(255) NOT NULL COMMENT '下载地址',
-  `linkurl` varchar(255) NOT NULL COMMENT '跳转链接',
-  `keywords` varchar(50) NOT NULL COMMENT '关键字',
-  `description` varchar(255) NOT NULL COMMENT '描述',
-  `content` mediumtext NOT NULL COMMENT '内容',
-  `picurl` varchar(100) NOT NULL COMMENT '缩略图片',
-  `picarr` text NOT NULL COMMENT '截图展示',
-  `hits` mediumint(8) unsigned NOT NULL COMMENT '点击次数',
-  `orderid` int(11) unsigned NOT NULL COMMENT '排列排序',
-  `posttime` int(11) NOT NULL COMMENT '更新时间',
+  `colorval` char(10) NOT NULL DEFAULT '' COMMENT '字体颜色',
+  `boldval` char(10) NOT NULL DEFAULT '' COMMENT '字体加粗',
+  `flag` varchar(30) DEFAULT NULL COMMENT '属性',
+  `source` varchar(50) NOT NULL DEFAULT '' COMMENT '文章来源',
+  `author` varchar(50) NOT NULL DEFAULT '' COMMENT '作者编辑',
+  `filetype` char(4) NOT NULL DEFAULT '' COMMENT '文件类型',
+  `filesize` varchar(10) NOT NULL DEFAULT '' COMMENT '软件大小',
+  `website` varchar(255) NOT NULL DEFAULT '' COMMENT '官方网站',
+  `demourl` varchar(255) NOT NULL DEFAULT '' COMMENT '演示地址',
+  `dlurl` varchar(255) NOT NULL DEFAULT '' COMMENT '下载地址',
+  `linkurl` varchar(255) NOT NULL DEFAULT '' COMMENT '跳转链接',
+  `keywords` varchar(50) NOT NULL DEFAULT '' COMMENT '关键字',
+  `description` varchar(255) NOT NULL DEFAULT '' COMMENT '描述',
+  `content` mediumtext COMMENT '内容',
+  `picurl` varchar(100) NOT NULL DEFAULT '' COMMENT '缩略图片',
+  `picarr` text COMMENT '截图展示',
+  `hits` mediumint(8) unsigned NOT NULL DEFAULT '100' COMMENT '点击次数',
+  `orderid` int(11) unsigned NOT NULL DEFAULT '10' COMMENT '排列排序',
+  `posttime` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '审核状态',
   `delstate` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '删除状态',
-  `deltime` int(10) unsigned NOT NULL COMMENT '删除时间',
-  `lang` varchar(8) NOT NULL,
+  `deltime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
+  `lang` varchar(8) NOT NULL DEFAULT '' COMMENT '多语言',
   `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   `updated_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '编辑时间',
   PRIMARY KEY (`id`)
@@ -284,8 +285,8 @@ CREATE TABLE `ss_cms_flag` (
   `flag` varchar(30) NOT NULL DEFAULT '' COMMENT '标记值',
   `flagname` varchar(30) NOT NULL DEFAULT '' COMMENT '标记名称',
   `orderid` int(11) unsigned NOT NULL DEFAULT '10' COMMENT '排列排序',
-  `type` tinyint(2) NOT NULL COMMENT '所属栏目类型',
-  `lang` varchar(8) NOT NULL DEFAULT '',
+  `type` tinyint(2) unsigned DEFAULT NULL COMMENT '所属栏目类型',
+  `lang` varchar(8) NOT NULL DEFAULT '' COMMENT '多语言',
   `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   `updated_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '编辑时间',
   PRIMARY KEY (`id`)
@@ -326,11 +327,11 @@ INSERT INTO `ss_cms_flag` VALUES ('39', '首推', '首页推荐', '10', '1', 'zh
 DROP TABLE IF EXISTS `ss_cms_info`;
 CREATE TABLE `ss_cms_info` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '单页id',
-  `columnid` int(11) unsigned NOT NULL COMMENT '所属栏目id',
+  `columnid` int(11) unsigned DEFAULT NULL COMMENT '所属栏目id',
   `slug` varchar(200) NOT NULL DEFAULT '' COMMENT '链接别名',
-  `picurl` varchar(100) NOT NULL COMMENT '缩略图片',
-  `content` mediumtext NOT NULL COMMENT '内容',
-  `posttime` int(10) unsigned NOT NULL COMMENT '发布时间',
+  `picurl` varchar(100) NOT NULL DEFAULT '' COMMENT '缩略图片',
+  `content` mediumtext COMMENT '内容',
+  `posttime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '发布时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
 
@@ -357,32 +358,32 @@ INSERT INTO `ss_cms_info` VALUES ('39', '89', '关于嘉乐邦', '', '<p class=\
 DROP TABLE IF EXISTS `ss_cms_photo`;
 CREATE TABLE `ss_cms_photo` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '图片信息id',
-  `columnid` int(11) unsigned NOT NULL COMMENT '所属栏目id',
-  `parentid` int(11) unsigned NOT NULL COMMENT '所属栏目上级id',
-  `parentstr` varchar(80) NOT NULL COMMENT '所属栏目上级id字符串',
+  `columnid` int(11) unsigned DEFAULT NULL COMMENT '所属栏目id',
+  `parentid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '所属栏目上级id',
+  `parentstr` varchar(80) NOT NULL DEFAULT '' COMMENT '所属栏目上级id字符串',
   `cateid` int(11) unsigned DEFAULT NULL COMMENT '类别id',
   `catepid` int(11) unsigned DEFAULT NULL COMMENT '类别父id',
   `catepstr` varchar(80) DEFAULT NULL COMMENT '所属类别上级id字符串',
-  `title` varchar(80) NOT NULL COMMENT '标题',
+  `title` varchar(80) NOT NULL DEFAULT '' COMMENT '标题',
   `slug` varchar(200) NOT NULL DEFAULT '' COMMENT '访问链接',
-  `colorval` char(10) NOT NULL COMMENT '字体颜色',
-  `boldval` char(10) NOT NULL COMMENT '字体加粗',
-  `flag` varchar(30) NOT NULL COMMENT '属性',
-  `source` varchar(50) NOT NULL COMMENT '文章来源',
-  `author` varchar(50) NOT NULL COMMENT '作者编辑',
-  `linkurl` varchar(255) NOT NULL COMMENT '跳转链接',
-  `keywords` varchar(50) NOT NULL COMMENT '关键词',
-  `description` varchar(255) NOT NULL COMMENT '摘要',
-  `content` mediumtext NOT NULL COMMENT '详细内容',
-  `picurl` varchar(100) NOT NULL COMMENT '缩略图片',
-  `picarr` text NOT NULL COMMENT '组图',
-  `hits` int(11) unsigned NOT NULL COMMENT '点击次数',
-  `orderid` int(11) unsigned NOT NULL COMMENT '排列排序',
-  `posttime` int(11) NOT NULL COMMENT '更新时间',
+  `colorval` char(10) NOT NULL DEFAULT '' COMMENT '字体颜色',
+  `boldval` char(10) NOT NULL DEFAULT '' COMMENT '字体加粗',
+  `flag` varchar(30) DEFAULT NULL COMMENT '属性',
+  `source` varchar(50) NOT NULL DEFAULT '' COMMENT '文章来源',
+  `author` varchar(50) NOT NULL DEFAULT '' COMMENT '作者编辑',
+  `linkurl` varchar(255) NOT NULL DEFAULT '' COMMENT '跳转链接',
+  `keywords` varchar(50) NOT NULL DEFAULT '' COMMENT '关键词',
+  `description` varchar(255) NOT NULL DEFAULT '' COMMENT '摘要',
+  `content` mediumtext COMMENT '详细内容',
+  `picurl` varchar(100) NOT NULL DEFAULT '' COMMENT '缩略图片',
+  `picarr` text COMMENT '组图',
+  `hits` int(11) unsigned NOT NULL DEFAULT '100' COMMENT '点击次数',
+  `orderid` int(11) unsigned NOT NULL DEFAULT '10' COMMENT '排列排序',
+  `posttime` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '审核状态',
   `delstate` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '删除状态',
   `deltime` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
-  `lang` varchar(8) NOT NULL,
+  `lang` varchar(8) NOT NULL DEFAULT '' COMMENT '多语言',
   `created_at` int(10) unsigned NOT NULL DEFAULT '0',
   `updated_at` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
@@ -462,10 +463,10 @@ INSERT INTO `ss_cms_photo` VALUES ('87', '76', '84', '0,84,', null, null, null, 
 DROP TABLE IF EXISTS `ss_cms_src`;
 CREATE TABLE `ss_cms_src` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '来源id',
-  `srcname` varchar(50) NOT NULL COMMENT '来源名称',
-  `linkurl` varchar(150) NOT NULL COMMENT '来源地址',
-  `orderid` int(11) unsigned NOT NULL COMMENT '来源排序',
-  `lang` varchar(8) NOT NULL,
+  `srcname` varchar(50) NOT NULL DEFAULT '' COMMENT '来源名称',
+  `linkurl` varchar(150) NOT NULL DEFAULT '' COMMENT '来源地址',
+  `orderid` int(11) unsigned NOT NULL DEFAULT '10' COMMENT '来源排序',
+  `lang` varchar(8) NOT NULL DEFAULT '' COMMENT '多语言',
   `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   `updated_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '编辑时间',
   PRIMARY KEY (`id`)
@@ -487,10 +488,10 @@ INSERT INTO `ss_cms_src` VALUES ('62', '百度百家号2', 'http://baijia.baidu.
 DROP TABLE IF EXISTS `ss_cms_tag`;
 CREATE TABLE `ss_cms_tag` (
   `tag_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(128) NOT NULL DEFAULT '',
-  `frequency` int(11) unsigned NOT NULL DEFAULT '0',
+  `name` varchar(128) NOT NULL DEFAULT '' COMMENT 'tag名称',
+  `frequency` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '权重',
   `slug` varchar(128) NOT NULL DEFAULT '',
-  `lang` varchar(8) NOT NULL DEFAULT '' COMMENT '简体中文',
+  `lang` varchar(8) NOT NULL DEFAULT '' COMMENT '多语言',
   PRIMARY KEY (`tag_id`),
   UNIQUE KEY `name` (`name`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8;
@@ -545,32 +546,32 @@ INSERT INTO `ss_cms_tag_assign` VALUES ('44', 'Article', '6', '63');
 DROP TABLE IF EXISTS `ss_cms_video`;
 CREATE TABLE `ss_cms_video` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '视频信息id',
-  `columnid` int(11) unsigned NOT NULL COMMENT '所属栏目id',
-  `parentid` int(11) unsigned NOT NULL COMMENT '所属栏目上级id',
-  `parentstr` varchar(80) NOT NULL COMMENT '所属栏目上级id字符串',
+  `columnid` int(11) unsigned DEFAULT NULL COMMENT '所属栏目id',
+  `parentid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '所属栏目上级id',
+  `parentstr` varchar(80) NOT NULL DEFAULT '' COMMENT '所属栏目上级id字符串',
   `cateid` int(11) unsigned DEFAULT NULL COMMENT '所属类别id',
   `catepid` int(11) unsigned DEFAULT NULL COMMENT '所属类别上级id',
   `catepstr` varchar(80) DEFAULT NULL COMMENT '所属类别上级id字符串',
-  `title` varchar(80) NOT NULL COMMENT '标题',
+  `title` varchar(80) NOT NULL DEFAULT '' COMMENT '标题',
   `slug` varchar(200) NOT NULL DEFAULT '' COMMENT '访问链接',
-  `colorval` char(10) NOT NULL COMMENT '字体颜色',
-  `boldval` char(10) NOT NULL COMMENT '字体加粗',
-  `flag` varchar(30) NOT NULL COMMENT '属性',
-  `source` varchar(50) NOT NULL COMMENT '文章来源',
-  `author` varchar(50) NOT NULL COMMENT '作者编辑',
-  `linkurl` varchar(255) NOT NULL COMMENT '跳转链接',
-  `keywords` varchar(50) NOT NULL COMMENT '关键词',
-  `description` varchar(255) NOT NULL COMMENT '摘要',
-  `content` mediumtext NOT NULL COMMENT '详细内容',
-  `picurl` varchar(100) NOT NULL COMMENT '缩略视频',
-  `videolink` text NOT NULL COMMENT '视频地址',
-  `hits` int(11) unsigned NOT NULL COMMENT '点击次数',
-  `orderid` int(11) unsigned NOT NULL COMMENT '排列排序',
-  `posttime` int(10) unsigned NOT NULL COMMENT '更新时间',
+  `colorval` char(10) NOT NULL DEFAULT '' COMMENT '字体颜色',
+  `boldval` char(10) NOT NULL DEFAULT '' COMMENT '字体加粗',
+  `flag` varchar(30) DEFAULT NULL COMMENT '属性',
+  `source` varchar(50) NOT NULL DEFAULT '' COMMENT '文章来源',
+  `author` varchar(50) NOT NULL DEFAULT '' COMMENT '作者编辑',
+  `linkurl` varchar(255) NOT NULL DEFAULT '' COMMENT '跳转链接',
+  `keywords` varchar(50) NOT NULL DEFAULT '' COMMENT '关键词',
+  `description` varchar(255) NOT NULL DEFAULT '' COMMENT '摘要',
+  `content` mediumtext COMMENT '详细内容',
+  `picurl` varchar(100) NOT NULL DEFAULT '' COMMENT '缩略视频',
+  `videolink` text COMMENT '视频地址',
+  `hits` int(11) unsigned NOT NULL DEFAULT '100' COMMENT '点击次数',
+  `orderid` int(11) unsigned NOT NULL DEFAULT '10' COMMENT '排列排序',
+  `posttime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '审核状态',
   `delstate` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '删除状态',
   `deltime` int(10) unsigned NOT NULL COMMENT '删除时间',
-  `lang` varchar(8) NOT NULL,
+  `lang` varchar(8) NOT NULL DEFAULT '' COMMENT '多语言',
   `created_at` int(10) unsigned NOT NULL DEFAULT '0',
   `updated_at` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
@@ -636,7 +637,7 @@ INSERT INTO `ss_diymodel_faqs` VALUES ('15', '卧室梳妆台可以对着床摆�
 DROP TABLE IF EXISTS `ss_diy_field`;
 CREATE TABLE `ss_diy_field` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '自定义字段ID',
-  `fd_column_type` tinyint(5) unsigned NOT NULL COMMENT '所属模型类型',
+  `fd_column_type` tinyint(5) unsigned DEFAULT NULL COMMENT '所属模型类型',
   `columnid_list` varchar(30) NOT NULL DEFAULT '' COMMENT '所属栏目列表',
   `fd_name` varchar(30) NOT NULL DEFAULT '' COMMENT '字段名称',
   `fd_title` varchar(30) NOT NULL DEFAULT '' COMMENT '字段标题',
@@ -688,18 +689,18 @@ INSERT INTO `ss_diy_model` VALUES ('7', '问答列表', 'FaqsModel', 'faqs', '10
 DROP TABLE IF EXISTS `ss_ext_ad`;
 CREATE TABLE `ss_ext_ad` (
   `id` int(5) unsigned NOT NULL AUTO_INCREMENT COMMENT '信息id',
-  `ad_type_id` int(5) unsigned NOT NULL COMMENT '投放范围(广告位)',
-  `parentid` int(5) unsigned NOT NULL COMMENT '所属广告位父id',
-  `parentstr` varchar(80) NOT NULL COMMENT '所属广告位父id字符串',
-  `title` varchar(30) NOT NULL COMMENT '广告标识',
-  `admode` char(10) NOT NULL COMMENT '展示模式',
-  `picurl` varchar(100) NOT NULL COMMENT '上传内容地址',
-  `adtext` text NOT NULL COMMENT '展示内容',
-  `linkurl` varchar(255) NOT NULL COMMENT '跳转链接',
-  `orderid` int(5) unsigned NOT NULL COMMENT '排列排序',
-  `posttime` int(10) unsigned NOT NULL COMMENT '提交时间',
+  `ad_type_id` int(5) unsigned DEFAULT NULL COMMENT '投放范围(广告位)',
+  `parentid` int(5) unsigned NOT NULL DEFAULT '0' COMMENT '所属广告位父id',
+  `parentstr` varchar(80) NOT NULL DEFAULT '' COMMENT '所属广告位父id字符串',
+  `title` varchar(30) NOT NULL DEFAULT '' COMMENT '广告标识',
+  `admode` char(10) NOT NULL DEFAULT '' COMMENT '展示模式',
+  `picurl` varchar(100) NOT NULL DEFAULT '' COMMENT '上传内容地址',
+  `adtext` text COMMENT '展示内容',
+  `linkurl` varchar(255) NOT NULL DEFAULT '' COMMENT '跳转链接',
+  `orderid` int(5) unsigned NOT NULL DEFAULT '10' COMMENT '排列排序',
+  `posttime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '提交时间',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '审核状态',
-  `lang` varchar(8) NOT NULL,
+  `lang` varchar(8) NOT NULL DEFAULT '' COMMENT '多语言',
   `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   `updated_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '编辑时间',
   PRIMARY KEY (`id`)
@@ -748,14 +749,14 @@ INSERT INTO `ss_ext_ad` VALUES ('33', '5', '1', '0,1,', '起重设备吊装', 'i
 DROP TABLE IF EXISTS `ss_ext_ad_type`;
 CREATE TABLE `ss_ext_ad_type` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '广告位id',
-  `parentid` int(11) unsigned NOT NULL COMMENT '上级id',
-  `parentstr` varchar(50) NOT NULL COMMENT '上级id字符串',
-  `typename` varchar(30) NOT NULL COMMENT '广告位名称',
+  `parentid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '上级id',
+  `parentstr` varchar(50) NOT NULL DEFAULT '' COMMENT '上级id字符串',
+  `typename` varchar(30) NOT NULL DEFAULT '' COMMENT '广告位名称',
   `width` smallint(5) unsigned NOT NULL DEFAULT '100' COMMENT '广告位宽度',
   `height` smallint(5) unsigned NOT NULL DEFAULT '100' COMMENT '广告位高度',
-  `orderid` int(11) unsigned NOT NULL COMMENT '排列顺序',
+  `orderid` int(11) unsigned NOT NULL DEFAULT '10' COMMENT '排列顺序',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '审核状态',
-  `lang` varchar(8) NOT NULL,
+  `lang` varchar(8) NOT NULL DEFAULT '' COMMENT '多语言',
   `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   `updated_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '编辑时间',
   PRIMARY KEY (`id`)
@@ -778,22 +779,22 @@ INSERT INTO `ss_ext_ad_type` VALUES ('7', '1', '0,1,', '登录/注册页广告�
 DROP TABLE IF EXISTS `ss_ext_job`;
 CREATE TABLE `ss_ext_job` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '招聘信息id',
-  `title` varchar(50) NOT NULL COMMENT '位岗名称',
-  `jobplace` varchar(80) NOT NULL COMMENT '工作地点',
-  `jobdescription` varchar(50) NOT NULL COMMENT '工作性质',
-  `employ` smallint(5) unsigned NOT NULL COMMENT '招聘人数',
+  `title` varchar(50) NOT NULL DEFAULT '' COMMENT '位岗名称',
+  `jobplace` varchar(80) NOT NULL DEFAULT '' COMMENT '工作地点',
+  `jobdescription` varchar(50) NOT NULL DEFAULT '' COMMENT '工作性质',
+  `employ` smallint(5) unsigned NOT NULL DEFAULT '1' COMMENT '招聘人数',
   `jobsex` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '性别要求，1为男',
-  `treatment` varchar(50) NOT NULL COMMENT '工资待遇',
-  `usefullife` varchar(50) NOT NULL COMMENT '有效期',
-  `experience` varchar(50) NOT NULL COMMENT '工作经验',
-  `education` varchar(80) NOT NULL COMMENT '学历要求',
-  `joblang` varchar(50) NOT NULL COMMENT '言语能力',
-  `workdesc` mediumtext NOT NULL COMMENT '职位描述',
-  `content` mediumtext NOT NULL COMMENT '职位要求',
-  `orderid` mediumint(8) unsigned NOT NULL COMMENT '排列排序',
-  `posttime` int(10) unsigned NOT NULL COMMENT '更新时间',
+  `treatment` varchar(50) NOT NULL DEFAULT '' COMMENT '工资待遇',
+  `usefullife` varchar(50) NOT NULL DEFAULT '' COMMENT '有效期',
+  `experience` varchar(50) NOT NULL DEFAULT '' COMMENT '工作经验',
+  `education` varchar(80) NOT NULL DEFAULT '' COMMENT '学历要求',
+  `joblang` varchar(50) NOT NULL DEFAULT '' COMMENT '言语能力',
+  `workdesc` mediumtext COMMENT '职位描述',
+  `content` mediumtext COMMENT '职位要求',
+  `orderid` mediumint(8) unsigned NOT NULL DEFAULT '10' COMMENT '排列排序',
+  `posttime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '审核状态',
-  `lang` varchar(8) NOT NULL,
+  `lang` varchar(8) NOT NULL DEFAULT '' COMMENT '多语言',
   `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   `updated_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '编辑时间',
   PRIMARY KEY (`id`)
@@ -816,17 +817,17 @@ INSERT INTO `ss_ext_job` VALUES ('7', '客户中心主管/经理', '', '', '1', 
 DROP TABLE IF EXISTS `ss_ext_link`;
 CREATE TABLE `ss_ext_link` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '友情链接id',
-  `link_type_id` int(11) unsigned NOT NULL COMMENT '所属类别id',
-  `parentid` int(11) unsigned NOT NULL COMMENT '所属类别父id',
-  `parentstr` varchar(80) NOT NULL COMMENT '所属类别父id字符串',
-  `webname` varchar(30) NOT NULL COMMENT '网站名称',
-  `webnote` varchar(200) NOT NULL COMMENT '网站描述',
-  `picurl` varchar(100) NOT NULL COMMENT '缩略图片',
-  `linkurl` varchar(255) NOT NULL COMMENT '跳转链接',
-  `orderid` int(11) unsigned NOT NULL COMMENT '排列排序',
-  `posttime` int(10) unsigned NOT NULL COMMENT '更新时间',
+  `link_type_id` int(11) unsigned DEFAULT NULL COMMENT '所属类别id',
+  `parentid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '所属类别父id',
+  `parentstr` varchar(80) NOT NULL DEFAULT '' COMMENT '所属类别父id字符串',
+  `webname` varchar(30) NOT NULL DEFAULT '' COMMENT '网站名称',
+  `webnote` varchar(200) NOT NULL DEFAULT '' COMMENT '网站描述',
+  `picurl` varchar(100) NOT NULL DEFAULT '' COMMENT '缩略图片',
+  `linkurl` varchar(255) NOT NULL DEFAULT '' COMMENT '跳转链接',
+  `orderid` int(11) unsigned NOT NULL DEFAULT '10' COMMENT '排列排序',
+  `posttime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '审核状态',
-  `lang` varchar(8) NOT NULL,
+  `lang` varchar(8) NOT NULL DEFAULT '' COMMENT '多语言',
   `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   `updated_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '编辑时间',
   PRIMARY KEY (`id`)
@@ -850,12 +851,12 @@ INSERT INTO `ss_ext_link` VALUES ('16', '1', '0', '0,', '车型识别', '', '', 
 DROP TABLE IF EXISTS `ss_ext_link_type`;
 CREATE TABLE `ss_ext_link_type` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '友情链接类型id',
-  `parentid` int(11) unsigned NOT NULL COMMENT '类别父id',
-  `parentstr` varchar(50) NOT NULL COMMENT '类别父id字符串',
-  `typename` varchar(30) NOT NULL COMMENT '类别名称',
-  `orderid` int(11) unsigned NOT NULL COMMENT '排列顺序',
+  `parentid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '类别父id',
+  `parentstr` varchar(50) NOT NULL DEFAULT '' COMMENT '类别父id字符串',
+  `typename` varchar(30) NOT NULL DEFAULT '' COMMENT '类别名称',
+  `orderid` int(11) unsigned NOT NULL DEFAULT '10' COMMENT '排列顺序',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '审核状态',
-  `lang` varchar(8) NOT NULL,
+  `lang` varchar(8) NOT NULL DEFAULT '' COMMENT '多语言',
   `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   `updated_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '编辑时间',
   PRIMARY KEY (`id`)
@@ -872,15 +873,15 @@ INSERT INTO `ss_ext_link_type` VALUES ('1', '0', '0,', '了解家乐邦', '10', 
 DROP TABLE IF EXISTS `ss_ext_nav`;
 CREATE TABLE `ss_ext_nav` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '导航id',
-  `parentid` int(11) unsigned NOT NULL COMMENT '导航分类',
-  `parentstr` varchar(80) NOT NULL COMMENT '导航分类父id字符串',
-  `menuname` varchar(30) NOT NULL COMMENT '导航名称',
-  `linkurl` varchar(255) NOT NULL COMMENT '跳转链接',
-  `picurl` varchar(100) NOT NULL COMMENT '导航图片',
-  `target` varchar(30) NOT NULL COMMENT '打开方式',
+  `parentid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '导航分类',
+  `parentstr` varchar(80) NOT NULL DEFAULT '' COMMENT '导航分类父id字符串',
+  `menuname` varchar(30) NOT NULL DEFAULT '' COMMENT '导航名称',
+  `linkurl` varchar(255) NOT NULL DEFAULT '' COMMENT '跳转链接',
+  `picurl` varchar(100) NOT NULL DEFAULT '' COMMENT '导航图片',
+  `target` varchar(30) NOT NULL DEFAULT '' COMMENT '打开方式',
   `orderid` int(11) unsigned NOT NULL DEFAULT '10' COMMENT '排列排序',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '导航状态',
-  `lang` varchar(8) NOT NULL,
+  `lang` varchar(8) NOT NULL DEFAULT '' COMMENT '多语言',
   `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   `updated_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '编辑时间',
   PRIMARY KEY (`id`)
@@ -929,18 +930,18 @@ INSERT INTO `ss_ext_nav` VALUES ('74', '43', '0,41,43,', '专业家具拆装', '
 DROP TABLE IF EXISTS `ss_ext_vote`;
 CREATE TABLE `ss_ext_vote` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '投票id',
-  `title` varchar(30) NOT NULL COMMENT '投票标题',
-  `content` text NOT NULL COMMENT '投票描述',
-  `starttime` int(10) unsigned NOT NULL COMMENT '开始时间',
-  `endtime` int(10) unsigned NOT NULL COMMENT '结束时间',
+  `title` varchar(30) NOT NULL DEFAULT '' COMMENT '投票标题',
+  `content` text COMMENT '投票描述',
+  `starttime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '开始时间',
+  `endtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '结束时间',
   `isguest` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '游客投票',
   `isview` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '查看投票',
-  `intval` int(10) unsigned NOT NULL COMMENT '投票间隔',
+  `intval` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '投票间隔',
   `isradio` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '是否多选',
-  `orderid` int(11) unsigned NOT NULL COMMENT '排列排序',
+  `orderid` int(11) unsigned NOT NULL DEFAULT '10' COMMENT '排列排序',
   `posttime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '审核状态',
-  `lang` varchar(8) NOT NULL,
+  `lang` varchar(8) NOT NULL DEFAULT '' COMMENT '多语言',
   `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   `updated_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '编辑时间',
   PRIMARY KEY (`id`)
@@ -959,11 +960,11 @@ INSERT INTO `ss_ext_vote` VALUES ('7', '测试投票，001', '<p>测试投票，
 DROP TABLE IF EXISTS `ss_ext_vote_data`;
 CREATE TABLE `ss_ext_vote_data` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '投票数据id',
-  `voteid` int(11) unsigned NOT NULL COMMENT '投票id',
-  `optionid` text NOT NULL COMMENT '选票id',
-  `memberid` int(11) unsigned NOT NULL COMMENT '投票人id',
-  `posttime` int(10) unsigned NOT NULL COMMENT '投票时间',
-  `ip` varchar(30) NOT NULL COMMENT '投票ip',
+  `voteid` int(11) unsigned DEFAULT NULL COMMENT '投票id',
+  `optionid` text COMMENT '选票id',
+  `memberid` int(11) unsigned DEFAULT NULL COMMENT '投票人id',
+  `posttime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '投票时间',
+  `ip` varchar(30) NOT NULL DEFAULT '' COMMENT '投票ip',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -977,8 +978,8 @@ CREATE TABLE `ss_ext_vote_data` (
 DROP TABLE IF EXISTS `ss_ext_vote_option`;
 CREATE TABLE `ss_ext_vote_option` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '投票选项id',
-  `voteid` int(11) unsigned NOT NULL COMMENT '投票id',
-  `options` varchar(30) NOT NULL COMMENT '投票选项',
+  `voteid` int(11) unsigned DEFAULT NULL COMMENT '投票id',
+  `options` varchar(30) NOT NULL DEFAULT '' COMMENT '投票选项',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
@@ -1031,11 +1032,67 @@ CREATE TABLE `ss_queue` (
   KEY `channel` (`channel`),
   KEY `reserved_at` (`reserved_at`),
   KEY `priority` (`priority`)
-) ENGINE=InnoDB AUTO_INCREMENT=163 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=219 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ss_queue
 -- ----------------------------
+INSERT INTO `ss_queue` VALUES ('163', 'jialebang_mail_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C536D74704D61696C4A6F62222C2274656D706C617465223A227A682D434E5C2F6E6F74696679222C22706172616D73223A7B225C75373533355C7538626464223A223138353839303830303234222C225C75346634645C7537663665223A225C75346531635C75383339655C7535653032222C225C75346531615C75353261315C75376337625C7535373862223A225C75356665625C75363337375C75393838345C7537656136227D2C2273656E64546F223A223938303532323535374071712E636F6D222C2266726F6D223A7B22786961796F757169616F32303038403136332E636F6D223A225C75353630395C75346535305C7539306136313030227D2C227375626A656374223A225C75363730395C75363562305C75373638345C75356665625C75363337375C75393838345C7537656136202D205C75353630395C75346535305C7539306136313030227D, '1556293171', '10', '0', '100', null, null, null);
+INSERT INTO `ss_queue` VALUES ('164', 'jialebang_mail_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C536D74704D61696C4A6F62222C2274656D706C617465223A227A682D434E5C2F6E6F74696679222C22706172616D73223A7B225C75373533355C7538626464223A223138353839303830303234222C225C75346634645C7537663665223A225C75346531635C75383339655C7535653032222C225C75346531615C75353261315C75376337625C7535373862223A225C75356665625C75363337375C75393838345C7537656136227D2C2273656E64546F223A227869616F6C696E6764616E67303830374071712E636F6D222C2266726F6D223A7B22786961796F757169616F32303038403136332E636F6D223A225C75353630395C75346535305C7539306136313030227D2C227375626A656374223A225C75363730395C75363562305C75373638345C75356665625C75363337375C75393838345C7537656136202D205C75353630395C75346535305C7539306136313030227D, '1556293171', '10', '0', '100', null, null, null);
+INSERT INTO `ss_queue` VALUES ('165', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223133373238373937363739222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75346531635C75383339655C7535653032222C2270686F6E65223A223138353839303830303234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293171', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('166', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223133353330333738333630222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75346531635C75383339655C7535653032222C2270686F6E65223A223138353839303830303234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293171', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('167', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223135313138383135303735222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75346531635C75383339655C7535653032222C2270686F6E65223A223138353839303830303234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293171', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('168', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223133353930313235343338222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75346531635C75383339655C7535653032222C2270686F6E65223A223138353839303830303234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293171', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('169', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223138353736363131373137222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75346531635C75383339655C7535653032222C2270686F6E65223A223138353839303830303234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293171', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('170', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223133373235353134353234222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75346531635C75383339655C7535653032222C2270686F6E65223A223138353839303830303234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293171', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('171', 'jialebang_mail_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C536D74704D61696C4A6F62222C2274656D706C617465223A227A682D434E5C2F6E6F74696679222C22706172616D73223A7B225C75373533355C7538626464223A223133373235353134353234222C225C75346634645C7537663665223A225C75346531635C75383339655C7535653032222C225C75346531615C75353261315C75376337625C7535373862223A225C75356665625C75363337375C75393838345C7537656136227D2C2273656E64546F223A223938303532323535374071712E636F6D222C2266726F6D223A7B22786961796F757169616F32303038403136332E636F6D223A225C75353630395C75346535305C7539306136313030227D2C227375626A656374223A225C75363730395C75363562305C75373638345C75356665625C75363337375C75393838345C7537656136202D205C75353630395C75346535305C7539306136313030227D, '1556293184', '10', '0', '100', null, null, null);
+INSERT INTO `ss_queue` VALUES ('172', 'jialebang_mail_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C536D74704D61696C4A6F62222C2274656D706C617465223A227A682D434E5C2F6E6F74696679222C22706172616D73223A7B225C75373533355C7538626464223A223133373235353134353234222C225C75346634645C7537663665223A225C75346531635C75383339655C7535653032222C225C75346531615C75353261315C75376337625C7535373862223A225C75356665625C75363337375C75393838345C7537656136227D2C2273656E64546F223A227869616F6C696E6764616E67303830374071712E636F6D222C2266726F6D223A7B22786961796F757169616F32303038403136332E636F6D223A225C75353630395C75346535305C7539306136313030227D2C227375626A656374223A225C75363730395C75363562305C75373638345C75356665625C75363337375C75393838345C7537656136202D205C75353630395C75346535305C7539306136313030227D, '1556293184', '10', '0', '100', null, null, null);
+INSERT INTO `ss_queue` VALUES ('173', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223133373238373937363739222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75346531635C75383339655C7535653032222C2270686F6E65223A223133373235353134353234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293184', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('174', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223133353330333738333630222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75346531635C75383339655C7535653032222C2270686F6E65223A223133373235353134353234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293184', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('175', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223135313138383135303735222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75346531635C75383339655C7535653032222C2270686F6E65223A223133373235353134353234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293184', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('176', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223133353930313235343338222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75346531635C75383339655C7535653032222C2270686F6E65223A223133373235353134353234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293184', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('177', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223138353736363131373137222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75346531635C75383339655C7535653032222C2270686F6E65223A223133373235353134353234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293184', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('178', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223133373235353134353234222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75346531635C75383339655C7535653032222C2270686F6E65223A223133373235353134353234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293184', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('179', 'jialebang_mail_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C536D74704D61696C4A6F62222C2274656D706C617465223A227A682D434E5C2F6E6F74696679222C22706172616D73223A7B225C75373533355C7538626464223A223133373235353134353234222C225C75346634645C7537663665223A225C75366466315C75353733335C7535653032222C225C75346531615C75353261315C75376337625C7535373862223A225C75356665625C75363337375C75393838345C7537656136227D2C2273656E64546F223A223938303532323535374071712E636F6D222C2266726F6D223A7B22786961796F757169616F32303038403136332E636F6D223A225C75353630395C75346535305C7539306136313030227D2C227375626A656374223A225C75363730395C75363562305C75373638345C75356665625C75363337375C75393838345C7537656136202D205C75353630395C75346535305C7539306136313030227D, '1556293334', '10', '0', '100', null, null, null);
+INSERT INTO `ss_queue` VALUES ('180', 'jialebang_mail_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C536D74704D61696C4A6F62222C2274656D706C617465223A227A682D434E5C2F6E6F74696679222C22706172616D73223A7B225C75373533355C7538626464223A223133373235353134353234222C225C75346634645C7537663665223A225C75366466315C75353733335C7535653032222C225C75346531615C75353261315C75376337625C7535373862223A225C75356665625C75363337375C75393838345C7537656136227D2C2273656E64546F223A227869616F6C696E6764616E67303830374071712E636F6D222C2266726F6D223A7B22786961796F757169616F32303038403136332E636F6D223A225C75353630395C75346535305C7539306136313030227D2C227375626A656374223A225C75363730395C75363562305C75373638345C75356665625C75363337375C75393838345C7537656136202D205C75353630395C75346535305C7539306136313030227D, '1556293334', '10', '0', '100', null, null, null);
+INSERT INTO `ss_queue` VALUES ('181', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223133373238373937363739222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75366466315C75353733335C7535653032222C2270686F6E65223A223133373235353134353234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293334', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('182', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223133353330333738333630222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75366466315C75353733335C7535653032222C2270686F6E65223A223133373235353134353234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293334', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('183', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223135313138383135303735222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75366466315C75353733335C7535653032222C2270686F6E65223A223133373235353134353234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293334', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('184', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223133353930313235343338222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75366466315C75353733335C7535653032222C2270686F6E65223A223133373235353134353234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293334', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('185', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223138353736363131373137222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75366466315C75353733335C7535653032222C2270686F6E65223A223133373235353134353234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293334', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('186', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223133373235353134353234222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75366466315C75353733335C7535653032222C2270686F6E65223A223133373235353134353234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293334', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('187', 'jialebang_mail_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C536D74704D61696C4A6F62222C2274656D706C617465223A227A682D434E5C2F6E6F74696679222C22706172616D73223A7B225C75373533355C7538626464223A223138353839303830303234222C225C75346634645C7537663665223A225C75346531635C75383339655C7535653032222C225C75346531615C75353261315C75376337625C7535373862223A225C75356665625C75363337375C75393838345C7537656136227D2C2273656E64546F223A223938303532323535374071712E636F6D222C2266726F6D223A7B22786961796F757169616F32303038403136332E636F6D223A225C75353630395C75346535305C7539306136313030227D2C227375626A656374223A225C75363730395C75363562305C75373638345C75356665625C75363337375C75393838345C7537656136202D205C75353630395C75346535305C7539306136313030227D, '1556293463', '10', '0', '100', null, null, null);
+INSERT INTO `ss_queue` VALUES ('188', 'jialebang_mail_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C536D74704D61696C4A6F62222C2274656D706C617465223A227A682D434E5C2F6E6F74696679222C22706172616D73223A7B225C75373533355C7538626464223A223138353839303830303234222C225C75346634645C7537663665223A225C75346531635C75383339655C7535653032222C225C75346531615C75353261315C75376337625C7535373862223A225C75356665625C75363337375C75393838345C7537656136227D2C2273656E64546F223A227869616F6C696E6764616E67303830374071712E636F6D222C2266726F6D223A7B22786961796F757169616F32303038403136332E636F6D223A225C75353630395C75346535305C7539306136313030227D2C227375626A656374223A225C75363730395C75363562305C75373638345C75356665625C75363337375C75393838345C7537656136202D205C75353630395C75346535305C7539306136313030227D, '1556293463', '10', '0', '100', null, null, null);
+INSERT INTO `ss_queue` VALUES ('189', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223133373238373937363739222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75346531635C75383339655C7535653032222C2270686F6E65223A223138353839303830303234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293463', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('190', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223133353330333738333630222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75346531635C75383339655C7535653032222C2270686F6E65223A223138353839303830303234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293463', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('191', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223135313138383135303735222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75346531635C75383339655C7535653032222C2270686F6E65223A223138353839303830303234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293463', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('192', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223133353930313235343338222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75346531635C75383339655C7535653032222C2270686F6E65223A223138353839303830303234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293463', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('193', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223138353736363131373137222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75346531635C75383339655C7535653032222C2270686F6E65223A223138353839303830303234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293463', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('194', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223133373235353134353234222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75346531635C75383339655C7535653032222C2270686F6E65223A223138353839303830303234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293463', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('195', 'jialebang_mail_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C536D74704D61696C4A6F62222C2274656D706C617465223A227A682D434E5C2F6E6F74696679222C22706172616D73223A7B225C75373533355C7538626464223A223138353839303830303234222C225C75346634645C7537663665223A225C75356537665C75356464655C7535653032222C225C75346531615C75353261315C75376337625C7535373862223A225C75356665625C75363337375C75393838345C7537656136227D2C2273656E64546F223A223938303532323535374071712E636F6D222C2266726F6D223A7B22786961796F757169616F32303038403136332E636F6D223A225C75353630395C75346535305C7539306136313030227D2C227375626A656374223A225C75363730395C75363562305C75373638345C75356665625C75363337375C75393838345C7537656136202D205C75353630395C75346535305C7539306136313030227D, '1556293818', '10', '0', '100', null, null, null);
+INSERT INTO `ss_queue` VALUES ('196', 'jialebang_mail_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C536D74704D61696C4A6F62222C2274656D706C617465223A227A682D434E5C2F6E6F74696679222C22706172616D73223A7B225C75373533355C7538626464223A223138353839303830303234222C225C75346634645C7537663665223A225C75356537665C75356464655C7535653032222C225C75346531615C75353261315C75376337625C7535373862223A225C75356665625C75363337375C75393838345C7537656136227D2C2273656E64546F223A227869616F6C696E6764616E67303830374071712E636F6D222C2266726F6D223A7B22786961796F757169616F32303038403136332E636F6D223A225C75353630395C75346535305C7539306136313030227D2C227375626A656374223A225C75363730395C75363562305C75373638345C75356665625C75363337375C75393838345C7537656136202D205C75353630395C75346535305C7539306136313030227D, '1556293818', '10', '0', '100', null, null, null);
+INSERT INTO `ss_queue` VALUES ('197', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223133373238373937363739222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75356537665C75356464655C7535653032222C2270686F6E65223A223138353839303830303234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293818', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('198', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223133353330333738333630222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75356537665C75356464655C7535653032222C2270686F6E65223A223138353839303830303234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293818', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('199', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223135313138383135303735222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75356537665C75356464655C7535653032222C2270686F6E65223A223138353839303830303234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293818', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('200', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223133353930313235343338222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75356537665C75356464655C7535653032222C2270686F6E65223A223138353839303830303234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293818', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('201', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223138353736363131373137222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75356537665C75356464655C7535653032222C2270686F6E65223A223138353839303830303234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293818', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('202', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223133373235353134353234222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75356537665C75356464655C7535653032222C2270686F6E65223A223138353839303830303234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293818', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('203', 'jialebang_mail_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C536D74704D61696C4A6F62222C2274656D706C617465223A227A682D434E5C2F6E6F74696679222C22706172616D73223A7B225C75373533355C7538626464223A223138353839303830303234222C225C75346634645C7537663665223A225C75346531635C75383339655C7535653032222C225C75346531615C75353261315C75376337625C7535373862223A225C75356665625C75363337375C75393838345C7537656136227D2C2273656E64546F223A223938303532323535374071712E636F6D222C2266726F6D223A7B22786961796F757169616F32303038403136332E636F6D223A225C75353630395C75346535305C7539306136313030227D2C227375626A656374223A225C75363730395C75363562305C75373638345C75356665625C75363337375C75393838345C7537656136202D205C75353630395C75346535305C7539306136313030227D, '1556293851', '10', '0', '100', null, null, null);
+INSERT INTO `ss_queue` VALUES ('204', 'jialebang_mail_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C536D74704D61696C4A6F62222C2274656D706C617465223A227A682D434E5C2F6E6F74696679222C22706172616D73223A7B225C75373533355C7538626464223A223138353839303830303234222C225C75346634645C7537663665223A225C75346531635C75383339655C7535653032222C225C75346531615C75353261315C75376337625C7535373862223A225C75356665625C75363337375C75393838345C7537656136227D2C2273656E64546F223A227869616F6C696E6764616E67303830374071712E636F6D222C2266726F6D223A7B22786961796F757169616F32303038403136332E636F6D223A225C75353630395C75346535305C7539306136313030227D2C227375626A656374223A225C75363730395C75363562305C75373638345C75356665625C75363337375C75393838345C7537656136202D205C75353630395C75346535305C7539306136313030227D, '1556293851', '10', '0', '100', null, null, null);
+INSERT INTO `ss_queue` VALUES ('205', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223133373238373937363739222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75346531635C75383339655C7535653032222C2270686F6E65223A223138353839303830303234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293851', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('206', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223133353330333738333630222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75346531635C75383339655C7535653032222C2270686F6E65223A223138353839303830303234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293851', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('207', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223135313138383135303735222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75346531635C75383339655C7535653032222C2270686F6E65223A223138353839303830303234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293851', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('208', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223133353930313235343338222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75346531635C75383339655C7535653032222C2270686F6E65223A223138353839303830303234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293851', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('209', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223138353736363131373137222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75346531635C75383339655C7535653032222C2270686F6E65223A223138353839303830303234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293851', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('210', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223133373235353134353234222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A225C75363732615C7537376535222C2261646472657373223A225C75346531635C75383339655C7535653032222C2270686F6E65223A223138353839303830303234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556293851', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('211', 'jialebang_mail_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C536D74704D61696C4A6F62222C2274656D706C617465223A227A682D434E5C2F6E6F74696679222C22706172616D73223A7B225C75373533355C7538626464223A223133373235353134353234222C225C75346634645C7537663665223A225C75356537665C75356464655C7535653032222C225C75346531615C75353261315C75376337625C7535373862223A225C75356665625C75363337375C75393838345C7537656136227D2C2273656E64546F223A223938303532323535374071712E636F6D222C2266726F6D223A7B22786961796F757169616F32303038403136332E636F6D223A225C75353630395C75346535305C7539306136313030227D2C227375626A656374223A225C75363730395C75363562305C75373638345C75356665625C75363337375C75393838345C7537656136202D205C75353630395C75346535305C7539306136313030227D, '1556348762', '10', '0', '100', null, null, null);
+INSERT INTO `ss_queue` VALUES ('212', 'jialebang_mail_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C536D74704D61696C4A6F62222C2274656D706C617465223A227A682D434E5C2F6E6F74696679222C22706172616D73223A7B225C75373533355C7538626464223A223133373235353134353234222C225C75346634645C7537663665223A225C75356537665C75356464655C7535653032222C225C75346531615C75353261315C75376337625C7535373862223A225C75356665625C75363337375C75393838345C7537656136227D2C2273656E64546F223A227869616F6C696E6764616E67303830374071712E636F6D222C2266726F6D223A7B22786961796F757169616F32303038403136332E636F6D223A225C75353630395C75346535305C7539306136313030227D2C227375626A656374223A225C75363730395C75363562305C75373638345C75356665625C75363337375C75393838345C7537656136202D205C75353630395C75346535305C7539306136313030227D, '1556348762', '10', '0', '100', null, null, null);
+INSERT INTO `ss_queue` VALUES ('213', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223133373238373937363739222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A22343536222C2261646472657373223A225C75356537665C75356464655C7535653032222C2270686F6E65223A223133373235353134353234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556348762', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('214', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223133353330333738333630222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A22343536222C2261646472657373223A225C75356537665C75356464655C7535653032222C2270686F6E65223A223133373235353134353234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556348762', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('215', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223135313138383135303735222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A22343536222C2261646472657373223A225C75356537665C75356464655C7535653032222C2270686F6E65223A223133373235353134353234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556348762', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('216', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223133353930313235343338222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A22343536222C2261646472657373223A225C75356537665C75356464655C7535653032222C2270686F6E65223A223133373235353134353234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556348762', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('217', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223138353736363131373137222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A22343536222C2261646472657373223A225C75356537665C75356464655C7535653032222C2270686F6E65223A223133373235353134353234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556348762', '10', '0', '99', null, null, null);
+INSERT INTO `ss_queue` VALUES ('218', 'jialebang_sms_channel', 0x7B22636C617373223A22636F6E736F6C655C5C71756575655C5C416C69736D734A6F62222C2270686F6E654E756D626572223A223133373235353134353234222C227369676E4E616D65223A225C75353630395C75346535305C75393061365C75393031615C7537376535222C2274656D706C617465436F6465223A22534D535F313633383435313836222C2274656D706C617465506172616D73223A7B226E616D65223A22343536222C2261646472657373223A225C75356537665C75356464655C7535653032222C2270686F6E65223A223133373235353134353234222C226576656E74223A225C75356665625C75363337375C75393838345C7537656136227D7D, '1556348762', '10', '0', '99', null, null, null);
 
 -- ----------------------------
 -- Table structure for ss_service_order
@@ -1067,8 +1124,8 @@ CREATE TABLE `ss_session` (
 -- ----------------------------
 -- Records of ss_session
 -- ----------------------------
-INSERT INTO `ss_session` VALUES ('7gk7m45c5rg7fjtrt6t48osqku', null, '', '1', '1556194619', 0x5F5F666C6173687C613A303A7B7D5F5F696E69745F706172616D737C613A323A7B733A31373A22636F6E6669675F696E69745F6C616E6773223B613A323A7B693A303B733A353A227A682D434E223B693A313B733A353A227A682D5457223B7D733A32343A22636F6E6669675F696E69745F64656661756C745F6C616E67223B733A353A227A682D434E223B7D5F5F69647C693A31303B5F5F72657475726E5F75726C5F726F7574657C733A33343A222F696E6465782E7068703F723D73697465253246686F6D6525324664656661756C74223B);
-INSERT INTO `ss_session` VALUES ('aavpl5vv0nuq95h5632q0be7nq', null, '', '1', '1556272876', 0x5F5F666C6173687C613A303A7B7D5F5F696E69745F706172616D737C613A323A7B733A31373A22636F6E6669675F696E69745F6C616E6773223B613A323A7B693A303B733A353A227A682D434E223B693A313B733A353A227A682D5457223B7D733A32343A22636F6E6669675F696E69745F64656661756C745F6C616E67223B733A353A227A682D434E223B7D5F5F72657475726E5F75726C7C733A313A222F223B5F5F636170746368612F736974652F61646D696E2F636170746368617C733A343A2266617975223B5F5F636170746368612F736974652F61646D696E2F63617074636861636F756E747C693A313B5F5F69647C693A31303B5F5F72657475726E5F75726C5F726F7574657C733A33353A222F696E6465782E7068703F723D737973253246636F6E66696725324673657474696E67223B);
+INSERT INTO `ss_session` VALUES ('6361ugsttj0flgnr7m6ltm5bgu', null, '', '1', '1556966814', 0x5F5F666C6173687C613A303A7B7D5F5F696E69745F706172616D737C613A323A7B733A31373A22636F6E6669675F696E69745F6C616E6773223B613A323A7B693A303B733A353A227A682D434E223B693A313B733A353A227A682D5457223B7D733A32343A22636F6E6669675F696E69745F64656661756C745F6C616E67223B733A353A227A682D434E223B7D5F5F69647C693A31303B5F5F72657475726E5F75726C5F726F7574657C733A34333A222F696E6465782E7068703F723D75736572253246666565646261636B2532467570646174652669643D3130223B);
+INSERT INTO `ss_session` VALUES ('tv6cddbcdbm8gcp8lg91u5qqvr', null, '', '1', '1556678232', 0x5F5F666C6173687C613A303A7B7D5F5F696E69745F706172616D737C613A323A7B733A31373A22636F6E6669675F696E69745F6C616E6773223B613A323A7B693A303B733A353A227A682D434E223B693A313B733A353A227A682D5457223B7D733A32343A22636F6E6669675F696E69745F64656661756C745F6C616E67223B733A353A227A682D434E223B7D5F5F69647C693A31303B);
 
 -- ----------------------------
 -- Table structure for ss_shop_attribute
@@ -1076,13 +1133,13 @@ INSERT INTO `ss_session` VALUES ('aavpl5vv0nuq95h5632q0be7nq', null, '', '1', '1
 DROP TABLE IF EXISTS `ss_shop_attribute`;
 CREATE TABLE `ss_shop_attribute` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '商品属性id',
-  `pcateid` int(11) unsigned NOT NULL COMMENT '所属分类',
-  `attrname` varchar(30) NOT NULL COMMENT '属性名称',
+  `pcateid` int(11) unsigned DEFAULT NULL COMMENT '所属分类',
+  `attrname` varchar(30) NOT NULL DEFAULT '' COMMENT '属性名称',
   `type` varchar(12) NOT NULL DEFAULT 'text' COMMENT '值有：text、select、checkbox、radio',
   `typetext` varchar(255) NOT NULL DEFAULT '' COMMENT '默认可选值',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '审核状态',
-  `lang` varchar(8) NOT NULL COMMENT '多语言',
-  `orderid` int(11) unsigned NOT NULL COMMENT '排列排序',
+  `lang` varchar(8) NOT NULL DEFAULT '' COMMENT '多语言',
+  `orderid` int(11) unsigned NOT NULL DEFAULT '10' COMMENT '排列排序',
   `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   `updated_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '编辑时间',
   PRIMARY KEY (`id`)
@@ -1105,13 +1162,13 @@ INSERT INTO `ss_shop_attribute` VALUES ('23', '36', '运行内存', 'select', '2
 DROP TABLE IF EXISTS `ss_shop_brand`;
 CREATE TABLE `ss_shop_brand` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '品牌id',
-  `bname` varchar(30) NOT NULL COMMENT '品牌名称',
+  `bname` varchar(30) NOT NULL DEFAULT '' COMMENT '品牌名称',
   `slug` varchar(200) NOT NULL DEFAULT '' COMMENT '访问链接',
-  `picurl` varchar(100) NOT NULL COMMENT '品牌图片',
-  `bnote` text NOT NULL COMMENT '品牌介绍',
-  `linkurl` varchar(255) NOT NULL COMMENT '跳转链接',
-  `orderid` int(11) unsigned NOT NULL COMMENT '排列排序',
-  `lang` varchar(8) NOT NULL COMMENT '多语言',
+  `picurl` varchar(100) NOT NULL DEFAULT '' COMMENT '品牌图片',
+  `bnote` text COMMENT '品牌介绍',
+  `linkurl` varchar(255) NOT NULL DEFAULT '' COMMENT '跳转链接',
+  `orderid` int(11) unsigned NOT NULL DEFAULT '10' COMMENT '排列排序',
+  `lang` varchar(8) NOT NULL DEFAULT '' COMMENT '多语言',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '审核状态',
   `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   `updated_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '编辑时间',
@@ -1129,8 +1186,8 @@ INSERT INTO `ss_shop_brand` VALUES ('4', '嘉乐邦', 'jia-le-bang', 'cms-images
 DROP TABLE IF EXISTS `ss_shop_getmode`;
 CREATE TABLE `ss_shop_getmode` (
   `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT '货到方式id',
-  `classname` varchar(30) NOT NULL COMMENT '货到方式名称',
-  `orderid` smallint(5) unsigned NOT NULL COMMENT '排列排序',
+  `classname` varchar(30) NOT NULL DEFAULT '' COMMENT '货到方式名称',
+  `orderid` smallint(5) unsigned NOT NULL DEFAULT '10' COMMENT '排列排序',
   `checkinfo` enum('true','false') NOT NULL COMMENT '审核状态',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
@@ -1718,7 +1775,7 @@ CREATE TABLE `ss_sys_log` (
   `lang` varchar(8) NOT NULL DEFAULT '' COMMENT '多语言',
   `created_at` varchar(50) NOT NULL DEFAULT '0' COMMENT '创建时间',
   PRIMARY KEY (`log_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15664 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15989 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ss_sys_log
@@ -1744,6 +1801,331 @@ INSERT INTO `ss_sys_log` VALUES ('15660', '10', 'admin', 'sys/config/batch', '�
 INSERT INTO `ss_sys_log` VALUES ('15661', '10', 'admin', 'sys/role/index', '角色,查看列表', 'GET', '{\"r\":\"sys/role/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 'b96390be654e3d4a8b0d7065edfb42360', '', '1556269145');
 INSERT INTO `ss_sys_log` VALUES ('15662', '10', 'admin', 'sys/config/setting', '查看系统配置', 'GET', '{\"r\":\"sys/config/setting\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '788b2baf099351bbf9bdbf1e68223afb0', '', '1556269147');
 INSERT INTO `ss_sys_log` VALUES ('15663', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '1e03e64684c7f00d363b831b5d6446e10', '', '1556269275');
+INSERT INTO `ss_sys_log` VALUES ('15664', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556365585');
+INSERT INTO `ss_sys_log` VALUES ('15665', '10', 'admin', 'user/group/index', '暂无描述', 'GET', '{\"r\":\"user/group/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '24c70612e42d44188f9ca46885f7f6e20', '', '1556365596');
+INSERT INTO `ss_sys_log` VALUES ('15666', '10', 'admin', 'site/home/index', '框架刷新', 'POST', '{\"r\":\"site/home/index\"}', '{\"_csrf-backend\":\"03tXOU8zC8STe-ci6ht7MBOUEJv1VeOPazCF9bvH0VqEAhhwG2Z68vA-kliISC4DatV48MIzrdcEau-w-KScYw==\",\"lang\":\"zh-TW\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'c2d71336246fb532975f0e3b689097ce1', '', '1556365600');
+INSERT INTO `ss_sys_log` VALUES ('15667', '10', 'admin', 'user/group/index', '暂无描述', 'GET', '{\"r\":\"user/group/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '966722f5e7d52be761d5ae72e84cac690', '', '1556365605');
+INSERT INTO `ss_sys_log` VALUES ('15668', '10', 'admin', 'user/group/index', '暂无描述', 'POST', '{\"r\":\"user/group/index\"}', '{\"_csrf-backend\":\"OZazdYttLB2NhHFS-TQ43We5TxYiZfIBLJi3QWzmqahu7_w83zhdK-7BBCibZ23uHvgnfRUDvFlDwt0EL4XkkQ==\",\"ug_nameadd\":\"dfsfasf\",\"orderidadd\":\"\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '966722f5e7d52be761d5ae72e84cac691', '', '1556365608');
+INSERT INTO `ss_sys_log` VALUES ('15669', '10', 'admin', 'user/group/index', '暂无描述', 'GET', '{\"r\":\"user/group/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '966722f5e7d52be761d5ae72e84cac690', '', '1556365611');
+INSERT INTO `ss_sys_log` VALUES ('15670', '10', 'admin', 'site/home/index', '框架刷新', 'POST', '{\"r\":\"site/home/index\"}', '{\"_csrf-backend\":\"14QUdEW6FT96aNK3VTayna-Mo568yAYJt1iojlLR6cyA_Vs9Ee9kCRktp803Zeeu1s3L9YuuSFHYAsLLEbKk9Q==\",\"lang\":\"zh-CN\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d981', '', '1556365615');
+INSERT INTO `ss_sys_log` VALUES ('15671', '10', 'admin', 'user/group/index', '暂无描述', 'GET', '{\"r\":\"user/group/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '24c70612e42d44188f9ca46885f7f6e20', '', '1556365618');
+INSERT INTO `ss_sys_log` VALUES ('15672', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556368716');
+INSERT INTO `ss_sys_log` VALUES ('15673', '10', 'admin', 'user/group/index', '暂无描述', 'GET', '{\"r\":\"user/group/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '24c70612e42d44188f9ca46885f7f6e20', '', '1556368769');
+INSERT INTO `ss_sys_log` VALUES ('15674', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556368777');
+INSERT INTO `ss_sys_log` VALUES ('15675', '10', 'admin', 'user/group/index', '暂无描述', 'GET', '{\"r\":\"user/group/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '24c70612e42d44188f9ca46885f7f6e20', '', '1556368780');
+INSERT INTO `ss_sys_log` VALUES ('15676', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556368783');
+INSERT INTO `ss_sys_log` VALUES ('15677', '10', 'admin', 'user/group/index', '暂无描述', 'GET', '{\"r\":\"user/group/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '24c70612e42d44188f9ca46885f7f6e20', '', '1556368786');
+INSERT INTO `ss_sys_log` VALUES ('15678', '10', 'admin', 'user/inquiry/index', '线上咨询,查看列表', 'GET', '{\"r\":\"user/inquiry/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2c653ca2970f82878d70fed78730397a0', '', '1556368789');
+INSERT INTO `ss_sys_log` VALUES ('15679', '10', 'admin', 'user/inquiry/view', '暂无描述', 'GET', '{\"r\":\"user/inquiry/view\",\"id\":\"82\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '3e9484ab48a2d5680f8d6c9084653da60', '', '1556368793');
+INSERT INTO `ss_sys_log` VALUES ('15680', '10', 'admin', 'user/inquiry/edit', '编辑线上咨询', 'POST', '{\"r\":\"user/inquiry/edit\",\"id\":\"82\"}', '{\"field\":\"ui_state\",\"value\":\"3\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '0a295020e700d33d08649d423dd5d60e1', '', '1556368796');
+INSERT INTO `ss_sys_log` VALUES ('15681', '10', 'admin', 'user/inquiry/view', '暂无描述', 'GET', '{\"r\":\"user/inquiry/view\",\"id\":\"81\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '3e9484ab48a2d5680f8d6c9084653da60', '', '1556368799');
+INSERT INTO `ss_sys_log` VALUES ('15682', '10', 'admin', 'user/inquiry/edit', '编辑线上咨询', 'POST', '{\"r\":\"user/inquiry/edit\",\"id\":\"81\"}', '{\"field\":\"ui_state\",\"value\":\"3\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '0a295020e700d33d08649d423dd5d60e1', '', '1556368801');
+INSERT INTO `ss_sys_log` VALUES ('15683', '10', 'admin', 'user/inquiry/view', '暂无描述', 'GET', '{\"r\":\"user/inquiry/view\",\"id\":\"78\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '3e9484ab48a2d5680f8d6c9084653da60', '', '1556368804');
+INSERT INTO `ss_sys_log` VALUES ('15684', '10', 'admin', 'user/inquiry/index', '线上咨询,查看列表', 'GET', '{\"r\":\"user/inquiry/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2c653ca2970f82878d70fed78730397a0', '', '1556368806');
+INSERT INTO `ss_sys_log` VALUES ('15685', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556369155');
+INSERT INTO `ss_sys_log` VALUES ('15686', '10', 'admin', 'site/other/error', '进入了错误页面', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd85246ceba710062d0e8290d48898dd30', '', '1556369157');
+INSERT INTO `ss_sys_log` VALUES ('15687', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556369260');
+INSERT INTO `ss_sys_log` VALUES ('15688', '10', 'admin', 'site/other/error', '进入了错误页面', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd85246ceba710062d0e8290d48898dd30', '', '1556369264');
+INSERT INTO `ss_sys_log` VALUES ('15689', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556369295');
+INSERT INTO `ss_sys_log` VALUES ('15690', '10', 'admin', 'site/face-config/setting', '查看界面配置', 'GET', '{\"r\":\"site/face-config/setting\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '86b7df5a6d7e7eaf84caed1f9dcb19490', '', '1556369298');
+INSERT INTO `ss_sys_log` VALUES ('15691', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556376463');
+INSERT INTO `ss_sys_log` VALUES ('15692', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556376469');
+INSERT INTO `ss_sys_log` VALUES ('15693', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556377234');
+INSERT INTO `ss_sys_log` VALUES ('15694', '10', 'admin', 'user/feedback-type/check', '暂无描述', 'POST', '{\"r\":\"user/feedback-type/check\",\"id\":\"1\"}', '{\"_csrf-backend\":\"Lal4qg4uDqVgp6nWUrSPPKRF3DBWSZCyGNdgf7YOCYd60DfjWnt_kwPi3Kww59oP3QS0W2Ev3up3jQo69W1Evg==\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd6d0fd1b52db212ba58ccbcf23e51bf91', '', '1556378048');
+INSERT INTO `ss_sys_log` VALUES ('15695', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556378050');
+INSERT INTO `ss_sys_log` VALUES ('15696', '10', 'admin', 'user/feedback-type/check', '暂无描述', 'POST', '{\"r\":\"user/feedback-type/check\",\"id\":\"1\"}', '{\"_csrf-backend\":\"0cFfy6chX6FtFR9EkBZAFMH_CLI7rMxeeUi69CQIoVeGuBCC83Qulw5Qaj7yRRUnuL5g2QzKggYWEtCxZ2vsbg==\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd6d0fd1b52db212ba58ccbcf23e51bf91', '', '1556378052');
+INSERT INTO `ss_sys_log` VALUES ('15697', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556378074');
+INSERT INTO `ss_sys_log` VALUES ('15698', '10', 'admin', 'user/feedback-type/check', '暂无描述', 'POST', '{\"r\":\"user/feedback-type/check\",\"id\":\"1\"}', '{\"_csrf-backend\":\"BVmAygj1OPW9lTNJQTeDFFsOOdiREYRDHB8wFY3mwp5SIM-DXKBJw97QRjMjZNYnIk9Rs6Z3yhtzRVpQzoWPpw==\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd6d0fd1b52db212ba58ccbcf23e51bf91', '', '1556378079');
+INSERT INTO `ss_sys_log` VALUES ('15699', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556378108');
+INSERT INTO `ss_sys_log` VALUES ('15700', '10', 'admin', 'user/feedback-type/update', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/update\",\"id\":\"1\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '83b841f0749da460f64c7130fe360f080', '', '1556378111');
+INSERT INTO `ss_sys_log` VALUES ('15701', '10', 'admin', 'user/feedback-type/create', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/create\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'b76b3ac1daed61380d6502fd02e1342c0', '', '1556378116');
+INSERT INTO `ss_sys_log` VALUES ('15702', '10', 'admin', 'user/group/index', '暂无描述', 'GET', '{\"r\":\"user/group/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '24c70612e42d44188f9ca46885f7f6e20', '', '1556378369');
+INSERT INTO `ss_sys_log` VALUES ('15703', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556378539');
+INSERT INTO `ss_sys_log` VALUES ('15704', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556378622');
+INSERT INTO `ss_sys_log` VALUES ('15705', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556378625');
+INSERT INTO `ss_sys_log` VALUES ('15706', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556378658');
+INSERT INTO `ss_sys_log` VALUES ('15707', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556378660');
+INSERT INTO `ss_sys_log` VALUES ('15708', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556378664');
+INSERT INTO `ss_sys_log` VALUES ('15709', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556378716');
+INSERT INTO `ss_sys_log` VALUES ('15710', '10', 'admin', 'user/feedback-type/check', '暂无描述', 'POST', '{\"r\":\"user/feedback-type/check\",\"id\":\"1\"}', '{\"_csrf-backend\":\"OiFH7vCF8Jb9f0Ie7wuGLDHa4ODy8TpwrMNv4md77TVtWAinpNCBoJ46N2SNWNMfSJuIi8WXdCjDmQWnJBigDA==\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd6d0fd1b52db212ba58ccbcf23e51bf91', '', '1556378726');
+INSERT INTO `ss_sys_log` VALUES ('15711', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556378730');
+INSERT INTO `ss_sys_log` VALUES ('15712', '10', 'admin', 'user/feedback-type/check', '暂无描述', 'POST', '{\"r\":\"user/feedback-type/check\",\"id\":\"2\"}', '{\"_csrf-backend\":\"KU6atBpmiaATUfxD_Id2vy77bo6Plpoo1nVY3FnpzVx-N9X9TjP4lnAUiTme1COMV7oG5bjw1HC5LzKZGoqAZQ==\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd6d0fd1b52db212ba58ccbcf23e51bf91', '', '1556378732');
+INSERT INTO `ss_sys_log` VALUES ('15713', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556378882');
+INSERT INTO `ss_sys_log` VALUES ('15714', '10', 'admin', 'cms/article/index', '文章,查看列表', 'GET', '{\"r\":\"cms/article/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '0a68051bff7153f81accf32831a90dc90', '', '1556378887');
+INSERT INTO `ss_sys_log` VALUES ('15715', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556379594');
+INSERT INTO `ss_sys_log` VALUES ('15716', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556380120');
+INSERT INTO `ss_sys_log` VALUES ('15717', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556380147');
+INSERT INTO `ss_sys_log` VALUES ('15718', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556380178');
+INSERT INTO `ss_sys_log` VALUES ('15719', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556380207');
+INSERT INTO `ss_sys_log` VALUES ('15720', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556380388');
+INSERT INTO `ss_sys_log` VALUES ('15721', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\",\"sort\":\"-fk_id\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556380391');
+INSERT INTO `ss_sys_log` VALUES ('15722', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556414843');
+INSERT INTO `ss_sys_log` VALUES ('15723', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556415667');
+INSERT INTO `ss_sys_log` VALUES ('15724', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556415739');
+INSERT INTO `ss_sys_log` VALUES ('15725', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556415879');
+INSERT INTO `ss_sys_log` VALUES ('15726', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556415926');
+INSERT INTO `ss_sys_log` VALUES ('15727', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556416174');
+INSERT INTO `ss_sys_log` VALUES ('15728', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556416206');
+INSERT INTO `ss_sys_log` VALUES ('15729', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556418540');
+INSERT INTO `ss_sys_log` VALUES ('15730', '10', 'admin', 'site/other/error', '进入了错误页面', 'GET', '{\"r\":\"user/feedback-type/quick-move\",\"type\":\"down\",\"kid\":\"1\",\"orderid\":\"10\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd85246ceba710062d0e8290d48898dd30', '', '1556418545');
+INSERT INTO `ss_sys_log` VALUES ('15731', '10', 'admin', 'user/comment/index', '用户留言,查看列表', 'GET', '{\"r\":\"user/comment/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '9f21cf3ce5aee8a6f8d3a399ea00dbeb0', '', '1556418561');
+INSERT INTO `ss_sys_log` VALUES ('15732', '10', 'admin', 'user/group/index', '暂无描述', 'GET', '{\"r\":\"user/group/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '24c70612e42d44188f9ca46885f7f6e20', '', '1556418564');
+INSERT INTO `ss_sys_log` VALUES ('15733', '10', 'admin', 'user/feedback-type/check', '暂无描述', 'POST', '{\"r\":\"user/feedback-type/check\",\"id\":\"1\"}', '{\"_csrf-backend\":\"CWv_JIvvNQCdI9E8su7fw6gIutmnNft7Dsnvj1BtCateErBt37pENv5mpEbQvYrw0UnSspBTtSNhk4XKEw5Ekg==\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd6d0fd1b52db212ba58ccbcf23e51bf91', '', '1556418640');
+INSERT INTO `ss_sys_log` VALUES ('15734', '10', 'admin', 'cms/cate/index', '类别,查看列表', 'GET', '{\"r\":\"cms/cate/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '264cd19141e3e73ef973ea3dad6cc3400', '', '1556418758');
+INSERT INTO `ss_sys_log` VALUES ('15735', '10', 'admin', 'cms/cate/check', '类别显示隐藏', 'POST', '{\"r\":\"cms/cate/check\",\"kid\":\"3\"}', '{\"_csrf-backend\":\"ghLNl2UnSfNhzN9nXDYSmqZ7yfCrAH_Sp1Ox1bUH84bVa4LeMXI4xQKJqh0-ZUep3zqhm5xmMYrICduQ9mS-vw==\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'f833e0880a690b98fc2218ac4b4adc691', '', '1556418761');
+INSERT INTO `ss_sys_log` VALUES ('15736', '10', 'admin', 'cms/cate/index', '类别,查看列表', 'GET', '{\"r\":\"cms/cate/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '264cd19141e3e73ef973ea3dad6cc3400', '', '1556418825');
+INSERT INTO `ss_sys_log` VALUES ('15737', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556418828');
+INSERT INTO `ss_sys_log` VALUES ('15738', '10', 'admin', 'user/feedback-type/check', '暂无描述', 'POST', '{\"r\":\"user/feedback-type/check\",\"id\":\"1\"}', '{\"_csrf-backend\":\"ovY7TqIvJn1F7aEHIc-GGEzeK1GI0KHZNva1ewSU1sz1j3QH9npXSyao1H1DnNMrNZ9DOr-274FZrN8-R_eb9Q==\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd6d0fd1b52db212ba58ccbcf23e51bf91', '', '1556418832');
+INSERT INTO `ss_sys_log` VALUES ('15739', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556418870');
+INSERT INTO `ss_sys_log` VALUES ('15740', '10', 'admin', 'user/feedback-type/check', '暂无描述', 'POST', '{\"r\":\"user/feedback-type/check\",\"kid\":\"1\"}', '{\"_csrf-backend\":\"hyMZ4hbbq5eqNXTJbzsuPfp9owMynFRp6MXlsm-_WGDQWlarQo7aoclwAbMNaHsOgzzLaAX6GjGHn4_3LNwVWQ==\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd6d0fd1b52db212ba58ccbcf23e51bf91', '', '1556418872');
+INSERT INTO `ss_sys_log` VALUES ('15741', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556418923');
+INSERT INTO `ss_sys_log` VALUES ('15742', '10', 'admin', 'user/feedback-type/delete', '暂无描述', 'POST', '{\"r\":\"user/feedback-type/delete\",\"id\":\"4\",\"returnUrl\":\"/index.php?r=user%2Ffeedback-type%2Findex\"}', '{\"_csrf-backend\":\"OC526HASj0Desc3dFmWFsJ02i35aa8Q_vuuzYromsE5vVzmhJEf-dr30uKd0NtCD5HfjFW0NimfRsdkn-UX9dw==\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '3396ec72fb1bc86b83993abdfd1cf6d01', '', '1556418961');
+INSERT INTO `ss_sys_log` VALUES ('15743', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556418972');
+INSERT INTO `ss_sys_log` VALUES ('15744', '10', 'admin', 'user/feedback-type/delete', '暂无描述', 'POST', '{\"r\":\"user/feedback-type/delete\",\"id\":\"5\",\"returnUrl\":\"/index.php?r=user%2Ffeedback-type%2Findex\"}', '{\"_csrf-backend\":\"exXNT5niiBtjKU4I1W5RLbQ7kqWxD7BA9jbtKJ9fqM0sbIIGzbf5LQBsO3K3PQQezXr6zoZp_hiZbIdt3Dzl9A==\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '3396ec72fb1bc86b83993abdfd1cf6d01', '', '1556418997');
+INSERT INTO `ss_sys_log` VALUES ('15745', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556419000');
+INSERT INTO `ss_sys_log` VALUES ('15746', '10', 'admin', 'cms/cate/create', '添加新类别,进入表单', 'GET', '{\"r\":\"cms/cate/create\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '0c5cb6728153bf05f7d2949809ad985d0', '', '1556419067');
+INSERT INTO `ss_sys_log` VALUES ('15747', '10', 'admin', 'cms/cate/create', '添加新类别,提交', 'POST', '{\"r\":\"cms/cate/create\"}', '{\"_csrf-backend\":\"yOkWIraivgxeNyBHRqTLiFOtiTgwNojZmHCKvyMiQrqfkFlr4vfPOj1yVT0k9567KuzhUwdQxoH3KuD6YEEPgw==\",\"Cate\":{\"parentid\":\"0\",\"catename\":\"fasfsfasf\",\"linkurl\":\"\",\"seotitle\":\"\",\"keywords\":\"\",\"description\":\"\",\"orderid\":\"101\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '0c5cb6728153bf05f7d2949809ad985d1', '', '1556419070');
+INSERT INTO `ss_sys_log` VALUES ('15748', '10', 'admin', 'cms/cate/index', '类别,查看列表', 'GET', '{\"r\":\"cms/cate/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '264cd19141e3e73ef973ea3dad6cc3400', '', '1556419074');
+INSERT INTO `ss_sys_log` VALUES ('15749', '10', 'admin', 'cms/cate/create', '添加新类别,提交', 'POST', '{\"r\":\"cms/cate/create\"}', '{\"_csrf-backend\":\"7XKPpJj5vUMJ_JniEI-EiBWJNVVm8R-BWFMPOOFqLSq6C8DtzKzMdWq57Jhy3NG7bMhdPlGXUdk3CWV9oglgEw==\",\"Cate\":{\"parentid\":\"0\",\"catename\":\"aaaaaaaaaaaaaaaaaa\",\"linkurl\":\"\",\"seotitle\":\"\",\"keywords\":\"\",\"description\":\"\",\"orderid\":\"103\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '0c5cb6728153bf05f7d2949809ad985d1', '', '1556419078');
+INSERT INTO `ss_sys_log` VALUES ('15750', '10', 'admin', 'cms/cate/index', '类别,查看列表', 'GET', '{\"r\":\"cms/cate/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '264cd19141e3e73ef973ea3dad6cc3400', '', '1556419081');
+INSERT INTO `ss_sys_log` VALUES ('15751', '10', 'admin', 'cms/cate/delete', '删除类别', 'POST', '{\"r\":\"cms/cate/delete\",\"id\":\"4\",\"returnUrl\":\"/index.php?r=cms%2Fcate%2Findex\"}', '{\"_csrf-backend\":\"onlF5imDK3DYmldfLGeVjo1jsL6kZO5pLyIvW7gGvFn1AAqvfdZaRrvfIiVONMC99CLY1ZMCoDFAeEUe-2XxYA==\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '6f536373e77211afb5a7da5383de3bca1', '', '1556419084');
+INSERT INTO `ss_sys_log` VALUES ('15752', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556419633');
+INSERT INTO `ss_sys_log` VALUES ('15753', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556419636');
+INSERT INTO `ss_sys_log` VALUES ('15754', '10', 'admin', 'user/feedback-type/check', '暂无描述', 'POST', '{\"r\":\"user/feedback-type/check\",\"kid\":\"1\"}', '{\"_csrf-backend\":\"Y8MmNcxbjiLKDubFsxONR5x2tyNCZGUOAWHfvPZ96rY0uml8mA7_FKlLk7_RQNh05TffSHUCK1ZuO7X5tR6njw==\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd6d0fd1b52db212ba58ccbcf23e51bf91', '', '1556419673');
+INSERT INTO `ss_sys_log` VALUES ('15755', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\",\"sort\":\"-created_at\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556419676');
+INSERT INTO `ss_sys_log` VALUES ('15756', '10', 'admin', 'user/feedback-type/update', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/update\",\"id\":\"1\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '83b841f0749da460f64c7130fe360f080', '', '1556419684');
+INSERT INTO `ss_sys_log` VALUES ('15757', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\",\"sort\":\"-created_at\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556419810');
+INSERT INTO `ss_sys_log` VALUES ('15758', '10', 'admin', 'user/feedback-type/quick-move', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/quick-move\",\"type\":\"down\",\"kid\":\"1\",\"orderid\":\"10\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '3af3efcacbadcd2308fd344da787eaf60', '', '1556419813');
+INSERT INTO `ss_sys_log` VALUES ('15759', '10', 'admin', 'user/group/index', '暂无描述', 'GET', '{\"r\":\"user/group/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '24c70612e42d44188f9ca46885f7f6e20', '', '1556419841');
+INSERT INTO `ss_sys_log` VALUES ('15760', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556419981');
+INSERT INTO `ss_sys_log` VALUES ('15761', '10', 'admin', 'user/feedback-type/quick-move', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/quick-move\",\"type\":\"down\",\"kid\":\"1\",\"orderid\":\"10\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '3af3efcacbadcd2308fd344da787eaf60', '', '1556420111');
+INSERT INTO `ss_sys_log` VALUES ('15762', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556420435');
+INSERT INTO `ss_sys_log` VALUES ('15763', '10', 'admin', 'user/feedback-type/quick-move', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/quick-move\",\"type\":\"down\",\"kid\":\"1\",\"orderid\":\"10\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '3af3efcacbadcd2308fd344da787eaf60', '', '1556420477');
+INSERT INTO `ss_sys_log` VALUES ('15764', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556420480');
+INSERT INTO `ss_sys_log` VALUES ('15765', '10', 'admin', 'user/feedback-type/quick-move', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/quick-move\",\"type\":\"up\",\"kid\":\"1\",\"orderid\":\"10\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '3af3efcacbadcd2308fd344da787eaf60', '', '1556420483');
+INSERT INTO `ss_sys_log` VALUES ('15766', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556420485');
+INSERT INTO `ss_sys_log` VALUES ('15767', '10', 'admin', 'user/feedback-type/quick-move', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/quick-move\",\"type\":\"down\",\"kid\":\"3\",\"orderid\":\"13\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '3af3efcacbadcd2308fd344da787eaf60', '', '1556420509');
+INSERT INTO `ss_sys_log` VALUES ('15768', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556420513');
+INSERT INTO `ss_sys_log` VALUES ('15769', '10', 'admin', 'user/feedback-type/set-default', '暂无描述', 'POST', '{\"r\":\"user/feedback-type/set-default\",\"id\":\"2\",\"returnUrl\":\"/index.php?r=user%2Ffeedback-type%2Findex\"}', '{\"_csrf-backend\":\"BotN10oeWi5ekggcjgJZDvVqG_oGT1VckxwL5LcfHRRR8gKeHksrGD3XfWbsUQw9jCtzkTEpGwT8RmGh9HxQLQ==\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '6272f344ced9d9a673214c2d718ea9651', '', '1556420587');
+INSERT INTO `ss_sys_log` VALUES ('15770', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556420609');
+INSERT INTO `ss_sys_log` VALUES ('15771', '10', 'admin', 'user/feedback-type/set-default', '暂无描述', 'POST', '{\"r\":\"user/feedback-type/set-default\",\"id\":\"2\",\"returnUrl\":\"/index.php?r=user%2Ffeedback-type%2Findex\"}', '{\"_csrf-backend\":\"55vSKoFFp0BVFZ-EvxJsLm2bSJPFnz9qoQqcC6zuecCw4p1j1RDWdjZQ6v7dQTkdFNog-PL5cTLOUPZO7400-Q==\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '6272f344ced9d9a673214c2d718ea9651', '', '1556420612');
+INSERT INTO `ss_sys_log` VALUES ('15772', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556420621');
+INSERT INTO `ss_sys_log` VALUES ('15773', '10', 'admin', 'user/feedback-type/delete', '暂无描述', 'POST', '{\"r\":\"user/feedback-type/delete\",\"id\":\"6\",\"returnUrl\":\"/index.php?r=user%2Ffeedback-type%2Findex\"}', '{\"_csrf-backend\":\"tfp89KB-jOuP4Un1niuMjW7D6hpaO6K0tSYkcdGEhcnigzO99Cv93eykPI_8eNm-F4KCcW1d7OzafE40kufI8A==\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '3396ec72fb1bc86b83993abdfd1cf6d01', '', '1556420679');
+INSERT INTO `ss_sys_log` VALUES ('15774', '10', 'admin', 'user/feedback-type/check', '暂无描述', 'POST', '{\"r\":\"user/feedback-type/check\",\"kid\":\"2\"}', '{\"_csrf-backend\":\"tfp89KB-jOuP4Un1niuMjW7D6hpaO6K0tSYkcdGEhcnigzO99Cv93eykPI_8eNm-F4KCcW1d7OzafE40kufI8A==\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd6d0fd1b52db212ba58ccbcf23e51bf91', '', '1556420693');
+INSERT INTO `ss_sys_log` VALUES ('15775', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556420755');
+INSERT INTO `ss_sys_log` VALUES ('15776', '10', 'admin', 'user/favorite/index', '用户收藏,查看列表', 'GET', '{\"r\":\"user/favorite/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '7147024bd8908d7a50f3f662ebf57dac0', '', '1556420802');
+INSERT INTO `ss_sys_log` VALUES ('15777', '10', 'admin', 'user/comment/index', '用户留言,查看列表', 'GET', '{\"r\":\"user/comment/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '9f21cf3ce5aee8a6f8d3a399ea00dbeb0', '', '1556420805');
+INSERT INTO `ss_sys_log` VALUES ('15778', '10', 'admin', 'user/group/index', '暂无描述', 'GET', '{\"r\":\"user/group/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '24c70612e42d44188f9ca46885f7f6e20', '', '1556420893');
+INSERT INTO `ss_sys_log` VALUES ('15779', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556420929');
+INSERT INTO `ss_sys_log` VALUES ('15780', '10', 'admin', 'user/group/index', '暂无描述', 'GET', '{\"r\":\"user/group/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '24c70612e42d44188f9ca46885f7f6e20', '', '1556420988');
+INSERT INTO `ss_sys_log` VALUES ('15781', '10', 'admin', 'cms/cate/index', '类别,查看列表', 'GET', '{\"r\":\"cms/cate/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '264cd19141e3e73ef973ea3dad6cc3400', '', '1556420993');
+INSERT INTO `ss_sys_log` VALUES ('15782', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556421227');
+INSERT INTO `ss_sys_log` VALUES ('15783', '10', 'admin', 'user/feedback-type/batch', '暂无描述', 'POST', '{\"r\":\"user/feedback-type/batch\",\"type\":\"order\"}', '{\"_csrf-backend\":\"BWa79CznhpyPqJstyKvx4HZR8MRWtut4GN7-jOByk6ZSH_S9eLL3quzt7leq-KTTDxCYr2HQpSB3hJTJoxHenw==\",\"checkid\":[\"2\",\"3\",\"1\"],\"orderid\":[\"13\",\"12\",\"11\"]}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '004ec41ed97556d570cd887e542240911', '', '1556421247');
+INSERT INTO `ss_sys_log` VALUES ('15784', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556421278');
+INSERT INTO `ss_sys_log` VALUES ('15785', '10', 'admin', 'user/feedback-type/batch', '暂无描述', 'POST', '{\"r\":\"user/feedback-type/batch\",\"type\":\"order\"}', '{\"_csrf-backend\":\"1aMAqAWtXOsR0PZAp_TrPzgTOUG79AzKrW_X1npcYUCC2k_hUfgt3XKVgzrFp74MQVJRKoySQpLCNb2TOT8seQ==\",\"checkid\":[\"2\",\"3\",\"1\"],\"orderid\":[\"13\",\"12\",\"11\"]}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '004ec41ed97556d570cd887e542240911', '', '1556421281');
+INSERT INTO `ss_sys_log` VALUES ('15786', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556421294');
+INSERT INTO `ss_sys_log` VALUES ('15787', '10', 'admin', 'user/feedback-type/set-default', '暂无描述', 'POST', '{\"r\":\"user/feedback-type/set-default\",\"id\":\"1\",\"returnUrl\":\"/index.php?r=user%2Ffeedback-type%2Findex\"}', '{\"_csrf-backend\":\"4TX7OsaHk2Q2h6IjIN4mZrCWxArAdHrznF5708xfT4i2TLRzktLiUlXC11lCjXNVydesYfcSNKvzBBGWjzwCsQ==\",\"orderid\":[\"130\",\"120\",\"110\"]}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '6272f344ced9d9a673214c2d718ea9651', '', '1556421300');
+INSERT INTO `ss_sys_log` VALUES ('15788', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556421329');
+INSERT INTO `ss_sys_log` VALUES ('15789', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556421687');
+INSERT INTO `ss_sys_log` VALUES ('15790', '10', 'admin', 'user/feedback-type/quick-move', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/quick-move\",\"type\":\"down\",\"kid\":\"1\",\"orderid\":\"130\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '3af3efcacbadcd2308fd344da787eaf60', '', '1556422314');
+INSERT INTO `ss_sys_log` VALUES ('15791', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556422316');
+INSERT INTO `ss_sys_log` VALUES ('15792', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556422328');
+INSERT INTO `ss_sys_log` VALUES ('15793', '10', 'admin', 'site/other/error', '进入了错误页面', 'POST', '{\"r\":\"user/feedback/edit-item\"}', '{\"kid\":\"2\",\"value\":\"100\",\"_csrf-backend\":\"_h9xkqEkCbVER2AcZW_E3DpQMqlQEO_cPMYLCPvRon-pZj7b9XF4gycCFWYHPJHvQxFawmd2oYRTnGFNuLLvRg==\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd85246ceba710062d0e8290d48898dd31', '', '1556422344');
+INSERT INTO `ss_sys_log` VALUES ('15794', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556422853');
+INSERT INTO `ss_sys_log` VALUES ('15795', '10', 'admin', 'site/other/error', '进入了错误页面', 'POST', '{\"r\":\"user/feedback/edit-item\"}', '{\"kid\":\"2\",\"value\":\"100\",\"_csrf-backend\":\"bfqIYXrEGbuun7xHM7Tyob2Jj3ki4Hw737409NqQvyQ6g8coLpFojc3ayT1R56eSxMjnEhWGMmOw5F6xmfPyHQ==\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd85246ceba710062d0e8290d48898dd31', '', '1556422861');
+INSERT INTO `ss_sys_log` VALUES ('15796', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556422980');
+INSERT INTO `ss_sys_log` VALUES ('15797', '10', 'admin', 'user/feedback/edit-item', '暂无描述', 'POST', '{\"r\":\"user/feedback/edit-item\"}', '{\"kid\":\"2\",\"value\":\"100\",\"_csrf-backend\":\"YOsVvRPOyZtyE8rktU2xsa9t0_L7z2-rw5dvNUXuseY3klr0R5u4rRFWv57XHuSC1iy7mcypIfOszQVwBo383w==\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'c47651558ee2d115e9b85bea1354303e1', '', '1556422984');
+INSERT INTO `ss_sys_log` VALUES ('15798', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556422993');
+INSERT INTO `ss_sys_log` VALUES ('15799', '10', 'admin', 'site/other/error', '进入了错误页面', 'POST', '{\"r\":\"user/feedback/batch\",\"type\":\"delete\"}', '{\"_csrf-backend\":\"uAgzWMsUBtBPQvPxhDEkbpBC1PpNZ9GBL9ByKZ68hTXvcXwRn0F35iwHhovmYnFd6QO8kXoBn9lAihhs3d_IDA==\",\"checkid\":[\"6\"],\"Feedback\":{\"orderid\":\"100\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd85246ceba710062d0e8290d48898dd31', '', '1556423311');
+INSERT INTO `ss_sys_log` VALUES ('15800', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556423316');
+INSERT INTO `ss_sys_log` VALUES ('15801', '10', 'admin', 'user/feedback/batch', '暂无描述', 'POST', '{\"r\":\"user/feedback/batch\",\"type\":\"delete\"}', '{\"_csrf-backend\":\"kHOYaRoXRwXBeRlsN92luWlBM_hO1BEa6xj2bkNlsa7HCtcgTkI2M6I8bBZVjvCKEABbk3myX0KEQpwrAAb8lw==\",\"checkid\":[\"6\"],\"Feedback\":{\"orderid\":\"100\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'a8178d676bb4ed9cd1c62c99c2f2702c1', '', '1556423464');
+INSERT INTO `ss_sys_log` VALUES ('15802', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556423468');
+INSERT INTO `ss_sys_log` VALUES ('15803', '10', 'admin', 'user/feedback/edit-item', '暂无描述', 'POST', '{\"r\":\"user/feedback/edit-item\"}', '{\"kid\":\"2\",\"value\":\"101\",\"_csrf-backend\":\"EjW7U71IvZ6Hm4jOpOrhSOI7vfhdIbfC9iq7-TFOb8FFTPQa6R3MqOTe_bTGubR7m3rVk2pH-ZqZcNG8ci0i-A==\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'c47651558ee2d115e9b85bea1354303e1', '', '1556423480');
+INSERT INTO `ss_sys_log` VALUES ('15804', '10', 'admin', 'user/feedback/update', '暂无描述', 'GET', '{\"r\":\"user/feedback/update\",\"id\":\"2\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'c1ea9f87cc6763a74f4dd8f629b8de300', '', '1556423486');
+INSERT INTO `ss_sys_log` VALUES ('15805', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556423508');
+INSERT INTO `ss_sys_log` VALUES ('15806', '10', 'admin', 'user/feedback/delete', '暂无描述', 'POST', '{\"r\":\"user/feedback/delete\",\"id\":\"7\",\"returnUrl\":\"/index.php?r=user%2Ffeedback%2Findex\"}', '{\"_csrf-backend\":\"fSYG0F6v1-bdRzuklP_CjvIiKDfSoN5vXSp8Glk0HkAqX0mZCvqm0L4CTt72rJe9i2NAXOXGkDcycBZfGldTeQ==\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2b9c8e93d7be75e12aca96c5ff1386371', '', '1556423521');
+INSERT INTO `ss_sys_log` VALUES ('15807', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556423560');
+INSERT INTO `ss_sys_log` VALUES ('15808', '10', 'admin', 'user/feedback/delete', '暂无描述', 'POST', '{\"r\":\"user/feedback/delete\",\"id\":\"8\",\"returnUrl\":\"/index.php?r=user%2Ffeedback%2Findex\"}', '{\"_csrf-backend\":\"LfyT1Ivp_R7x6YQms4_FQt6saenWtaDJtRXfJgUVPq16hdyd37yMKJKs8VzR3JBxp-0BguHT7pHaT7VjRnZzlA==\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2b9c8e93d7be75e12aca96c5ff1386371', '', '1556423562');
+INSERT INTO `ss_sys_log` VALUES ('15809', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556423564');
+INSERT INTO `ss_sys_log` VALUES ('15810', '10', 'admin', 'user/feedback/edit-item', '暂无描述', 'POST', '{\"r\":\"user/feedback/edit-item\"}', '{\"kid\":\"2\",\"value\":\"120\",\"_csrf-backend\":\"CE2f5T6Ow1dbwSJh8os7WHWZwO8ySAmBUF2ljyPfJeBfNNCsatuyYTiEVxuQ2G5rDNiohAUuR9k_B8_KYLxo2Q==\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'c47651558ee2d115e9b85bea1354303e1', '', '1556423620');
+INSERT INTO `ss_sys_log` VALUES ('15811', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\",\"sort\":\"-fk_id\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556423622');
+INSERT INTO `ss_sys_log` VALUES ('15812', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\",\"sort\":\"-fk_id\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556423647');
+INSERT INTO `ss_sys_log` VALUES ('15813', '10', 'admin', 'user/feedback-type/check', '暂无描述', 'POST', '{\"r\":\"user/feedback-type/check\",\"kid\":\"1\"}', '{\"_csrf-backend\":\"ECGBdIAmzVWx1ssEqdNlm0FyhOwAf35BD-ITXCjenF1HWM491HO8Y9KTvn7LgDCoODPshzcZMBlguHkZa73RZA==\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd6d0fd1b52db212ba58ccbcf23e51bf91', '', '1556424010');
+INSERT INTO `ss_sys_log` VALUES ('15814', '10', 'admin', 'user/feedback-type/update', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/update\",\"id\":\"1\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '83b841f0749da460f64c7130fe360f080', '', '1556424016');
+INSERT INTO `ss_sys_log` VALUES ('15815', '10', 'admin', 'user/feedback-type/update', '暂无描述', 'POST', '{\"r\":\"user/feedback-type/update\",\"id\":\"1\"}', '{\"_csrf-backend\":\"F6zhbZoMH6YAs5_YsvsvCTqNRFDwGnkJv2_x6GCEb-VA1a4kzllukGP26qLQqHo6Q8wsO8d8N1HQNZutI-ci3A==\",\"FeedbackType\":{\"fkt_form_name\":\"意见反馈\",\"fkt_form_show\":\"1\",\"fkt_list_name\":\"\",\"fkt_list_show\":\"0\",\"orderid\":\"130\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '83b841f0749da460f64c7130fe360f081', '', '1556424463');
+INSERT INTO `ss_sys_log` VALUES ('15816', '10', 'admin', 'user/feedback-type/update', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/update\",\"id\":\"1\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '83b841f0749da460f64c7130fe360f080', '', '1556424467');
+INSERT INTO `ss_sys_log` VALUES ('15817', '10', 'admin', 'user/feedback-type/update', '暂无描述', 'POST', '{\"r\":\"user/feedback-type/update\",\"id\":\"1\"}', '{\"_csrf-backend\":\"pjRe-dB2aAPZ40ZbQStatmlBjh1_w8h5h-_If_9TYifxTRGwhCMZNbqmMyEjeA-FEADmdkilhiHotaI6vDAvHg==\",\"FeedbackType\":{\"fkt_form_name\":\"\",\"fkt_form_show\":\"1\",\"fkt_list_name\":\"\",\"fkt_list_show\":\"0\",\"orderid\":\"130\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '83b841f0749da460f64c7130fe360f081', '', '1556424471');
+INSERT INTO `ss_sys_log` VALUES ('15818', '10', 'admin', 'user/feedback-type/update', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/update\",\"id\":\"1\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '83b841f0749da460f64c7130fe360f080', '', '1556424486');
+INSERT INTO `ss_sys_log` VALUES ('15819', '10', 'admin', 'user/feedback-type/update', '暂无描述', 'POST', '{\"r\":\"user/feedback-type/update\",\"id\":\"1\"}', '{\"_csrf-backend\":\"MqzKTTOHjCw2hIep6-lvFj0Tfes0rg2EHbA6rh3Mtkpl1YUEZ9L9GlXB8tOJujolRFIVgAPIQ9xy6lDrXq_7cw==\",\"FeedbackType\":{\"fkt_form_name\":\"意见反馈\",\"fkt_form_show\":\"1\",\"fkt_list_name\":\"\",\"fkt_list_show\":\"0\",\"orderid\":\"130\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '83b841f0749da460f64c7130fe360f081', '', '1556424488');
+INSERT INTO `ss_sys_log` VALUES ('15820', '10', 'admin', 'user/feedback-type/update', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/update\",\"id\":\"1\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '83b841f0749da460f64c7130fe360f080', '', '1556424520');
+INSERT INTO `ss_sys_log` VALUES ('15821', '10', 'admin', 'cms/cate/update', '编辑类别,进入表单', 'GET', '{\"r\":\"cms/cate/update\",\"id\":\"8\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '173cf1f611aae3214d14b7d73d568db20', '', '1556424549');
+INSERT INTO `ss_sys_log` VALUES ('15822', '10', 'admin', 'cms/cate/index', '类别,查看列表', 'GET', '{\"r\":\"cms/cate/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '264cd19141e3e73ef973ea3dad6cc3400', '', '1556424553');
+INSERT INTO `ss_sys_log` VALUES ('15823', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556424572');
+INSERT INTO `ss_sys_log` VALUES ('15824', '10', 'admin', 'user/feedback-type/update', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/update\",\"id\":\"1\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '83b841f0749da460f64c7130fe360f080', '', '1556424575');
+INSERT INTO `ss_sys_log` VALUES ('15825', '10', 'admin', 'user/feedback-type/update', '暂无描述', 'POST', '{\"r\":\"user/feedback-type/update\",\"id\":\"1\"}', '{\"_csrf-backend\":\"jrzl4wNb1P0pOpzqKAaiI3vljI82Ek5BLH7R-5GkuvnZxaqqVw6ly0p_6ZBKVfcQAqTk5AF0ABlDJLu-0sf3wA==\",\"FeedbackType\":{\"fkt_form_name\":\"意见反馈\",\"fkt_form_show\":\"1\",\"fkt_list_name\":\"意见反馈\",\"fkt_list_show\":\"0\",\"orderid\":\"130\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '83b841f0749da460f64c7130fe360f081', '', '1556424652');
+INSERT INTO `ss_sys_log` VALUES ('15826', '10', 'admin', 'user/feedback-type/update', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/update\",\"id\":\"1\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '83b841f0749da460f64c7130fe360f080', '', '1556424658');
+INSERT INTO `ss_sys_log` VALUES ('15827', '10', 'admin', 'user/feedback-type/update', '暂无描述', 'POST', '{\"r\":\"user/feedback-type/update\",\"id\":\"1\"}', '{\"_csrf-backend\":\"HJ_U8Y8vZ6k21HW45HonULjeEaoBwiZAw12XoKx9TatL5pu423oWn1WRAMKGKXJjwZ95wTakaBisB_3l7x4Akg==\",\"FeedbackType\":{\"fkt_form_name\":\"意见反馈\",\"fkt_form_show\":\"1\",\"fkt_list_name\":\"意见反馈\",\"fkt_list_show\":\"1\",\"orderid\":\"130\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '83b841f0749da460f64c7130fe360f081', '', '1556424662');
+INSERT INTO `ss_sys_log` VALUES ('15828', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556424664');
+INSERT INTO `ss_sys_log` VALUES ('15829', '10', 'admin', 'user/feedback-type/update', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/update\",\"id\":\"2\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '83b841f0749da460f64c7130fe360f080', '', '1556424682');
+INSERT INTO `ss_sys_log` VALUES ('15830', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556424685');
+INSERT INTO `ss_sys_log` VALUES ('15831', '10', 'admin', 'user/feedback-type/check', '暂无描述', 'POST', '{\"r\":\"user/feedback-type/check\",\"kid\":\"1\"}', '{\"_csrf-backend\":\"S51oac3pbHQ7KPabcY53trehTnU7PRmLZsVa2VpeAu4c5CcgmbwdQlhtg-ET3SKFzuAmHgxbV9MJnzCcGT1P1w==\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd6d0fd1b52db212ba58ccbcf23e51bf91', '', '1556424703');
+INSERT INTO `ss_sys_log` VALUES ('15832', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556424706');
+INSERT INTO `ss_sys_log` VALUES ('15833', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556424718');
+INSERT INTO `ss_sys_log` VALUES ('15834', '10', 'admin', 'user/feedback/create', '暂无描述', 'GET', '{\"r\":\"user/feedback/create\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '72bd16a883df45a2a4983eb9d02728e80', '', '1556424802');
+INSERT INTO `ss_sys_log` VALUES ('15835', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556424805');
+INSERT INTO `ss_sys_log` VALUES ('15836', '10', 'admin', 'user/feedback/update', '暂无描述', 'GET', '{\"r\":\"user/feedback/update\",\"id\":\"2\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'c1ea9f87cc6763a74f4dd8f629b8de300', '', '1556425014');
+INSERT INTO `ss_sys_log` VALUES ('15837', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556425066');
+INSERT INTO `ss_sys_log` VALUES ('15838', '10', 'admin', 'user/feedback/update', '暂无描述', 'GET', '{\"r\":\"user/feedback/update\",\"id\":\"2\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'c1ea9f87cc6763a74f4dd8f629b8de300', '', '1556425082');
+INSERT INTO `ss_sys_log` VALUES ('15839', '10', 'admin', 'user/feedback/update', '暂无描述', 'POST', '{\"r\":\"user/feedback/update\",\"id\":\"2\"}', '{\"_csrf-backend\":\"of3qGx7OFsPqehJ6x5f73n6alV5zdZChZe9XkKGjoUP2hKVSSptn9Yk_ZwClxK7tB9v9NUQT3vkKtT3V4sDseg==\",\"Feedback\":{\"fk_nickname\":\"夏又桥\",\"fk_user_id\":\"\",\"fk_contact\":\"13725514524\",\"fk_content\":\"测试一个意见反馈。。\",\"fk_show\":\"0\",\"fk_ip\":\"127.0.0.1\",\"fk_review\":\"\",\"fk_retime\":\"0\",\"fk_sms\":\"0\",\"fk_email\":\"0\",\"fk_type_id\":\"1\",\"orderid\":\"120\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'c1ea9f87cc6763a74f4dd8f629b8de301', '', '1556425382');
+INSERT INTO `ss_sys_log` VALUES ('15840', '10', 'admin', 'user/feedback/update', '暂无描述', 'GET', '{\"r\":\"user/feedback/update\",\"id\":\"2\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'c1ea9f87cc6763a74f4dd8f629b8de300', '', '1556425423');
+INSERT INTO `ss_sys_log` VALUES ('15841', '10', 'admin', 'cms/info/index', '单页面,查看列表', 'GET', '{\"r\":\"cms/info/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '90305e6e49e854811642b918d4a8e5970', '', '1556426692');
+INSERT INTO `ss_sys_log` VALUES ('15842', '10', 'admin', 'cms/article/update', '编辑文章,进入表单', 'GET', '{\"r\":\"cms/article/update\",\"id\":\"8\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '5656463e040f400bdd943d97836997fe0', '', '1556426702');
+INSERT INTO `ss_sys_log` VALUES ('15843', '10', 'admin', 'cms/article/get-tags', '获取文章标签', 'GET', '{\"r\":\"cms/article/get-tags\",\"keyword\":\"\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'c4788daf56e725255508cf51dc5987d20', '', '1556426706');
+INSERT INTO `ss_sys_log` VALUES ('15844', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556426716');
+INSERT INTO `ss_sys_log` VALUES ('15845', '10', 'admin', 'user/feedback/update', '暂无描述', 'GET', '{\"r\":\"user/feedback/update\",\"id\":\"2\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'c1ea9f87cc6763a74f4dd8f629b8de300', '', '1556426719');
+INSERT INTO `ss_sys_log` VALUES ('15846', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556426722');
+INSERT INTO `ss_sys_log` VALUES ('15847', '10', 'admin', 'user/feedback/create', '暂无描述', 'GET', '{\"r\":\"user/feedback/create\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '72bd16a883df45a2a4983eb9d02728e80', '', '1556426725');
+INSERT INTO `ss_sys_log` VALUES ('15848', '10', 'admin', 'user/feedback-type/create', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/create\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'b76b3ac1daed61380d6502fd02e1342c0', '', '1556426935');
+INSERT INTO `ss_sys_log` VALUES ('15849', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556426940');
+INSERT INTO `ss_sys_log` VALUES ('15850', '10', 'admin', 'user/feedback-type/update', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/update\",\"id\":\"3\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '83b841f0749da460f64c7130fe360f080', '', '1556426944');
+INSERT INTO `ss_sys_log` VALUES ('15851', '10', 'admin', 'user/feedback-type/update', '暂无描述', 'POST', '{\"r\":\"user/feedback-type/update\",\"id\":\"3\"}', '{\"_csrf-backend\":\"OIzpKw4zrsOaSUPi0NFpHVP5O1_JeEFE1PZxx3J7jtJv9aZiWmbf9fkMNpiygjwuKrhTNP4eDxy7rBuCMRjD6w==\",\"FeedbackType\":{\"fkt_form_name\":\"业务咨询\",\"fkt_form_show\":\"1\",\"fkt_list_name\":\"业务咨询\",\"fkt_list_show\":\"0\",\"orderid\":\"120\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '83b841f0749da460f64c7130fe360f081', '', '1556426947');
+INSERT INTO `ss_sys_log` VALUES ('15852', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556426951');
+INSERT INTO `ss_sys_log` VALUES ('15853', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556426964');
+INSERT INTO `ss_sys_log` VALUES ('15854', '10', 'admin', 'cms/article/update', '编辑文章,进入表单', 'GET', '{\"r\":\"cms/article/update\",\"id\":\"8\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '5656463e040f400bdd943d97836997fe0', '', '1556428497');
+INSERT INTO `ss_sys_log` VALUES ('15855', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556428509');
+INSERT INTO `ss_sys_log` VALUES ('15856', '10', 'admin', 'user/feedback/update', '暂无描述', 'GET', '{\"r\":\"user/feedback/update\",\"id\":\"2\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'c1ea9f87cc6763a74f4dd8f629b8de300', '', '1556428560');
+INSERT INTO `ss_sys_log` VALUES ('15857', '10', 'admin', 'cms/article/update', '编辑文章,进入表单', 'GET', '{\"r\":\"cms/article/update\",\"id\":\"8\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '5656463e040f400bdd943d97836997fe0', '', '1556428569');
+INSERT INTO `ss_sys_log` VALUES ('15858', '10', 'admin', 'user/feedback/update', '暂无描述', 'GET', '{\"r\":\"user/feedback/update\",\"id\":\"2\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'c1ea9f87cc6763a74f4dd8f629b8de300', '', '1556428842');
+INSERT INTO `ss_sys_log` VALUES ('15859', '10', 'admin', 'cms/article/get-tags', '获取文章标签', 'GET', '{\"r\":\"cms/article/get-tags\",\"keyword\":\"\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'c4788daf56e725255508cf51dc5987d20', '', '1556429000');
+INSERT INTO `ss_sys_log` VALUES ('15860', '10', 'admin', 'user/feedback/update', '暂无描述', 'GET', '{\"r\":\"user/feedback/update\",\"id\":\"2\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'c1ea9f87cc6763a74f4dd8f629b8de300', '', '1556429067');
+INSERT INTO `ss_sys_log` VALUES ('15861', '10', 'admin', 'user/feedback/update', '暂无描述', 'POST', '{\"r\":\"user/feedback/update\",\"id\":\"2\"}', '{\"_csrf-backend\":\"5X5E6EUWRSFfL4Cytfzq6sUm4gcW8sUHF3GyTxFxw-ayBwuhEUM0Fzxq9cjXr7_ZvGeKbCGUi194K9gKUhKO3w==\",\"Feedback\":{\"fk_nickname\":\"夏又桥\",\"fk_user_id\":\"\",\"fk_contact\":\"13725514524\",\"fk_content\":\"<p>测试一个意见反馈。。</p>\",\"fk_review\":\"\",\"fk_retime\":\"2019-04-28\",\"fk_ip\":\"127.0.0.1\",\"fk_show\":\"0\",\"fk_sms\":\"0\",\"fk_email\":\"0\",\"fk_type_id\":\"1\",\"orderid\":\"120\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'c1ea9f87cc6763a74f4dd8f629b8de301', '', '1556429155');
+INSERT INTO `ss_sys_log` VALUES ('15862', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556429159');
+INSERT INTO `ss_sys_log` VALUES ('15863', '10', 'admin', 'user/feedback/update', '暂无描述', 'GET', '{\"r\":\"user/feedback/update\",\"id\":\"2\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'c1ea9f87cc6763a74f4dd8f629b8de300', '', '1556429171');
+INSERT INTO `ss_sys_log` VALUES ('15864', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556429178');
+INSERT INTO `ss_sys_log` VALUES ('15865', '10', 'admin', 'user/feedback/update', '暂无描述', 'GET', '{\"r\":\"user/feedback/update\",\"id\":\"2\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'c1ea9f87cc6763a74f4dd8f629b8de300', '', '1556429586');
+INSERT INTO `ss_sys_log` VALUES ('15866', '10', 'admin', 'user/feedback/get-user-list', '暂无描述', 'GET', '{\"r\":\"user/feedback/get-user-list\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'cf5fa06817a3ca8a5f44c397a3c38e4c0', '', '1556430021');
+INSERT INTO `ss_sys_log` VALUES ('15867', '10', 'admin', 'user/feedback/create', '暂无描述', 'GET', '{\"r\":\"user/feedback/create\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '72bd16a883df45a2a4983eb9d02728e80', '', '1556430182');
+INSERT INTO `ss_sys_log` VALUES ('15868', '10', 'admin', 'user/feedback/get-user-list', '暂无描述', 'GET', '{\"r\":\"user/feedback/get-user-list\",\"keyword\":\"\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'cf5fa06817a3ca8a5f44c397a3c38e4c0', '', '1556430728');
+INSERT INTO `ss_sys_log` VALUES ('15869', '10', 'admin', 'user/feedback/create', '暂无描述', 'GET', '{\"r\":\"user/feedback/create\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '72bd16a883df45a2a4983eb9d02728e80', '', '1556430733');
+INSERT INTO `ss_sys_log` VALUES ('15870', '10', 'admin', 'user/feedback/get-user-list', '暂无描述', 'GET', '{\"r\":\"user/feedback/get-user-list\",\"keyword\":\"\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'cf5fa06817a3ca8a5f44c397a3c38e4c0', '', '1556430737');
+INSERT INTO `ss_sys_log` VALUES ('15871', '10', 'admin', 'user/feedback/create', '暂无描述', 'GET', '{\"r\":\"user/feedback/create\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '72bd16a883df45a2a4983eb9d02728e80', '', '1556430904');
+INSERT INTO `ss_sys_log` VALUES ('15872', '10', 'admin', 'user/feedback/get-user-list', '暂无描述', 'GET', '{\"r\":\"user/feedback/get-user-list\",\"keyword\":\"9\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'cf5fa06817a3ca8a5f44c397a3c38e4c0', '', '1556430907');
+INSERT INTO `ss_sys_log` VALUES ('15873', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556430928');
+INSERT INTO `ss_sys_log` VALUES ('15874', '10', 'admin', 'user/feedback/update', '暂无描述', 'GET', '{\"r\":\"user/feedback/update\",\"id\":\"2\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'c1ea9f87cc6763a74f4dd8f629b8de300', '', '1556430931');
+INSERT INTO `ss_sys_log` VALUES ('15875', '10', 'admin', 'user/feedback/update', '暂无描述', 'POST', '{\"r\":\"user/feedback/update\",\"id\":\"2\"}', '{\"_csrf-backend\":\"5lGfS38kNvEskZPR0-y-LF_3O2kuKCvVAeb1gO2FIeCxKNACK3FHx0_U5quxv-sfJrZTAhlOZY1uvJ_FruZs2Q==\",\"Feedback\":{\"fk_nickname\":\"夏又桥\",\"fk_user_id\":\"5\",\"fk_contact\":\"13725514524\",\"fk_content\":\"<p>测试一个意见反馈。。</p>\",\"fk_review\":\"<p>gfff</p>\",\"fk_retime\":\"2019-04-28\",\"fk_ip\":\"127.0.0.1\",\"fk_show\":\"0\",\"fk_sms\":\"0\",\"fk_email\":\"0\",\"fk_type_id\":\"1\",\"orderid\":\"120\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'c1ea9f87cc6763a74f4dd8f629b8de301', '', '1556430936');
+INSERT INTO `ss_sys_log` VALUES ('15876', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556430939');
+INSERT INTO `ss_sys_log` VALUES ('15877', '10', 'admin', 'user/user/index', '用户,查看列表', 'GET', '{\"r\":\"user/user/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'f9548a9d328edbd0464192e2d45e5f950', '', '1556431062');
+INSERT INTO `ss_sys_log` VALUES ('15878', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556431187');
+INSERT INTO `ss_sys_log` VALUES ('15879', '10', 'admin', 'user/user/index', '用户,查看列表', 'GET', '{\"r\":\"user/user/index\",\"UserSearch\":{\"user_id\":\"5\"}}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'f9548a9d328edbd0464192e2d45e5f950', '', '1556431192');
+INSERT INTO `ss_sys_log` VALUES ('15880', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556431194');
+INSERT INTO `ss_sys_log` VALUES ('15881', '10', 'admin', 'user/feedback/create', '暂无描述', 'GET', '{\"r\":\"user/feedback/create\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '72bd16a883df45a2a4983eb9d02728e80', '', '1556431202');
+INSERT INTO `ss_sys_log` VALUES ('15882', '10', 'admin', 'user/feedback/get-user-list', '暂无描述', 'GET', '{\"r\":\"user/feedback/get-user-list\",\"keyword\":\"\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'cf5fa06817a3ca8a5f44c397a3c38e4c0', '', '1556431207');
+INSERT INTO `ss_sys_log` VALUES ('15883', '10', 'admin', 'user/feedback/create', '暂无描述', 'GET', '{\"r\":\"user/feedback/create\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '72bd16a883df45a2a4983eb9d02728e80', '', '1556431239');
+INSERT INTO `ss_sys_log` VALUES ('15884', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556431267');
+INSERT INTO `ss_sys_log` VALUES ('15885', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556431272');
+INSERT INTO `ss_sys_log` VALUES ('15886', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556431341');
+INSERT INTO `ss_sys_log` VALUES ('15887', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556431382');
+INSERT INTO `ss_sys_log` VALUES ('15888', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556431424');
+INSERT INTO `ss_sys_log` VALUES ('15889', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556431431');
+INSERT INTO `ss_sys_log` VALUES ('15890', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556431454');
+INSERT INTO `ss_sys_log` VALUES ('15891', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556431480');
+INSERT INTO `ss_sys_log` VALUES ('15892', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556431493');
+INSERT INTO `ss_sys_log` VALUES ('15893', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556431496');
+INSERT INTO `ss_sys_log` VALUES ('15894', '10', 'admin', 'user/feedback-type/index', '暂无描述', 'GET', '{\"r\":\"user/feedback-type/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd3ffca1af886145b25b753e64deb2d2c0', '', '1556431528');
+INSERT INTO `ss_sys_log` VALUES ('15895', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556431531');
+INSERT INTO `ss_sys_log` VALUES ('15896', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556431537');
+INSERT INTO `ss_sys_log` VALUES ('15897', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556431540');
+INSERT INTO `ss_sys_log` VALUES ('15898', '10', 'admin', 'user/feedback/edit-item', '暂无描述', 'POST', '{\"r\":\"user/feedback/edit-item\"}', '{\"kid\":\"2\",\"value\":\"121\",\"_csrf-backend\":\"9ml0fi3dkheXfLTiTD2E2AuzPYxf0mBOTXE0UcQUHXyhEDs3eYjjIfQ5wZgubtHrcvJV52i0LhYiK14Uh3dQRQ==\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'c47651558ee2d115e9b85bea1354303e1', '', '1556431547');
+INSERT INTO `ss_sys_log` VALUES ('15899', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556431570');
+INSERT INTO `ss_sys_log` VALUES ('15900', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556432757');
+INSERT INTO `ss_sys_log` VALUES ('15901', '10', 'admin', 'user/comment/index', '用户留言,查看列表', 'GET', '{\"r\":\"user/comment/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '9f21cf3ce5aee8a6f8d3a399ea00dbeb0', '', '1556432838');
+INSERT INTO `ss_sys_log` VALUES ('15902', '10', 'admin', 'tool/notify-group/index', '暂无描述', 'GET', '{\"r\":\"tool/notify-group/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '13efc3a56c40e0e274094d41c37541100', '', '1556432897');
+INSERT INTO `ss_sys_log` VALUES ('15903', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556432900');
+INSERT INTO `ss_sys_log` VALUES ('15904', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556434341');
+INSERT INTO `ss_sys_log` VALUES ('15905', '10', 'admin', 'user/inquiry/index', '线上咨询,查看列表', 'GET', '{\"r\":\"user/inquiry/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2c653ca2970f82878d70fed78730397a0', '', '1556435223');
+INSERT INTO `ss_sys_log` VALUES ('15906', '10', 'admin', 'user/inquiry/view', '暂无描述', 'GET', '{\"r\":\"user/inquiry/view\",\"id\":\"82\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '3e9484ab48a2d5680f8d6c9084653da60', '', '1556435230');
+INSERT INTO `ss_sys_log` VALUES ('15907', '10', 'admin', 'user/inquiry/index', '线上咨询,查看列表', 'GET', '{\"r\":\"user/inquiry/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2c653ca2970f82878d70fed78730397a0', '', '1556435234');
+INSERT INTO `ss_sys_log` VALUES ('15908', '10', 'admin', 'user/inquiry/view', '暂无描述', 'GET', '{\"r\":\"user/inquiry/view\",\"id\":\"82\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '3e9484ab48a2d5680f8d6c9084653da60', '', '1556435355');
+INSERT INTO `ss_sys_log` VALUES ('15909', '10', 'admin', 'user/inquiry/index', '线上咨询,查看列表', 'GET', '{\"r\":\"user/inquiry/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2c653ca2970f82878d70fed78730397a0', '', '1556435372');
+INSERT INTO `ss_sys_log` VALUES ('15910', '10', 'admin', 'user/inquiry/view', '暂无描述', 'GET', '{\"r\":\"user/inquiry/view\",\"id\":\"82\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '3e9484ab48a2d5680f8d6c9084653da60', '', '1556435398');
+INSERT INTO `ss_sys_log` VALUES ('15911', '10', 'admin', 'user/inquiry/edit', '编辑线上咨询', 'POST', '{\"r\":\"user/inquiry/edit\",\"id\":\"82\"}', '{\"field\":\"ui_answer\",\"time_field\":\"ui_answer_time\",\"value\":\"您好，您的要求我们会尽量满足\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '0a295020e700d33d08649d423dd5d60e1', '', '1556435412');
+INSERT INTO `ss_sys_log` VALUES ('15912', '10', 'admin', 'user/inquiry/index', '线上咨询,查看列表', 'GET', '{\"r\":\"user/inquiry/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2c653ca2970f82878d70fed78730397a0', '', '1556437255');
+INSERT INTO `ss_sys_log` VALUES ('15913', '10', 'admin', 'site/home/index', '框架刷新', 'POST', '{\"r\":\"site/home/index\"}', '{\"_csrf-backend\":\"XsEtLNktKuzhSGfMZkYO2K67G8x-9OMg3FCKk0m2VL4JuGJljXhb2oINErYEFVvr1_pzp0mSrXizCuDWCtUZhw==\",\"lang\":\"zh-TW\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'c2d71336246fb532975f0e3b689097ce1', '', '1556437283');
+INSERT INTO `ss_sys_log` VALUES ('15914', '10', 'admin', 'site/home/index', '框架刷新', 'POST', '{\"r\":\"site/home/index\"}', '{\"_csrf-backend\":\"a7aruo5ppX01CyI_anBHE0LlDFfjP4kzsKim1NyPkpg8z-Tz2jzUS1ZOV0UIIxIgO6RkPNRZx2vf8syRn-zfoQ==\",\"lang\":\"zh-CN\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d981', '', '1556437284');
+INSERT INTO `ss_sys_log` VALUES ('15915', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '{\"r\":\"site/home/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556441016');
+INSERT INTO `ss_sys_log` VALUES ('15916', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556442233');
+INSERT INTO `ss_sys_log` VALUES ('15917', '10', 'admin', 'user/inquiry/index', '服务订单,查看列表', 'GET', '{\"r\":\"user/inquiry/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2c653ca2970f82878d70fed78730397a0', '', '1556442328');
+INSERT INTO `ss_sys_log` VALUES ('15918', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '{\"r\":\"site/home/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556442331');
+INSERT INTO `ss_sys_log` VALUES ('15919', '10', 'admin', 'user/inquiry/index', '服务订单,查看列表', 'GET', '{\"r\":\"user/inquiry/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2c653ca2970f82878d70fed78730397a0', '', '1556442333');
+INSERT INTO `ss_sys_log` VALUES ('15920', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '{\"r\":\"site/home/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556451069');
+INSERT INTO `ss_sys_log` VALUES ('15921', '10', 'admin', 'site/home/default', '后台首页', 'GET', '{\"r\":\"site/home/default\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'be0010d94628d97d653b987468042ebe0', '', '1556451897');
+INSERT INTO `ss_sys_log` VALUES ('15922', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '{\"r\":\"site/home/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556454145');
+INSERT INTO `ss_sys_log` VALUES ('15923', '10', 'admin', 'site/home/default', '后台首页', 'GET', '{\"r\":\"site/home/default\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'be0010d94628d97d653b987468042ebe0', '', '1556463912');
+INSERT INTO `ss_sys_log` VALUES ('15924', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '{\"r\":\"site/home/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556499167');
+INSERT INTO `ss_sys_log` VALUES ('15925', '10', 'admin', 'site/home/default', '后台首页', 'GET', '{\"r\":\"site/home/default\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'be0010d94628d97d653b987468042ebe0', '', '1556502328');
+INSERT INTO `ss_sys_log` VALUES ('15926', '10', 'admin', 'site/face-config/setting', '查看界面配置', 'GET', '{\"r\":\"site/face-config/setting\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '86b7df5a6d7e7eaf84caed1f9dcb19490', '', '1556526573');
+INSERT INTO `ss_sys_log` VALUES ('15927', '10', 'admin', 'cms/column/index', '栏目,查看列表', 'GET', '{\"r\":\"cms/column/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '204cbf34be36c3d1ce363079d91f624a0', '', '1556526623');
+INSERT INTO `ss_sys_log` VALUES ('15928', '10', 'admin', 'cms/block/index', '碎片,查看列表', 'GET', '{\"r\":\"cms/block/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'b224138a031d5159f65030f4ada8c62e0', '', '1556526641');
+INSERT INTO `ss_sys_log` VALUES ('15929', '10', 'admin', 'cms/block/update', '编辑碎片,进入表单', 'GET', '{\"r\":\"cms/block/update\",\"id\":\"2\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2941cb2c5c1991d5307ab275a14926850', '', '1556526643');
+INSERT INTO `ss_sys_log` VALUES ('15930', '10', 'admin', 'cms/block/index', '碎片,查看列表', 'GET', '{\"r\":\"cms/block/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'b224138a031d5159f65030f4ada8c62e0', '', '1556526646');
+INSERT INTO `ss_sys_log` VALUES ('15931', '10', 'admin', 'cms/block/update', '编辑碎片,进入表单', 'GET', '{\"r\":\"cms/block/update\",\"id\":\"1\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2941cb2c5c1991d5307ab275a14926850', '', '1556526649');
+INSERT INTO `ss_sys_log` VALUES ('15932', '10', 'admin', 'cms/block/index', '碎片,查看列表', 'GET', '{\"r\":\"cms/block/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'b224138a031d5159f65030f4ada8c62e0', '', '1556526652');
+INSERT INTO `ss_sys_log` VALUES ('15933', '10', 'admin', 'cms/column/index', '栏目,查看列表', 'GET', '{\"r\":\"cms/column/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '204cbf34be36c3d1ce363079d91f624a0', '', '1556527081');
+INSERT INTO `ss_sys_log` VALUES ('15934', '10', 'admin', 'cms/article/create', '添加新文章,进入表单', 'GET', '{\"r\":\"cms/article/create\",\"columnid\":\"90\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '7ba50d247fce6ef407a87c4f7d64c4fd0', '', '1556527088');
+INSERT INTO `ss_sys_log` VALUES ('15935', '10', 'admin', 'cms/column/index', '栏目,查看列表', 'GET', '{\"r\":\"cms/column/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '204cbf34be36c3d1ce363079d91f624a0', '', '1556527090');
+INSERT INTO `ss_sys_log` VALUES ('15936', '10', 'admin', 'cms/block/index', '碎片,查看列表', 'GET', '{\"r\":\"cms/block/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'b224138a031d5159f65030f4ada8c62e0', '', '1556527179');
+INSERT INTO `ss_sys_log` VALUES ('15937', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '{\"r\":\"site/home/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556533723');
+INSERT INTO `ss_sys_log` VALUES ('15938', '10', 'admin', 'cms/column/index', '栏目,查看列表', 'GET', '{\"r\":\"cms/column/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '204cbf34be36c3d1ce363079d91f624a0', '', '1556536134');
+INSERT INTO `ss_sys_log` VALUES ('15939', '10', 'admin', 'cms/article/index', '文章,查看列表', 'GET', '{\"r\":\"cms/article/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '0a68051bff7153f81accf32831a90dc90', '', '1556536140');
+INSERT INTO `ss_sys_log` VALUES ('15940', '10', 'admin', 'cms/article/update', '编辑文章,进入表单', 'GET', '{\"r\":\"cms/article/update\",\"id\":\"33\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '5656463e040f400bdd943d97836997fe0', '', '1556536148');
+INSERT INTO `ss_sys_log` VALUES ('15941', '10', 'admin', 'cms/article/update', '编辑文章,提交', 'POST', '{\"r\":\"cms/article/update\",\"id\":\"33\"}', '{\"_csrf-backend\":\"AgBCZacKafE2poiLPoTF-YbXP38-qzjQ4jIXhC1zg8dVeQ0s818Yx1Xj_fFc15DK_5ZXFAnNdoiNaH3BbhDO_g==\",\"Article\":{\"columnid\":\"90\",\"title\":\"嘉乐邦注册协议\",\"colorval\":\"\",\"boldval\":\"\",\"slug\":\"user-protocol\",\"flag\":\"\",\"source\":\"\",\"author\":\"admin\",\"linkurl\":\"\",\"keywords\":\"\",\"description\":\"\",\"content\":\"<p>嘉乐邦注册协议嘉乐邦注册协议嘉乐邦注册协议嘉乐邦注册协议嘉乐邦注册协议嘉乐邦注册协议</p>\",\"picurl\":\"\",\"hits\":\"100\",\"orderid\":\"50\",\"posttime\":\"2019-03-10\",\"status\":\"1\"},\"picurl\":\"\",\"nothing\":\"批量上传文件\",\"picarr\":\"\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '5656463e040f400bdd943d97836997fe1', '', '1556536156');
+INSERT INTO `ss_sys_log` VALUES ('15942', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556545624');
+INSERT INTO `ss_sys_log` VALUES ('15943', '10', 'admin', 'site/home/default', '后台首页', 'GET', '{\"r\":\"site/home/default\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'be0010d94628d97d653b987468042ebe0', '', '1556545628');
+INSERT INTO `ss_sys_log` VALUES ('15944', '10', 'admin', 'user/inquiry/index', '服务订单,查看列表', 'GET', '{\"r\":\"user/inquiry/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2c653ca2970f82878d70fed78730397a0', '', '1556545633');
+INSERT INTO `ss_sys_log` VALUES ('15945', '10', 'admin', 'user/comment/index', '用户留言,查看列表', 'GET', '{\"r\":\"user/comment/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '9f21cf3ce5aee8a6f8d3a399ea00dbeb0', '', '1556545636');
+INSERT INTO `ss_sys_log` VALUES ('15946', '10', 'admin', 'user/inquiry/index', '服务订单,查看列表', 'GET', '{\"r\":\"user/inquiry/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2c653ca2970f82878d70fed78730397a0', '', '1556545638');
+INSERT INTO `ss_sys_log` VALUES ('15947', '10', 'admin', 'user/inquiry/view', '暂无描述', 'GET', '{\"r\":\"user/inquiry/view\",\"id\":\"78\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '3e9484ab48a2d5680f8d6c9084653da60', '', '1556545645');
+INSERT INTO `ss_sys_log` VALUES ('15948', '10', 'admin', 'user/inquiry/index', '服务订单,查看列表', 'GET', '{\"r\":\"user/inquiry/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2c653ca2970f82878d70fed78730397a0', '', '1556545647');
+INSERT INTO `ss_sys_log` VALUES ('15949', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556545653');
+INSERT INTO `ss_sys_log` VALUES ('15950', '10', 'admin', 'user/inquiry/index', '服务订单,查看列表', 'GET', '{\"r\":\"user/inquiry/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2c653ca2970f82878d70fed78730397a0', '', '1556545683');
+INSERT INTO `ss_sys_log` VALUES ('15951', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556545685');
+INSERT INTO `ss_sys_log` VALUES ('15952', '10', 'admin', 'user/inquiry/view', '暂无描述', 'GET', '{\"r\":\"user/inquiry/view\",\"id\":\"81\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '3e9484ab48a2d5680f8d6c9084653da60', '', '1556545691');
+INSERT INTO `ss_sys_log` VALUES ('15953', '10', 'admin', 'user/inquiry/edit', '编辑服务订单', 'POST', '{\"r\":\"user/inquiry/edit\",\"id\":\"81\"}', '{\"field\":\"ui_remark\",\"time_field\":\"ui_remark_time\",\"value\":\"dd\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '0a295020e700d33d08649d423dd5d60e1', '', '1556545698');
+INSERT INTO `ss_sys_log` VALUES ('15954', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556545700');
+INSERT INTO `ss_sys_log` VALUES ('15955', '10', 'admin', 'user/inquiry/index', '服务订单,查看列表', 'GET', '{\"r\":\"user/inquiry/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2c653ca2970f82878d70fed78730397a0', '', '1556545702');
+INSERT INTO `ss_sys_log` VALUES ('15956', '10', 'admin', 'user/inquiry/view', '暂无描述', 'GET', '{\"r\":\"user/inquiry/view\",\"id\":\"80\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '3e9484ab48a2d5680f8d6c9084653da60', '', '1556545710');
+INSERT INTO `ss_sys_log` VALUES ('15957', '10', 'admin', 'user/inquiry/edit', '编辑服务订单', 'POST', '{\"r\":\"user/inquiry/edit\",\"id\":\"80\"}', '{\"field\":\"ui_state\",\"value\":\"2\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '0a295020e700d33d08649d423dd5d60e1', '', '1556545712');
+INSERT INTO `ss_sys_log` VALUES ('15958', '10', 'admin', 'user/inquiry/view', '暂无描述', 'GET', '{\"r\":\"user/inquiry/view\",\"id\":\"77\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '3e9484ab48a2d5680f8d6c9084653da60', '', '1556545714');
+INSERT INTO `ss_sys_log` VALUES ('15959', '10', 'admin', 'user/inquiry/index', '服务订单,查看列表', 'GET', '{\"r\":\"user/inquiry/index\",\"InquirySearch\":{\"ui_state\":\"1\"}}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2c653ca2970f82878d70fed78730397a0', '', '1556545717');
+INSERT INTO `ss_sys_log` VALUES ('15960', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556546605');
+INSERT INTO `ss_sys_log` VALUES ('15961', '10', 'admin', 'user/inquiry/index', '服务订单,查看列表', 'GET', '{\"r\":\"user/inquiry/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2c653ca2970f82878d70fed78730397a0', '', '1556591957');
+INSERT INTO `ss_sys_log` VALUES ('15962', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556591970');
+INSERT INTO `ss_sys_log` VALUES ('15963', '10', 'admin', 'user/inquiry/index', '服务订单,查看列表', 'GET', '{\"r\":\"user/inquiry/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2c653ca2970f82878d70fed78730397a0', '', '1556592345');
+INSERT INTO `ss_sys_log` VALUES ('15964', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556595104');
+INSERT INTO `ss_sys_log` VALUES ('15965', '10', 'admin', 'site/home/default', '后台首页', 'GET', '{\"r\":\"site/home/default\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'be0010d94628d97d653b987468042ebe0', '', '1556604645');
+INSERT INTO `ss_sys_log` VALUES ('15966', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556604650');
+INSERT INTO `ss_sys_log` VALUES ('15967', '10', 'admin', 'site/home/default', '后台首页', 'GET', '{\"r\":\"site/home/default\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'be0010d94628d97d653b987468042ebe0', '', '1556674632');
+INSERT INTO `ss_sys_log` VALUES ('15968', '10', 'admin', 'user/inquiry/index', '服务订单,查看列表', 'GET', '{\"r\":\"user/inquiry/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '2c653ca2970f82878d70fed78730397a0', '', '1556674643');
+INSERT INTO `ss_sys_log` VALUES ('15969', '10', 'admin', 'user/inquiry/view', '暂无描述', 'GET', '{\"r\":\"user/inquiry/view\",\"id\":\"79\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '3e9484ab48a2d5680f8d6c9084653da60', '', '1556674654');
+INSERT INTO `ss_sys_log` VALUES ('15970', '10', 'admin', 'user/inquiry/edit', '编辑服务订单', 'POST', '{\"r\":\"user/inquiry/edit\",\"id\":\"79\"}', '{\"field\":\"ui_state\",\"value\":\"2\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '0a295020e700d33d08649d423dd5d60e1', '', '1556674657');
+INSERT INTO `ss_sys_log` VALUES ('15971', '10', 'admin', 'user/inquiry/view', '暂无描述', 'GET', '{\"r\":\"user/inquiry/view\",\"id\":\"76\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '3e9484ab48a2d5680f8d6c9084653da60', '', '1556674660');
+INSERT INTO `ss_sys_log` VALUES ('15972', '10', 'admin', 'user/inquiry/edit', '编辑服务订单', 'POST', '{\"r\":\"user/inquiry/edit\",\"id\":\"76\"}', '{\"field\":\"ui_state\",\"value\":\"2\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '0a295020e700d33d08649d423dd5d60e1', '', '1556674662');
+INSERT INTO `ss_sys_log` VALUES ('15973', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556675199');
+INSERT INTO `ss_sys_log` VALUES ('15974', '10', 'admin', 'site/help-cate/index', '系统帮助分类,查看列表', 'GET', '{\"r\":\"site/help-cate/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '5fd05d42e2805152ff720e7a969e81220', '', '1556675374');
+INSERT INTO `ss_sys_log` VALUES ('15975', '10', 'admin', 'sys/dev-log/index', '开发日志,查看列表', 'GET', '{\"r\":\"sys/dev-log/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e000614b03c4459d1900c3eb41e6b8ce0', '', '1556675377');
+INSERT INTO `ss_sys_log` VALUES ('15976', '10', 'admin', 'site/other/error', '进入了错误页面', 'GET', '{\"r\":\"tool/spider/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd85246ceba710062d0e8290d48898dd30', '', '1556675385');
+INSERT INTO `ss_sys_log` VALUES ('15977', '10', 'admin', 'tool/notify-user/index', '暂无描述', 'GET', '{\"r\":\"tool/notify-user/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '0946448701ec0c44e0bbb8b2be3e458a0', '', '1556675387');
+INSERT INTO `ss_sys_log` VALUES ('15978', '10', 'admin', 'tool/notify-group/index', '暂无描述', 'GET', '{\"r\":\"tool/notify-group/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '13efc3a56c40e0e274094d41c37541100', '', '1556675406');
+INSERT INTO `ss_sys_log` VALUES ('15979', '10', 'admin', 'tool/notify-content/index', '暂无描述', 'GET', '{\"r\":\"tool/notify-content/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'f25e13a5c183ba739f3c31d6acde3cce0', '', '1556675411');
+INSERT INTO `ss_sys_log` VALUES ('15980', '10', 'admin', 'tool/notify-from/index', '暂无描述', 'GET', '{\"r\":\"tool/notify-from/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'a81ce9bf7315db3f14662748428dd75c0', '', '1556675413');
+INSERT INTO `ss_sys_log` VALUES ('15981', '10', 'admin', 'site/other/error', '进入了错误页面', 'GET', '{\"r\":\"tool/seo/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'd85246ceba710062d0e8290d48898dd30', '', '1556675423');
+INSERT INTO `ss_sys_log` VALUES ('15982', '10', 'admin', 'tool/notify-user/index', '暂无描述', 'GET', '{\"r\":\"tool/notify-user/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '0946448701ec0c44e0bbb8b2be3e458a0', '', '1556675428');
+INSERT INTO `ss_sys_log` VALUES ('15983', '10', 'admin', 'sys/admin/index', '管理者,查看列表', 'GET', '{\"r\":\"sys/admin/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '4e88d758488726c960e7940873483db40', '', '1556675430');
+INSERT INTO `ss_sys_log` VALUES ('15984', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556953447');
+INSERT INTO `ss_sys_log` VALUES ('15985', '10', 'admin', 'site/home/default', '后台首页', 'GET', '{\"r\":\"site/home/default\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'be0010d94628d97d653b987468042ebe0', '', '1556953451');
+INSERT INTO `ss_sys_log` VALUES ('15986', '10', 'admin', 'user/feedback/index', '暂无描述', 'GET', '{\"r\":\"user/feedback/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'e4890b0738d977e4746e7f20f7f7e2690', '', '1556953501');
+INSERT INTO `ss_sys_log` VALUES ('15987', '10', 'admin', 'user/feedback/get-user-list', '暂无描述', 'GET', '{\"r\":\"user/feedback/get-user-list\",\"keyword\":\"\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'cf5fa06817a3ca8a5f44c397a3c38e4c0', '', '1556953516');
+INSERT INTO `ss_sys_log` VALUES ('15988', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '68e1c8300d1d341cc425b639e8948d980', '', '1556963213');
 
 -- ----------------------------
 -- Table structure for ss_sys_menu
@@ -5548,31 +5930,6 @@ INSERT INTO `ss_user_comment` VALUES ('2722', '-1', '1', '80', '1', 'jorry', '<p
 INSERT INTO `ss_user_comment` VALUES ('2723', '-1', '1', '80', '1', 'jorry', '<p>站点很好，赞！站点，超喜欢，赞！站，赞！站点很好！站亮，很好很漂亮，超喜欢，赞！站点很喜欢，赞！站点很好很漂亮，超喜欢，赞！站点很好很漂亮，超喜欢，赞！站点很好很漂亮，超喜欢，赞！站点很好很漂亮，超喜欢，赞！</p>', '<p><img src=\"http://img01.lingdangpet.cn/cms/2018_10_22/fa3051800d9dcc984c468ec11100126a.jpg\" title=\"banner-5-经纪人.jpg\" alt=\"banner-5-经纪人.jpg\"/></p>', '', '127.200.21.255', '1', 'zh-CN', '1540483200', '1540396800');
 
 -- ----------------------------
--- Table structure for ss_user_contact
--- ----------------------------
-DROP TABLE IF EXISTS `ss_user_contact`;
-CREATE TABLE `ss_user_contact` (
-  `uc_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '留言id',
-  `uc_nickname` varchar(30) NOT NULL COMMENT '昵称',
-  `uc_contact` varchar(50) NOT NULL COMMENT '联系方式',
-  `uc_content` text NOT NULL COMMENT '留言内容',
-  `uc_htop` set('true') NOT NULL COMMENT '置顶',
-  `uc_rtop` set('true') NOT NULL COMMENT '推荐',
-  `uc_ip` char(20) NOT NULL COMMENT '留言IP',
-  `uc_recont` text NOT NULL COMMENT '回复内容',
-  `uc_retime` int(10) unsigned NOT NULL COMMENT '回复时间',
-  `orderid` mediumint(8) unsigned NOT NULL COMMENT '排列排序',
-  `posttime` int(10) unsigned NOT NULL COMMENT '更新时间',
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '审核状态',
-  PRIMARY KEY (`uc_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='联系我们';
-
--- ----------------------------
--- Records of ss_user_contact
--- ----------------------------
-INSERT INTO `ss_user_contact` VALUES ('1', '游客', 'QQ：10000', '站点很好很漂亮，超喜欢，赞！', '', 'true', '127.0.0.1', '感谢您的留言！', '1326770722', '1', '1326770722', '1');
-
--- ----------------------------
 -- Table structure for ss_user_failed_login
 -- ----------------------------
 DROP TABLE IF EXISTS `ss_user_failed_login`;
@@ -5653,6 +6010,63 @@ INSERT INTO `ss_user_favorite` VALUES ('45', '1', '79', '50', '1', 'http://www.b
 INSERT INTO `ss_user_favorite` VALUES ('46', '1', '79', '50', '1', 'http://www.baidu.com', '5', '127.0.0.1', 'zh-CN', '1594967295');
 
 -- ----------------------------
+-- Table structure for ss_user_feedback
+-- ----------------------------
+DROP TABLE IF EXISTS `ss_user_feedback`;
+CREATE TABLE `ss_user_feedback` (
+  `fk_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '留言id',
+  `fk_user_id` int(11) unsigned DEFAULT NULL COMMENT '关联用户id',
+  `fk_nickname` varchar(30) NOT NULL DEFAULT '' COMMENT '用户昵称',
+  `fk_contact` varchar(50) NOT NULL DEFAULT '' COMMENT '联系方式',
+  `fk_content` text COMMENT '留言内容',
+  `fk_show` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否置顶在前台展示',
+  `fk_type_id` tinyint(6) unsigned NOT NULL,
+  `fk_ip` varchar(50) NOT NULL COMMENT '留言IP',
+  `fk_review` text NOT NULL COMMENT '回复内容',
+  `fk_retime` int(10) unsigned NOT NULL COMMENT '回复时间',
+  `fk_sms` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否自动给客户发短信',
+  `fk_email` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否自动给客户发邮件',
+  `lang` varchar(8) NOT NULL DEFAULT '' COMMENT '多语言',
+  `orderid` int(11) unsigned NOT NULL DEFAULT '10' COMMENT '排列排序',
+  `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `updated_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`fk_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='联系我们';
+
+-- ----------------------------
+-- Records of ss_user_feedback
+-- ----------------------------
+INSERT INTO `ss_user_feedback` VALUES ('2', '5', '夏又桥', '13725514524', '<p>测试一个意见反馈。。</p>', '0', '1', '127.0.0.1', '<p>gfff</p>', '1556380800', '0', '0', 'zh-CN', '121', '1556367275', '1556430936');
+INSERT INTO `ss_user_feedback` VALUES ('9', '21', '夏又桥', '13725514524', '这是一个意见，希望你们能给我回复，发到我的邮件或者手机短信上来，或者我的消息中心里面去，我需要详细的解答。', '0', '1', '127.0.0.1', '', '0', '0', '0', 'zh-CN', '10', '1556434257', '0');
+INSERT INTO `ss_user_feedback` VALUES ('10', '21', 'abc', '13725514524', '测试意见反馈测试意见反馈测试意见反馈测试意见反馈测试意见反馈', '0', '1', '127.0.0.1', '', '0', '0', '0', 'zh-CN', '10', '1556545390', '0');
+
+-- ----------------------------
+-- Table structure for ss_user_feedback_type
+-- ----------------------------
+DROP TABLE IF EXISTS `ss_user_feedback_type`;
+CREATE TABLE `ss_user_feedback_type` (
+  `fkt_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `fkt_form_name` varchar(50) NOT NULL DEFAULT '' COMMENT '表单显示名',
+  `fkt_form_show` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否显示在提交表单',
+  `fkt_list_name` varchar(50) NOT NULL DEFAULT '' COMMENT '展示列表标题',
+  `fkt_list_show` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否展示在展示列表',
+  `lang` varchar(8) NOT NULL DEFAULT '' COMMENT '多语言',
+  `orderid` int(10) unsigned NOT NULL DEFAULT '10' COMMENT '排序',
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '启用状态',
+  `is_default` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否为默认组',
+  `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `updated_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`fkt_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of ss_user_feedback_type
+-- ----------------------------
+INSERT INTO `ss_user_feedback_type` VALUES ('1', '意见反馈', '1', '意见反馈', '1', 'zh-CN', '130', '1', '1', '4294967295', '1556424708');
+INSERT INTO `ss_user_feedback_type` VALUES ('2', '投诉举报', '1', '投诉举报', '0', 'zh-CN', '110', '1', '0', '4294967295', '1556426951');
+INSERT INTO `ss_user_feedback_type` VALUES ('3', '业务咨询', '1', '业务咨询', '0', 'zh-CN', '120', '1', '0', '4294967295', '1556426947');
+
+-- ----------------------------
 -- Table structure for ss_user_group
 -- ----------------------------
 DROP TABLE IF EXISTS `ss_user_group`;
@@ -5663,13 +6077,15 @@ CREATE TABLE `ss_user_group` (
   `lang` varchar(8) NOT NULL COMMENT '多语言',
   `is_default` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`ug_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ss_user_group
 -- ----------------------------
 INSERT INTO `ss_user_group` VALUES ('6', '2018双十一营销活动', '10', 'zh-CN', '1');
 INSERT INTO `ss_user_group` VALUES ('8', '测试组', '11', 'zh-CN', '0');
+INSERT INTO `ss_user_group` VALUES ('9', 'dfsfasf', '10', 'zh-TW', '1');
+INSERT INTO `ss_user_group` VALUES ('10', 'dddd', '11', 'zh-TW', '0');
 
 -- ----------------------------
 -- Table structure for ss_user_info
@@ -5713,12 +6129,19 @@ CREATE TABLE `ss_user_inquiry` (
   `ui_answer_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '回应时间',
   `ui_remark_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '备注时间',
   PRIMARY KEY (`ui_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8 COMMENT='预约、询盘等服务';
+) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8 COMMENT='预约、询盘等服务';
 
 -- ----------------------------
 -- Records of ss_user_inquiry
 -- ----------------------------
 INSERT INTO `ss_user_inquiry` VALUES ('75', '190423174457751', '办公室搬迁', 'cms-images/product/2019_03_24/6fb9e5db668cd9c2cd130dd6a34b1128==150x150.png', '{\"电话\":\"13725514524\",\"位置\":\"惠州市\",\"业务类型\":\"快捷预约\"}', '5', '4', '广东深圳	天威视讯/联通', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '订单已经完成，请验收', '', '1', '3', '1556012697', '1556012727', '1556012717');
+INSERT INTO `ss_user_inquiry` VALUES ('76', '190426233931761', '办公室搬迁', 'cms-images/product/2019_03_24/6fb9e5db668cd9c2cd130dd6a34b1128==150x150.png', '{\"电话\":\"18589080024\",\"位置\":\"东莞市\",\"业务类型\":\"快捷预约\"}', '5', null, '广东深圳	天威视讯/联通', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', null, null, '1', '2', '1556293171', '0', '0');
+INSERT INTO `ss_user_inquiry` VALUES ('77', '190426233944771', '办公室搬迁', 'cms-images/product/2019_03_24/6fb9e5db668cd9c2cd130dd6a34b1128==150x150.png', '{\"电话\":\"13725514524\",\"位置\":\"东莞市\",\"业务类型\":\"快捷预约\"}', '5', null, '广东深圳	天威视讯/联通', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', null, null, '1', '3', '1556293184', '0', '0');
+INSERT INTO `ss_user_inquiry` VALUES ('78', '190426234214781', '长途搬家', 'cms-images/product/2019_03_24/ee8e03139901b6ac68855fb632a9b5eb==150x150.png', '{\"电话\":\"13725514524\",\"位置\":\"深圳市\",\"业务类型\":\"快捷预约\"}', '12', null, '广东深圳	天威视讯/联通', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', null, null, '1', '3', '1556293334', '0', '0');
+INSERT INTO `ss_user_inquiry` VALUES ('79', '190426234423791', '长途搬家', 'cms-images/product/2019_03_24/ee8e03139901b6ac68855fb632a9b5eb==150x150.png', '{\"电话\":\"18589080024\",\"位置\":\"东莞市\",\"业务类型\":\"快捷预约\"}', '12', null, '广东深圳	天威视讯/联通', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', null, null, '1', '2', '1556293463', '0', '0');
+INSERT INTO `ss_user_inquiry` VALUES ('80', '190426235018801', '长途搬家', 'cms-images/product/2019_03_24/ee8e03139901b6ac68855fb632a9b5eb==150x150.png', '{\"电话\":\"18589080024\",\"位置\":\"广州市\",\"业务类型\":\"快捷预约\"}', '12', null, '广东深圳	天威视讯/联通', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', null, null, '1', '2', '1556293818', '0', '0');
+INSERT INTO `ss_user_inquiry` VALUES ('81', '190426235051811', '长途搬家', 'cms-images/product/2019_03_24/ee8e03139901b6ac68855fb632a9b5eb==150x150.png', '{\"电话\":\"18589080024\",\"位置\":\"东莞市\",\"业务类型\":\"快捷预约\"}', '12', null, '广东深圳	天威视讯/联通', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', null, 'dd', '1', '3', '1556293851', '0', '1556545698');
+INSERT INTO `ss_user_inquiry` VALUES ('82', '190427150602821', '办公室搬迁', 'cms-images/product/2019_03_24/6fb9e5db668cd9c2cd130dd6a34b1128==150x150.png', '{\"电话\":\"13725514524\",\"位置\":\"广州市\",\"业务类型\":\"快捷预约\"}', '5', '21', '广东深圳	天威视讯/联通', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '您好，您的要求我们会尽量满足', null, '1', '3', '1556348762', '1556435412', '0');
 
 -- ----------------------------
 -- Table structure for ss_user_level
@@ -5740,6 +6163,34 @@ CREATE TABLE `ss_user_level` (
 -- ----------------------------
 INSERT INTO `ss_user_level` VALUES ('4', '中级会员', '201', '500', 'zh-CN', '14', '1');
 INSERT INTO `ss_user_level` VALUES ('5', '测试等级', '10', '100', 'zh-CN', '15', '0');
+
+-- ----------------------------
+-- Table structure for ss_user_msg
+-- ----------------------------
+DROP TABLE IF EXISTS `ss_user_msg`;
+CREATE TABLE `ss_user_msg` (
+  `msg_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `msg_content` varchar(255) DEFAULT NULL COMMENT '消息内容，以json格式存储',
+  `msg_type` tinyint(2) unsigned NOT NULL DEFAULT '1' COMMENT '消息类型，1反馈通知，2优惠促销，3服务消息',
+  `msg_user_id` int(11) unsigned DEFAULT NULL COMMENT '用户id',
+  `msg_readtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '读取时间',
+  `msg_deltime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '删除时间',
+  `lang` varchar(8) NOT NULL DEFAULT '' COMMENT '多语言',
+  `orderid` int(11) unsigned NOT NULL DEFAULT '10' COMMENT '排序',
+  `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `updated_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`msg_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=183 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of ss_user_msg
+-- ----------------------------
+INSERT INTO `ss_user_msg` VALUES ('177', '{\"question\":\"问题反馈问题反馈问题反馈问题反馈问题反馈\",\"answer\":\"问题回答问题回答问题回答问题回答问题回答问题回答问题回答问题回答\"}', '1', '21', '1556544069', '0', 'zh-CN', '10', '1556502375', '1556502375');
+INSERT INTO `ss_user_msg` VALUES ('178', '{\"content\":\"优惠消息优惠消息优惠消息<a href=\\\"\\\">优惠消息</a>优惠消息优惠消息优惠消息优惠消息优惠消息\"}', '2', '21', '1556525664', '1556525676', 'zh-CN', '10', '1556502375', '1556502375');
+INSERT INTO `ss_user_msg` VALUES ('179', '{\"question\":\"问题反馈问题反馈问题反馈问题反馈问题反馈\",\"answer\":\"问题回答问题回答问题回答问题回答问题回答问题回答问题回答问题回答\"}', '1', '21', '1556544069', '0', 'zh-CN', '10', '1556524960', '1556524960');
+INSERT INTO `ss_user_msg` VALUES ('180', '{\"content\":\"优惠消息优惠消息优惠消息<a href=\\\"\\\">优惠消息</a>优惠消息优惠消息优惠消息优惠消息优惠消息\"}', '2', '21', '1556544054', '0', 'zh-CN', '10', '1556524960', '1556524960');
+INSERT INTO `ss_user_msg` VALUES ('181', '{\"question\":\"问题反馈问题反馈问题反馈问题反馈问题反馈\",\"answer\":\"问题回答问题回答问题回答问题回答问题回答问题回答问题回答问题回答\"}', '1', '21', '1556592005', '0', 'zh-CN', '10', '1556525775', '1556525775');
+INSERT INTO `ss_user_msg` VALUES ('182', '{\"content\":\"优惠消息优惠消息优惠消息<a href=\\\"\\\">优惠消息</a>优惠消息优惠消息优惠消息优惠消息优惠消息\"}', '2', '21', '1556592007', '0', 'zh-CN', '10', '1556525775', '1556525775');
 
 -- ----------------------------
 -- Table structure for ss_user_qq
@@ -5764,6 +6215,37 @@ CREATE TABLE `ss_user_qq` (
 -- Records of ss_user_qq
 -- ----------------------------
 INSERT INTO `ss_user_qq` VALUES ('EA875B0AE310B4D2DA718E9A6F70E3B5', 'jorry有桥', '男', '广东', '深圳', '1986', 'http://qzapp.qlogo.cn/qzapp/101557951/EA875B0AE310B4D2DA718E9A6F70E3B5/30', 'http://qzapp.qlogo.cn/qzapp/101557951/EA875B0AE310B4D2DA718E9A6F70E3B5/50', 'http://qzapp.qlogo.cn/qzapp/101557951/EA875B0AE310B4D2DA718E9A6F70E3B5/100', 'http://thirdqq.qlogo.cn/g?b=oidb&k=84l6HSVsayzlt45ia1W6v8g&s=40', 'http://thirdqq.qlogo.cn/g?b=oidb&k=84l6HSVsayzlt45ia1W6v8g&s=100');
+
+-- ----------------------------
+-- Table structure for ss_user_ticket
+-- ----------------------------
+DROP TABLE IF EXISTS `ss_user_ticket`;
+CREATE TABLE `ss_user_ticket` (
+  `t_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `t_ticket_num` varchar(20) NOT NULL DEFAULT '' COMMENT '工单号',
+  `t_title` varchar(200) NOT NULL DEFAULT '' COMMENT '工单标题',
+  `t_files` text COMMENT '主题相关文件',
+  `t_content` mediumtext COMMENT '工单互动内容（数组序列化）',
+  `t_relate_id` int(11) unsigned DEFAULT NULL COMMENT '关联对象，服务单id/预约单id',
+  `t_phone` varchar(11) NOT NULL DEFAULT '' COMMENT '手机通知',
+  `t_email` varchar(30) NOT NULL DEFAULT '' COMMENT '邮件通知',
+  `t_user_id` int(10) unsigned DEFAULT NULL COMMENT '工单所属',
+  `t_status` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '工单状态，1待处理，2有新回复，3待回复，4待您评价，5已关闭',
+  `t_star` tinyint(3) unsigned NOT NULL DEFAULT '5' COMMENT '结单星级',
+  `t_is_finish` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '结单是否解决',
+  `t_finish_comment` varchar(200) NOT NULL DEFAULT '' COMMENT '结单评价',
+  `finished_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '完成时间',
+  `lang` varchar(8) NOT NULL DEFAULT '' COMMENT '多语言',
+  `created_at` int(10) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `updated_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`t_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='工单表';
+
+-- ----------------------------
+-- Records of ss_user_ticket
+-- ----------------------------
+INSERT INTO `ss_user_ticket` VALUES ('22', 'GD19050418485622', '测试工单004主题', 'bbbb.jpg', null, '88877', '13785584784', '999999@qq.com', '21', '1', '5', '1', '', '0', 'zh-CN', '1556966936', '1556966936');
+INSERT INTO `ss_user_ticket` VALUES ('23', 'GD19050418512223', '工单005主题', 'ccccc.jpg', null, '88877', '13784878544', '8485784@qq.com', '21', '1', '5', '1', '', '0', 'zh-CN', '1556967082', '1556967082');
 
 -- ----------------------------
 -- Table structure for ss_user_weibo

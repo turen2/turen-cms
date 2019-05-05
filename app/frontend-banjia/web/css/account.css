@@ -58,6 +58,10 @@
     font-size: 16px;
     font-weight: 500;
 }
+.user-content-head .title .primary-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+}
 .user-content-body {
     padding: 30px;
 }
@@ -112,7 +116,10 @@
     color: red;
     position: absolute;
     left: 0;
-    top: 45px;
+    bottom: -20px;
+}
+.user-content .form-group p.error .iconfont, .jia-modal .form-group p.error .iconfont {
+    font-size: 14px;
 }
 .user-content .alert {
     font-size: 14px;
@@ -644,6 +651,11 @@
 .jia-modal .form-group .form-control.text {
     width: 100%;
 }
-
 /* 账户安全弹窗end */
 
+/* 工单管理 */
+.user-content .ticket-form .form-group .form-control.textarea {
+    height: 120px;
+    width: 460px;
+}
+/* 工单管理end */

@@ -17,7 +17,7 @@ class TicketSearch extends Ticket
     public function rules()
     {
         return [
-            [['t_id', 't_relate_id', 't_user_id', 't_status', 't_star', 't_is_finish', 'finished_at', 'created_at', 'udpated_at'], 'integer'],
+            [['t_id', 't_relate_id', 't_user_id', 't_status', 't_star', 't_is_finish', 'finished_at', 'created_at', 'updated_at'], 'integer'],
             [['t_ticket_num', 't_title', 't_content', 't_phone', 't_email', 't_finish_comment', 'lang'], 'safe'],
         ];
     }

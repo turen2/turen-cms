@@ -179,7 +179,7 @@ class Inquiry extends \common\components\ActiveRecord
             //生成订单号
             $lastInsertId = Yii::$app->getDb()->lastInsertID;
             Yii::$app->getDb()->createCommand()->update(self::tableName(), [
-                'ui_service_num' => Util::GenerateSimpleOrderNumber(self::INQUIRY_TYPE_QUICK, $lastInsertId),
+                'ui_service_num' => Util::GenerateSimpleOrderNumber('FU'.self::INQUIRY_TYPE_QUICK, $lastInsertId),
             ], ['ui_id' => $lastInsertId])->execute();
 
             //邮件通知队列

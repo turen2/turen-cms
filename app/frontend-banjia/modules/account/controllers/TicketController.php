@@ -3,7 +3,6 @@
 namespace app\modules\account\controllers;
 
 use Yii;
-use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\components\Controller;
@@ -46,151 +45,108 @@ class TicketController extends Controller
     }
 
     /**
+     * 创建新工单
+     * @return string
+     */
+    public function actionCreate()
+    {
+        $model = new Ticket();
+        $model->loadDefaultValues();
+
+        if($model->load(Yii::$app->getRequest()->post()) && $model->save()) {
+            $this->redirect(['ticket/detail', 'id' => $model->t_id]);
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
      * Displays a single Ticket model.
      * @param string $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
-     * 创建工单测试
-     */
-    public function actionCreate()
-    {
-        $model = new Ticket();
-        $model->t_ticket_num = '19082548457';
-        $model->t_title = '测试工单';
-        $model->t_relate_id = '25';
-        $model->t_phone = '13725514524';
-        $model->t_email = '980522557@qq.com';
-        $model->t_user_id = '5';
-        $model->t_status = '1';
-        $model->created_at = time();
-        $model->udpated_at = time();
-
-        if(empty($model->save(true))) {
-            var_dump($model->getErrors());
-        }
-        exit('创建工单完成');
-    }
-
-    /**
-     * 首次交互测试
-     */
-    public function actionCreate1($id)
-    {
-        $model = $this->findModel($id);
-
-        $arr = [
-            'name' => '提交者名称2',
-            'content' => 'xxxxxxxx交互内容',
-            'files' => '上传的文件路径，以逗号分隔',
-            'time' => time(),
-            'type' => 'user',
-        ];
-
-        $content = [];
-        if(empty($model->t_content)) {
-            $content[] = $arr;
-        } else {
-            $content = unserialize($model->t_content);
-            $content[] = $arr;
-        }
-
-        $model->t_content = serialize($content);
-        $model->t_status = '2';
-
-        if(empty($model->save(true))) {
-            var_dump($model->getErrors());
-        }
-        exit('首次交互完成');
-    }
-
-    /**
-     * 首次回复测试
-     */
-    public function actionCreate2($id)
-    {
-        $model = $this->findModel($id);
-
-        $arr = [
-            'name' => '回复者名称2',
-            'content' => 'xxxxxxxx交互内容',
-            'files' => '上传的文件路径，以逗号分隔',
-            'time' => time(),
-            'admin_id' => 5,
-            'type' => 'admin',
-        ];
-
-        $content = [];
-        if(empty($model->t_content)) {
-            $content[] = $arr;
-        } else {
-            $content = unserialize($model->t_content);
-            $content[] = $arr;
-        }
-
-        $model->t_content = serialize($content);
-        $model->t_status = '3';
-
-        if(empty($model->save(true))) {
-            var_dump($model->getErrors());
-        }
-        exit('首次回复完成');
-    }
-
-    /**
-     * 结单测试
-     */
-    public function actionCreate3($id)
-    {
-        $model = $this->findModel($id);
-        $model->t_status = '4';
-
-        if(empty($model->save(true))) {
-            var_dump($model->getErrors());
-        }
-        exit('结单完成');
-    }
-
-    /**
-     * 评论测试
-     */
-    public function actionCreate4($id)
-    {
-        $model = $this->findModel($id);
-        $model->t_status = '5';
-        //评论
-        $model->t_star = '5';
-        $model->t_is_finish = '1';
-        $model->t_finish_comment = '非常好啊';
-        $model->finished_at = time();
-
-        if(empty($model->save(true))) {
-            var_dump($model->getErrors());
-        }
-        exit('评论完成');
-    }
-
-    /**
-     * 查看
-     */
     public function actionDetail($id)
     {
         $model = $this->findModel($id);
 
-        echo '<pre>';
-        var_dump($model->attributes);
+        return $this->render('detail', [
+            'model' => $model,
+        ]);
+    }
 
-        var_dump(unserialize($model->t_content));
+    /**
+     * 工单回复
+     * @param $id
+     * @return string
+     * @throws NotFoundHttpException
+     * @throws \yii\db\Exception
+     */
+    public function actionReview($id)
+    {
+        //接受的数据
+        $post = Yii::$app->getRequest()->post();
+        $data = [
+            'name' => '提交者名称2',
+            'content' => 'xxxxxxxx交互内容',
+            'files' => '上传的文件路径，以逗号分隔',
+            'time' => time(),
+            'type' => Ticket::TICKET_TYPE_USER,
+        ];
 
-        exit('查看完成');
+        $model = $this->findModel($id);
+
+        $content = [];
+        if(empty($model->t_content)) {
+            $content[] = $data;
+        } else {
+            $content = unserialize($model->t_content);
+            $content[] = $data;
+        }
+
+        Yii::$app->getDb()->createCommand()->update(Ticket::tableName(), [
+            't_content' => serialize($content),
+            't_status' => Ticket::TICKET_STATUS_NEWREVIEW,
+        ], [
+            't_user_id' => Yii::$app->getUser()->getId(),
+            't_id' => $id,
+        ])->execute();
+
+        return $this->render('detail', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * 工单评价
+     * @param $id
+     * @return string
+     * @throws NotFoundHttpException
+     * @throws \yii\db\Exception
+     */
+    public function actionComment($id)
+    {
+        //接受的数据
+        $post = Yii::$app->getRequest()->post();
+
+        $model = $this->findModel($id);
+
+        Yii::$app->getDb()->createCommand()->update(Ticket::tableName(), [
+            't_star' => 5,
+            't_is_finish' => Ticket::TICKET_YES,
+            't_finish_comment' => '评论内容测试',
+            'finished_at' => time(),
+            't_status' => Ticket::TICKET_STATUS_CLOSE,
+        ], [
+            't_user_id' => Yii::$app->getUser()->getId(),
+            't_id' => $id,
+        ])->execute();
+
+        return $this->render('detail', [
+            'model' => $model,
+        ]);
     }
 
     /**
