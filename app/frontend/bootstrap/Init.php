@@ -6,14 +6,17 @@
  */
 namespace app\bootstrap;
 
+use common\models\user\User;
 use Yii;
-use common\models\sys\Multilang;
 use yii\db\Query;
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
-use common\models\sys\Template;
 use common\models\sys\Config;
+use common\models\site\FaceConfig;
+use common\models\sys\Template;
+use common\models\sys\Multilang;
 use yii\caching\TagDependency;
+use yii\swiftmailer\Mailer;
 
 /**
  * 系统初始化生成了全局参数以"config_init_"为前缀
@@ -22,7 +25,6 @@ use yii\caching\TagDependency;
 class Init extends \yii\base\Component implements \yii\base\BootstrapInterface
 {
     const MULTI_LAGN_CACHE = '__multi_lang_cache';//多语言默认配置参数缓存
-    const CURRENT_TEMPLATE_CACHE = '__current_template_cache';//当前模板参数缓存
     
     private $_cache;
     
@@ -69,7 +71,7 @@ class Init extends \yii\base\Component implements \yii\base\BootstrapInterface
         } else {
             //依赖缓存
             $params = Multilang::LangList();
-            $this->_cache->set(self::MULTI_LAGN_CACHE, $params, 3600, new TagDependency(['tags' => Yii::$app->params["config.updateAllCache"]]));
+            $this->_cache->set(self::MULTI_LAGN_CACHE, $params, 3600);
             Yii::$app->params = ArrayHelper::merge(Yii::$app->params, $params);
         }
         
@@ -86,15 +88,16 @@ class Init extends \yii\base\Component implements \yii\base\BootstrapInterface
             }
         }
         
-        //设置系统语言
+        //设置系统语言（此时url具体SEO优化的意义，且以手动设置为最高优先级）
         Yii::$app->language = $lang;
         
         //系统全局生效
         define('GLOBAL_LANG', $lang);//语言包名
         define('GLOBAL_LANG_KEY', $langKey);//语言URL KEY
-        define('GLOBAL_SYS_CACHE_KEY', 'sys.cache.'.GLOBAL_LANG);
+        define('GLOBAL_SYS_CACHE_KEY', 'sys.cache.'.GLOBAL_LANG); // 系统配置缓存key
+        define('GLOBAL_FACE_CACHE_KEY', 'face.cache.'.GLOBAL_LANG);// 界面配置缓存key
         
-        //var_dump(GLOBAL_LANG);var_dump(GLOBAL_LANG_KEY);var_dump(GLOBAL_TEMPLATE_ID);var_dump(CONFIG_CACHE_KEY);exit;
+        // var_dump(GLOBAL_LANG);var_dump(GLOBAL_LANG_KEY);var_dump(GLOBAL_SYS_CACHE_KEY);var_dump(GLOBAL_FACE_CACHE_KEY);exit;
     }
     
     protected function initRewrite()
@@ -142,30 +145,33 @@ class Init extends \yii\base\Component implements \yii\base\BootstrapInterface
     protected function initConfig()
     {
         Yii::$app->params = ArrayHelper::merge(Yii::$app->params, Config::CacheList());
+
+        //系统登录模式纠正
+        Yii::$app->user->loginUrl = (Yii::$app->params['config_login_mode'] == User::USER_PHONE_MODE)?['/account/passport/login']:['/account/user/login'];
     }
     
     protected function initTemplate()
     {
-        //要使用依赖缓存
-        if($template = $this->_cache->get(self::CURRENT_TEMPLATE_CACHE)) {
-            //nothing
-        } else {
-            $template = (new Query())->from(Template::tableName())->where(['temp_id' => GLOBAL_TEMPLATE_ID])->one();
-            $this->_cache->set(self::CURRENT_TEMPLATE_CACHE, $template, 3600, new TagDependency(['tags' => Yii::$app->params["config.updateAllCache"]]));
-        }
-        
-        if(empty($template)) {
-            throw new InvalidConfigException('系统管理/多语言管理：Id为'.GLOBAL_TEMPLATE_ID.'的模板未找到。');
-        }
-        
         //设置系统模板
-        Yii::$app->setViewPath('@app/themes/'.$template['temp_code'].'/views');
-        Yii::$app->setLayoutPath('@app/themes/'.$template['temp_code'].'/layouts');
+        $template = Yii::$app->params['config.pc_template_name'];
+
+        Yii::$app->setViewPath('@app/themes/'.$template.'/views');
+        Yii::$app->setLayoutPath('@app/themes/'.$template.'/layouts');
+
+        $theme = Yii::$app->getView()->theme;
+        $theme->basePath = '@app/themes/'.$template;//主题所在文件路径
+        $theme->baseUrl = '@app/themes/'.$template;//与主题相关的url资源路径
+        $theme->pathMap = [
+            '@app/modules' => '@app/themes/'.$template.'/modules',//模板
+            '@app/widgets' => '@app/themes/'.$template.'/widgets',//部件
+            '@app/layouts' => '@app/themes/'.$template.'/layouts',//布局
+            //优先级最低
+            '@app/views' => '@app/themes/'.$template,//非模块模板
+        ];
     }
     
     protected function initFace()
     {
-        
-        return true;
+        Yii::$app->params = ArrayHelper::merge(Yii::$app->params, FaceConfig::FaceCacheList());
     }
 }

@@ -35,7 +35,6 @@ $this->title = '菜单栏';
                         'items' => [
                             ['label' => '后台首页', 'url' => ['/site/home/default'], 'visible' => $roleModel->checkPerm('site/home/default', true)],
                             ['label' => '界面配置', 'url' => ['/site/face-config/setting'], 'visible' => $roleModel->checkPerm('site/face-config/setting', true)],
-                            ['label' => '专题管理', 'url' => ['/site/topic/index'], 'visible' => $roleModel->checkPerm('site/topic/index', true)],
                         ],
                     ]) ?>
 				</div>
@@ -173,8 +172,7 @@ $this->title = '菜单栏';
                         'items' => [
                             ['label' => '管理员管理', 'url' => ['/sys/admin/index'], 'visible' => $roleModel->checkPerm('sys/admin/index', true)],
                             ['label' => '角色配置', 'url' => ['/sys/role/index'], 'visible' => $roleModel->checkPerm('sys/role/index', true)],
-                            ['label' => '模板管理', 'url' => ['/sys/template/index'], 'visible' => $roleModel->checkPerm('sys/template/index', true)],
-                            ['label' => '多语言管理', 'url' => ['/sys/multilang-tpl/index'], 'visible' => $roleModel->checkPerm('sys/multilang-tpl/index', true)],
+                            ['label' => '多语言管理', 'url' => ['/sys/multilang/index'], 'visible' => $roleModel->checkPerm('sys/multilang/index', true)],
                             ['label' => '系统设置', 'url' => ['/sys/config/setting'], 'visible' => $roleModel->checkPerm('sys/config/setting', true)],
                         ],
                     ]) ?>

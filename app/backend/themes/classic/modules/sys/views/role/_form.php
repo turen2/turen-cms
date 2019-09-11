@@ -81,7 +81,7 @@ $this->registerJs($js);
     		</td>
     	</tr>
         <tr>
-            <td class="first-column">界面与专题管理：</td>
+            <td class="first-column">界面管理：</td>
             <td class="second-column">
                 <div class="purview-title">
                     <strong>后台首页</strong>
@@ -95,17 +95,6 @@ $this->registerJs($js);
                 <div class="purview-list">
                     <span><?= BackCommonHelper::CheckPermBox($model, 'site/face-config/setting', '查看列表') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'site/face-config/batch', '批量操作') ?></span>
-                </div>
-                <div class="purview-title">
-                    <strong>专题管理</strong>
-                </div>
-                <div class="purview-list">
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/topic/index', '查看列表') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/topic/create', '新增') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/topic/delete', '删除') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/topic/update', '编辑') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/topic/check', '修改状态') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/topic/batch', '批量操作') ?></span>
                 </div>
                 <div class="purviewSel">
                     <a href="javascript:;" class="selectall">全选</a>&nbsp;&nbsp;
@@ -557,31 +546,6 @@ $this->registerJs($js);
                     <span><?= BackCommonHelper::CheckPermBox($model, 'sys/role/delete', '删除') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'sys/role/update', '编辑') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'sys/role/check', '修改状态') ?></span>
-                </div>
-                <div class="purview-title">
-                    <strong>多语言管理</strong>
-                </div>
-                <div class="purview-list">
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'sys/multilang-tpl/index', '查看列表') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'sys/multilang-tpl/create', '新增') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'sys/multilang-tpl/delete', '删除') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'sys/multilang-tpl/update', '编辑') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'sys/multilang-tpl/check', '修改状态') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'sys/multilang-tpl/quick-move', '上下排序') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'sys/multilang-tpl/batch', '批量操作') ?></span>
-                </div>
-                <div class="purview-title">
-                    <strong>模板管理</strong>
-                </div>
-                <div class="purview-list">
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'sys/template/index', '查看列表') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'sys/template/create', '新增') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'sys/template/delete', '删除') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'sys/template/update', '编辑') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'sys/template/template-select', 'ajax获取模板列表') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'sys/template/fileupload', '缩略图上传') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'sys/template/multiple-fileupload', '多图上传') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'sys/template/ueditor', '编辑器图片上传') ?></span>
                 </div>
                 <div class="purviewSel">
                     <a href="javascript:;" class="selectall">全选</a>&nbsp;&nbsp;

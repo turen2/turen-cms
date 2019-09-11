@@ -157,7 +157,7 @@ class Template extends \app\models\base\Sys
     
     public static function TemplateCodes()
     {
-        $dirs = FileHelper::findDirectories(Yii::getAlias('@frontend/themes/'), ['recursive' => false]);
+        $dirs = FileHelper::findDirectories(FileHelper::normalizePath(Yii::getAlias('@frontend/themes/')), ['recursive' => false]);
         $options = [];
         foreach ($dirs as $dir) {
             $dir = FileHelper::normalizePath($dir);

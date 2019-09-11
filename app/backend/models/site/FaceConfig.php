@@ -16,7 +16,6 @@ use yii\caching\TagDependency;
  *
  * @property string $cfg_name 变量名称
  * @property string $cfg_value 变量值
- * @property string $template_id 模板
  * @property string $lang 多语言
  */
 class FaceConfig extends \app\models\base\Site
@@ -47,7 +46,6 @@ class FaceConfig extends \app\models\base\Site
     public function rules()
     {
         return [
-            [['template_id'], 'integer'],
             [['cfg_name', 'cfg_value'], 'string'],
             [['cfg_name'], 'string', 'max' => 100],
             [['lang'], 'string', 'max' => 8],
@@ -62,7 +60,6 @@ class FaceConfig extends \app\models\base\Site
         return [
             'cfg_name' => '变量名称',
             'cfg_value' => '变量值',
-            'template_id' => '模板',
             'lang' => '多语言',
         ];
     }
@@ -71,10 +68,10 @@ class FaceConfig extends \app\models\base\Site
      * 获取指定语言和站点的界面配置
      * @return mixed
      */
-    public static function FaceConfigArray($templateId)
+    public static function FaceConfigArray()
     {
         if(empty(self::$_config)) {
-            self::$_config = self::find()->current()->where(['template_id' => $templateId])->asArray()->all();
+            self::$_config = self::find()->current()->asArray()->all();
         }
         
         return self::$_config;
@@ -92,12 +89,7 @@ class FaceConfig extends \app\models\base\Site
             unset($data[$csrfParam]);
         }
 
-        $templateId = $data['template_id'];
-        if (isset($data['template_id'])) {
-            unset($data['template_id']);
-        }
-
-        $models = self::find()->current()->where(['template_id' => $templateId])->all();
+        $models = self::find()->current()->all();
         $oldFaceConfigArray = ArrayHelper::map($models, 'cfg_name', 'cfg_value');
 
         $model = new self;
@@ -111,7 +103,6 @@ class FaceConfig extends \app\models\base\Site
                 $model->isNewRecord = true;
                 $model->cfg_name = $key;
                 $model->cfg_value = $val;
-                $model->template_id = $templateId;
                 $model->save(false);
             }
         }

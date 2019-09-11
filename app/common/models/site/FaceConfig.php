@@ -17,7 +17,6 @@ use yii\caching\TagDependency;
  *
  * @property string $cfg_name 变量名称
  * @property string $cfg_value 变量值
- * @property string $template_id 模板
  * @property string $lang 多语言
  */
 class FaceConfig extends \common\components\ActiveRecord
@@ -39,7 +38,7 @@ class FaceConfig extends \common\components\ActiveRecord
     public static function FaceConfigArray()
     {
         if(empty(self::$_config)) {
-            self::$_config = self::find()->current()->where(['template_id' => GLOBAL_TEMPLATE_ID])->orderBy(['orderid' => SORT_DESC])->asArray()->all();
+            self::$_config = self::find()->current()->orderBy(['orderid' => SORT_DESC])->asArray()->all();
         }
         
         return self::$_config;
@@ -71,7 +70,8 @@ class FaceConfig extends \common\components\ActiveRecord
     public static function UpdateFaceCache()
     {
         $cache = Yii::$app->getCache();
-        $models = self::find()->current()->where(['template_id' => GLOBAL_TEMPLATE_ID])->all();//缓存网站的界面配置参数
+        // var_dump(self::find()->current()->createCommand()->getRawSql());exit;
+        $models = self::find()->current()->all();//缓存网站的界面配置参数
         if($models) {
             $cache->delete(GLOBAL_FACE_CACHE_KEY);
 

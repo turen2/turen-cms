@@ -16,7 +16,7 @@ use yii\helpers\Json;
 use app\models\sys\Template;
 use app\filters\ReturnUrlFilter;
 use app\assets\FontAwesomeAsset;
-use app\models\sys\MultilangTpl;
+use app\models\sys\Multilang;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -85,16 +85,16 @@ $adminModel = Yii::$app->user->identity;
         	<div class="fun">
                 <div class="site-list clearfix">
                     <?php 
-                    $multilangTplModels = MultilangTpl::find()->all();
-                    if($multilangTplModels) {
-                        foreach ($multilangTplModels as $multilangTplModel) {
+                    $multilangModels = Multilang::find()->orderBy(['orderid' => SORT_DESC])->all();
+                    if($multilangModels) {
+                        foreach ($multilangModels as $multilangModel) {
                             $options = [
-                                'data-params' => ['lang' => $multilangTplModel->lang_sign],//此参数是用来构造表单的post参数
+                                'data-params' => ['lang' => $multilangModel->lang_sign],//此参数是用来构造表单的post参数
                                 'data-method' => 'post',
-                                'class' => (GLOBAL_LANG == $multilangTplModel->lang_sign)?'on':'',
+                                'class' => (GLOBAL_LANG == $multilangModel->lang_sign)?'on':'',
                                 'title' => '切换到',
                             ];
-                            echo Html::a($multilangTplModel->lang_name, Url::current(), $options);
+                            echo Html::a($multilangModel->lang_name, Url::current(), $options);
                         }
                         
                         echo Html::a(' | ', 'javascript:;');

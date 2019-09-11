@@ -17,7 +17,7 @@ use app\models\sys\Config;
 /* @var $model app\models\site\Config */
 /* @var $form yii\widgets\ActiveForm */
 
-$this->title = '界面绑定'.' ['.$templateCode.']';
+$this->title = '界面配置';
 
 $js = <<<EOF
 $('#tabs li:not(\'.line\')').on('click', function() {
@@ -94,13 +94,11 @@ echo Tips::widget([
         'action' => ['/site/face-config/batch'],
     ]);
 
-    echo Html::hiddenInput('template_id', $templateId);
-
 	foreach($configTabArr as $configTabText) {
 	?>
 	<div class="tabs_content <?php if($configTabText['view'] != 'nav') echo 'undis'; ?>" id="tabs_content_<?= $configTabText['view']; ?>">
 		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="form-table">
-			<?= $this->render('_item/template-'.$templateCode.'/'.Yii::$app->language.'/_'.$configTabText['view'], [
+			<?= $this->render('_item/'.Yii::$app->language.'/_'.$configTabText['view'], [
                 'config' => ArrayHelper::map($configs, 'cfg_name', 'cfg_value'),
             ]); ?>
 			<tr class="nb">

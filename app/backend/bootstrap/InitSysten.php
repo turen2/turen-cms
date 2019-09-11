@@ -11,7 +11,7 @@ use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 use yii\db\Query;
 use app\filters\ReturnUrlFilter;
-use app\models\sys\MultilangTpl;
+use app\models\sys\Multilang;
 
 /**
  * 系统初始化生成了全局参数以"config_init_"为前缀
@@ -51,15 +51,15 @@ class InitSysten extends \yii\base\Component implements \yii\base\BootstrapInter
             //$params['config_init_default_lang'];//保存最终确认的语言
             Yii::$app->params = ArrayHelper::merge(Yii::$app->params, $params);
         } else {
-            $multilangTpls = (new Query())->from(MultilangTpl::tableName())->all();
+            $multilangs = (new Query())->from(Multilang::tableName())->all();
             $allLang = [];
             $defaultLang = '';
             
-            foreach ($multilangTpls as $multilangTpl) {
-                if($multilangTpl['back_default']) {
-                    $defaultLang = $multilangTpl['lang_sign'];
+            foreach ($multilangs as $multilang) {
+                if($multilang['back_default']) {
+                    $defaultLang = $multilang['lang_sign'];
                 }
-                $allLang[] = $multilangTpl['lang_sign'];
+                $allLang[] = $multilang['lang_sign'];
             }
             
             if(empty($allLang)) {

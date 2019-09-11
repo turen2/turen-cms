@@ -199,7 +199,7 @@ class LogBehavior extends Behavior
             'user/user' => '用户',
             'cms/diy-model' => '附加栏目',
             'site/help-flag' => '帮助标记',
-            'sys/multilang-tpl' => '多语言',
+            'sys/multilang' => '多语言',
             'user/comment' => '用户留言',
             'user/favorite' => '用户收藏',
             'user/inquiry' => '服务订单',
