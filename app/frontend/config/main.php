@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * @link http://www.turen2.com/
  * @copyright Copyright (c) 土人开源CMS
@@ -9,25 +9,19 @@ use app\bootstrap\Init;
 
 $params = array_merge(
     require(__DIR__ . '/../../common/config/params.php'),
-    require(__DIR__ . '/../../common/config/params-local.php'),
-    require(__DIR__ . '/params.php'),
-    require(__DIR__ . '/params-local.php')
+    require(__DIR__ . '/params.php')
 );
 
-return [
+$config = [
     'id' => 'app-frontend',
-    'timeZone' => 'Asia/Shanghai',
+    'name' => 'App',
     'basePath' => dirname(__DIR__),
-    'name' => 'Jialebang',
-    'version' => '1.0',
-    'charset' => 'UTF-8',
-    'sourceLanguage' => 'en-US', // 默认源语言
-    'language' => 'zh-CN', // 默认当前环境使用的语言
     'controllerNamespace' => 'app\controllers',
     'defaultRoute' => 'home/default', // 默认路由，后台默认首页
     'layout' => 'main', // 默认布局
+    'viewPath' => '@app/themes/classic/views',
+    'layoutPath' => '@app/themes/classic/layouts',
     'bootstrap' => [
-        'log',
         'devicedetect',//客户端检测
         [
             'class' => Init::class,//初始化环境：模板、语言、缓存
@@ -40,46 +34,13 @@ return [
             'as access' => [
                 'class' => 'app\modules\account\filters\AccessFilter',
                 'except' => [],//allowAction方法替代了
-                'denyCallback' => function($action) {
+                'denyCallback' => function ($action) {
                     //fb('未审核嘛');
                 }
             ],
         ],
     ],
     'components' => [
-        //家乐邦邮箱队列
-        'jialebangMailQueue' => [
-            //'class' => 'yii\queue\file\Queue',//文件类型队列
-            //'path' => '@app/runtime/queue',//文件存储路径
-            'class' => 'yii\queue\db\Queue',//队列类型
-            'channel' => 'jialebang_mail_channel',//队列通道
-            'db' => 'db',//对接的数据库资源为db库
-            'tableName' => '{{%queue}}', // Table name
-            'mutex' => 'yii\mutex\MysqlMutex',//锁机制
-            'deleteReleased' => false,//清除发布的信息
-            'serializer' => 'yii\queue\serializers\JsonSerializer',//存储格式
-            'ttr' => 30,//重试停留时间
-            'attempts' => 3,//默认重试次数
-            'as log' => \yii\queue\LogBehavior::class,//错误日志 默认为 console/runtime/logs/app.log
-        ],
-        //家乐邦短信队列
-        'jialebangSmsQueue' => [
-            //'class' => 'yii\queue\file\Queue',//文件类型队列
-            //'path' => '@app/runtime/queue',//文件存储路径
-            'class' => 'yii\queue\db\Queue',//队列类型
-            'channel' => 'jialebang_sms_channel',//队列通道
-            'db' => 'db',//对接的数据库资源为db库
-            'tableName' => '{{%queue}}', // Table name
-            'mutex' => 'yii\mutex\MysqlMutex',//锁机制
-            'deleteReleased' => false,//清除发布的信息
-            'serializer' => 'yii\queue\serializers\JsonSerializer',//存储格式
-            'ttr' => 30,//重试停留时间
-            'attempts' => 3,//默认重试次数
-            'as log' => \yii\queue\LogBehavior::class,//错误日志 默认为 console/runtime/logs/app.log
-        ],
-        'devicedetect' => [
-            'class' => 'alexandernst\devicedetect\DeviceDetect',
-        ],
         'request' => [
             'class' => 'yii\web\Request',
             'cookieValidationKey' => 'OUX1YppF-bHW9cm86EAmg4MwmBQ6Xvni',
@@ -88,12 +49,15 @@ return [
             'enableCsrfCookie' => true,//默认显示了基于cookie的csrf，否则将以session传递验证数据
             'enableCookieValidation' => true,//默认配合上面启用验证
         ],
-         'user' => [
-             'identityClass' => 'common\models\user\User',
-             'enableAutoLogin' => true,
-             'loginUrl' => ['account/user/login'],
-             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
-         ],
+        'devicedetect' => [
+            'class' => 'alexandernst\devicedetect\DeviceDetect',
+        ],
+        'user' => [
+            'identityClass' => 'common\models\user\User',
+            'enableAutoLogin' => true,
+            'loginUrl' => ['account/user/login'],
+            'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
+        ],
         'session' => [
             // this is the name of the session cookie used for login on the frontend
             'name' => 'app-frontend',
@@ -101,25 +65,22 @@ return [
         'view' => [
             // 主题配置(module目录下的views > 根目录下的views > 主题下的模板)
             'class' => 'app\components\View',
-            'theme' => [
-                'class' => 'yii\base\Theme',//配置了才能初始化
-            ],
             //theme的功能是重新映射的关系，即将原模板系统默认的目录结果映射为自定义目录结构！！
             //默认机制是，模板目录结构与控制器挂件模块等结构保持一致。
-            /*
             'theme' => [
-                'class' => 'yii\base\Theme',
+                'class' => 'yii\base\Theme',//配置了才能初始化
                 //已经在module中设置了，不需要重复设置
-                'basePath' => '@app/themes/classic1',//主题所在文件路径
-                'baseUrl' => '@app/themes/classic1',//与主题相关的url资源路径
+                'basePath' => '@app/themes/classic',//主题所在文件路径
+                'baseUrl' => '@app/themes/classic',//与主题相关的url资源路径
                 'pathMap' => [
-                    '@app/modules' => '@app/themes/classic',//模块模板
-                    '@app/widgets' => '@app/themes/classic1/web/widgets',//部件模板
-                    '@app/layouts' => '@app/themes/classic/web/layouts',//内容模板
-                    '@app/views' => '@app/themes/classic/web/views',//布局模板
+                    '@app/modules' => '@app/themes/classic/modules',//模板
+                    '@app/widgets' => '@app/themes/classic/widgets',//部件
+                    '@app/layouts' => '@app/themes/classic/layouts',//布局
+                    //优先级最低
+                    '@app/views' => '@app/themes/classic',//非模块模板
                 ],
-            ]
-            */
+            ],
+            //'renderers'//定义模板引擎，默认twig
         ],
         //前端资源管理
         'assetManager' => [
@@ -147,17 +108,53 @@ return [
             'rules' => [
             ],
         ],
-        //日志管理
-        'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
-                ],
-            ],
-        ],
     ],
-    
+
     'params' => $params,
 ];
+
+
+//本地环境下，且在本地启用debug和gii模块
+if (!YII_ENV_TEST) {
+    // configuration adjustments for 'dev' environment
+    $config['bootstrap'][] = 'debug';
+    $config['modules']['debug'] = [
+        'class' => 'yii\debug\Module',
+        'panels' => [
+            'queue' => ['class' => 'yii\queue\debug\Panel'],
+        ],
+    ];
+
+    $config['bootstrap'][] = 'gii';
+    $config['modules']['gii'] = [
+        'class' => 'yii\gii\Module',
+        /*
+        'generators' => [//重点，为gii添加新模板
+            'model' => [
+                'class' => 'yii\gii\generators\model\Generator',
+                'templates' => ['wind' => '@backend/gii/model/wind']
+            ],
+            'crud' => [
+                'class' => 'yii\gii\generators\crud\Generator',
+                'templates' => ['wind' => '@backend/gii/crud/wind']
+            ],
+            'controller' => [
+                'class' => 'yii\gii\generators\controller\Generator',
+                'templates' => ['wind' => '@backend/gii/controller/wind']
+            ],
+            'form' => [
+                'class' => 'yii\gii\generators\form\Generator',
+                'templates' => ['wind' => '@backend/gii/form/wind']//填写别名路径
+            ],
+            'module' => ['class' => 'yii\gii\generators\module\Generator'],
+            'extension' => ['class' => 'yii\gii\generators\extension\Generator'],
+            'queue' => [
+                'class' => 'yii\queue\gii\Generator',
+                'templates' => ['default' => '@yii/queue/gii/default']
+            ],
+        ]
+        */
+    ];
+}
+
+return $config;

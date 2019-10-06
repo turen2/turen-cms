@@ -32,7 +32,7 @@ $name = 'config_face_cn_bottom_link_type_id';
 $value = isset($config[$name])?$config[$name]:null;
 ?>
 <tr>
-    <td class="first-column">底部了解家乐邦链接组</td>
+    <td class="first-column">底部了解我们链接组</td>
     <td class="second-column" width="33%">
         <?= Html::dropDownList($name, $value, ArrayHelper::merge([null => '请选择一个配置'], $linkTypeArray), ['id' => $name, 'encode' => false]) ?>
     </td>

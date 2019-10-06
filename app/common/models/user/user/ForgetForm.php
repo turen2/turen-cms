@@ -88,10 +88,10 @@ class ForgetForm extends Model
         */
 
         //邮件通知队列
-        Yii::$app->jialebangMailQueue->ttr(10);
-        Yii::$app->jialebangMailQueue->delay(0);
-        Yii::$app->jialebangMailQueue->priority(100);
-        Yii::$app->jialebangMailQueue->push(new SmtpMailJob([
+        Yii::$app->mailQueue->ttr(10);
+        Yii::$app->mailQueue->delay(0);
+        Yii::$app->mailQueue->priority(100);
+        Yii::$app->mailQueue->push(new SmtpMailJob([
             'template' => GLOBAL_LANG.'/resetForm',//语言标识模板名称
             'params' => [
                 'username' => $user->username,
@@ -99,7 +99,7 @@ class ForgetForm extends Model
             ],
             'sendTo' => trim($this->email),
             'from' => [Yii::$app->params['config.supportEmail'] => Yii::$app->params['config_site_name']],
-            'subject' => '重置密码 - ' . Yii::$app->params['config_site_name'],
+            'subject' => '重置密码 -- ' . Yii::$app->params['config_site_name'],
         ]));
 
         return true;

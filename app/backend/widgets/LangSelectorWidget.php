@@ -7,6 +7,8 @@
 namespace app\widgets;
 
 use Yii;
+use yii\helpers\ArrayHelper;
+use app\models\sys\Multilang;
 
 /**
  * @author jorry
@@ -22,7 +24,7 @@ class LangSelectorWidget extends \yii\base\Widget
         parent::init();
         
         $this->selection = Yii::$app->session->get('lang');
-        $this->items = Yii::$app->params['config.languages'];//此项可以从后台配置
+        $this->items = ArrayHelper::map(Multilang::find()->active()->all(), 'lang_sign', 'lang_name');
     }
     
     public function run() {

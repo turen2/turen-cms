@@ -7,7 +7,6 @@ use app\widgets\Tips;
 use app\assets\ValidationAsset;
 use app\models\sys\Multilang;
 use yii\helpers\ArrayHelper;
-use app\models\sys\Template;
 use yii\helpers\Json;
 
 /* @var $this yii\web\View */

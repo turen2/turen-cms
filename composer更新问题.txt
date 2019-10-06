@@ -1,0 +1,24 @@
+1.提示bower-asset/jquery相关的错误。
+是因为yii2需要同时安装前端代码包，即在composer上安装一个插件来实现这个需求。
+所以，应该先改造composer:composer global require fxp/composer-asset-plugin
+否则，整个yii2将无法安装。
+
+
+2.yii2升级常见的一种失败。
+如果你是通过 composer 从 Yii 2.0.x 升级，只需要在您的项目根目录运行以下命令：
+composer update yiisoft/yii2 yiisoft/yii2-composer bower-asset/jquery.inputmask
+同样，这也是前端代码仓的更新规则发生了变化导致的，更新一下yii2自带的composer即可。
+
+
+3.因网络问题更新失败。
+使用阿里镜像，世面上可能有其它镜像，但最大的最稳定的只有阿里。
+https://developer.aliyun.com/composer
+按照操作要求：
+全局配置源：composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+然后正常操作即可。
+
+
+4.更新时总是提示，bower相关问题。
+先确保1和2正常，再看看项目中有多少前端包需要composer安装的【官方自带的除外】
+如果有，则建议将其移到自己的项目app的assert中，不要依赖更新，实际这么更新的非常少。
+然后，在composer.json中移除相关更新代码，然后再composer update即可。

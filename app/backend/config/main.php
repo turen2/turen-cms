@@ -9,21 +9,15 @@ use app\bootstrap\InitConfig;
 
 $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
-    require __DIR__ . '/../../common/config/params-local.php',
-    require __DIR__ . '/params.php',
-    require __DIR__ . '/params-local.php'
+    require __DIR__ . '/params.php'
 );
 
 //配置原则：能在Application、Moudule中配置的，都要在main中配置，谢谢...
-return [
+$config = [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
     'name' => 'turen2.com',
-    'version' => '1.3.0',
-    'charset' => 'UTF-8',
-    'sourceLanguage' => 'en-US', // 默认源语言
-    'language' => 'zh-CN', // 默认当前环境使用的语言
-    'controllerNamespace' => 'app\\modules\\site\\controllers',//默认预加载控制器类的命名空间
+    'controllerNamespace' => 'app\modules\site\controllers',//默认预加载控制器类的命名空间
     'defaultRoute' => 'site/home/index', // 默认路由，后台默认首页
     'layout' => 'main', // 默认布局
     //'viewPath' => '@app/themes/classic',
@@ -31,7 +25,6 @@ return [
     
     //系统初始化时预处理核心组件后，调用此组件的接口bootstrap()方法
     'bootstrap' => [
-        'log',
         //'app\bootstrap\initSysten',//php 7.2不支持
         //'app\bootstrap\initConfig',
         [
@@ -164,28 +157,6 @@ return [
                 ],
             ],
         ],
-        'log' => [// 不同等级的日志，以不同的方式发给不同的人
-            'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',//发送的Target对象
-                    'levels' => ['error', 'warning'],//info可以在开发时做性能优化
-                ], 
-                //[
-                    //'class' => 'yii\log\EmailTarget',//发送邮件
-                    //'levels' => ['error', 'warning'],
-                    //'message' => [
-                        //'from' => ['xiayouqiao@turen.com'],
-                        //'to' => ['980522557@qq.com', '19146400@qq.com'],
-                        //'subject' => '您有一个新bug，来自erp.turen.com',
-                    //],
-                //],
-                //[
-                    //'class' => 'yii\log\DbTarget',//使用数据库记录日志（注意：还可以将文件日志迁移到数据库）
-                    //'levels' => ['info', 'error', 'warning']
-                //]
-            ],
-        ],
         // 错误句柄配置
         'errorHandler' => [
             /*
@@ -224,21 +195,6 @@ return [
             */
         ],
         /*
-         * 注意：cache的配置已经在commmon/config.php中配置过了
-        'cache' => [// memcache缓存，也可以使用其它的存储驱动，也可以改写组件id，如cache1同时启用多个不同类型的驱动
-            'class' => 'yii\caching\MemCache',
-            'servers' => [
-                [
-                    'host' => 'localhost1',
-                    'port' => 11211,
-                    'weight' => 40,
-                ], [
-                    'host' => 'localhost2',
-                    'port' => 11211,
-                    'weight' => 60,
-                ],
-            ],
-        ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
@@ -251,6 +207,18 @@ return [
              'common/site/offline',//系统维护模式路由
              'title'=>'标题',
              'content'=>'内容说明',
+        ],
+        */
+        /*
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            'db' => 'db',
+            'itemTable' => '{{%sys_auth_item}}',
+            'itemChildTable' => '{{%sys_auth_item_child}}',
+            'assignmentTable' => '{{%sys_auth_assignment}}',
+            'ruleTable' => '{{%sys_auth_rule}}',
+            'cache' => 'cache',
+            'cacheKey' => 'rbac',
         ],
         */
     ],
@@ -279,6 +247,43 @@ return [
     
     'params' => $params,
 ];
+
+//本地环境下，且在本地启用debug和gii模块
+if (!YII_ENV_TEST) {
+    // configuration adjustments for 'dev' environment
+    $config['bootstrap'][] = 'debug';
+    $config['modules']['debug'] = [
+        'class' => 'yii\debug\Module',
+    ];
+
+    $config['bootstrap'][] = 'gii';
+    $config['modules']['gii'] = [
+        'class' => 'yii\gii\Module',
+        'generators' => [//重点，为gii添加新模板
+            'model' => [
+                'class' => 'yii\gii\generators\model\Generator',
+                'templates' => ['wind' => '@backend/gii/model/wind']
+            ],
+            'crud' => [
+                'class' => 'yii\gii\generators\crud\Generator',
+                'templates' => ['wind' => '@backend/gii/crud/wind']
+            ],
+            'controller' => [
+                'class' => 'yii\gii\generators\controller\Generator',
+                'templates' => ['wind' => '@backend/gii/controller/wind']
+            ],
+            'form' => [
+                'class' => 'yii\gii\generators\form\Generator',
+                'templates' => ['wind' => '@backend/gii/form/wind']//填写别名路径
+            ],
+            'module' => ['class' => 'yii\gii\generators\module\Generator'],
+            'extension' => ['class' => 'yii\gii\generators\extension\Generator'],
+        ]
+    ];
+}
+
+return $config;
+
 
 
 /*

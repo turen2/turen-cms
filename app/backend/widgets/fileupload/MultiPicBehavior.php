@@ -1,7 +1,7 @@
 <?php
 /**
- * @link http://www.turen2.com/
- * @copyright Copyright (c) 土人开源CMS
+ * @link http://www.juwanfang.com/
+ * @copyright Copyright (c) 万国迦南科技
  * @author developer qq:980522557
  */
 namespace app\widgets\fileupload;
@@ -39,6 +39,20 @@ class MultiPicBehavior extends \yii\base\Behavior
             $result = Json::decode($model->{$this->picsAttribute});
             return is_array($result)?$result:[];//以防转化json失败的情况
         }
+    }
+
+    /**
+     * 获取第一张图片
+     */
+    public function getFirstPic()
+    {
+        $value = $this->owner->{$this->picsAttribute};
+        //是数组则为新上传的内容，否则
+        if(!empty($value)) {
+            $value = is_array($value)?$value:(Json::decode($value));
+        }
+
+        return isset($value[0]['pic'])?$value[0]['pic']:'';
     }
     
     //将原来的json值临时存储起来

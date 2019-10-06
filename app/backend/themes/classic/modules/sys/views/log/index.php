@@ -27,7 +27,7 @@ $model = new Log();
 		<td width="5%"><?= $dataProvider->sort->link('username', ['label' => $model->getAttributeLabel('username')]) ?></td>
 		<td width="7%"><?= $model->getAttributeLabel('route')?></td>
 		<td width="10%"><?= $model->getAttributeLabel('name')?></td>
-		<td width="5%"><?= $dataProvider->sort->link('method', ['label' => $model->getAttributeLabel('method')]) ?></td>
+		<td width="6%"><?= $dataProvider->sort->link('method', ['label' => $model->getAttributeLabel('method')]) ?></td>
 		<td width="7%"><?= $model->getAttributeLabel('ip')?></td>
 		<td width="18%"><?= $model->getAttributeLabel('agent')?></td>
 		<td width="13%"><?= $dataProvider->sort->link('created_at', ['label' => $model->getAttributeLabel('created_at')]) ?></td>

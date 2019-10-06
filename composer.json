@@ -30,8 +30,6 @@
 		"yiisoft/yii2-redis" : "~2.0.0",
 		"yiisoft/yii2-queue" : "^2.0",
 		"aliyuncs/oss-sdk-php" : "^2.2",
-		"bower-asset/blueimp-file-upload" : "~9.11",
-		"bower-asset/blueimp-gallery" : "~2.17",
 		"alexandernst/yii2-device-detect": "0.0.12"
 	},
 	"require-dev" : {

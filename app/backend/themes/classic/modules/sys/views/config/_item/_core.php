@@ -6,7 +6,6 @@
  */
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
-use app\models\sys\Template;
 
 $config = ArrayHelper::index($config, 'varname');
 

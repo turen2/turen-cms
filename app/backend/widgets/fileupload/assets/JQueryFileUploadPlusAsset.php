@@ -1,7 +1,7 @@
 <?php
 /**
- * @link http://www.turen2.com/
- * @copyright Copyright (c) 土人开源CMS
+ * @link http://www.juwanfang.com/
+ * @copyright Copyright (c) 万国迦南科技
  * @author developer qq:980522557
  */
 namespace app\widgets\fileupload\assets;
@@ -10,7 +10,7 @@ use yii\web\AssetBundle;
 
 class jQueryFileUploadPlusAsset extends AssetBundle
 {
-    public $sourcePath = '@bower/blueimp-file-upload';
+    public $sourcePath = '@app/widgets/fileupload/assets/blueimp-file-upload';
     public $js = [
         // <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
         "js/jquery.iframe-transport.js",

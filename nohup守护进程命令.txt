@@ -1,0 +1,32 @@
+守护进程命令
+nohup php /www/somedir/yii jialebang-mail-queue/listen > nohup_mail.txt 2>&1 &
+nohup php /www/somedir/yii jialebang-sms-queue/listen > nohup_sms.txt 2>&1 &
+
+查看进程
+ps -ef | grep php
+
+杀死进程
+kill pid
+
+异常查询
+vi nohup_mail.txt
+vi nohup_sms.txt
+
+比如：
+nohup /www/server/php/72/bin/php /www/wwwroot/admin.turen2.com/yii mail-queue/listen > nohup_mail.txt 2>&1 &
+在使用nohup命令后台运行命令之后，需要按回车
+然后退回到Shell输入命令窗口，使用exit正常退出当前账户
+
+使用jobs命令，查看当前有多少后台命令
+
+细节决定成败，使用nohup命令要非常注意，必须按照以上步骤来操作。
+1.一定要指定正确的全路径的执行程序，如多版本的php不能指错了。
+2.运行完命令后，马上查看nohup_mail的大小，如果不为 0 那么一定有异常，应当优化程序的异常处理使其更健壮。
+3.退出时，一定要先exit命令退出当前账户。
+
+
+原理：
+当用户注销（logout）或者网络断开时，终端会收到 HUP（hangup）信号从而关闭其所有子进程。
+因此，我们的解决办法就有两种途径：
+要么让进程忽略 HUP 信号，要么让进程运行在新的会话里从而成为不属于此终端的子进程。
+最终将其设置成为了一个不受约束的僵尸进程。只有通过kill杀死。

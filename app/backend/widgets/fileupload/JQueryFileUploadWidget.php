@@ -1,7 +1,7 @@
 <?php
 /**
- * @link http://www.turen2.com/
- * @copyright Copyright (c) 土人开源CMS
+ * @link http://www.juwanfang.com/
+ * @copyright Copyright (c) 万国迦南科技
  * @author developer qq:980522557
  */
 namespace app\widgets\fileupload;
@@ -17,7 +17,7 @@ use yii\helpers\ArrayHelper;
 use yii\web\JsExpression;
 
 use app\widgets\fileupload\assets\JQueryFileUploadPlusAsset;
-use app\assets\MD5Asset;
+use app\widgets\fileupload\assets\MD5Asset;
 
 /**
  * 图片上传

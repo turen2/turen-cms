@@ -126,6 +126,7 @@ class LogBehavior extends Behavior
                 'get_data' => $this->isGetData?Json::encode($request->get()):'',
                 'post_data' => ($isPost && $this->isPostData)?Json::encode($request->post()):'',
                 'ip' => (in_array($ip, ['localhost', '::1']))?'127.0.0.1':$ip,
+                'lang' => GLOBAL_LANG,
                 'agent' => $agent,
                 'md5' => $md5,
                 'created_at' => time(),

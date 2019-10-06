@@ -5,18 +5,15 @@
  * @author developer qq:980522557
  */
 
-use app\models\user\Inquiry;
 use yii\helpers\Html;
-
 use yii\helpers\Url;
 use yii\web\YiiAsset;
-use yii\widgets\Menu;
+use app\models\user\Inquiry;
 use app\assets\FrameAsset;
-use yii\helpers\Json;
-use app\models\sys\Template;
 use app\filters\ReturnUrlFilter;
 use app\assets\FontAwesomeAsset;
 use app\models\sys\Multilang;
+use app\assets\MenuAsset;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -24,6 +21,7 @@ use app\models\sys\Multilang;
 YiiAsset::register($this);
 FontAwesomeAsset::register($this);
 FrameAsset::register($this);
+MenuAsset::register($this);
 
 $baseUrl = Yii::getAlias('@web');
 $js = <<<EOF
@@ -124,7 +122,7 @@ $adminModel = Yii::$app->user->identity;
         
         <div class="left">
         	<div class="menu">
-        		<iframe name="menu" id="menu" frameborder="0" src="<?= Url::to(['/site/home/menu']) ?>" scrolling="no"></iframe>
+                <?= $this->render('_menu') ?>
         	</div>
         </div>
         <div class="right">

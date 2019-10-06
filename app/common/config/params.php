@@ -16,11 +16,4 @@ return [
 
     //邮件发送者邮箱//与发送人保持一致
     'config.supportEmail' => 'xiayouqiao2008@163.com',
-
-    // 模板配置
-    // PC端模板
-    'config.pc_template_name' => 'jialebang',
-
-    // 手机端模板
-    'config.mobile_template_name' => 'jialebang',
 ];

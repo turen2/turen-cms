@@ -6,8 +6,8 @@
  */
 namespace app\components;
 
-use common\models\cms\Column;
 use Yii;
+use common\models\cms\Column;
 
 /**
  * @author jorry

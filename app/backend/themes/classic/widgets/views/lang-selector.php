@@ -6,10 +6,6 @@
  */
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
-
-/**
- * @author jorry
- */
 ?>
 
 <?php $form = ActiveForm::begin([

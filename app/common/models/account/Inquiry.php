@@ -188,11 +188,11 @@ class Inquiry extends \common\components\ActiveRecord
                     $sendTo = trim($sendTo);
                     if(!empty($sendTo)) {
                         //设置重试间隔时间、延迟时间、优先级。
-                        Yii::$app->jialebangMailQueue->ttr(10);
-                        Yii::$app->jialebangMailQueue->delay(0);
-                        Yii::$app->jialebangMailQueue->priority(100);
+                        Yii::$app->mailQueue->ttr(10);
+                        Yii::$app->mailQueue->delay(0);
+                        Yii::$app->mailQueue->priority(100);
 
-                        Yii::$app->jialebangMailQueue->push(new SmtpMailJob([
+                        Yii::$app->mailQueue->push(new SmtpMailJob([
                             'template' => GLOBAL_LANG.'/notify',//语言标识模板名称
                             'params' => [
                                 '电话' => $phone,
@@ -201,7 +201,7 @@ class Inquiry extends \common\components\ActiveRecord
                             ],
                             'sendTo' => $sendTo,
                             'from' => [Yii::$app->params['config.supportEmail'] => Yii::$app->params['config_site_name']],
-                            'subject' => '有新的快捷预约 - ' . Yii::$app->params['config_site_name'],
+                            'subject' => '有新的快捷预约 -- ' . Yii::$app->params['config_site_name'],
                         ]));
                     }
                 }
@@ -213,11 +213,11 @@ class Inquiry extends \common\components\ActiveRecord
                     $sendTo = trim($sendTo);
                     if(!empty($sendTo)) {
                         //设置重试间隔时间、延迟时间、优先级。
-                        Yii::$app->jialebangSmsQueue->ttr(10);
-                        Yii::$app->jialebangSmsQueue->delay(0);
-                        Yii::$app->jialebangSmsQueue->priority(99);
+                        Yii::$app->smsQueue->ttr(10);
+                        Yii::$app->smsQueue->delay(0);
+                        Yii::$app->smsQueue->priority(99);
 
-                        Yii::$app->jialebangSmsQueue->push(new AlismsJob([
+                        Yii::$app->smsQueue->push(new AlismsJob([
                             'phoneNumber' => $sendTo,
                             'signName' => $signTemplate['signName'],
                             'templateCode' => $signTemplate['templateCode'],

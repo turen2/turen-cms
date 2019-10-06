@@ -69,11 +69,11 @@ class EmailCodeAction extends Action
         //测试
         //file_put_contents('D:\xampp\aaa.txt', $code);
         //设置重试间隔时间、延迟时间、优先级。
-        Yii::$app->jialebangMailQueue->ttr(10);
-        Yii::$app->jialebangMailQueue->delay(0);
-        Yii::$app->jialebangMailQueue->priority(100);
+        Yii::$app->mailQueue->ttr(10);
+        Yii::$app->mailQueue->delay(0);
+        Yii::$app->mailQueue->priority(100);
 
-        Yii::$app->jialebangMailQueue->push(new SmtpMailJob([
+        Yii::$app->mailQueue->push(new SmtpMailJob([
             'template' => GLOBAL_LANG.'/emailcode',//语言标识模板名称
             'params' => [
                 'logo' => empty(Yii::$app->params['config_frontend_logo'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl(Yii::$app->params['config_frontend_logo'], true),
@@ -83,7 +83,7 @@ class EmailCodeAction extends Action
             ],
             'sendTo' => $this->email,
             'from' => [Yii::$app->params['config.supportEmail'] => Yii::$app->params['config_site_name']],
-            'subject' => '邮件验证码 - ' . Yii::$app->params['config_site_name'],
+            'subject' => '邮件验证码 -- ' . Yii::$app->params['config_site_name'],
         ]));
 
         $this->controller->asJson([

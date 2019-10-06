@@ -6,17 +6,12 @@
  */
 namespace app\bootstrap;
 
-use common\models\user\User;
 use Yii;
-use yii\db\Query;
-use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 use common\models\sys\Config;
 use common\models\site\FaceConfig;
-use common\models\sys\Template;
 use common\models\sys\Multilang;
-use yii\caching\TagDependency;
-use yii\swiftmailer\Mailer;
+use common\models\user\User;
 
 /**
  * 系统初始化生成了全局参数以"config_init_"为前缀
@@ -56,8 +51,8 @@ class Init extends \yii\base\Component implements \yii\base\BootstrapInterface
         //3.系统缓存
         $this->initConfig();//根据语言获取后台配置参数
         
-        //4.模板选择
-        $this->initTemplate();//初始化模板系统，并产生一个模板常量
+        //4.模板选择，暂不支持
+        // $this->initTemplate();//初始化模板系统，并产生一个模板常量
         
         //5.界面缓存
         $this->initFace();//根据模板获取对应的模板配置参数
@@ -149,10 +144,12 @@ class Init extends \yii\base\Component implements \yii\base\BootstrapInterface
         //系统登录模式纠正
         Yii::$app->user->loginUrl = (Yii::$app->params['config_login_mode'] == User::USER_PHONE_MODE)?['/account/passport/login']:['/account/user/login'];
     }
-    
+
+    /*
     protected function initTemplate()
     {
         //设置系统模板
+        Yii::$app->params['config.pc_template_name'] = 'classic';
         $template = Yii::$app->params['config.pc_template_name'];
 
         Yii::$app->setViewPath('@app/themes/'.$template.'/views');
@@ -169,6 +166,7 @@ class Init extends \yii\base\Component implements \yii\base\BootstrapInterface
             '@app/views' => '@app/themes/'.$template,//非模块模板
         ];
     }
+    */
     
     protected function initFace()
     {

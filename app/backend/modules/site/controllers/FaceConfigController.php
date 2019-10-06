@@ -10,7 +10,6 @@ use Yii;
 use yii\base\UserException;
 use app\models\site\FaceConfig;
 use app\models\sys\Multilang;
-use app\models\sys\Template;
 
 class FaceConfigController extends \app\components\Controller
 {

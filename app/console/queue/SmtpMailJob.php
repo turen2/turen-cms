@@ -63,7 +63,7 @@ class SmtpMailJob extends BaseObject implements \yii\queue\JobInterface
      */
     public function execute($queue)
     {
-        //邮件发送//注意，此为console执行，邮件模板应该放在console/mail下
+        //邮件发送
         try {
             Yii::$app->mailer
                 ->compose(['html' => $this->template.'-html', 'text' => $this->template.'-text'], ['params' => $this->params])
@@ -73,7 +73,6 @@ class SmtpMailJob extends BaseObject implements \yii\queue\JobInterface
                 ->setSubject($this->subject)
                 ->send();
         } catch (\Exception $e) {
-            //file_put_contents('D:\xampp\aaa.txt', $e->getMessage());
             Yii::getLogger()->log($e->getMessage(), Logger::LEVEL_WARNING, 'console');
         }
     }

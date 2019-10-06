@@ -43,13 +43,6 @@ return [
     'config.hits' => 100,
     'config.orderid' => 10,
     
-    // 多语言相关配置//国际标准码(所有主题必须支持以下语言)
-    'config.languages' => [
-        'zh-CN' => '简体中文',
-        'zh-TW' => '繁体中文',
-        'en-US' => 'English'
-    ],
-    
     //登录安全问题
     'config.safeQuestion' => [
         null => '无安全提问',

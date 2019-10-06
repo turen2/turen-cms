@@ -46,7 +46,6 @@ class AlismsJob extends BaseObject implements \yii\queue\JobInterface
                 Yii::getLogger()->log($response, Logger::LEVEL_WARNING, 'console');
             }
         } catch (\Exception $e) {
-            //file_put_contents('D:\xampp\aaa.txt', $e->getMessage());
             Yii::getLogger()->log($e->getMessage(), Logger::LEVEL_WARNING, 'console');
         }
     }

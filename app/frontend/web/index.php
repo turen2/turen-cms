@@ -22,10 +22,8 @@ require(__DIR__ . '/../config/bootstrap.php');//创建公有的目录别名
 $config = yii\helpers\ArrayHelper::merge(
     //公共线上和公共线下配置
     require(__DIR__ . '/../../common/config/main.php'),
-    require(__DIR__ . '/../../common/config/main-local.php'),
     //私有线上和私有线下配置
-    require(__DIR__ . '/../config/main.php'),
-    require(__DIR__ . '/../config/main-local.php')
+    require(__DIR__ . '/../config/main.php')
 );
 
 (new yii\web\Application($config))->run();

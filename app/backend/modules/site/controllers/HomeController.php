@@ -6,16 +6,12 @@
  */
 namespace app\modules\site\controllers;
 
-use app\models\sys\Role;
 use Yii;
-use yii\filters\AccessControl;
-use yii\web\Response;
 use yii\db\Query;
 use app\models\sys\Log;
 use app\models\sys\Devlog;
 use app\models\site\Lnk;
 use app\models\site\Help;
-use app\models\cms\DiyModel;
 
 class HomeController extends \app\components\Controller
 {
@@ -54,29 +50,8 @@ class HomeController extends \app\components\Controller
     public function actionIndex()
     {
         Yii::$app->layout = 'iframe-main';//当前模块使用指定布局
-        
+
         return $this->render('index');
-    }
-    
-    // 左侧主菜单
-    public function actionMenu()
-    {
-        $identify = '';//不同身份不同菜单【暂时使用一个菜单】
-        Yii::$app->layout = 'menu-main';//使用单独的菜单布局
-        //权限
-        if(Yii::$app->getUser()->getIsGuest()) {
-            return;//游客直接返回
-        }
-        $userModel = Yii::$app->getUser()->identity;
-        $roleModel = Role::find()->where(['role_id' => $userModel->role_id])->active()->one();
-        if($roleModel) {
-            return $this->render('menu', [//开启的模型别名叫：附加栏目
-                'identify' => $identify,
-                'roleModel' => $roleModel,
-                'diyModels' => DiyModel::find()->active()->asArray()->all(),
-            ]);
-        }
-        return;
     }
     
     // 默认主内容
@@ -95,8 +70,6 @@ class HomeController extends \app\components\Controller
         ]);
     }
     
-    
-    
     /*** ajax初始化 ***/
     public function actionMail()
     {
@@ -105,11 +78,9 @@ class HomeController extends \app\components\Controller
             'msg' => ''
         ];
         
-        Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+        $channel = 'queue_mail_channel';
         
-        $channel = 'merchant_channel';//商户通道
-        
-        //Yii::$app->queue->tableName//商户队列表
+        //Yii::$app->queue->tableName//队列表
         
         // pushed_at 加入队列
         // reserved_at 发送中，保留
@@ -139,7 +110,7 @@ class HomeController extends \app\components\Controller
             ->andWhere(['channel' => $channel])->andWhere(['>', 'attempt', 1])
             ->andWhere(['not' ,['reserved_at' => null, 'done_at' => null]])->count('id', Yii::$app->db);
         
-        return [
+        return $this->asJson([
             'state' => true,
             'msg' => [
                 ['value' => $c1, 'name' => '等待发送'],
@@ -147,6 +118,6 @@ class HomeController extends \app\components\Controller
                 ['value' => $c3, 'name' => '已经发送'],
                 ['value' => $c4, 'name' => '邮件滞留']
             ]
-        ];
+        ]);
     }
 }
