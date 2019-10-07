@@ -44,7 +44,7 @@ $jsDataBaseUrl = $jsBaseUrl.'/js/lhl/';//Yii::$app->request->hostInfo.
                 <div class="detail-text">
                     <div class="detail-title">
                         <h3>吉日查询</h3>
-                        <p class="">嘉乐邦，一站式搬家服务。</p>
+                        <p class="">亚桥租赁，一站式搬家服务。</p>
                     </div>
                     <div class="detail-content">
                         <div class="wnl-tool">

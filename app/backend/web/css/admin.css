@@ -231,6 +231,63 @@ a:focus {
     color: #8B91A0;
 }
 
+
+.text-right {
+	text-align: right
+}
+
+.text-left {
+	text-align: left
+}
+
+.text-center {
+	text-align: center
+}
+
+.danger {
+	color: #c00
+}
+
+.mute {
+	color: #000
+}
+
+.text-diff-added {
+	color: #55a532
+}
+
+.text-diff-deleted {
+	color: #bd2c00
+}
+
+.text-open, .text-success {
+	color: #6cc644
+}
+
+.text-closed {
+	color: #bd2c00
+}
+
+.text-reverted {
+	color: #bd2c00
+}
+
+.text-merged {
+	color: #6e5494
+}
+
+.text-renamed {
+	color: #fffa5d
+}
+
+.text-pending {
+	color: #cea61b
+}
+
+.text-error, .text-failure {
+	color: #bd2c00
+}
+
 /* jorry全局 */
 body .cp {
 	padding-top: 10px;

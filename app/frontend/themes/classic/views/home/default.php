@@ -680,7 +680,7 @@ $this->registerJs($js);
 <!--                                买贵怎么办？-->
 <!--                            </h4>-->
 <!--                            <p>-->
-<!--                                嘉乐邦网为您协议价护航-->
+<!--                                亚桥租赁网为您协议价护航-->
 <!--                            </p>-->
 <!--                        </dd>-->
 <!--                    </dl>-->
@@ -694,7 +694,7 @@ $this->registerJs($js);
 <!--                        </dt>-->
 <!--                        <dd>-->
 <!--                            <h4>-->
-<!--                                家政嘉乐邦协议服务-->
+<!--                                家政亚桥租赁协议服务-->
 <!--                            </h4>-->
 <!--                            <p>-->
 <!--                                第三方监管为您护航-->
@@ -711,7 +711,7 @@ $this->registerJs($js);
 <!--                        </dt>-->
 <!--                        <dd>-->
 <!--                            <h4>-->
-<!--                                嘉乐邦家政学堂-->
+<!--                                亚桥租赁家政学堂-->
 <!--                            </h4>-->
 <!--                            <p>-->
 <!--                                家政百事通公益交流-->
@@ -769,8 +769,8 @@ $this->registerJs($js);
 <!--                    </li>-->
 <!--                    <li>-->
 <!--                        <span class="png-fix-bg">-->
-<!--                            <a target="_blank" href="" title="[表扬]表扬嘉乐邦监徐勇平">-->
-<!--                                [表扬]表扬嘉乐邦监徐勇平-->
+<!--                            <a target="_blank" href="" title="[表扬]表扬亚桥租赁监徐勇平">-->
+<!--                                [表扬]表扬亚桥租赁监徐勇平-->
 <!--                            </a>-->
 <!--                        </span>-->
 <!--                    </li>-->
@@ -783,8 +783,8 @@ $this->registerJs($js);
 <!--                    </li>-->
 <!--                    <li>-->
 <!--                        <span class="png-fix-bg">-->
-<!--                            <a target="_blank" href="" title="[表扬]嘉乐邦洪亮　监理包公">-->
-<!--                                [表扬]嘉乐邦洪亮　监理包公-->
+<!--                            <a target="_blank" href="" title="[表扬]亚桥租赁洪亮　监理包公">-->
+<!--                                [表扬]亚桥租赁洪亮　监理包公-->
 <!--                            </a>-->
 <!--                        </span>-->
 <!--                    </li>-->
@@ -825,7 +825,7 @@ $this->registerJs($js);
         </div>
         <div class="home-img-box">
             <img src="<?= $webUrl ?>images/common/index_data_represent.png" class="home-img">
-            <p class="home-slogan-top">嘉乐邦八年行业经验</p>
+            <p class="home-slogan-top">亚桥租赁八年行业经验</p>
             <p class="home-slogan-bottom">深 度 服 务 于 珠 三 角 客 户</p>
         </div>
     </div>

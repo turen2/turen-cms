@@ -23,7 +23,7 @@ $config = [
 //        ],
         'db' => [//本地环境
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=turen_cms',
+            'dsn' => 'mysql:host=localhost;dbname=hbyaqiao_com',
             'username' => 'root',
             'password' => '123456',
             'charset' => 'utf8',

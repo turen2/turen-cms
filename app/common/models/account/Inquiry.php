@@ -169,7 +169,7 @@ class Inquiry extends \common\components\ActiveRecord
                 'ui_content' => $content,
                 'ui_product_id' => $productId,
                 'user_id' => Yii::$app->getUser()->getId(),
-                'ui_ipaddress' => $address['location'],
+                'ui_ipaddress' => is_null($address['location'])?'':$address['location'],
                 'ui_browser' => Yii::$app->getRequest()->userAgent,
                 'ui_type' => self::INQUIRY_TYPE_QUICK,//快捷预约
                 'ui_state' => self::INQUIRY_STATE_NOTHING,//待处理

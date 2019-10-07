@@ -1826,7 +1826,8 @@
 }
 .easy-logo {
     display: block;
-    height: 68px;
+    height: 50px;
+    margin-top: 10px;
 }
 
 .easy-footer {
@@ -1932,7 +1933,7 @@
 }
 .form-box .form-tab {
     height: 52px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #eee;
 }
 .form-box .form-tab .tab-li {
     float: left;

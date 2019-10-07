@@ -532,12 +532,12 @@ input:focus
 }
 
 .head-bottom .logo {
-    margin-top: 0;
+    margin-top: 12px;
 }
 
 .head-bottom .logo img {
     vertical-align: top;
-    height: 80px;
+    height: 56px;
 }
 
 .head-bottom .nav li {
