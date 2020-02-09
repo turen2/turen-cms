@@ -30,6 +30,7 @@ use app\behaviors\OrderDefaultBehavior;
  * @property string $catepid 类别父ID
  * @property string $catepstr 类别父ID列表
  * @property string $flag 标记
+ * @property string $author 作者
  * @property string $picurl 缩略图
  * @property string $lang 多语言
  * @property int $status 状态
@@ -124,7 +125,7 @@ class MasterModel extends \app\models\base\Cms
         return ArrayHelper::merge(DiyField::DiyFieldRule($this), [
             [['columnid', 'title', 'slug'], 'required'],
             [['columnid', 'parentid', 'cateid', 'catepid', 'status', 'orderid', 'posttime', 'updated_at', 'created_at'], 'integer'],
-            [['title', 'colorval', 'boldval', 'parentstr', 'catepstr', 'flag', 'picurl', 'lang'], 'string'],
+            [['title', 'colorval', 'boldval', 'parentstr', 'catepstr', 'flag', 'author', 'picurl', 'lang'], 'string'],
             [['status'], 'default', 'value' => self::STATUS_ON],
         ]);
     }
@@ -145,6 +146,7 @@ class MasterModel extends \app\models\base\Cms
             'catepid' => '类别父ID',
             'catepstr' => '类别父ID列表',
             'flag' => '标记',
+            'author' => '作者',
             'picurl' => '缩略图',
             'lang' => '多语言',
             'status' => '状态',

@@ -49,7 +49,7 @@ class PhotoSearch extends Photo
         //$query = Admin::findBySql($sql);
         //$query = Admin::find()->alias('a')->select(['a.*', 's.company as company', 's.domain as domain', 's.username as merchant'])->leftJoin(Site::tableName().' as s', ' a.test_id = s.testid');
         
-        $query = Photo::find()->current()->delstate(Photo::IS_NOT_DEL);
+        $query = Photo::find();
 
         // add conditions that should always apply here
         $dataProvider = new ActiveDataProvider([
@@ -78,24 +78,23 @@ class PhotoSearch extends Photo
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'columnid' => $this->columnid,
-            'parentid' => $this->parentid,
-            'cateid' => $this->cateid,
-            'catepid' => $this->catepid,
-            'hits' => $this->hits,
-            'delstate' => $this->delstate,
-            'status' => $this->status,
-        ]);
+        $query->filterWhere(['and', ['and',
+            '1 = 1',
+            ['lang' => GLOBAL_LANG],
+            ['delstate' => Photo::IS_NOT_DEL],
+            ['id' => $this->id],
+            ['columnid' => $this->columnid],
+            ['cateid' => $this->cateid],
+            ['delstate' => $this->delstate],
+            ['status' => $this->status],
+            ['author' => $this->author],
+            ['like', 'flag', $this->flag]
+        ], ['or',
+            ['like', 'title', $this->keyword],
+            ['like', 'slug', $this->keyword],
+            ['like', 'linkurl', $this->keyword]
+        ]]);
 
-        $query->andFilterWhere(['like', 'title', $this->keyword])
-            ->andFilterWhere(['like', 'flag', $this->flag])
-            ->andFilterWhere(['like', 'slug', $this->keyword])
-            ->andFilterWhere(['like', 'source', $this->keyword])
-            ->andFilterWhere(['like', 'author', $this->keyword])
-            ->andFilterWhere(['like', 'keywords', $this->keyword]);
-        
 //         echo $dataProvider->query->createCommand()->rawSql;exit;
 
         return $dataProvider;

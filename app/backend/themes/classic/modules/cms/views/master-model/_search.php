@@ -32,8 +32,12 @@ foreach ($model->attributes as $key => $value) {
         <li class="<?= (!is_null($model->flag) && $model->flag == $key)?'on':''?>"><?= Html::a($name, ['index', Html::getInputName($model, 'flag') => $key, 'mid' => $modelid]) ?></li>
         <li class="line">-</li>
         <?php } ?>
-        <li><?= Html::a('我发布的内容', 'javascript:;') ?></li>
-        
+
+        <?php
+        $username = Yii::$app->getUser()->getIdentity()->username;
+        ?>
+        <li class="<?= (!is_null($model->author) && $model->author == $username)?'on':''?>"><?= Html::a('我发布的内容', ['index', Html::getInputName($model, 'author') => $username, 'mid' => $modelid]) ?></li>
+
 	</ul>
 	
     <?php $form = ActiveForm::begin([

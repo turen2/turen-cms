@@ -37,7 +37,7 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel, 'type' => 
 	<tr align="left" class="head">
 		<td width="4%" class="first-column"><input type="checkbox" name="checkid" id="checkid" onclick="turen.com.checkAll(this.checked);"></td>
 		<td width="5%">ID</td>
-		<td width="30%"><?= $dataProvider->sort->link('title', ['label' => '标题']) ?></td>
+		<td width="36%"><?= $dataProvider->sort->link('title', ['label' => '标题']) ?></td>
 		<td width="8%">所属栏目</td>
 		<?php if(Yii::$app->params['config.openCate']) { ?>
 		<td width="8%">所属类别</td>

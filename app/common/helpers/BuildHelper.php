@@ -291,7 +291,7 @@ class BuildHelper
         return Html::activeDropDownList($model, $attribute, $arr, $selectOptions);
     }
     
-    public static function buildFilter($models, $className, $primaryKey = 'id', $pidKey = 'pid', $nameKey = 'name', $isTop = true, $type = null, $searchName = '', $field = '')
+    public static function buildFilter($models, $className, $primaryKey = 'id', $pidKey = 'pid', $nameKey = 'name', $isTop = true, $type = null, $searchName = '', $field = '', $addRoutes = [])
     {
         $models = BuildHelper::reBuildModelKeys($models, $primaryKey);//重构模型数组索引
         $nexus = self::getModelNexus($models, $className, $primaryKey, $pidKey);//获取父子关系
@@ -300,7 +300,7 @@ class BuildHelper
         foreach ($list as $id => $item) {
             //按照新的关系，重新排序
             if(isset($models[$id]) && (is_null($type) || $models[$id]->type == $type)) {
-                $str .= '<a href="'.Url::to(['index', $searchName.'['.$field.']' => $id]).'">'.str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $item['level']-1).(empty($item['level']-1)?'':'|-').($models[$id]->{$nameKey}).'</a>';
+                $str .= '<a href="'.Url::to(ArrayHelper::merge(['index', $searchName.'['.$field.']' => $id], $addRoutes)).'">'.str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $item['level']-1).(empty($item['level']-1)?'':'|-').($models[$id]->{$nameKey}).'</a>';
             }
         }
         

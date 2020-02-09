@@ -49,7 +49,7 @@ class ArticleSearch extends Article
         //$query = Admin::findBySql($sql);
         //$query = Admin::find()->alias('a')->select(['a.*', 's.company as company', 's.domain as domain', 's.username as merchant'])->leftJoin(Site::tableName().' as s', ' a.test_id = s.testid');
         
-        $query = Article::find()->current()->delstate(Article::IS_NOT_DEL);
+        $query = Article::find();
 
         // add conditions that should always apply here
         $dataProvider = new ActiveDataProvider([
@@ -75,27 +75,25 @@ class ArticleSearch extends Article
         }
         
         // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'columnid' => $this->columnid,
-            'cateid' => $this->cateid,
-            'delstate' => $this->delstate,
-            'status' => $this->status,
-            'author' => $this->author,
-        ]);
-
-        $query->andFilterWhere(['like', 'title', $this->keyword])
-            ->andFilterWhere(['like', 'flag', $this->flag])
-            ->andFilterWhere(['like', 'slug', $this->keyword])
-            ->orFilterWhere(['like', 'parentstr', $this->keyword])
-            ->orFilterWhere(['like', 'source', $this->keyword])
-            ->orFilterWhere(['like', 'author', $this->keyword])
-            ->orFilterWhere(['like', 'linkurl', $this->keyword])
-            ->orFilterWhere(['like', 'keywords', $this->keyword])
-            ->orFilterWhere(['like', 'description', $this->keyword])
-            ->orFilterWhere(['like', 'content', $this->keyword]);
+        // $query->filterWhere(['and', ['and', ['type' => 2], ['like', 'name', 'tester']], ['or', ['like', 'name1', 't1'], ['like', 'name2', 't2']]]);
+        $query->filterWhere(['and', ['and',
+            '1 = 1',
+            ['lang' => GLOBAL_LANG],
+            ['delstate' => Article::IS_NOT_DEL],
+            ['id' => $this->id],
+            ['columnid' => $this->columnid],
+            ['cateid' => $this->cateid],
+            ['delstate' => $this->delstate],
+            ['status' => $this->status],
+            ['author' => $this->author],
+            ['like', 'flag', $this->flag]
+        ], ['or',
+            ['like', 'title', $this->keyword],
+            ['like', 'slug', $this->keyword],
+            ['like', 'linkurl', $this->keyword]
+        ]]);
         
-        //echo $dataProvider->query->createCommand()->rawSql;
+        // echo $dataProvider->query->createCommand()->rawSql;exit;
 
         return $dataProvider;
     }

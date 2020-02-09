@@ -78,26 +78,22 @@ class FileSearch extends File
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'columnid' => $this->columnid,
-            'parentid' => $this->parentid,
-            'cateid' => $this->cateid,
-            'catepid' => $this->catepid,
-            'hits' => $this->hits,
-            'delstate' => $this->delstate,
-            'status' => $this->status,
-        ]);
-
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'slug', $this->slug])
-            ->andFilterWhere(['like', 'flag', $this->flag])
-            ->andFilterWhere(['like', 'author', $this->author])
-            ->andFilterWhere(['like', 'website', $this->website])
-            ->andFilterWhere(['like', 'demourl', $this->demourl])
-            ->andFilterWhere(['like', 'dlurl', $this->dlurl])
-            ->andFilterWhere(['like', 'linkurl', $this->linkurl])
-            ->andFilterWhere(['like', 'keywords', $this->keywords]);
+        $query->filterWhere(['and', ['and',
+            '1 = 1',
+            ['lang' => GLOBAL_LANG],
+            ['delstate' => File::IS_NOT_DEL],
+            ['id' => $this->id],
+            ['columnid' => $this->columnid],
+            ['cateid' => $this->cateid],
+            ['delstate' => $this->delstate],
+            ['status' => $this->status],
+            ['author' => $this->author],
+            ['like', 'flag', $this->flag]
+        ], ['or',
+            ['like', 'title', $this->keyword],
+            ['like', 'slug', $this->keyword],
+            ['like', 'linkurl', $this->keyword]
+        ]]);
 
         //echo $dataProvider->query->createCommand()->rawSql;
 
