@@ -9,6 +9,7 @@ use yii\helpers\Html;
 use app\widgets\Alert;
 use yii\base\Widget;
 use yii\web\YiiAsset;
+use app\assets\PaceAsset;
 use app\assets\WebAsset;
 use app\assets\FontAwesomeAsset;
 use app\assets\NotifyAsset;
@@ -17,6 +18,7 @@ use app\assets\PureboxAsset;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+PaceAsset::register($this);
 YiiAsset::register($this);
 FontAwesomeAsset::register($this);
 NotifyAsset::register($this);//全局通知+提示
@@ -24,11 +26,13 @@ PureboxAsset::register($this);//全局确认框+弹窗+提示
 WebAsset::register($this);
 
 $baseUrl = Yii::getAlias('@web');
-// $this->registerJs("
-//         $(document).ready(function() {
-//             //
-//         })
-// ");
+$this->registerJs("
+    // $(document).ready(function() {
+    // })
+    paceOptions = {
+        elements: true
+    };
+", \yii\web\View::POS_BEGIN);
 ?>
 
 <?php $this->beginPage() ?>
