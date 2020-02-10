@@ -2,9 +2,9 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
-use app\assets\LayerAsset;
-use app\assets\Swiper3Asset;
-use app\assets\ValidationAsset;
+use mobile\assets\LayerAsset;
+use mobile\assets\Swiper3Asset;
+use mobile\assets\ValidationAsset;
 use common\models\account\Inquiry;
 
 $this->topTitle = '免费报价';

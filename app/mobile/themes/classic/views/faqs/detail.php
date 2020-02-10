@@ -5,7 +5,7 @@
  * @author developer qq:980522557
  */
 
-use app\assets\Swiper3Asset;
+use mobile\assets\Swiper3Asset;
 use yii\helpers\Url;
 
 $this->currentModel = $model;

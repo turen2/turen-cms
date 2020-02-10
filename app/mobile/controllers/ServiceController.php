@@ -4,17 +4,17 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\controllers;
+namespace mobile\controllers;
 
 use Yii;
 use common\models\com\VerifyConsultForm;
 use common\models\shop\Product;
 use common\models\shop\ProductSearch;
 use yii\web\NotFoundHttpException;
-use app\behaviors\PlusViewBehavior;
+use mobile\behaviors\PlusViewBehavior;
 use common\models\cms\Column;
 
-class ServiceController extends \app\components\Controller
+class ServiceController extends \mobile\components\Controller
 {
     public function behaviors()
     {

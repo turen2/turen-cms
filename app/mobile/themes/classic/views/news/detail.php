@@ -6,7 +6,7 @@
  */
 /* @var $this yii\web\View */
 
-use app\widgets\SideBoxListWidget;
+use mobile\widgets\SideBoxListWidget;
 use yii\helpers\Url;
 use common\helpers\Util;
 use common\models\cms\Article;

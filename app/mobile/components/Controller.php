@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\components;
+namespace mobile\components;
 
 //后台统一控制器
 class Controller extends \yii\web\Controller

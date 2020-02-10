@@ -6,7 +6,7 @@
  */
 /* @var $this yii\web\View */
 
-use app\assets\MasonryAsset;
+use mobile\assets\MasonryAsset;
 use yii\helpers\Url;
 use yii\widgets\ListView;
 

@@ -11,9 +11,9 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\YiiAsset;
-use app\assets\AnimateAsset;
-use app\assets\IconfontAsset;
-use app\assets\AppAsset;
+use mobile\assets\AnimateAsset;
+use mobile\assets\IconfontAsset;
+use mobile\assets\AppAsset;
 
 AnimateAsset::register($this);
 IconfontAsset::register($this);

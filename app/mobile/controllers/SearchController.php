@@ -4,11 +4,11 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\controllers;
+namespace mobile\controllers;
 
 use Yii;
 
-class SearchController extends \app\components\Controller
+class SearchController extends \mobile\components\Controller
 {
     public $layout = '/main_search';
 

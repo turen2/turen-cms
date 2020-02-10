@@ -1,8 +1,8 @@
 <?php
 
-use app\assets\LayerAsset;
-use app\assets\Swiper3Asset;
-use app\assets\ValidationAsset;
+use mobile\assets\LayerAsset;
+use mobile\assets\Swiper3Asset;
+use mobile\assets\ValidationAsset;
 use common\models\account\Inquiry;
 use yii\helpers\Html;
 

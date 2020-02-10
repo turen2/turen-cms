@@ -5,11 +5,11 @@
  * @author developer qq:980522557
  */
 //站点通用控制器
-namespace app\controllers;
+namespace mobile\controllers;
 
 use Yii;
-use app\components\Controller;
-use app\widgets\phonecode\PhoneCodePopAction;
+use mobile\components\Controller;
+use mobile\widgets\phonecode\PhoneCodePopAction;
 use common\helpers\Util;
 
 /**

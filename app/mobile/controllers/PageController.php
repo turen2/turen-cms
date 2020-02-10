@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\controllers;
+namespace mobile\controllers;
 
 use Yii;
 use yii\web\NotFoundHttpException;
@@ -12,7 +12,7 @@ use common\models\ext\Job;
 use common\models\cms\Column;
 use common\models\cms\Info;
 
-class PageController extends \app\components\Controller
+class PageController extends \mobile\components\Controller
 {
     /**
      * 单页详情，通用单页面输出

@@ -5,8 +5,8 @@
  * @author developer qq:980522557
  */
 
-use app\assets\Swiper3Asset;
-use app\widgets\SideBoxListWidget;
+use mobile\assets\Swiper3Asset;
+use mobile\widgets\SideBoxListWidget;
 use common\helpers\ImageHelper;
 use common\helpers\Util;
 use common\models\cms\Photo;

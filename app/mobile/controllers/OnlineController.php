@@ -4,12 +4,12 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\controllers;
+namespace mobile\controllers;
 
 use Yii;
 use common\models\account\Inquiry;
 
-class OnlineController extends \app\components\Controller
+class OnlineController extends \mobile\components\Controller
 {
     const INQUIRY_REQUEST_CACHE_KEY = 'inquiry_request_cache_key';
 

@@ -1,7 +1,7 @@
 <?php
 
-use app\assets\LayerAsset;
-use app\assets\Swiper3Asset;
+use mobile\assets\LayerAsset;
+use mobile\assets\Swiper3Asset;
 use common\helpers\ImageHelper;
 use common\models\ext\Nav;
 
