@@ -44,7 +44,7 @@ class MasterModelSearch extends MasterModel
     	//$sql = "select a.*, s.company as company, s.domain as domain, s.username as merchant from ".Admin::tableName()." as a left join ".Site::tableName()." as s on a.test_id = s.testid";
         //$query = Admin::findBySql($sql);
         //$query = Admin::find()->alias('a')->select(['a.*', 's.company as company', 's.domain as domain', 's.username as merchant'])->leftJoin(Site::tableName().' as s', ' a.test_id = s.testid');
-        $query = MasterModel::find()->current();
+        $query = MasterModel::find();
 
         // add conditions that should always apply here
 
@@ -71,19 +71,19 @@ class MasterModelSearch extends MasterModel
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'columnid' => $this->columnid,
-            'cateid' => $this->cateid,
-            'status' => $this->status,
-        ]);
-
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'slug', $this->slug])
-            ->andFilterWhere(['like', 'parentstr', $this->parentstr])
-            ->andFilterWhere(['like', 'catepstr', $this->catepstr])
-            ->andFilterWhere(['like', 'flag', $this->flag])
-            ->andFilterWhere(['like', 'picurl', $this->picurl]);
+        $query->filterWhere(['and', ['and',
+            '1 = 1',
+            ['lang' => GLOBAL_LANG],
+            ['id' => $this->id],
+            ['columnid' => $this->columnid],
+            ['cateid' => $this->cateid],
+            ['status' => $this->status],
+            ['author' => $this->author],
+            ['like', 'flag', $this->flag]
+        ], ['or',
+            ['like', 'title', $this->keyword],
+            ['like', 'slug', $this->keyword]
+        ]]);
         
         //echo $dataProvider->query->createCommand()->rawSql;
 

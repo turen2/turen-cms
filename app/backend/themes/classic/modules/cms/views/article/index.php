@@ -23,7 +23,7 @@ $js = <<<EOF
 EOF;
 $this->registerJs($js);
 
-$this->title = '文章信息管理';
+$this->title = '列表信息管理';
 $this->topFilter = $this->render('_filter', ['model' => $searchModel, 'type' => Column::COLUMN_TYPE_ARTICLE]);
 ?>
 
@@ -106,7 +106,7 @@ if(empty($dataProvider->count))
     	<span class="op-name">操作：</span>
     	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>
 	</span>
-	<?= Html::a('添加文章信息', ['create'], ['class' => 'data-btn']) ?>
+	<?= Html::a('添加列表信息', ['create'], ['class' => 'data-btn']) ?>
 	<div class="page">
     	<?= LinkPager::widget([
     	    'pagination' => $dataProvider->getPagination(),

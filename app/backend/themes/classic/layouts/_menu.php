@@ -54,7 +54,7 @@ $diyModels = DiyModel::find()->active()->asArray()->all();
                         'linkTemplate' => '<a target="main" href="{url}">{label}</a>',
                         'items' => [
                             ['label' => '简单页面', 'url' => ['/cms/info/index'], 'visible' => $roleModel->checkPerm('cms/info/index', true)],
-                            ['label' => '文章管理', 'url' => ['/cms/article/index'], 'visible' => $roleModel->checkPerm('cms/article/index', true)],
+                            ['label' => '列表管理', 'url' => ['/cms/article/index'], 'visible' => $roleModel->checkPerm('cms/article/index', true)],
                             ['label' => '图片图集', 'url' => ['/cms/photo/index'], 'visible' => $roleModel->checkPerm('cms/photo/index', true)],
                             ['label' => '文件下载', 'url' => ['/cms/file/index'], 'visible' => $roleModel->checkPerm('cms/file/index', true)],
                             ['label' => '视频管理', 'url' => ['/cms/video/index'], 'visible' => $roleModel->checkPerm('cms/video/index', true)],

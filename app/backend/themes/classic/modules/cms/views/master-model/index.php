@@ -17,6 +17,7 @@ use app\models\cms\Flag;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = $diyModel->dm_title.'列表';
+$this->topFilter = $this->render('_filter', ['model' => $searchModel, 'type' => $modelid]);
 ?>
 
 <?= $this->render('_search', ['model' => $searchModel, 'diyModel' => $diyModel, 'modelid' => $modelid]); ?>

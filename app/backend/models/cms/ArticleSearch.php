@@ -83,7 +83,6 @@ class ArticleSearch extends Article
             ['id' => $this->id],
             ['columnid' => $this->columnid],
             ['cateid' => $this->cateid],
-            ['delstate' => $this->delstate],
             ['status' => $this->status],
             ['author' => $this->author],
             ['like', 'flag', $this->flag]

@@ -7,7 +7,7 @@
 /* @var $this yii\web\View */
 /* @var $model app\models\cms\Article */
 
-$this->title = '编辑文章信息';
+$this->title = '编辑列表信息';
 ?>
 <div class="article-update">
     <?= $this->render('_form', [
