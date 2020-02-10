@@ -6,8 +6,8 @@
  */
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
-use yii\web\JsExpression;
 use backend\widgets\fileupload\JQueryFileUploadWidget;
+use yii\web\JsExpression;
 
 $config = ArrayHelper::index($config, 'varname');
 ?>
@@ -36,7 +36,6 @@ $config = ArrayHelper::index($config, 'varname');
 		Yii::$app->params['<?php echo $config['config_frontend_logo']['varname']; ?>']
 	</td>
 </tr>
-
 <tr>
 	<td class="first-column"><?= $config['config_backend_logo']['varinfo']; ?></td>
 	<td class="second-column" width="33%">
@@ -62,11 +61,11 @@ $config = ArrayHelper::index($config, 'varname');
 	</td>
 </tr>
 <tr>
-    <td class="first-column"><?= $config['config_hedader_phone_qr']['varinfo']; ?></td>
+    <td class="first-column"><?= $config['config_mobile_qr']['varinfo']; ?></td>
     <td class="second-column" width="33%">
         <?= JQueryFileUploadWidget::widget([
-            'name' => $config['config_hedader_phone_qr']['varname'],
-            'value' => $config['config_hedader_phone_qr']['varvalue'],
+            'name' => $config['config_mobile_qr']['varname'],
+            'value' => $config['config_mobile_qr']['varvalue'],
             'options' => ['class' => 'input', 'readonly' => true],
             'url' => ['fileupload', 'param' => 'value'],
             'uploadName' => 'logourl',
@@ -82,15 +81,15 @@ $config = ArrayHelper::index($config, 'varname');
         <span class="cnote">切换模板后，请刷新整个页面</span>
     </td>
     <td style="border-bottom: 1px dashed #efefef;">
-        Yii::$app->params['<?php echo $config['config_hedader_phone_qr']['varname']; ?>']
+        Yii::$app->params['<?php echo $config['config_mobile_qr']['varname']; ?>']
     </td>
 </tr>
 <tr>
-    <td class="first-column"><?= $config['config_footer_phone_qr']['varinfo']; ?></td>
+    <td class="first-column"><?= $config['config_service_qr']['varinfo']; ?></td>
     <td class="second-column" width="33%">
         <?= JQueryFileUploadWidget::widget([
-            'name' => $config['config_footer_phone_qr']['varname'],
-            'value' => $config['config_footer_phone_qr']['varvalue'],
+            'name' => $config['config_service_qr']['varname'],
+            'value' => $config['config_service_qr']['varvalue'],
             'options' => ['class' => 'input', 'readonly' => true],
             'url' => ['fileupload', 'param' => 'value'],
             'uploadName' => 'logourl',
@@ -106,6 +105,6 @@ $config = ArrayHelper::index($config, 'varname');
         <span class="cnote">切换模板后，请刷新整个页面</span>
     </td>
     <td style="border-bottom: 1px dashed #efefef;">
-        Yii::$app->params['<?php echo $config['config_footer_phone_qr']['varname']; ?>']
+        Yii::$app->params['<?php echo $config['config_service_qr']['varname']; ?>']
     </td>
 </tr>

@@ -15,8 +15,7 @@ $addRoutes = [
     'mid' => $type,
     Html::getInputName($model, 'keyword') => $model->keyword,
     Html::getInputName($model, 'status') => $model->status,
-    Html::getInputName($model, 'flag') => $model->flag,
-    Html::getInputName($model, 'author') => $model->author
+    Html::getInputName($model, 'flag') => $model->flag
 ];
 
 $columnModel = Column::findOne($model->columnid);

@@ -100,7 +100,7 @@ $adminModel = Yii::$app->user->identity;
                     ?>
             	</div>
                 <?php
-                $inquiryNum = Inquiry::find()->where(['ui_state' => Inquiry::INQUIRY_STATE_NOTHING])->count('ui_id');
+                $inquiryNum = 0;
                 $feedbackNum = 0;
                 $notifyNum = $inquiryNum + $feedbackNum;
                 ?>

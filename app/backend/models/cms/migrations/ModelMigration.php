@@ -52,7 +52,6 @@ class ModelMigration extends Migration
                 'catepid' => $this->integer(11)->unsigned()->null()->comment('类别父ID'),
                 'catepstr' => $this->string(80)->null()->comment('类别父ID列表'),
                 'flag' => $this->string(30)->notNull()->defaultValue('')->comment('标记'),
-                'author' => $this->string(50)->notNull()->defaultValue('')->comment('作者编辑'),
                 'picurl' => $this->string(100)->notNull()->defaultValue('')->comment('缩略图'),
                 'lang' => $this->string(8)->notNull()->defaultValue('')->comment('多语言'),
                 'status' => $this->tinyInteger(1)->unsigned()->notNull()->defaultValue(1)->comment('状态'),
