@@ -7,7 +7,7 @@
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-/* @var $user app\modules\admin\models\User */
+/* @var $user backend\modules\admin\models\User */
 
 $resetLink = Url::to(['merchant/common/reset-password','token'=>$password_reset_token], true);
 ?>

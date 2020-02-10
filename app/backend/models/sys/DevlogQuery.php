@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\sys;
+namespace backend\models\sys;
 
 /**
  * This is the ActiveQuery class for [[Devlog]].

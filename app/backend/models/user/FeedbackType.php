@@ -4,14 +4,14 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\user;
+namespace backend\models\user;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
-use app\behaviors\InsertLangBehavior;
-use app\behaviors\OrderDefaultBehavior;
+use backend\behaviors\InsertLangBehavior;
+use backend\behaviors\OrderDefaultBehavior;
 
 /**
  * This is the model class for table "{{%user_feedback_type}}".
@@ -28,7 +28,7 @@ use app\behaviors\OrderDefaultBehavior;
  * @property string $created_at 创建时间
  * @property string $updated_at 更新时间
  */
-class FeedbackType extends \app\models\base\User
+class FeedbackType extends \backend\models\base\User
 {
     //是否展示常量
     const SHOW_YES = 1;

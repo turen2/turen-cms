@@ -6,7 +6,7 @@ use yii\helpers\Url;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\sys\Multilang */
+/* @var $model backend\models\sys\Multilang */
 
 $this->title = '添加新语言';
 ?>

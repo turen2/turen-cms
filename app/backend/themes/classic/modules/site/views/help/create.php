@@ -5,7 +5,7 @@
  * @author developer qq:980522557
  */
 /* @var $this yii\web\View */
-/* @var $model app\models\site\Help */
+/* @var $model backend\models\site\Help */
 
 $this->title = '添加帮助信息';
 ?>

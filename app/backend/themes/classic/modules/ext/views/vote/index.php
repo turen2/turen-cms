@@ -5,14 +5,13 @@
  * @author developer qq:980522557
  */
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use yii\widgets\ActiveForm;
-use app\widgets\edititem\EditItemWidget;
+use backend\widgets\edititem\EditItemWidget;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\ext\VoteSearch */
+/* @var $searchModel backend\models\ext\VoteSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '投票信息管理';
@@ -60,7 +59,7 @@ $this->title = '投票信息管理';
 		<td class="number"><?= Yii::$app->getFormatter()->asDate($model->starttime); ?></td>
 		<td class="number"><?= Yii::$app->getFormatter()->asDate($model->endtime); ?></td>
 		<td><?= $model->isguest?'允许':'不允许'; ?></td>
-		<td><?= $model->isview?'允许':'不允许'; ?>允许</td>
+		<td><?= $model->isview?'允许':'不允许'; ?></td>
 		<td><?= Yii::$app->getFormatter()->asDate($model->posttime); ?></td>
 		<td><?= EditItemWidget::widget([
 		    'model' => $model,

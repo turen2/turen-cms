@@ -4,18 +4,18 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\cms;
+namespace backend\models\cms;
 
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
-use app\behaviors\InsertLangBehavior;
 use yii\helpers\Url;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\AttributeBehavior;
 use yii\db\ActiveRecord;
-use app\models\shop\Product;
-use app\behaviors\OrderDefaultBehavior;
+use backend\behaviors\InsertLangBehavior;
+use backend\models\shop\Product;
+use backend\behaviors\OrderDefaultBehavior;
 
 /**
  * This is the model class for table "{{%cms_column}}".
@@ -37,7 +37,7 @@ use app\behaviors\OrderDefaultBehavior;
  * @property int $status 审核状态
  * @property string $lang
  */
-class Column extends \app\models\base\Cms
+class Column extends \backend\models\base\Cms
 {
     //栏目类型
     const COLUMN_TYPE_CATE = 100;//栏目总类别

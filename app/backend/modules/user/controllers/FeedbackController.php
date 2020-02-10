@@ -4,17 +4,17 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\user\controllers;
+namespace backend\modules\user\controllers;
 
 use Yii;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\models\user\Feedback;
-use app\models\user\FeedbackSearch;
-use app\components\Controller;
-use app\widgets\edititem\EditItemAction;
-use app\models\user\User;
-use app\widgets\select2\Select2Action;
+use backend\models\user\Feedback;
+use backend\models\user\FeedbackSearch;
+use backend\components\Controller;
+use backend\widgets\edititem\EditItemAction;
+use backend\models\user\User;
+use backend\widgets\select2\Select2Action;
 
 /**
  * FeedbackController implements the CRUD actions for Feedback model.

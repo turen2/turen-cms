@@ -4,11 +4,10 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-
-use app\models\ext\AdType;
-use common\helpers\BuildHelper;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
+use common\helpers\BuildHelper;
+use backend\models\ext\AdType;
 
 //获取数据
 $models = AdType::find()->current()->orderBy(['orderid' => SORT_DESC])->all();

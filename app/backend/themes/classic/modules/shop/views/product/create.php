@@ -6,7 +6,7 @@ use yii\helpers\Url;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\shop\Product */
+/* @var $model backend\models\shop\Product */
 
 $this->title = '添加新产品';
 ?>

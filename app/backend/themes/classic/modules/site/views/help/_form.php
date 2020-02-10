@@ -7,24 +7,24 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
-use app\widgets\Tips;
-use app\assets\ValidationAsset;
-use common\helpers\BuildHelper;
-use app\models\site\Help;
-use app\models\site\HelpCate;
 use yii\base\Widget;
-use app\widgets\select2\Select2Widget;
-use app\models\site\Tag;
-use app\widgets\laydate\LaydateWidget;
-use app\assets\ColorPickerAsset;
-use app\widgets\fileupload\JQueryFileUploadWidget;
 use yii\web\JsExpression;
-use app\widgets\ueditor\UEditorWidget;
 use yii\helpers\Json;
-use app\models\site\HelpFlag;
+use common\helpers\BuildHelper;
+use backend\widgets\Tips;
+use backend\assets\ValidationAsset;
+use backend\models\site\Help;
+use backend\models\site\HelpCate;
+use backend\widgets\select2\Select2Widget;
+use backend\models\site\Tag;
+use backend\widgets\laydate\LaydateWidget;
+use backend\assets\ColorPickerAsset;
+use backend\widgets\fileupload\JQueryFileUploadWidget;
+use backend\widgets\ueditor\UEditorWidget;
+use backend\models\site\HelpFlag;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\site\Help */
+/* @var $model backend\models\site\Help */
 /* @var $form yii\widgets\ActiveForm */
 
 ValidationAsset::register($this);

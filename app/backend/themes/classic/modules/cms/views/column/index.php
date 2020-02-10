@@ -5,14 +5,13 @@
  * @author developer qq:980522557
  */
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use yii\widgets\ActiveForm;
-use app\models\cms\Column;
+use backend\models\cms\Column;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\cms\ColumnSearch */
+/* @var $searchModel backend\models\cms\ColumnSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '栏目管理';

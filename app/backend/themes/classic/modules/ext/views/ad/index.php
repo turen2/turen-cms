@@ -11,10 +11,10 @@ use yii\widgets\LinkPager;
 use yii\widgets\ActiveForm;
 use common\components\AliyunOss;
 use common\helpers\ImageHelper;
-use app\widgets\edititem\EditItemWidget;
+use backend\widgets\edititem\EditItemWidget;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\ext\AdSearch */
+/* @var $searchModel backend\models\ext\AdSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '广告信息管理';

@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\helpers;
+namespace backend\helpers;
 
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -22,7 +22,7 @@ class BackCommonHelper {
         }
     }
     
-    public static function CheckPermBox(\app\models\sys\Role $model, $route, $name)
+    public static function CheckPermBox(\backend\models\sys\Role $model, $route, $name)
     {
         return '<input type="checkbox" id="perm-'.(str_replace('/', '-', $route)).'"'.
             ' name="Perm[route][]" value="'.$route.'" '.(($model->checkPerm($route))?'checked="checked"':'').' />'.

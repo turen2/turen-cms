@@ -4,25 +4,25 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\cms\controllers;
+namespace backend\modules\cms\controllers;
 
 use Yii;
-use app\models\cms\Photo;
-use app\models\cms\PhotoSearch;
-use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\components\AliyunOss;
-use app\widgets\fileupload\FileUploadAction;
-use app\actions\RecycleAction;
-use app\actions\BatchAction;
-use app\actions\CheckAction;
-use app\widgets\ueditor\UEditorAction;
-use app\widgets\edititem\EditItemAction;
-use app\widgets\select2\Select2TagAction;
-use app\models\cms\Tag;
-use app\models\cms\TagAssign;
-use app\models\cms\DiyField;
+use backend\models\cms\Photo;
+use backend\models\cms\PhotoSearch;
+use backend\components\Controller;
+use backend\widgets\fileupload\FileUploadAction;
+use backend\actions\RecycleAction;
+use backend\actions\BatchAction;
+use backend\actions\CheckAction;
+use backend\widgets\ueditor\UEditorAction;
+use backend\widgets\edititem\EditItemAction;
+use backend\widgets\select2\Select2TagAction;
+use backend\models\cms\Tag;
+use backend\models\cms\TagAssign;
+use backend\models\cms\DiyField;
 
 /**
  * PhotoController implements the CRUD actions for Photo model.

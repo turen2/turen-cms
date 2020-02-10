@@ -7,8 +7,8 @@
 use yii\helpers\Html;
 
 use yii\web\YiiAsset;
-use app\assets\LoginAsset;
-use app\assets\NotifyAsset;
+use backend\assets\LoginAsset;
+use backend\assets\NotifyAsset;
 
 /* @var $this \yii\web\View */
 /* @var $content string */

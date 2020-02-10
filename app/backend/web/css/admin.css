@@ -623,6 +623,7 @@ input[type="button"]:focus, input[type="submit"]:focus {
 	padding: 0 10px 0 10px;
 	border: 1px solid #999;
 	border-bottom: 1px solid #fff;
+	background: #ffffff;
 	text-decoration: none;
 	z-index: 2;
 }

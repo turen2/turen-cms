@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\filters;
+namespace backend\filters;
 
 use Yii;
 use yii\base\ActionFilter;
@@ -16,7 +16,7 @@ use yii\helpers\Url;
  * {
  *     return [
  *         [
- *             'class' => 'app\filters\ReturnUrlFilter',
+ *             'class' => 'backend\filters\ReturnUrlFilter',
  *             'only' => ['index'],
  *             'except' => ['controller/action', 'controller/*', 'module1/*', 'module2/*'],
  *         ],

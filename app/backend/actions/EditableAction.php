@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\actions;
+namespace backend\actions;
 
 use Yii;
 use yii\base\Action;
@@ -22,7 +22,7 @@ use yii\web\HttpException;
  {
      return [
          'order' => [
-             'class' => 'app\actions\EditableAction',
+             'class' => 'backend\actions\EditableAction',
              'className' => Test::class,
              'id' => Yii::$app->getRequest()->get('id'),
              'field' => 'order',

@@ -4,16 +4,16 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\behaviors;
+namespace backend\behaviors;
 
-use app\models\cms\DiyModel;
-use app\models\cms\MasterModel;
 use Yii;
 use yii\base\Behavior;
 use yii\base\Application;
 use yii\db\Query;
 use yii\helpers\Json;
-use app\models\sys\Log;
+use backend\models\cms\DiyModel;
+use backend\models\cms\MasterModel;
+use backend\models\sys\Log;
 
 class LogBehavior extends Behavior
 {

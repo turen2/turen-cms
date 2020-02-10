@@ -4,15 +4,15 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\ext;
+namespace backend\models\ext;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
-use app\behaviors\InsertLangBehavior;
 use yii\db\ActiveRecord;
-use app\widgets\laydate\LaydateBehavior;
-use app\behaviors\OrderDefaultBehavior;
+use backend\behaviors\InsertLangBehavior;
+use backend\widgets\laydate\LaydateBehavior;
+use backend\behaviors\OrderDefaultBehavior;
 
 /**
  * This is the model class for table "{{%ext_job}}".
@@ -35,7 +35,7 @@ use app\behaviors\OrderDefaultBehavior;
  * @property int $status 显示状态
  * @property string $lang
  */
-class Job extends \app\models\base\Ext
+class Job extends \backend\models\base\Ext
 {
     const SEX_MALE = 1;//男性
     const SEX_FEMALE = 2;//女性

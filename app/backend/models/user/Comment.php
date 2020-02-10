@@ -4,14 +4,14 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\user;
+namespace backend\models\user;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
-use app\behaviors\InsertLangBehavior;
-use app\widgets\laydate\LaydateBehavior;
-use app\models\cms\Column;
+use backend\behaviors\InsertLangBehavior;
+use backend\widgets\laydate\LaydateBehavior;
+use backend\models\cms\Column;
 
 /**
  * This is the model class for table "ss_user_comment".
@@ -31,7 +31,7 @@ use app\models\cms\Column;
  * @property string $reply_time 回复时间
  * @property string $created_at 发表评论的时间
  */
-class Comment extends \app\models\base\User
+class Comment extends \backend\models\base\User
 {
 	public $keyword;
 	

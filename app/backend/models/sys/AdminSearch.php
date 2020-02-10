@@ -4,25 +4,29 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\sys;
+namespace backend\models\sys;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\sys\Admin;
+use backend\models\sys\Admin;
 
 /**
- * AdminSearch represents the model behind the search form of `app\models\sys\Admin`.
+ * AdminSearch represents the model behind the search form of `backend\models\sys\Admin`.
  */
 class AdminSearch extends Admin
 {
+    public function beforeValidate()
+    {
+        return true; // 忽略所有检测
+    }
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['username', 'nickname', 'question', 'answer', 'phone', 'status', 'keyword'], 'safe'],
+            [['username', 'nickname', 'question', 'answer', 'phone', 'status', 'keyword', 'password'], 'safe'],
         ];
     }
 
@@ -73,19 +77,17 @@ class AdminSearch extends Admin
         }
 
         // grid filtering conditions
-        $query->orFilterWhere(['like', 'username', $this->username])
-                ->orFilterWhere(['like', 'nickname', $this->nickname])
-                ->orFilterWhere(['like', 'question', $this->question])
-                ->orFilterWhere(['like', 'answer', $this->answer])
-                ->orFilterWhere(['like', 'loginip', $this->loginip])
-                ->orFilterWhere(['like', 'phone', $this->phone])
-                ->orFilterWhere(['like', 'status', $this->status]);
-        
-        $query->andFilterWhere([
-            
-        ]);
+        $query->filterWhere(['and', ['and',
+            '1 = 1',
+            ['id' => $this->id],
+            ['status' => $this->status]
+        ], ['or',
+            ['like', 'username', $this->keyword],
+            ['like', 'nickname', $this->keyword],
+            ['like', 'phone', $this->keyword]
+        ]]);
 
-        //echo $dataProvider->query->createCommand()->rawSql;exit;
+        // echo $dataProvider->query->createCommand()->rawSql;exit;
         return $dataProvider;
     }
 }

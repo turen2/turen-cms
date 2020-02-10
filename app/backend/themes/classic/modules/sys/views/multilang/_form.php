@@ -1,16 +1,20 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
-use app\widgets\Tips;
-use app\assets\ValidationAsset;
-use app\models\sys\Multilang;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
+use backend\widgets\Tips;
+use backend\assets\ValidationAsset;
+use backend\models\sys\Multilang;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\sys\Multilang */
+/* @var $model backend\models\sys\Multilang */
 /* @var $form yii\widgets\ActiveForm */
 
 ValidationAsset::register($this);

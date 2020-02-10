@@ -4,17 +4,17 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\ext;
+namespace backend\models\ext;
 
-use app\behaviors\ParentBehavior;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
-use app\behaviors\InsertLangBehavior;
 use yii\behaviors\AttributeBehavior;
 use yii\db\ActiveRecord;
-use app\widgets\laydate\LaydateBehavior;
-use app\behaviors\OrderDefaultBehavior;
+use backend\behaviors\ParentBehavior;
+use backend\behaviors\InsertLangBehavior;
+use backend\widgets\laydate\LaydateBehavior;
+use backend\behaviors\OrderDefaultBehavior;
 
 /**
  * This is the model class for table "{{%ext_ad}}".
@@ -33,7 +33,7 @@ use app\behaviors\OrderDefaultBehavior;
  * @property int $status 显示状态
  * @property string $lang
  */
-class Ad extends \app\models\base\Ext
+class Ad extends \backend\models\base\Ext
 {
 	public $keyword;
 	

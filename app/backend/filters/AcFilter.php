@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\filters;
+namespace backend\filters;
 
 use Yii;
 use yii\web\User;

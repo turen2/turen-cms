@@ -4,9 +4,9 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\base;
+namespace backend\models\base;
 
-class Tool extends \app\components\ActiveRecord
+class Tool extends \backend\components\ActiveRecord
 {
     
 }

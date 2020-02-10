@@ -5,9 +5,9 @@
  * @author developer qq:980522557
  */
 /* @var $this yii\web\View */
-/* @var $model app\models\cms\File */
+/* @var $model backend\models\cms\File */
 
-$this->title = '添加下载信息';
+$this->title = '添加文件信息';
 ?>
 <div class="file-create">
     <?= $this->render('_form', [

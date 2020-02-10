@@ -4,9 +4,10 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-use common\helpers\BuildHelper;
+
 use yii\helpers\Url;
-use app\models\shop\ProductCate;
+use common\helpers\BuildHelper;
+use backend\models\shop\ProductCate;
 
 $cateModel = ProductCate::findOne($model->pcateid);
 $buildFilter = BuildHelper::buildFilter(ProductCate::find()->current()->orderBy(['orderid' => SORT_DESC])->all(), ProductCate::class, 'id', 'parentid', 'cname', true, null, 'AttributeSearch', 'pcateid');

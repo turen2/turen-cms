@@ -4,13 +4,13 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-use app\models\user\FeedbackType;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\components\ActiveRecord;
+use backend\models\user\FeedbackType;
+use backend\components\ActiveRecord;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\user\FeedbackTypeSearch */
+/* @var $model backend\models\user\FeedbackTypeSearch */
 /* @var $form yii\widgets\ActiveForm */
 
 $isAll = true;

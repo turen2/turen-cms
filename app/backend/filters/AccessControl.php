@@ -1,17 +1,15 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: jorry
- * Date: 2019/3/29
- * Time: 14:48
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
  */
-
-namespace app\filters;
+namespace backend\filters;
 
 use Yii;
-use app\models\sys\Role;
 use yii\helpers\ArrayHelper;
-use app\helpers\BackCommonHelper;
+use backend\models\sys\Role;
+use backend\helpers\BackCommonHelper;
 
 class AccessControl extends \yii\filters\AccessControl
 {

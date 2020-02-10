@@ -7,9 +7,9 @@
 
 use yii\db\ActiveRecordInterface;
 use yii\helpers\StringHelper;
-use app\actions\CheckAction;
-use app\actions\SimpleMoveAction;
-use app\widgets\edititem\EditItemAction;
+use backend\actions\CheckAction;
+use backend\actions\SimpleMoveAction;
+use backend\widgets\edititem\EditItemAction;
 
 /* @var $this yii\web\View */
 /* @var $generator yii\gii\generators\crud\Generator */

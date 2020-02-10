@@ -10,7 +10,7 @@ use yii\helpers\Url;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\user\User */
+/* @var $model backend\models\user\User */
 
 $this->title = '添加新用户';
 ?>

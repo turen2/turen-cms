@@ -4,17 +4,17 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\ext\controllers;
+namespace backend\modules\ext\controllers;
 
 use Yii;
-use app\models\ext\AdType;
-use app\models\ext\AdTypeSearch;
-use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\helpers\BuildHelper;
-use app\actions\MoveAction;
-use app\actions\CheckAction;
+use backend\models\ext\AdType;
+use backend\models\ext\AdTypeSearch;
+use backend\components\Controller;
+use backend\actions\MoveAction;
+use backend\actions\CheckAction;
 
 /**
  * AdTypeController implements the CRUD actions for AdType model.

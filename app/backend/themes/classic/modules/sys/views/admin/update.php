@@ -7,7 +7,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\sys\Admin */
+/* @var $model backend\models\sys\Admin */
 
 $this->title = '编辑管理员信息';
 $this->params['breadcrumbs'][] = ['label' => 'Admins', 'url' => ['index']];

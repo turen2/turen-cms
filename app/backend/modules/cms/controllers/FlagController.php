@@ -4,15 +4,15 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\cms\controllers;
+namespace backend\modules\cms\controllers;
 
 use Yii;
-use app\models\cms\Flag;
-use app\models\cms\FlagSearch;
-use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\actions\SimpleMoveAction;
+use backend\models\cms\Flag;
+use backend\models\cms\FlagSearch;
+use backend\components\Controller;
+use backend\actions\SimpleMoveAction;
 
 /**
  * FlagController implements the CRUD actions for Flag model.

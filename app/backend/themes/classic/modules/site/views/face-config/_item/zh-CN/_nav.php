@@ -5,9 +5,9 @@
  * @author developer qq:980522557
  */
 
-use app\models\ext\Nav;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use backend\models\ext\Nav;
 
 $navArray = ArrayHelper::map(Nav::find()->current()->where(['parentid' => Nav::TOP_ID])->orderBy(['orderid' => SORT_DESC])->asArray()->all(), 'id', 'menuname');
 ?>

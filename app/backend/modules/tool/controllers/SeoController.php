@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\tool\controllers;
+namespace backend\modules\tool\controllers;
 
 use yii\web\Controller;
 

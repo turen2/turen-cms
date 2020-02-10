@@ -4,8 +4,8 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-use app\bootstrap\InitSysten;
-use app\bootstrap\InitConfig;
+use backend\bootstrap\InitSysten;
+use backend\bootstrap\InitConfig;
 
 $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
@@ -17,7 +17,7 @@ $config = [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
     'name' => 'turen2.com',
-    'controllerNamespace' => 'app\modules\site\controllers',//默认预加载控制器类的命名空间
+    'controllerNamespace' => 'backend\modules\site\controllers',//默认预加载控制器类的命名空间
     'defaultRoute' => 'site/home/index', // 默认路由，后台默认首页
     'layout' => 'main', // 默认布局
     //'viewPath' => '@app/themes/classic',
@@ -25,8 +25,8 @@ $config = [
     
     //系统初始化时预处理核心组件后，调用此组件的接口bootstrap()方法
     'bootstrap' => [
-        //'app\bootstrap\initSysten',//php 7.2不支持
-        //'app\bootstrap\initConfig',
+        //'backend\bootstrap\initSysten',//php 7.2不支持
+        //'backend\bootstrap\initConfig',
         [
             'class' => InitSysten::class,//初始化环境：模板、语言、缓存
         ],
@@ -36,29 +36,29 @@ $config = [
     ],
     'modules' => [
         'com' => [//公共服务调用
-            'class' => 'app\modules\com\Module',
+            'class' => 'backend\modules\com\Module',
         ],
         'site' => [//主要解决公共页面的展示，iframe主框架、404、503、首页等
-            'class' => 'app\modules\site\Module',
+            'class' => 'backend\modules\site\Module',
             //'defaultRoute' => 'home/index',//默认进入home控制器，在全局已配置
         ],
         'sys' => [
-            'class' => 'app\modules\sys\Module',
+            'class' => 'backend\modules\sys\Module',
         ],
         'cms' => [
-            'class' => 'app\modules\cms\Module',
+            'class' => 'backend\modules\cms\Module',
         ],
         'ext' => [
-            'class' => 'app\modules\ext\Module',
+            'class' => 'backend\modules\ext\Module',
         ],
         'user' => [
-            'class' => 'app\modules\user\Module',
+            'class' => 'backend\modules\user\Module',
         ],
         'shop' => [
-            'class' => 'app\modules\shop\Module',
+            'class' => 'backend\modules\shop\Module',
         ],
         'tool' => [
-            'class' => 'app\modules\tool\Module',
+            'class' => 'backend\modules\tool\Module',
         ],
     ],
     'components' => [
@@ -73,7 +73,7 @@ $config = [
         'user' => [// 用户持久组件配置
             // 'class' => 'yii\web\User',//默认
             // 身份认证模型
-            'identityClass' => 'app\models\sys\Admin',
+            'identityClass' => 'backend\models\sys\Admin',
             // 重点，当开始基于cookie登录时，这个数组就是初始化cookie的值
             // 即专为身份验证的cookie配置专用的cookie对象，以下就是对象的初始化参数，cookie对象已经实现了ArrayIterator操作
             'identityCookie' => [
@@ -121,7 +121,7 @@ $config = [
         ],
         'view' => [
             // 主题配置(module目录下的views > 根目录下的views > 主题下的模板)
-            'class' => 'app\components\View',
+            'class' => 'backend\components\View',
             'theme' => [
                 'class' => 'yii\base\Theme',
                 'basePath' => '@app/themes/classic',//主题所在文件路径
@@ -226,23 +226,23 @@ $config = [
     //以as 的方式，行为以过滤器的方式被绑定到了App对象上
     /*
     'as init' => [
-        'class' => 'app\filters\Filter'
+        'class' => 'backend\filters\Filter'
     ],
     */
     //iframe url自动记忆
     'as returnUrl' => [
-        'class' => 'app\filters\ReturnUrlFilter',
+        'class' => 'backend\filters\ReturnUrlFilter',
         'except' => $params['config.autoReturnRoute'],
     ],
     //访问控制
     'as ac' => [
-        'class' => 'app\filters\AccessControl',
+        'class' => 'backend\filters\AccessControl',
         'rules' => [],
         'except' => $params['config.notLoginNotaccessRoute'],//排除匹配项，其它都得验证权限
     ],
     //日志记录
     'as logBehavior' => [
-        'class' => 'app\behaviors\LogBehavior',
+        'class' => 'backend\behaviors\LogBehavior',
     ],
     
     'params' => $params,

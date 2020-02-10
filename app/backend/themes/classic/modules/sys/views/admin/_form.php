@@ -6,16 +6,16 @@
  */
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\widgets\Tips;
 use yii\base\Widget;
 use yii\helpers\Url;
-use app\models\sys\Admin;
-use app\assets\ValidationAsset;
 use yii\helpers\ArrayHelper;
-use app\models\sys\Role;
+use backend\widgets\Tips;
+use backend\models\sys\Admin;
+use backend\assets\ValidationAsset;
+use backend\models\sys\Role;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\sys\Admin */
+/* @var $model backend\models\sys\Admin */
 /* @var $form yii\widgets\ActiveForm */
 
 ValidationAsset::register($this);

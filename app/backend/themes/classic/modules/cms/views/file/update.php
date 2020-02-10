@@ -5,9 +5,9 @@
  * @author developer qq:980522557
  */
 /* @var $this yii\web\View */
-/* @var $model app\models\cms\File */
+/* @var $model backend\models\cms\File */
 
-$this->title = '编辑下载信息';
+$this->title = '编辑文件信息';
 ?>
 <div class="file-update">
     <?= $this->render('_form', [

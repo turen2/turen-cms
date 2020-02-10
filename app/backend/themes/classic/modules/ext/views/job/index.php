@@ -5,14 +5,13 @@
  * @author developer qq:980522557
  */
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use yii\widgets\ActiveForm;
-use app\widgets\edititem\EditItemWidget;
+use backend\widgets\edititem\EditItemWidget;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\ext\JobSearch */
+/* @var $searchModel backend\models\ext\JobSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '招聘信息管理';

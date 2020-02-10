@@ -10,7 +10,7 @@ use yii\captcha\Captcha;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model \app\models\admin\form\Login */
+/* @var $model \backend\models\admin\form\Login */
 
 $this->title = '登录-后台管理面板';
 $this->params['breadcrumbs'][] = $this->title;

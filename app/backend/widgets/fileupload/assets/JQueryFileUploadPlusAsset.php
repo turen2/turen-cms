@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 万国迦南科技
  * @author developer qq:980522557
  */
-namespace app\widgets\fileupload\assets;
+namespace backend\widgets\fileupload\assets;
 
 use yii\web\AssetBundle;
 
@@ -26,8 +26,8 @@ class jQueryFileUploadPlusAsset extends AssetBundle
         "js/jquery.fileupload-validate.js"
     ];
     public $depends = [
-        'app\widgets\fileupload\assets\JQueryFileUploadAsset',
-        'app\widgets\fileupload\assets\LoadImageAsset',
-        'app\widgets\fileupload\assets\Canvas2BlobAsset'
+        'backend\widgets\fileupload\assets\JQueryFileUploadAsset',
+        'backend\widgets\fileupload\assets\LoadImageAsset',
+        'backend\widgets\fileupload\assets\Canvas2BlobAsset'
     ];
 }

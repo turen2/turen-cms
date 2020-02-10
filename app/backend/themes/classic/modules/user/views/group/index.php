@@ -7,12 +7,12 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
-use app\models\cms\Src;
-use app\models\user\Group;
+use backend\models\cms\Src;
+use backend\models\user\Group;
 use yii\widgets\LinkPager;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\user\GroupSearch */
+/* @var $searchModel backend\models\user\GroupSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '用户组列表';

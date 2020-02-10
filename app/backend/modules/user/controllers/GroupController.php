@@ -4,16 +4,16 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\user\controllers;
+namespace backend\modules\user\controllers;
 
 use Yii;
-use app\models\user\Group;
-use app\models\user\GroupSearch;
-use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\actions\SimpleMoveAction;
-use app\models\user\User;
+use backend\models\user\Group;
+use backend\models\user\GroupSearch;
+use backend\components\Controller;
+use backend\actions\SimpleMoveAction;
+use backend\models\user\User;
 
 /**
  * GroupController implements the CRUD actions for Group model.

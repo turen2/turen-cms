@@ -4,16 +4,16 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\user\controllers;
+namespace backend\modules\user\controllers;
 
 use Yii;
-use app\models\user\Level;
-use app\models\user\LevelSearch;
-use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\actions\SimpleMoveAction;
-use app\models\user\User;
+use backend\models\user\Level;
+use backend\models\user\LevelSearch;
+use backend\components\Controller;
+use backend\actions\SimpleMoveAction;
+use backend\models\user\User;
 
 /**
  * LevelController implements the CRUD actions for Level model.

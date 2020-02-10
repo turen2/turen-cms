@@ -3,27 +3,27 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
-use app\widgets\Tips;
-use app\assets\ValidationAsset;
-use app\models\shop\Product;
-use app\widgets\laydate\LaydateWidget;
-use app\widgets\ueditor\UEditorWidget;
-use app\widgets\fileupload\JQueryFileUploadWidget;
 use yii\web\JsExpression;
-use app\models\cms\Column;
-use common\helpers\BuildHelper;
-use app\models\shop\ProductCate;
-use app\assets\ColorPickerAsset;
-use app\models\shop\Brand;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
-use app\widgets\diyfield\DiyFieldWidget;
-use app\models\cms\DiyField;
-use app\models\cms\Flag;
+use common\helpers\BuildHelper;
 use common\helpers\Functions;
+use backend\widgets\Tips;
+use backend\assets\ValidationAsset;
+use backend\models\shop\Product;
+use backend\widgets\laydate\LaydateWidget;
+use backend\widgets\ueditor\UEditorWidget;
+use backend\widgets\fileupload\JQueryFileUploadWidget;
+use backend\models\cms\Column;
+use backend\models\shop\ProductCate;
+use backend\assets\ColorPickerAsset;
+use backend\models\shop\Brand;
+use backend\widgets\diyfield\DiyFieldWidget;
+use backend\models\cms\DiyField;
+use backend\models\cms\Flag;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\shop\Product */
+/* @var $model backend\models\shop\Product */
 /* @var $form yii\widgets\ActiveForm */
 
 ValidationAsset::register($this);

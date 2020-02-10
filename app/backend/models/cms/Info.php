@@ -4,13 +4,13 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\cms;
+namespace backend\models\cms;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
-use app\widgets\laydate\LaydateBehavior;
-use app\widgets\diyfield\DiyFieldBehavior;
+use backend\widgets\laydate\LaydateBehavior;
+use backend\widgets\diyfield\DiyFieldBehavior;
 
 /**
  * This is the model class for table "{{%cms_info}}".
@@ -22,7 +22,7 @@ use app\widgets\diyfield\DiyFieldBehavior;
  * @property string $content 内容
  * @property string $posttime 发布时间
  */
-class Info extends \app\models\base\Cms
+class Info extends \backend\models\base\Cms
 {
 	public $keyword;
 	

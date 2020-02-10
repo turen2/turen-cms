@@ -1,19 +1,24 @@
 <?php
-
-namespace app\models\cms;
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
+namespace backend\models\cms;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
-use app\behaviors\InsertLangBehavior;
-use app\widgets\laydate\LaydateBehavior;
 use yii\base\InvalidArgumentException;
-use app\widgets\diyfield\DiyFieldBehavior;
-use app\behaviors\FlagBehavior;
-use app\behaviors\CateBehavior;
-use app\behaviors\ColumnBehavior;
-use app\behaviors\OrderDefaultBehavior;
+use backend\behaviors\InsertLangBehavior;
+use backend\widgets\laydate\LaydateBehavior;
+use backend\widgets\diyfield\DiyFieldBehavior;
+use backend\behaviors\FlagBehavior;
+use backend\behaviors\CateBehavior;
+use backend\behaviors\ColumnBehavior;
+use backend\behaviors\OrderDefaultBehavior;
+
 
 /**
  * This is the model class for table "{{%diymodel_master_model}}".
@@ -39,7 +44,7 @@ use app\behaviors\OrderDefaultBehavior;
  * @property string $updated_at 更新时间
  * @property string $created_at 添加时间
  */
-class MasterModel extends \app\models\base\Cms
+class MasterModel extends \backend\models\base\Cms
 {
 	public $keyword;
 	
@@ -159,7 +164,7 @@ class MasterModel extends \app\models\base\Cms
     
     /**
      * 返回所有已经开启在列表中显示的字段
-     * @return \app\components\Column[]|array
+     * @return \backend\components\Column[]|array
      */
     public static function DisplayFieldModelList()
     {

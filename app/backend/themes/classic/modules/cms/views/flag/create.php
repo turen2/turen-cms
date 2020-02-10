@@ -6,7 +6,7 @@ use yii\helpers\Url;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\cms\Flag */
+/* @var $model backend\models\cms\Flag */
 
 $this->title = '添加新标记';
 ?>

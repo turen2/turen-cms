@@ -7,9 +7,9 @@
 use yii\helpers\Html;
 
 use yii\web\YiiAsset;
-use app\assets\WebAsset;
-use app\assets\FontAwesomeAsset;
-use app\assets\NotifyAsset;
+use backend\assets\WebAsset;
+use backend\assets\FontAwesomeAsset;
+use backend\assets\NotifyAsset;
 
 YiiAsset::register($this);
 FontAwesomeAsset::register($this);

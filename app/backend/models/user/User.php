@@ -4,13 +4,13 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\user;
+namespace backend\models\user;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
-use app\widgets\laydate\LaydateBehavior;
+use backend\widgets\laydate\LaydateBehavior;
 
 /**
  * This is the model class for table "{{%user}}".
@@ -44,7 +44,7 @@ use app\widgets\laydate\LaydateBehavior;
  * @property string $weixin_id 绑定微信
  * @property string $status 用户状态
  */
-class User extends \app\models\base\User
+class User extends \backend\models\base\User
 {
 	public $keyword;
 	

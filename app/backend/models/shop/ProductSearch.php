@@ -1,14 +1,18 @@
 <?php
-
-namespace app\models\shop;
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
+namespace backend\models\shop;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\shop\Product;
+use backend\models\shop\Product;
 
 /**
- * ProductSearch represents the model behind the search form about `app\models\shop\Product`.
+ * ProductSearch represents the model behind the search form about `backend\models\shop\Product`.
  */
 class ProductSearch extends Product
 {
@@ -19,7 +23,7 @@ class ProductSearch extends Product
     {
         return [
             [['id', 'columnid', 'pcateid', 'brand_id', 'promote_start_date', 'promote_end_date', 'stock', 'hits', 'orderid', 'posttime', 'deltime', 'created_at', 'updated_at'], 'integer'],
-            [['attrtext', 'title', 'colorval', 'boldval', 'subtitle', 'keywords', 'description', 'flag', 'sku', 'product_sn', 'weight', 'is_promote', 'is_shipping', 'linkurl', 'content', 'picurl', 'picarr', 'is_best', 'is_new', 'is_hot', 'status', 'delstate', 'keyword', 'slug'], 'safe'],
+            [['attrtext', 'title', 'colorval', 'boldval', 'subtitle', 'keywords', 'description', 'flag', 'sku', 'product_sn', 'weight', 'is_promote', 'is_shipping', 'linkurl', 'content', 'picurl', 'picarr', 'is_best', 'is_new', 'is_hot', 'status', 'delstate', 'author', 'keyword', 'slug'], 'safe'],
             [['market_price', 'sales_price', 'promote_price'], 'number'],
         ];
     }
@@ -45,11 +49,9 @@ class ProductSearch extends Product
     	//$sql = "select a.*, s.company as company, s.domain as domain, s.username as merchant from ".Admin::tableName()." as a left join ".Site::tableName()." as s on a.test_id = s.testid";
         //$query = Admin::findBySql($sql);
         //$query = Admin::find()->alias('a')->select(['a.*', 's.company as company', 's.domain as domain', 's.username as merchant'])->leftJoin(Site::tableName().' as s', ' a.test_id = s.testid');
-        
-        $query = Product::find()->current()->delstate(Product::IS_NOT_DEL);
+        $query = Product::find(); // ->current()->delstate(Product::IS_NOT_DEL);
 
         // add conditions that should always apply here
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
@@ -74,39 +76,36 @@ class ProductSearch extends Product
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'columnid' => $this->columnid,
-            'pcateid' => $this->pcateid,
-            'brand_id' => $this->brand_id,
-            'is_best' => $this->is_best,
-            'is_new' => $this->is_new,
-            'is_hot' => $this->is_hot,
-            'status' => $this->status,
-            'delstate' => $this->delstate,
-            'is_promote' => $this->is_promote,
-            'is_shipping' => $this->is_shipping,
-            'delstate' => $this->delstate,
-            'author' => $this->author,
-        ]);
+        $query->filterWhere(['and', ['and',
+            '1 = 1',
+            ['lang' => GLOBAL_LANG],
+            ['delstate' => Product::IS_NOT_DEL],
+            ['id' => $this->id],
+            ['columnid' => $this->columnid],
+            ['pcateid' => $this->pcateid],
+            ['brand_id' => $this->brand_id],
+            ['is_best' => $this->is_best],
+            ['is_new' => $this->is_new],
+            ['is_hot' => $this->is_hot],
+            ['is_promote' => $this->is_promote],
+            ['is_shipping' => $this->is_shipping],
+            ['status' => $this->status],
+            ['author' => $this->author],
+            ['like', 'flag', $this->flag]
+        ], ['or',
+            ['like', 'title', $this->keyword],
+            ['like', 'slug', $this->keyword],
+            ['like', 'subtitle', $this->keyword],
+            ['like', 'keywords', $this->keyword],
+            ['like', 'sku', $this->keyword],
+            ['like', 'product_sn', $this->keyword],
+            ['like', 'title', $this->keyword],
+            ['like', 'title', $this->keyword],
+            ['like', 'slug', $this->keyword],
+            ['like', 'linkurl', $this->keyword]
+        ]]);
         
-        //'promote_start_date' => $this->promote_start_date,
-        //'promote_end_date' => $this->promote_end_date,
-        //->andFilterWhere(['like', 'flag', $this->flag])
-        
-        $query->andFilterWhere(['like', 'attrtext', $this->attrtext])
-            ->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'slug', $this->keyword])
-            ->andFilterWhere(['like', 'subtitle', $this->subtitle])
-            ->andFilterWhere(['like', 'keywords', $this->keywords])
-            ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'sku', $this->sku])
-            ->andFilterWhere(['like', 'product_sn', $this->product_sn])
-            ->andFilterWhere(['like', 'linkurl', $this->linkurl])
-            ->andFilterWhere(['like', 'content', $this->content]);
-        
-//         echo $dataProvider->query->createCommand()->rawSql;
-//         exit;
+//         echo $dataProvider->query->createCommand()->rawSql;exit;
         
         return $dataProvider;
     }

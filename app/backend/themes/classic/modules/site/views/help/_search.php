@@ -6,12 +6,12 @@
  */
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\models\site\Help;
 use yii\helpers\Url;
-use app\models\site\HelpFlag;
+use backend\models\site\Help;
+use backend\models\site\HelpFlag;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\site\HelpSearch */
+/* @var $model backend\models\site\HelpSearch */
 /* @var $form yii\widgets\ActiveForm */
 
 $isAll = true;

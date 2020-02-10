@@ -1,15 +1,19 @@
 <?php
-
-namespace app\modules\cms\controllers;
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
+namespace backend\modules\cms\controllers;
 
 use Yii;
-use app\models\cms\DiyModel;
-use app\models\cms\DiyModelSearch;
-use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\actions\CheckAction;
-use app\actions\ValidateAction;
+use backend\models\cms\DiyModel;
+use backend\models\cms\DiyModelSearch;
+use backend\components\Controller;
+use backend\actions\CheckAction;
+use backend\actions\ValidateAction;
 
 /**
  * DiyModelController implements the CRUD actions for DiyModel model.

@@ -4,15 +4,15 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\user;
+namespace backend\models\user;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
-use app\behaviors\InsertLangBehavior;
-use app\models\cms\Column;
-use app\behaviors\OrderDefaultBehavior;
+use backend\behaviors\InsertLangBehavior;
+use backend\models\cms\Column;
+use backend\behaviors\OrderDefaultBehavior;
 
 /**
  * This is the model class for table "ss_user_favorite".
@@ -28,7 +28,7 @@ use app\behaviors\OrderDefaultBehavior;
  * @property string $lang 多语言
  * @property string $created_at 评论时间
  */
-class Favorite extends \app\models\base\User
+class Favorite extends \backend\models\base\User
 {
 	public $keyword;
 	

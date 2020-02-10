@@ -6,10 +6,10 @@
  */
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
-use app\models\cms\Column;
-use common\helpers\BuildHelper;
 use yii\helpers\Url;
-use app\models\cms\Cate;
+use common\helpers\BuildHelper;
+use backend\models\cms\Column;
+use backend\models\cms\Cate;
 
 $addRoutes = [
     Html::getInputName($model, 'keyword') => $model->keyword,

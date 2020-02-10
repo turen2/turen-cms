@@ -8,10 +8,10 @@ use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
-use app\models\sys\Log;
+use backend\models\sys\Log;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\sys\LogSearch */
+/* @var $searchModel backend\models\sys\LogSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '操作日志';

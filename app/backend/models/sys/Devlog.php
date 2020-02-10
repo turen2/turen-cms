@@ -4,15 +4,15 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\sys;
+namespace backend\models\sys;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\AttributeBehavior;
-use app\behaviors\InsertLangBehavior;
-use app\widgets\laydate\LaydateBehavior;
+use backend\behaviors\InsertLangBehavior;
+use backend\widgets\laydate\LaydateBehavior;
 
 /**
  * This is the model class for table "{{%sys_devlog}}".

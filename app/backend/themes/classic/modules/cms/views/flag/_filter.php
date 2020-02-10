@@ -5,7 +5,7 @@
  * @author developer qq:980522557
  */
 use yii\helpers\Url;
-use app\models\cms\Column;
+use backend\models\cms\Column;
 
 $columTypes = Column::ColumnConvert('id2name');
 $typeName = Column::ColumnConvert('id2name', $model->type, '未定义');

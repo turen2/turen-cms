@@ -4,11 +4,11 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\widgets;
+namespace backend\widgets;
 
 use Yii;
 use yii\helpers\ArrayHelper;
-use app\models\sys\Multilang;
+use backend\models\sys\Multilang;
 
 /**
  * @author jorry

@@ -4,13 +4,13 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\sys;
+namespace backend\models\sys;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
-use app\behaviors\InsertLangBehavior;
+use backend\behaviors\InsertLangBehavior;
 
 /**
  * This is the model class for table "{{%sys_log}}".
@@ -29,7 +29,7 @@ use app\behaviors\InsertLangBehavior;
  * @property string $created_at 创建时间
  * @property string $lang 多语言
  */
-class Log extends \app\models\base\Sys
+class Log extends \backend\models\base\Sys
 {
 	public $keyword;
 	
@@ -63,7 +63,7 @@ class Log extends \app\models\base\Sys
      */
     public function attributes()
     {
-        return ArrayHelper::merge(parent::attributes(), []);
+        return ArrayHelper::merge(parent::attributes(), ['keyword']);
     }
 
     /**

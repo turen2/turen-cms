@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\sys;
+namespace backend\models\sys;
 
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -18,7 +18,7 @@ use yii\helpers\Json;
  * @property string $route 路由名称
  * @property string $role_params 附加参数
  */
-class RoleItem extends \app\models\base\Sys
+class RoleItem extends \backend\models\base\Sys
 {
     /**
      * @inheritdoc

@@ -4,13 +4,13 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\widgets\laydate;
+namespace backend\widgets\laydate;
 
 use Yii;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
-use app\widgets\laydate\assets\LaydateAsset;
+use backend\widgets\laydate\assets\LaydateAsset;
 
 /**
  * @author jorry

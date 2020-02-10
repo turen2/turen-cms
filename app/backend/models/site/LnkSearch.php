@@ -4,15 +4,15 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\site;
+namespace backend\models\site;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\site\Lnk;
+use backend\models\site\Lnk;
 
 /**
- * LnkSearch represents the model behind the search form about `app\models\site\Lnk`.
+ * LnkSearch represents the model behind the search form about `backend\models\site\Lnk`.
  */
 class LnkSearch extends Lnk
 {

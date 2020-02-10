@@ -8,10 +8,10 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use yii\widgets\LinkPager;
-use app\models\user\FeedbackType;
+use backend\models\user\FeedbackType;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\user\FeedbackTypeSearch */
+/* @var $searchModel backend\models\user\FeedbackTypeSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '反馈类型列表';

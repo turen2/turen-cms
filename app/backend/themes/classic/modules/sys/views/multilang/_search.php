@@ -2,10 +2,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\components\ActiveRecord;
+use backend\components\ActiveRecord;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\sys\MultilangSearch */
+/* @var $model backend\models\sys\MultilangSearch */
 /* @var $form yii\widgets\ActiveForm */
 
 $isAll = true;

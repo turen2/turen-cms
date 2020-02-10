@@ -5,7 +5,7 @@
  * @author developer qq:980522557
  */
 /* @var $this yii\web\View */
-/* @var $model app\models\sys\Admin */
+/* @var $model backend\models\sys\Admin */
 
 $this->title = '添加管理员';
 $this->params['breadcrumbs'][] = ['label' => '管理员列表', 'url' => ['index']];

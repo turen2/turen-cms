@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 万国迦南科技
  * @author developer qq:980522557
  */
-namespace app\widgets\fileupload;
+namespace backend\widgets\fileupload;
 
 use Yii;
 use yii\base\Action;

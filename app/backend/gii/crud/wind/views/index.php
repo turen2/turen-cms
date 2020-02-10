@@ -22,7 +22,7 @@ use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use yii\widgets\LinkPager;
-use app\widgets\edititem\EditItemWidget;
+use backend\widgets\edititem\EditItemWidget;
 
 /* @var $this yii\web\View */
 <?= !empty($generator->searchModelClass) ? "/* @var \$searchModel " . ltrim($generator->searchModelClass, '\\') . " */\n" : '' ?>

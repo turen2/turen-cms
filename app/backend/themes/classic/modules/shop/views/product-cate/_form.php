@@ -3,16 +3,16 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
-use app\widgets\Tips;
-use app\assets\ValidationAsset;
-use app\widgets\fileupload\JQueryFileUploadWidget;
 use yii\web\JsExpression;
-use app\models\shop\ProductCate;
-use common\helpers\BuildHelper;
 use yii\helpers\Json;
+use common\helpers\BuildHelper;
+use backend\widgets\Tips;
+use backend\assets\ValidationAsset;
+use backend\widgets\fileupload\JQueryFileUploadWidget;
+use backend\models\shop\ProductCate;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\shop\ProductCate */
+/* @var $model backend\models\shop\ProductCate */
 /* @var $form yii\widgets\ActiveForm */
 
 ValidationAsset::register($this);

@@ -10,7 +10,7 @@ use yii\widgets\LinkPager;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\cms\BlockSearch */
+/* @var $searchModel backend\models\cms\BlockSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '碎片信息管理';

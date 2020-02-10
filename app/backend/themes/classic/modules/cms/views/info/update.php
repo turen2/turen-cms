@@ -5,7 +5,7 @@
  * @author developer qq:980522557
  */
 /* @var $this yii\web\View */
-/* @var $model app\models\cms\Info */
+/* @var $model backend\models\cms\Info */
 
 $this->title = '编辑单页信息';
 ?>

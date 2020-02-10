@@ -4,16 +4,16 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\user\controllers;
+namespace backend\modules\user\controllers;
 
 use Yii;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\components\Controller;
-use app\actions\CheckAction;
-use app\actions\SimpleMoveAction;
-use app\models\user\FeedbackType;
-use app\models\user\FeedbackTypeSearch;
+use backend\components\Controller;
+use backend\actions\CheckAction;
+use backend\actions\SimpleMoveAction;
+use backend\models\user\FeedbackType;
+use backend\models\user\FeedbackTypeSearch;
 
 /**
  * FeedbackTypeController implements the CRUD actions for FeedbackType model.

@@ -4,19 +4,19 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\cms\controllers;
+namespace backend\modules\cms\controllers;
 
 use Yii;
-use app\models\cms\Info;
-use app\models\cms\InfoSearch;
-use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\models\cms\Column;
 use common\components\AliyunOss;
-use app\widgets\fileupload\FileUploadAction;
-use app\widgets\ueditor\UEditorAction;
-use app\models\cms\DiyField;
+use backend\models\cms\Info;
+use backend\models\cms\InfoSearch;
+use backend\components\Controller;
+use backend\models\cms\Column;
+use backend\widgets\fileupload\FileUploadAction;
+use backend\widgets\ueditor\UEditorAction;
+use backend\models\cms\DiyField;
 
 /**
  * InfoController implements the CRUD actions for Info model.

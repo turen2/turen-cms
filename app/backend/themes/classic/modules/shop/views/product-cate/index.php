@@ -1,14 +1,17 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
-use app\models\shop\ProductCate;
 use yii\widgets\ActiveForm;
+use backend\models\shop\ProductCate;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\shop\ProductCateSearch */
+/* @var $searchModel backend\models\shop\ProductCateSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '产品分类管理';

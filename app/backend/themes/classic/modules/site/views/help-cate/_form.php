@@ -7,14 +7,14 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
-use app\widgets\Tips;
-use app\assets\ValidationAsset;
-use app\models\site\HelpCate;
-use common\helpers\BuildHelper;
 use yii\helpers\Json;
+use common\helpers\BuildHelper;
+use backend\widgets\Tips;
+use backend\assets\ValidationAsset;
+use backend\models\site\HelpCate;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\site\HelpCate */
+/* @var $model backend\models\site\HelpCate */
 /* @var $form yii\widgets\ActiveForm */
 
 ValidationAsset::register($this);

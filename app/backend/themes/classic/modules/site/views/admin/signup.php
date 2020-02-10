@@ -9,7 +9,7 @@ use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model \app\models\admin\form\Signup */
+/* @var $model \backend\models\admin\form\Signup */
 
 $this->title = '商户注册';
 $this->params['breadcrumbs'][] = $this->title;

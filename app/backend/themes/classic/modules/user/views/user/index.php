@@ -15,7 +15,7 @@ use common\helpers\ImageHelper;
 use common\components\AliyunOss;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\user\UserSearch */
+/* @var $searchModel backend\models\user\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '用户管理';

@@ -1,13 +1,17 @@
 <?php
-
-namespace app\modules\user\controllers;
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
+namespace backend\modules\user\controllers;
 
 use Yii;
-use app\models\user\Favorite;
-use app\models\user\FavoriteSearch;
-use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use backend\models\user\Favorite;
+use backend\models\user\FavoriteSearch;
+use backend\components\Controller;
 
 /**
  * FavoriteController implements the CRUD actions for Favorite model.

@@ -5,7 +5,7 @@
  * @author developer qq:980522557
  */
 /* @var $this yii\web\View */
-/* @var $model app\models\cms\Column */
+/* @var $model backend\models\cms\Column */
 
 $this->title = '添加栏目';
 ?>

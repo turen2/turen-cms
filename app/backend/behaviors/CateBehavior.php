@@ -4,12 +4,12 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\behaviors;
+namespace backend\behaviors;
 
 use Yii;
 use yii\db\ActiveRecord;
 use yii\base\InvalidArgumentException;
-use app\models\cms\Cate;
+use backend\models\cms\Cate;
 
 class CateBehavior extends \yii\base\Behavior
 {

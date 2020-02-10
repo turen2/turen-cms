@@ -6,10 +6,10 @@
  */
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\models\site\HelpCate;
+use backend\models\site\HelpCate;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\site\HelpCateSearch */
+/* @var $model backend\models\site\HelpCateSearch */
 /* @var $form yii\widgets\ActiveForm */
 
 $isAll = true;

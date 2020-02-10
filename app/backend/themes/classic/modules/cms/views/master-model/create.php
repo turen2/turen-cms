@@ -6,7 +6,7 @@ use yii\helpers\Url;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\cms\MasterModel */
+/* @var $model backend\models\cms\MasterModel */
 
 $this->title = '添加新'.$diyModel->dm_title;
 ?>

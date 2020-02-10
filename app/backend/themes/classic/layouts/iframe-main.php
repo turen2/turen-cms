@@ -8,12 +8,12 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\YiiAsset;
-use app\models\user\Inquiry;
-use app\assets\FrameAsset;
-use app\filters\ReturnUrlFilter;
-use app\assets\FontAwesomeAsset;
-use app\models\sys\Multilang;
-use app\assets\MenuAsset;
+use backend\models\user\Inquiry;
+use backend\assets\FrameAsset;
+use backend\filters\ReturnUrlFilter;
+use backend\assets\FontAwesomeAsset;
+use backend\models\sys\Multilang;
+use backend\assets\MenuAsset;
 
 /* @var $this \yii\web\View */
 /* @var $content string */

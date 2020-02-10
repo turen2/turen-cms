@@ -5,7 +5,7 @@
  * @author developer qq:980522557
  */
 /* @var $this yii\web\View */
-/* @var $model app\models\cms\Photo */
+/* @var $model backend\models\cms\Photo */
 
 $this->title = '添加图片信息';
 ?>

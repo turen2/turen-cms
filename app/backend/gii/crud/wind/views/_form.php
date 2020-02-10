@@ -21,13 +21,14 @@ if (empty($safeAttributes)) {
 echo "<?php\n";
 ?>
 
+use yii\helpers\Json;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
-use app\widgets\Tips;
-use app\components\ActiveRecord;
-use app\assets\ValidationAsset;
-use yii\helpers\Json;
+use backend\widgets\Tips;
+use backend\components\ActiveRecord;
+use backend\assets\ValidationAsset;
+
 
 /* @var $this yii\web\View */
 /* @var $model <?= ltrim($generator->modelClass, '\\') ?> */

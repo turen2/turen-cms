@@ -4,13 +4,13 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\site;
+namespace backend\models\site;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
-use app\behaviors\OrderDefaultBehavior;
+use backend\behaviors\OrderDefaultBehavior;
 
 /**
  * This is the model class for table "{{%site_flag}}".
@@ -21,7 +21,7 @@ use app\behaviors\OrderDefaultBehavior;
  * @property int $orderid 排列排序
  * @property string $lang
  */
-class Lnk extends \app\models\base\Site
+class Lnk extends \backend\models\base\Site
 {
 	public $keyword;
 

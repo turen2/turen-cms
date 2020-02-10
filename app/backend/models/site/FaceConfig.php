@@ -4,12 +4,12 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\site;
+namespace backend\models\site;
 
 use Yii;
 use yii\helpers\ArrayHelper;
-use app\behaviors\InsertLangBehavior;
 use yii\caching\TagDependency;
+use backend\behaviors\InsertLangBehavior;
 
 /**
  * This is the model class for table "{{%site_face_config}}".
@@ -18,7 +18,7 @@ use yii\caching\TagDependency;
  * @property string $cfg_value 变量值
  * @property string $lang 多语言
  */
-class FaceConfig extends \app\models\base\Site
+class FaceConfig extends \backend\models\base\Site
 {
     private static $_config;
     

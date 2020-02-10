@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\sys;
+namespace backend\models\sys;
 
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -19,7 +19,7 @@ use yii\helpers\StringHelper;
  * @property string $note 角色描述
  * @property int $status 角色状态
  */
-class Role extends \app\models\base\Sys
+class Role extends \backend\models\base\Sys
 {
     public $keyword;
     

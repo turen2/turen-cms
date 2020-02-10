@@ -6,8 +6,8 @@
  */
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
-use app\widgets\fileupload\JQueryFileUploadWidget;
 use yii\web\JsExpression;
+use backend\widgets\fileupload\JQueryFileUploadWidget;
 
 $config = ArrayHelper::index($config, 'varname');
 ?>

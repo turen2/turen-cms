@@ -7,15 +7,15 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
-use app\widgets\Tips;
-use app\components\ActiveRecord;
-use app\assets\ValidationAsset;
-use app\models\ext\LinkType;
-use common\helpers\BuildHelper;
 use yii\helpers\Json;
+use common\helpers\BuildHelper;
+use backend\widgets\Tips;
+use backend\components\ActiveRecord;
+use backend\assets\ValidationAsset;
+use backend\models\ext\LinkType;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\ext\LinkType */
+/* @var $model backend\models\ext\LinkType */
 /* @var $form yii\widgets\ActiveForm */
 
 ValidationAsset::register($this);

@@ -4,14 +4,14 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\components;
+namespace backend\components;
 
 use Yii;
 use yii\filters\VerbFilter;
-use app\models\cms\Tag;
 use yii\web\Response;
+use backend\models\cms\Tag;
 
-class ItemController extends \app\components\Controller
+class ItemController extends \backend\components\Controller
 {
     /**
      * @inheritdoc

@@ -3,15 +3,15 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
-use app\widgets\Tips;
-use app\assets\ValidationAsset;
-use app\models\shop\Attribute;
-use common\helpers\BuildHelper;
-use app\models\shop\ProductCate;
 use yii\helpers\Json;
+use common\helpers\BuildHelper;
+use backend\widgets\Tips;
+use backend\assets\ValidationAsset;
+use backend\models\shop\Attribute;
+use backend\models\shop\ProductCate;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\shop\Attribute */
+/* @var $model backend\models\shop\Attribute */
 /* @var $form yii\widgets\ActiveForm */
 
 ValidationAsset::register($this);

@@ -7,8 +7,8 @@
 
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
-use app\models\cms\Column;
-use app\models\cms\Info;
+use backend\models\cms\Column;
+use backend\models\cms\Info;
 
 return;
 

@@ -1,18 +1,22 @@
 <?php
-
-namespace app\modules\shop\controllers;
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
+namespace backend\modules\shop\controllers;
 
 use Yii;
-use app\models\shop\Brand;
-use app\models\shop\BrandSearch;
-use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\components\AliyunOss;
-use app\widgets\ueditor\UEditorAction;
-use app\widgets\fileupload\FileUploadAction;
-use app\actions\CheckAction;
-use app\widgets\edititem\EditItemAction;
+use backend\models\shop\Brand;
+use backend\models\shop\BrandSearch;
+use backend\components\Controller;
+use backend\widgets\ueditor\UEditorAction;
+use backend\widgets\fileupload\FileUploadAction;
+use backend\actions\CheckAction;
+use backend\widgets\edititem\EditItemAction;
 
 /**
  * BrandController implements the CRUD actions for Brand model.

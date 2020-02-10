@@ -4,15 +4,15 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\sys;
+namespace backend\models\sys;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\sys\Log;
+use backend\models\sys\Log;
 
 /**
- * LogSearch represents the model behind the search form about `app\models\sys\Log`.
+ * LogSearch represents the model behind the search form about `backend\models\sys\Log`.
  */
 class LogSearch extends Log
 {
@@ -48,11 +48,9 @@ class LogSearch extends Log
     	//$sql = "select a.*, s.company as company, s.domain as domain, s.username as merchant from ".Admin::tableName()." as a left join ".Site::tableName()." as s on a.test_id = s.testid";
         //$query = Admin::findBySql($sql);
         //$query = Admin::find()->alias('a')->select(['a.*', 's.company as company', 's.domain as domain', 's.username as merchant'])->leftJoin(Site::tableName().' as s', ' a.test_id = s.testid');
-        
-        $query = Log::find()->current();
+        $query = Log::find();
 
         // add conditions that should always apply here
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
@@ -76,21 +74,22 @@ class LogSearch extends Log
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            'log_id' => $this->log_id,
-            'admin_id' => $this->admin_id,
-            'like' => $this->method,
-        ]);
+        $query->filterWhere(['and', ['and',
+            '1 = 1',
+            ['lang' => GLOBAL_LANG],
+            ['log_id' => $this->log_id],
+            ['method' => $this->method]
+        ], ['or',
+            ['like', 'username', $this->keyword],
+            ['like', 'route', $this->keyword],
+            ['like', 'name', $this->keyword],
+            ['like', 'post_data', $this->keyword],
+            ['like', 'ip', $this->keyword],
+            ['like', 'agent', $this->keyword],
+            ['like', 'ip', $this->keyword],
+            ['like', 'get_data', $this->keyword]
+        ]]);
 
-        $query->andFilterWhere(['like', 'username', $this->username])
-            ->andFilterWhere(['like', 'route', $this->route])
-            ->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'get_data', $this->get_data])
-            ->andFilterWhere(['like', 'post_data', $this->post_data])
-            ->andFilterWhere(['like', 'ip', $this->ip])
-            ->andFilterWhere(['like', 'agent', $this->agent])
-            ->andFilterWhere(['like', 'md5', $this->md5]);
-        
 //        echo $dataProvider->query->createCommand()->rawSql;
 
         return $dataProvider;

@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\cms\migrations;
+namespace backend\models\cms\migrations;
 
 use Yii;
 use yii\db\Migration;

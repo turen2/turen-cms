@@ -5,15 +5,14 @@
  * @author developer qq:980522557
  */
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use yii\widgets\ActiveForm;
 use common\components\AliyunOss;
-use app\widgets\edititem\EditItemWidget;
+use backend\widgets\edititem\EditItemWidget;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\ext\LinkSearch */
+/* @var $searchModel backend\models\ext\LinkSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '链接信息管理';

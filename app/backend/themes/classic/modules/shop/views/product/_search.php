@@ -1,48 +1,54 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\components\ActiveRecord;
-use app\actions\RecycleAction;
 use yii\helpers\Url;
-use app\models\cms\Column;
-use app\models\cms\Flag;
-
-/* @var $this yii\web\View */
-/* @var $model app\models\shop\ProductSearch */
-/* @var $form yii\widgets\ActiveForm */
+use yii\helpers\ArrayHelper;
+use backend\components\ActiveRecord;
+use backend\actions\RecycleAction;
+use backend\models\cms\Column;
+use backend\models\cms\Flag;
 
 $isAll = true;
 foreach ($model->attributes as $key => $value) {
-    if(!is_null($value)) {
+    if(in_array($key, ['id', 'pcateid', 'status', 'author', 'flag', 'keyword']) && !is_null($value) && (!empty($value) || $value === '0')) {
         $isAll = false;
     }
 }
+
+$addRoutes = [
+    Html::getInputName($model, 'pcateid') => $model->pcateid,
+    Html::getInputName($model, 'keyword') => $model->keyword
+];
 ?>
 
 <div class="product-search toolbar-tab">
 	<ul class="fl">
         <li class="<?= $isAll?'on':''?>"><?= Html::a('全部', ['index']) ?></li>
         <li class="line">-</li>
-        <li class="<?= (!is_null($model->status) && $model->status == ActiveRecord::STATUS_ON)?'on':''?>"><?= Html::a('显示', ['index', Html::getInputName($model, 'status') => ActiveRecord::STATUS_ON]) ?></li>
+        <li class="<?= (!is_null($model->status) && $model->status == ActiveRecord::STATUS_ON)?'on':''?>"><?= Html::a('显示', ArrayHelper::merge(['index', Html::getInputName($model, 'status') => ActiveRecord::STATUS_ON], $addRoutes)) ?></li>
         <li class="line">-</li>
-        <li class="<?= (!is_null($model->status) && $model->status == ActiveRecord::STATUS_OFF)?'on':''?>"><?= Html::a('隐藏', ['index', Html::getInputName($model, 'status') => ActiveRecord::STATUS_OFF]) ?></li>
+        <li class="<?= (!is_null($model->status) && $model->status == ActiveRecord::STATUS_OFF)?'on':''?>"><?= Html::a('隐藏', ArrayHelper::merge(['index', Html::getInputName($model, 'status') => ActiveRecord::STATUS_OFF], $addRoutes)) ?></li>
         <li class="line">-</li>
         <?php foreach (Flag::FlagList(Column::COLUMN_TYPE_PRODUCT, true) as $key => $name) { ?>
-        <li class="<?= (!is_null($model->flag) && $model->flag == $key)?'on':''?>"><?= Html::a($name, ['index', Html::getInputName($model, 'flag') => $key]) ?></li>
+        <li class="<?= (!is_null($model->flag) && $model->flag == $key)?'on':''?>"><?= Html::a($name, ArrayHelper::merge(['index', Html::getInputName($model, 'flag') => $key], $addRoutes)) ?></li>
         <li class="line">-</li>
         <?php } ?>
         
         <?php 
         $username = Yii::$app->getUser()->getIdentity()->username;
         ?>
-        <li class="<?= (!is_null($model->author) && $model->author == $username)?'on':''?>"><?= Html::a('我发布的产品', ['index', Html::getInputName($model, 'author') => $username]) ?></li>
+        <li class="<?= (!is_null($model->author) && $model->author == $username)?'on':''?>"><?= Html::a('我发布的产品', ArrayHelper::merge(['index', Html::getInputName($model, 'author') => $username], $addRoutes)) ?></li>
         <li class="line">-</li>
         <li><a id="recycle-bin" href="javascript:;" onclick="RecycleShow('<?=Url::to(['recycle', 'type' => RecycleAction::RECYCLE_TYPE_LIST])?>');">内容回收站</a></li>
 	</ul>
 	
     <?php $form = ActiveForm::begin([
-        'action' => ['index'],
+        'action' => ArrayHelper::merge(['index', Html::getInputName($model, 'status') => $model->status, Html::getInputName($model, 'flag') => $model->flag, Html::getInputName($model, 'author') => $model->author], $addRoutes),
         'method' => 'get',
         'id' => 'searchform',
 	    'options' => ['class' => 'fr'],

@@ -4,13 +4,13 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\cms;
+namespace backend\models\cms;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
-use app\behaviors\InsertLangBehavior;
-use app\widgets\laydate\LaydateBehavior;
+use backend\behaviors\InsertLangBehavior;
+use backend\widgets\laydate\LaydateBehavior;
 
 /**
  * This is the model class for table "{{%cms_block}}".
@@ -23,7 +23,7 @@ use app\widgets\laydate\LaydateBehavior;
  * @property string $posttime 发布时间
  * @property string $lang
  */
-class Block extends \app\models\base\Cms
+class Block extends \backend\models\base\Cms
 {
 	public $keyword;
 

@@ -10,7 +10,7 @@ use yii\helpers\Url;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\user\Comment */
+/* @var $model backend\models\user\Comment */
 
 $this->title = '添加新评论';
 ?>

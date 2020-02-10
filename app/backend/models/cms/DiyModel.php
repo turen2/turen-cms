@@ -1,13 +1,17 @@
 <?php
-
-namespace app\models\cms;
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
+namespace backend\models\cms;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
-use app\models\cms\migrations\ModelMigration;
-use app\behaviors\OrderDefaultBehavior;
+use backend\models\cms\migrations\ModelMigration;
+use backend\behaviors\OrderDefaultBehavior;
 
 /**
  * This is the model class for table "{{%diy_model}}".
@@ -21,7 +25,7 @@ use app\behaviors\OrderDefaultBehavior;
  * @property string $created_at 添加时间
  * @property string $updated_at 更新时间
  */
-class DiyModel extends \app\models\base\Cms
+class DiyModel extends \backend\models\base\Cms
 {
 	const MODEL_PRE = 'diymodel_';
 	
@@ -34,7 +38,8 @@ class DiyModel extends \app\models\base\Cms
 	    'picurl' => '缩略图', 
 	    'lang' => '多语言', 
 	    'orderid' => '排序', 
-	    'status' => '状态', 
+	    'status' => '状态',
+        'author' => '作者',
 	    'posttime' => '发布时间', 
 	    'updated_at' => '创建时间',  
 	    'created_at' => '创建时间'

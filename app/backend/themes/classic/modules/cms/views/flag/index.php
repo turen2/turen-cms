@@ -1,15 +1,18 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
-use app\models\cms\Flag;
-use app\models\cms\Column;
 use yii\widgets\ActiveForm;
+use backend\models\cms\Flag;
+use backend\models\cms\Column;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\cms\FlagSearch */
+/* @var $searchModel backend\models\cms\FlagSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '标记管理';

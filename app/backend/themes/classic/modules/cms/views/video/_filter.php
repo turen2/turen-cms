@@ -4,12 +4,12 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-use app\models\cms\Column;
-use common\helpers\BuildHelper;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
-use app\models\cms\Cate;
+use common\helpers\BuildHelper;
+use backend\models\cms\Column;
+use backend\models\cms\Cate;
 
 $addRoutes = [
     Html::getInputName($model, 'keyword') => $model->keyword,

@@ -4,23 +4,23 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-use app\models\user\User;
 use yii\helpers\Json;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
-use app\widgets\Tips;
-use app\components\ActiveRecord;
-use app\assets\ValidationAsset;
-use app\models\user\Feedback;
-use app\models\user\FeedbackType;
-use app\widgets\laydate\LaydateWidget;
-use app\widgets\select2\Select2Widget;
-use app\widgets\ueditor\UEditorWidget;
+use backend\models\user\User;
+use backend\widgets\Tips;
+use backend\components\ActiveRecord;
+use backend\assets\ValidationAsset;
+use backend\models\user\Feedback;
+use backend\models\user\FeedbackType;
+use backend\widgets\laydate\LaydateWidget;
+use backend\widgets\select2\Select2Widget;
+use backend\widgets\ueditor\UEditorWidget;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\user\Feedback */
+/* @var $model backend\models\user\Feedback */
 /* @var $form yii\widgets\ActiveForm */
 
 ValidationAsset::register($this);

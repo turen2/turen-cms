@@ -4,13 +4,13 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\widgets\diyfield;
+namespace backend\widgets\diyfield;
 
 use Yii;
 use yii\base\InvalidArgumentException;
-use app\models\cms\DiyField;
-use app\models\cms\Column;
-use app\models\cms\MasterModel;
+use backend\models\cms\DiyField;
+use backend\models\cms\Column;
+use backend\models\cms\MasterModel;
 
 /**
  * @author jorry

@@ -4,16 +4,16 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\behaviors;
+namespace backend\behaviors;
 
 use yii\base\Behavior;
-use app\models\tools\Attachment;
+use backend\models\tools\Attachment;
 
 //默认绑定资料管理器Attachment
 
 /**
  * ```php
- * use app\behaviors\AttachmentBehavior;
+ * use backend\behaviors\AttachmentBehavior;
  *
  * public function behaviors()
  * {

@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\widgets\edititem;
+namespace backend\widgets\edititem;
 
 use Yii;
 use yii\helpers\Html;

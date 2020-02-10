@@ -1,4 +1,4 @@
-后台系统基类：app\components\ActiveRecord
+后台系统基类：backend\components\ActiveRecord
 
 每个Module模块对应也有一个模型基类放在base中，如：
 Cms.php

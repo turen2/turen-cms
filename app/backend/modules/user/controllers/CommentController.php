@@ -1,16 +1,20 @@
 <?php
-
-namespace app\modules\user\controllers;
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
+namespace backend\modules\user\controllers;
 
 use Yii;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\components\AliyunOss;
-use app\actions\CheckAction;
-use app\widgets\ueditor\UEditorAction;
-use app\models\user\Comment;
-use app\models\user\CommentSearch;
-use app\components\Controller;
+use backend\actions\CheckAction;
+use backend\widgets\ueditor\UEditorAction;
+use backend\models\user\Comment;
+use backend\models\user\CommentSearch;
+use backend\components\Controller;
 
 /**
  * CommentController implements the CRUD actions for Comment model.

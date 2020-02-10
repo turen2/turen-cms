@@ -4,10 +4,10 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-use yii\widgets\ActiveForm;
-use app\assets\RecycleAsset;
 use yii\helpers\Url;
-use app\actions\RecycleAction;
+use yii\widgets\ActiveForm;
+use backend\assets\RecycleAsset;
+use backend\actions\RecycleAction;
 
 //回收站功能
 RecycleAsset::register($this);

@@ -4,13 +4,13 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\widgets\edititem;
+namespace backend\widgets\edititem;
 
 use Yii;
 use yii\base\Action;
 use yii\base\InvalidArgumentException;
 use yii\helpers\Json;
-use app\models\cms\Article;
+use backend\models\cms\Article;
 
 /**
  * 批量操作

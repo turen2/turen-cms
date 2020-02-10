@@ -5,7 +5,7 @@
  * @author developer qq:980522557
  */
 /* @var $this yii\web\View */
-/* @var $model app\models\cms\Block */
+/* @var $model backend\models\cms\Block */
 
 $this->title = '编辑碎片信息';
 ?>

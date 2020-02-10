@@ -4,13 +4,12 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-
-use app\models\cms\Column;
-use app\models\cms\DiyModel;
-use common\helpers\BuildHelper;
-use common\models\cms\Flag;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use common\helpers\BuildHelper;
+use common\models\cms\Flag;
+use backend\models\cms\Column;
+use backend\models\cms\DiyModel;
 
 //获取数据
 $models = Column::find()->current()->orderBy(['orderid' => SORT_DESC])->all();
@@ -323,7 +322,7 @@ $columnArray = [];
 $selectOptions = ['id' => $name, 'encode' => false, 'options' => []];
 $options = [];
 foreach ($list as $id => $item) {
-    if(Column::ColumnConvert('class2id', 'app\models\cms\MasterModel_7') != $models[$id]->type) {
+    if(Column::ColumnConvert('class2id', 'backend\models\cms\MasterModel_7') != $models[$id]->type) {
         $options[$id] = ['disabled' => true];
     }
     //按照新的关系，重新排序

@@ -9,7 +9,7 @@ use yii\widgets\DetailView;
 use yii\widgets\Breadcrumbs;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\user\Feedback */
+/* @var $model backend\models\user\Feedback */
 
 $this->title = $model->fk_id;
 $this->params['breadcrumbs'][] = ['label' => 'Feedbacks', 'url' => ['index']];

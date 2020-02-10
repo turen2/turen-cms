@@ -1,25 +1,29 @@
 <?php
-
-namespace app\modules\shop\controllers;
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
+namespace backend\modules\shop\controllers;
 
 use Yii;
-use app\models\shop\Product;
-use app\models\shop\ProductSearch;
-use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\actions\CheckAction;
-use app\actions\BatchAction;
-use app\actions\RecycleAction;
-use app\widgets\fileupload\FileUploadAction;
 use common\components\AliyunOss;
-use app\widgets\ueditor\UEditorAction;
-use app\models\shop\ProductCate;
-use app\widgets\edititem\EditItemAction;
-use app\widgets\select2\Select2TagAction;
-use app\models\cms\Tag;
-use app\models\cms\TagAssign;
-use app\models\cms\DiyField;
+use backend\models\shop\Product;
+use backend\models\shop\ProductSearch;
+use backend\components\Controller;
+use backend\actions\CheckAction;
+use backend\actions\BatchAction;
+use backend\actions\RecycleAction;
+use backend\widgets\fileupload\FileUploadAction;
+use backend\widgets\ueditor\UEditorAction;
+use backend\models\shop\ProductCate;
+use backend\widgets\edititem\EditItemAction;
+use backend\widgets\select2\Select2TagAction;
+use backend\models\cms\Tag;
+use backend\models\cms\TagAssign;
+use backend\models\cms\DiyField;
 
 /**
  * ProductController implements the CRUD actions for Product model.

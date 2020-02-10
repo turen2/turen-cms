@@ -1,14 +1,18 @@
 <?php
-
-namespace app\models\shop;
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
+namespace backend\models\shop;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\shop\ProductCate;
+use backend\models\shop\ProductCate;
 
 /**
- * ProductCateSearch represents the model behind the search form about `app\models\shop\ProductCate`.
+ * ProductCateSearch represents the model behind the search form about `backend\models\shop\ProductCate`.
  */
 class ProductCateSearch extends ProductCate
 {

@@ -1,15 +1,19 @@
 <?php
-
-namespace app\modules\sys\controllers;
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
+namespace backend\modules\sys\controllers;
 
 use Yii;
-use app\models\sys\Multilang;
-use app\models\sys\MultilangSearch;
-use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\actions\CheckAction;
-use app\actions\SimpleMoveAction;
+use backend\models\sys\Multilang;
+use backend\models\sys\MultilangSearch;
+use backend\components\Controller;
+use backend\actions\CheckAction;
+use backend\actions\SimpleMoveAction;
 
 /**
  * MultilangController implements the CRUD actions for Multilang model.

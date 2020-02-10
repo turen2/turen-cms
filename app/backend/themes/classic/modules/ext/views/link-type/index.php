@@ -5,14 +5,13 @@
  * @author developer qq:980522557
  */
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use yii\widgets\ActiveForm;
-use app\models\ext\LinkType;
+use backend\models\ext\LinkType;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\ext\LinkTypeSearch */
+/* @var $searchModel backend\models\ext\LinkTypeSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '链接组管理';

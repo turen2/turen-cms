@@ -8,17 +8,17 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use yii\widgets\ActiveForm;
-use app\models\cms\Column;
-use app\widgets\edititem\EditItemWidget;
-use app\models\cms\Cate;
-use app\models\cms\Flag;
 use common\helpers\Functions;
+use backend\models\cms\Column;
+use backend\widgets\edititem\EditItemWidget;
+use backend\models\cms\Cate;
+use backend\models\cms\Flag;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\cms\ArticleSearch */
+/* @var $searchModel backend\models\cms\ArticleSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = '下载信息管理';
+$this->title = '文件信息管理';
 $this->topFilter = $this->render('_filter', ['model' => $searchModel, 'type' => Column::COLUMN_TYPE_FILE]);
 ?>
 
@@ -101,7 +101,7 @@ if(empty($dataProvider->count))
     	<span class="op-name">操作：</span>
     	<a href="javascript:turen.com.batchSubmit('<?=Url::to(['batch', 'type' => 'delete'])?>', 'batchform');">删除</a>
 	</span>
-	<?= Html::a('添加下载信息', ['create'], ['class' => 'data-btn']) ?>
+	<?= Html::a('添加文件信息', ['create'], ['class' => 'data-btn']) ?>
 	<div class="page">
 		<?= LinkPager::widget([
     	    'pagination' => $dataProvider->getPagination(),

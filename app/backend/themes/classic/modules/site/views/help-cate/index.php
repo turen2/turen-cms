@@ -7,10 +7,10 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
-use app\models\site\HelpCate;
+use backend\models\site\HelpCate;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\site\HelpCateSearch */
+/* @var $searchModel backend\models\site\HelpCateSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '帮助分类管理';

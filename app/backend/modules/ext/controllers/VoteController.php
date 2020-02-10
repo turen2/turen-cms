@@ -4,19 +4,19 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\ext\controllers;
+namespace backend\modules\ext\controllers;
 
 use Yii;
-use app\models\ext\Vote;
-use app\models\ext\VoteSearch;
-use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\models\ext\VoteOption;
-use app\actions\CheckAction;
 use common\components\AliyunOss;
-use app\widgets\ueditor\UEditorAction;
-use app\widgets\edititem\EditItemAction;
+use backend\models\ext\Vote;
+use backend\models\ext\VoteSearch;
+use backend\components\Controller;
+use backend\models\ext\VoteOption;
+use backend\actions\CheckAction;
+use backend\widgets\ueditor\UEditorAction;
+use backend\widgets\edititem\EditItemAction;
 
 /**
  * VoteController implements the CRUD actions for Vote model.

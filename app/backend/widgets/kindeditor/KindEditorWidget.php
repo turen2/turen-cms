@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\widgets\kindeditor;
+namespace backend\widgets\kindeditor;
 
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -13,7 +13,7 @@ use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\View;
 use yii\widgets\InputWidget;
-use app\widgets\kindeditor\assets\KindEditorAsset;
+use backend\widgets\kindeditor\assets\KindEditorAsset;
 
 class KindEditorWidget extends InputWidget
 {

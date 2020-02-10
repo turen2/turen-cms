@@ -4,16 +4,16 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\sys;
+namespace backend\models\sys;
 
 use Yii;
 use yii\helpers\Json;
 use yii\helpers\ArrayHelper;
-use app\behaviors\InsertLangBehavior;
 use yii\behaviors\AttributeBehavior;
 use yii\db\ActiveRecord;
 use yii\base\ErrorException;
 use yii\caching\TagDependency;
+use backend\behaviors\InsertLangBehavior;
 
 /**
  * This is the model class for table "{{%sys_config}}".
@@ -27,7 +27,7 @@ use yii\caching\TagDependency;
  * @property int $orderid 排列排序
  * @property string $lang 多语言
  */
-class Config extends \app\models\base\Sys
+class Config extends \backend\models\base\Sys
 {
     private static $_config;
     

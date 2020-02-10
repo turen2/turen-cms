@@ -4,20 +4,20 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\cms;
+namespace backend\models\cms;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
-use app\behaviors\InsertLangBehavior;
 use yii\db\ActiveRecord;
-use app\widgets\select2\TaggableBehavior;
-use app\widgets\laydate\LaydateBehavior;
-use app\widgets\diyfield\DiyFieldBehavior;
-use app\behaviors\FlagBehavior;
-use app\behaviors\CateBehavior;
-use app\behaviors\ColumnBehavior;
-use app\behaviors\OrderDefaultBehavior;
+use backend\behaviors\InsertLangBehavior;
+use backend\widgets\select2\TaggableBehavior;
+use backend\widgets\laydate\LaydateBehavior;
+use backend\widgets\diyfield\DiyFieldBehavior;
+use backend\behaviors\FlagBehavior;
+use backend\behaviors\CateBehavior;
+use backend\behaviors\ColumnBehavior;
+use backend\behaviors\OrderDefaultBehavior;
 
 /**
  * This is the model class for table "{{%cms_video}}".
@@ -51,7 +51,7 @@ use app\behaviors\OrderDefaultBehavior;
  * @property string $deltime 删除时间
  * @property string $lang
  */
-class Video extends \app\models\base\Cms
+class Video extends \backend\models\base\Cms
 {
 	public $keyword;
 
@@ -152,7 +152,7 @@ class Video extends \app\models\base\Cms
             'cateid' => '所属所属类别',
             'catepid' => '所属类别上级ID',
             'catepstr' => '所属类别上级ID字符串',
-            'title' => '视频标题',
+            'title' => '标题',
             'slug' => '访问链接',
             'colorval' => '字体颜色',
             'boldval' => '字体加粗',

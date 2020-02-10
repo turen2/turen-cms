@@ -1,13 +1,17 @@
 <?php
-
-namespace app\models\cms;
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
+namespace backend\models\cms;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 use yii\helpers\Html;
-use app\behaviors\OrderDefaultBehavior;
+use backend\behaviors\OrderDefaultBehavior;
 
 /**
  * This is the model class for table "{{%diy_field}}".
@@ -29,7 +33,7 @@ use app\behaviors\OrderDefaultBehavior;
  * @property string $created_at 添加时间
  * @property string $updated_at 编辑时间
  */
-class DiyField extends \app\models\base\Cms
+class DiyField extends \backend\models\base\Cms
 {
     const FIELD_PRE = 'diyfield_';
     const FIELD_MULTI_UPLOAD_NAME = 'diyfield-multi-upload';
@@ -231,7 +235,7 @@ class DiyField extends \app\models\base\Cms
      * 获取字段模型
      * @param integer $columnType 模型id值
      * @param integer $columnid 对应模型生成的栏目id值，如果为null则表示全部栏目，否则为指定栏目字段
-     * @return \app\components\Column[]|array
+     * @return \backend\components\Column[]|array
      */
     public static function FieldModelList($columnType, $columnid = null)
     {

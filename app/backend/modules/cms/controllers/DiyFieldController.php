@@ -1,19 +1,23 @@
 <?php
-
-namespace app\modules\cms\controllers;
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
+namespace backend\modules\cms\controllers;
 
 use Yii;
-use app\models\cms\DiyField;
-use app\models\cms\DiyFieldSearch;
-use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\actions\SimpleMoveAction;
-use app\actions\CheckAction;
-use app\models\cms\Column;
 use yii\helpers\Html;
-use app\actions\ValidateAction;
 use yii\helpers\ArrayHelper;
+use backend\models\cms\DiyField;
+use backend\models\cms\DiyFieldSearch;
+use backend\components\Controller;
+use backend\actions\SimpleMoveAction;
+use backend\actions\CheckAction;
+use backend\models\cms\Column;
+use backend\actions\ValidateAction;
 
 /**
  * DiyFieldController implements the CRUD actions for DiyField model.

@@ -4,15 +4,15 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\ext;
+namespace backend\models\ext;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\ext\Ad;
+use backend\models\ext\Ad;
 
 /**
- * AdSearch represents the model behind the search form about `app\models\ext\Ad`.
+ * AdSearch represents the model behind the search form about `backend\models\ext\Ad`.
  */
 class AdSearch extends Ad
 {

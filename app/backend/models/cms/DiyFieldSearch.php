@@ -1,14 +1,18 @@
 <?php
-
-namespace app\models\cms;
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
+namespace backend\models\cms;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\cms\DiyField;
+use backend\models\cms\DiyField;
 
 /**
- * DiyFieldSearch represents the model behind the search form about `app\models\cms\DiyField`.
+ * DiyFieldSearch represents the model behind the search form about `backend\models\cms\DiyField`.
  */
 class DiyFieldSearch extends DiyField
 {
@@ -46,7 +50,7 @@ class DiyFieldSearch extends DiyField
         //$query = Admin::findBySql($sql);
         //$query = Admin::find()->alias('a')->select(['a.*', 's.company as company', 's.domain as domain', 's.username as merchant'])->leftJoin(Site::tableName().' as s', ' a.test_id = s.testid');
         
-        $query = DiyField::find();//->current();
+        $query = DiyField::find();
 
         // add conditions that should always apply here
 
@@ -73,20 +77,17 @@ class DiyFieldSearch extends DiyField
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'status' => $this->status,
-            'fd_type' => $this->fd_type,
-            'fd_column_type' => $this->fd_column_type,
-        ]);
-
-        $query->andFilterWhere(['like', 'fd_name', $this->fd_name])
-            ->andFilterWhere(['like', 'fd_title', $this->fd_title])
-            ->andFilterWhere(['like', 'fd_desc', $this->fd_desc])
-            ->andFilterWhere(['like', 'fd_value', $this->fd_value])
-            ->andFilterWhere(['like', 'fd_check', $this->fd_check])
-            //->andFilterWhere(['like', 'columnid_list', $this->columnid.','])//??不精准
-            ->andFilterWhere(['like', 'fd_tips', $this->fd_tips]);
+        $query->filterWhere(['and', ['and',
+            '1 = 1',
+            ['id' => $this->id],
+            ['status' => $this->status],
+            ['fd_type' => $this->fd_type],
+            ['fd_column_type' => $this->fd_column_type],
+        ], ['or',
+            ['like', 'fd_name', $this->keyword],
+            ['like', 'fd_title', $this->keyword],
+            ['like', 'fd_desc', $this->keyword]
+        ]]);
         
         //echo $dataProvider->query->createCommand()->rawSql;
 

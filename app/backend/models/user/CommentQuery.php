@@ -4,14 +4,14 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\user;
+namespace backend\models\user;
 
 /**
  * This is the ActiveQuery class for [[Comment]].
  *
  * @see Comment
  */
-class CommentQuery extends \app\components\ActiveQuery
+class CommentQuery extends \backend\components\ActiveQuery
 {
 	//自定义专用方法
 }

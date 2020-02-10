@@ -4,14 +4,14 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\bootstrap;
+namespace backend\bootstrap;
 
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 use yii\db\Query;
-use app\filters\ReturnUrlFilter;
-use app\models\sys\Multilang;
+use backend\filters\ReturnUrlFilter;
+use backend\models\sys\Multilang;
 
 /**
  * 系统初始化生成了全局参数以"config_init_"为前缀

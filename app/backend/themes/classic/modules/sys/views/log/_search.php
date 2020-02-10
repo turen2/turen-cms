@@ -4,18 +4,33 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\sys\LogSearch */
-/* @var $form yii\widgets\ActiveForm */
+$isAll = true;
+foreach ($model->attributes as $key => $value) {
+    if(in_array($key, ['id', 'method', 'keyword']) && !is_null($value) && (!empty($value))) {
+        $isAll = false;
+    }
+}
+
+$addRoutes = [
+    Html::getInputName($model, 'keyword') => $model->keyword
+];
 ?>
 
 <div class="log-search toolbar-tab">
+    <ul class="fl">
+        <li class="<?= $isAll?'on':''?>"><?= Html::a('全部', ['index']) ?></li>
+        <li class="line">-</li>
+        <li class="<?= (!is_null($model->method) && $model->method == 'POST')?'on':''?>"><?= Html::a('POST', ArrayHelper::merge(['index', Html::getInputName($model, 'method') => 'POST'], $addRoutes)) ?></li>
+        <li class="line">-</li>
+        <li class="<?= (!is_null($model->method) && $model->method == 'GET')?'on':''?>"><?= Html::a('GET', ArrayHelper::merge(['index', Html::getInputName($model, 'method') => 'GET'], $addRoutes)) ?></li>
+    </ul>
+
     <?php $form = ActiveForm::begin([
-        'action' => ['index'],
+        'action' => ['index', Html::getInputName($model, 'method') => $model->method],
         'method' => 'get',
         'id' => 'searchform',
 	    'options' => ['class' => 'fr'],

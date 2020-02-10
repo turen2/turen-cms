@@ -6,14 +6,14 @@
  */
 use yii\helpers\Html;
 
-use app\widgets\Alert;
 use yii\base\Widget;
 use yii\web\YiiAsset;
-use app\assets\PaceAsset;
-use app\assets\WebAsset;
-use app\assets\FontAwesomeAsset;
-use app\assets\NotifyAsset;
-use app\assets\PureboxAsset;
+use backend\widgets\Alert;
+use backend\assets\PaceAsset;
+use backend\assets\WebAsset;
+use backend\assets\FontAwesomeAsset;
+use backend\assets\NotifyAsset;
+use backend\assets\PureboxAsset;
 
 /* @var $this \yii\web\View */
 /* @var $content string */

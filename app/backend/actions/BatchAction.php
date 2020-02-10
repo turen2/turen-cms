@@ -4,13 +4,13 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\actions;
+namespace backend\actions;
 
 use Yii;
 use yii\base\Action;
 use yii\base\InvalidArgumentException;
-use app\components\ActiveRecord;
-use app\helpers\BackCommonHelper;
+use backend\components\ActiveRecord;
+use backend\helpers\BackCommonHelper;
 
 /**
  * 批量操作

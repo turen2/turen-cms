@@ -6,12 +6,12 @@
  */
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\components\ActiveRecord;
 use yii\helpers\Url;
-use app\actions\RecycleAction;
+use backend\components\ActiveRecord;
+use backend\actions\RecycleAction;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\user\UserSearch */
+/* @var $model backend\models\user\UserSearch */
 /* @var $form yii\widgets\ActiveForm */
 
 $isAll = true;

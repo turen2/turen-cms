@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\actions;
+namespace backend\actions;
 
 //通用报表下载器，以用户的身份且有下载权限自己下载自己的报表
 
@@ -12,9 +12,8 @@ use Yii;
 use yii\base\Action;
 use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
-
-use app\models\tools\Report;
-use app\components\phpoffice\DataExport;
+use backend\models\tools\Report;
+use backend\components\phpoffice\DataExport;
 
 class DownLoaderAction extends Action
 {

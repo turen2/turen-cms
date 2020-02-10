@@ -1,32 +1,41 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
-use app\components\ActiveRecord;
+use backend\components\ActiveRecord;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\cms\DiyModelSearch */
+/* @var $model backend\models\cms\DiyModelSearch */
 /* @var $form yii\widgets\ActiveForm */
 
 $isAll = true;
 foreach ($model->attributes as $key => $value) {
-    if(!is_null($value)) {
+    if(in_array($key, ['id', 'status', 'keyword']) && !is_null($value) && (!empty($value) || $value === '0')) {
         $isAll = false;
     }
 }
+
+$addRoutes = [
+    Html::getInputName($model, 'keyword') => $model->keyword
+];
 ?>
 
 <div class="diy-model-search toolbar-tab">
 	<ul class="fl">
         <li class="<?= $isAll?'on':''?>"><?= Html::a('全部', ['index']) ?></li>
         <li class="line">-</li>
-        <li class="<?= (!is_null($model->status) && $model->status == ActiveRecord::STATUS_ON)?'on':''?>"><?= Html::a('启用', ['index', Html::getInputName($model, 'status') => ActiveRecord::STATUS_ON]) ?></li>
+        <li class="<?= (!is_null($model->status) && $model->status == ActiveRecord::STATUS_ON)?'on':''?>"><?= Html::a('启用', ArrayHelper::merge(['index', Html::getInputName($model, 'status') => ActiveRecord::STATUS_ON], $addRoutes)) ?></li>
         <li class="line">-</li>
-        <li class="<?= (!is_null($model->status) && $model->status == ActiveRecord::STATUS_OFF)?'on':''?>"><?= Html::a('禁用', ['index', Html::getInputName($model, 'status') => ActiveRecord::STATUS_OFF]) ?></li>
+        <li class="<?= (!is_null($model->status) && $model->status == ActiveRecord::STATUS_OFF)?'on':''?>"><?= Html::a('禁用', ArrayHelper::merge(['index', Html::getInputName($model, 'status') => ActiveRecord::STATUS_OFF], $addRoutes)) ?></li>
 	</ul>
 	
     <?php $form = ActiveForm::begin([
-        'action' => ['index'],
+        'action' => ArrayHelper::merge(['index', Html::getInputName($model, 'status') => $model->status], $addRoutes),
         'method' => 'get',
         'id' => 'searchform',
         'options' => ['class' => 'fr'],

@@ -1,11 +1,11 @@
 <?php
 use yii\helpers\Html;
-use app\models\cms\DiyField;
-use app\widgets\laydate\LaydateWidget;
 use yii\web\JsExpression;
-use app\widgets\fileupload\JQueryFileUploadWidget;
-use app\widgets\ueditor\UEditorWidget;
 use yii\helpers\Url;
+use backend\models\cms\DiyField;
+use backend\widgets\laydate\LaydateWidget;
+use backend\widgets\fileupload\JQueryFileUploadWidget;
+use backend\widgets\ueditor\UEditorWidget;
 ?>
 
 <?php if($fieldModels) { ?>

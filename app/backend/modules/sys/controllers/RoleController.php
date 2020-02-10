@@ -4,18 +4,18 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\sys\controllers;
+namespace backend\modules\sys\controllers;
 
 use Yii;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\models\sys\Role;
-use app\models\sys\RoleSearch;
-use app\components\Controller;
-use app\actions\CheckAction;
-use app\models\sys\RoleItem;
-use app\models\cms\DiyModel;
-use app\models\sys\Admin;
+use backend\models\sys\Role;
+use backend\models\sys\RoleSearch;
+use backend\components\Controller;
+use backend\actions\CheckAction;
+use backend\models\sys\RoleItem;
+use backend\models\cms\DiyModel;
+use backend\models\sys\Admin;
 
 /**
  * RoleController implements the CRUD actions for Role model.

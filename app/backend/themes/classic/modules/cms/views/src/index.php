@@ -7,11 +7,11 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
-use app\models\cms\Src;
 use yii\widgets\LinkPager;
+use backend\models\cms\Src;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\cms\SrcSearch */
+/* @var $searchModel backend\models\cms\SrcSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '信息来源管理';

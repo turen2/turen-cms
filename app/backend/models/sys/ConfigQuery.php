@@ -4,14 +4,14 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\sys;
+namespace backend\models\sys;
 
 /**
  * This is the ActiveQuery class for [[Config]].
  *
  * @see FaceConfig
  */
-class ConfigQuery extends \app\components\ActiveQuery
+class ConfigQuery extends \backend\components\ActiveQuery
 {
     //自定义专用方法
 }

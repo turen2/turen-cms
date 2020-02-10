@@ -1,16 +1,19 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use yii\widgets\ActiveForm;
-use app\models\cms\DiyField;
-use app\models\cms\Column;
 use yii\helpers\ArrayHelper;
+use backend\models\cms\DiyField;
+use backend\models\cms\Column;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\cms\DiyFieldSearch */
+/* @var $searchModel backend\models\cms\DiyFieldSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '自定义字段';
@@ -47,7 +50,7 @@ $this->topAlert = '<div class="alert alert-warning">注意：编辑字段时一�
 		
 		$options = [
 		    'title' => '（自定义模型专用）点击进行显示和隐藏操作',
-		    'data-url' => Url::to(['list-check', 'id' => $model->id]),
+		    'data-url' => Url::to(['list-check', 'kid' => $model->id]),
 		    'onclick' => 'turen.com.updateStatus(this)',
 		];
 		$checkstr .= '</span> | <span>'.Html::a(($model->list_status?'列表显示':'列表隐藏'), 'javascript:;', $options);

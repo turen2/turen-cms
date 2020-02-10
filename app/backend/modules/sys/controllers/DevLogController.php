@@ -1,15 +1,19 @@
 <?php
-
-namespace app\modules\sys\controllers;
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
+namespace backend\modules\sys\controllers;
 
 use Yii;
-use app\models\sys\Devlog;
-use app\models\sys\DevlogSearch;
-use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\widgets\ueditor\UEditorAction;
 use common\components\AliyunOss;
+use backend\models\sys\Devlog;
+use backend\models\sys\DevlogSearch;
+use backend\components\Controller;
+use backend\widgets\ueditor\UEditorAction;
 
 /**
  * DevLogController implements the CRUD actions for Devlog model.

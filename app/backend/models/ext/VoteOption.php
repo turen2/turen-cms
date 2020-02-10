@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\ext;
+namespace backend\models\ext;
 
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -16,7 +16,7 @@ use yii\helpers\ArrayHelper;
  * @property string $voteid 投票id
  * @property string $options 投票选项
  */
-class VoteOption extends \app\models\base\Ext
+class VoteOption extends \backend\models\base\Ext
 {
 	public $keyword;
 

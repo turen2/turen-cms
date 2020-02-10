@@ -1,20 +1,24 @@
 <?php
-
-namespace app\models\shop;
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
+namespace backend\models\shop;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
-use app\behaviors\InsertLangBehavior;
-use app\widgets\laydate\LaydateBehavior;
-use app\widgets\fileupload\MultiPicBehavior;
 use yii\helpers\Json;
-use app\widgets\diyfield\DiyFieldBehavior;
-use app\models\cms\DiyField;
-use app\behaviors\FlagBehavior;
-use app\behaviors\ProductCateBehavior;
-use app\behaviors\OrderDefaultBehavior;
+use backend\behaviors\InsertLangBehavior;
+use backend\widgets\laydate\LaydateBehavior;
+use backend\widgets\fileupload\MultiPicBehavior;
+use backend\widgets\diyfield\DiyFieldBehavior;
+use backend\models\cms\DiyField;
+use backend\behaviors\FlagBehavior;
+use backend\behaviors\ProductCateBehavior;
+use backend\behaviors\OrderDefaultBehavior;
 
 /**
  * This is the model class for table "{{%shop_product}}".
@@ -59,7 +63,7 @@ use app\behaviors\OrderDefaultBehavior;
  * @property string $created_at 添加时间
  * @property string $updated_at 编辑时间
  */
-class Product extends \app\models\base\Shop
+class Product extends \backend\models\base\Shop
 {
 	public $keyword;
 	
@@ -128,7 +132,7 @@ class Product extends \app\models\base\Shop
      */
     public function attributes()
     {
-        return ArrayHelper::merge(parent::attributes(), []);
+        return ArrayHelper::merge(parent::attributes(), ['keyword']);
     }
 
     /**

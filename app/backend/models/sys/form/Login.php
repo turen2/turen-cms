@@ -4,12 +4,12 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\sys\form;
+namespace backend\models\sys\form;
 
 use Yii;
 use yii\base\Model;
-use app\models\sys\Admin;
 use yii\web\User;
+use backend\models\sys\Admin;
 
 /**
  * Login form

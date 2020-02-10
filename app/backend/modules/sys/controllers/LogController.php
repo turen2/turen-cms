@@ -4,14 +4,14 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\sys\controllers;
+namespace backend\modules\sys\controllers;
 
 use Yii;
-use app\models\sys\Log;
-use app\models\sys\LogSearch;
-use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use backend\models\sys\Log;
+use backend\models\sys\LogSearch;
+use backend\components\Controller;
 
 /**
  * LogController implements the CRUD actions for Log model.

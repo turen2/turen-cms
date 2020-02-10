@@ -9,7 +9,7 @@ use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model \app\models\admin\form\PasswordResetRequest */
+/* @var $model \backend\models\admin\form\PasswordResetRequest */
 
 $this->title = '重置密码';
 $this->params['breadcrumbs'][] = $this->title;

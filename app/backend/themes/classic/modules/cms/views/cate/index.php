@@ -7,10 +7,10 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
-use app\models\cms\Cate;
+use backend\models\cms\Cate;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\cms\CateSearch */
+/* @var $searchModel backend\models\cms\CateSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '类别管理';

@@ -4,15 +4,15 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\site\controllers;
+namespace backend\modules\site\controllers;
 
 use Yii;
-use app\models\site\Lnk;
-use app\models\site\LnkSearch;
-use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\actions\SimpleMoveAction;
+use backend\models\site\Lnk;
+use backend\models\site\LnkSearch;
+use backend\components\Controller;
+use backend\actions\SimpleMoveAction;
 
 /**
  * LnkController implements the CRUD actions for Lnk model.

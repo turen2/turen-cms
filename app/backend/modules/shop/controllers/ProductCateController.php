@@ -1,18 +1,22 @@
 <?php
-
-namespace app\modules\shop\controllers;
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
+namespace backend\modules\shop\controllers;
 
 use Yii;
-use app\models\shop\ProductCate;
-use app\models\shop\ProductCateSearch;
-use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\actions\CheckAction;
-use app\actions\MoveAction;
 use common\helpers\BuildHelper;
-use app\widgets\fileupload\FileUploadAction;
 use common\components\AliyunOss;
+use backend\models\shop\ProductCate;
+use backend\models\shop\ProductCateSearch;
+use backend\components\Controller;
+use backend\actions\CheckAction;
+use backend\actions\MoveAction;
+use backend\widgets\fileupload\FileUploadAction;
 
 /**
  * ProductCateController implements the CRUD actions for ProductCate model.

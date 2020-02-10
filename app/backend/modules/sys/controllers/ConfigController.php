@@ -4,14 +4,14 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\sys\controllers;
+namespace backend\modules\sys\controllers;
 
 use Yii;
-use app\models\sys\Config;
-use app\widgets\fileupload\FileUploadAction;
 use common\components\AliyunOss;
+use backend\models\sys\Config;
+use backend\widgets\fileupload\FileUploadAction;
 
-class ConfigController extends \app\components\Controller
+class ConfigController extends \backend\components\Controller
 {
     protected $_configs = [];
     

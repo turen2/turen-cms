@@ -4,9 +4,9 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-use common\helpers\BuildHelper;
 use yii\helpers\Url;
-use app\models\ext\AdType;
+use common\helpers\BuildHelper;
+use backend\models\ext\AdType;
 
 $adTypeModel = AdType::findOne($model->ad_type_id);
 $buildFilter = BuildHelper::buildFilter(AdType::find()->current()->orderBy(['orderid' => SORT_DESC])->all(), AdType::class, 'id', 'parentid', 'typename', true, null, 'AdSearch', 'ad_type_id');

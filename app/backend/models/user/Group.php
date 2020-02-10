@@ -4,13 +4,13 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\user;
+namespace backend\models\user;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
-use app\behaviors\InsertLangBehavior;
-use app\behaviors\OrderDefaultBehavior;
+use backend\behaviors\InsertLangBehavior;
+use backend\behaviors\OrderDefaultBehavior;
 
 /**
  * This is the model class for table "{{%user_group}}".
@@ -21,7 +21,7 @@ use app\behaviors\OrderDefaultBehavior;
  * @property string $lang 多语言
  * @property int $is_default 默认
  */
-class Group extends \app\models\base\User
+class Group extends \backend\models\base\User
 {
 	public $keyword;
 	

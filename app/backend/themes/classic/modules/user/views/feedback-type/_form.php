@@ -8,13 +8,13 @@ use yii\helpers\Json;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
-use app\widgets\Tips;
-use app\components\ActiveRecord;
-use app\assets\ValidationAsset;
-use app\models\user\FeedbackType;
+use backend\widgets\Tips;
+use backend\components\ActiveRecord;
+use backend\assets\ValidationAsset;
+use backend\models\user\FeedbackType;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\user\FeedbackType */
+/* @var $model backend\models\user\FeedbackType */
 /* @var $form yii\widgets\ActiveForm */
 
 ValidationAsset::register($this);

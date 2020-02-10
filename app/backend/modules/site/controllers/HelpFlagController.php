@@ -4,15 +4,15 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\site\controllers;
+namespace backend\modules\site\controllers;
 
 use Yii;
-use app\models\site\HelpFlag;
-use app\models\site\HelpFlagSearch;
-use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\actions\SimpleMoveAction;
+use backend\models\site\HelpFlag;
+use backend\models\site\HelpFlagSearch;
+use backend\components\Controller;
+use backend\actions\SimpleMoveAction;
 
 /**
  * HelpFlagController implements the CRUD actions for HelpFlag model.

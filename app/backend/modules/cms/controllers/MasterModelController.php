@@ -1,22 +1,26 @@
 <?php
-
-namespace app\modules\cms\controllers;
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
+namespace backend\modules\cms\controllers;
 
 use Yii;
-use app\models\cms\MasterModel;
-use app\models\cms\MasterModelSearch;
-use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\actions\CheckAction;
-use app\widgets\fileupload\FileUploadAction;
-use app\models\cms\DiyField;
-use common\components\AliyunOss;
-use app\widgets\ueditor\UEditorAction;
 use yii\base\InvalidArgumentException;
-use app\models\cms\DiyModel;
-use app\widgets\edititem\EditItemAction;
-use app\models\cms\Column;
+use common\components\AliyunOss;
+use backend\models\cms\MasterModel;
+use backend\models\cms\MasterModelSearch;
+use backend\components\Controller;
+use backend\actions\CheckAction;
+use backend\widgets\fileupload\FileUploadAction;
+use backend\models\cms\DiyField;
+use backend\widgets\ueditor\UEditorAction;
+use backend\models\cms\DiyModel;
+use backend\widgets\edititem\EditItemAction;
+use backend\models\cms\Column;
 
 /**
  * MasterModelController implements the CRUD actions for MasterModel model.

@@ -4,14 +4,14 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\site\controllers;
+namespace backend\modules\site\controllers;
 
 use Yii;
 use yii\base\UserException;
-use app\models\site\FaceConfig;
-use app\models\sys\Multilang;
+use backend\models\site\FaceConfig;
+use backend\models\sys\Multilang;
 
-class FaceConfigController extends \app\components\Controller
+class FaceConfigController extends \backend\components\Controller
 {
     /**
      * 查看配置

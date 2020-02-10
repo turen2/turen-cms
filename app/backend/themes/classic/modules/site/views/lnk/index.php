@@ -7,11 +7,11 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
-use app\models\site\Lnk;
 use yii\widgets\LinkPager;
+use backend\models\site\Lnk;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\site\LnkSearch */
+/* @var $searchModel backend\models\site\LnkSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '快捷链接管理';

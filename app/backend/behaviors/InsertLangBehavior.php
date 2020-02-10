@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\behaviors;
+namespace backend\behaviors;
 
 use Yii;
 use yii\db\BaseActiveRecord;
@@ -12,7 +12,7 @@ use yii\behaviors\AttributeBehavior;
 
 /**
  * ```php
- * use app\behaviors;
+ * use backend\behaviors;
  *
  * public function behaviors()
  * {

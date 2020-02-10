@@ -1,14 +1,18 @@
 <?php
-
-namespace app\models\cms;
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
+namespace backend\models\cms;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\cms\MasterModel;
+use backend\models\cms\MasterModel;
 
 /**
- * MasterModelSearch represents the model behind the search form about `app\models\cms\MasterModel`.
+ * MasterModelSearch represents the model behind the search form about `backend\models\cms\MasterModel`.
  */
 class MasterModelSearch extends MasterModel
 {

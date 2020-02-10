@@ -4,19 +4,19 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\cms\controllers;
+namespace backend\modules\cms\controllers;
 
 use Yii;
-use app\models\cms\Column;
-use app\models\cms\ColumnSearch;
-use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\helpers\BuildHelper;
 use common\components\AliyunOss;
-use app\widgets\fileupload\FileUploadAction;
-use app\actions\MoveAction;
-use app\actions\CheckAction;
+use backend\models\cms\Column;
+use backend\models\cms\ColumnSearch;
+use backend\components\Controller;
+use backend\widgets\fileupload\FileUploadAction;
+use backend\actions\MoveAction;
+use backend\actions\CheckAction;
 
 /**
  * ColumnController implements the CRUD actions for Column model.

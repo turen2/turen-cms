@@ -8,14 +8,14 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use yii\widgets\ActiveForm;
-use app\models\cms\Column;
-use app\widgets\edititem\EditItemWidget;
-use app\models\cms\Cate;
-use app\models\cms\Flag;
 use common\helpers\Functions;
+use backend\models\cms\Column;
+use backend\widgets\edititem\EditItemWidget;
+use backend\models\cms\Cate;
+use backend\models\cms\Flag;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\cms\ArticleSearch */
+/* @var $searchModel backend\models\cms\ArticleSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $js = <<<EOF

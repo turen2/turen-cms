@@ -7,16 +7,16 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
-use app\widgets\Tips;
-use app\assets\ValidationAsset;
-use app\models\ext\Nav;
-use common\helpers\BuildHelper;
-use app\widgets\fileupload\JQueryFileUploadWidget;
 use yii\web\JsExpression;
 use yii\helpers\Json;
+use common\helpers\BuildHelper;
+use backend\widgets\Tips;
+use backend\assets\ValidationAsset;
+use backend\models\ext\Nav;
+use backend\widgets\fileupload\JQueryFileUploadWidget;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\ext\Nav */
+/* @var $model backend\models\ext\Nav */
 /* @var $form yii\widgets\ActiveForm */
 
 ValidationAsset::register($this);

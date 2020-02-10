@@ -8,12 +8,12 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use yii\widgets\ActiveForm;
-use app\models\site\HelpCate;
-use app\models\site\HelpFlag;
-use app\widgets\edititem\EditItemWidget;
+use backend\models\site\HelpCate;
+use backend\models\site\HelpFlag;
+use backend\widgets\edititem\EditItemWidget;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\site\HelpSearch */
+/* @var $searchModel backend\models\site\HelpSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $js = <<<EOF

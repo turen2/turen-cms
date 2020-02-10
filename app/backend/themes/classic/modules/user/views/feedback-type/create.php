@@ -10,7 +10,7 @@ use yii\helpers\Url;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\user\FeedbackType */
+/* @var $model backend\models\user\FeedbackType */
 
 $this->title = '添加反馈类型';
 ?>

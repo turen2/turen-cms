@@ -6,13 +6,13 @@
  */
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
-use app\components\View;
-use app\widgets\Tips;
-use app\models\sys\Config;
 use yii\helpers\Html;
+use backend\components\View;
+use backend\widgets\Tips;
+use backend\models\sys\Config;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\sys\Config */
+/* @var $model backend\models\sys\Config */
 /* @var $form yii\widgets\ActiveForm */
 
 $js = <<<EOF

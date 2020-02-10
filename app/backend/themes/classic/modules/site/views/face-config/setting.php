@@ -9,12 +9,12 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
-use app\components\View;
-use app\widgets\Tips;
-use app\models\sys\Config;
+use backend\components\View;
+use backend\widgets\Tips;
+use backend\models\sys\Config;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\site\Config */
+/* @var $model backend\models\site\Config */
 /* @var $form yii\widgets\ActiveForm */
 
 $this->title = '界面配置';

@@ -4,12 +4,12 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\base;
+namespace backend\models\base;
 
-use app\models\shop\Brand;
 use yii\helpers\ArrayHelper;
+use backend\models\shop\Brand;
 
-class Shop extends \app\components\ActiveRecord
+class Shop extends \backend\components\ActiveRecord
 {
     private static $_allProductBrand = [];
     

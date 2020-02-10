@@ -7,11 +7,11 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
-use app\models\site\HelpFlag;
 use yii\widgets\LinkPager;
+use backend\models\site\HelpFlag;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\cms\HelpFlagSearch */
+/* @var $searchModel backend\models\cms\HelpFlagSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '帮助标记管理';

@@ -4,9 +4,9 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-use common\helpers\BuildHelper;
 use yii\helpers\Url;
-use app\models\ext\LinkType;
+use common\helpers\BuildHelper;
+use backend\models\ext\LinkType;
 
 $linkTypeModel = LinkType::findOne($model->link_type_id);
 $buildFilter = BuildHelper::buildFilter(LinkType::find()->current()->orderBy(['orderid' => SORT_DESC])->all(), LinkType::class, 'id', 'parentid', 'typename', true, null, 'LinkSearch', 'link_type_id');

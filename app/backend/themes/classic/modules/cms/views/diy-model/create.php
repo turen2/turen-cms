@@ -6,7 +6,7 @@ use yii\helpers\Url;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\cms\DiyModel */
+/* @var $model backend\models\cms\DiyModel */
 
 $this->title = '添加新模型';
 ?>

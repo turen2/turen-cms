@@ -4,18 +4,18 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\ext\controllers;
+namespace backend\modules\ext\controllers;
 
 use Yii;
-use app\models\ext\Link;
-use app\models\ext\LinkSearch;
-use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\actions\CheckAction;
-use app\widgets\fileupload\FileUploadAction;
 use common\components\AliyunOss;
-use app\widgets\edititem\EditItemAction;
+use backend\models\ext\Link;
+use backend\models\ext\LinkSearch;
+use backend\components\Controller;
+use backend\actions\CheckAction;
+use backend\widgets\fileupload\FileUploadAction;
+use backend\widgets\edititem\EditItemAction;
 
 /**
  * LinkController implements the CRUD actions for Link model.

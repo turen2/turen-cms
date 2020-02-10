@@ -4,14 +4,14 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\user\controllers;
+namespace backend\modules\user\controllers;
 
 use Yii;
-use app\models\user\Inquiry;
-use app\models\user\InquirySearch;
-use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use backend\models\user\Inquiry;
+use backend\models\user\InquirySearch;
+use backend\components\Controller;
 
 /**
  * InquiryController implements the CRUD actions for Inquiry model.

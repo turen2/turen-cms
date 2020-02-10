@@ -1,14 +1,13 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
-use app\models\sys\Multilang;
 use yii\widgets\ActiveForm;
+use backend\models\sys\Multilang;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\sys\MultilangSearch */
+/* @var $searchModel backend\models\sys\MultilangSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '多语言管理';

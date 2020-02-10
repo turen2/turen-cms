@@ -7,30 +7,30 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
-use app\widgets\Tips;
-use app\assets\ValidationAsset;
-use common\helpers\BuildHelper;
-use app\models\cms\Column;
-use app\models\cms\Article;
-use app\models\cms\Src;
-use app\models\cms\Cate;
 use yii\base\Widget;
-use app\widgets\select2\Select2Widget;
-use app\models\cms\Tag;
-use app\widgets\laydate\LaydateWidget;
-use app\assets\ColorPickerAsset;
-use app\widgets\fileupload\JQueryFileUploadWidget;
-use yii\web\JsExpression;
-use app\widgets\ueditor\UEditorWidget;
 use yii\helpers\Json;
-use app\widgets\diyfield\DiyFieldWidget;
-use app\models\cms\DiyField;
+use yii\web\JsExpression;
 use yii\helpers\ArrayHelper;
-use app\models\cms\Flag;
+use common\helpers\BuildHelper;
 use common\helpers\Functions;
+use backend\widgets\Tips;
+use backend\assets\ValidationAsset;
+use backend\models\cms\Column;
+use backend\models\cms\Article;
+use backend\models\cms\Src;
+use backend\models\cms\Cate;
+use backend\widgets\select2\Select2Widget;
+use backend\models\cms\Tag;
+use backend\widgets\laydate\LaydateWidget;
+use backend\assets\ColorPickerAsset;
+use backend\widgets\fileupload\JQueryFileUploadWidget;
+use backend\widgets\ueditor\UEditorWidget;
+use backend\widgets\diyfield\DiyFieldWidget;
+use backend\models\cms\DiyField;
+use backend\models\cms\Flag;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\cms\Article */
+/* @var $model backend\models\cms\Article */
 /* @var $form yii\widgets\ActiveForm */
 
 ValidationAsset::register($this);

@@ -1,20 +1,20 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
-use app\components\ActiveRecord;
-use app\models\cms\Column;
-use app\models\cms\MasterModel;
-use app\models\cms\Flag;
-
-/* @var $this yii\web\View */
-/* @var $model app\models\cms\MasterModelSearch */
-/* @var $form yii\widgets\ActiveForm */
+use backend\components\ActiveRecord;
+use backend\models\cms\Column;
+use backend\models\cms\MasterModel;
+use backend\models\cms\Flag;
 
 $isAll = true;
 foreach ($model->attributes as $key => $value) {
-    if(in_array($key, ['id', 'columnid', 'cateid', 'status', 'author', 'flag', 'keyword']) && !is_null($value) && !empty($value)) {
+    if(in_array($key, ['id', 'columnid', 'cateid', 'status', 'author', 'flag', 'keyword']) && !is_null($value) && (!empty($value) || $value === '0')) {
         $isAll = false;
     }
 }

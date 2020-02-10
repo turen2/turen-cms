@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\shop\Attribute */
+/* @var $model backend\models\shop\Attribute */
 
 $this->title = '编辑: ' . $model->attrname;
 ?>

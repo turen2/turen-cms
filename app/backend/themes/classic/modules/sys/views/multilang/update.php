@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\sys\Multilang */
+/* @var $model backend\models\sys\Multilang */
 
 $this->title = '编辑: ' . $model->lang_name;
 ?>

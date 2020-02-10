@@ -9,7 +9,7 @@ use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\sys\Devlog */
+/* @var $model backend\models\sys\Devlog */
 
 $this->title = '添加开发日志';
 ?>

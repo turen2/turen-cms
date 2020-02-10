@@ -4,19 +4,19 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\ext\controllers;
+namespace backend\modules\ext\controllers;
 
 use Yii;
-use app\models\ext\Nav;
-use app\models\ext\NavSearch;
-use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\helpers\BuildHelper;
-use app\actions\MoveAction;
-use app\actions\CheckAction;
-use app\widgets\fileupload\FileUploadAction;
 use common\components\AliyunOss;
+use backend\models\ext\Nav;
+use backend\models\ext\NavSearch;
+use backend\components\Controller;
+use backend\actions\MoveAction;
+use backend\actions\CheckAction;
+use backend\widgets\fileupload\FileUploadAction;
 
 /**
  * NavController implements the CRUD actions for Nav model.

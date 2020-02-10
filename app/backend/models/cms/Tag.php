@@ -4,11 +4,11 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\cms;
+namespace backend\models\cms;
 
-use app\behaviors\InsertLangBehavior;
+use backend\behaviors\InsertLangBehavior;
 
-class Tag extends \app\models\base\Cms
+class Tag extends \backend\models\base\Cms
 {
     public function behaviors()
     {

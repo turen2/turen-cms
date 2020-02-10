@@ -1,17 +1,20 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
+use yii\widgets\ActiveForm;
+use common\helpers\Functions;
 use common\helpers\ImageHelper;
 use common\components\AliyunOss;
-use yii\widgets\ActiveForm;
-use app\widgets\edititem\EditItemWidget;
-use common\helpers\Functions;
+use backend\widgets\edititem\EditItemWidget;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\shop\BrandSearch */
+/* @var $searchModel backend\models\shop\BrandSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '品牌管理';

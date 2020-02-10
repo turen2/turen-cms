@@ -6,10 +6,10 @@
  */
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\components\ActiveRecord;
+use backend\components\ActiveRecord;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\user\FavoriteSearch */
+/* @var $model backend\models\user\FavoriteSearch */
 /* @var $form yii\widgets\ActiveForm */
 
 $isAll = true;

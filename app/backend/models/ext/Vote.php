@@ -4,15 +4,15 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\ext;
+namespace backend\models\ext;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
-use app\behaviors\InsertLangBehavior;
-use app\widgets\laydate\LaydateBehavior;
-use app\behaviors\OrderDefaultBehavior;
+use backend\behaviors\InsertLangBehavior;
+use backend\widgets\laydate\LaydateBehavior;
+use backend\behaviors\OrderDefaultBehavior;
 
 /**
  * This is the model class for table "{{%ext_vote}}".
@@ -31,7 +31,7 @@ use app\behaviors\OrderDefaultBehavior;
  * @property int $status 显示状态
  * @property string $lang
  */
-class Vote extends \app\models\base\Ext
+class Vote extends \backend\models\base\Ext
 {
     const RADIO_SINGLE = 1;//单选
     const RADIO_MULTI = 2;//多选

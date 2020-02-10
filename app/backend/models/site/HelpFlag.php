@@ -4,13 +4,13 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\site;
+namespace backend\models\site;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
-use app\behaviors\OrderDefaultBehavior;
+use backend\behaviors\OrderDefaultBehavior;
 
 /**
  * This is the model class for table "{{%cms_help_flag}}".
@@ -20,7 +20,7 @@ use app\behaviors\OrderDefaultBehavior;
  * @property string $flagname 标记标识
  * @property int $orderid 排列排序
  */
-class HelpFlag extends \app\models\base\Site
+class HelpFlag extends \backend\models\base\Site
 {
 	public $keyword;
 	

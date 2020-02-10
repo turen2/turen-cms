@@ -4,10 +4,10 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-use app\models\user\Inquiry;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
+use backend\models\user\Inquiry;
 ?>
 
 <div class="inquiry-search toolbar-tab">

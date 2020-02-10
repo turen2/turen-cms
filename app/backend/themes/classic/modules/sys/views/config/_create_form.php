@@ -6,11 +6,11 @@
  */
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
-use app\widgets\Tips;
 use yii\helpers\Html;
+use backend\widgets\Tips;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\sys\Config */
+/* @var $model backend\models\sys\Config */
 /* @var $form yii\widgets\ActiveForm */
 $this->registerJs("
 $('#config-vartype input').on('click', function() {

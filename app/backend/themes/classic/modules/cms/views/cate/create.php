@@ -5,7 +5,7 @@
  * @author developer qq:980522557
  */
 /* @var $this yii\web\View */
-/* @var $model app\models\cms\Cate */
+/* @var $model backend\models\cms\Cate */
 
 $this->title = '添加类别';
 ?>

@@ -4,16 +4,16 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\site\controllers;
+namespace backend\modules\site\controllers;
 
 use Yii;
 use yii\db\Query;
-use app\models\sys\Log;
-use app\models\sys\Devlog;
-use app\models\site\Lnk;
-use app\models\site\Help;
+use backend\models\sys\Log;
+use backend\models\sys\Devlog;
+use backend\models\site\Lnk;
+use backend\models\site\Help;
 
-class HomeController extends \app\components\Controller
+class HomeController extends \backend\components\Controller
 {
     public function init()
     {

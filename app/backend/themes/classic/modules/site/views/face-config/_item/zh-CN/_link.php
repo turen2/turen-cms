@@ -4,11 +4,10 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-
-use app\models\ext\LinkType;
-use common\helpers\BuildHelper;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
+use backend\models\ext\LinkType;
+use common\helpers\BuildHelper;
 
 //获取数据
 $models = LinkType::find()->current()->orderBy(['orderid' => SORT_DESC])->all();

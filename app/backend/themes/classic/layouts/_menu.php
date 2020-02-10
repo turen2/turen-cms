@@ -4,10 +4,9 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-
-use app\models\cms\DiyModel;
-use app\models\sys\Role;
 use yii\widgets\Menu;
+use backend\models\cms\DiyModel;
+use backend\models\sys\Role;
 
 $userModel = Yii::$app->user->identity;
 $roleModel = Role::find()->where(['role_id' => $userModel->role_id])->active()->one();

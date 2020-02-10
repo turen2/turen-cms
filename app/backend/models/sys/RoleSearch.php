@@ -4,15 +4,15 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\sys;
+namespace backend\models\sys;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\sys\Role;
+use backend\models\sys\Role;
 
 /**
- * RoleSearch represents the model behind the search form about `app\models\sys\Role`.
+ * RoleSearch represents the model behind the search form about `backend\models\sys\Role`.
  */
 class RoleSearch extends Role
 {

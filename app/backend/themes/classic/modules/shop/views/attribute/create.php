@@ -6,7 +6,7 @@ use yii\helpers\Url;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\shop\Attribute */
+/* @var $model backend\models\shop\Attribute */
 
 $this->title = '添加新属性';
 ?>

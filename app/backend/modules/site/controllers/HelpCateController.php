@@ -4,17 +4,17 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\site\controllers;
+namespace backend\modules\site\controllers;
 
 use Yii;
-use app\models\site\HelpCate;
-use app\models\site\HelpCateSearch;
-use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\helpers\BuildHelper;
-use app\actions\MoveAction;
-use app\actions\CheckAction;
+use backend\models\site\HelpCate;
+use backend\models\site\HelpCateSearch;
+use backend\components\Controller;
+use backend\actions\MoveAction;
+use backend\actions\CheckAction;
 
 /**
  * HelpCateController implements the CRUD actions for HelpCate model.

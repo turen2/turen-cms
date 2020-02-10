@@ -4,12 +4,12 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\site\controllers;
+namespace backend\modules\site\controllers;
 
 use yii\web\ErrorAction;
 //use yii\helpers\VarDumper;
 
-class OtherController extends \app\components\Controller
+class OtherController extends \backend\components\Controller
 {
     public function actions()
     {

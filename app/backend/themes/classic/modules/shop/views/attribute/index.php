@@ -5,10 +5,10 @@ use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use yii\widgets\ActiveForm;
-use app\widgets\edititem\EditItemWidget;
+use backend\widgets\edititem\EditItemWidget;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\shop\AttributeSearch */
+/* @var $searchModel backend\models\shop\AttributeSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '产品属性管理';

@@ -4,9 +4,9 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-use common\helpers\BuildHelper;
 use yii\helpers\Url;
-use app\models\site\HelpCate;
+use common\helpers\BuildHelper;
+use backend\models\site\HelpCate;
 
 $helpCateModel = HelpCate::findOne($model->cateid);
 $buildFilter = BuildHelper::buildFilter(HelpCate::find()->orderBy(['orderid' => SORT_DESC])->all(), HelpCate::class, 'id', 'parentid', 'catename', true, null, 'HelpSearch', 'cateid');

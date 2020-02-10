@@ -4,22 +4,22 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\site\controllers;
+namespace backend\modules\site\controllers;
 
 use Yii;
-use app\models\site\Help;
-use app\models\site\HelpSearch;
-use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\components\AliyunOss;
-use app\widgets\fileupload\FileUploadAction;
-use app\actions\CheckAction;
-use app\widgets\ueditor\UEditorAction;
-use app\widgets\select2\Select2TagAction;
-use app\models\cms\Tag;
-use app\models\cms\TagAssign;
-use app\widgets\edititem\EditItemAction;
+use backend\models\site\Help;
+use backend\models\site\HelpSearch;
+use backend\components\Controller;
+use backend\widgets\fileupload\FileUploadAction;
+use backend\actions\CheckAction;
+use backend\widgets\ueditor\UEditorAction;
+use backend\widgets\select2\Select2TagAction;
+use backend\models\cms\Tag;
+use backend\models\cms\TagAssign;
+use backend\widgets\edititem\EditItemAction;
 
 /**
  * HelpController implements the CRUD actions for Help model.

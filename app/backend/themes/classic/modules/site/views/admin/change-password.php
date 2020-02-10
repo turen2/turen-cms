@@ -9,7 +9,7 @@ use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model \app\models\admin\form\ChangePassword */
+/* @var $model \backend\models\admin\form\ChangePassword */
 
 $this->title = '修改密码';
 $this->params['breadcrumbs'][] = $this->title;

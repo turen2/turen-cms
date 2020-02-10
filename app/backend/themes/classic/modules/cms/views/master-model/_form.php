@@ -1,28 +1,32 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
-use app\widgets\Tips;
-use app\assets\ValidationAsset;
+use yii\web\JsExpression;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use common\helpers\BuildHelper;
-use app\models\cms\Column;
-use app\models\cms\Cate;
-use app\assets\ColorPickerAsset;
-use app\models\cms\DiyModel;
-use app\widgets\laydate\LaydateWidget;
-use app\widgets\fileupload\JQueryFileUploadWidget;
-use yii\web\JsExpression;
-use app\widgets\diyfield\DiyFieldWidget;
-use app\models\cms\DiyField;
-use yii\helpers\ArrayHelper;
-use app\models\cms\MasterModel;
-use app\models\cms\Flag;
 use common\helpers\Functions;
+use backend\widgets\Tips;
+use backend\assets\ValidationAsset;
+use backend\models\cms\Column;
+use backend\models\cms\Cate;
+use backend\assets\ColorPickerAsset;
+use backend\models\cms\DiyModel;
+use backend\widgets\laydate\LaydateWidget;
+use backend\widgets\fileupload\JQueryFileUploadWidget;
+use backend\widgets\diyfield\DiyFieldWidget;
+use backend\models\cms\DiyField;
+use backend\models\cms\MasterModel;
+use backend\models\cms\Flag;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\cms\MasterModel */
+/* @var $model backend\models\cms\MasterModel */
 /* @var $form yii\widgets\ActiveForm */
 
 ValidationAsset::register($this);

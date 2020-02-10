@@ -4,13 +4,13 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\widgets\datetimepicker;
+namespace backend\widgets\datetimepicker;
 
 use Yii;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
-use app\widgets\datetimepicker\assets\DatetimePickerAsset;
+use backend\widgets\datetimepicker\assets\DatetimePickerAsset;
 
 /**
  * @author jorry

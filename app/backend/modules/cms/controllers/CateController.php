@@ -4,17 +4,17 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\cms\controllers;
+namespace backend\modules\cms\controllers;
 
 use Yii;
-use app\models\cms\Cate;
-use app\models\cms\CateSearch;
-use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\helpers\BuildHelper;
-use app\actions\MoveAction;
-use app\actions\CheckAction;
+use backend\models\cms\Cate;
+use backend\models\cms\CateSearch;
+use backend\components\Controller;
+use backend\actions\MoveAction;
+use backend\actions\CheckAction;
 
 /**
  * CateController implements the CRUD actions for Cate model.

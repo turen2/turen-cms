@@ -4,12 +4,12 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\widgets\select2;
+namespace backend\widgets\select2;
 
 use Yii;
 use yii\base\Action;
 use yii\base\InvalidConfigException;
-use app\helpers\BackCommonHelper;
+use backend\helpers\BackCommonHelper;
 
 class Select2Action extends Action
 {

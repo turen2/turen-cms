@@ -8,7 +8,7 @@ use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\sys\Devlog */
+/* @var $model backend\models\sys\Devlog */
 
 $this->title = '编辑开发日志';
 ?>

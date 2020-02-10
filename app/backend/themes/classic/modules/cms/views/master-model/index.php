@@ -1,19 +1,22 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
-use app\models\cms\Column;
 use yii\widgets\ActiveForm;
-use app\widgets\edititem\EditItemWidget;
-use app\models\cms\DiyField;
-use app\models\cms\MasterModel;
-use app\models\cms\Cate;
-use app\models\cms\Flag;
+use backend\models\cms\Column;
+use backend\widgets\edititem\EditItemWidget;
+use backend\models\cms\DiyField;
+use backend\models\cms\MasterModel;
+use backend\models\cms\Cate;
+use backend\models\cms\Flag;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\cms\MasterModelSearch */
+/* @var $searchModel backend\models\cms\MasterModelSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = $diyModel->dm_title.'列表';

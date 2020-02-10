@@ -1,14 +1,18 @@
 <?php
-
-namespace app\models\cms;
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
+namespace backend\models\cms;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\cms\DiyModel;
+use backend\models\cms\DiyModel;
 
 /**
- * DiyModelSearch represents the model behind the search form about `app\models\cms\DiyModel`.
+ * DiyModelSearch represents the model behind the search form about `backend\models\cms\DiyModel`.
  */
 class DiyModelSearch extends DiyModel
 {
@@ -45,7 +49,7 @@ class DiyModelSearch extends DiyModel
         //$query = Admin::findBySql($sql);
         //$query = Admin::find()->alias('a')->select(['a.*', 's.company as company', 's.domain as domain', 's.username as merchant'])->leftJoin(Site::tableName().' as s', ' a.test_id = s.testid');
         
-        $query = DiyModel::find();//->current();
+        $query = DiyModel::find();
 
         // add conditions that should always apply here
 
@@ -72,14 +76,17 @@ class DiyModelSearch extends DiyModel
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            'dm_id' => $this->dm_id,
-            'status' => $this->status,
-        ]);
+        $query->filterWhere(['and', ['and',
+            '1 = 1',
+            ['dm_id' => $this->dm_id],
+            ['status' => $this->status],
+        ], ['or',
+            ['like', 'dm_title', $this->keyword],
+            ['like', 'dm_name', $this->keyword],
+            ['like', 'dm_tbname', $this->keyword]
+        ]]);
 
-        $query->andFilterWhere(['like', 'dm_title', $this->dm_title])
-            ->andFilterWhere(['like', 'dm_name', $this->dm_name])
-            ->andFilterWhere(['like', 'dm_tbname', $this->dm_tbname]);
+        //echo $dataProvider->query->createCommand()->rawSql;exit;
         
         return $dataProvider;
     }

@@ -7,15 +7,15 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
-use app\widgets\Tips;
-use app\assets\ValidationAsset;
-use app\models\ext\Job;
-use app\widgets\laydate\LaydateWidget;
-use app\widgets\ueditor\UEditorWidget;
 use yii\helpers\Json;
+use backend\widgets\Tips;
+use backend\assets\ValidationAsset;
+use backend\models\ext\Job;
+use backend\widgets\laydate\LaydateWidget;
+use backend\widgets\ueditor\UEditorWidget;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\ext\Job */
+/* @var $model backend\models\ext\Job */
 /* @var $form yii\widgets\ActiveForm */
 
 ValidationAsset::register($this);

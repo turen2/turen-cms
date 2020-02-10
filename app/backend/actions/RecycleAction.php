@@ -4,16 +4,16 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\actions;
+namespace backend\actions;
 
 use Yii;
 use yii\base\Action;
 use yii\base\InvalidArgumentException;
-use app\components\ActiveRecord;
 use yii\web\MethodNotAllowedHttpException;
 use yii\helpers\Url;
-use app\helpers\BackCommonHelper;
-use app\models\cms\Column;
+use backend\helpers\BackCommonHelper;
+use backend\components\ActiveRecord;
+use backend\models\cms\Column;
 
 /**
  * 垃圾回收机制

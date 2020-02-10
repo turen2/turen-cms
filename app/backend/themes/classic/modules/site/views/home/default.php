@@ -4,18 +4,17 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-
-use app\models\cms\Article;
-use app\models\cms\Column;
-use app\models\cms\File;
-use app\models\cms\Info;
-use app\models\cms\Photo;
-use app\models\cms\Video;
-use app\models\shop\Product;
-use app\models\user\User;
 use yii\helpers\Url;
 use yii\web\JqueryAsset;
 use yii\helpers\Html;
+use backend\models\cms\Article;
+use backend\models\cms\Column;
+use backend\models\cms\File;
+use backend\models\cms\Info;
+use backend\models\cms\Photo;
+use backend\models\cms\Video;
+use backend\models\shop\Product;
+use backend\models\user\User;
 
 JqueryAsset::register($this);
 

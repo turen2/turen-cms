@@ -4,19 +4,19 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\site;
+namespace backend\models\site;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\AttributeBehavior;
 use yii\db\ActiveRecord;
-use app\widgets\select2\TaggableBehavior;
-use app\widgets\laydate\LaydateBehavior;
-use app\widgets\fileupload\MultiPicBehavior;
-use app\behaviors\HelpFlagBehavior;
-use app\behaviors\HelpCateBehavior;
-use app\behaviors\OrderDefaultBehavior;
+use backend\widgets\select2\TaggableBehavior;
+use backend\widgets\laydate\LaydateBehavior;
+use backend\widgets\fileupload\MultiPicBehavior;
+use backend\behaviors\HelpFlagBehavior;
+use backend\behaviors\HelpCateBehavior;
+use backend\behaviors\OrderDefaultBehavior;
 
 /**
  * This is the model class for table "{{%site_help}}".
@@ -41,7 +41,7 @@ use app\behaviors\OrderDefaultBehavior;
  * @property int $posttime 发布时间
  * @property int $status 审核状态
  */
-class Help extends \app\models\base\Site
+class Help extends \backend\models\base\Site
 {
 	public $keyword;
 

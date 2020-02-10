@@ -5,7 +5,7 @@
  * @author developer qq:980522557
  */
 /* @var $this yii\web\View */
-/* @var $model app\models\cms\Article */
+/* @var $model backend\models\cms\Article */
 
 $this->title = '添加文章信息';
 ?>

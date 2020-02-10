@@ -4,15 +4,15 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\site;
+namespace backend\models\site;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\site\HelpCate;
+use backend\models\site\HelpCate;
 
 /**
- * CateSearch represents the model behind the search form about `app\models\site\HelpCate`.
+ * CateSearch represents the model behind the search form about `backend\models\site\HelpCate`.
  */
 class HelpCateSearch extends HelpCate
 {

@@ -7,20 +7,16 @@
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
-use app\models\cms\Article;
-use app\assets\RecycleAsset;
 use yii\helpers\Url;
-use app\actions\RecycleAction;
-use app\models\cms\Column;
-use app\models\cms\Flag;
-
-/* @var $this yii\web\View */
-/* @var $model app\models\cms\ArticleSearch */
-/* @var $form yii\widgets\ActiveForm */
+use backend\models\cms\Article;
+use backend\assets\RecycleAsset;
+use backend\actions\RecycleAction;
+use backend\models\cms\Column;
+use backend\models\cms\Flag;
 
 $isAll = true;
 foreach ($model->attributes as $key => $value) {
-    if(in_array($key, ['id', 'columnid', 'cateid', 'delstate', 'status', 'author', 'flag', 'keyword']) && !is_null($value) && !empty($value)) {
+    if(in_array($key, ['id', 'columnid', 'cateid', 'status', 'author', 'flag', 'keyword']) && !is_null($value) && (!empty($value) || $value === '0')) {
         $isAll = false;
     }
 }

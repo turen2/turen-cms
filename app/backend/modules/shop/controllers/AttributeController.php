@@ -1,16 +1,20 @@
 <?php
-
-namespace app\modules\shop\controllers;
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
+namespace backend\modules\shop\controllers;
 
 use Yii;
-use app\models\shop\Attribute;
-use app\models\shop\AttributeSearch;
-use app\components\Controller;
-use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
-use app\actions\CheckAction;
-use app\widgets\edititem\EditItemAction;
+use yii\web\NotFoundHttpException;
+use backend\models\shop\Attribute;
+use backend\models\shop\AttributeSearch;
+use backend\components\Controller;
+use backend\actions\CheckAction;
+use backend\widgets\edititem\EditItemAction;
 
 /**
  * AttributeController implements the CRUD actions for Attribute model.

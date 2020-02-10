@@ -6,10 +6,10 @@
  */
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\models\cms\Column;
+use backend\models\cms\Column;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\cms\ColumnSearch */
+/* @var $model backend\models\cms\ColumnSearch */
 /* @var $form yii\widgets\ActiveForm */
 
 $isAll = true;

@@ -4,17 +4,17 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\cms\controllers;
+namespace backend\modules\cms\controllers;
 
 use Yii;
-use app\models\cms\Block;
-use app\models\cms\BlockSearch;
-use app\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\components\AliyunOss;
-use app\widgets\fileupload\FileUploadAction;
-use app\widgets\ueditor\UEditorAction;
+use backend\models\cms\Block;
+use backend\models\cms\BlockSearch;
+use backend\components\Controller;
+use backend\widgets\fileupload\FileUploadAction;
+use backend\widgets\ueditor\UEditorAction;
 
 /**
  * BlockController implements the CRUD actions for Block model.

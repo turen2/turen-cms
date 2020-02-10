@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\components;
+namespace backend\components;
 
 class ActiveQuery extends \yii\db\ActiveQuery
 {
@@ -12,7 +12,7 @@ class ActiveQuery extends \yii\db\ActiveQuery
      * 活动状态
      * @param string $field
      * @param int $value
-     * @return \app\components\ActiveQuery
+     * @return \backend\components\ActiveQuery
      */
     public function active($field = 'status', $value = ActiveRecord::STATUS_ON)
     {
@@ -23,7 +23,7 @@ class ActiveQuery extends \yii\db\ActiveQuery
      * 指定审核状态
      * @param string $field
      * @param int $value
-     * @return \app\components\ActiveQuery
+     * @return \backend\components\ActiveQuery
      */
     public function status($field = 'status', $value = ActiveRecord::STATUS_ON)
     {
@@ -33,7 +33,7 @@ class ActiveQuery extends \yii\db\ActiveQuery
     /**
      * 指定删除状态
      * 默认为已经删除的状态
-     * @return \app\components\ActiveQuery
+     * @return \backend\components\ActiveQuery
      */
     public function delstate($status = ActiveRecord::IS_DEL)
     {
@@ -42,7 +42,7 @@ class ActiveQuery extends \yii\db\ActiveQuery
     
     /**
      * 当前语言
-     * @return \app\components\ActiveQuery
+     * @return \backend\components\ActiveQuery
      */
     public function current()
     {

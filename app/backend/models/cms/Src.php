@@ -4,14 +4,14 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\cms;
+namespace backend\models\cms;
 
 use Yii;
 use yii\helpers\ArrayHelper;
-use app\behaviors\InsertLangBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
-use app\behaviors\OrderDefaultBehavior;
+use backend\behaviors\InsertLangBehavior;
+use backend\behaviors\OrderDefaultBehavior;
 
 /**
  * This is the model class for table "{{%cms_src}}".
@@ -22,7 +22,7 @@ use app\behaviors\OrderDefaultBehavior;
  * @property string $orderid 来源排序
  * @property string $lang
  */
-class Src extends \app\models\base\Cms
+class Src extends \backend\models\base\Cms
 {
 	public $keyword;
 	

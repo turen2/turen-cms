@@ -4,16 +4,16 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\widgets\select2;
+namespace backend\widgets\select2;
 
 use Yii;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\helpers\Url;
-use app\widgets\select2\assets\Select2Asset;
 use yii\base\InvalidArgumentException;
-use app\models\sys\Admin;
+use backend\widgets\select2\assets\Select2Asset;
+use backend\models\sys\Admin;
 
 /**
  * ```php
@@ -33,7 +33,7 @@ use app\models\sys\Admin;
  * method, for example like this:
  *
  * ```php
- * <?= $form->field($model, 'status')->widget(\app\widgets\select2\Select2Widget::classname(), [
+ * <?= $form->field($model, 'status')->widget(\backend\widgets\select2\Select2Widget::classname(), [
  *     // configure additional widget properties here
  * ]) ?>
  * ```

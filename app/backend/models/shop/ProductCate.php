@@ -1,16 +1,20 @@
 <?php
-
-namespace app\models\shop;
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
+namespace backend\models\shop;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\AttributeBehavior;
-use app\behaviors\InsertLangBehavior;
 use yii\helpers\Html;
 use yii\helpers\Json;
-use app\behaviors\OrderDefaultBehavior;
+use backend\behaviors\InsertLangBehavior;
+use backend\behaviors\OrderDefaultBehavior;
 
 /**
  * This is the model class for table "{{%shop_product_cate}}".
@@ -28,7 +32,7 @@ use app\behaviors\OrderDefaultBehavior;
  * @property string $created_at 添加时间
  * @property string $updated_at 编辑时间
  */
-class ProductCate extends \app\models\base\Shop
+class ProductCate extends \backend\models\base\Shop
 {
     public $keyword;
     public $level;

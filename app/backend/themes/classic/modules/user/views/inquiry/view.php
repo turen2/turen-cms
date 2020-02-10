@@ -4,13 +4,12 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-
-use app\assets\NotifyAsset;
-use app\models\user\Inquiry;
 use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\widgets\DetailView;
+use backend\assets\NotifyAsset;
+use backend\models\user\Inquiry;
 
 $this->title = $model->ui_title;
 NotifyAsset::register($this);

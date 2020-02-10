@@ -1,18 +1,22 @@
 <?php
-
-namespace app\modules\user\controllers;
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
+namespace backend\modules\user\controllers;
 
 use Yii;
-use app\models\user\User;
-use app\models\user\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\actions\CheckAction;
-use app\widgets\fileupload\FileUploadAction;
 use common\components\AliyunOss;
-use app\actions\BatchAction;
-use app\actions\RecycleAction;
+use backend\models\user\User;
+use backend\models\user\UserSearch;
+use backend\actions\CheckAction;
+use backend\widgets\fileupload\FileUploadAction;
+use backend\actions\BatchAction;
+use backend\actions\RecycleAction;
 
 /**
  * UserController implements the CRUD actions for User model.

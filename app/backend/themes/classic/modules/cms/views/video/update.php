@@ -5,7 +5,7 @@
  * @author developer qq:980522557
  */
 /* @var $this yii\web\View */
-/* @var $model app\models\cms\Video */
+/* @var $model backend\models\cms\Video */
 
 $this->title = '编辑视频信息';
 ?>

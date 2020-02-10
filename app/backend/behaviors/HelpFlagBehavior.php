@@ -4,12 +4,12 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\behaviors;
+namespace backend\behaviors;
 
 use Yii;
 use yii\db\ActiveRecord;
 use yii\base\InvalidArgumentException;
-use app\models\site\HelpFlag;
+use backend\models\site\HelpFlag;
 
 class HelpFlagBehavior extends \yii\base\Behavior
 {
@@ -44,7 +44,7 @@ class HelpFlagBehavior extends \yii\base\Behavior
     /**
      * 获取当前对象选中的标签列表
      * @param string $haveFlag 标签名是否带[flag]
-     * @return \app\behaviors\string[]
+     * @return \backend\behaviors\string[]
      */
     public function activeFlagList($haveFlag = false)
     {

@@ -4,14 +4,14 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\user;
+namespace backend\models\user;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
-use app\behaviors\InsertLangBehavior;
-use app\behaviors\OrderDefaultBehavior;
+use backend\behaviors\InsertLangBehavior;
+use backend\behaviors\OrderDefaultBehavior;
 
 /**
  * This is the model class for table "{{%user_inquiry}}".
@@ -33,7 +33,7 @@ use app\behaviors\OrderDefaultBehavior;
  * @property string $ui_answer_time 回应时间
  * @property string $ui_remark_time 备注时间
  */
-class Inquiry extends \app\models\base\User
+class Inquiry extends \backend\models\base\User
 {
 	public $keyword;
 	public $username;

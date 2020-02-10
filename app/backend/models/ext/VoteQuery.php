@@ -4,14 +4,14 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\ext;
+namespace backend\models\ext;
 
 /**
  * This is the ActiveQuery class for [[Vote]].
  *
  * @see Vote
  */
-class VoteQuery extends \app\components\ActiveQuery
+class VoteQuery extends \backend\components\ActiveQuery
 {
 	//自定义专用方法
 }

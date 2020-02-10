@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\assets;
+namespace backend\assets;
 
 use yii\web\AssetBundle;
 
@@ -25,6 +25,6 @@ class RecycleAsset extends AssetBundle
     
     public $depends = [
         //'yii\web\JqueryAsset',
-        'app\assets\NotifyAsset'
+        'backend\assets\NotifyAsset'
     ];
 }

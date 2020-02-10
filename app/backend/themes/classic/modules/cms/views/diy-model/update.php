@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\cms\DiyModel */
+/* @var $model backend\models\cms\DiyModel */
 
 $this->title = '编辑模型: ' . $model->dm_title;
 ?>

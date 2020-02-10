@@ -10,7 +10,7 @@ use yii\helpers\Url;
 use yii\widgets\LinkPager;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\sys\RoleSearch */
+/* @var $searchModel backend\models\sys\RoleSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '角色管理';

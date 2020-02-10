@@ -7,16 +7,16 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
-use app\widgets\Tips;
-use app\assets\ValidationAsset;
-use app\models\user\Comment;
-use app\widgets\laydate\LaydateWidget;
-use app\widgets\ueditor\UEditorWidget;
-use app\models\cms\Column;
 use yii\helpers\Json;
+use backend\widgets\Tips;
+use backend\assets\ValidationAsset;
+use backend\models\user\Comment;
+use backend\widgets\laydate\LaydateWidget;
+use backend\widgets\ueditor\UEditorWidget;
+use backend\models\cms\Column;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\user\Comment */
+/* @var $model backend\models\user\Comment */
 /* @var $form yii\widgets\ActiveForm */
 
 ValidationAsset::register($this);

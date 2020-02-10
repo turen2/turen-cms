@@ -4,15 +4,15 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\ext;
+namespace backend\models\ext;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
-use app\behaviors\InsertLangBehavior;
 use yii\db\ActiveRecord;
 use yii\behaviors\AttributeBehavior;
-use app\behaviors\OrderDefaultBehavior;
+use backend\behaviors\InsertLangBehavior;
+use backend\behaviors\OrderDefaultBehavior;
 
 /**
  * This is the model class for table "{{%ext_link_type}}".
@@ -25,7 +25,7 @@ use app\behaviors\OrderDefaultBehavior;
  * @property int $status 显示状态
  * @property string $lang
  */
-class LinkType extends \app\models\base\Ext
+class LinkType extends \backend\models\base\Ext
 {
 	public $keyword;
 	

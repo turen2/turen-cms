@@ -4,14 +4,14 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\cms;
+namespace backend\models\cms;
 
 /**
  * This is the ActiveQuery class for [[Column]].
  *
  * @see Column
  */
-class ColumnQuery extends \app\components\ActiveQuery
+class ColumnQuery extends \backend\components\ActiveQuery
 {
 	//自定义专用方法
 }

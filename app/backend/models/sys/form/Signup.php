@@ -4,10 +4,10 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\sys\form;
+namespace backend\models\sys\form;
 
 use yii\base\Model;
-use app\models\sys\Admin;
+use backend\models\sys\Admin;
 
 /**
  * Signup form

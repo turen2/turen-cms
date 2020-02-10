@@ -7,12 +7,12 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
-use app\models\cms\Src;
-use app\models\user\Level;
 use yii\widgets\LinkPager;
+use backend\models\cms\Src;
+use backend\models\user\Level;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\user\LevelSearch */
+/* @var $searchModel backend\models\user\LevelSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '用户等级管理';

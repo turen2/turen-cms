@@ -2,10 +2,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\components\ActiveRecord;
+use backend\components\ActiveRecord;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\shop\BrandSearch */
+/* @var $model backend\models\shop\BrandSearch */
 /* @var $form yii\widgets\ActiveForm */
 
 $isAll = true;

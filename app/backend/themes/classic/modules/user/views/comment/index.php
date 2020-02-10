@@ -5,15 +5,14 @@
  * @author developer qq:980522557
  */
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
-use app\components\ActiveRecord;
-use app\models\cms\Column;
 use yii\widgets\ActiveForm;
+use backend\components\ActiveRecord;
+use backend\models\cms\Column;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\user\CommentSearch */
+/* @var $searchModel backend\models\user\CommentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '评论列表';

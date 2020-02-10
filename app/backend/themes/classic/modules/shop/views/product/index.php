@@ -1,22 +1,23 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
+use yii\widgets\ActiveForm;
 use common\helpers\ImageHelper;
 use common\components\AliyunOss;
-use app\models\cms\Column;
-use app\widgets\edititem\EditItemWidget;
-use yii\base\Widget;
-use yii\widgets\ActiveForm;
-use app\models\cms\Flag;
-use app\models\shop\ProductCate;
-use app\models\shop\Brand;
 use common\helpers\Functions;
+use backend\models\cms\Column;
+use backend\widgets\edititem\EditItemWidget;
+use backend\models\shop\ProductCate;
+use backend\models\shop\Brand;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\shop\ProductSearch */
+/* @var $searchModel backend\models\shop\ProductSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '产品管理';
@@ -33,13 +34,12 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel]);
 	<tr align="left" class="head">
 		<td width="4%" class="first-column"><input type="checkbox" name="checkid" id="checkid" onclick="turen.com.checkAll(this.checked);"></td>
 		<td width="4%"><?= $dataProvider->sort->link('id', ['label' => 'ID']) ?></td>
-		<td width="9%">缩略图</td>
-		<td width="12%"><?= $dataProvider->sort->link('title', ['label' => '产品名称']) ?></td>
-		<td width="11%">分类</td>
-		<td width="11%">品牌</td>
+		<td width="8%">缩略图</td>
+		<td width="18%"><?= $dataProvider->sort->link('title', ['label' => '产品名称']) ?></td>
+		<td width="10%">分类</td>
+		<td width="10%">品牌</td>
 		<td width="6%">售价</td>
-		<td width="4%"><?= $dataProvider->sort->link('stock', ['label' => '库存']) ?></td>
-		<td width="10%">快捷操作</td>
+		<td width="5%"><?= $dataProvider->sort->link('stock', ['label' => '库存']) ?></td>
 		<td width="5%"><?= $dataProvider->sort->link('hits', ['label' => '点击']) ?></td>
 		<td width="4%"><?= $dataProvider->sort->link('orderid', ['label' => '排序']) ?></td>
 		<td width="10%"><?= $dataProvider->sort->link('updated_at', ['label' => '更新日期']) ?></td>
@@ -75,7 +75,7 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel]);
 		<td><?= Brand::BrandName($model->brand_id).' ['.$model->brand_id.']'; ?></td>
 		<td><?= Yii::$app->getFormatter()->asCurrency($model->finalPrice()); ?><?= $model->isPromote()?'<span class="is-promote">促</span>':''; ?></td>
 		<td><?= $model->stock; ?></td>
-		<td><?= '快捷'.$model->is_best.$model->is_new.$model->is_hot; ?></td>
+		<?php // '快捷'.$model->is_best.$model->is_new.$model->is_hot; ?>
 		<td><?= $model->hits; ?></td>
 		<td><?= EditItemWidget::widget([
 		    'model' => $model,

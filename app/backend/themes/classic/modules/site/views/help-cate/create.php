@@ -5,7 +5,7 @@
  * @author developer qq:980522557
  */
 /* @var $this yii\web\View */
-/* @var $model app\models\site\HelpCate */
+/* @var $model backend\models\site\HelpCate */
 
 $this->title = '添加帮助分类';
 ?>

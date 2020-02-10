@@ -1,13 +1,16 @@
 <?php
-
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
-use app\models\cms\DiyModel;
+use backend\models\cms\DiyModel;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\cms\DiyModelSearch */
+/* @var $searchModel backend\models\cms\DiyModelSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '自定义模型';

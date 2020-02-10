@@ -5,14 +5,13 @@
  * @author developer qq:980522557
  */
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
-use app\models\ext\Nav;
 use yii\widgets\ActiveForm;
+use backend\models\ext\Nav;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\ext\NavSearch */
+/* @var $searchModel backend\models\ext\NavSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '导航菜单管理';

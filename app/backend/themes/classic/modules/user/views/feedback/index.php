@@ -10,10 +10,10 @@ use yii\widgets\ActiveForm;
 use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
-use app\widgets\edititem\EditItemWidget;
+use backend\widgets\edititem\EditItemWidget;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\user\FeedbackSearch */
+/* @var $searchModel backend\models\user\FeedbackSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '反馈列表';

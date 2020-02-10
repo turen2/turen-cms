@@ -4,15 +4,15 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\user;
+namespace backend\models\user;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\user\Favorite;
+use backend\models\user\Favorite;
 
 /**
- * FavoriteSearch represents the model behind the search form about `app\models\user\Favorite`.
+ * FavoriteSearch represents the model behind the search form about `backend\models\user\Favorite`.
  */
 class FavoriteSearch extends Favorite
 {

@@ -10,7 +10,7 @@ use yii\helpers\Url;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\sys\Role */
+/* @var $model backend\models\sys\Role */
 
 $this->title = '添加新角色';
 ?>

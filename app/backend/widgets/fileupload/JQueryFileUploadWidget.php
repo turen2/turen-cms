@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 万国迦南科技
  * @author developer qq:980522557
  */
-namespace app\widgets\fileupload;
+namespace backend\widgets\fileupload;
 
 use Yii;
 use yii\base\Model;
@@ -15,9 +15,8 @@ use yii\helpers\Html;
 use yii\jui\JuiAsset;
 use yii\helpers\ArrayHelper;
 use yii\web\JsExpression;
-
-use app\widgets\fileupload\assets\JQueryFileUploadPlusAsset;
-use app\widgets\fileupload\assets\MD5Asset;
+use backend\widgets\fileupload\assets\JQueryFileUploadPlusAsset;
+use backend\widgets\fileupload\assets\MD5Asset;
 
 /**
  * 图片上传

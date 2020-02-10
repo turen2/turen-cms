@@ -4,15 +4,15 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\sys\controllers;
+namespace backend\modules\sys\controllers;
 
 use Yii;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\models\sys\Admin;
-use app\models\sys\AdminSearch;
-use app\components\Controller;
-use app\actions\CheckAction;
+use backend\models\sys\Admin;
+use backend\models\sys\AdminSearch;
+use backend\components\Controller;
+use backend\actions\CheckAction;
 
 /**
  * AdminController implements the CRUD actions for Admin model.

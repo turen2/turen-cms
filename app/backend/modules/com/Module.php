@@ -4,17 +4,17 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\com;
+namespace backend\modules\com;
 
 /**
  * ext module definition class
  */
-class Module extends \app\components\Module
+class Module extends \backend\components\Module
 {
     /**
      * @inheritdoc
      */
-    public $controllerNamespace = 'app\modules\com\controllers';
+    public $controllerNamespace = 'backend\modules\com\controllers';
 
     /**
      * @inheritdoc

@@ -11,7 +11,7 @@ use yii\widgets\LinkPager;
 use common\helpers\Functions;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\cms\InfoSearch */
+/* @var $searchModel backend\models\cms\InfoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '单页信息管理';

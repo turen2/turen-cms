@@ -1,13 +1,17 @@
 <?php
-
-namespace app\models\sys;
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
+namespace backend\models\sys;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
 use yii\behaviors\AttributeBehavior;
-use app\behaviors\ClearCacheBehavior;
-use app\behaviors\OrderDefaultBehavior;
+use backend\behaviors\ClearCacheBehavior;
+use backend\behaviors\OrderDefaultBehavior;
 
 /**
  * This is the model class for table "{{%sys_multilang}}".
@@ -21,7 +25,7 @@ use app\behaviors\OrderDefaultBehavior;
  * @property int $orderid 排序
  * @property int $is_visible 是否显示在前台站点切换
  */
-class Multilang extends \app\models\base\Sys
+class Multilang extends \backend\models\base\Sys
 {
 	public $keyword;
 	

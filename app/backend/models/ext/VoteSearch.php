@@ -4,15 +4,15 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\ext;
+namespace backend\models\ext;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\ext\Vote;
+use backend\models\ext\Vote;
 
 /**
- * VoteSearch represents the model behind the search form about `app\models\ext\Vote`.
+ * VoteSearch represents the model behind the search form about `backend\models\ext\Vote`.
  */
 class VoteSearch extends Vote
 {

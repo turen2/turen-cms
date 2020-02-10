@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\ext;
+namespace backend\models\ext;
 
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -20,7 +20,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $posttime 投票时间
  * @property string $ip 投票ip
  */
-class VoteData extends \app\models\base\Ext
+class VoteData extends \backend\models\base\Ext
 {
 	public $keyword;
 	

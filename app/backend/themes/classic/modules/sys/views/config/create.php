@@ -1,7 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $model app\models\sys\Config */
+/* @var $model backend\models\sys\Config */
 
 $this->title = '站点设置';
 ?>

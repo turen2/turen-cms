@@ -4,9 +4,10 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\sys;
+namespace backend\models\sys;
 
 use Yii;
+use yii\base\NotSupportedException;
 use yii\web\IdentityInterface;
 use yii\behaviors\TimestampBehavior;
 use yii\helpers\ArrayHelper;
@@ -33,7 +34,7 @@ use yii\helpers\StringHelper;
  * @property string $created_at
  * @property string $updated_at
  */
-class Admin extends \app\models\base\Sys implements IdentityInterface
+class Admin extends \backend\models\base\Sys implements IdentityInterface
 {
     public $keyword;
     public $password;
@@ -57,7 +58,7 @@ class Admin extends \app\models\base\Sys implements IdentityInterface
      */
     public function attributes()
     {
-        return array_merge(parent::attributes(), []);
+        return array_merge(parent::attributes(), ['keyword']);
     }
     
     /**
@@ -91,7 +92,7 @@ class Admin extends \app\models\base\Sys implements IdentityInterface
             [['username', 'phone'], 'required'],//必填
             ['username', 'string', 'min' => 2, 'max' => 16],//用户名要求
             ['password', 'string', 'min' => 6],//密码要求
-            [['username'], 'unique'],//在当前站点是唯一//'targetClass' => '\app\models\sys\Admin'
+            [['username'], 'unique'],//在当前站点是唯一//'targetClass' => '\backend\models\sys\Admin'
             
             [['repassword', 'favorite_menu'], 'string'],
             [['phone'], 'string', 'max' => 30],

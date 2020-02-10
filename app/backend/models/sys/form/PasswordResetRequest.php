@@ -4,11 +4,11 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\sys\form;
+namespace backend\models\sys\form;
 
 use Yii;
 use yii\base\Model;
-use app\models\sys\Admin;
+use backend\models\sys\Admin;
 
 /**
  * Password reset request form
@@ -27,7 +27,7 @@ class PasswordResetRequest extends Model
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'exist',
-                'targetClass' => 'app\models\sys\Admin',
+                'targetClass' => 'backend\models\sys\Admin',
                 'filter' => ['status' => Admin::STATUS_ON],
                 'message' => 'There is no user with such email.'
             ],

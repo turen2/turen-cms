@@ -10,7 +10,7 @@ use yii\helpers\Url;
 use yii\widgets\LinkPager;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\sys\DevlogSearch */
+/* @var $searchModel backend\models\sys\DevlogSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '系统开发日志';

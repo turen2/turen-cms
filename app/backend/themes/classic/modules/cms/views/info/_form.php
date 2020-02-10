@@ -7,22 +7,22 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
-use app\widgets\Tips;
-use app\assets\ValidationAsset;
-use app\widgets\laydate\LaydateWidget;
-use app\widgets\fileupload\JQueryFileUploadWidget;
 use yii\base\Widget;
 use yii\web\JsExpression;
-use app\widgets\ueditor\UEditorWidget;
-use app\widgets\diyfield\DiyFieldWidget;
-use app\models\cms\Info;
 use yii\helpers\Json;
-use app\models\cms\DiyField;
 use yii\helpers\ArrayHelper;
 use common\helpers\Functions;
+use backend\widgets\Tips;
+use backend\assets\ValidationAsset;
+use backend\widgets\laydate\LaydateWidget;
+use backend\widgets\fileupload\JQueryFileUploadWidget;
+use backend\widgets\ueditor\UEditorWidget;
+use backend\widgets\diyfield\DiyFieldWidget;
+use backend\models\cms\Info;
+use backend\models\cms\DiyField;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\cms\Info */
+/* @var $model backend\models\cms\Info */
 /* @var $form yii\widgets\ActiveForm */
 
 ValidationAsset::register($this);

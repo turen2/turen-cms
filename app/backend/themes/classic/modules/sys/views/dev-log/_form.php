@@ -7,15 +7,15 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
-use app\widgets\Tips;
-use app\components\ActiveRecord;
-use app\assets\ValidationAsset;
-use app\widgets\ueditor\UEditorWidget;
-use app\widgets\laydate\LaydateWidget;
 use yii\helpers\Json;
+use backend\widgets\Tips;
+use backend\components\ActiveRecord;
+use backend\assets\ValidationAsset;
+use backend\widgets\ueditor\UEditorWidget;
+use backend\widgets\laydate\LaydateWidget;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\sys\Devlog */
+/* @var $model backend\models\sys\Devlog */
 /* @var $form yii\widgets\ActiveForm */
 
 ValidationAsset::register($this);

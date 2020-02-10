@@ -4,9 +4,9 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\models\cms;
+namespace backend\models\cms;
 
-class TagAssign extends \app\models\base\Cms
+class TagAssign extends \backend\models\base\Cms
 {
     public static function tableName()
     {
