@@ -38,8 +38,8 @@ return [
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.163.com',
-                'port' => '25',//465
-                'encryption' => 'tls',//tls or ssl(tls可以认为是ssl的升级版)
+                'port' => '465',//465
+                'encryption' => 'ssl',//tls or ssl(tls可以认为是ssl的升级版)
                 'username' => 'xiayouqiao2008@163.com',
                 'password' => 'kd7GGfe9fg5wfgdd',//使用授权码
             ],

@@ -73,7 +73,8 @@ class SmtpMailJob extends BaseObject implements \yii\queue\JobInterface
                 ->setSubject($this->subject)
                 ->send();
         } catch (\Exception $e) {
-            Yii::getLogger()->log($e->getMessage(), Logger::LEVEL_WARNING, 'console');
+            throw $e;
+            // Yii::getLogger()->log($e->getMessage(), Logger::LEVEL_WARNING, 'console');
         }
     }
 }
