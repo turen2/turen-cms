@@ -12,7 +12,7 @@ use common\models\ext\Job;
 use common\models\cms\Column;
 use common\models\cms\Info;
 
-class PageController extends \app\components\Controller
+class PageController extends \frontend\components\Controller
 {
     /**
      * 单页详情，通用单页面输出

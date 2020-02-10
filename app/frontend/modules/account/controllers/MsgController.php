@@ -17,7 +17,7 @@ use yii\web\NotFoundHttpException;
  * Class MsgController
  * @package app\modules\account\controllers
  */
-class MsgController extends \app\components\Controller
+class MsgController extends \frontend\components\Controller
 {
     public function behaviors()
     {

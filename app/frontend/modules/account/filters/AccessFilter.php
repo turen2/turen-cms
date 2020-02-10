@@ -18,7 +18,7 @@ use yii\base\ActionFilter;
  * {
  *     return [
  *         'access' => [
- *             'class' => \app\modules\account\filters\AccessFilter::class,
+ *             'class' => \frontend\modules\account\filters\AccessFilter::class,
  *             'denyCallback' => function($action) {...},
  *         ],
  *     ];

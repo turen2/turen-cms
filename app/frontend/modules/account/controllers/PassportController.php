@@ -27,7 +27,7 @@ use common\actions\ValidateCaptchaAction;
 /**
  * Passport controller
  */
-class PassportController extends \app\components\Controller
+class PassportController extends \frontend\components\Controller
 {
     public function init()
     {

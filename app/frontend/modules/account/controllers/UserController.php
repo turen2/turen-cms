@@ -25,7 +25,7 @@ use common\models\user\user\BindForm;
 /**
  * User controller
  */
-class UserController extends \app\components\Controller
+class UserController extends \frontend\components\Controller
 {
     public function init()
     {

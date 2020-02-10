@@ -6,7 +6,7 @@
  */
 namespace frontend\controllers;
 
-class CalendarController extends \app\components\Controller
+class CalendarController extends \frontend\components\Controller
 {
     /**
      * 吉日日历

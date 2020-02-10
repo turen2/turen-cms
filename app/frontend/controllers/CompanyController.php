@@ -15,7 +15,7 @@ use frontend\behaviors\PlusViewBehavior;
 use common\models\cms\Photo;
 use common\tools\like\LikeAction;
 
-class CompanyController extends \app\components\Controller
+class CompanyController extends \frontend\components\Controller
 {
     public function behaviors()
     {

@@ -6,7 +6,7 @@
  */
 namespace frontend\controllers;
 
-class CalculatorController extends \app\components\Controller
+class CalculatorController extends \frontend\components\Controller
 {
     /**
      * 计算器，计算所有项目的价格，并提交邮件快速预约

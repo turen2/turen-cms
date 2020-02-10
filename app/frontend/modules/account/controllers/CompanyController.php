@@ -13,7 +13,7 @@ use common\models\account\CompanyForm;
  * Class CompanyController
  * @package app\modules\account\controllers
  */
-class CompanyController extends \app\components\Controller
+class CompanyController extends \frontend\components\Controller
 {
     public function actionInfo()
     {

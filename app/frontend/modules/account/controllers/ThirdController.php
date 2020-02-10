@@ -16,7 +16,7 @@ use yii\web\NotAcceptableHttpException;
  * Class ThirdController
  * @package app\modules\account\controllers
  */
-class ThirdController extends \app\components\Controller
+class ThirdController extends \frontend\components\Controller
 {
     /**
      * 第三方登录列表

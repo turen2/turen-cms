@@ -5,8 +5,8 @@
  * @author developer qq:980522557
  */
 
-defined('YII_DEBUG') or define('YII_DEBUG', false);
-defined('YII_ENV') or define('YII_ENV', 'prod');//开发模式，还有prod、test
+defined('YII_DEBUG') or define('YII_DEBUG', true);
+defined('YII_ENV') or define('YII_ENV', 'dev');//开发模式，还有prod、test
 //defined('YII_ENABLE_ERROR_HANDLER', false);//调试模式默认显示
 
 //这个仅仅是第三方类库加载器

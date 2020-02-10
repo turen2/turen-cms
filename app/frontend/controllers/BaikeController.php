@@ -14,7 +14,7 @@ use common\models\cms\ArticleSearch;
 use common\tools\like\LikeAction;
 use frontend\behaviors\PlusViewBehavior;
 
-class BaikeController extends \app\components\Controller
+class BaikeController extends \frontend\components\Controller
 {
     public function behaviors()
     {

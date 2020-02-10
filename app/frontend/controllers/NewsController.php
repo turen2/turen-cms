@@ -14,7 +14,7 @@ use common\models\cms\ArticleSearch;
 use common\tools\like\LikeAction;
 use frontend\behaviors\PlusViewBehavior;
 
-class NewsController extends \app\components\Controller
+class NewsController extends \frontend\components\Controller
 {
     public function behaviors()
     {

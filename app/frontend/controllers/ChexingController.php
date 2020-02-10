@@ -14,7 +14,7 @@ use yii\web\NotFoundHttpException;
 use common\tools\like\LikeAction;
 use frontend\behaviors\PlusViewBehavior;
 
-class ChexingController extends \app\components\Controller
+class ChexingController extends \frontend\components\Controller
 {
     public function behaviors()
     {

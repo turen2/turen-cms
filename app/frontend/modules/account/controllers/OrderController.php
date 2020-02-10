@@ -16,7 +16,7 @@ use common\models\account\Inquiry;
  * Class OrderController
  * @package app\modules\account\controllers
  */
-class OrderController extends \app\components\Controller
+class OrderController extends \frontend\components\Controller
 {
     /**
      * 服务订单列表

@@ -13,7 +13,7 @@ use Yii;
 /**
  * Center controller
  */
-class CenterController extends \app\components\Controller
+class CenterController extends \frontend\components\Controller
 {
     /**
      * 用户中心首页

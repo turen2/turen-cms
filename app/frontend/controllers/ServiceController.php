@@ -14,7 +14,7 @@ use yii\web\NotFoundHttpException;
 use frontend\behaviors\PlusViewBehavior;
 use common\models\cms\Column;
 
-class ServiceController extends \app\components\Controller
+class ServiceController extends \frontend\components\Controller
 {
     public function behaviors()
     {

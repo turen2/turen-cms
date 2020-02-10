@@ -16,7 +16,7 @@ use common\helpers\ImageHelper;
 use common\tools\like\LikeAction;
 use frontend\behaviors\PlusViewBehavior;
 
-class CaseController extends \app\components\Controller
+class CaseController extends \frontend\components\Controller
 {
     public function behaviors()
     {

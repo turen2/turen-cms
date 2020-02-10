@@ -17,7 +17,7 @@ use common\phonecode\PhoneCodeAction;
  * Class SafeController
  * @package app\modules\account\controllers
  */
-class SafeController extends \app\components\Controller
+class SafeController extends \frontend\components\Controller
 {
     public function actions()
     {
