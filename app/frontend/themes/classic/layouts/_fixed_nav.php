@@ -11,8 +11,8 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use common\helpers\ImageHelper;
 use common\models\com\FeedbackForm;
-use app\assets\LayerAsset;
-use app\assets\NotifyAsset;
+use frontend\assets\LayerAsset;
+use frontend\assets\NotifyAsset;
 use common\models\account\FeedbackType;
 
 //问题类型

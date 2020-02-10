@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\account\controllers;
+namespace frontend\modules\account\controllers;
 
 use Yii;
 use yii\authclient\BaseClient;
@@ -34,7 +34,7 @@ class UserController extends \app\components\Controller
 
         //模式判断
         if(Yii::$app->params['config_login_mode'] != User::USER_EMAIL_MODE) {
-            throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist!'));
+            throw new NotFoundHttpException(Yii::t('frontend', 'The requested page does not exist!'));
         }
     }
 

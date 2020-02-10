@@ -2,9 +2,9 @@
 
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
-use app\assets\LayerAsset;
-use app\assets\Swiper2Asset;
-use app\assets\ValidationAsset;
+use frontend\assets\LayerAsset;
+use frontend\assets\Swiper2Asset;
+use frontend\assets\ValidationAsset;
 use common\helpers\ImageHelper;
 use common\models\account\Inquiry;
 

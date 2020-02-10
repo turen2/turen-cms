@@ -5,10 +5,10 @@
  * @author developer qq:980522557
  */
 
-use app\assets\Swiper2Asset;
-use app\widgets\ContentMoreWidget;
-use app\widgets\SideBoxListWidget;
-use app\widgets\SideLabelListWidget;
+use frontend\assets\Swiper2Asset;
+use frontend\widgets\ContentMoreWidget;
+use frontend\widgets\SideBoxListWidget;
+use frontend\widgets\SideLabelListWidget;
 use common\models\cms\Photo;
 use common\tools\like\LikeWidget;
 use common\tools\share\ShareWidget;

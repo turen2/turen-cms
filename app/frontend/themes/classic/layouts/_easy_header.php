@@ -10,7 +10,7 @@ use common\helpers\ImageHelper;
 use common\models\user\User;
 use yii\helpers\HtmlPurifier;
 use yii\helpers\Url;
-use app\assets\LimarqueeAsset;
+use frontend\assets\LimarqueeAsset;
 
 $webUrl = Yii::getAlias('@web/');
 LimarqueeAsset::register($this);

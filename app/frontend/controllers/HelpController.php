@@ -5,10 +5,10 @@
  * @author developer qq:980522557
  */
 
-namespace app\controllers;
+namespace frontend\controllers;
 
 use Yii;
-use app\components\Controller;
+use frontend\components\Controller;
 use common\models\cms\Article;
 use common\models\cms\Column;
 use yii\web\NotFoundHttpException;

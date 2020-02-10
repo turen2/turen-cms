@@ -5,7 +5,7 @@
  * @author developer qq:980522557
  */
 
-use app\assets\ToTopAsset;
+use frontend\assets\ToTopAsset;
 use common\helpers\ImageHelper;
 use common\models\cms\Block;
 use common\models\ext\LinkType;

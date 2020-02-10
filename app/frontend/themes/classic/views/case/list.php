@@ -6,9 +6,9 @@
  */
 /* @var $this yii\web\View */
 
-use app\assets\WaterfallAsset;
-use app\widgets\SideBoxListWidget;
-use app\widgets\SideLabelListWidget;
+use frontend\assets\WaterfallAsset;
+use frontend\widgets\SideBoxListWidget;
+use frontend\widgets\SideLabelListWidget;
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 use yii\widgets\LinkPager;

@@ -10,8 +10,8 @@ use yii\widgets\Breadcrumbs;
 use yii\widgets\LinkPager;
 use yii\widgets\LinkSorter;
 use yii\widgets\ListView;
-use app\widgets\SideBoxListWidget;
-use app\widgets\SideLabelListWidget;
+use frontend\widgets\SideBoxListWidget;
+use frontend\widgets\SideLabelListWidget;
 
 $this->columnModel = $columnModel;
 ?>

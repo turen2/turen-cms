@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\components;
+namespace frontend\components;
 
 use Yii;
 use common\models\cms\Column;

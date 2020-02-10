@@ -8,9 +8,9 @@
 use common\helpers\Util;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use app\assets\LayerAsset;
-use app\assets\NotifyAsset;
-use app\assets\ValidationAsset;
+use frontend\assets\LayerAsset;
+use frontend\assets\NotifyAsset;
+use frontend\assets\ValidationAsset;
 
 $this->title = '账户安全';
 $this->params['breadcrumbs'][] = $this->title;

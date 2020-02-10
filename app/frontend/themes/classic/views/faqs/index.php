@@ -10,7 +10,7 @@ use yii\widgets\Breadcrumbs;
 use yii\widgets\LinkPager;
 use yii\widgets\LinkSorter;
 use yii\widgets\ListView;
-use app\widgets\SideBoxListWidget;
+use frontend\widgets\SideBoxListWidget;
 
 $this->columnModel = $columnModel;
 $this->title = '常见问答';

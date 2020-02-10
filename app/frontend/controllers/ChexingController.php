@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\controllers;
+namespace frontend\controllers;
 
 use Yii;
 use common\models\cms\Column;
@@ -12,7 +12,7 @@ use common\models\cms\Photo;
 use common\models\cms\PhotoSearch;
 use yii\web\NotFoundHttpException;
 use common\tools\like\LikeAction;
-use app\behaviors\PlusViewBehavior;
+use frontend\behaviors\PlusViewBehavior;
 
 class ChexingController extends \app\components\Controller
 {

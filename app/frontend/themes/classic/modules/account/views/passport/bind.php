@@ -9,7 +9,7 @@ use yii\captcha\Captcha;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
-use app\assets\ValidationAsset;
+use frontend\assets\ValidationAsset;
 
 $this->title = '绑定账号';
 $this->params['breadcrumbs'][] = $this->title;

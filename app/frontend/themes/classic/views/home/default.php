@@ -8,7 +8,7 @@
 use yii\helpers\Json;
 use yii\helpers\StringHelper;
 use yii\helpers\Url;
-use app\assets\Swiper2Asset;
+use frontend\assets\Swiper2Asset;
 use common\helpers\ImageHelper;
 use common\models\cms\Article;
 use common\models\cms\Photo;

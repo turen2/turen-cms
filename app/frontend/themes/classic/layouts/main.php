@@ -8,10 +8,10 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-use app\assets\IconfontAsset;
-use app\assets\PinAsset;
+use frontend\assets\IconfontAsset;
+use frontend\assets\PinAsset;
 use yii\helpers\Html;
-use app\assets\AppAsset;
+use frontend\assets\AppAsset;
 use yii\helpers\Url;
 use yii\web\YiiAsset;
 

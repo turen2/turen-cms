@@ -5,8 +5,8 @@
  * @author developer qq:980522557
  */
 
-use app\assets\YetiiAsset;
-use app\assets\DatetimePickerAsset;
+use frontend\assets\YetiiAsset;
+use frontend\assets\DatetimePickerAsset;
 
 DatetimePickerAsset::register($this);
 YetiiAsset::register($this);

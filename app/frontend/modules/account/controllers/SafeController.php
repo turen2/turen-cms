@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\account\controllers;
+namespace frontend\modules\account\controllers;
 
 use common\emailcode\EmailCodeAction;
 use Yii;

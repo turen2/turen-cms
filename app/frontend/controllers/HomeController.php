@@ -4,12 +4,12 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\controllers;
+namespace frontend\controllers;
 
 use Yii;
 use yii\filters\VerbFilter;
 use common\models\account\Inquiry;
-use app\components\Controller;
+use frontend\components\Controller;
 use common\models\shop\Product;
 use common\models\com\FeedbackForm;
 

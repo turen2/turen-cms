@@ -5,8 +5,8 @@
  * @author developer qq:980522557
  */
 
-use app\assets\WnlAsset;
-use app\widgets\SideBoxListWidget;
+use frontend\assets\WnlAsset;
+use frontend\widgets\SideBoxListWidget;
 use yii\widgets\Breadcrumbs;
 
 $this->title = '查询黄历';

@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\controllers;
+namespace frontend\controllers;
 
 use Yii;
 use yii\filters\VerbFilter;
@@ -12,8 +12,8 @@ use common\models\diy\FaqsForm;
 use common\models\diy\Faqs;
 use common\models\diy\FaqsSearch;
 use common\models\cms\Column;
-use app\components\Controller;
-use app\widgets\phonecode\PhoneCodePopAction;
+use frontend\components\Controller;
+use frontend\widgets\phonecode\PhoneCodePopAction;
 
 /**
  * FaqsController implements the CRUD actions for Faqs model.

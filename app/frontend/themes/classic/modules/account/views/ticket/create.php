@@ -7,7 +7,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
-use app\assets\ValidationAsset;
+use frontend\assets\ValidationAsset;
 
 $this->title = '提交工单';
 

@@ -5,7 +5,7 @@
  * @author developer qq:980522557
  */
 
-use app\assets\ValidationAsset;
+use frontend\assets\ValidationAsset;
 use yii\captcha\Captcha;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;

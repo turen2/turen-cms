@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\modules\account;
+namespace frontend\modules\account;
 
 use Yii;
 
@@ -25,7 +25,7 @@ class Module extends \yii\base\Module
     /**
      * {@inheritdoc}
      */
-    public $controllerNamespace = 'app\modules\account\controllers';
+    public $controllerNamespace = 'frontend\modules\account\controllers';
 
     /**
      * {@inheritdoc}

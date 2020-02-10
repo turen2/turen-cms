@@ -14,9 +14,9 @@ use yii\helpers\StringHelper;
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 use common\models\cms\Column;
-use app\widgets\SideBoxListWidget;
-use app\widgets\SideLabelListWidget;
-use app\widgets\ContentMoreWidget;
+use frontend\widgets\SideBoxListWidget;
+use frontend\widgets\SideLabelListWidget;
+use frontend\widgets\ContentMoreWidget;
 
 $this->currentModel = $model;
 $dlength = 90;

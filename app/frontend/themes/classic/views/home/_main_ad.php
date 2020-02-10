@@ -1,6 +1,6 @@
 <?php
 
-use app\assets\Swiper2Asset;
+use frontend\assets\Swiper2Asset;
 use common\helpers\ImageHelper;
 use common\models\ext\Ad;
 

@@ -5,9 +5,9 @@
  * @author developer qq:980522557
  */
 
-use app\assets\DatetimePickerAsset;
-use app\assets\PinAsset;
-use app\assets\Swiper2Asset;
+use frontend\assets\DatetimePickerAsset;
+use frontend\assets\PinAsset;
+use frontend\assets\Swiper2Asset;
 use common\helpers\ImageHelper;
 use yii\helpers\Url;
 

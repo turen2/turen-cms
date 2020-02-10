@@ -6,8 +6,8 @@
  */
 
 use yii\helpers\Html;
-use app\assets\Jcrop;
-use app\assets\ValidationAsset;
+use frontend\assets\Jcrop;
+use frontend\assets\ValidationAsset;
 
 $this->title = '基本资料';
 $this->params['breadcrumbs'][] = $this->title;

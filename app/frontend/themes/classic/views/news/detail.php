@@ -8,7 +8,7 @@
 
 $this->currentModel = $model;
 
-use app\widgets\ContentMoreWidget;
+use frontend\widgets\ContentMoreWidget;
 use common\models\cms\Article;
 use common\models\cms\Column;
 use common\tools\like\LikeWidget;
@@ -17,8 +17,8 @@ use yii\helpers\Html;
 use yii\helpers\StringHelper;
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
-use app\widgets\SideBoxListWidget;
-use app\widgets\SideLabelListWidget;
+use frontend\widgets\SideBoxListWidget;
+use frontend\widgets\SideLabelListWidget;
 
 $dlength = 90;
 ?>

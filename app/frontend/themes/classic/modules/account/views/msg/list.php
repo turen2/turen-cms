@@ -10,7 +10,7 @@ use yii\helpers\Json;
 use yii\helpers\StringHelper;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
-use app\assets\NotifyAsset;
+use frontend\assets\NotifyAsset;
 use common\models\account\Msg;
 
 $this->title = '消息中心';

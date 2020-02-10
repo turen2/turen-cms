@@ -8,7 +8,7 @@
 $this->columnModel = $columnModel;
 $webUrl = Yii::getAlias('@web/');
 
-use app\widgets\SideBoxListWidget;
+use frontend\widgets\SideBoxListWidget;
 use common\tools\share\ShareWidget;
 use yii\helpers\Html;
 use yii\helpers\StringHelper;

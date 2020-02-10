@@ -6,8 +6,8 @@
  * Time: 22:58
  */
 
-use app\assets\LayerAsset;
-use app\widgets\cascade\CascadeWidget;
+use frontend\assets\LayerAsset;
+use frontend\widgets\cascade\CascadeWidget;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\JqueryAsset;

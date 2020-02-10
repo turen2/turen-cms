@@ -9,9 +9,9 @@ $this->title = '服务订单';
 $this->params['breadcrumbs'][] = $this->title;
 
 use yii\helpers\Url;
-use app\assets\LayerAsset;
+use frontend\assets\LayerAsset;
 use yii\widgets\LinkPager;
-use app\assets\NotifyAsset;
+use frontend\assets\NotifyAsset;
 use common\models\account\Inquiry;
 use common\helpers\ImageHelper;
 

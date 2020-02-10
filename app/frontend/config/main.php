@@ -5,7 +5,7 @@
  * @author developer qq:980522557
  */
 
-use app\bootstrap\Init;
+use frontend\bootstrap\Init;
 
 $params = array_merge(
     require(__DIR__ . '/../../common/config/params.php'),
@@ -14,9 +14,9 @@ $params = array_merge(
 
 $config = [
     'id' => 'app-frontend',
-    'name' => 'App',
+    'name' => 'Frontend',
     'basePath' => dirname(__DIR__),
-    'controllerNamespace' => 'app\controllers',
+    'controllerNamespace' => 'frontend\controllers',
     'defaultRoute' => 'home/default', // 默认路由，后台默认首页
     'layout' => 'main', // 默认布局
     'viewPath' => '@app/themes/classic/views',
@@ -30,9 +30,9 @@ $config = [
     'modules' => [
         //用户中心模块
         'account' => [
-            'class' => 'app\modules\account\Module',
+            'class' => 'frontend\modules\account\Module',
             'as access' => [
-                'class' => 'app\modules\account\filters\AccessFilter',
+                'class' => 'frontend\modules\account\filters\AccessFilter',
                 'except' => [],//allowAction方法替代了
                 'denyCallback' => function ($action) {
                     //fb('未审核嘛');
@@ -64,7 +64,7 @@ $config = [
         ],
         'view' => [
             // 主题配置(module目录下的views > 根目录下的views > 主题下的模板)
-            'class' => 'app\components\View',
+            'class' => 'frontend\components\View',
             //theme的功能是重新映射的关系，即将原模板系统默认的目录结果映射为自定义目录结构！！
             //默认机制是，模板目录结构与控制器挂件模块等结构保持一致。
             'theme' => [

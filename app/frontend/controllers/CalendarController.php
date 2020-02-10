@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\controllers;
+namespace frontend\controllers;
 
 class CalendarController extends \app\components\Controller
 {

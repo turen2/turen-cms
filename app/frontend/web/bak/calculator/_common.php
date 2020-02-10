@@ -6,8 +6,8 @@
  */
 
 use yii\helpers\Html;
-use app\widgets\cascade\CascadeWidget;
-use app\assets\DatetimePickerAsset;
+use frontend\widgets\cascade\CascadeWidget;
+use frontend\assets\DatetimePickerAsset;
 
 DatetimePickerAsset::register($this);
 $js = <<<EOF

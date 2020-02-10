@@ -1,11 +1,11 @@
 <?php
 
-namespace app\modules\account\controllers;
+namespace frontend\modules\account\controllers;
 
 use Yii;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\components\Controller;
+use frontend\components\Controller;
 use common\models\account\Ticket;
 use common\models\account\TicketSearch;
 

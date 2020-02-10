@@ -5,8 +5,8 @@
  * @author developer qq:980522557
  */
 
-use app\assets\PinAsset;
-use app\assets\YetiiAsset;
+use frontend\assets\PinAsset;
+use frontend\assets\YetiiAsset;
 
 $this->title = '自助价格计算器';
 

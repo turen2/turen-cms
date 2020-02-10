@@ -4,14 +4,14 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
-namespace app\controllers;
+namespace frontend\controllers;
 
 use Yii;
 use common\models\com\VerifyConsultForm;
 use common\models\shop\Product;
 use common\models\shop\ProductSearch;
 use yii\web\NotFoundHttpException;
-use app\behaviors\PlusViewBehavior;
+use frontend\behaviors\PlusViewBehavior;
 use common\models\cms\Column;
 
 class ServiceController extends \app\components\Controller
