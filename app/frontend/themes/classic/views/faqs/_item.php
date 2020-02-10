@@ -18,7 +18,7 @@ use yii\helpers\Html;
     }
     echo Html::tag('h5',$model->title , ['class' => 'info-title', 'style' => $options['style']]);
     ?>
-    <span class="post-time"><i class="fa fa-clock-o"></i>
+    <span class="post-time"><i class="iconfont jia-calendar1"></i>
         <?= Yii::$app->getFormatter()->asDateTime($model->posttime, 'php:Y年m月d日') ?>
     </span>
     <p class="info-content">
@@ -27,7 +27,7 @@ use yii\helpers\Html;
     <?php
     if(!empty($model->flag)) {
         echo '<span class="ask-label">';
-        echo '<i class="fa fa-tags"></i> ';
+        echo '<i class="iconfont fa-tags"></i> ';
         $flags = explode(',', $model->flag);
         foreach ($flags as $flag) {
             echo '<a href="javascript:;"><i class="iconfont jia-label"></i> '.$flag.'</a>';

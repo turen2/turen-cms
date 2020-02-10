@@ -26,6 +26,8 @@ $('#photo-water-list ul').waterfall({
     gutterHeight: 20,//
     maxPage: 3,//每一个页面请求三次
     checkImagesLoaded: false,
+//    isFadeIn: true,
+//    isAnimated: true,
     callbacks: {
         loadingFinished: function(loading, isBeyondMaxPage) {
             if ( !isBeyondMaxPage ) {
@@ -35,6 +37,8 @@ $('#photo-water-list ul').waterfall({
                 $('.pagination-box .pagination').show();
             }
         }
+        
+        //
     },
     path: function(page) {
         var url = '{$currentUrl}';
@@ -42,19 +46,20 @@ $('#photo-water-list ul').waterfall({
         return url;
     }
 });
+$('#photo-water-list ul').waterfall('reLayout');
 EOF;
 $this->registerJs($js);
 ?>
 
 <script type="text/x-handlebars-template" id="waterfall-tpl">
     {{#result}}
-    <li class="water-list">
+    <li class="water-list" data-key="{{key}}">
         <div class="wall-pic">
             <a href="{{url}}">
                 <img src="{{image}}" alt="{{title}}" />
             </a>
             <span><a href="{{url}}">查看详情</a><i></i></span>
-            <b><a href="{{url}}">{{hits}}</a><i></i></b>
+            <b><a href="{{url}}"><em class="iconfont jia-eye"></em> {{hits}}</a><i></i></b>
         </div>
         <div class="wall-text">
             <p><a class="wall-word" href="{{url}}" target="_blank">{{title}}</a></p>
@@ -73,52 +78,18 @@ $this->registerJs($js);
                 'homeLink' => null,
                 'itemTemplate' => "<li>{link}</li>\n",
                 //'activeItemTemplate' => "<li class=\"active\">{link}</li>\n",
-                'links' => $columnModel->breadcrumbs(['/case/list'], false),
+                'links' => $columnModel->breadcrumbs(['/case/list'], false, 1),
             ]) ?>
         </div>
 
-        <div class="turen-box s2m clearfix">
-            <div class="sidebox">
-                <?= SideBoxListWidget::widget([
-                    'style' => 'gen',
-                    'title' => '案例推荐',
-                    'htmlClass' => 'case-photo-list',
-                    'moreLink' => Url::to(['/case/list']),
-                    
-                    'columnType' => 'photo',
-                    'flagName' => Yii::$app->params['config_face_cn_sidebox_current_photo_column_flag'],
-                    'columnId' => $columnModel->id,//当前的栏目
-                    'route' => ['/case/detail'],
-                ]); ?>
-
-                <?= SideLabelListWidget::widget([
-                    'shortColumnClassName' => 'Photo',//栏目短类名
-                    'htmlClass' => 'label-sidebox',
-                    'title' => '相关标签',
-                    'listNum' => 10,//最多显示的个数
-                    'route' => ['/tag/list', 'type' => 'photo'],
-                ]); ?>
-            </div>
-            <div class="midcontent card">
+        <div class="turen-box m2s clearfix">
+            <div class="midcontent">
                 <div class="turen-sort">
                     <?= LinkSorter::widget([
                         'sort' => $dataProvider->sort,
                         'options' => ['class' => 'sorter clearfix'],
                         'attributes' => ['posttime', 'hits'],
                     ]) ?>
-                </div>
-                <div class="mod-promote">
-                    <dl class="clearfix">
-                        <dt>主要城市<i></i></dt>
-                        <dd>
-                            <a href="javascript:;">深圳市</a>
-                            <a href="javascript:;">广州市</a>
-                            <a href="javascript:;">东莞市</a>
-                            <a href="javascript:;">珠海市</a>
-                            <a href="javascript:;">中山市</a>
-                            <a href="javascript:;">惠州市</a>
-                        </dd>
-                    </dl>
                 </div>
                 <div id="photo-water-list" class="turen-items">
                     <ul></ul>
@@ -144,6 +115,34 @@ $this->registerJs($js);
                         'nextPageLabel' => '下页',
                     ]) ?>
                 </div>
+            </div>
+            <div class="sidebox">
+                <?= SideBoxListWidget::widget([
+                    'style' => 'tab',
+                    'htmlClass' => 'about-us',
+                    'columnType' => 'block',
+                    'blockId' => Yii::$app->params['config_face_cn_sidebox_contact_us_block_id'],
+                ]); ?>
+
+                <?= SideBoxListWidget::widget([
+                    'style' => 'gen',
+                    'title' => '案例推荐',
+                    'htmlClass' => 'case-photo-list',
+                    'moreLink' => Url::to(['/case/list']),
+
+                    'columnType' => 'photo',
+                    'flagName' => Yii::$app->params['config_face_cn_sidebox_current_photo_column_flag'],
+                    'columnId' => $columnModel->id,//当前的栏目
+                    'route' => ['/case/detail'],
+                ]); ?>
+
+                <?= SideLabelListWidget::widget([
+                    'shortColumnClassName' => 'Photo',//栏目短类名
+                    'htmlClass' => 'label-sidebox',
+                    'title' => '相关标签',
+                    'listNum' => 10,//最多显示的个数
+                    'route' => ['/tag/list', 'type' => 'photo'],
+                ]); ?>
             </div>
         </div>
     </div>

@@ -1,11 +1,14 @@
 /* 布局样式 */
 
-.baike-list,
+.company-list,
+.company-detail,
 .baike-detail,
 .news-list,
 .news-detail,
 .case-list,
 .case-detail,
+.chexing-list,
+.chexing-detail,
 .faqs-index,
 .faqs-ask,
 .tag-list,
@@ -33,10 +36,9 @@
     width: 885px;
     float: left;
     background-color: #fff;
-    padding-bottom: 20px;
 }
 
-.baike-detail .midcontent {
+.baike-detail .midcontent, .company-detail .midcontent, .news-detail .midcontent {
     background: transparent;
 }
 

@@ -1,6 +1,11 @@
 /* 界面核心区域管理样式 */
 
 /* 全局列表主体内容 */
+.midcontent .empty {
+    padding: 50px;
+    text-align: center;
+}
+
 .turen-sort {
     padding: 0 30px;
 }
@@ -147,7 +152,7 @@
 
 .turen-list .turen-text dl dd {
     float: left;
-    margin-right: 30px;
+    margin-right: 10px;
     overflow: hidden;
 }
 
@@ -159,6 +164,143 @@
 }
 
 /* 百科列表主体内容end */
+
+/* 业务列表 */
+.service-items ul {
+    padding-left: 18px;
+}
+.service-items .card {
+    float: left;
+    margin-right: 16px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+.service-items .card, .service-items .cover-image {
+    width: 272px;
+    height: 182px;
+}
+.service-items .card.first {
+
+}
+.service-items .card.last {
+    margin-right: 0;
+}
+.service-items .cover {
+    position: relative;
+    text-align: center;
+}
+.service-items .cover .overlay-panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 20px;
+    font-size:0;
+    *word-spacing:-1px;
+    background: url(../images/common/back-ground.png);
+}
+.service-items .card-title {
+    font-size: 24px;
+    font-weight: 400;
+    margin-top: 36px;
+    color: #fff;
+}
+.service-items .hot-btn {
+    letter-spacing: normal;
+    word-spacing: normal;
+    vertical-align:top;
+    display: inline-block;
+    *display: inline;
+    *zoom:1;
+    margin-top: 18px;
+    padding: 7px;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+    color: #fff;
+    border: 1px solid #fff;
+}
+.service-items .hot-btn:hover {
+    background: #ff6f20;
+    border: 1px solid #ff6f20;
+    color: #fff;
+}
+/* 业务列表 end */
+
+/* 车型列表 */
+.chexing-items {
+    height: auto;
+    overflow: hidden;
+    padding: 30px 0 0 25px;
+}
+
+.chexing-items ul {
+
+}
+
+.chexing-items ul li {
+    width: 286px;
+    padding-right: 25px;
+    padding-bottom: 12px;
+    float: left;
+}
+
+.chexing-items ul li > a {
+    display: block;
+    height: 275px;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    margin:0 auto;
+}
+
+.chexing-items ul li > a img {
+    width: 250px;
+    transition: .8s;
+    -webkit-transition: .8s;
+    vertical-align:middle;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -125px;
+}
+
+.chexing-items ul li:hover > a img {
+    transform: 1s scale(1.03);
+    -webkit-transform: scale(1.03);
+}
+
+.chexing-items ul li .info {
+    padding: 0;
+    margin-top: 5px;
+    height: 46px;
+    overflow: hidden;
+}
+
+.chexing-items ul li .info .title {
+    color: #333;
+    font-size: 14px;
+    display: block;
+    margin-top: 8px;
+    text-align: center;
+}
+
+.chexing-items ul li .info .type {
+    padding-top: 5px;
+    font-size: 12px;
+    color: #999;
+    height: 25px;
+    white-space: nowrap;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+/* 车型列表end */
 
 /* 首页 */
 .turen-home .block {
@@ -383,12 +525,17 @@
     word-wrap: break-word;
 }
 
-.detail-text p {
-    text-indent: 0 !important;
+.detail-text .detail-title {
+    padding-top: 40px;
 }
 
-.detail-text p + p {
-    margin-top: 1.3em;
+.detail-text .detail-title h3 {
+    font-size: 20px;
+    color: #333;
+    line-height: 36px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .detail-text .detail-title .detail-date {
@@ -413,29 +560,19 @@
     color: #666;
 }
 
-.detail-text .detail-title .detail-date a {
-    display: block;
+.detail-text .detail-title .detail-date #like-btns {
     float: right;
-    overflow: hidden;
 }
 
-.detail-text .detail-title .detail-date a span {
-    width: 14px;
-    height: 14px;
-    display: block;
-    float: left;
+#like-btns .like-btn {
+    padding-right: 10px;
 }
 
-.detail-text .detail-title .detail-date a b {
-    font-size: 12px;
-    color: #999;
-    float: left;
-    margin-left: 5px;
-    line-height: 28px;
+#like-btns .like-num {
+    padding-left: 2px;
 }
 
 .detail-text .detail-digest {
-    padding: 0 7px;
     margin-top: 46px;
 }
 
@@ -577,10 +714,6 @@
     background-position: -617px -738px;
 }
 
-.detail-main ul li a span.ap8 {
-    background-position: -617px -738px;
-}
-
 .detail-main ul li a span.ap9 {
     background-position: -456px -378px;
 }
@@ -616,7 +749,7 @@
 .detail-more .detail-box {
     float: left;
     width: 432px;
-    padding: 23px 34px;
+    padding: 10px 25px;
     background-color: #fff;
 }
 
@@ -805,16 +938,10 @@
 }
 
 #photo-water-list .water-list .wall-pic b a {
-    overflow: hidden;
     font-size: 12px;
     color: #dcdcdc;
     line-height: 32px;
     display: block;
-    text-align: right;
-    padding-left: 20px;
-    background-image: url(../images/css_sprites.png);
-    background-repeat: no-repeat;
-    background-position: -237px -813px;
 }
 
 #photo-water-list .water-list .wall-pic:hover > span {
@@ -831,47 +958,6 @@
 
 /* 瀑布流布局end */
 
-/* 主要城市 */
-.mod-promote {
-    padding: 15px;
-    padding-left: 25px;
-    border-top: 1px solid #efefef;
-    overflow: hidden;
-    font-size: 14px;
-}
-
-.mod-promote dt {
-    position: relative;
-    float: left;
-    background: #ff6f20;
-    color: #fff;
-    line-height: 30px;
-    padding: 0px 10px;
-}
-
-.mod-promote dt i {
-    position: absolute;
-    top: 11px;
-    right: -5px;
-    display: block;
-    width: 5px;
-    height: 8px;
-    background: url(../images/index-bg.png) no-repeat 0px -91px;
-}
-
-.mod-promote dd {
-    float: left;
-    line-height: 30px;
-    overflow: hidden;
-}
-
-.mod-promote dd a {
-    padding: 0px 10px;
-    float: left;
-}
-
-/* 主要城市end */
-
 /* 案例幻灯片 */
 .detail-photo-list {
     width: 815px;
@@ -882,7 +968,7 @@
 }
 
 .detail-photo-list .swiper-container {
-    height: 350px;
+    height: 500px;
     color: #fff;
     overflow: hidden;
     position: relative;
@@ -941,7 +1027,7 @@
 
 /* 案例幻灯片end */
 
-/* 搬家吉日功能 */
+/* 吉日动工功能 */
 .jiri-baike {
     margin-top: 30px;
 }
@@ -950,9 +1036,14 @@
     display: block;
     font-size: 1.17em;
     font-weight: bold;
+    line-height: 36px;
 }
 
-/* 搬家吉日功能end */
+.jiri-baike-content {
+    padding-bottom: 26px;
+}
+
+/* 吉日动工功能end */
 
 /* 问答功能 */
 .faqs-index .ask-info {
@@ -1052,62 +1143,52 @@
 
 /* 关于我们 */
 .about-us-banner {
-    height: 399px;
+    height: 260px;
     background: url('../images/common/about-us-banner.png') no-repeat 50% 0%;
 }
-.about-us-countent {
-    background-color: white;
+.info-bg {
+    background: white url('../images/common/info_page.jpg') repeat-y 50% 0%;
+}
+.about-us-content {
     padding: 0 50px 20px 50px;
+    position: relative;
+    top: -90px;
+    margin-bottom: -80px;
 }
 .aboutnav {
     border-bottom: solid 1px #dedede;
-    font-size: 16px;
 }
 .aboutnav ul {
     height: 48px;
     line-height: 48px;
-    width: 260px;
     margin: 0 auto;
 }
 .aboutnav ul li {
-     float: left;
-     padding: 0 23px;
-     cursor: pointer;
+    float: left;
+    padding: 0 23px;
+    cursor: pointer;
+    font-size: 16px;
  }
-.aboutnav ul li.on {
-    border-bottom: solid 2px #ff6f20;
+.aboutnav ul li.on, .aboutnav ul li.current {
+    border-bottom: solid 1px #ff6f20;
+}
+.aboutnav ul li.on a, .aboutnav ul li.current a {
     color: #ff6f20;
-}
-.about-centent {
-    margin-bottom: 20px;
-}
-.about-infor p {
-    line-height: 24px;
-    font-size: 14px;
-    color: #333;
-}
-.about-infor>p:first-child {
-    padding-top: 40px;
 }
 .website-color {
     color: #ff6f20 !important;
 }
-.about-infor ul {
-    margin: 30px 0 38px;
-    margin-bottom: 20px;
-    overflow: hidden;
+.about-infor {
+    padding: 30px;
+    padding-top: 38px;
 }
-.about-infor ul li {
-    width: 23%;
-    float: left;
-    height: 90px;
-    margin-right: 20px;
+.about-infor p {
+    line-height: 36px;
+    font-size: 14px;
+    color: #333;
 }
-.about-infor ul li h4 {
-    font-size: 20px;
-    color: #ff6f20;
-    font-weight: 400;
-    margin-bottom: 15px;
+.about-infor p.no-indent {
+    text-indent: 0;
 }
 .add-ours {
     max-width: 1140px;
@@ -1128,6 +1209,7 @@
 .position {
     height: auto;
     clear: both;
+    padding-top: 30px;
 }
 .infortitle {
     height: 50px;
@@ -1319,9 +1401,9 @@
     border: 1px solid #fff;
 }
 .hot-serve .hot-btn:hover {
-    background: #fff;
+    background: #ff6f20;
     border: 1px solid #ff6f20;
-    color: #ff6f20;
+    color: #fff;
 }
 .broser-more {
     display: block;
@@ -1350,10 +1432,9 @@
     border-right: 1px solid #e8e8e8;
 }
 .hot-article-list .h-n-box .tit {
-    padding: 15px 0 30px;
+    padding: 8px 0 36px;
 }
 .hot-article-list .h-n-box .tit h3 {
-    width:100px;
     font-size:18px;
     font-weight: normal;
     color:#ff6f20;
@@ -1401,18 +1482,18 @@
 }
 .hot-article-list .h-n-box .list {
     border-top:1px dotted #ccc;
-    padding:5px 0;
+    padding:8px 0;
 }
 .hot-article-list .h-n-box .list a {
     font-size:14px;
     display:block;
 }
 .hot-article-list .h-n-box .list p {
-    height:36px;
-    line-height:18px;
-    overflow:hidden;
-    color:#999;
-    margin-top:5px;
+    height: 38px;
+    line-height: 19px;
+    overflow: hidden;
+    color: #999;
+    margin-top: 5px;
 }
 .hot-article-list .h-n-box .list span {
     color:#bbb;
@@ -1570,6 +1651,7 @@
 
 .work-case .case-box {
     margin-top: 5px;
+    margin-bottom: 16px;
 }
 
 .case-banner {
@@ -1721,7 +1803,6 @@
 }
 .logo-box img, .haiwai img {
     width: 180px;
-    height: 55px;
 }
 /* 首页合作客户end */
 
@@ -1814,6 +1895,7 @@
 
 .footer {
     margin-top: 0;
+    background: #fff;
 }
 
 /* 首页底部代言end */
@@ -2303,6 +2385,10 @@
 .help-box .hcontent {
     padding-top: 16px;
 }
+.help-box .hcontent p {
+    line-height: 24px;
+}
+
 /* help center end */
 
 /* 服务详情 */
@@ -2336,10 +2422,10 @@
     display: block;
     width: 160px;
     height: 150px;
-    padding-bottom: 6px;
     text-align: center;
-    border: 1px solid #eeeeee;
+    /* border: 1px solid #ccc; */
     background: #ffffff;
+    overflow: hidden;
 }
 .service-link.on, .service-link:hover {
     border: 1px solid #ff6f20;
@@ -2347,8 +2433,8 @@
 }
 .service-link .link-txt {
     display: block;
-    height: 24px;
-    line-height: 24px;
+    height: 36px;
+    line-height: 36px;
     font-weight: bold;
     font-size: 14px;
 }
@@ -2433,7 +2519,8 @@
     z-index: 1;
 }
 .service-content .infotxt {
-    padding: 20px 16px 20px;
+    padding: 30px 40px 16px;
+    line-height: 30px;
 }
 
 .service-content .xtable .dscfw {
@@ -2548,200 +2635,3 @@
     font-size: 12px;
 }
 /* 服务详情end */
-
-/* 自动价格计算器 */
-.turen-calculator {
-    background: #E2F0F9 url("../images/baojia_bg.jpg") no-repeat 50% 0%;
-}
-.calculator-top {
-    margin-top: 12px;
-    height: 130px;
-    text-indent: -9999px;
-}
-.calculator-content {
-    margin-top: 12px;
-}
-.calculator-left,
-.calculator-right,
-.calculator-middle {
-    float: left;
-}
-.calculator-left {
-    width: 150px;
-    margin-right: 15px;
-}
-.calculator-left a {
-    display: block;
-    padding-left: 10px;
-    height: 36px;
-    line-height: 36px;
-    font-size: 14px;
-}
-.calculator-left a.on, .calculator-left li {
-    margin-top: 1px;
-}
-.calculator-left a.on, .calculator-left a:hover {
-    background: #EEEEEE url("../images/bg/sprit-good.png") no-repeat 90% 50%;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-}
-.calculator-middle-right {
-    float: left;
-}
-.calculator-right {
-    width: 305px;
-}
-.calculator-middle {
-    width: 705px;
-    margin-right: 15px;
-    padding: 20px;
-    background: #FFFFFF;
-    border: 1px solid #eeeeee;
-    -webkit-box-shadow: 3px 2px 8px 4px rgba(128,128,128,0.1);
-    -moz-box-shadow: 3px 2px 8px 4px rgba(128,128,128,0.1);
-    box-shadow: 3px 2px 8px 4px rgba(128,128,128,0.1);
-}
-
-.float-left-side, .float-right-side {
-    background: #FFFFFF;
-    border: 1px solid #eeeeee;
-    -webkit-box-shadow: 3px 2px 8px 4px rgba(128,128,128,0.1);
-    -moz-box-shadow: 3px 2px 8px 4px rgba(128,128,128,0.1);
-    box-shadow: 3px 2px 8px 4px rgba(128,128,128,0.1);
-}
-.calculator-right .tab-sidebox-content {
-    padding-top: 0;
-    padding-bottom: 15px;
-}
-.float-left-side {
-    padding: 15px;
-}
-.float-right-side {
-    width: 305px;
-}
-.float-right-side.free-jijia .row {
-    margin: 10px 0 10px 0;
-}
-.float-right-side.free-jijia .row p {
-    margin-top: 8px;
-    line-height: 18px;
-    background: #eeeeee;
-    padding: 8px;
-}
-.free-jijia .primary-btn {
-    display: block;
-    padding: 9px 12px;
-}
-.calculator-middle .tit {
-    font-size: 22px;
-    color: #333;
-    font-weight: normal;
-    margin-bottom: 25px;
-}
-.calculator-middle .tit span {
-    font-weight: normal;
-    font-size: 14px;
-    color: #999;
-    margin-left: 12px;
-}
-.calculator-middle .form-items {
-    margin-bottom: 15px;
-    position: relative;
-}
-.calculator-middle .items label {
-    font-size: 14px;
-    color: #333;
-    height: 36px;
-    line-height: 36px;
-    width: 80px;
-    text-align: right;
-}
-.calculator-middle .items label span {
-    display: inline-block;
-    color: #ff6f20;
-    margin-left: 2px;
-}
-.calculator-middle .items .item-box {
-    margin-left: 10px;
-    position: relative;
-}
-.calculator-middle select {
-    height: 36px;
-    padding-left: 8px;
-    border: 1px solid #d8d8d8;
-    margin-right: 12px;
-    font-size: 14px;
-    border-radius: 2px;
-    color: #333;
-}
-.calculator-middle input {
-    height: 36px;
-    font-size: 14px;
-    padding-left: 8px;
-    margin-right: 12px;
-    border: 1px solid #d8d8d8;
-    border-radius: 2px;
-}
-.calculator-middle .cl-radio label {
-    border: 1px solid #d8d8d8;
-    padding: 4px 6px;
-    margin-right: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.calculator-middle .cl-radio label.on {
-    border: 1px solid #ff6f20;
-    background: #FFFFFF url(../images/common/jzfw_icon2_mini.jpg) no-repeat 101% 100%;
-}
-.calculator-middle .cl-radio input {
-    display: none;
-}
-.calculator-middle .items .unit {
-    position: absolute;
-    font-size: 16px;
-    color: #333;
-    right: 9px;
-    top: 9px;
-}
-.calculator-middle .items .date-time {
-    width: 160px;
-    background: url(../images/common/calendarBg.png) 168px no-repeat;
-    cursor: pointer;
-}
-.calculator-subtabs {
-    margin-top: 30px;
-}
-.calculator-subtabs ul {
-    border-bottom: 1px solid #e9e9e9;
-}
-.calculator-subtabs ul li {
-    float: left;
-    margin-left: 8px;
-}
-.calculator-subtabs ul li a {
-    display: block;
-    padding: 10px 16px;
-    font-size: 14px;
-    font-weight: 400;
-    border: 1px solid #e9e9e9;
-    position: relative;
-    bottom: -1px;
-    -webkit-border-top-left-radius: 5px;
-    -webkit-border-top-right-radius: 5px;
-    -moz-border-radius-topleft: 5px;
-    -moz-border-radius-topright: 5px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-}
-.calculator-subtabs ul li a:hover, .calculator-subtabs ul li a.on {
-    border-bottom: 1px solid #FFFFFF;
-}
-.calculator-subtabs .tab-nested {
-    padding: 16px 0;
-}
-
-
-/* 自动价格计算器end */

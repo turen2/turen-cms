@@ -6,9 +6,10 @@
  */
 
 use app\assets\WnlAsset;
+use app\widgets\SideBoxListWidget;
 use yii\widgets\Breadcrumbs;
 
-$this->title = '搬家吉日';
+$this->title = '查询黄历';
 $links = [];
 $links[] = ['label' => '<li class="active"><span>&gt;</span></li>'];
 $links[] = ['label' => $this->title];
@@ -40,11 +41,11 @@ $jsDataBaseUrl = $jsBaseUrl.'/js/lhl/';//Yii::$app->request->hostInfo.
         </div>
 
         <div class="turen-box m2s clearfix">
-            <div class="midcontent card">
-                <div class="detail-text">
+            <div class="midcontent">
+                <div class="detail-text card">
                     <div class="detail-title">
                         <h3>吉日查询</h3>
-                        <p class="">亚桥租赁，一站式搬家服务。</p>
+                        <p class="">亚桥租赁，一站式高空作业服务。</p>
                     </div>
                     <div class="detail-content">
                         <div class="wnl-tool">
@@ -361,36 +362,25 @@ $jsDataBaseUrl = $jsBaseUrl.'/js/lhl/';//Yii::$app->request->hostInfo.
                         </div>
                     </div>
                     <div class="jiri-baike">
-                        <h3>新房搬家吉日小百科</h3>
+                        <h3>风水小百科</h3>
                         <div class="jiri-baike-content">
-                            <p>在风水命理中很讲究择吉，有句话“吉地也要良辰催”。一个家风水是不是好，搬家的取个良辰吉日也能够起到调节风水的作用。</p>
-                            <p>而通常我们在搬家选日子的时候尽量的选择“水”日。最好不要用“火”日，阳日选择阴时，阴日配合阳辰。</p>
-                            <p>朝东者忌在巳、酉、丑（三合金）日子搬家。</p>
-                            <p>朝西者忌在亥、卯、未（三合木）日子搬家。</p>
-                            <p>朝南者忌在申、子、辰（三合水）日子搬家。</p>
-                            <p>坐北者忌在寅、午、戌（三合火）日子搬家。</p>
-                            <p>新房搬家注意事项有很多，首先挑选吉日是必须的，黄历通胜上记载驿马，天马，德合，开日，成日，天赦，天愿， 四相，时德，民日，月恩等等最宜搬迁。搬家黄道吉日查询到二月适合搬家的日子有五天，可在年前的就只有2天，所以要赶着年前住进新房的朋友，赶紧打包行李，准备搬家事宜了。</p>
-                            <p>搬家必带物品：</p>
-                            <p>1.米面油与常穿衣物，这是寓意在新家开伙不愁吃穿。</p>
-                            <p>2.畚箕和新扫帚一对(阴神怕扫帚)，上面绑红布条进门就扫，寓意去除晦气，让好运降临。</p>
+                            <p>很多朋友都说自己喜欢研究风水，那么风水到底是什么呢？风水是一门以《易经》为基础，研究人类如何和天（宇宙空间）、地 自然环境）和谐相处的自然学科。孔子在《系辞传》中讲：“《易》之为书也,广大悉备：有天道焉，有人道焉，有地道焉……”这说明，几千年前，我们的祖先就开始把人类自身放在宇宙大自然之中进行统一的考察，学习并利用大自然的能力为自身服务</p>
+                        　　<p>宇宙中有日月星辰的引力，大地中有无形的磁场力量。人作为一个生物体，现代科学已经证明了——人体也存在着一个生物气场。人类生于天地之间，置身于宇宙引力场（天气）和大地磁力场（地气）之下，那么小小的人体生物场（人气)无时不受着天气和地气的影响，这个影响是对立和统一的关系——好和坏的关系！</p>
+                        　　<p>如果“天气”和“地气”对“人气”的影响是向上正向叠加的，那身体就受益——通则不痛嘛，人的精神就会充足，头脑就会清醒，做事就会顺顺利利，事业就会飞黄腾达！“天气”和“地气”对“人气”向上正向叠加的大小，就决定了一个人的成功的大小程度。如果“天气”和“地气”对“人气”的影响是负向叠加的，那身体就会受到负面的影响，人的精神就会不足，头脑就会发木，做事就不会顺利，事业就不可能有成功的可能！</p>
+                        　　<p>所以，“风水”的义意就在于发现和调理我们所经常接触的环境空间，寻找和改善对我们人体有用的气场和方位，从而善加利用，趋吉避凶，从而达到我们理想中的彼岸
                         </div>
                     </div>
                 </div>
             </div>
             <div class="sidebox">
-                <div class="tab-sidebox card">
-                    <div class="tab-sidebox-title">
-                        <h3>搬家费用测算</h3>
-                    </div>
-                    <div class="tab-sidebox-content">
-                        <div class="sidebox-block test-price">
-                            <p>//http://www.365azw.com/share/jiancai</p>
-                            <p>测试</p>
-                            <p>测试</p>
-                            <p>测试</p>
-                        </div>
-                    </div>
-                </div>
+                <?= SideBoxListWidget::widget([
+                    'style' => 'tab',
+                    'htmlClass' => 'about-us',
+                    'columnType' => 'block',
+                    'blockId' => Yii::$app->params['config_face_cn_sidebox_contact_us_block_id'],
+                ]); ?>
+
+                <?= $this->render('/common/_sidebox_flow') ?>
             </div>
         </div>
     </div>

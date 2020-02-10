@@ -6,6 +6,9 @@
  */
 /* @var $this yii\web\View */
 
+use common\models\cms\Article;
+use common\tools\like\LikeWidget;
+use common\tools\share\ShareWidget;
 use yii\helpers\Html;
 use yii\helpers\StringHelper;
 use yii\helpers\Url;
@@ -28,14 +31,14 @@ $dlength = 90;
                 'options' => ['class' => 'pagination clearfix'],
                 'tag' => 'ul',
                 'homeLink' => null,
-                'itemTemplate' => "<li>{link}</li>\n",
+                'itemTemplate' => "<li>{link}</li>\n<li>&gt;</li>\n",
                 //'activeItemTemplate' => "<li class=\"active\">{link}</li>\n",
                 'links' => Column::ModelBreadcrumbs($model, ['/baike/list'], false),
             ]) ?>
         </div>
         <div class="turen-box m2s clearfix">
-            <div class="midcontent card">
-                <div class="detail-text">
+            <div class="midcontent">
+                <div class="detail-text card">
                     <div class="detail-title">
                         <?php
                         $options = ['style' => ''];
@@ -50,10 +53,14 @@ $dlength = 90;
                                 <li><span>发布人：</span><?= $model->author ?></li>
                                 <li><span>浏览数：</span><?= $model->hits ?></li>
                             </ul>
-                            <a href="">
-                                <span><img src="https://statics.zxzhijia.com/zxzj2017/new2018/images/star.png"/></span>
-                                <b>收藏</b>
-                            </a>
+                            <?= LikeWidget::widget([
+                                'modelClass' => Article::class,
+                                'modelId' => $model->id,
+                                'upName' => '赞',
+                                'downName' => '踩',
+                                'followName' => false,
+                                'route' => ['/baike/like'],
+                            ]); ?>
                         </div>
                     </div>
                     <div class="detail-digest">
@@ -73,27 +80,12 @@ $dlength = 90;
                     </div>
                     <div class="detail-content">
                         <?= $model->content; ?>
+                        <?= ShareWidget::widget([
+                            'title' => '分享至：',
+                        ]);
+                        ?>
                     </div>
                     <div class="detail-main">
-                        <dl>
-                            <dt>
-                                <div class="fenxiang">
-                                    <div class="fenxiang_1">
-                                        <div class="bdsharebuttonbox bdshare-button-style0-16" data-bd-bind="1547005450752">
-                                            <a href="#" class="bds_more" data-cmd="more"></a>
-                                            <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
-                                            <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-                                            <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
-                                            <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
-                                            <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </dt>
-                            <dd>
-                                <a href="javascript:void(0)" id="dianzan"><span></span><b id="currdz">1</b></a>
-                            </dd>
-                        </dl>
                         <ul>
                             <li>
                                 <?php  if($prevModel) { ?>
@@ -109,15 +101,15 @@ $dlength = 90;
                                 <?php } ?>
                             </li>
                             <li style="float: right;">
-                                <?php  if($nextModel) { ?>
-                                    <a href="<?= Url::to(['/baike/detail', 'slug' => $nextModel->slug]) ?>">
-                                        <span class="ap8"></span>
-                                        <b>上一篇：<?= $nextModel->title ?></b>
+                                <?php if($nextModel) { ?>
+                                    <a style="float: right;" href="<?= Url::to(['/baike/detail', 'slug' => $nextModel->slug]) ?>">
+                                        <span class="ap9"></span>
+                                        <b>下一篇：<?= $nextModel->title ?></b>
                                     </a>
                                 <?php } else { ?>
-                                    <a href="javascript:;">
-                                        <span class="ap8"></span>
-                                        <b>上一篇：没有了</b>
+                                    <a style="float: right;" href="javascript:;">
+                                        <span class="ap9"></span>
+                                        <b>下一篇：没有了</b>
                                     </a>
                                 <?php } ?>
                             </li>

@@ -39,7 +39,30 @@ $.notify.defaults({
 //返回顶部
 var backtop = $(".fixed-nav .back-top");
 $(document).scroll(function() {
-    $(this).scrollTop()>600?backtop.fadeIn(200):backtop.fadeOut(200)
+    $(this).scrollTop()>400?backtop.fadeIn(200):backtop.fadeOut(200)
+});
+
+// 浮动框遮拦问题
+function autoFloat() {
+    var w = $(window).width();
+    var r = (w - 1190) / 2 - 76;
+    r = (r > 10)?(r - 10):0;
+    // $('body .fixed-nav').css({'right': r+'px'});
+    $('body .fixed-nav').stop().animate({
+        right: r+'px'
+    }, 50);
+}
+// 适应手机浏览pc网站
+function autoResizeHtml() {
+    //$('html').width($(document).width());
+}
+$(function() {
+    autoResizeHtml()
+    autoFloat();
+});
+$(window).resize(function() {
+    autoResizeHtml()
+    autoFloat();
 });
 
 //投诉建议
@@ -140,30 +163,30 @@ $this->registerJs($js);
 <div class="fixed-nav">
     <ul>
         <li class="contact-qq tbs-contact-qq" id="onlineService">
-            <a target="_blank" href="javascript:;">
+            <a href="<?= Yii::$app->params['config_online_service_link'] ?>" title="在线预约">
                 <span class="s1"><i class="iconfont jia-kefu"></i><span class="point"></span></span><i>在线预约</i>
             </a>
         </li>
         <li class="sub-encode">
-            <a href="javascript:;">
-                <span class="s2"><i class="iconfont jia-qrcode"></i></span><i>手机浏览</i>
+            <a href="javascript:;" title="微信客服">
+                <span class="s2"><i class="iconfont jia-qrcode"></i></span><i>微信客服</i>
             </a>
             <ul class="encode">
-                <li><span class="wap"><img src="<?= empty(Yii::$app->params['config_hedader_phone_qr'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl(Yii::$app->params['config_hedader_phone_qr'], true) ?>" /></span><b>手机浏览</b><p>在线下单立享9折</p></li>
+                <li><span class="wap"><img src="<?= empty(Yii::$app->params['config_service_qr'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl(Yii::$app->params['config_service_qr'], true) ?>" /></span><b>微信客服</b><p>联系客服有优惠哦</p></li>
             </ul>
         </li>
+<!--        <li class="">-->
+<!--            <a href="--><?//= Url::to(['/calculator/index']) ?><!--" class="alert-design right-offer">-->
+<!--                <span class="s4"><i class="iconfont jia-calculator"></i></span><i>价格说明</i>-->
+<!--            </a>-->
+<!--        </li>-->
         <li class="">
-            <a href="<?= Url::to(['/calculator/index']) ?>" class="alert-design right-offer">
-                <span class="s4"><i class="iconfont jia-calculator"></i></span><i>自助计价</i>
-            </a>
-        </li>
-        <li class="">
-            <a href="javascript:;" id="complaint-btn">
+            <a href="javascript:;" id="complaint-btn" title="投诉建议">
                 <span class="s3"><i class="iconfont jia-complain"></i></span><i>投诉建议</i>
             </a>
         </li>
         <li class="back-top" style="display: none;">
-            <a href="javascript:turen.com.scrollTop(500);">
+            <a href="javascript:turen.com.scrollTop(500);" title="返回顶部">
                 <span class="s5"><i class="iconfont jia-return"></i></span><i>回到顶部</i>
             </a>
         </li>

@@ -11,12 +11,18 @@
 use app\assets\IconfontAsset;
 use app\assets\PinAsset;
 use yii\helpers\Html;
-use app\assets\AppBanjiaAsset;
+use app\assets\AppAsset;
+use yii\helpers\Url;
 use yii\web\YiiAsset;
 
 IconfontAsset::register($this);
 YiiAsset::register($this);
-AppBanjiaAsset::register($this);
+AppAsset::register($this);
+
+$hostInfo = Yii::$app->getUrlManager()->getHostInfo();
+$hostInfo = substr($hostInfo, 0, strpos($hostInfo, '://'));
+$mobileUrl = Url::current([], $hostInfo);
+$mobileUrl = str_replace('://hbyaqiao.', '://m.hbyaqiao.', $mobileUrl);
 
 $webUrl = Yii::getAlias('@web/');
 ?>
@@ -31,11 +37,11 @@ $webUrl = Yii::getAlias('@web/');
 <!--<![endif]-->
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
-    <!--<meta name="renderer" content="webkit">-->
     <!--<meta http-equiv="X-UA-Compatible" content="IE=8"/>-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
     <?= Html::csrfMetaTags() ?>
     <?php $this->initSeo() ?>
     <title><?= Html::encode($this->title) ?> - <?= Yii::$app->params['config_site_name'] ?></title>
@@ -44,6 +50,19 @@ $webUrl = Yii::getAlias('@web/');
     <link type="image/x-icon" href="<?= $webUrl ?>favicon.ico" rel="shortcut icon">
     <?php $this->head() ?>
     <?= $this->render('_config') ?>
+
+    <script src="<?= $webUrl ?>js/whatdevice.min.js"></script>
+
+    <script>
+        // 电脑中使用
+        // whatdevice.go2mob('<?= $mobileUrl ?>');
+
+        // 手机中使用
+        // whatdevice.go2web('http://hbyaqiao.com?t=mobile');
+    </script>
+
+    <?php // 客户，流量代码 ?>
+    <?= Yii::$app->params['config_count_code'] ?>
 </head>
 <body class="">
 <?php $this->beginBody() ?>

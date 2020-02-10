@@ -6,16 +6,43 @@
  */
 namespace app\controllers;
 
-use common\helpers\ImageHelper;
 use Yii;
 use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
 use common\models\cms\Column;
 use common\models\cms\Photo;
 use common\models\cms\PhotoSearch;
+use common\helpers\ImageHelper;
+use common\tools\like\LikeAction;
+use app\behaviors\PlusViewBehavior;
 
 class CaseController extends \app\components\Controller
 {
+    public function behaviors()
+    {
+        return [
+            'plusView' => [
+                'class' => PlusViewBehavior::class,
+                'modelClass' => Photo::class,
+                'slug' => Yii::$app->getRequest()->get('slug'),
+                'field' => 'hits',
+            ]
+        ];
+    }
+
+    public function actions()
+    {
+        return [
+            // 点赞
+            'like' => [
+                'class' => LikeAction::class,
+                'modelClass' => Photo::class, // 案例展示
+                'id' => Yii::$app->getRequest()->post('id'),
+                'type' => Yii::$app->getRequest()->post('type'),
+            ]
+        ];
+    }
+
     /**
      * 案例列表/ajax数据流
      * @param int $wallpage 动态加载参数
@@ -25,13 +52,13 @@ class CaseController extends \app\components\Controller
     public function actionList($wallpage = 1)
     {
         $columnId = Yii::$app->params['config_face_cn_case_column_id'];
-        $pageSize = 27;
+        $pageSize = 20;
         $columnModel = Column::findOne(['id' => $columnId]);
         $searchModel = new PhotoSearch();
         if($columnModel) {
             if(Yii::$app->getRequest()->isAjax) {//二次异步请求
                 //调整返回正确的数据段
-                $prePageSize = ceil($pageSize/3);
+                $prePageSize = ceil($pageSize/2);
                 $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $prePageSize, $columnId);
                 $oldPage = Yii::$app->getRequest()->get($dataProvider->pagination->pageParam, 1);//getPage取不到，待定？
                 $page = ($oldPage-1)*3+$wallpage;//新的开始小单元页面
@@ -45,6 +72,7 @@ class CaseController extends \app\components\Controller
                 $models = $dataProvider->getModels();
                 $arr = [];
                 foreach ($models as $index => $model) {
+                    $arr[$index]['key'] = $index;
                     $arr[$index]['image'] = empty($model->picurl)?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($model->picurl, true);
                     $arr[$index]['title'] = $model->title;
                     $arr[$index]['url'] = Url::to(['/case/detail', 'slug' => $model->slug]);

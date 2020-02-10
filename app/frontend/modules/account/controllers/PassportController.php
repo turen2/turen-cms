@@ -29,8 +29,6 @@ use common\actions\ValidateCaptchaAction;
  */
 class PassportController extends \app\components\Controller
 {
-    const SECURITY_AUTH_KEY = '20190318byjorry';
-
     public function init()
     {
         parent::init();
@@ -205,7 +203,7 @@ class PassportController extends \app\components\Controller
             return $this->goHome();
         }
 
-        $data = Yii::$app->security->validateData(urldecode($token), self::SECURITY_AUTH_KEY);
+        $data = Yii::$app->security->validateData(urldecode($token), Yii::$app->params['config.thirdBindRemark']);
         if(empty($data) || !Yii::$app->getSession()->get('_oauth_bind', false)) {
             throw new NotAcceptableHttpException('非法操作请求将不会处理！');
         }

@@ -56,6 +56,11 @@ class Init extends \yii\base\Component implements \yii\base\BootstrapInterface
         
         //5.界面缓存
         $this->initFace();//根据模板获取对应的模板配置参数
+
+//        var_dump(Yii::$app->getRequest()->getUrl()); // %E6%A1%A5%E6%A2%81%E7%BB%B4%E6%8A%A4
+//        echo urlencode('广告安装');              // %E5%B9%BF%E5%91%8A%E5%AE%89%E8%A3%85
+//        exit;
+
     }
     
     protected function initLang()
@@ -108,6 +113,39 @@ class Init extends \yii\base\Component implements \yii\base\BootstrapInterface
             $urlManager->addRules([
                 //首页
                 ['class' => 'yii\web\UrlRule', 'pattern' => 'index', 'route' => 'site/home'],
+                // 人才招募
+                ['class' => 'yii\web\UrlRule', 'pattern' => 'jobs', 'route' => 'page/jobs'],
+                //简单页面
+                 ['class' => 'yii\web\UrlRule', 'pattern' => 'info/<slug:([\w._-]+)>', 'route' => 'page/info'],
+                // 黄历
+                ['class' => 'yii\web\UrlRule', 'pattern' => 'calendar', 'route' => 'calendar/index'],
+                // FAQ
+                ['class' => 'yii\web\UrlRule', 'pattern' => 'faqs/<flag:([\w._-]+)>', 'route' => 'faqs/index'],
+                ['class' => 'yii\web\UrlRule', 'pattern' => 'faqs', 'route' => 'faqs/index'],
+                // 服务
+                ['class' => 'yii\web\UrlRule', 'pattern' => 'service', 'route' => 'service/list'],
+                ['class' => 'yii\web\UrlRule', 'pattern' => 'service/<slug:([\w._-]+)>', 'route' => 'service/detail'],
+                // 行业动态
+                ['class' => 'yii\web\UrlRule', 'pattern' => 'news', 'route' => 'news/list'],
+                ['class' => 'yii\web\UrlRule', 'pattern' => 'news/like', 'route' => 'news/like'],
+                ['class' => 'yii\web\UrlRule', 'pattern' => 'news/<slug:([\w._-]+)>', 'route' => 'news/detail'],
+                // 帮助
+                ['class' => 'yii\web\UrlRule', 'pattern' => 'help/<slug:([\w._-]+)>', 'route' => 'help/index'],
+                ['class' => 'yii\web\UrlRule', 'pattern' => 'help/like', 'route' => 'help/like'],
+                ['class' => 'yii\web\UrlRule', 'pattern' => 'help', 'route' => 'help/index'],
+                // 案例
+                ['class' => 'yii\web\UrlRule', 'pattern' => 'case', 'route' => 'case/list'],
+                ['class' => 'yii\web\UrlRule', 'pattern' => 'case/like', 'route' => 'case/like'],
+                ['class' => 'yii\web\UrlRule', 'pattern' => 'case/<slug:([\w._-]+)>', 'route' => 'case/detail'],
+                // 公司新闻
+                ['class' => 'yii\web\UrlRule', 'pattern' => 'company', 'route' => 'company/list'],
+                ['class' => 'yii\web\UrlRule', 'pattern' => 'company/like', 'route' => 'company/like'],
+                ['class' => 'yii\web\UrlRule', 'pattern' => 'company/<slug:([\w._-]+)>', 'route' => 'company/detail'],
+                // 车型
+                ['class' => 'yii\web\UrlRule', 'pattern' => 'chexing', 'route' => 'chexing/list'],
+                ['class' => 'yii\web\UrlRule', 'pattern' => 'chexing/like', 'route' => 'chexing/like'],
+                ['class' => 'yii\web\UrlRule', 'pattern' => 'chexing/<slug:([\w._-]+)>', 'route' => 'chexing/detail'],
+
                 //联系我们
 //                 ['class' => 'yii\web\UrlRule', 'pattern' => 'contact/index-<type:([\w._-]+)>', 'route' => 'contact/index'],
                 //简单页面
@@ -117,12 +155,14 @@ class Init extends \yii\base\Component implements \yii\base\BootstrapInterface
 //                 ['class' => 'yii\web\UrlRule', 'pattern' => '<controller:(news|brand)>-list-<type:\d+>', 'route' => '<controller>/list'],
 //                 ['class' => 'yii\web\UrlRule', 'pattern' => '<controller:(news|brand)>-detail-<slug:([\w._-]+)>', 'route' => '<controller>/detail'],
                 //默认
+//                ['class' => 'yii\web\UrlRule', 'pattern' => 'site/error', 'route' => ''],
                 ['class' => 'yii\web\UrlRule', 'pattern' => '<controller>/<action>', 'route' => '<controller>/<action>'],
             ], false);
         } else {//多语言规则
             $urlManager->addRules([
                 //首页
                 ['class' => 'yii\web\UrlRule', 'pattern' => GLOBAL_LANG_KEY.'/index', 'route' => 'site/home'],
+//                ['class' => 'yii\web\UrlRule', 'pattern' => GLOBAL_LANG_KEY.'/info-<slug:([\w._-]+)>', 'route' => 'page/info'],
                 //联系我们
 //                 ['class' => 'yii\web\UrlRule', 'pattern' => GLOBAL_LANG_KEY.'/contact/index-<type:([\w._-]+)>', 'route' => 'contact/index'],
                 //简单页面

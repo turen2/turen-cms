@@ -154,7 +154,7 @@ $this->registerJs($js);
                         '小货车' => '小货车（0.8m x 3m x 2.5m）',
                 ]) ?>
                 <br />
-                <a href="<?= Url::to(['page/info', 'slug' => 'chexing-shibei']) ?>" target="_blank"><i class="fa fa-info-circle"></i> 查看车型</a>
+                <a href="<?= Url::to(['page/info', 'slug' => 'chexing-shibei']) ?>" target="_blank"><i class="iconfont fa-info-circle"></i> 查看车型</a>
             </p>
         </div>
         <div class="row">

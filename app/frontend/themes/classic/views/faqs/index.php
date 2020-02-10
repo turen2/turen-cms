@@ -75,12 +75,12 @@ $this->registerJs($js);
 
         <div class="turen-box">
             <div class="turen-box m2s clearfix">
-                <div class="midcontent card">
-                    <div class="detail-text">
+                <div class="midcontent">
+                    <div class="detail-text card">
                         <div class="detail-content ask-info">
                             <ul class="info-top">
                                 <li class="fl"><a class="<?= empty($searchModel->flag)?'active':'' ?>" href="<?= Url::to(['/faqs/index', 'flag' => null]) ?>">全部问答</a></li>
-                                <li class="fl"><a class="<?= ($searchModel->flag == '搬家必答')?'active':'' ?>" href="<?= Url::to(['/faqs/index', 'flag' => '搬家必答']) ?>">搬家必答</a></li>
+                                <li class="fl"><a class="<?= ($searchModel->flag == '业务问答')?'active':'' ?>" href="<?= Url::to(['/faqs/index', 'flag' => '业务问答']) ?>">业务问答</a></li>
                                 <li class="fl"><a class="<?= ($searchModel->flag == '最新问答')?'active':'' ?>" href="<?= Url::to(['/faqs/index', 'flag' => '最新问答']) ?>">最新问答</a></li>
                             </ul>
                             <?php
@@ -91,7 +91,7 @@ $this->registerJs($js);
                                     'layout' => "<div class=\"info-body\"><ul>{items}</ul><a class=\"ask-more\" data-page=\"2\" href=\"javascript:;\">点击加载更多</a></div>",
                                     'dataProvider' => $dataProvider,
                                     'summary' => '',//分页概要
-                                    'showOnEmpty' => true,
+                                    'showOnEmpty' => false,
                                     'emptyText' => '没有任何内容。',
                                     'emptyTextOptions' => ['class' => 'empty'],
                                     'options' => ['tag' => false, 'class' => 'list-view'],//整个列表的总class
@@ -127,19 +127,6 @@ $this->registerJs($js);
                     </div>
                 </div>
                 <div class="sidebox">
-                    <div class="tab-sidebox">
-                        <div class="tab-sidebox-title">
-                            <h3>搬家费用测算</h3>
-                        </div>
-                        <div class="tab-sidebox-content">
-                            <div class="sidebox-block test-price">
-                                <p>//http://www.365azw.com/share/jiancai</p>
-                                <p>测试</p>
-                                <p>测试</p>
-                                <p>测试</p>
-                            </div>
-                        </div>
-                    </div>
                     <?= SideBoxListWidget::widget([
                         'style' => 'tab',
                         'htmlClass' => 'about-us',

@@ -46,7 +46,7 @@ class FaqsController extends Controller
 
         if(Yii::$app->getRequest()->isAjax) {
             $pageSize = $dataProvider->pagination->pageSize;
-            if($dataProvider->count < $pageSize) {
+            if($dataProvider->count <= $pageSize) {
                 $complete = true;
             } else {
                 $complete = false;

@@ -66,11 +66,11 @@ $this->registerJs($js);
                 </div>
             </li>
             <li class="line">|</li>
-            <li><a href="<?= Url::to(['/faqs/index']) ?>">常见问题</a></li>
+            <li><a href="<?= Url::to(['/faqs/index']) ?>">常见问答</a></li>
             <li class="line">|</li>
-            <li><a href="<?= Url::to(['/page/info', 'slug' => 'chexing-shibei']) ?>">车型识别</a></li>
+            <li><a href="<?= Url::to(['/page/info', 'slug' => 'chexing-shibei']) ?>">高空车型介绍</a></li>
             <li class="line">|</li>
-            <li><a href="<?= Url::to(['/calendar/index']) ?>">搬家吉日</a></li>
+            <li><a href="<?= Url::to(['/calendar/index']) ?>">查询黄历</a></li>
         </ul>
     </div>
 </div>

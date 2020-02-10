@@ -13,7 +13,7 @@ use yii\widgets\ListView;
     'layout' => "{items}",
     'dataProvider' => $dataProvider,
     'summary' => '',//分页概要
-    'showOnEmpty' => true,
+    'showOnEmpty' => false,
     'emptyText' => '没有任何内容。',
     'emptyTextOptions' => ['class' => 'empty'],
     'options' => ['tag' => false, 'class' => 'list-view'],//整个列表的总class

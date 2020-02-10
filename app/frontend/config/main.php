@@ -115,7 +115,7 @@ $config = [
 
 
 //本地环境下，且在本地启用debug和gii模块
-if (!YII_ENV_TEST) {
+if (YII_DEBUG && !YII_ENV_TEST) {
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [

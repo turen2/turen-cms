@@ -25,48 +25,19 @@ $this->columnModel = $columnModel;
                 'options' => ['class' => 'pagination clearfix'],
                 'tag' => 'ul',
                 'homeLink' => null,
-                'itemTemplate' => "<li>{link}</li>\n",
+                'itemTemplate' => "<li>{link}</li>\n<li>&gt;</li>\n",
                 //'activeItemTemplate' => "<li class=\"active\">{link}</li>\n",
                 'links' => $columnModel->breadcrumbs(['/baike/list'], false),
             ]) ?>
         </div>
 
-        <div class="turen-box s2m clearfix">
-            <div class="sidebox">
-                <?= $this->render('/common/_sidebox_flow') ?>
-
-                <?= SideBoxListWidget::widget([
-                    'style' => 'gen',
-                    'title' => '百科推荐',
-                    'htmlClass' => 'baike-article-list',
-                    
-                    'columnType' => 'article',
-                    'flagName' => Yii::$app->params['config_face_cn_sidebox_baike_column_flag'],
-                    'columnId' => 	Yii::$app->params['config_face_cn_sidebox_baike_column_id'],//搬家百科
-                    'route' => ['/baike/detail'],
-                ]); ?>
-
-                <?= SideBoxListWidget::widget([
-                    'style' => 'tab',
-                    'htmlClass' => 'about-us',
-                    'columnType' => 'block',
-                    'blockId' => Yii::$app->params['config_face_cn_sidebox_contact_us_block_id'],
-                ]); ?>
-
-                <?= SideLabelListWidget::widget([
-                    'shortColumnClassName' => 'Article',//栏目短类名
-                    'htmlClass' => 'label-sidebox',
-                    'title' => '相关标签',
-                    'listNum' => 10,//最多显示的个数
-                    'route' => ['/tag/list', 'type' => 'article'],
-                ]); ?>
-            </div>
-            <div class="midcontent card">
+        <div class="turen-box m2s clearfix">
+            <div class="midcontent">
                 <?= ListView::widget([
                     'layout' => "<div class=\"turen-sort\">{sorter}</div>\n<div class=\"turen-items\"><ul>{items}</ul></div>\n<div class=\"pagination-box clearfix\">{pager}</div>",
                     'dataProvider' => $dataProvider,
                     'summary' => '',//分页概要
-                    'showOnEmpty' => true,
+                    'showOnEmpty' => false,
                     'emptyText' => '没有任何内容。',
                     'emptyTextOptions' => ['class' => 'empty'],
                     'options' => ['tag' => false, 'class' => 'list-view'],//整个列表的总class
@@ -100,6 +71,35 @@ $this->columnModel = $columnModel;
                         'nextPageLabel' => '下页',
                     ],
                 ]) ?>
+            </div>
+            <div class="sidebox">
+                <?= $this->render('/common/_sidebox_flow') ?>
+
+                <?= SideBoxListWidget::widget([
+                    'style' => 'gen',
+                    'title' => '百科推荐',
+                    'htmlClass' => 'baike-article-list',
+
+                    'columnType' => 'article',
+                    'flagName' => Yii::$app->params['config_face_cn_sidebox_baike_column_flag'],
+                    'columnId' => 	Yii::$app->params['config_face_cn_sidebox_baike_column_id'],//高空车租赁百科
+                    'route' => ['/baike/detail'],
+                ]); ?>
+
+                <?= SideBoxListWidget::widget([
+                    'style' => 'tab',
+                    'htmlClass' => 'about-us',
+                    'columnType' => 'block',
+                    'blockId' => Yii::$app->params['config_face_cn_sidebox_contact_us_block_id'],
+                ]); ?>
+
+                <?= SideLabelListWidget::widget([
+                    'shortColumnClassName' => 'Article',//栏目短类名
+                    'htmlClass' => 'label-sidebox',
+                    'title' => '相关标签',
+                    'listNum' => 10,//最多显示的个数
+                    'route' => ['/tag/list', 'type' => 'article'],
+                ]); ?>
             </div>
         </div>
     </div>

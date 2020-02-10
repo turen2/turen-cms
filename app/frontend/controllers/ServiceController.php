@@ -6,27 +6,48 @@
  */
 namespace app\controllers;
 
+use Yii;
 use common\models\com\VerifyConsultForm;
 use common\models\shop\Product;
-use yii\filters\VerbFilter;
+use common\models\shop\ProductSearch;
 use yii\web\NotFoundHttpException;
+use app\behaviors\PlusViewBehavior;
+use common\models\cms\Column;
 
 class ServiceController extends \app\components\Controller
 {
-    /**
-     * @inheritdoc
-     * 强制使用post进行删除操作，post受csrf保护
-     */
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::class,
-                'actions' => [
-                    'consult' => ['POST'],
-                ],
-            ],
+            'plusView' => [
+                'class' => PlusViewBehavior::class,
+                'modelClass' => Product::class,
+                'slug' => Yii::$app->getRequest()->get('slug'),
+                'field' => 'hits',
+            ]
         ];
+    }
+
+    /**
+     * 服务列表
+     * @return string
+     * @throws NotFoundHttpException
+     */
+    public function actionList()
+    {
+        $searchModel = new ProductSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, Yii::$app->params['config_face_cn_product_column_id']);
+        $columnModel = Column::findOne(['id' => Yii::$app->params['config_face_cn_product_column_id']]);
+
+        if($columnModel) {
+            return $this->render('list', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+                'columnModel' => $columnModel,
+            ]);
+        } else {
+            throw new NotFoundHttpException('请求页面不存在！');
+        }
     }
 
     /**
@@ -70,8 +91,6 @@ class ServiceController extends \app\components\Controller
      */
     public function actionConsult()
     {
-
-
         return $this->asJson([
             'state' => true,
             'code' => '200',
@@ -81,7 +100,7 @@ class ServiceController extends \app\components\Controller
 
     protected function findModel($slug)
     {
-        $model = Product::find()->active()->where(['slug' => $slug])->one();
+        $model = Product::find()->active()->andWhere(['slug' => $slug])->one();
         if (!is_null($model)) {
             return $model;
         } else {

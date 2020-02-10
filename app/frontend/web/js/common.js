@@ -366,19 +366,23 @@ turen.user = (function($) {
             }
 
             if(!hasError) {
-                var url = $(_this).attr('action');
-                var type = $(_this).attr('method');
-                var data = $(_this).find('input').serializeArray();
-                var _this = $(_this);
-                var callback = function(res, _this) {
-                    if(res.state) {
-                        layer.closeAll();
-                        $.notify(res.msg, 'success');
-                    } else {
-                        $.notify(res.msg, 'error');
+                var settings = {
+                    url: $(_this).attr('action'),
+                    type: $(_this).attr('method'),
+                    dataType: 'json',
+                    data: $(_this).find('input').serializeArray(),
+                    cache: false,
+                    _this: $(_this),
+                    callback: function(res, _this) {
+                        if(res.state) {
+                            layer.closeAll();
+                            $.notify(res.msg, 'success');
+                        } else {
+                            $.notify(res.msg, 'error');
+                        }
                     }
                 };
-                commonRemote(url, data, callback, $(_this), type);
+                commonRemote(settings);
             }
 
             return false;
@@ -427,19 +431,23 @@ turen.user = (function($) {
             }
 
             if(!hasError) {
-                var url = $(_this).attr('action');
-                var type = $(_this).attr('method');
-                var data = $(_this).find('input').serializeArray();
-                var _this = $(_this);
-                var callback = function(res, _this) {
-                    if(res.state) {
-                        layer.closeAll();
-                        $.notify(res.msg, 'success');
-                    } else {
-                        $.notify(res.msg, 'error');
+                var settings = {
+                    url: $(_this).attr('action'),
+                    type: $(_this).attr('method'),
+                    dataType: 'json',
+                    data: $(_this).find('input').serializeArray(),
+                    cache: false,
+                    _this: $(_this),
+                    callback: function(res, _this) {
+                        if(res.state) {
+                            layer.closeAll();
+                            $.notify(res.msg, 'success');
+                        } else {
+                            $.notify(res.msg, 'error');
+                        }
                     }
                 };
-                commonRemote(url, data, callback, $(_this), type);
+                commonRemote(settings);
             }
 
             return false;
@@ -488,19 +496,23 @@ turen.user = (function($) {
             }
 
             if(!hasError) {
-                var url = $(_this).attr('action');
-                var type = $(_this).attr('method');
-                var data = $(_this).find('input').serializeArray();
-                var _this = $(_this);
-                var callback = function(res, _this) {
-                    if(res.state) {
-                        layer.closeAll();
-                        $.notify(res.msg, 'success');
-                    } else {
-                        $.notify(res.msg, 'error');
+                var settings = {
+                    url: $(_this).attr('action'),
+                    type: $(_this).attr('method'),
+                    dataType: 'json',
+                    data: $(_this).find('input').serializeArray(),
+                    cache: false,
+                    _this: $(_this),
+                    callback: function(res, _this) {
+                        if(res.state) {
+                            layer.closeAll();
+                            $.notify(res.msg, 'success');
+                        } else {
+                            $.notify(res.msg, 'error');
+                        }
                     }
                 };
-                commonRemote(url, data, callback, $(_this), type);
+                commonRemote(settings);
             }
 
             return false;
@@ -547,20 +559,25 @@ turen.user = (function($) {
                 phoneCodeBtnStatus = 0;
                 _this.html( + curCount1 + "秒再获取");
 
-                var url = _this.data('url');
-                var type = 'GET';
-                var data = {phone: phone.val(), signTemplate: 'update_code'};
-                var callback = function(res, _this) {
-                    if(res.state) {
-                        _this.parents('form').find('input[name="SafeForm[phoneCode]"]').focus();
-                        $.notify(res.msg, 'success');
-                    } else {
-                        $.notify(res.msg, 'error');
-                        phoneCodeBtnStatus = 1;//启用按钮
-                        _this.html("重新发送");
+                var settings = {
+                    url: _this.data('url'),
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {phone: phone.val(), signTemplate: 'update_code'},
+                    cache: false,
+                    _this: _this,
+                    callback: function(res, _this) {
+                        if(res.state) {
+                            _this.parents('form').find('input[name="SafeForm[phoneCode]"]').focus();
+                            $.notify(res.msg, 'success');
+                        } else {
+                            $.notify(res.msg, 'error');
+                            phoneCodeBtnStatus = 1;//启用按钮
+                            _this.html("重新发送");
+                        }
                     }
                 };
-                commonRemote(url, data, callback, _this, type);
+                commonRemote(settings);
 
                 InterValObj1 = window.setInterval(function() {
                     if (curCount1 == 0) {
@@ -618,20 +635,25 @@ turen.user = (function($) {
                 emailCodeBtnStatus = 0;
                 _this.html( + curCount1 + "秒再获取");
 
-                var url = _this.data('url');
-                var type = 'GET';
-                var data = {email: email.val()};
-                var callback = function(res, _this) {
-                    if(res.state) {
-                        _this.parents('form').find('input[name="SafeForm[emailCode]"]').focus();
-                        $.notify(res.msg, 'success');
-                    } else {
-                        $.notify(res.msg, 'error');
-                        emailCodeBtnStatus = 1;//启用按钮
-                        _this.html("重新发送");
+                var settings = {
+                    url: _this.data('url'),
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {email: email.val()},
+                    cache: false,
+                    _this: _this,
+                    callback: function(res, _this) {
+                        if(res.state) {
+                            _this.parents('form').find('input[name="SafeForm[emailCode]"]').focus();
+                            $.notify(res.msg, 'success');
+                        } else {
+                            $.notify(res.msg, 'error');
+                            emailCodeBtnStatus = 1;//启用按钮
+                            _this.html("重新发送");
+                        }
                     }
                 };
-                commonRemote(url, data, callback, _this, type);
+                commonRemote(settings);
 
                 InterValObj1 = window.setInterval(function() {
                     if (curCount1 == 0) {
@@ -654,28 +676,33 @@ turen.user = (function($) {
     var emailCodeBtnStatus = 1;//邮件证码发送按钮状态，可用
 
     // 私有方法
-    function commonRemote(url ,data, callback, _this, type = 'POST') {
-        data[csrfParam] = csrfToken;
-        $.ajax({
-            url: url,
-            type: type,
+    function commonRemote(settings) {
+        var defaultSetting = {
+            url: null,
+            type: 'POST',
             dataType: 'json',
-            context: _this,
+            data: null,
             cache: false,
-            data: data,
+            callback: null,
+            _this: null
+        };
+        $.extend(defaultSetting, settings);
+        var _this = defaultSetting._this;
+        //data[csrfParam] = csrfToken;
+
+        $.ajax({
+            url: defaultSetting.url,
+            type: defaultSetting.type,
+            dataType: defaultSetting.dataType,
+            context: defaultSetting._this,
+            cache: defaultSetting.cache,
+            data: defaultSetting.data,
             error: function(XMLHttpRequest, textStatus, errorThrown) {
-                //console.log(XMLHttpRequest);
-                //console.log(textStatus);
-                //console.log(errorThrown);
                 $.notify(XMLHttpRequest.responseText, 'error');
             },
             success: function(res) {
-                if (res['state']) {
-                    if(callback) {
-                        callback(res, _this);
-                    }
-                } else {
-                    $.notify(res['msg'], 'warn');
+                if(defaultSetting.callback) {
+                    defaultSetting.callback(res, _this);
                 }
             }
         });

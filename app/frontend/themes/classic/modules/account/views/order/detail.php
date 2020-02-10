@@ -40,13 +40,5 @@ use yii\helpers\Json;
             <td width="25%">创建时间</td>
             <td width="75%"><?= Yii::$app->getFormatter()->asDatetime($model->ui_submit_time) ?></td>
         </tr>
-        <tr>
-            <td width="25%">服务状态</td>
-            <td width="75%"><?= $model->getStateName() ?></td>
-        </tr>
-        <tr>
-            <td width="25%">客服回复</td>
-            <td width="75%"><?= $model->ui_answer ?></td>
-        </tr>
     </tbody>
 </table>

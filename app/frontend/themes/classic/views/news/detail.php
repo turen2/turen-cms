@@ -9,7 +9,10 @@
 $this->currentModel = $model;
 
 use app\widgets\ContentMoreWidget;
+use common\models\cms\Article;
 use common\models\cms\Column;
+use common\tools\like\LikeWidget;
+use common\tools\share\ShareWidget;
 use yii\helpers\Html;
 use yii\helpers\StringHelper;
 use yii\helpers\Url;
@@ -20,7 +23,7 @@ use app\widgets\SideLabelListWidget;
 $dlength = 90;
 ?>
 
-<div class="baike-detail">
+<div class="news-detail">
     <div class="container">
         <div class="breadcrumb-box clearfix">
             <span class="location"><b>当前位置：</b></span>
@@ -31,7 +34,7 @@ $dlength = 90;
                 'homeLink' => null,
                 'itemTemplate' => "<li>{link}</li>\n",
                 //'activeItemTemplate' => "<li class=\"active\">{link}</li>\n",
-                'links' => Column::ModelBreadcrumbs($model, ['/news/list'], false),
+                'links' => Column::ModelBreadcrumbs($model, ['/news/list'], false, 2),
             ]) ?>
         </div>
         <div class="turen-box m2s clearfix">
@@ -51,10 +54,14 @@ $dlength = 90;
                                 <li><span>发布人：</span><?= $model->author ?></li>
                                 <li><span>浏览数：</span><?= $model->hits ?></li>
                             </ul>
-                            <a href="">
-                                <span><img src="https://statics.zxzhijia.com/zxzj2017/new2018/images/star.png"/></span>
-                                <b>收藏</b>
-                            </a>
+                            <?= LikeWidget::widget([
+                                'modelClass' => Article::class,
+                                'modelId' => $model->id,
+                                'upName' => '赞',
+                                'downName' => '踩',
+                                'followName' => false,
+                                'route' => ['/news/like'],
+                            ]); ?>
                         </div>
                     </div>
                     <div class="detail-digest">
@@ -74,27 +81,13 @@ $dlength = 90;
                     </div>
                     <div class="detail-content">
                         <?= $model->content; ?>
+                        <?= ShareWidget::widget([
+                            'title' => '分享至：',
+                            'images' => $model->picurl?[Yii::$app->aliyunoss->getObjectUrl($model->picurl, true)]:[]
+                        ]);
+                        ?>
                     </div>
                     <div class="detail-main">
-                        <dl>
-                            <dt>
-                                <div class="fenxiang">
-                                    <div class="fenxiang_1">
-                                        <div class="bdsharebuttonbox bdshare-button-style0-16" data-bd-bind="1547005450752">
-                                            <a href="#" class="bds_more" data-cmd="more"></a>
-                                            <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
-                                            <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-                                            <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
-                                            <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
-                                            <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </dt>
-                            <dd>
-                                <a href="javascript:void(0)" id="dianzan"><span></span><b id="currdz">1</b></a>
-                            </dd>
-                        </dl>
                         <ul>
                             <li>
                                 <?php  if($prevModel) { ?>
@@ -111,14 +104,14 @@ $dlength = 90;
                             </li>
                             <li style="float: right;">
                                 <?php  if($nextModel) { ?>
-                                    <a href="<?= Url::to(['/news/detail', 'slug' => $nextModel->slug]) ?>">
-                                        <span class="ap8"></span>
-                                        <b>上一篇：<?= $nextModel->title ?></b>
+                                    <a style="float: right;" href="<?= Url::to(['/news/detail', 'slug' => $nextModel->slug]) ?>">
+                                        <span class="ap9"></span>
+                                        <b>下一篇：<?= $nextModel->title ?></b>
                                     </a>
                                 <?php } else { ?>
-                                    <a href="javascript:;">
-                                        <span class="ap8"></span>
-                                        <b>上一篇：没有了</b>
+                                    <a style="float: right;" href="javascript:;">
+                                        <span class="ap9"></span>
+                                        <b>下一篇：没有了</b>
                                     </a>
                                 <?php } ?>
                             </li>
@@ -142,45 +135,35 @@ $dlength = 90;
                         'htmlClass' => 'detail-add',
                         'columnType' => 'article',
                         'columnId' => $model->columnid,
-                        'flagName' => Yii::$app->params['config_face_cn_sidebox_current_article_column_flag'],
+                        'flagName' => '相关',
                         'listNum' => 6,
-                        'route' => ['/baike/detail'],
+                        'route' => ['/news/detail'],
                     ]); ?>
                 </div>
 
             </div>
             <div class="sidebox">
-                <?= SideBoxListWidget::widget([
-                    'style' => 'gen',
-                    'title' => '现场案例',
-                    'htmlClass' => 'case-photo-list',
-                    'moreLink' => Url::to(['/case/list']),
-
-                    'columnType' => 'photo',
-                    'flagName' => Yii::$app->params['config_face_cn_sidebox_current_photo_column_flag'],
-                    'columnId' => 	76,//现场案例
-                    'listNum' => 6,
-                    'route' => ['/case/detail'],
-                ]); ?>
+                <?= $this->render('/common/_sidebox_share', ['title' => '好文分享', 'images' => [Yii::$app->aliyunoss->getObjectUrl($model->picurl, true)]]) ?>
 
                 <?= SideBoxListWidget::widget([
                     'style' => 'gen',
-                    'title' => '咨询推荐',
-                    'htmlClass' => 'news-detail-article',
+                    'title' => '相关推荐',
+                    'htmlClass' => 'news-article-list',
                     'moreLink' => Url::to(['/news/list']),
 
                     'columnType' => 'article',
+                    'flagName' => Yii::$app->params['config_face_cn_sidebox_current_article_column_flag'],
                     'columnId' => $model->columnid,
                     'listNum' => 6,
                     'route' => ['/news/detail'],
                 ]); ?>
 
                 <?= SideLabelListWidget::widget([
-                    'shortColumnClassName' => 'Photo',//栏目短类名
-                    'htmlClass' => '',
+                    'shortColumnClassName' => 'Article',//栏目短类名
+                    'htmlClass' => 'news-article-label',
                     'title' => '相关标签',
                     'listNum' => 10,//最多显示的个数
-                    'route' => ['/tag/list', 'type' => 'photo'],
+                    'route' => ['/tag/list', 'type' => 'article'],
                 ]); ?>
             </div>
         </div>

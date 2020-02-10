@@ -8,9 +8,7 @@
 use app\assets\DatetimePickerAsset;
 use app\assets\PinAsset;
 use app\assets\Swiper2Asset;
-use app\widgets\cascade\CascadeWidget;
 use common\helpers\ImageHelper;
-use yii\helpers\Html;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
@@ -41,42 +39,6 @@ $('.service-top-slide .arrow-right').on('click', function(e){
     e.preventDefault();
     swiper.swipeNext();
 });
-$(".service-nav").pin({
-      padding: {top: 100}
-});
-$('#sidebox-jijia').pin({
-    padding: {top: 100}
-});
-$('.service-nav li').on('click', function() {
-    $('.service-nav li').removeClass('on').eq($(this).index()).addClass('on');
-});
-
-//日期选择
-$.datetimepicker.setLocale('ch');
-$('.call-time input').datetimepicker({
-    'elem':'.call-time input',
-    'format':'Y年m月d日 H:i',
-    'allowTimes':[
-        '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'
-    ]
-});
-
-//初始化label
-$('.call-number input:checked').each(function() {
-    $(this).parent().addClass('on');
-});
-$('.call-number input').on('click', function() {
-    $('.call-number input').parent().removeClass('on');
-    $(this).parent().addClass('on');
-    //console.log($(this).val());
-});
-
-//
-
-//测试
-//$(window).scroll(function() {
-//    console.log($('.service-slide-box').offset().top);
-//});
 EOF;
 $this->registerJs($js);
 //var_dump($curModel->attributes);exit;
@@ -93,7 +55,7 @@ $this->registerJs($js);
                 <?php foreach ($models as $index => $model) { ?>
                     <div class="swiper-slide">
                         <a class="service-link<?= ($model->id == $curModel->id)?' on':'' ?> br5" href="<?= Url::to(['service/detail', 'slug' => $model->slug]) ?>">
-                            <img height="120px" title="<?= $model->title ?>" src="<?= empty($model->picurl)?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($model->picurl, true) ?>" />
+                            <img height="114px" title="<?= $model->title ?>" src="<?= empty($model->picurl)?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($model->picurl, true) ?>" />
                             <span class="link-txt"><?= $model->title ?></span>
                         </a>
                     </div>
@@ -125,15 +87,19 @@ $this->registerJs($js);
                     <?= $curModel->diyfield_service_price ?>
                 </div>
             </div>
+            <?php /*
             <div class="item card last">
                 <div class="title"><span>服务详情<b></b><em id="详情" name="详情"></em></span></div>
                 <div class="infotxt">
-                    <?= $curModel->content ?>
+                    // echo $curModel->content
                 </div>
             </div>
+            */ ?>
         </div>
     </div>
     <div class="form">
-        <?= $this->render('/common/_sidebox_free_jia', ['slug' => $slug]) ?>
+        <?= $this->render('/common/_sidebox_share', ['title' => '好文分享', 'images' => [Yii::$app->aliyunoss->getObjectUrl($curModel->picurl, true)]]) ?>
+        <?= $this->render('/common/_sidebox_flow') ?>
+        <?php // echo $this->render('/common/_sidebox_free_jia', ['slug' => $slug]) ?>
     </div>
 </div>

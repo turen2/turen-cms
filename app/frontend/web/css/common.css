@@ -537,7 +537,7 @@ input:focus
 
 .head-bottom .logo img {
     vertical-align: top;
-    height: 56px;
+    height: 53px;
 }
 
 .head-bottom .nav li {
@@ -545,7 +545,7 @@ input:focus
     float: left;
     font-size: 16px;
     line-height: 78px;
-    margin-right: 50px;
+    margin-right: 45px;
 }
 
 .head-bottom .nav li a {
@@ -758,14 +758,11 @@ input:focus
 .footer .inner-block .designer-recom a {
     display: block;
     float: left;
-    width: 63px;
-    height: 63px;
-    border: 5px solid #999;
     overflow: hidden;
-    margin: 0 5px 5px 0;
+    margin: 0 14px 8px 0;
 }
 .footer .inner-block .designer-recom img {
-    width: 53px;
+    height: 50px;
 }
 .footer .inner-block ul {
     list-style: none;
@@ -1248,3 +1245,13 @@ body .notifyjs-corner {
     padding: 10px 30px;
 }
 /* 全局问题反馈end */
+
+/* 分享 */
+.share-btns {
+    margin-top: 20px;
+}
+.share-btns .wechat-qrcode p {
+    font-size: 12px;
+    text-indent: 0;
+}
+/* 分享end */

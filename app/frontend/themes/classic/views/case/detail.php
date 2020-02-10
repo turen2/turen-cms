@@ -6,21 +6,29 @@
  */
 
 use app\assets\Swiper2Asset;
+use app\widgets\ContentMoreWidget;
 use app\widgets\SideBoxListWidget;
 use app\widgets\SideLabelListWidget;
+use common\models\cms\Photo;
+use common\tools\like\LikeWidget;
+use common\tools\share\ShareWidget;
 use yii\helpers\Html;
+use yii\helpers\StringHelper;
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 use common\models\cms\Column;
 
 $this->currentModel = $model;
 
+$dlength = 90;
+
 Swiper2Asset::register($this);
 $js = <<<EOF
 var caseDetailSwiper = new Swiper('.detail-photo-list .swiper-container', {
     pagination: '.detail-photo-list .swiper-container .pagination',
+    loop: true, // 循环
     autoplay: true,
-    autoplay: 3500,//自动播放且间隔为3秒
+    autoplay: 2000,//自动播放且间隔为3秒
     paginationClickable: true,
     slidesPerView: 'auto'
 });
@@ -35,6 +43,7 @@ $('.detail-photo-list .arrow-right').on('click', function(e){
 EOF;
 $this->registerJs($js);
 ?>
+
 <div class="case-detail">
     <div class="container">
         <div class="breadcrumb-box clearfix">
@@ -46,12 +55,12 @@ $this->registerJs($js);
                 'homeLink' => null,
                 'itemTemplate' => "<li>{link}</li>\n",
                 //'activeItemTemplate' => "<li class=\"active\">{link}</li>\n",
-                'links' => Column::ModelBreadcrumbs($model, ['/case/list'], false),
+                'links' => Column::ModelBreadcrumbs($model, ['/case/list'], false, 1),
             ]) ?>
         </div>
         <div class="turen-box m2s clearfix">
-            <div class="midcontent card">
-                <div class="detail-text">
+            <div class="midcontent">
+                <div class="detail-text card">
                     <div class="detail-title">
                         <?= Html::tag('h3', $model->title) ?>
                         <div class="detail-date">
@@ -60,10 +69,30 @@ $this->registerJs($js);
                                 <li><span>发布人：</span><?= $model->author ?></li>
                                 <li><span>浏览数：</span><?= $model->hits ?></li>
                             </ul>
-                            <a href="">
-                                <span><img src="https://statics.zxzhijia.com/zxzj2017/new2018/images/star.png"/></span>
-                                <b>收藏</b>
-                            </a>
+                            <?= LikeWidget::widget([
+                                'modelClass' => Photo::class,
+                                'modelId' => $model->id,
+                                'upName' => '赞',
+                                'downName' => '踩',
+                                'followName' => false,
+                                'route' => ['/case/like'],
+                            ]); ?>
+                        </div>
+                    </div>
+
+                    <div class="detail-digest">
+                        <div class="detail-digest-line">
+                            <p>
+                                <?php
+                                if(empty($model->description)) {
+                                    $des = $model->content;//去除图片链接
+                                } else {
+                                    $des = $model->description;
+                                }
+                                echo StringHelper::truncate(strip_tags($des), $dlength);
+                                ?>
+                            </p>
+                            <span>摘要<i></i></span>
                         </div>
                     </div>
 
@@ -76,7 +105,7 @@ $this->registerJs($js);
                             <div class="swiper-wrapper">
                                 <?php foreach ($imgs as $index => $img) { ?>
                                 <div class="swiper-slide red-slide">
-                                    <img height="350px" src="<?= empty($img['pic'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($img['pic'], true) ?>" />
+                                    <img height="500px" alt="<?= $img['txt'] ?>" title="<?= $img['txt'] ?>" src="<?= empty($img['pic'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl($img['pic'], true) ?>" />
                                 </div>
                                 <?php } ?>
                             </div>
@@ -87,27 +116,19 @@ $this->registerJs($js);
 
                     <div class="detail-content">
                         <?= $model->content; ?>
+                        <?php
+                        $imgs = $model->picList();
+                        $images = [];
+                        foreach ($imgs as $img) {
+                            $images[] = Yii::$app->aliyunoss->getObjectUrl($img['pic'], true);
+                        }
+                        echo ShareWidget::widget([
+                            'title' => '分享至：',
+                            'images' => $images
+                        ]);
+                        ?>
                     </div>
                     <div class="detail-main">
-                        <dl>
-                            <dt>
-                                <div class="fenxiang">
-                                    <div class="fenxiang_1">
-                                        <div class="bdsharebuttonbox bdshare-button-style0-16" data-bd-bind="1547005450752">
-                                            <a href="#" class="bds_more" data-cmd="more"></a>
-                                            <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
-                                            <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-                                            <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
-                                            <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
-                                            <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </dt>
-                            <dd>
-                                <a href="javascript:void(0)" id="dianzan"><span></span><b id="currdz">1</b></a>
-                            </dd>
-                        </dl>
                         <ul>
                             <li>
                                 <?php  if($prevModel) { ?>
@@ -124,37 +145,46 @@ $this->registerJs($js);
                             </li>
                             <li style="float: right;">
                                 <?php  if($nextModel) { ?>
-                                    <a href="<?= Url::to(['/case/detail', 'slug' => $nextModel->slug]) ?>">
-                                        <span class="ap8"></span>
-                                        <b>上一篇：<?= $nextModel->title ?></b>
+                                    <a style="float: right;" href="<?= Url::to(['/case/detail', 'slug' => $nextModel->slug]) ?>">
+                                        <span class="ap9"></span>
+                                        <b>下一篇：<?= $nextModel->title ?></b>
                                     </a>
                                 <?php } else { ?>
                                     <a href="javascript:;">
-                                        <span class="ap8"></span>
-                                        <b>上一篇：没有了</b>
+                                        <span class="ap9"></span>
+                                        <b>下一篇：没有了</b>
                                     </a>
                                 <?php } ?>
                             </li>
                         </ul>
                     </div>
                 </div>
+
+                <div class="detail-more">
+                    <?= ContentMoreWidget::widget([
+                        'title' => '看过此案例还看过',
+                        'htmlClass' => '',
+                        'columnType' => 'photo',
+                        'columnId' => $model->columnid,
+                        'flagName' => '还看',
+                        'listNum' => 6,
+                        'route' => ['/case/detail'],
+                    ]); ?>
+
+                    <?= ContentMoreWidget::widget([
+                        'title' => '相关阅读',
+                        'htmlClass' => 'detail-add',
+                        'columnType' => 'photo',
+                        'columnId' => $model->columnid,
+                        'flagName' => '相关',
+                        'listNum' => 6,
+                        'route' => ['/case/detail'],
+                    ]); ?>
+                </div>
+
             </div>
 
             <div class="sidebox">
-                <div class="tab-sidebox card">
-                    <div class="tab-sidebox-title">
-                        <h3>搬家费用测算</h3>
-                    </div>
-                    <div class="tab-sidebox-content">
-                        <div class="sidebox-block test-price">
-                            <p>//http://www.365azw.com/share/jiancai</p>
-                            <p>测试</p>
-                            <p>测试</p>
-                            <p>测试</p>
-                        </div>
-                    </div>
-                </div>
-
                 <?= SideBoxListWidget::widget([
                     'style' => 'tab',
                     'htmlClass' => 'about-us',

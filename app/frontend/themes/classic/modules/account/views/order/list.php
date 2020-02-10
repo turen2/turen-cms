@@ -73,17 +73,8 @@ $this->registerJs($js);
             </div>
             <div class="user-content-body">
                 <ul class="tabs">
-                    <li class="<?= empty($searchModel->ui_state)?'active':'' ?>">
+                    <li class="active">
                         <a href="<?= Url::current(['state' => null]) ?>">服务单列表</a>
-                    </li>
-                    <li class="<?= ($searchModel->ui_state == Inquiry::INQUIRY_STATE_OK)?'active':'' ?>">
-                        <a href="<?= Url::current(['state' => Inquiry::INQUIRY_STATE_OK]) ?>">已处理</a>
-                    </li>
-                    <li class="<?= ($searchModel->ui_state == Inquiry::INQUIRY_STATE_WAITING)?'active':'' ?>">
-                        <a href="<?= Url::current(['state' => Inquiry::INQUIRY_STATE_WAITING]) ?>">待处理</a>
-                    </li>
-                    <li class="<?= ($searchModel->ui_state == Inquiry::INQUIRY_STATE_NOTHING)?'active':'' ?>">
-                        <a href="<?= Url::current(['state' => Inquiry::INQUIRY_STATE_NOTHING]) ?>">未处理</a>
                     </li>
                 </ul>
                 <div class="table-responsive">
@@ -94,7 +85,6 @@ $this->registerJs($js);
                                 <th width="20%">服务项目</th>
                                 <th><?= $dataProvider->sort->link('ui_service_num', ['label' => '服务单号']) ?></th>
                                 <th><?= $dataProvider->sort->link('ui_submit_time', ['label' => '创建时间']) ?></th>
-                                <th><?= $dataProvider->sort->link('ui_state', ['label' => '状态']) ?></th>
                                 <th style="width:86px">操作</th>
                             </tr>
                         </thead>
@@ -106,9 +96,6 @@ $this->registerJs($js);
                                 <td><?= $model->ui_title ?></td>
                                 <td><?= $model->ui_service_num ?></td>
                                 <td><?= Yii::$app->getFormatter()->asDate($model->ui_submit_time, 'Y-m-d') ?></td>
-                                <td>
-                                    <span class="status status-disabled"><?= $model->getStateName() ?></span>
-                                </td>
                                 <td>
                                     <div class="table-action">
                                         <div class="action-item">

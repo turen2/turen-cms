@@ -11,9 +11,36 @@ use yii\web\NotFoundHttpException;
 use common\models\cms\Article;
 use common\models\cms\Column;
 use common\models\cms\ArticleSearch;
+use common\tools\like\LikeAction;
+use app\behaviors\PlusViewBehavior;
 
 class BaikeController extends \app\components\Controller
 {
+    public function behaviors()
+    {
+        return [
+            'plusView' => [
+                'class' => PlusViewBehavior::class,
+                'modelClass' => Article::class,
+                'slug' => Yii::$app->getRequest()->get('slug'),
+                'field' => 'hits',
+            ]
+        ];
+    }
+
+    public function actions()
+    {
+        return [
+            // 点赞
+            'like' => [
+                'class' => LikeAction::class,
+                'modelClass' => Article::class, // 百科详情
+                'id' => Yii::$app->getRequest()->post('id'),
+                'type' => Yii::$app->getRequest()->post('type'),
+            ]
+        ];
+    }
+
     /**
      * 百科列表
      * @return string

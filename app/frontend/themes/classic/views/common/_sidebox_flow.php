@@ -9,7 +9,7 @@
 ?>
 <div class="manual-sidebox card">
     <div class="manual-sidebox-title">
-        <h3>搬家流程</h3>
+        <h3>作业流程</h3>
     </div>
     <div class="manual-sidebox-tab">
         <ol>

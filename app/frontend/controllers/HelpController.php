@@ -12,6 +12,7 @@ use app\components\Controller;
 use common\models\cms\Article;
 use common\models\cms\Column;
 use yii\web\NotFoundHttpException;
+use common\tools\like\LikeAction;
 
 /**
  * help controller
@@ -27,9 +28,22 @@ class HelpController extends Controller
         Yii::$app->view->hideHeaderTop = true;//隐藏头部
     }
 
+    public function actions()
+    {
+        return [
+            // 点赞
+            'like' => [
+                'class' => LikeAction::class,
+                'modelClass' => Article::class, // 百科详情
+                'id' => Yii::$app->getRequest()->post('id'),
+                'type' => Yii::$app->getRequest()->post('type'),
+            ]
+        ];
+    }
+
     public function actionIndex($slug = null)
     {
-        $models = Article::find()->active()->where(['columnid' => Yii::$app->params['config_face_cn_help_center_column_id']])->orderBy(['orderid' => SORT_DESC])->all();
+        $models = Article::find()->active()->andWhere(['columnid' => Yii::$app->params['config_face_cn_help_center_column_id']])->orderBy(['orderid' => SORT_DESC])->all();
         $currentModel = Article::findOne(['slug' => $slug]);
         $columnModel = Column::findOne(['id' => Yii::$app->params['config_face_cn_help_center_column_id']]);
         if($columnModel || (!is_null($slug) && $currentModel)) {
@@ -42,13 +56,5 @@ class HelpController extends Controller
         } else {
             throw new NotFoundHttpException('请求页面不存在！');
         }
-    }
-
-    public function actionDetail($slug)
-    {
-        $model = null;
-        return $this->render('detail', [
-            'model' => $model,
-        ]);
     }
 }

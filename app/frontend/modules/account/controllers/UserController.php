@@ -27,8 +27,6 @@ use common\models\user\user\BindForm;
  */
 class UserController extends \app\components\Controller
 {
-    const SECURITY_AUTH_KEY = '20190318byjorry';
-
     public function init()
     {
         parent::init();
@@ -130,7 +128,7 @@ class UserController extends \app\components\Controller
         $user = User::findOne([$field => $openid]);//查询用户，是否绑定，并登录
         if(empty($user)) {
             //没有用户信息！绑定并注册//且防篡改
-            $this->action->successUrl = Url::to(['user/bind', 'token' => Yii::$app->getSecurity()->hashData(Json::encode($securityData), self::SECURITY_AUTH_KEY)]);
+            $this->action->successUrl = Url::to(['user/bind', 'token' => Yii::$app->getSecurity()->hashData(Json::encode($securityData), Yii::$app->params['config.thirdBindRemark'])]);
         } else {
             //已经绑定的用户，进入此控制器即表示授权完成，直接回调为true即可
             Yii::$app->getUser()->login($user, 30 * 24 * 3600);//30天有效//Yii::$app->params['user.effectivetime']
@@ -173,7 +171,7 @@ class UserController extends \app\components\Controller
             return $this->goHome();
         }
 
-        $data = Yii::$app->security->validateData(urldecode($token), self::SECURITY_AUTH_KEY);
+        $data = Yii::$app->security->validateData(urldecode($token), Yii::$app->params['config.thirdBindRemark']);
         if(empty($data) || !Yii::$app->getSession()->get('_oauth_bind', false)) {
             throw new NotAcceptableHttpException('非法操作请求将不会处理！');
         }

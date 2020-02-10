@@ -46,26 +46,29 @@ if($blockModel) {
     				</div>
     			</div>
     			<div class="inner-block second">
-    				<h3>精品业务</h3>
+    				<h3>从业资质</h3>
     				<div class="inner-con designer-recom">
-    					<a href="" class="external" title="家政服务">
-    						<img src="<?= $webUrl ?>images/nav/small-jzfw.png">
+                        <a href="javascript:;" class="external" title="营业执照">
+                            <img src="<?= $webUrl ?>images/zizhi/111.jpg">
+                        </a>
+    					<a href="javascript:;" class="external" title="优秀企业">
+    						<img src="<?= $webUrl ?>images/zizhi/222.jpg">
 						</a>
-    					<a href="" class="external" title="管道疏通">
-    						<img src="<?= $webUrl ?>images/nav/small-gdst.png">
+    					<a href="javascript:;" class="external" title="安全生产">
+    						<img src="<?= $webUrl ?>images/zizhi/333.jpg">
 						</a>
-    					<a href="" class="external" title="环保除虫">
-    						<img src="<?= $webUrl ?>images/nav/small-hbqc.png">
+    					<a href="javascript:;" class="external" title="诚信企业">
+    						<img src="<?= $webUrl ?>images/zizhi/555.jpg">
 						</a>
-    					<a href="" class="external" title="搬家搬运">
-    						<img src="<?= $webUrl ?>images/nav/small-bjby.png">
+    					<a href="javascript:;" class="external" title="资质等级证书">
+    						<img src="<?= $webUrl ?>images/zizhi/666.jpg">
 						</a>
     				</div>
     			</div>
     			<div class="inner-block third">
                     <?php
                     $bottomLinkType = LinkType::findOne(['id' => Yii::$app->params['config_face_cn_bottom_link_type_id']]);
-                    $bottomLinks = Link::find()->current()->where(['link_type_id' => Yii::$app->params['config_face_cn_bottom_link_type_id']])->orderBy(['orderid' => SORT_DESC])->all();
+                    $bottomLinks = Link::find()->current()->active()->where(['link_type_id' => Yii::$app->params['config_face_cn_bottom_link_type_id']])->orderBy(['orderid' => SORT_DESC])->all();
                     ?>
     				<h3><?= is_null($bottomLinkType)?'':$bottomLinkType->typename ?><span class="more-friend-link"><a target="_blank" href="<?= Url::to(['/faqs/index']) ?>" class="external">更多帮助 »</a></span></h3>
     				<ul class="wp-tag-cloud">
@@ -80,7 +83,7 @@ if($blockModel) {
     				<h3>手机版访问</h3>
     				<div class="inner-con">
     					<div class="wap-qrcode">
-                            <img src="<?= empty(Yii::$app->params['config_footer_phone_qr'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl(Yii::$app->params['config_footer_phone_qr'], true) ?>">
+                            <img src="<?= empty(Yii::$app->params['config_mobile_qr'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl(Yii::$app->params['config_mobile_qr'], true) ?>">
                             <p>手机版一扫"掌"握！</p>
     					</div>
     				</div>
@@ -101,30 +104,20 @@ if($blockModel) {
                 }
                 ?>
             </p>
-        	<p class="footer-c">2016-<?= date('Y') ?> <?= Yii::$app->params['config_copyright'] ?> - <?= Yii::$app->params['config_icp_code'] ?> <a target="_blank" href="http://www.turen2.com">技术支持</a> <span><?php echo number_format( (microtime(true) - YII_BEGIN_TIME), 3) . 's'; ?></span></p>
+        	<p class="footer-c">2016-<?= date('Y') ?> ©版权所有：<?= Yii::$app->params['config_copyright'] ?> -
+                <?= Yii::$app->params['config_icp_code'] ?> <a target="_blank" href="http://www.turen2.com">技术支持</a>
+                <span><?php echo number_format( (microtime(true) - YII_BEGIN_TIME), 3) . 's'; ?></span>
+                <img src="<?= $webUrl ?>images/baidu.gif" alt="百度统计" />
+            </p>
         </div>
     </div>
 </div>
 
 <?= $this->render('_fixed_nav') ?>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="call-me">
     <div class="center-box container">
-        <span class="left-part"><img src="<?= $webUrl ?>images/logo.png"></span>
+        <span class="left-part"><img src="<?= empty(Yii::$app->params['config_frontend_logo'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl(Yii::$app->params['config_frontend_logo'], true) ?>"></span>
         <span class="mid-part">仅需3秒钟马上出发，一站式服务！</span>
         <span class="right-part"><i>Customer Hot Line</i><b>400-400-4000</b></span>
         <a href="" id="custon_button1" class="call-btn">立即咨询</a>

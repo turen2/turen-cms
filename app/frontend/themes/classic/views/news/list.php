@@ -15,7 +15,7 @@ use yii\widgets\ListView;
 
 $this->columnModel = $columnModel;
 ?>
-<div class="baike-list">
+<div class="news-list">
     <div class="container">
         <div class="breadcrumb-box clearfix">
             <span class="location"><b>当前位置：</b></span>
@@ -26,46 +26,17 @@ $this->columnModel = $columnModel;
                 'homeLink' => null,
                 'itemTemplate' => "<li>{link}</li>\n",
                 //'activeItemTemplate' => "<li class=\"active\">{link}</li>\n",
-                'links' => $columnModel->breadcrumbs(['/news/list'], false),
+                'links' => $columnModel->breadcrumbs(['/news/list'], false, 1),
             ]) ?>
         </div>
 
-        <div class="turen-box s2m clearfix">
-            <div class="sidebox">
-                <?= $this->render('/common/_sidebox_flow') ?>
-
-                <?= SideBoxListWidget::widget([
-                    'style' => 'gen',
-                    'title' => '新闻推荐',
-                    'htmlClass' => 'news-article-list',
-                    
-                    'columnType' => 'article',
-                    'flagName' => Yii::$app->params['config_face_cn_sidebox_current_article_column_flag'],
-                    'columnId' => $columnModel->id,//当前的栏目
-                    'route' => ['/news/detail'],
-                ]); ?>
-
-                <?= SideBoxListWidget::widget([
-                    'style' => 'tab',
-                    'htmlClass' => 'about-us',
-                    'columnType' => 'block',
-                    'blockId' => Yii::$app->params['config_face_cn_sidebox_contact_us_block_id'],
-                ]); ?>
-
-                <?= SideLabelListWidget::widget([
-                    'shortColumnClassName' => 'Article',//栏目短类名
-                    'htmlClass' => 'label-sidebox',
-                    'title' => '相关标签',
-                    'listNum' => 10,//最多显示的个数
-                    'route' => ['/tag/list', 'type' => 'article'],
-                ]); ?>
-            </div>
-            <div class="midcontent card">
+        <div class="turen-box m2s clearfix">
+            <div class="midcontent">
                 <?= ListView::widget([
                     'layout' => "<div class=\"turen-sort\">{sorter}</div>\n<div class=\"turen-items\"><ul>{items}</ul></div>\n<div class=\"pagination-box clearfix\">{pager}</div>",
                     'dataProvider' => $dataProvider,
                     'summary' => '',//分页概要
-                    'showOnEmpty' => true,
+                    'showOnEmpty' => false,
                     'emptyText' => '没有任何内容。',
                     'emptyTextOptions' => ['class' => 'empty'],
                     'options' => ['tag' => false, 'class' => 'list-view'],//整个列表的总class
@@ -99,6 +70,33 @@ $this->columnModel = $columnModel;
                         'nextPageLabel' => '下页',
                     ],
                 ]) ?>
+            </div>
+            <div class="sidebox">
+                <?= SideBoxListWidget::widget([
+                    'style' => 'tab',
+                    'htmlClass' => 'about-us',
+                    'columnType' => 'block',
+                    'blockId' => Yii::$app->params['config_face_cn_sidebox_contact_us_block_id'],
+                ]); ?>
+
+                <?= SideBoxListWidget::widget([
+                    'style' => 'gen',
+                    'title' => '相关推荐',
+                    'htmlClass' => 'news-article-list',
+
+                    'columnType' => 'article',
+                    'flagName' => Yii::$app->params['config_face_cn_sidebox_current_article_column_flag'],
+                    'columnId' => $columnModel->id,//当前的栏目
+                    'route' => ['/news/detail'],
+                ]); ?>
+
+                <?= SideLabelListWidget::widget([
+                    'shortColumnClassName' => 'Article',//栏目短类名
+                    'htmlClass' => 'label-sidebox',
+                    'title' => '相关标签',
+                    'listNum' => 10,//最多显示的个数
+                    'route' => ['/tag/list', 'type' => 'article'],
+                ]); ?>
             </div>
         </div>
     </div>

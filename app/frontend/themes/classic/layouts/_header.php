@@ -67,11 +67,11 @@ $this->registerJs($js);
                     </div>
                 </li>
                 <li class="line">|</li>
-                <li><a href="<?= Url::to(['/faqs/index']) ?>">常见问题</a></li>
+                <li><a href="<?= Url::to(['/faqs/index']) ?>">常见问答</a></li>
                 <li class="line">|</li>
-                <li><a href="<?= Url::to(['/page/info', 'slug' => 'chexing-shibei']) ?>">车型识别</a></li>
+                <li><a href="<?= Url::to(['/chexing/list']) ?>">高空车型介绍</a></li>
                 <li class="line">|</li>
-                <li><a href="<?= Url::to(['/calendar/index']) ?>">搬家吉日</a></li>
+                <li><a href="<?= Url::to(['/calendar/index']) ?>">查询黄历</a></li>
             </ul>
         </div>
     </div>
@@ -111,7 +111,7 @@ $this->registerJs($js);
                     <a href="javascript:;">
                         <i class="iconfont jia-Phone"></i>
                         <p class="nav-box nav-wap">
-                            <img class="nav-qr" src="<?= empty(Yii::$app->params['config_hedader_phone_qr'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl(Yii::$app->params['config_hedader_phone_qr'], true) ?>">
+                            <img class="nav-qr" src="<?= empty(Yii::$app->params['config_mobile_qr'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl(Yii::$app->params['config_mobile_qr'], true) ?>">
                             <br />
                             <span class="qr-txt">手机版访问</span>
                         </p>
@@ -119,7 +119,7 @@ $this->registerJs($js);
                     <a href="javascript:;" style="display: none;">
                         <img class="wx" src="<?= $webUrl ?>images/common/nav_weixin.png">
                         <p class="nav-box nav-wx">
-                            <img class="nav-qr" src="<?= $webUrl ?>images/qr/qrcode2.png">
+                            <img class="nav-qr" src="<?= empty(Yii::$app->params['config_mobile_qr'])?ImageHelper::getNopic():Yii::$app->aliyunoss->getObjectUrl(Yii::$app->params['config_mobile_qr'], true) ?>">
                             <br />
                             <span class="qr-txt">官方客服</span>
                         </p>
