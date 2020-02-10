@@ -6,7 +6,7 @@ $config = [
         // '@npm'   => '@vendor/npm-asset',
     ],
     'timeZone' => 'Asia/Shanghai',
-    'version' => '1.3.0',
+    'version' => '2.0.0',
     'charset' => 'UTF-8',
     'sourceLanguage' => 'en-US', // 默认源语言
     'language' => 'zh-CN', // 默认当前环境使用的语言
@@ -23,61 +23,65 @@ $config = [
 //        ],
         'db' => [//本地环境
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;port=3306;dbname=turen_cms',
+            'dsn' => 'mysql:host=localhost;dbname=turen_cms',
             'username' => 'root',
             'password' => '123456',
             'charset' => 'utf8',
             'tablePrefix' => 'ss_',//前缀
+            /*
             //Schema
-            //'enableSchemaCache' => true,
-            //'schemaCacheDuration' => 3600,
-            //'schemaCache' => 'cache',//指定存储对象
+            'enableSchemaCache' => true,
+            'schemaCacheDuration' => 3600,
+            'schemaCache' => 'cache',//指定存储对象
             //Query
-            //'enableQueryCache' => true,
-            //'queryCacheDuration' => 3600,
-            //'queryCache' => 'cache',//指定存储对象
+            'enableQueryCache' => true,
+            'queryCacheDuration' => 3600,
+            'queryCache' => 'cache',//指定存储对象
+            */
         ],
         'aliyunoss' => [//阿里云oss开放存储
             'class' => 'common\components\AliyunOss',
-            'bucket' => 'turen2test',
+            'bucket' => 'yaqiao',
             'isCName' => false,
-            'endpoint' => 'oss-cn-shenzhen.aliyuncs.com',
+            'endpoint' => 'oss-cn-shenzhen.aliyuncs.com', // 'oss-cn-shenzhen-internal.aliyuncs.com' 这个只读，不上传，省流量
             'useHttps' => false,
-            'customDomain' => 'img001.turen2.com',//绑定自有域名
-            'accessKeyId' => 'LTAIid2l0hYWyDcj',
-            'accessKeySecret' => '2kHONrmGmyMaXaZFLuXOIjWZtkBZIq',
+            'customDomain' => 'img888.hbyaqiao.com',//绑定自有域名
+            'accessKeyId' => 'LTAI4FivqoLXtfGo4YSJK1FB',
+            'accessKeySecret' => 'F4Qbtwh6q1rUG8oAaJrbBTaCyvY73b',
         ],
         'sms' => [
             'class' => 'common\components\AliyunSms',
-            'accessKeyId' => 'LTAIid2l0hYWyDcj',
-            'accessKeySecret' => '2kHONrmGmyMaXaZFLuXOIjWZtkBZIq',
-        ],
-        'msg' => [
-            'class' => 'common\components\AliyunMsg',
-            'accessKeyId' => 'LTAIkRLpfMVeKOes',
-            'accessKeySecret' => 'sfLejz73JL9FKOD7ucZa4su7nnHlkK',
-        ],
-        //邮箱队列
-        'mailQueue' => [
-            //'class' => 'yii\queue\file\Queue',//文件类型队列
-            //'path' => '@app/runtime/queue',//文件存储路径
-            'class' => 'yii\queue\db\Queue',//队列类型
-            'channel' => 'queue_mail_channel',//队列通道
-            'db' => 'db',//对接的数据库资源为db库
-            'tableName' => '{{%queue}}', // Table name
-            'mutex' => 'yii\mutex\MysqlMutex',//锁机制
-            'deleteReleased' => false,//清除发布的信息
-            'serializer' => 'yii\queue\serializers\JsonSerializer',//存储格式
-            'ttr' => 10,//重试停留时间
-            'attempts' => 4,//默认重试次数
-            'as log' => 'yii\queue\LogBehavior',//错误日志 默认为 console/runtime/logs/app.log
+            'accessKeyId' => 'LTAI4FivqoLXtfGo4YSJK1FB',
+            'accessKeySecret' => 'F4Qbtwh6q1rUG8oAaJrbBTaCyvY73b',
         ],
         //短信队列
         'smsQueue' => [
             //'class' => 'yii\queue\file\Queue',//文件类型队列
             //'path' => '@app/runtime/queue',//文件存储路径
             'class' => 'yii\queue\db\Queue',//队列类型
-            'channel' => 'queue_sms_channel',//队列通道
+            'channel' => 'sms_channel',//队列通道
+            'db' => 'db',//对接的数据库资源为db库
+            'tableName' => '{{%queue}}', // Table name
+            'mutex' => 'yii\mutex\MysqlMutex',//锁机制
+            'deleteReleased' => false,//清除发布的信息
+            'serializer' => 'yii\queue\serializers\JsonSerializer',//存储格式
+            'ttr' => 10,//重试停留时间
+            'attempts' => 5,//默认重试次数
+            'as log' => 'yii\queue\LogBehavior',//错误日志 默认为 console/runtime/logs/app.log
+        ],
+        /*
+        'msg' => [
+            'class' => 'common\components\AliyunMsg',
+            'accessKeyId' => 'LTAIkRLpfMVeKOes',
+            'accessKeySecret' => 'sfLejz73JL9FKOD7ucZa4su7nnHlkK',
+        ],
+        */
+        //邮箱队列
+        'mailQueue' => [
+            //'class' => 'yii\queue\file\Queue',//文件类型队列
+            //'path' => '@app/runtime/queue',//文件存储路径
+            'class' => 'yii\queue\db\Queue',//队列类型
+            'channel' => 'mail_channel',//队列通道
             'db' => 'db',//对接的数据库资源为db库
             'tableName' => '{{%queue}}', // Table name
             'mutex' => 'yii\mutex\MysqlMutex',//锁机制
@@ -129,9 +133,9 @@ $config = [
             'timeZone' => 'Asia/Shanghai', // 上海时间（app默认也有个时区，被覆盖）
             'defaultTimeZone' => 'UTC', // 使用协调世界时
             'nullDisplay' => 0,//未设置时的默认值
-            'dateFormat' => 'short',
-            'timeFormat' => 'short',
-            'datetimeFormat' => 'short'
+            // 'dateFormat' => 'short',
+            // 'timeFormat' => 'short',
+            // 'datetimeFormat' => 'short'
             // currencyCode
         ],
         /*
@@ -166,8 +170,8 @@ $config = [
                 'qq' => [
                     'class' => 'common\components\oauth\QQAuth',
                     'id' => 'qq',
-                    'clientId' => '101557951',
-                    'clientSecret' => 'fec22b0a14d3ae851ceae97ea4ba5c03',
+                    'clientId' => '101829909',
+                    'clientSecret' => 'a8b43d498b42a53fac485179c98dbc49',
                     /*
                      * 不启动界面对象
                     'viewOptions' => [
@@ -182,8 +186,8 @@ $config = [
                 'weibo' => [
                     'class' => 'common\components\oauth\WeiboAuth',
                     'id' => 'weibo',
-                    'clientId' => '2382137345',
-                    'clientSecret' => 'ab69a142ea74cda9bc87d09b8220ccf3',
+                    'clientId' => '114827712',
+                    'clientSecret' => 'a9e489ad4fedb430d988e20f37fd8e38',
                     /*
                     'viewOptions' => [
                         'widget' => [
@@ -194,11 +198,11 @@ $config = [
                     ],
                     */
                 ],
-                'weixin' => [
-                    'class' => 'common\components\oauth\WeixinAuth',
-                    'id' => 'wx',
-                    'clientId' => '111',
-                    'clientSecret' => '111',
+//                'weixin' => [
+//                    'class' => 'common\components\oauth\WeixinAuth',
+//                    'id' => 'wx',
+//                    'clientId' => '111',
+//                    'clientSecret' => '111',
                     /*
                     'viewOptions' => [
                         'widget' => [
@@ -208,7 +212,7 @@ $config = [
                         'popupHeight' => 400,
                     ],
                     */
-                ],
+//                ],
                 /*
                 'weixin-mp' => [
                     'class' => 'common\components\oauth\WeixinMpAuth',

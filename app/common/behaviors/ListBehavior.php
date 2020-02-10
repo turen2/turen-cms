@@ -10,13 +10,17 @@ use Yii;
 
 class ListBehavior extends \yii\base\Behavior
 {
-    public function columnList($className, $columnId, $listNum = null, $flag = null)
+    public function columnList($className, $columnId, $listNum = null, $flag = null, $torder = null)
     {
         $query = $className::find()->where(['columnid' => $columnId]);
         if(!empty($flag)) {
             $query->andFilterWhere(['like', 'flag', $flag]);
         }
-        $query->orderBy(['orderid' => SORT_DESC]);
+        if($torder) {
+            $query->orderBy(['posttime' => SORT_DESC]);
+        } else {
+            $query->orderBy(['orderid' => SORT_DESC]);
+        }
         if(!empty($listNum)) {
             $query->limit($listNum);
         }

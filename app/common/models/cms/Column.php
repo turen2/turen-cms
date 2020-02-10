@@ -179,31 +179,36 @@ class Column extends \common\components\ActiveRecord
     /**
      * 栏目列表的面包屑数据
      * @param array $route
-     * @param $isColumnParam
+     * @param $isColumnParam 是否带上链接参数
+     * @param $num 最大取几个栏目
      * @return array
      */
-    public function breadcrumbs($route = ['/'], $isColumnParam)
+    public function breadcrumbs($route = ['/'], $isColumnParam, $num = 1)
     {
         $links[] = ['label' => '<span>&gt;</span>'];
 
         $ids = explode(',', $this->parentstr);
         $ids = array_filter($ids);//去掉顶级0栏目和最后的空栏目
+        $ids[] = $this->id;
 
         if(count($ids) > 0) {
+            $newIds = [];
+            for($nn = 0; $nn < $num; $nn++) {
+                $newIds[] = !empty($ids)?array_pop($ids):(breack);
+            }
+
             //排除COLUMN_TYPE_CATE类型的分类栏目
-            $columnArray = ArrayHelper::map(self::find()->current()->andWhere(['id' => $ids])->andWhere(['not', ['type' => self::COLUMN_TYPE_CATE]])->asArray()->all(), 'id', 'cname');
+            $newIds = array_reverse($newIds);
+            $columnArray = ArrayHelper::map(self::find()->current()->andWhere(['id' => $newIds])->asArray()->all(), 'id', 'cname'); // ->andWhere(['not', ['type' => self::COLUMN_TYPE_CATE]])
             //循环ids是为了保证顺序正确
-            foreach ($ids as $id) {
+            foreach ($newIds as $id) {
                 if(isset($columnArray[$id])) {//$columnArray中才是正确的栏目数据
                     if($isColumnParam) {
                         $route = ArrayHelper::merge($route, ['columnid' => $id]);
                     }
                     $links[] = ['label' => $columnArray[$id], 'url' => $route];
-                    $links[] = ['label' => '<span>&gt;</span>'];
                 }
             }
-
-            $links[] =  $this->cname.'列表';
         } else {
             $links = [];
         }
@@ -215,21 +220,29 @@ class Column extends \common\components\ActiveRecord
      * 模型面包屑数据
      * @param $model
      * @param array $route
-     * @param $isColumnParam
+     * @param $isColumnParam 是否带上链接参数
+     * @param $num 最大取几个栏目
      * @return array
      */
-    public static function ModelBreadcrumbs($model, $route = ['/'], $isColumnParam)
+    public static function ModelBreadcrumbs($model, $route = ['/'], $isColumnParam, $num = 1)
     {
         $links[] = ['label' => '<span>&gt;</span>'];
 
         $ids = explode(',', $model->parentstr);
         $ids = array_filter($ids);//去掉顶级0栏目和最后的空栏目
+        $ids[] = $model->columnid;
 
         if(count($ids) > 0) {
+            $newIds = [];
+            for($nn = 0; $nn < $num; $nn++) {
+                $newIds[] = !empty($ids)?array_pop($ids):(breack);
+            }
+
             //排除COLUMN_TYPE_CATE类型的分类栏目
-            $columnArray = ArrayHelper::map(self::find()->current()->andWhere(['id' => $ids])->andWhere(['not', ['type' => self::COLUMN_TYPE_CATE]])->asArray()->all(), 'id', 'cname');
+            $newIds = array_reverse($newIds);
+            $columnArray = ArrayHelper::map(self::find()->current()->andWhere(['id' => $newIds])->asArray()->all(), 'id', 'cname'); // ->andWhere(['not', ['type' => self::COLUMN_TYPE_CATE]])
             //循环ids是为了保证顺序正确
-            foreach ($ids as $id) {
+            foreach ($newIds as $id) {
                 if(isset($columnArray[$id])) {//$columnArray中才是正确的栏目数据
                     if($isColumnParam) {
                         $route = ArrayHelper::merge($route, ['columnid' => $id]);
@@ -239,7 +252,7 @@ class Column extends \common\components\ActiveRecord
                 }
             }
 
-            $links[] =  $model->title.'列表';
+            $links[] = $model->title;
         } else {
             $links = [];
         }
@@ -259,15 +272,15 @@ class Column extends \common\components\ActiveRecord
         $className = get_class($model);
         if($positon == 'prev') {
             if($num > 1) {
-                $result = Article::find()->where(['>', 'orderid', $model->orderid])->orderBy(['orderid' => SORT_ASC])->limit($num)->all();
+                $result = $className::find()->active()->andWhere(['columnid' => $model->columnid])->andWhere(['>', 'id', $model->id])->orderBy(['id' => SORT_ASC])->limit($num)->all();
             } else {
-                $result = Article::find()->where(['>', 'orderid', $model->orderid])->orderBy(['orderid' => SORT_ASC])->one();
+                $result = $className::find()->active()->andWhere(['columnid' => $model->columnid])->andWhere(['>', 'id', $model->id])->orderBy(['id' => SORT_ASC])->one();
             }
         } elseif($positon == 'next') {
             if($num > 1) {
-                $result = Article::find()->where(['<', 'orderid', $model->orderid])->orderBy(['orderid' => SORT_DESC])->limit($num)->all();
+                $result = $className::find()->active()->andWhere(['columnid' => $model->columnid])->andWhere(['<', 'id', $model->id])->orderBy(['id' => SORT_DESC])->limit($num)->all();
             } else {
-                $result = Article::find()->where(['<', 'orderid', $model->orderid])->orderBy(['orderid' => SORT_DESC])->one();
+                $result = $className::find()->active()->andWhere(['columnid' => $model->columnid])->andWhere(['<', 'id', $model->id])->orderBy(['id' => SORT_DESC])->one();
             }
         }
 

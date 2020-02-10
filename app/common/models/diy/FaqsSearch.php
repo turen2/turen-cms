@@ -9,6 +9,7 @@ namespace common\models\diy;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\diy\Faqs;
+use yii\data\Pagination;
 
 /**
  * FaqsSearch represents the model behind the search form of `common\models\diy\Faqs`.
@@ -50,13 +51,13 @@ class FaqsSearch extends Faqs
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                //'class' => Pagination::class,
+                'class' => Pagination::class,
                 'defaultPageSize' => 5,
             ],
             'sort' => [
                 //'class' => Sort::class,
                 'defaultOrder' => [
-                    'orderid' => SORT_DESC,
+                    'posttime' => SORT_DESC,
                 ],
             ],
         ]);
@@ -66,6 +67,7 @@ class FaqsSearch extends Faqs
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
+//            exit('ddd');
             return $dataProvider;
         }
 
@@ -102,7 +104,7 @@ class FaqsSearch extends Faqs
             ->andFilterWhere(['like', 'diyfield_ask_content', $this->diyfield_ask_content]);
         */
 
-        //echo $dataProvider->query->createCommand()->rawSql;
+//        echo $dataProvider->query->createCommand()->rawSql;exit;
 
         return $dataProvider;
     }

@@ -22,8 +22,8 @@ class InquirySearch extends Inquiry
     public function rules()
     {
         return [
-            [['ui_id', 'user_id', 'ui_type', 'ui_state', 'ui_submit_time', 'ui_answer_time', 'ui_remark_time'], 'integer'],
-            [['ui_title', 'ui_content', 'ui_ipaddress', 'ui_browser', 'ui_answer', 'ui_remark', 'keyword'], 'safe'],
+            [['ui_id', 'user_id', 'ui_submit_time', 'ui_remark_time'], 'integer'],
+            [['ui_title', 'ui_content', 'ui_ipaddress', 'ui_browser', 'ui_remark', 'keyword'], 'safe'],
         ];
     }
 
@@ -67,7 +67,7 @@ class InquirySearch extends Inquiry
         ]);
 
         $data = [];
-        $data[$this->formName()]['ui_state'] = isset($params['state'])?$params['state']:null;
+        // $data[$this->formName()]['ui_state'] = isset($params['state'])?$params['state']:null;
         $this->load($data);
 
         if (!$this->validate()) {
@@ -79,14 +79,12 @@ class InquirySearch extends Inquiry
         // grid filtering conditions
         $query->andFilterWhere([
             'i.user_id' => Yii::$app->getUser()->getId(),
-            'ui_state' => $this->ui_state,
         ]);
 
         $query->andFilterWhere(['like', 'ui_title', $this->keyword])
             ->orFilterWhere(['like', 'ui_content', $this->keyword])
             ->orFilterWhere(['like', 'ui_ipaddress', $this->keyword])
             ->orFilterWhere(['like', 'ui_browser', $this->keyword])
-            ->orFilterWhere(['like', 'ui_answer', $this->keyword])
             ->orFilterWhere(['like', 'ui_remark', $this->keyword]);
 
 //        echo $dataProvider->query->createCommand()->rawSql;

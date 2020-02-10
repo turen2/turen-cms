@@ -56,7 +56,7 @@ class Config extends \common\components\ActiveRecord
     public static function CacheList()
     {
         $cache = Yii::$app->getCache();
-        if($cacheData = $cache->get(GLOBAL_SYS_CACHE_KEY)) {
+        if($cache->exists(GLOBAL_SYS_CACHE_KEY) && $cacheData = $cache->get(GLOBAL_SYS_CACHE_KEY)) {
             return Json::decode($cacheData);//返回数组
         } else {
             if(self::UpdateCache()) {//就地更新

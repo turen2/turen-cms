@@ -55,8 +55,10 @@ class PhotoSearch extends Photo
             ],
             'sort' => [
                 //'class' => Sort::class,
+                'enableMultiSort' => true,
                 'defaultOrder' => [
-                    'orderid' => SORT_DESC,
+                    'posttime' => SORT_DESC,
+                    'hits' => SORT_ASC,
                 ],
             ],
         ]);

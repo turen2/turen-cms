@@ -80,7 +80,7 @@ class Nav extends \common\components\ActiveRecord
      */
     public static function NavById($navid)
     {
-        $models = static::find()->current()->active()->all();
+        $models = static::find()->current()->active()->orderBy(['orderid' => SORT_DESC])->all();
         $models = BuildHelper::reBuildModelKeys($models, 'id');//重构模型数组索引
         $nexus = BuildHelper::getModelNexus($models, self::class, 'id', 'parentid');//获取父子关系
         $list = BuildHelper::buildList($nexus);

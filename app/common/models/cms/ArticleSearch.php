@@ -55,8 +55,10 @@ class ArticleSearch extends Article
             ],
             'sort' => [
                 //'class' => Sort::class,
+                'enableMultiSort' => true,
                 'defaultOrder' => [
-                    'orderid' => SORT_DESC,
+                    'posttime' => SORT_DESC,
+                    'hits' => SORT_ASC,
                 ],
             ],
         ]);
@@ -105,7 +107,7 @@ class ArticleSearch extends Article
             ->andFilterWhere(['like', 'lang', $this->lang]);
         */
 
-        //echo $dataProvider->query->createCommand()->rawSql;
+//        echo $dataProvider->query->createCommand()->rawSql;exit;
 
         return $dataProvider;
     }

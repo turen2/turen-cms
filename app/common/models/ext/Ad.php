@@ -96,7 +96,7 @@ class Ad extends \common\components\ActiveRecord
      */
     public static function AdListByAdTypeId($adTypeId)
     {
-        return self::find()->current()->active()->where(['ad_type_id' => $adTypeId])->orderBy(['orderid' => SORT_DESC])->asArray()->all();
+        return self::find()->current()->active()->andWhere(['ad_type_id' => $adTypeId])->orderBy(['orderid' => SORT_DESC])->asArray()->all();
     }
 
     /**

@@ -8,6 +8,7 @@ namespace common\helpers;
 
 use Yii;
 use yii\base\InvalidArgumentException;
+use yii\helpers\Url;
 
 /**
  * 图片高清缩放压缩
@@ -66,10 +67,15 @@ class ImageHelper
         return true;
     }
     
-    public static function getNopic()
+    public static function getNopic($position = false)
     {
+        $pwebUrl = Yii::$app->request->hostInfo.'/';
         $webUrl = Yii::getAlias('@web/images/');
-        return $webUrl.'nopic.jpg';
+        if($position) {
+            return $pwebUrl.'nopic.jpg';
+        } else {
+            return $webUrl.'nopic.jpg';
+        }
     }
     
     public static function Crop($height, $width, $percent) {

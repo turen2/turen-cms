@@ -39,12 +39,13 @@ class Info extends \common\components\ActiveRecord
      * @param $columnId 栏目id
      * @param null $listNum 限定返回的数量
      * @param null $flag 指定标识
+     * @param null $torder 指定时间排序，默认为orderid排序
      * @return mixed
      */
-    public static function ActiveList($className, $columnId, $listNum = null, $flag = null)
+    public static function ActiveList($className, $columnId, $listNum = null, $flag = null, $torder = null)
     {
         $model = new self();
-        return $model->columnList($className, $columnId, $listNum, $flag);//以行为绑定的方式，实现静态调用，实现方法重用
+        return $model->columnList($className, $columnId, $listNum, $flag, $torder);//以行为绑定的方式，实现静态调用，实现方法重用
     }
 
     /**
