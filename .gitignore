@@ -5,4 +5,4 @@ composer.phar
 .project
 .idea
 *.zip
-!vendor.zip
+mobile/*
