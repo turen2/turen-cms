@@ -43,14 +43,14 @@ class FlagBehavior extends \yii\base\Behavior
     
     /**
      * 获取当前对象选中的标签列表
-     * @param integer $modelid 模型id
+     * @param integer $columnId 栏目id
      * @param string $haveFlag 标签名是否带[flag]
      * @return \backend\behaviors\string[]
      */
-    public function activeFlagList($modelId, $haveFlag = false)
+    public function activeFlagList($columnId, $haveFlag = false)
     {
         $model = $this->owner;
-        $flagList = Flag::FlagList($modelId, $haveFlag);
+        $flagList = Flag::ColumnFlagList($columnId, $haveFlag);
         $activeFlagList = [];
         if(!empty($model->{$this->flagField})) {
             $flags = is_array($model->{$this->flagField})?$model->{$this->flagField}:explode(',', $model->{$this->flagField});

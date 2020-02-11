@@ -9,8 +9,6 @@ namespace backend\models\cms;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
-use yii\behaviors\AttributeBehavior;
-use yii\db\ActiveRecord;
 use backend\behaviors\InsertLangBehavior;
 use backend\behaviors\OrderDefaultBehavior;
 
@@ -21,6 +19,7 @@ use backend\behaviors\OrderDefaultBehavior;
  * @property string $flag 标记名称
  * @property string $flagname 标记标识
  * @property integer $type 类型
+ * @property integer $columnid 所属栏目
  * @property int $orderid 排列排序
  * @property string $lang
  */
@@ -73,8 +72,8 @@ class Flag extends \backend\models\base\Cms
     public function rules()
     {
         return [
-            [['flag', 'flagname'], 'required'],
-            [['orderid', 'type'], 'integer'],
+            [['flag', 'flagname', 'columnid'], 'required'],
+            [['orderid', 'type', 'columnid'], 'integer'],
             [['flag', 'flagname', 'lang'], 'string'],
         ];
     }
@@ -90,12 +89,13 @@ class Flag extends \backend\models\base\Cms
             'flag' => '标记值',
             'orderid' => '排序',
             'type' => '所属类型',
+            'columnid' => '所属栏目',
             'lang' => '多语言',
         ];
     }
     
     /**
-     * 获取原系统的所有标签列表
+     * 获取原系统的指定模型的标签列表
      * @param integer $modelid 模型id
      * @param string $haveFlag 标签名是否带[flag]
      * @return string[]
@@ -114,6 +114,48 @@ class Flag extends \backend\models\base\Cms
         }
         
         return $flags;
+    }
+
+    /**
+     * 获取原系统的指定栏目标签列表
+     * @param integer $columnid 栏目id
+     * @param string $haveFlag 标签名是否带[flag]
+     * @return string[]
+     */
+    public static function ColumnFlagList($columnid, $haveFlag = false)
+    {
+        if(empty(self::$_allFlag)) {
+            self::$_allFlag = self::find()->current()->orderBy(['orderid' => SORT_DESC])->asArray()->all();
+        }
+
+        $flags = [];
+        foreach (self::$_allFlag as $flag) {
+            if(!is_null($columnid) && $columnid == $flag['columnid']) {
+                $flags[$flag['flag']] = ($flag['flagname'].($haveFlag?'['.$flag['flag'].']':''));
+            }
+        }
+
+        return $flags;
+    }
+
+    /**
+     * @param bool $insert
+     * @return bool
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
+     */
+    public function beforeSave($insert)
+    {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+
+        $columnModel = Column::findOne($this->columnid);
+        if($columnModel) {
+            $this->type = $columnModel->type;
+        }
+
+        return true;
     }
 
     /**

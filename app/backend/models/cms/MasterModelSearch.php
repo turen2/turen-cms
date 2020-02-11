@@ -23,7 +23,7 @@ class MasterModelSearch extends MasterModel
     {
         return [
             [['id', 'columnid', 'parentid', 'cateid', 'catepid', 'status', 'orderid', 'posttime', 'updated_at', 'created_at'], 'integer'],
-            [['title', 'parentstr', 'catepstr', 'flag', 'picurl', 'lang', 'keyword', 'slug'], 'safe'],
+            [['title', 'parentstr', 'catepstr', 'flag', 'author', 'picurl', 'lang', 'keyword', 'slug'], 'safe'],
         ];
     }
 
@@ -82,6 +82,7 @@ class MasterModelSearch extends MasterModel
             ['columnid' => $this->columnid],
             ['cateid' => $this->cateid],
             ['status' => $this->status],
+            ['author' => $this->author],
             ['like', 'flag', $this->flag]
         ], ['or',
             ['like', 'title', $this->keyword],

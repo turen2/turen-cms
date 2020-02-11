@@ -19,7 +19,8 @@ CONFIG.com = {
 };
 
 CONFIG.cms = {
-	'columnCheckBoxListUrl': '<?= Url::to(['/cms/diy-field/column-check-box-list']) ?>'
+	'columnCheckBoxListUrl': '<?= Url::to(['/cms/diy-field/column-check-box-list']) ?>',
+	'columnFlagListUrl': '<?= Url::to(['/cms/flag/column-flag-list']) ?>'
 };
 
 CONFIG.ext = {

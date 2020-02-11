@@ -40,8 +40,8 @@ $addRoutes = [
         <li class="line">-</li>
         <li class="<?= (!is_null($model->status) && $model->status == Photo::STATUS_OFF)?'on':''?>"><?= Html::a('隐藏', ArrayHelper::merge(['index', Html::getInputName($model, 'status') => Photo::STATUS_OFF], $addRoutes)) ?></li>
         <li class="line">-</li>
-        
-        <?php foreach (Flag::FlagList(Column::COLUMN_TYPE_PHOTO, true) as $key => $name) { ?>
+
+        <?php foreach (Flag::ColumnFlagList($model->columnid) as $key => $name) { ?>
         <li class="<?= (!is_null($model->flag) && $model->flag == $key)?'on':''?>"><?= Html::a($name, ArrayHelper::merge(['index', Html::getInputName($model, 'flag') => $key], $addRoutes)) ?></li>
         <li class="line">-</li>
         <?php } ?>

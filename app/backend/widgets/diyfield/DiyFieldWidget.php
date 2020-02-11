@@ -11,6 +11,7 @@ use yii\base\InvalidArgumentException;
 use backend\models\cms\DiyField;
 use backend\models\cms\Column;
 use backend\models\cms\MasterModel;
+use yii\helpers\ArrayHelper;
 
 /**
  * @author jorry
@@ -57,15 +58,19 @@ class DiyFieldWidget extends \yii\base\Widget
         //组织数据
         $id = Column::ColumnConvert('class2id', $className);//所属模型
 
-        if($isNewRecord) {
+        // 优化：编辑时，可以修改栏目，对应自定义字段也会变化
+//        if($isNewRecord) {
             $fieldModels = DiyField::FieldModelList($id);//取模型id对应的所有字段
-        } else {
-            $fieldModels = DiyField::FieldModelList($id, $this->model->columnid);//取模型id对应的所有字段
-        }
+//        } else {
+//            $fieldModels = DiyField::FieldModelList($id, $this->model->columnid);//取模型id对应的所有字段
+//        }
+
+        $columnFieldModels = DiyField::FieldModelList($id, $this->model->columnid);
         
         //渲染模板
         return $this->render('diyfield', [
             'fieldModels' => $fieldModels,
+            'columnFieldModels' => $columnFieldModels,
             'model' => $this->model,
             'isNewRecord' => $isNewRecord,
             'mid' => $id,

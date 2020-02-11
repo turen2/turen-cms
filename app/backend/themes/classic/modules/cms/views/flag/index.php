@@ -19,8 +19,6 @@ $this->title = '标记管理';
 $this->topFilter = $this->render('_filter', ['model' => $searchModel]);
 ?>
 
-<?php // $this->render('_search', ['model' => $searchModel]); ?>
-
 <?php $form = ActiveForm::begin([
     'enableClientScript' => false,
     'options' => ['id' => 'batchform'],
@@ -29,9 +27,8 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel]);
 	<tr align="left" class="head">
 		<td width="4%" class="first-column"><input type="checkbox" name="checkid" id="checkid" onclick="turen.com.checkAll(this.checked);"></td>
 		<td width="4%">ID</td>
-		<td width="6%"><?= $dataProvider->sort->link('flagname', ['label' => '标记名']) ?></td>
-		<td width="4%"><?= $dataProvider->sort->link('flag', ['label' => '标记值']) ?></td>
-		<td width="5%">所属类型</td>
+		<td width="10%"><?= $dataProvider->sort->link('flagname', ['label' => '标记名']) ?></td>
+		<td width="6%">所属栏目</td>
 		<td width="6%" align="center"><?= $dataProvider->sort->link('orderid', ['label' => '排序']) ?></td>
 		<td width="10%"><?= $dataProvider->sort->link('updated_at', ['label' => '更新日期']) ?></td>
 		<td width="25%" class="end-column">操作</td>
@@ -56,9 +53,8 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel]);
 		<td><?= $model->id; ?>
 			<input type="hidden" name="id[]" id="id[]" value="<?= $model->id; ?>">
 		</td>
-		<td><?= $model->flagname; ?></td>
-		<td><?= $model->flag; ?></td>
-		<td><?= Column::ColumnConvert('id2name', $model->type, '未定义'); ?></td>
+		<td><?= $model->flagname; ?> [<?= $model->flag; ?>]</td>
+		<td><?= Column::ColumnName($model->columnid); ?> [<?= Column::ColumnConvert('id2name', $model->type, '未定义'); ?>]</td>
 		<td align="center">
 			<a href="<?=Url::to(['quick-move', 'type' => Flag::ORDER_UP_TYPE, 'kid' => $model->id, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>
 			<input type="text" name="orderid[]" id="orderid[]" class="inputls" value="<?= $model->orderid; ?>">

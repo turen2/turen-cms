@@ -47,6 +47,8 @@ class Column extends \backend\models\base\Cms
     const COLUMN_TYPE_PRODUCT = 4;
     const COLUMN_TYPE_VIDEO = 5;
     const COLUMN_TYPE_INFO = 6;
+
+    const COLUMN_CONVERT_ALL = 'COLUMN_CONVERT_ALL';
     
 	public $keyword;
 	
@@ -171,13 +173,13 @@ class Column extends \backend\models\base\Cms
     /**
      * 转换器
      * 负责模型类、栏目、ID、名称、标记之间的转换
-     * @param $type
-     * @param null $key
+     * @param $pattern
+     * @param mixed | null |  $key
      * @param string $default
      * @return array|mixed|string
      * @throws InvalidConfigException
      *
-     * $type：
+     * $pattern：
      * 'id2name' ID对应名称
      * 'id2mask' ID对应标记
      * 'id2class' ID对应模型类
@@ -189,7 +191,7 @@ class Column extends \backend\models\base\Cms
      * 转化后获取其中一个值的时候所使用的键//不可以mask2id、mask2class、mask2name
      * return [] | int | string
      */
-    public static function ColumnConvert($type, $key = null, $default = '')
+    public static function ColumnConvert($pattern, $key = self::COLUMN_CONVERT_ALL, $default = '')
     {
         $data = [
             self::COLUMN_TYPE_CATE => [
@@ -246,22 +248,24 @@ class Column extends \backend\models\base\Cms
         }
         
         //匹配需要的类型数组
-        list($k, $v) = explode('2', strtolower($type));
+        list($k, $v) = explode('2', strtolower($pattern));
         if(in_array($k, ['id', 'class', 'name', 'mask']) && in_array($v, ['id', 'class', 'name', 'mask'])) {
             $list = [];
             foreach ($data as $dd) {
                 $list[$dd[$k]] = $dd[$v];
             }
-            
-            //是否获取一个元素，否则返回整个数组
+
+            //是否获取一个元素，否则返回整个'未定义'
             if(is_null($key)) {
+                return '未定义';
+            } elseif($key === self::COLUMN_CONVERT_ALL) {
                 return $list;
             } else {
                 return isset($list[$key])?$list[$key]:$default;
             }
         } else {
             //异常
-            throw new InvalidConfigException(Column::class.'参数错误，参数为：'.$type);
+            throw new InvalidConfigException(Column::class.'参数错误，参数为：'.$pattern);
         }
     }
 

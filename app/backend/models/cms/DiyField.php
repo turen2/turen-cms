@@ -59,7 +59,7 @@ class DiyField extends \backend\models\base\Cms
 	    'filearr' => ['name' => 'filearr', 'type' => 'text', 'title' => '多个附件', 'size' => '0', 'value' => '', 'tips' => '多个附件：</strong>可上传多个附件，类似于组图上传；<span class="blue">字段长度留空 </span>'],
 	];
 	
-	private static $FieldModels;//缓存
+	private static $FieldModels = [];//缓存
 	
 	public function behaviors()
 	{
@@ -269,34 +269,35 @@ class DiyField extends \backend\models\base\Cms
         }
         $id = Column::ColumnConvert('class2id', $className);
         $fieldModels = DiyField::FieldModelList($id, $model->columnid);//取匹配的活动字段
-        
+
         if($type) {//返回规则
             $rules = [];
             foreach ($fieldModels as $fieldModel) {
+                $message = $fieldModel->fd_title.' '.$fieldModel->fd_tips;
                 //验证规则对应关系
                 switch (trim($fieldModel->fd_check)) {
                     case 'required':
-                        $rules[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'required'];
+                        $rules[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'required', 'message' => $message];
                         break;
                     case 'email':
-                        $rules[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'email'];
+                        $rules[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'email', 'message' => $message];
                         break;
                     case 'url':
-                        $rules[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'url'];
+                        $rules[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'url', 'message' => $message];
                         break;
                     case 'digits':
                     case 'number':
-                        $rules[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'double'];
+                        $rules[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'double', 'message' => $message];
                         break;
                     case 'maxlength':
-                        $rules[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'string', 'max' => $fieldModel->fd_long];
+                        $rules[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'string', 'max' => $fieldModel->fd_long, 'message' => $message];
                         break;
                     case 'dateISO':
                     case 'creditcard':
                     case 'isZipCode':
                     case 'isPhone':
                     case 'isDomain':
-                        $rules[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'safe'];
+                        $rules[] = [DiyField::FIELD_PRE.$fieldModel->fd_name, 'safe', 'message' => $message];
                         break;
                 }
             }

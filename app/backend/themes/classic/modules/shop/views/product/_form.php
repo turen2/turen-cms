@@ -122,6 +122,24 @@ $this->registerJs($js);
     			<span class="cnote"></span>
     		</td>
     	</tr>
+        <?php /* ?>
+    	<tr>
+    		<td class="first-column"><?= $model->getAttributeLabel('flag')?><?php if($model->isAttributeRequired('flag')) { ?><span class="maroon">*</span><?php } ?></td>
+    		<td class="second-column attr-area">
+    			<?= Html::hiddenInput(Html::getInputName($model, 'flag'), '') ?>
+    			<?= Html::checkboxList(Html::getInputName($model, 'flag'), array_keys($model->activeFlagList(Column::COLUMN_TYPE_PRODUCT)), Flag::FlagList(Column::COLUMN_TYPE_PRODUCT, true), ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']) ?>
+    			<span class="cnote"></span>
+    		</td>
+    	</tr>
+        <?php */ ?>
+        <tr>
+            <td class="first-column"><?= $model->getAttributeLabel('flag')?><?php if($model->isAttributeRequired('flag')) { ?><span class="maroon">*</span><?php } ?></td>
+            <td class="second-column attr-area">
+                <?= Html::hiddenInput(Html::getInputName($model, 'flag'), '') ?>
+                <span id="flag-checkbox-list"><?= Html::checkboxList(Html::getInputName($model, 'flag'), array_keys($model->activeFlagList($model->columnid)), Flag::ColumnFlagList($model->columnid, true), ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']) ?></span>
+                <span class="cnote">注意：选择栏目后自动加载</span>
+            </td>
+        </tr>
     	<?= DiyFieldWidget::widget([
 		    'model' => $model,
 		]) ?>
@@ -264,15 +282,7 @@ $this->registerJs($js);
 		<tr class="nb">
 			<td colspan="2" height="10"><div class="line"> </div></td>
 		</tr>
-		
-    	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('flag')?><?php if($model->isAttributeRequired('flag')) { ?><span class="maroon">*</span><?php } ?></td>
-    		<td class="second-column attr-area">
-    			<?= Html::hiddenInput(Html::getInputName($model, 'flag'), '') ?>
-    			<?= Html::checkboxList(Html::getInputName($model, 'flag'), array_keys($model->activeFlagList(Column::COLUMN_TYPE_PRODUCT)), Flag::FlagList(Column::COLUMN_TYPE_PRODUCT, true), ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']) ?>
-    			<span class="cnote"></span>
-    		</td>
-    	</tr>
+
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('keywords')?><?php if($model->isAttributeRequired('keywords')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">

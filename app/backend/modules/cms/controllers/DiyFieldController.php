@@ -181,7 +181,7 @@ class DiyFieldController extends Controller
             ]);
         } else {
             return $this->asJson([
-                'state' => true,
+                'state' => false,
                 'msg' => '此模型下没有对应的栏目，请先创建栏目',
             ]);
         }

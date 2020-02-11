@@ -6,7 +6,10 @@
  */
 namespace backend\modules\cms\controllers;
 
+use backend\models\cms\Column;
 use Yii;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use backend\models\cms\Flag;
@@ -156,6 +159,43 @@ class FlagController extends Controller
         }
         
         return $this->redirect(['index']);
+    }
+
+    /**
+     * @return \yii\web\Response
+     */
+    public function actionColumnFlagList()
+    {
+        $columnId = Yii::$app->getRequest()->post('columnid', null);
+        $columnModel = Column::findOne($columnId);
+        if($columnModel) {
+            $className = Column::ColumnConvert('id2class', $columnModel->type);
+            try {
+                $function = new \ReflectionClass($className);
+                $className = $function->getShortName();
+            } catch (\ReflectionException $e) {
+                $className = 'MasterModel'; // 如果是自定义模型，则采用统一的 model class
+            }
+
+            $items = Flag::ColumnFlagList($columnId, true);
+
+            if($items) {
+                return $this->asJson([
+                    'state' => true,
+                    'msg' => Html::checkboxList($className.'[flag][]', null, $items, ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']),
+                ]);
+            } else {
+                return $this->asJson([
+                    'state' => false,
+                    'msg' => '此栏目下没有对应的标签',
+                ]);
+            }
+        } else {
+            return $this->asJson([
+                'state' => false,
+                'msg' => '此栏目为空',
+            ]);
+        }
     }
 
     /**

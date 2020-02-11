@@ -7,6 +7,7 @@
 namespace backend\modules\cms\controllers;
 
 use Yii;
+use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\components\AliyunOss;
@@ -142,9 +143,8 @@ class ArticleController extends Controller
     {
         $model = new Article();
         $model->loadDefaultValues();
-        $model->columnid = Yii::$app->getRequest()->get('columnid', null);
+        $model->columnid = Yii::$app->getRequest()->post("Article")['columnid'];
 
-        $model->loadDefaultValues();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->getSession()->setFlash('success', $model->title.' 添加成功，结果将展示在列表中。');
             return $this->redirect(['index']);

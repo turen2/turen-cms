@@ -133,7 +133,7 @@ class MasterModelController extends Controller
     {
         $model = new MasterModel();
         $model->loadDefaultValues();
-        $model->columnid = Yii::$app->getRequest()->get('columnid', null);
+        $model->columnid = Yii::$app->getRequest()->post("MasterModel")['columnid'];
         
         $className = MasterModel::class.'_'.MasterModel::$DiyModelId;
         $modelid = Column::ColumnConvert('class2id', $className);

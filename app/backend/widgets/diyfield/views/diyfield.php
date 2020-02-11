@@ -1,4 +1,9 @@
 <?php
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
 use yii\helpers\Html;
 use yii\web\JsExpression;
 use yii\helpers\Url;
@@ -8,15 +13,18 @@ use backend\widgets\fileupload\JQueryFileUploadWidget;
 use backend\widgets\ueditor\UEditorWidget;
 ?>
 
-<?php if($fieldModels) { ?>
-<tr class="nb no-prev-line" style="display: <?= $isNewRecord?'none':'' ?>;">
+<tr class="nb no-prev-line" style="display: <?= (count($fieldModels)>0 && count($columnFieldModels)>0)?'':'none' ?>;">
 	<td colspan="2" class="td-line"><div class="line"></div></td>
 </tr>
 
 <?php 
 $columnClass = get_class($model);
-foreach ($fieldModels as $fieldModel) { ?>
-<tr class="diy-field-row" data-columnids="<?= $isNewRecord?$fieldModel->columnid_list:'' ?>" style="display: <?= $isNewRecord?'none':'' ?>;">
+foreach ($fieldModels as $fieldModel) {
+    // 编辑时，当前是显示？
+    $isDisplay = in_array($fieldModel, $columnFieldModels);
+?>
+
+<tr class="diy-field-row" data-columnids="<?= $fieldModel->columnid_list ?>" style="display: <?= $isDisplay?'':'none' ?>;">
 	<td class="first-column"><?= $fieldModel->fd_title ?><?= !empty($fieldModel->fd_check)?'<span class="maroon">*</span>':'' ?></td>
 	<td class="second-column">
 		<?php 
@@ -138,7 +146,6 @@ foreach ($fieldModels as $fieldModel) { ?>
 </tr>
 <?php } ?>
 
-<tr class="nb no-prev-line" style="display: <?= $isNewRecord?'none':'' ?>;">
+<tr class="nb no-prev-line" style="display: <?= (count($fieldModels)>0 && count($columnFieldModels)>0)?'':'none' ?>;">
 	<td colspan="2" class="td-line"><div class="line"></div></td>
 </tr>
-<?php } ?>

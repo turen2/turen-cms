@@ -226,9 +226,14 @@ turen.com = (function($) {
         	boxClass = '.'+boxClass;
         	_this.parents(boxClass).hide('slow');
         },
+        //不同栏目，显示不同自定义字段
         filterField: function(_this) {
         	var _this = $(_this);
-        	
+
+        	// 初始化展示效果
+            $('tr.no-prev-line, tr.diy-field-row').hide();
+
+        	// 切换自定义字段
         	var columnid = _this.val();
         	if(columnid != '') {
         		$('tr.diy-field-row').each(function() {
@@ -238,9 +243,21 @@ turen.com = (function($) {
         				$(this).show();
         			}
         		});
-        	} else {
-        		$('tr.no-prev-line, tr.diy-field-row').hide();
         	}
+
+        	// 异步获取标签
+            var columnid = _this.val();
+            var callback = function(res, _this) {
+                // console.log(res);
+                if(res.state) {
+                    $.notify('指定栏目的标签已获取', 'success');
+                    $('#flag-checkbox-list').html(res.msg);
+                } else {
+                    // $.notify(res.msg, 'error');
+                    $('#flag-checkbox-list').html('');
+                }
+            };
+            commonRemote(CONFIG.cms.columnFlagListUrl, {columnid: columnid}, callback, _this);
         },
         //生成链接
         pinyin: function(_this, name) {
@@ -278,12 +295,8 @@ turen.com = (function($) {
                 $.notify(XMLHttpRequest.responseText, 'error');
             },
             success: function(res) {
-                if (res['state']) {
-                    if(callback) {
-                        callback(res, _this);
-                    }
-                } else {
-                    $.notify(res['msg'], 'warn');
+                if(callback) {
+                    callback(res, _this);
                 }
            }
         });

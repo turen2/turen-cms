@@ -113,14 +113,24 @@ $srcModels = Src::find()->current()->orderBy(['orderid' => SORT_DESC])->all();
     			</div>
     		</td>
     	</tr>
+        <?php /* ?>
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('flag')?><?php if($model->isAttributeRequired('flag')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column attr-area">
     			<?= Html::hiddenInput(Html::getInputName($model, 'flag'), '') ?>
-    			<?= Html::checkboxList(Html::getInputName($model, 'flag'), array_keys($model->activeFlagList(Column::COLUMN_TYPE_VIDEO)), Flag::FlagList(Column::COLUMN_TYPE_VIDEO, true), ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']) ?>
+    			<?= Html::checkboxList(Html::getInputName($model, 'flag'), array_keys($model->activeFlagList(Column::COLUMN_TYPE_PRODUCT)), Flag::FlagList(Column::COLUMN_TYPE_PRODUCT, true), ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']) ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>
+        <?php */ ?>
+        <tr>
+            <td class="first-column"><?= $model->getAttributeLabel('flag')?><?php if($model->isAttributeRequired('flag')) { ?><span class="maroon">*</span><?php } ?></td>
+            <td class="second-column attr-area">
+                <?= Html::hiddenInput(Html::getInputName($model, 'flag'), '') ?>
+                <span id="flag-checkbox-list"><?= Html::checkboxList(Html::getInputName($model, 'flag'), array_keys($model->activeFlagList($model->columnid)), Flag::ColumnFlagList($model->columnid, true), ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']) ?></span>
+                <span class="cnote">注意：选择栏目后自动加载</span>
+            </td>
+        </tr>
     	<tr class="nb">
     		<td class="first-column"><?= $model->getAttributeLabel('tags')?><?php if($model->isAttributeRequired('tags')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">

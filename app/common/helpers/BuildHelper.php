@@ -264,7 +264,7 @@ class BuildHelper
      * @param string $pidKey
      * @param string $nameKey
      * @param boolean $isTop
-     * @param integer $type
+     * @param null | integer | array $type
      * @return string select html
      */
     public static function buildSelector($model, $attribute, $models, $className, $primaryKey = 'id', $pidKey = 'pid', $nameKey = 'name', $isTop = true, $type = null, $selectOptions = [])
@@ -278,7 +278,9 @@ class BuildHelper
         foreach ($list as $id => $item) {
             //按照新的关系，重新排序
             $arr[$id] = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $item['level']-1).(empty($item['level']-1)?'':'|-').($models[$id]->{$nameKey});
-            if(!is_null($type) && $type != $models[$id]->type) {
+            // if(!is_null($type) && $type != $models[$id]->type) {
+            // f(isset($models[$id]) && (is_null($type) || (!is_array($type) && $models[$id]->type == $type) || (is_array($type) && in_array($models[$id]->type, $type)))) {
+            if(!is_null($type) && ((!is_array($type) && $type != $models[$id]->type) || (is_array($type) && !in_array($models[$id]->type, $type)))) {
                 $options[$id] = ['disabled' => true];
             }
         }
@@ -290,7 +292,20 @@ class BuildHelper
         
         return Html::activeDropDownList($model, $attribute, $arr, $selectOptions);
     }
-    
+
+    /**
+     * @param $models
+     * @param $className
+     * @param string $primaryKey
+     * @param string $pidKey
+     * @param string $nameKey
+     * @param bool $isTop
+     * @param null | integer | array $type
+     * @param string $searchName
+     * @param string $field
+     * @param array $addRoutes
+     * @return string
+     */
     public static function buildFilter($models, $className, $primaryKey = 'id', $pidKey = 'pid', $nameKey = 'name', $isTop = true, $type = null, $searchName = '', $field = '', $addRoutes = [])
     {
         $models = BuildHelper::reBuildModelKeys($models, $primaryKey);//重构模型数组索引
@@ -299,7 +314,7 @@ class BuildHelper
         $str = '';
         foreach ($list as $id => $item) {
             //按照新的关系，重新排序
-            if(isset($models[$id]) && (is_null($type) || $models[$id]->type == $type)) {
+            if(isset($models[$id]) && (is_null($type) || (!is_array($type) && $models[$id]->type == $type) || (is_array($type) && in_array($models[$id]->type, $type)))) {
                 $str .= '<a href="'.Url::to(ArrayHelper::merge(['index', $searchName.'['.$field.']' => $id], $addRoutes)).'">'.str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $item['level']-1).(empty($item['level']-1)?'':'|-').($models[$id]->{$nameKey}).'</a>';
             }
         }

@@ -35,12 +35,17 @@ $addRoutes = [
         <li class="line">-</li>
         <li class="<?= (!is_null($model->status) && $model->status == ActiveRecord::STATUS_OFF)?'on':''?>"><?= Html::a('隐藏', ArrayHelper::merge(['index', Html::getInputName($model, 'status') => ActiveRecord::STATUS_OFF], $addRoutes)) ?></li>
         <li class="line">-</li>
-        
-        <?php foreach (Flag::FlagList($modelid, false) as $key => $name) { ?>
+
+        <?php foreach (Flag::ColumnFlagList($model->columnid) as $key => $name) { ?>
         <li class="<?= (!is_null($model->flag) && $model->flag == $key)?'on':''?>"><?= Html::a($name, ArrayHelper::merge(['index', Html::getInputName($model, 'flag') => $key], $addRoutes)) ?></li>
         <li class="line">-</li>
         <?php } ?>
-	</ul>
+
+        <?php
+        $username = Yii::$app->getUser()->getIdentity()->username;
+        ?>
+        <li class="<?= (!is_null($model->author) && $model->author == $username)?'on':''?>"><?= Html::a('我发布的内容', ArrayHelper::merge(['index', Html::getInputName($model, 'author') => $username], $addRoutes)) ?></li>
+    </ul>
 	
     <?php $form = ActiveForm::begin([
         'action' => ArrayHelper::merge(['index', Html::getInputName($model, 'status') => $model->status, Html::getInputName($model, 'flag') => $model->flag], $addRoutes),

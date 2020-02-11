@@ -23,7 +23,7 @@ class FlagSearch extends Flag
     {
         return [
             [['id', 'orderid'], 'integer'],
-            [['flag', 'flagname', 'lang', 'type', 'keyword'], 'safe'],
+            [['flag', 'flagname', 'lang', 'type', 'columnid', 'keyword'], 'safe'],
         ];
     }
 
@@ -48,7 +48,6 @@ class FlagSearch extends Flag
     	//$sql = "select a.*, s.company as company, s.domain as domain, s.username as merchant from ".Admin::tableName()." as a left join ".Site::tableName()." as s on a.test_id = s.testid";
         //$query = Admin::findBySql($sql);
         //$query = Admin::find()->alias('a')->select(['a.*', 's.company as company', 's.domain as domain', 's.username as merchant'])->leftJoin(Site::tableName().' as s', ' a.test_id = s.testid');
-        
         $query = Flag::find()->current();
 
         // add conditions that should always apply here
@@ -77,12 +76,12 @@ class FlagSearch extends Flag
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'type' => $this->type,
-            'lang' => $this->lang,
+            // 'type' => $this->type,
+            'columnid' => $this->columnid
         ]);
 
-        $query->andFilterWhere(['like', 'flag', $this->flag])
-            ->andFilterWhere(['like', 'flagname', $this->flagname]);
+//        $query->andFilterWhere(['like', 'flag', $this->flag])
+//            ->andFilterWhere(['like', 'flagname', $this->flagname]);
         
         //echo $dataProvider->query->createCommand()->rawSql;
 
