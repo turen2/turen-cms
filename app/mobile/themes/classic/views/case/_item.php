@@ -14,7 +14,7 @@ $webUrl = Yii::getAlias('@web/');
     <div class="casebook-text">
         <h3 class="item-h3"><?= $model->title ?></h3>
         <dl>
-            <dd><i class="iconfont jia-eye"></i> <?= $model->hits ?></dd>
+            <dd><i class="iconfont jia-eye"></i> <?= $model->base_hits + $model->hits ?></dd>
             <dd><span></span></dd>
             <dd><?= Yii::$app->getFormatter()->asDateTime($model->posttime, 'php:Y/m/d') ?></dd>
         </dl>

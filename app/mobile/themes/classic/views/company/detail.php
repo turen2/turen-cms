@@ -34,7 +34,7 @@ $this->registerJs($js);
         <ul>
             <li>发布时间：<?= Yii::$app->getFormatter()->asDateTime($model->posttime, 'php:Y-m-d') ?></li>
             <li><span></span></li>
-            <li>点击次数：<?= $model->hits ?></li>
+            <li>点击次数：<?= $model->base_hits + $model->hits ?></li>
         </ul>
     </div>
     <div class="guide-detail-text" id="infoContent">

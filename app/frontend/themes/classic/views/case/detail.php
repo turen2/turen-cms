@@ -67,7 +67,7 @@ $this->registerJs($js);
                             <ul>
                                 <li><span>日期：</span><?= Yii::$app->getFormatter()->asDateTime($model->posttime, 'php:Y年m月d日') ?></li>
                                 <li><span>发布人：</span><?= $model->author ?></li>
-                                <li><span>浏览数：</span><?= $model->hits ?></li>
+                                <li><span>浏览数：</span><?= $model->base_hits + $model->hits ?></li>
                             </ul>
                             <?= LikeWidget::widget([
                                 'modelClass' => Photo::class,

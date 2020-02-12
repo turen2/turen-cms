@@ -61,6 +61,6 @@ $link = Url::to(['/baike/detail', 'slug' => $model->slug]);
     </p>
     <dl>
         <dd><i class="iconfont jia-calendar1"></i><b><?= Yii::$app->getFormatter()->asDateTime($model->posttime, 'php:m月d日 H:i') ?></b></dd>
-        <dd><i class="iconfont fa-eye"></i><b style="color: #888;"><?= $model->hits ?></b></dd>
+        <dd><i class="iconfont fa-eye"></i><b style="color: #888;"><?= $model->base_hits + $model->hits ?></b></dd>
     </dl>
 </div>

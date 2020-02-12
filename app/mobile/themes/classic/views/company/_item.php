@@ -38,7 +38,7 @@ $webUrl = Yii::getAlias('@web/');
             ?>
         </p>
         <dl>
-            <dd><i class="iconfont jia-eye"></i> <?= $model->hits ?></dd>
+            <dd><i class="iconfont jia-eye"></i> <?= $model->base_hits + $model->hits ?></dd>
             <dd><span></span></dd>
             <dd><?= Yii::$app->getFormatter()->asDate($model->posttime) ?></dd>
         </dl>

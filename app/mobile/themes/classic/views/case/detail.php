@@ -46,7 +46,7 @@ $webUrl = Yii::getAlias('@web/');
                     <dl>
                         <dd><?= $model->author ?></dd>
                         <dd><i></i></dd>
-                        <dd>查看 <?= $model->hits ?></dd>
+                        <dd>查看 <?= $model->base_hits + $model->hits ?></dd>
                     </dl>
                 </div>
             </div>

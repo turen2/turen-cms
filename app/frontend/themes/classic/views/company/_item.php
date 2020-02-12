@@ -60,6 +60,6 @@ $link = Url::to(['/company/detail', 'slug' => $model->slug]);
     </p>
     <dl>
         <dd><i class="iconfont jia-calendar1"></i><b><?= Yii::$app->getFormatter()->asDate($model->posttime) ?></b></dd>
-        <dd><i class="iconfont jia-eye"></i><b style="color: #888;"><?= $model->hits ?></b></dd>
+        <dd><i class="iconfont jia-eye"></i><b style="color: #888;"><?= $model->base_hits + $model->hits ?></b></dd>
     </dl>
 </div>
