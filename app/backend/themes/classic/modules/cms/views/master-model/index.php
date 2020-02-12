@@ -31,10 +31,11 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel, 'type' => 
 		<td width="5%">ID</td>
 		<td width="24%"><?= $dataProvider->sort->link('title', ['label' => '标题']) ?></td>
 		<td width="11%">所属栏目</td>
-		<td width="8%">作者</td>
 		<?php if(Yii::$app->params['config.openCate']) { ?>
 		<td width="8%">所属类别</td>
 		<?php } ?>
+        <td width="8%">作者</td>
+        <td width="5%"><?= $dataProvider->sort->link('hits', ['label' => '点击']) ?></td>
 		
 		<?php foreach (MasterModel::DisplayFieldModelList() as $listModel) { ?>
 		<td width="8%"><?= $listModel->fd_title ?></td>
@@ -66,10 +67,11 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel, 'type' => 
 		<td><?= $model->id; ?></td>
 		<td><span class="title" style="color:<?= $model->colorval; ?>;font-weight:<?= $model->boldval; ?>"><?= $model->title; ?><span class="title-flag"><?= implode('&nbsp;', $model->activeFlagList($modelid)); ?></span><?=empty($model->picurl)?'':' <span class="titpic"><i class="fa fa-picture-o"></i></span>'?></span></td>
 		<td><?= Column::ColumnName($model->columnid).' ['.$model->columnid.']'; ?></td>
-        <td><?= empty($model->author)?'未定义':$model->author; ?></td>
 		<?php if(Yii::$app->params['config.openCate']) { ?>
 		<td><?= Cate::CateName($model->cateid) ?></td>
 		<?php } ?>
+        <td><?= empty($model->author)?'未定义':$model->author; ?></td>
+        <td><?= $model->hits; ?></td>
 		<?php foreach (MasterModel::DisplayFieldModelList() as $listModel) { ?>
 		<td><?= $model->{DiyField::FIELD_PRE.$listModel->fd_name} ?></td>
 		<?php } ?>
