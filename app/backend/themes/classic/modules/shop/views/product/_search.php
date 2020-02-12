@@ -21,6 +21,7 @@ foreach ($model->attributes as $key => $value) {
 }
 
 $addRoutes = [
+    Html::getInputName($model, 'columnid') => $model->columnid,
     Html::getInputName($model, 'pcateid') => $model->pcateid,
     Html::getInputName($model, 'keyword') => $model->keyword
 ];

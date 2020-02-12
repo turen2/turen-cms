@@ -185,7 +185,7 @@ $srcModels = Src::find()->current()->orderBy(['orderid' => SORT_DESC])->all();
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('keywords')?><?php if($model->isAttributeRequired('keywords')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'keywords', ['class' => 'input']) ?>
+    			<?= Html::activeInput('text', $model, 'keywords', ['class' => 'input seo-input']) ?>
     			<span class="cnote">多关键词之间用空格或者“,”隔开</span>
     		</td>
     	</tr>

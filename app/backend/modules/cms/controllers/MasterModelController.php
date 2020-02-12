@@ -118,6 +118,7 @@ class MasterModelController extends Controller
         
         return $this->render('index', [
             'searchModel' => $searchModel,
+            'columnModel' => Column::findOne($searchModel->columnid),
             'dataProvider' => $dataProvider,
             'diyModel' => self::$DiyModel,
             'modelid' => $modelid,

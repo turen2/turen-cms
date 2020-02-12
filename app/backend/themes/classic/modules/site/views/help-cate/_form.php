@@ -74,14 +74,14 @@ $this->registerJs($js);
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('seotitle')?><?php if($model->isAttributeRequired('seotitle')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'seotitle', ['class' => 'input']) ?>
+    			<?= Html::activeInput('text', $model, 'seotitle', ['class' => 'input seo-input']) ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('keywords')?><?php if($model->isAttributeRequired('keywords')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'keywords', ['class' => 'input']) ?>
+    			<?= Html::activeInput('text', $model, 'keywords', ['class' => 'input seo-input']) ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>

@@ -5,16 +5,22 @@
  * @author developer qq:980522557
  */
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use common\helpers\Functions;
-
-/* @var $this yii\web\View */
-/* @var $searchModel backend\models\cms\InfoSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+use backend\assets\ClipboardAsset;
 
 $this->title = '单页信息管理';
+
+ClipboardAsset::register($this);
+$js = <<<JS
+    new ClipboardJS('.btn-clipboard');
+
+    $('.btn-clipboard').click(function() {
+        $.notify('复制成功', 'success');
+    });
+JS;
+$this->registerJs($js);
 ?>
 
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="data-table">
@@ -25,11 +31,14 @@ $this->title = '单页信息管理';
 		<td width="20%">发布时间</td>
 		<td class="end-column">操作</td>
 	</tr>
-	<?php foreach ($dataProvider->getModels() as $key => $model) { ?>
+	<?php
+    foreach ($dataProvider->getModels() as $key => $model) {
+	    $slugUrl = Functions::SlugUrl($model, 'slug', $model->m_column);
+    ?>
 	<tr align="left" class="data-tr">
 		<td class="first-column"><?= $model->cid; ?></td>
 		<td><?= $model->cname; ?></td>
-		<td><?= Functions::SlugUrl($model, 'slug', 'page') ?></td>
+		<td><a class="btn-clipboard" data-clipboard-text="<?=($slugUrl)?>" href="javascript:;" title="点击复制"><?= $slugUrl ?></a></td>
 		<td><?= Yii::$app->getFormatter()->asDate($model->posttime);; ?></td>
 		<td class="action end-column"><span><a href="<?= Url::to(['update', 'id' => $model->cid]) ?>">修改</a></span></td>
 	</tr>

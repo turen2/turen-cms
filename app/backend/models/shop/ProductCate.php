@@ -92,8 +92,6 @@ class ProductCate extends \backend\models\base\Shop
     public function rules()
     {
         //静态默认值由规则来赋值
-        //[['status'], 'default', 'value' => self::STATUS_ON],
-        //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return [
             [['cname'], 'required'],
             [['parentid', 'orderid', 'created_at', 'updated_at'], 'integer'],

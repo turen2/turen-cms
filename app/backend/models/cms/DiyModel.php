@@ -85,8 +85,6 @@ class DiyModel extends \backend\models\base\Cms
     public function rules()
     {
         //静态默认值由规则来赋值
-        //[['status'], 'default', 'value' => self::STATUS_ON],
-        //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return [
             [['dm_title', 'dm_name', 'dm_tbname'], 'required'],
             [['orderid', 'status', 'created_at', 'updated_at'], 'integer'],

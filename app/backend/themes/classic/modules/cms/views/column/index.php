@@ -27,7 +27,9 @@ $this->title = '栏目管理';
 	<tr align="left" class="head">
 		<td width="4%" class="first-column"><input type="checkbox" name="checkid" onclick="turen.com.checkAll(this.checked);"></td>
 		<td width="3%">ID</td>
-		<td width="40%">栏目名称</td>
+		<td width="24%">栏目名称</td>
+		<td width="8%">桌面端链接标记</td>
+		<td width="8%">移动端链接标记</td>
 		<td width="20%" align="center">排序</td>
 		<td width="32%" class="end-column">操作</td>
 	</tr>
@@ -57,7 +59,7 @@ $this->title = '栏目管理';
 				<td width="3%"><?= $model->id; ?>
 					<input type="hidden" name="id[]" id="id[]" value="<?= $model->id; ?>">
 				</td>
-				<td width="40%">
+				<td width="24%">
 					<?php $link = Column::ColumnLinkList($model->type, $model)?>
 					<?php if($model->level == 1) { ?>
 					<span class="minus-sign" id="rowid_<?= $model->id; ?>" onclick="turen.com.displayRows(<?= $model->id; ?>);">
@@ -69,6 +71,10 @@ $this->title = '栏目管理';
 					<?php } ?>
 					<span class="info-type-txt"> <i title="栏目属于[<?=Column::ColumnConvert('id2name', $model->type, '未定义')?>]类型">[<?=Column::ColumnConvert('id2name', $model->type, '未定义')?>]</i></span>
 				</td>
+
+                <td width="8%"><?= empty($model->pc_column)?'未定义':$model->pc_column; ?></td>
+                <td width="8%"><?= empty($model->m_column)?'未定义':$model->m_column; ?></td>
+
 				<td width="20%" align="center">
 					<a href="<?=Url::to(['quick-move', 'type' => Column::ORDER_UP_TYPE, 'kid' => $model->id, 'pid' => $model->parentid, 'orderid' => $model->orderid])?>" class="left-arrow" title="提升排序"></a>
 					<input type="text" name="orderid[]" id="orderid[]" class="inputls" value="<?= $model->orderid; ?>">

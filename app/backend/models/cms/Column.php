@@ -28,8 +28,8 @@ use backend\behaviors\OrderDefaultBehavior;
  * @property string $cname 栏目名称
  * @property string $linkurl 跳转链接
  * @property string $picurl 缩略图片
- * @property string $picwidth 缩略图宽度
- * @property string $picheight 缩略图高度
+ * @property string $pc_column 桌面端链接标记
+ * @property string $m_column 移动端链接标记
  * @property string $seotitle SEO标题
  * @property string $keywords 关键词
  * @property string $description 描述
@@ -110,14 +110,14 @@ class Column extends \backend\models\base\Cms
     public function rules()
     {
         return [
-            [['parentid', 'type', 'cname'], 'required'],
+            [['parentid', 'type', 'cname'], 'required'], // , 'pc_column', 'm_column'
             [['parentid', 'orderid'], 'integer'],
             [['parentstr', 'keywords'], 'string', 'max' => 50],
             [['type', 'status'], 'string', 'max' => 3],
             [['cname'], 'string', 'max' => 30],
             [['linkurl', 'description'], 'string', 'max' => 255],
             [['picurl'], 'string', 'max' => 100],
-            [['picwidth', 'picheight'], 'string', 'max' => 5],
+            [['pc_column', 'm_column'], 'string', 'max' => 20],
             [['seotitle'], 'string', 'max' => 80],
             [['lang'], 'string', 'max' => 8],
             //静态默认值由规则来赋值
@@ -159,8 +159,8 @@ class Column extends \backend\models\base\Cms
             'cname' => '栏目名称',
             'linkurl' => '跳转链接',
             'picurl' => '缩略图片',
-            'picwidth' => '宽度(px)',
-            'picheight' => '高度(px)',
+            'pc_column' => '桌面端链接标记',
+            'm_column' => '移动端链接标记',
             'seotitle' => 'SEO标题',
             'keywords' => '关键词',
             'description' => '栏目描述',
@@ -296,29 +296,6 @@ class Column extends \backend\models\base\Cms
     }
     
     /**
-     * 创建之后，如果是单页面类型，则对应创建单页面
-     * {@inheritDoc}
-     * @see \yii\db\BaseActiveRecord::afterSave()
-     */
-    public function afterSave($insert, $changedAttributes)
-    {
-        if($this->type == self::COLUMN_TYPE_INFO) {
-            if($insert) {
-                $model = new Info();
-                $model->columnid = $this->id;
-                $model->save(false);
-            } else {//更新时检测
-                $model = Info::find()->where(['columnid' => $this->id])->one();
-                if(empty($model)) {
-                    $model = new Info();
-                    $model->columnid = $this->id;
-                    $model->save(false);
-                }
-            }
-        }
-    }
-    
-    /**
      * 获取所有栏目列表
      * @param integer $columnid 栏目id
      * @return array
@@ -333,6 +310,16 @@ class Column extends \backend\models\base\Cms
         }
         
         return self::$_allColumn;
+    }
+
+    public static function PcColumn($columnId) {
+        $columnList = self::ColumnList();
+        return isset($columnList[$columnId])?$columnList[$columnId]['pc_column']:null;
+    }
+
+    public static function MobileColumn($columnId) {
+        $columnList = self::ColumnList();
+        return isset($columnList[$columnId])?$columnList[$columnId]['m_column']:null;
     }
     
     /**
@@ -366,6 +353,30 @@ class Column extends \backend\models\base\Cms
             return isset($columnList[$columnid])?$columnList[$columnid]['cname']:$name;
         }
     }
+
+    /**
+     * 创建之后，如果是单页面类型，则对应创建单页面
+     * {@inheritDoc}
+     * @see \yii\db\BaseActiveRecord::afterSave()
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        if($this->type == self::COLUMN_TYPE_INFO) {
+            if($insert) {
+                $model = new Info();
+                $model->columnid = $this->id;
+                $model->save(false);
+            } else {//更新时检测
+                $model = Info::find()->where(['columnid' => $this->id])->one();
+                if(empty($model)) {
+                    $model = new Info();
+                    $model->columnid = $this->id;
+                    $model->save(false);
+                }
+            }
+        }
+    }
+
     /**
      * 删除之后，如果是单页面类型，对应删除
      * {@inheritDoc}

@@ -64,8 +64,6 @@ class Level extends \backend\models\base\User
     public function rules()
     {
         //静态默认值由规则来赋值
-        //[['status'], 'default', 'value' => self::STATUS_ON],
-        //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return [
             [['level_name'], 'required'],
             [['level_expval_min', 'level_expval_max'], 'integer'],

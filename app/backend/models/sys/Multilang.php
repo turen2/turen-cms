@@ -96,8 +96,6 @@ class Multilang extends \backend\models\base\Sys
     public function rules()
     {
         //静态默认值由规则来赋值
-        //[['status'], 'default', 'value' => self::STATUS_ON],
-        //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return [
             [['lang_name', 'lang_sign', 'key'], 'required'],
             [['back_default', 'front_default', 'orderid', 'is_visible'], 'integer'],

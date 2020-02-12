@@ -8,15 +8,30 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use yii\widgets\ActiveForm;
+use common\helpers\Functions;
 use backend\models\cms\Column;
 use backend\widgets\edititem\EditItemWidget;
 use backend\models\cms\DiyField;
 use backend\models\cms\MasterModel;
 use backend\models\cms\Cate;
-use backend\models\cms\Flag;
+use backend\assets\ClipboardAsset;
+
+ClipboardAsset::register($this);
+$js = <<<EOF
+    new ClipboardJS('.btn-clipboard');
+
+    $('.btn-clipboard').click(function() {
+        $.notify('复制成功', 'success');
+    });
+EOF;
+$this->registerJs($js);
 
 $this->title = $diyModel->dm_title.'列表';
-$this->topFilter = $this->render('_filter', ['model' => $searchModel, 'type' => $modelid]);
+$this->topFilter = $this->render('_filter', ['model' => $searchModel, 'columnModel' => $columnModel, 'type' => $modelid]);
+if($columnModel) {
+    $slugUrl = Functions::ColumnUrl($columnModel->m_column);
+    $this->urlLink = '<span class="url-link">访问链接：<a class="btn-clipboard" data-clipboard-text="'.$slugUrl.'" href="javascript:;" title="点击复制">'.$slugUrl.'</a></span>';
+}
 ?>
 
 <?= $this->render('_search', ['model' => $searchModel, 'diyModel' => $diyModel, 'modelid' => $modelid]); ?>
@@ -65,7 +80,11 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel, 'type' => 
 			<input type="checkbox" name="checkid[]" id="checkid[]" value="<?= $model->id; ?>">
 		</td>
 		<td><?= $model->id; ?></td>
-		<td><span class="title" style="color:<?= $model->colorval; ?>;font-weight:<?= $model->boldval; ?>"><?= $model->title; ?><span class="title-flag"><?= implode('&nbsp;', $model->activeFlagList($modelid)); ?></span><?=empty($model->picurl)?'':' <span class="titpic"><i class="fa fa-picture-o"></i></span>'?></span></td>
+		<td>
+            <span class="title" style="color:<?= $model->colorval; ?>;font-weight:<?= $model->boldval; ?>"><?= $model->title; ?><span class="title-flag"><?= implode('&nbsp;', $model->activeFlagList($modelid)); ?></span><?=empty($model->picurl)?'':' <span class="titpic"><i class="fa fa-picture-o"></i></span>'?></span>
+            <?php $slugUrl = Functions::SlugUrl($model, 'slug', Column::MobileColumn($model->columnid)) ?>
+            <p><a class="btn-clipboard" data-clipboard-text="<?= $slugUrl ?>" href="javascript:;" title="点击复制"><?= $slugUrl ?></a></p>
+        </td>
 		<td><?= Column::ColumnName($model->columnid).' ['.$model->columnid.']'; ?></td>
 		<?php if(Yii::$app->params['config.openCate']) { ?>
 		<td><?= Cate::CateName($model->cateid) ?></td>

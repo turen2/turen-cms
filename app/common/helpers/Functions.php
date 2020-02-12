@@ -7,6 +7,7 @@
 namespace common\helpers;
 
 use Yii;
+use yii\base\Model;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -112,10 +113,29 @@ class Functions
         }
         return $str;
     }
-    
-    public static function SlugUrl($model, $attribute, $label = '标记')
+
+    /**
+     * 组装模型url链接
+     * @param Model $model 模型
+     * @param string $attribute slug所在属性
+     * @param string $columnLabel 栏目标记
+     * @param string $params 附加字符串参数
+     * @return string
+     */
+    public static function SlugUrl($model, $attribute, $columnLabel = '栏目标记', $params = '')
     {
         $slug = empty($model->{$attribute})?'未设置':$model->{$attribute};
-        return Yii::$app->params['config_site_url'].'/.../'.$label.'-<span class="slug-url">'.$slug.'</span>'.Yii::$app->params['config_site_url_suffix'];
+        return Yii::$app->params['config_site_url'].'/'.$columnLabel.'/'.$slug.Yii::$app->params['config_site_url_suffix'].$params;
+    }
+
+    /**
+     * 组装栏目url链接
+     * @param string $columnLabel 栏目标记
+     * @param string $params 附加字符串参数
+     * @return string
+     */
+    public static function ColumnUrl($columnLabel = '栏目标记', $params = '')
+    {
+        return Yii::$app->params['config_site_url'].'/'.$columnLabel.Yii::$app->params['config_site_url_suffix'].$params;
     }
 }

@@ -72,8 +72,6 @@ class Log extends \backend\models\base\Sys
     public function rules()
     {
         //静态默认值由规则来赋值
-        //[['status'], 'default', 'value' => self::STATUS_ON],
-        //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return [
             [['log_id', 'admin_id', 'created_at'], 'integer'],
             [['username', 'get_data', 'post_data', 'agent'], 'string'],

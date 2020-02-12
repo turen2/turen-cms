@@ -81,8 +81,6 @@ class Attribute extends \backend\models\base\Shop
     public function rules()
     {
         //静态默认值由规则来赋值
-        //[['status'], 'default', 'value' => self::STATUS_ON],
-        //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return [
             [['attrname', 'pcateid'], 'required'],
             [['attrname'], 'unique', 'targetAttribute' => 'attrname'],

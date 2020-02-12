@@ -78,8 +78,6 @@ class FeedbackType extends \backend\models\base\User
     public function rules()
     {
         //静态默认值由规则来赋值
-        //[['status'], 'default', 'value' => self::STATUS_ON],
-        //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return [
             [['fkt_form_name', 'fkt_list_name'], 'required'],
             [['fkt_form_show', 'fkt_list_show', 'orderid', 'status', 'is_default', 'created_at', 'updated_at'], 'integer'],

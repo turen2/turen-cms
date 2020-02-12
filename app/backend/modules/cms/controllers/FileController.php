@@ -23,6 +23,7 @@ use backend\models\cms\Tag;
 use backend\models\cms\TagAssign;
 use backend\models\cms\DiyField;
 use backend\widgets\select2\Select2TagAction;
+use backend\models\cms\Column;
 
 /**
  * FileController implements the CRUD actions for File model.
@@ -129,6 +130,7 @@ class FileController extends Controller
 
         return $this->render('index', [
             'searchModel' => $searchModel,
+            'columnModel' => Column::findOne($searchModel->columnid),
             'dataProvider' => $dataProvider,
         ]);
     }

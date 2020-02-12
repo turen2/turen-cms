@@ -49,7 +49,7 @@ class InfoSearch extends Info
         //$query = Admin::findBySql($sql);
         //$query = Admin::find()->alias('a')->select(['a.*', 's.company as company', 's.domain as domain', 's.username as merchant'])->leftJoin(Site::tableName().' as s', ' a.test_id = s.testid');
         
-        $query = Info::find()->current()->alias('i')->select(['i.*', 'c.cname as cname', 'c.id as cid'])->leftJoin(Column::tableName().' as c', ' i.columnid = c.id')->orderBy(['c.orderid' => SORT_DESC]);
+        $query = Info::find()->current()->alias('i')->select(['i.*', 'c.cname as cname', 'c.id as cid', 'c.pc_column', 'c.m_column'])->leftJoin(Column::tableName().' as c', ' i.columnid = c.id')->orderBy(['c.orderid' => SORT_DESC]);
 
         // add conditions that should always apply here
 

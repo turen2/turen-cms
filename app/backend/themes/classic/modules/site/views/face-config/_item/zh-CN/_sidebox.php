@@ -8,8 +8,8 @@
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use common\helpers\BuildHelper;
-use common\models\cms\Block;
-use common\models\cms\Column;
+use backend\models\cms\Block;
+use backend\models\cms\Column;
 use backend\models\cms\Flag;
 
 $blockArray =  ArrayHelper::map(Block::find()->current()->orderBy(['updated_at' => SORT_DESC])->asArray()->all(), 'id', 'title');

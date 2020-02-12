@@ -55,6 +55,7 @@ $this->registerJs("
     	<span class="title"><?= $this->title ?></span>
     	<?= $this->topFilter ?>
     	<a href="javascript:location.reload();" class="reload"><i class="fa fa-refresh"></i> 刷新</a>
+        <?= $this->urlLink; ?>
 	</div>
     
     <?= $content ?>

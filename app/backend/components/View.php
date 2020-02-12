@@ -17,6 +17,8 @@ class View extends \yii\web\View
 {
     //当前展示的模型过视图
     public $topFilter;
+
+    public $urlLink;
     
     public $topAlert;
     

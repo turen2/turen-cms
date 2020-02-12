@@ -134,7 +134,8 @@ class Article extends \backend\models\base\Cms
             //静态默认值由规则来赋值
             [['status'], 'default', 'value' => self::STATUS_ON],
             [['picarr'], 'default', 'value' => ''],
-            [['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
+            [['base_hits'], 'default', 'value' => Yii::$app->params['config.hits']],
+            [['hits'], 'default', 'value' => 0],
             [['tagNames', 'picarr', 'keyword'], 'safe'],
         ]);
     }

@@ -87,7 +87,6 @@ class User extends \backend\models\base\User
     public function rules()
     {
         //静态默认值由规则来赋值
-        //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return [
             [['username'], 'required'],
             [['level_id', 'ug_id', 'sex', 'point', 'login_time', 'status', 'deltime', 'delstate', 'reg_time'], 'integer'],

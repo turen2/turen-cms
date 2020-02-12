@@ -121,7 +121,7 @@ class MasterModel extends \backend\models\base\Cms
      */
     public function attributes()
     {
-        return ArrayHelper::merge(parent::attributes(), []);
+        return ArrayHelper::merge(parent::attributes(), ['keyword']);
     }
 
     /**
@@ -135,8 +135,9 @@ class MasterModel extends \backend\models\base\Cms
             [['title', 'colorval', 'boldval', 'parentstr', 'catepstr', 'flag', 'author', 'picurl', 'lang'], 'string'],
             [['author'], 'default', 'value' => $this->getAdmin()->username],
             [['status'], 'default', 'value' => self::STATUS_ON],
-            [['base_hits'], 'default', 'value' => 0],
-            [['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
+            [['base_hits'], 'default', 'value' => Yii::$app->params['config.hits']],
+            [['hits'], 'default', 'value' => 0],
+            [['slug'], 'default', 'value' => 'abc'],
         ]);
     }
 

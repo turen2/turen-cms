@@ -92,8 +92,6 @@ class Feedback extends \backend\models\base\User
     public function rules()
     {
         //静态默认值由规则来赋值
-        //[['status'], 'default', 'value' => self::STATUS_ON],
-        //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return [
             [['fk_nickname', 'fk_type_id', 'fk_content', 'fk_review'], 'required'],
             [['fk_user_id', 'fk_show', 'fk_type_id', 'fk_retime', 'fk_sms', 'fk_email', 'orderid', 'created_at', 'updated_at'], 'integer'],

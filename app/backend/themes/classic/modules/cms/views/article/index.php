@@ -12,19 +12,24 @@ use common\helpers\Functions;
 use backend\models\cms\Column;
 use backend\widgets\edititem\EditItemWidget;
 use backend\models\cms\Cate;
-use backend\models\cms\Flag;
+use backend\assets\ClipboardAsset;
 
-/* @var $this yii\web\View */
-/* @var $searchModel backend\models\cms\ArticleSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-
+ClipboardAsset::register($this);
 $js = <<<EOF
-    
+    new ClipboardJS('.btn-clipboard');
+
+    $('.btn-clipboard').click(function() {
+        $.notify('复制成功', 'success');
+    });
 EOF;
 $this->registerJs($js);
 
 $this->title = '列表信息管理';
-$this->topFilter = $this->render('_filter', ['model' => $searchModel, 'type' => Column::COLUMN_TYPE_ARTICLE]);
+$this->topFilter = $this->render('_filter', ['model' => $searchModel, 'columnModel' => $columnModel, 'type' => Column::COLUMN_TYPE_ARTICLE]);
+if($columnModel) {
+    $slugUrl = Functions::ColumnUrl($columnModel->m_column);
+    $this->urlLink = '<span class="url-link">访问链接：<a class="btn-clipboard" data-clipboard-text="'.$slugUrl.'" href="javascript:;" title="点击复制">'.$slugUrl.'</a></span>';
+}
 ?>
 
 <?= $this->render('_search', ['model' => $searchModel]); ?>
@@ -69,7 +74,8 @@ $this->topFilter = $this->render('_filter', ['model' => $searchModel, 'type' => 
 		<td><?= $model->id; ?></td>
 		<td>
 			<span class="title" style="color:<?= $model->colorval; ?>;font-weight:<?= $model->boldval; ?>"><?= $model->title; ?><span class="title-flag"><?= implode('&nbsp;', $model->activeFlagList(Column::COLUMN_TYPE_ARTICLE)); ?></span><?=empty($model->picurl)?'':' <span class="titpic"><i class="fa fa-picture-o"></i></span>'?></span>
-			<?= Functions::SlugUrl($model, 'slug', 'article') ?>
+            <?php $slugUrl = Functions::SlugUrl($model, 'slug', Column::MobileColumn($model->columnid)) ?>
+            <p><a class="btn-clipboard" data-clipboard-text="<?= $slugUrl ?>" href="javascript:;" title="点击复制"><?= $slugUrl ?></a></p>
 		</td>
 		<td><?= Column::ColumnName($model->columnid).' ['.$model->columnid.']'; ?></td>
 		<?php if(Yii::$app->params['config.openCate']) { ?>

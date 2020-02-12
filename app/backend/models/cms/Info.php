@@ -61,7 +61,7 @@ class Info extends \backend\models\base\Cms
      */
     public function attributes()
     {
-        return ArrayHelper::merge(parent::attributes(), ['cname', 'cid']);
+        return ArrayHelper::merge(parent::attributes(), ['cname', 'cid', 'pc_column', 'm_column']);
     }
 
     /**

@@ -74,9 +74,6 @@ class Src extends \backend\models\base\Cms
             [['srcname'], 'string', 'max' => 50],
             [['linkurl'], 'string', 'max' => 150],
             [['lang'], 'string', 'max' => 8],
-            //静态默认值由规则来赋值
-            [['status'], 'default', 'value' => self::STATUS_ON],
-            [['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         ];
     }
 

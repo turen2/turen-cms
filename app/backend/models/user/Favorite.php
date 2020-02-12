@@ -77,8 +77,6 @@ class Favorite extends \backend\models\base\User
     public function rules()
     {
         //静态默认值由规则来赋值
-        //[['status'], 'default', 'value' => self::STATUS_ON],
-        //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return [
             [['uf_typeid', 'uf_model_id', 'uid'], 'required'],
             [['uf_model_id', 'uid', 'uf_star', 'created_at'], 'integer'],

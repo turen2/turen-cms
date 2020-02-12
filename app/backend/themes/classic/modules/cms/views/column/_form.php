@@ -23,6 +23,8 @@ ValidationAsset::register($this);
 
 $rules = $messages = [];
 $rules[Html::getInputName($model, 'cname')] = ['required' => true];
+//$rules[Html::getInputName($model, 'pc_column')] = ['required' => true];
+//$rules[Html::getInputName($model, 'm_column')] = ['required' => true];
 $rules = Json::encode($rules);
 $messages = Json::encode($messages);
 $js = <<<EOF
@@ -91,13 +93,14 @@ $this->registerJs($js);
     		</td>
     	</tr>
     	<tr>
-    		<td class="first-column">自动缩略<?php if($model->isAttributeRequired('picwidth') || $model->isAttributeRequired('picheight')) { ?><span class="maroon">*</span><?php } ?></td>
+    		<td class="first-column">栏目链接标记<?php if($model->isAttributeRequired('pc_column') || $model->isAttributeRequired('m_column')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'picwidth', ['class' => 'inputls']) ?>
-    			<?= $model->getAttributeLabel('picwidth')?>
-    			<?= Html::activeInput('text', $model, 'picheight', ['class' => 'inputls']) ?>
-    			<?= $model->getAttributeLabel('picheight')?>
-    			<span class="cnote">子栏目自动获取上级尺寸；留空不启用；原图：上传文件名_hd.扩展名</span>
+    			<?= Html::activeInput('text', $model, 'pc_column', ['class' => 'inputpcms']) ?>
+    			<?= $model->getAttributeLabel('pc_column')?>
+                &nbsp;&nbsp;
+    			<?= Html::activeInput('text', $model, 'm_column', ['class' => 'inputpcms']) ?>
+    			<?= $model->getAttributeLabel('m_column')?>
+    			<span class="cnote">多个客户端尽量保持一致</span>
     		</td>
     	</tr>
     	<tr>
@@ -110,14 +113,14 @@ $this->registerJs($js);
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('seotitle')?><?php if($model->isAttributeRequired('seotitle')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'seotitle', ['class' => 'input']) ?>
+    			<?= Html::activeInput('text', $model, 'seotitle', ['class' => 'input seo-input']) ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('keywords')?><?php if($model->isAttributeRequired('keywords')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'keywords', ['class' => 'input']) ?>
+    			<?= Html::activeInput('text', $model, 'keywords', ['class' => 'input seo-input']) ?>
     			<span class="cnote"></span>
     		</td>
     	</tr>

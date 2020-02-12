@@ -577,6 +577,14 @@ input[type="button"]:focus, input[type="submit"]:focus {
 	text-align: center;
 }
 
+.top-toolbar .url-link {
+	float: right;
+	height: 20px;
+	line-height: 20px;
+	padding-top: 12px;
+	padding-right: 16px;
+}
+
 .top-toolbar a.reload:hover {
 	background: #a1a1a1;
 	text-decoration: none;
@@ -1604,7 +1612,7 @@ input[type="button"]:focus, input[type="submit"]:focus {
 }
 
 /*文本框样式*/
-.input, .inputm, .inputs, .inputd, .inputls, .inputos, .inputms, .textarea {
+.input, .inputm, .inputs, .inputd, .inputls, .inputos, .inputms, .inputpcms, .textarea {
 	height: 22px;
 	line-height: 22px;
 	margin: 0 3px 0 0;
@@ -1614,6 +1622,10 @@ input[type="button"]:focus, input[type="submit"]:focus {
 
 .input {
 	width: 278px;
+}
+
+.input.seo-input {
+	width: 661px;
 }
 
 .inputs {
@@ -1632,6 +1644,11 @@ input[type="button"]:focus, input[type="submit"]:focus {
 .inputls {
 	width: 30px;
 	text-align: center;
+	margin: 0;
+}
+
+.inputpcms {
+	width: 70px;
 	margin: 0;
 }
 

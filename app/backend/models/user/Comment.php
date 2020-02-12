@@ -77,8 +77,6 @@ class Comment extends \backend\models\base\User
     public function rules()
     {
         //静态默认值由规则来赋值
-        //[['status'], 'default', 'value' => self::STATUS_ON],
-        //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return [
             [['uc_typeid', 'uc_model_id' ,'uc_note'], 'required'],
             [['uc_pid', 'uid', 'status', 'created_at', 'reply_time'], 'integer'],

@@ -142,8 +142,6 @@ class Product extends \backend\models\base\Shop
     public function rules()
     {
         //静态默认值由规则来赋值
-        //[['status'], 'default', 'value' => self::STATUS_ON],
-        //[['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         return ArrayHelper::merge(DiyField::DiyFieldRule($this), [
             [['columnid', 'pcateid', 'brand_id', 'title', 'sales_price', 'content', 'picurl', 'slug'], 'required'],
             [['columnid', 'pcateid', 'brand_id', 'stock', 'hits', 'orderid', 'deltime', 'created_at', 'updated_at', 'promote_start_date', 'promote_end_date', 'posttime'], 'integer'],

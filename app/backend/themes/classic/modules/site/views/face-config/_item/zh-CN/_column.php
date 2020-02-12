@@ -7,7 +7,7 @@
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use common\helpers\BuildHelper;
-use common\models\cms\Flag;
+use backend\models\cms\Flag;
 use backend\models\cms\Column;
 use backend\models\cms\DiyModel;
 
