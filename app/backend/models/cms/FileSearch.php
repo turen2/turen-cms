@@ -22,7 +22,7 @@ class FileSearch extends File
     public function rules()
     {
         return [
-            [['id', 'columnid', 'parentid', 'cateid', 'catepid', 'hits', 'orderid', 'deltime'], 'integer'],
+            [['id', 'columnid', 'parentid', 'cateid', 'catepid', 'base_hits', 'hits', 'orderid', 'deltime'], 'integer'],
             [['parentstr', 'catepstr', 'title', 'colorval', 'boldval', 'flag', 'source', 'author', 'filetype', 'filesize', 'website', 'demourl', 'dlurl', 'linkurl', 'keywords', 'keyword', 'description', 'content', 'picurl', 'picarr', 'status', 'delstate', 'lang', 'posttime', 'keyword', 'slug'], 'safe'],
         ];
     }
@@ -48,7 +48,6 @@ class FileSearch extends File
     	//$sql = "select a.*, s.company as company, s.domain as domain, s.username as merchant from ".Admin::tableName()." as a left join ".Site::tableName()." as s on a.test_id = s.testid";
         //$query = Admin::findBySql($sql);
         //$query = Admin::find()->alias('a')->select(['a.*', 's.company as company', 's.domain as domain', 's.username as merchant'])->leftJoin(Site::tableName().' as s', ' a.test_id = s.testid');
-        
         $query = File::find()->current()->delstate(File::IS_NOT_DEL);
 
         // add conditions that should always apply here

@@ -50,6 +50,7 @@ use backend\behaviors\OrderDefaultBehavior;
  * @property string $content 内容
  * @property string $picurl 缩略图片
  * @property string $picarr 截图展示
+ * @property string $base_hits 虚拟点击量
  * @property string $hits 点击次数
  * @property string $orderid 排列排序
  * @property int $posttime 发布时间
@@ -146,7 +147,8 @@ class File extends \backend\models\base\Cms
             //静态默认值由规则来赋值
             [['status'], 'default', 'value' => self::STATUS_ON],
             [['picarr'], 'default', 'value' => ''],
-            [['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
+            [['base_hits'], 'default', 'value' => Yii::$app->params['config.hits']],
+            [['hits'], 'default', 'value' => 0],
             [['tagNames', 'picarr', 'keyword'], 'safe'],
         ]);
     }
@@ -184,6 +186,7 @@ class File extends \backend\models\base\Cms
             'content' => '内容',
             'picurl' => '截图封面',
             'picarr' => '多截图展示',
+            'base_hits' => '虚拟点击量',
             'hits' => '点击次数',
             'orderid' => '排列排序',
             'posttime' => '发布时间',

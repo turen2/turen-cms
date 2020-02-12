@@ -158,6 +158,13 @@ $this->registerJs($js);
     	<?= DiyFieldWidget::widget([
 		    'model' => $model,
 		]) ?>
+        <tr>
+            <td class="first-column"><?= $model->getAttributeLabel('base_hits')?><?php if($model->isAttributeRequired('base_hits')) { ?><span class="maroon">*</span><?php } ?></td>
+            <td class="second-column">
+                <?= Html::activeInput('text', $model, 'base_hits', ['class' => 'inputs']) ?>
+                <span class="cnote">前台展示=虚拟点击量+真实点击量</span>
+            </td>
+        </tr>
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('orderid')?><?php if($model->isAttributeRequired('orderid')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">

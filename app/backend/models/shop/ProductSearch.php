@@ -22,7 +22,7 @@ class ProductSearch extends Product
     public function rules()
     {
         return [
-            [['id', 'columnid', 'pcateid', 'brand_id', 'promote_start_date', 'promote_end_date', 'stock', 'hits', 'orderid', 'posttime', 'deltime', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'columnid', 'pcateid', 'brand_id', 'promote_start_date', 'promote_end_date', 'stock', 'base_hits', 'hits', 'orderid', 'posttime', 'deltime', 'created_at', 'updated_at'], 'integer'],
             [['attrtext', 'title', 'colorval', 'boldval', 'subtitle', 'keywords', 'description', 'flag', 'sku', 'product_sn', 'weight', 'is_promote', 'is_shipping', 'linkurl', 'content', 'picurl', 'picarr', 'is_best', 'is_new', 'is_hot', 'status', 'delstate', 'author', 'keyword', 'slug'], 'safe'],
             [['market_price', 'sales_price', 'promote_price'], 'number'],
         ];
@@ -49,7 +49,7 @@ class ProductSearch extends Product
     	//$sql = "select a.*, s.company as company, s.domain as domain, s.username as merchant from ".Admin::tableName()." as a left join ".Site::tableName()." as s on a.test_id = s.testid";
         //$query = Admin::findBySql($sql);
         //$query = Admin::find()->alias('a')->select(['a.*', 's.company as company', 's.domain as domain', 's.username as merchant'])->leftJoin(Site::tableName().' as s', ' a.test_id = s.testid');
-        $query = Product::find(); // ->current()->delstate(Product::IS_NOT_DEL);
+        $query = Product::find();
 
         // add conditions that should always apply here
         $dataProvider = new ActiveDataProvider([

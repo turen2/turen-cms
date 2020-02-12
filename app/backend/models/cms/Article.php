@@ -162,6 +162,7 @@ class Article extends \backend\models\base\Cms
             'content' => '详细内容',
             'picurl' => '缩略图片',
             'picarr' => '组图',
+            'base_hits' => '虚拟点击量',
             'hits' => '点击次数',
             'orderid' => '排列排序',
             'posttime' => '发布时间',

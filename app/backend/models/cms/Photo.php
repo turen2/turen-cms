@@ -44,6 +44,7 @@ use backend\behaviors\OrderDefaultBehavior;
  * @property string $content 详细内容
  * @property string $picurl 缩略图片
  * @property string $picarr 组图
+ * @property string $base_hits 虚拟点击量
  * @property string $hits 点击次数
  * @property string $orderid 排列排序
  * @property int $posttime 发布时间
@@ -139,7 +140,8 @@ class Photo extends \backend\models\base\Cms
             //静态默认值由规则来赋值
             [['status'], 'default', 'value' => self::STATUS_ON],
             [['picarr'], 'default', 'value' => ''],
-            [['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
+            [['base_hits'], 'default', 'value' => Yii::$app->params['config.hits']],
+            [['hits'], 'default', 'value' => 0],
             [['tagNames', 'picarr', 'keyword'], 'safe'],
         ]);
     }
@@ -172,6 +174,7 @@ class Photo extends \backend\models\base\Cms
             'content' => '详细内容',
             'picurl' => '缩略图片',
             'picarr' => '图片集',
+            'base_hits' => '虚拟点击量',
             'hits' => '点击次数',
             'orderid' => '排列排序',
             'posttime' => '发布时间',

@@ -21,7 +21,7 @@ use backend\behaviors\OrderDefaultBehavior;
  * @property string $dm_name 模型名称
  * @property string $dm_tbname 模型表名
  * @property string $orderid 排列排序
- * @property int $status 审核状态
+ * @property int $status 状态
  * @property string $created_at 添加时间
  * @property string $updated_at 更新时间
  */
@@ -30,7 +30,7 @@ class DiyModel extends \backend\models\base\Cms
 	const MODEL_PRE = 'diymodel_';
 	
 	public $keyword;
-	//标题    标记    缩略图    多语言    排序    发布时间    更新时间    创建时间
+
 	private static $DefaultFields = [
 	    'title' => '标题', 
 	    'slug' => '访问链接', 
@@ -40,7 +40,9 @@ class DiyModel extends \backend\models\base\Cms
 	    'orderid' => '排序', 
 	    'status' => '状态',
         'author' => '作者',
-	    'posttime' => '发布时间', 
+        'base_hits' => '虚拟点击量',
+        'hits' => '点击次数',
+	    'posttime' => '发布时间',
 	    'updated_at' => '创建时间',  
 	    'created_at' => '创建时间'
 	];

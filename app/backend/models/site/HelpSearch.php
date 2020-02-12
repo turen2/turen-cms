@@ -22,7 +22,7 @@ class HelpSearch extends Help
     public function rules()
     {
         return [
-            [['id', 'cateid', 'catepid', 'hits', 'orderid'], 'integer'],
+            [['id', 'cateid', 'catepid', 'base_hits', 'hits', 'orderid'], 'integer'],
             [['catepstr', 'title', 'colorval', 'boldval', 'flag', 'author', 'linkurl', 'keywords', 'keyword', 'description', 'content', 'picurl', 'picarr', 'status', 'posttime', 'keyword'], 'safe'],
         ];
     }
@@ -48,7 +48,6 @@ class HelpSearch extends Help
     	//$sql = "select a.*, s.company as company, s.domain as domain, s.username as merchant from ".Admin::tableName()." as a left join ".Site::tableName()." as s on a.test_id = s.testid";
         //$query = Admin::findBySql($sql);
         //$query = Admin::find()->alias('a')->select(['a.*', 's.company as company', 's.domain as domain', 's.username as merchant'])->leftJoin(Site::tableName().' as s', ' a.test_id = s.testid');
-        
         $query = Help::find();
 
         // add conditions that should always apply here

@@ -22,7 +22,7 @@ class MasterModelSearch extends MasterModel
     public function rules()
     {
         return [
-            [['id', 'columnid', 'parentid', 'cateid', 'catepid', 'status', 'orderid', 'posttime', 'updated_at', 'created_at'], 'integer'],
+            [['id', 'columnid', 'parentid', 'cateid', 'catepid', 'status', 'orderid', 'base_hits', 'hits', 'posttime', 'updated_at', 'created_at'], 'integer'],
             [['title', 'parentstr', 'catepstr', 'flag', 'author', 'picurl', 'lang', 'keyword', 'slug'], 'safe'],
         ];
     }

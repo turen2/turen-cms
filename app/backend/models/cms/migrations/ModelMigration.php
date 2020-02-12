@@ -56,6 +56,8 @@ class ModelMigration extends Migration
                 'picurl' => $this->string(100)->notNull()->defaultValue('')->comment('缩略图'),
                 'lang' => $this->string(8)->notNull()->defaultValue('')->comment('多语言'),
                 'status' => $this->tinyInteger(1)->unsigned()->notNull()->defaultValue(1)->comment('状态'),
+                'base_hits' => $this->integer(11)->unsigned()->notNull()->defaultValue(100)->comment('虚拟点击量'),
+                'hits' => $this->integer(11)->unsigned()->notNull()->defaultValue(0)->comment('点击数量'),
                 'orderid' => $this->integer(11)->unsigned()->notNull()->defaultValue(10)->comment('排序'),
                 'posttime' => $this->integer(10)->unsigned()->notNull()->defaultValue(0)->comment('发布时间'),
                 'updated_at' => $this->integer(10)->unsigned()->notNull()->defaultValue(0)->comment('更新时间'),

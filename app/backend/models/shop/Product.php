@@ -54,6 +54,7 @@ use backend\behaviors\OrderDefaultBehavior;
  * @property int $is_best 最爱
  * @property int $is_new 新品
  * @property int $is_hot 最热
+ * @property string $base_hits 虚拟点击量
  * @property string $hits 点击次数
  * @property string $orderid 排列排序
  * @property string $posttime 上架时间
@@ -160,7 +161,8 @@ class Product extends \backend\models\base\Shop
             [['picarr'], 'default', 'value' => ''],
             [['weight', 'market_price'], 'default', 'value' => 0],
             [['stock'], 'default', 'value' => Yii::$app->params['config_stock_warning']],
-            [['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
+            [['base_hits'], 'default', 'value' => Yii::$app->params['config.hits']],
+            [['hits'], 'default', 'value' => 0],
             [['picarr', 'keyword'], 'safe'],
         ]);
     }
@@ -202,6 +204,7 @@ class Product extends \backend\models\base\Shop
             'is_best' => '是否最爱',
             'is_new' => '是否新品',
             'is_hot' => '是否最热',
+            'base_hits' => '虚拟点击量',
             'hits' => '点击次数',
             'author' => '作者',
             'orderid' => '排序',

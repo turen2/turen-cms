@@ -365,10 +365,10 @@ $this->registerJs($js);
     	</tr>
     	
     	<tr>
-    		<td class="first-column"><?= $model->getAttributeLabel('hits')?><?php if($model->isAttributeRequired('hits')) { ?><span class="maroon">*</span><?php } ?></td>
+    		<td class="first-column"><?= $model->getAttributeLabel('base_hits')?><?php if($model->isAttributeRequired('base_hits')) { ?><span class="maroon">*</span><?php } ?></td>
     		<td class="second-column">
-    			<?= Html::activeInput('text', $model, 'hits', ['class' => 'inputs']) ?>
-    			<span class="cnote"></span>
+    			<?= Html::activeInput('text', $model, 'base_hits', ['class' => 'inputs']) ?>
+    			<span class="cnote">前台展示=虚拟点击量+真实点击量</span>
     		</td>
     	</tr>
     	<tr>

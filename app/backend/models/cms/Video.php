@@ -43,6 +43,7 @@ use backend\behaviors\OrderDefaultBehavior;
  * @property string $content 详细内容
  * @property string $picurl 缩略视频
  * @property string $videolink 视频地址
+ * @property string $base_hits 虚拟点击量
  * @property string $hits 点击次数
  * @property string $orderid 排列排序
  * @property int $posttime 发布时间
@@ -133,7 +134,8 @@ class Video extends \backend\models\base\Cms
             [['author'], 'default', 'value' => $this->getAdmin()->username],
             //静态默认值由规则来赋值
             [['status'], 'default', 'value' => self::STATUS_ON],
-            [['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
+            [['base_hits'], 'default', 'value' => Yii::$app->params['config.hits']],
+            [['hits'], 'default', 'value' => 0],
             ['tagNames', 'safe'],
         ]);
     }
@@ -166,6 +168,7 @@ class Video extends \backend\models\base\Cms
             'content' => '详细内容',
             'picurl' => '视频缩略图',
             'videolink' => '视频地址',
+            'base_hits' => '虚拟点击量',
             'hits' => '点击次数',
             'orderid' => '排列排序',
             'posttime' => '发布时间',

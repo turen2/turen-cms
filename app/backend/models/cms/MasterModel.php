@@ -36,6 +36,8 @@ use backend\behaviors\OrderDefaultBehavior;
  * @property string $catepstr 类别父ID列表
  * @property string $flag 标记
  * @property string $author 编辑作者
+ * @property string $base_hits 虚拟点击量
+ * @property string $hits 点击次数
  * @property string $picurl 缩略图
  * @property string $lang 多语言
  * @property int $status 状态
@@ -133,6 +135,8 @@ class MasterModel extends \backend\models\base\Cms
             [['title', 'colorval', 'boldval', 'parentstr', 'catepstr', 'flag', 'author', 'picurl', 'lang'], 'string'],
             [['author'], 'default', 'value' => $this->getAdmin()->username],
             [['status'], 'default', 'value' => self::STATUS_ON],
+            [['base_hits'], 'default', 'value' => 0],
+            [['hits'], 'default', 'value' => Yii::$app->params['config.hits']],
         ]);
     }
 
@@ -153,6 +157,8 @@ class MasterModel extends \backend\models\base\Cms
             'catepstr' => '类别父ID列表',
             'flag' => '标记',
             'author' => '编辑作者',
+            'base_hits' => '虚拟点击量',
+            'hits' => '点击次数',
             'picurl' => '缩略图',
             'lang' => '多语言',
             'status' => '状态',
