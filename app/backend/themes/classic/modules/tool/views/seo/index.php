@@ -125,6 +125,7 @@ $js = <<<EOF
                         $.notify('更新成功~', 'success');
                         trnobox.find("input[type='text']").removeAttr('disabled');
                         trnobox.find("textarea").removeAttr('disabled');
+                        $('.data-table .update-btn').removeClass('update-btn').addClass('disabled');
                     }
                }
             });

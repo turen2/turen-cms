@@ -6,16 +6,9 @@
  */
 
 use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\helpers\Url;
 use backend\components\View;
 use backend\widgets\Tips;
-use backend\models\sys\Config;
-
-/* @var $this yii\web\View */
-/* @var $model backend\models\site\Config */
-/* @var $form yii\widgets\ActiveForm */
 
 $this->title = '界面配置';
 
@@ -32,34 +25,18 @@ $this->registerJs($js, View::POS_END);
 
 //设置选项卡项
 $configTabArr = [
-    [
-        'name' => '菜单绑定',
-        'view' => 'nav',
-    ],
-    [
-        'name' => '栏目绑定',
-        'view' => 'column',
-    ],
-    [
-        'name' => '类别绑定',
-        'view' => 'cate',
-    ],
-    [
-        'name' => '广告绑定',
-        'view' => 'ad',
-    ],
-    [
-        'name' => '友链绑定',
-        'view' => 'link',
-    ],
-    [
-        'name' => '碎片绑定',
-        'view' => 'block',
-    ],
-    [
-        'name' => '侧边栏配置',
-        'view' => 'sidebox',
-    ],
+    ['name' => '公共模块', 'view' => 'common'],
+    ['name' => '首页模块', 'view' => 'home'],
+    ['name' => '资讯模块', 'view' => 'news'],
+    ['name' => '案例模块', 'view' => 'case'],
+    ['name' => '业务模块', 'view' => 'service'],
+    ['name' => '车型模块', 'view' => 'model'],
+    ['name' => '问答模块', 'view' => 'qa'],
+    ['name' => '帮助模块', 'view' => 'help'],
+    ['name' => '登录模块', 'view' => 'login'],
+
+	['name' => '手机模块', 'view' => 'mobile'],
+    ['name' => '手机首页', 'view' => 'mhome'],
 ];
 
 //统计当前数组数量
@@ -77,7 +54,7 @@ echo Tips::widget([
     		foreach($configTabArr as $index => $configTabText)
     		{
     			echo '<li data-view="'.$configTabText['view'].'" class="';
-    			if($configTabText['view']  == 'nav') echo 'on';
+    			if($configTabText['view']  == 'common') echo 'on';
     			echo '"><a href="javascript:;">'.$configTabText['name'].'</a></li>';
     			if($index != count($configTabArr) - 1) {
                     echo '<li class="line">-</li>';
@@ -96,7 +73,7 @@ echo Tips::widget([
 
 	foreach($configTabArr as $configTabText) {
 	?>
-	<div class="tabs_content <?php if($configTabText['view'] != 'nav') echo 'undis'; ?>" id="tabs_content_<?= $configTabText['view']; ?>">
+	<div class="tabs_content <?php if($configTabText['view'] != 'common') echo 'undis'; ?>" id="tabs_content_<?= $configTabText['view']; ?>">
 		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="form-table">
 			<?= $this->render('_item/'.Yii::$app->language.'/_'.$configTabText['view'], [
                 'config' => ArrayHelper::map($configs, 'cfg_name', 'cfg_value'),

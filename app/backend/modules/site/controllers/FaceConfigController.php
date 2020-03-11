@@ -22,9 +22,15 @@ class FaceConfigController extends \backend\components\Controller
         //当前语言下的模板
         $multilangmodel = Multilang::findOne(['lang_sign' => GLOBAL_LANG]);
         if($multilangmodel) {
+
+            // flags项
+            $flags = [];
+
+
             return $this->render('setting', [
                 'configs' => FaceConfig::FaceConfigArray(),
                 'model' => new FaceConfig(),
+                'flags' => $flags,
             ]);
         }
         throw new UserException('多语言管理下，未设置此语言！');

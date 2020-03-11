@@ -1,0 +1,31 @@
+<?php
+/**
+ * @link http://www.turen2.com/
+ * @copyright Copyright (c) 土人开源CMS
+ * @author developer qq:980522557
+ */
+
+use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
+use backend\models\cms\Column;
+use backend\models\cms\Info;
+
+$infoArray = ArrayHelper::map(Info::find()->alias('i')->select(['c.id as id', 'c.cname as title'])
+    ->leftJoin(Column::tableName().' as c', 'c.id = i.columnid')->where(['c.lang' => GLOBAL_LANG, 'c.status' => Column::STATUS_ON])
+    ->asArray()->all(), 'id', 'title');
+?>
+
+<?php
+//-----------------------------------------------
+$name = 'config_face_cn_about_us_id';
+$value = isset($config[$name])?$config[$name]:null;
+?>
+<tr>
+    <td class="first-column">关于我们</td>
+    <td class="second-column" width="33%">
+        <?= Html::dropDownList($name, $value, ArrayHelper::merge([null => '请指定一个页面'], $infoArray), ['id' => $name]) ?>
+    </td>
+    <td style="border-bottom: 1px dashed #efefef;">
+        Yii::$app->params['<?=$name?>']
+    </td>
+</tr>
