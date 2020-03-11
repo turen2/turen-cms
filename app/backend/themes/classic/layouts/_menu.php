@@ -143,9 +143,9 @@ $diyModels = DiyModel::find()->active()->asArray()->all();
 				</div>
 			</div>
 			<div class="hr_5"></div>
-			<div class="menubox">
-				<div class="title" onclick="DisplayMenu('leftmenu02');" title="点击切换显示或隐藏"><i class="fa fa-angle-right i1"></i><i class="fa fa-angle-down i2"></i> 扩展模块</div>
-				<div id="leftmenu02" style="display:none">
+            <div class="menubox">
+                <div class="title" onclick="DisplayMenu('leftmenu02');" title="点击切换显示或隐藏"><i class="fa fa-angle-right i1"></i><i class="fa fa-angle-down i2"></i> 扩展模块</div>
+                <div id="leftmenu02" style="display:none">
                     <?= Menu::widget([
                         'linkTemplate' => '<a target="main" href="{url}">{label}</a>',
                         'encodeLabels' => false,
@@ -159,8 +159,23 @@ $diyModels = DiyModel::find()->active()->asArray()->all();
                             ['label' => '<i class="fa fa-wrench"></i>', 'template' => '<a target="main" title="友情链接类别" class="menu-wrench link-type" href="{url}">{label}</a>', 'url' => ['/ext/link-type/index'], 'visible' => $roleModel->checkPerm('ext/link-type/index', true)],
                         ],
                     ]) ?>
-				</div>
-			</div>
+                </div>
+            </div>
+            <div class="hr_5"></div>
+            <div class="menubox">
+                <div class="title" onclick="DisplayMenu('leftmenu022');" title="点击切换显示或隐藏"><i class="fa fa-angle-right i1"></i><i class="fa fa-angle-down i2"></i> 优化工具</div>
+                <div id="leftmenu022" style="display:none">
+                    <?= Menu::widget([
+                        'linkTemplate' => '<a target="main" href="{url}">{label}</a>',
+                        'encodeLabels' => false,
+                        'items' => [
+                            ['label' => 'SEO优化', 'url' => ['/tool/seo/index'], 'visible' => $roleModel->checkPerm('tool/seo/index', true)],
+                            ['label' => '竞价工具', 'url' => ['/tool/spider/index'], 'visible' => $roleModel->checkPerm('tool/spider/index', true)],
+                            ['label' => '数据库管理', 'url' => ['/tool/db/index'], 'visible' => $roleModel->checkPerm('tool/db/index', true)],
+                        ],
+                    ]) ?>
+                </div>
+            </div>
 			<div class="hr_5"></div>
 			<div class="menubox">
 				<div class="title" onclick="DisplayMenu('leftmenu04');" title="点击切换显示或隐藏"><i class="fa fa-angle-right i1"></i><i class="fa fa-angle-down i2"></i> 系统管理</div>

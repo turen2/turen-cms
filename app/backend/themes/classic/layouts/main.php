@@ -54,7 +54,7 @@ $this->registerJs("
     <div class="top-toolbar">
     	<span class="title"><?= $this->title ?></span>
     	<?= $this->topFilter ?>
-    	<a href="javascript:location.reload();" class="reload"><i class="fa fa-refresh"></i> 刷新</a>
+    	<a onclick="$(this).find('i').addClass('fa-spin');" href="javascript:location.reload();" class="reload"><i class="fa fa-refresh"></i> 刷新</a>
         <?= $this->urlLink; ?>
 	</div>
     
