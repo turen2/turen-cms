@@ -44,7 +44,7 @@ $selectOptions['options'] = $options;
     <td class="first-column">移动首页车型展示</td>
     <td class="second-column" width="33%">
         <?= Html::dropDownList($name, $value, ArrayHelper::merge([null => '请选择一个配置'], $columnArray), $selectOptions) ?>
-        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::FlagList(Column::COLUMN_TYPE_PHOTO, true))) ?>
+        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true))) ?>
     </td>
     <td style="border-bottom: 1px dashed #efefef;">
         Yii::$app->params['<?=$name?>']<br />

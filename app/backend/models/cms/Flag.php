@@ -96,11 +96,11 @@ class Flag extends \backend\models\base\Cms
     
     /**
      * 获取原系统的指定模型的标签列表
-     * @param integer $modelid 模型id
+     * @param integer $type 模型类型id
      * @param string $haveFlag 标签名是否带[flag]
      * @return string[]
      */
-    public static function FlagList($modelid, $haveFlag = false)
+    public static function FlagList($type, $haveFlag = false)
     {
         if(empty(self::$_allFlag)) {
             self::$_allFlag = self::find()->current()->orderBy(['orderid' => SORT_DESC])->asArray()->all();
@@ -108,8 +108,8 @@ class Flag extends \backend\models\base\Cms
         
         $flags = [];
         foreach (self::$_allFlag as $flag) {
-            if($modelid == $flag['type']) {
-                $flags[$flag['flag']] = ($flag['flagname'].($haveFlag?'['.$flag['flag'].']':''));
+            if($type == $flag['type']) {
+                $flags[$flag['id']] = ($flag['flagname'].($haveFlag?'['.$flag['flag'].']':''));
             }
         }
         
@@ -131,7 +131,7 @@ class Flag extends \backend\models\base\Cms
         $flags = [];
         foreach (self::$_allFlag as $flag) {
             if(!is_null($columnid) && $columnid == $flag['columnid']) {
-                $flags[$flag['flag']] = ($flag['flagname'].($haveFlag?'['.$flag['flag'].']':''));
+                $flags[$flag['id']] = ($flag['flagname'].($haveFlag?'['.$flag['flag'].']':''));
             }
         }
 

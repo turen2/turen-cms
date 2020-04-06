@@ -52,7 +52,7 @@ $flagValue = isset($config[$flagName])?$config[$flagName]:null;
 <tr>
     <td class="first-column">案例展示 - 看了还看标记</td>
     <td class="second-column" width="33%">
-        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::FlagList(Column::COLUMN_TYPE_PHOTO, true))) ?>
+        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true))) ?>
     </td>
     <td style="border-bottom: 1px dashed #efefef;">
         Yii::$app->params['<?=$flagName?>']
@@ -67,7 +67,7 @@ $flagValue = isset($config[$flagName])?$config[$flagName]:null;
 <tr>
     <td class="first-column">案例展示 - 相关阅读标记</td>
     <td class="second-column" width="33%">
-        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::FlagList(Column::COLUMN_TYPE_PHOTO, true))) ?>
+        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true))) ?>
     </td>
     <td style="border-bottom: 1px dashed #efefef;">
         Yii::$app->params['<?=$flagName?>']
@@ -82,7 +82,7 @@ $flagValue = isset($config[$flagName])?$config[$flagName]:null;
 <tr>
     <td class="first-column">案例展示 - 侧边栏推荐标记</td>
     <td class="second-column" width="33%">
-        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::FlagList(Column::COLUMN_TYPE_PHOTO, true))) ?>
+        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true))) ?>
     </td>
     <td style="border-bottom: 1px dashed #efefef;">
         Yii::$app->params['<?=$flagName?>']

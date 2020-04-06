@@ -26,7 +26,7 @@ $columnArray = [];
 $selectOptions = ['id' => $name, 'encode' => false, 'options' => []];
 $options = [];
 foreach ($columnList as $id => $item) {
-    if(Column::COLUMN_TYPE_PRODUCT != $columnModels[$id]->type) {
+    if(Column::COLUMN_TYPE_PHOTO != $columnModels[$id]->type) {
         $options[$id] = ['disabled' => true];
     }
     //按照新的关系，重新排序
@@ -52,7 +52,7 @@ $flagValue = isset($config[$flagName])?$config[$flagName]:null;
 <tr>
     <td class="first-column">车型介绍 - 看了还看标记</td>
     <td class="second-column" width="33%">
-        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::FlagList(Column::COLUMN_TYPE_PHOTO, true))) ?>
+        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true))) ?>
     </td>
     <td style="border-bottom: 1px dashed #efefef;">
         Yii::$app->params['<?=$flagName?>']
@@ -67,7 +67,7 @@ $flagValue = isset($config[$flagName])?$config[$flagName]:null;
 <tr>
     <td class="first-column">车型介绍 - 相关阅读标记</td>
     <td class="second-column" width="33%">
-        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::FlagList(Column::COLUMN_TYPE_PHOTO, true))) ?>
+        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true))) ?>
     </td>
     <td style="border-bottom: 1px dashed #efefef;">
         Yii::$app->params['<?=$flagName?>']
@@ -82,7 +82,7 @@ $flagValue = isset($config[$flagName])?$config[$flagName]:null;
 <tr>
     <td class="first-column">车型介绍 - 侧边栏推荐标记</td>
     <td class="second-column" width="33%">
-        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::FlagList(Column::COLUMN_TYPE_PHOTO, true))) ?>
+        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true))) ?>
     </td>
     <td style="border-bottom: 1px dashed #efefef;">
         Yii::$app->params['<?=$flagName?>']

@@ -17,8 +17,9 @@ use backend\widgets\ueditor\UEditorWidget;
 	<td colspan="2" class="td-line"><div class="line"></div></td>
 </tr>
 
-<?php 
-$columnClass = get_class($model);
+<?php
+// $columnClass = get_class($model);
+// $isDisplay = false;
 foreach ($fieldModels as $fieldModel) {
     // 编辑时，当前是显示？
     $isDisplay = in_array($fieldModel, $columnFieldModels);
