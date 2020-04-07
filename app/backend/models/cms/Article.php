@@ -130,7 +130,7 @@ class Article extends \backend\models\base\Cms
             [['source', 'keywords'], 'string', 'max' => 50],
             [['linkurl', 'description'], 'string', 'max' => 255],
             [['content', 'picurl', 'lang', 'flag', 'slug'], 'string'],
-            [['author'], 'default', 'value' => $this->getAdmin()->username],
+            [['author'], 'default', 'value' => $this->getAdmin()->username], // 提交数据库为null值时，默认填充default值
             //静态默认值由规则来赋值
             [['status'], 'default', 'value' => self::STATUS_ON],
             [['picarr'], 'default', 'value' => ''],

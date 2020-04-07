@@ -7,10 +7,10 @@
 namespace backend\modules\cms\controllers;
 
 use Yii;
-use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\components\AliyunOss;
+use common\helpers\Util;
 use backend\models\cms\Article;
 use backend\models\cms\ArticleSearch;
 use backend\components\Controller;
@@ -145,6 +145,7 @@ class ArticleController extends Controller
     {
         $model = new Article();
         $model->loadDefaultValues();
+        $model->slug = Util::Shorturl(microtime().Util::GenerateRandomString());
         $model->columnid = Yii::$app->getRequest()->post("Article")['columnid'];
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

@@ -79,7 +79,7 @@ class Util
         return $str . $pre . ']';
     }
 
-    public static function code62($x)
+    public static function Code62($x)
     {
         $show = '';
         while ($x > 0) {
@@ -95,14 +95,15 @@ class Util
         return $show;
     }
 
-    public static function shorturl($url)
+    public static function Shorturl($url)
     {
         $url = crc32($url);
         $result = sprintf("%u", $url);
-        return self::code62($result);
+        return hash('crc32', $result);
+        // return self::Code62($result);
     }
 
-    public static function generateRandomString($length = 32)
+    public static function GenerateRandomString($length = 32)
     {
         $str = '';
         if (extension_loaded('openssl')) {

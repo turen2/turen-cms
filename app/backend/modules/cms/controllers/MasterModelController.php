@@ -11,6 +11,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\base\InvalidArgumentException;
 use common\components\AliyunOss;
+use common\helpers\Util;
 use backend\models\cms\MasterModel;
 use backend\models\cms\MasterModelSearch;
 use backend\components\Controller;
@@ -134,6 +135,7 @@ class MasterModelController extends Controller
     {
         $model = new MasterModel();
         $model->loadDefaultValues();
+        $model->slug = Util::Shorturl(microtime().Util::GenerateRandomString());
         $model->columnid = Yii::$app->getRequest()->post("MasterModel")['columnid'];
         
         $className = MasterModel::class.'_'.MasterModel::$DiyModelId;

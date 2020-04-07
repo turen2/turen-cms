@@ -50,6 +50,8 @@ $this->registerJs($js);
     'enableClientScript' => false,
     'options' => ['id' => 'submitform'],
 ]); ?>
+    <div class="alert alert-warning">注意：栏目链接标记包括“桌面端链接标记”和“移动端链接标记” ，都是由pc或手机客户端开发匹配的。</div>
+
     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="column-form form-table">
     	<tr>
     		<td class="first-column"><?= $model->getAttributeLabel('type')?><?php if($model->isAttributeRequired('type')) { ?><span class="maroon">*</span><?php } ?></td>

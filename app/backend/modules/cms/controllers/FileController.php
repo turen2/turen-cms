@@ -10,6 +10,7 @@ use Yii;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\components\AliyunOss;
+use common\helpers\Util;
 use backend\models\cms\File;
 use backend\models\cms\FileSearch;
 use backend\components\Controller;
@@ -144,6 +145,7 @@ class FileController extends Controller
     {
         $model = new File();
         $model->loadDefaultValues();
+        $model->slug = Util::Shorturl(microtime().Util::GenerateRandomString());
         $model->columnid = Yii::$app->getRequest()->post("File")['columnid'];
         
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

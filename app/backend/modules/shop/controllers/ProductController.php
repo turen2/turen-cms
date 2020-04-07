@@ -10,6 +10,7 @@ use Yii;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\components\AliyunOss;
+use common\helpers\Util;
 use backend\models\shop\Product;
 use backend\models\shop\ProductSearch;
 use backend\components\Controller;
@@ -147,6 +148,7 @@ class ProductController extends Controller
     {
         $model = new Product();
         $model->loadDefaultValues();
+        $model->slug = Util::Shorturl(microtime().Util::GenerateRandomString());
         $model->columnid = Yii::$app->getRequest()->post("Product")['columnid'];
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

@@ -10,6 +10,7 @@ use Yii;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\components\AliyunOss;
+use common\helpers\Util;
 use backend\models\cms\Video;
 use backend\models\cms\VideoSearch;
 use backend\components\Controller;
@@ -139,6 +140,7 @@ class VideoController extends Controller
     {
         $model = new Video();
         $model->loadDefaultValues();
+        $model->slug = Util::Shorturl(microtime().Util::GenerateRandomString());
         $model->columnid = Yii::$app->getRequest()->post("Video")['columnid'];
         
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

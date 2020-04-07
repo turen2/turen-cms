@@ -66,7 +66,7 @@ $webUrl = Yii::getAlias('@web/');
 </head>
 <body class="">
 <?php $this->beginBody() ?>
-<!--[if lt IE 9]><div class="alert alert-danger topframe" role="alert">你的浏览器实在<strong>太太太旧了</strong>，请 <a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a> 以保障您的上网安全。</div><![endif]-->
+<!--[if lt IE 9]><div class="alert alert-danger topframe" role="alert">你的浏览器实在<strong>太太太旧了</strong>，请 <a target="_blank" class="alert-link" href="https://browser.360.cn/">立即升级</a> 以保障您的上网安全。</div><![endif]-->
 
 <?= $this->render('_easy_header') ?>
 

@@ -1072,3 +1072,5 @@
     height: 176px;
 }
 /* 首页案例end */
+
+html, body {height:100%;overflow:auto;margin: 0;}
