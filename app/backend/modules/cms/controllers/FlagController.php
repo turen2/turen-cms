@@ -199,6 +199,47 @@ class FlagController extends Controller
     }
 
     /**
+     * @return \yii\web\Response
+     */
+    public function actionColumnFlagRealList()
+    {
+        $columnId = Yii::$app->getRequest()->post('columnid', null);
+        $columnModel = Column::findOne($columnId);
+        if($columnModel) {
+            $className = Column::ColumnConvert('id2class', $columnModel->type);
+            try {
+                $function = new \ReflectionClass($className);
+                $className = $function->getShortName();
+            } catch (\ReflectionException $e) {
+                $className = 'MasterModel'; // 如果是自定义模型，则采用统一的 model class
+            }
+
+            $items = Flag::ColumnFlagList($columnId, true);
+
+            if($items) {
+                return $this->asJson([
+                    'state' => true,
+                    'msg' => [
+                        'className' => $className,
+                        'items' => $items,
+                    ],
+                        //Html::checkboxList($className.'[flag][]', null, $items, ['tag' => 'span', 'separator' => '&nbsp;&nbsp;&nbsp;']),
+                ]);
+            } else {
+                return $this->asJson([
+                    'state' => false,
+                    'msg' => '此栏目下没有对应的标记',
+                ]);
+            }
+        } else {
+            return $this->asJson([
+                'state' => false,
+                'msg' => '此栏目为空',
+            ]);
+        }
+    }
+
+    /**
      * Finds the Flag model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id

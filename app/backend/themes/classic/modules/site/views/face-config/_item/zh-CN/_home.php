@@ -62,12 +62,13 @@ foreach ($columnList as $id => $item) {
     $columnArray[$id] = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $item['level']-1).(empty($item['level']-1)?'':'|-').($columnModels[$id]->cname);
 }
 $selectOptions['options'] = $options;
+$selectOptions['onchange'] = "turen.com.linkedFlagList(this, ['".$flagName."']);";
 ?>
 <tr>
     <td class="first-column">首页精选业务推荐</td>
     <td class="second-column" width="33%">
         <?= Html::dropDownList($name, $value, ArrayHelper::merge([null => '请选择一个配置'], $columnArray), $selectOptions) ?>
-        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true))) ?>
+        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true)), ['id' => $flagName]) ?>
     </td>
     <td style="border-bottom: 1px dashed #efefef;">
         Yii::$app->params['<?=$name?>']<br />
@@ -92,12 +93,13 @@ foreach ($columnList as $id => $item) {
     $columnArray[$id] = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $item['level']-1).(empty($item['level']-1)?'':'|-').($columnModels[$id]->cname);
 }
 $selectOptions['options'] = $options;
+$selectOptions['onchange'] = "turen.com.linkedFlagList(this, ['".$flagName."']);";
 ?>
 <tr>
     <td class="first-column">首页现场案例幻灯片</td>
     <td class="second-column" width="33%">
         <?= Html::dropDownList($name, $value, ArrayHelper::merge([null => '请选择一个配置'], $columnArray), $selectOptions) ?>
-        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true))) ?>
+        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true)), ['id' => $flagName]) ?>
     </td>
     <td style="border-bottom: 1px dashed #efefef;">
         Yii::$app->params['<?=$name?>']<br />
@@ -122,12 +124,13 @@ foreach ($columnList as $id => $item) {
     $columnArray[$id] = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $item['level']-1).(empty($item['level']-1)?'':'|-').($columnModels[$id]->cname);
 }
 $selectOptions['options'] = $options;
+$selectOptions['onchange'] = "turen.com.linkedFlagList(this, ['".$flagName."']);";
 ?>
 <tr>
     <td class="first-column">首页现场案例推荐</td>
     <td class="second-column" width="33%">
         <?= Html::dropDownList($name, $value, ArrayHelper::merge([null => '请选择一个配置'], $columnArray), $selectOptions) ?>
-        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true))) ?>
+        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true)), ['id' => $flagName]) ?>
     </td>
     <td style="border-bottom: 1px dashed #efefef;">
         Yii::$app->params['<?=$name?>']<br />
@@ -152,12 +155,13 @@ foreach ($columnList as $id => $item) {
     $columnArray[$id] = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $item['level']-1).(empty($item['level']-1)?'':'|-').($columnModels[$id]->cname);
 }
 $selectOptions['options'] = $options;
+$selectOptions['onchange'] = "turen.com.linkedFlagList(this, ['".$flagName."']);";
 ?>
 <tr>
     <td class="first-column">首页公司新闻推荐</td>
     <td class="second-column" width="33%">
         <?= Html::dropDownList($name, $value, ArrayHelper::merge([null => '请选择一个配置'], $columnArray), $selectOptions) ?>
-        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true))) ?>
+        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true)), ['id' => $flagName]) ?>
     </td>
     <td style="border-bottom: 1px dashed #efefef;">
         Yii::$app->params['<?=$name?>']<br />
@@ -182,12 +186,13 @@ foreach ($columnList as $id => $item) {
     $columnArray[$id] = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $item['level']-1).(empty($item['level']-1)?'':'|-').($columnModels[$id]->cname);
 }
 $selectOptions['options'] = $options;
+$selectOptions['onchange'] = "turen.com.linkedFlagList(this, ['".$flagName."']);";
 ?>
 <tr>
     <td class="first-column">首页行业动态推荐</td>
     <td class="second-column" width="33%">
         <?= Html::dropDownList($name, $value, ArrayHelper::merge([null => '请选择一个配置'], $columnArray), $selectOptions) ?>
-        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true))) ?>
+        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true)), ['id' => $flagName]) ?>
     </td>
     <td style="border-bottom: 1px dashed #efefef;">
         Yii::$app->params['<?=$name?>']<br />
@@ -212,12 +217,13 @@ foreach ($columnList as $id => $item) {
     $columnArray[$id] = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $item['level']-1).(empty($item['level']-1)?'':'|-').($columnModels[$id]->cname);
 }
 $selectOptions['options'] = $options;
+$selectOptions['onchange'] = "turen.com.linkedFlagList(this, ['".$flagName."']);";
 ?>
 <tr>
     <td class="first-column">首页帮助中心推荐</td>
     <td class="second-column" width="33%">
         <?= Html::dropDownList($name, $value, ArrayHelper::merge([null => '请选择一个配置'], $columnArray), $selectOptions) ?>
-        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true))) ?>
+        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true)), ['id' => $flagName]) ?>
     </td>
     <td style="border-bottom: 1px dashed #efefef;">
         Yii::$app->params['<?=$name?>']<br />

@@ -33,6 +33,7 @@ foreach ($columnList as $id => $item) {
     $columnArray[$id] = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $item['level']-1).(empty($item['level']-1)?'':'|-').($columnModels[$id]->cname);
 }
 $selectOptions['options'] = $options;
+$selectOptions['onchange'] = "turen.com.linkedFlagList(this, ['chexing1', 'chexing2', 'chexing3']);";
 ?>
 <tr>
     <td class="first-column">车型介绍模块栏目</td>
@@ -52,7 +53,7 @@ $flagValue = isset($config[$flagName])?$config[$flagName]:null;
 <tr>
     <td class="first-column">车型介绍 - 看了还看标记</td>
     <td class="second-column" width="33%">
-        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true))) ?>
+        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true)), ['id' => 'chexing1']) ?>
     </td>
     <td style="border-bottom: 1px dashed #efefef;">
         Yii::$app->params['<?=$flagName?>']
@@ -67,7 +68,7 @@ $flagValue = isset($config[$flagName])?$config[$flagName]:null;
 <tr>
     <td class="first-column">车型介绍 - 相关阅读标记</td>
     <td class="second-column" width="33%">
-        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true))) ?>
+        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true)), ['id' => 'chexing2']) ?>
     </td>
     <td style="border-bottom: 1px dashed #efefef;">
         Yii::$app->params['<?=$flagName?>']
@@ -82,7 +83,7 @@ $flagValue = isset($config[$flagName])?$config[$flagName]:null;
 <tr>
     <td class="first-column">车型介绍 - 侧边栏推荐标记</td>
     <td class="second-column" width="33%">
-        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true))) ?>
+        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true)), ['id' => 'chexing3']) ?>
     </td>
     <td style="border-bottom: 1px dashed #efefef;">
         Yii::$app->params['<?=$flagName?>']

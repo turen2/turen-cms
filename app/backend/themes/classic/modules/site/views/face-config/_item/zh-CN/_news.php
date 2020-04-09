@@ -33,6 +33,7 @@ foreach ($columnList as $id => $item) {
     $columnArray[$id] = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $item['level']-1).(empty($item['level']-1)?'':'|-').($columnModels[$id]->cname);
 }
 $selectOptions['options'] = $options;
+$selectOptions['onchange'] = "turen.com.linkedFlagList(this, ['company1', 'company2', 'company3']);";
 ?>
 <tr>
     <td class="first-column">公司新闻模块栏目</td>
@@ -52,7 +53,7 @@ $flagValue = isset($config[$flagName])?$config[$flagName]:null;
 <tr>
     <td class="first-column">公司新闻 - 看了还看标记</td>
     <td class="second-column" width="33%">
-        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true))) ?>
+        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true)), ['id' => 'company1']) ?>
     </td>
     <td style="border-bottom: 1px dashed #efefef;">
         Yii::$app->params['<?=$flagName?>']
@@ -67,7 +68,7 @@ $flagValue = isset($config[$flagName])?$config[$flagName]:null;
 <tr>
     <td class="first-column">公司新闻 - 相关阅读标记</td>
     <td class="second-column" width="33%">
-        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true))) ?>
+        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true)), ['id' => 'company2']) ?>
     </td>
     <td style="border-bottom: 1px dashed #efefef;">
         Yii::$app->params['<?=$flagName?>']
@@ -82,7 +83,7 @@ $flagValue = isset($config[$flagName])?$config[$flagName]:null;
 <tr>
     <td class="first-column">公司新闻 - 侧边栏推荐标记</td>
     <td class="second-column" width="33%">
-        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true))) ?>
+        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true)), ['id' => 'company3']) ?>
     </td>
     <td style="border-bottom: 1px dashed #efefef;">
         Yii::$app->params['<?=$flagName?>']
@@ -105,6 +106,7 @@ foreach ($columnList as $id => $item) {
     $columnArray[$id] = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $item['level']-1).(empty($item['level']-1)?'':'|-').($columnModels[$id]->cname);
 }
 $selectOptions['options'] = $options;
+$selectOptions['onchange'] = "turen.com.linkedFlagList(this, ['news1', 'news2', 'news3']);";
 ?>
 <tr>
     <td class="first-column">行业动态模块栏目</td>
@@ -124,7 +126,7 @@ $flagValue = isset($config[$flagName])?$config[$flagName]:null;
 <tr>
     <td class="first-column">行业动态 - 看了还看标记</td>
     <td class="second-column" width="33%">
-        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true))) ?>
+        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true)), ['id' => 'news1']) ?>
     </td>
     <td style="border-bottom: 1px dashed #efefef;">
         Yii::$app->params['<?=$flagName?>']
@@ -139,7 +141,7 @@ $flagValue = isset($config[$flagName])?$config[$flagName]:null;
 <tr>
     <td class="first-column">行业动态 - 相关阅读标记</td>
     <td class="second-column" width="33%">
-        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true))) ?>
+        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true)), ['id' => 'news2']) ?>
     </td>
     <td style="border-bottom: 1px dashed #efefef;">
         Yii::$app->params['<?=$flagName?>']
@@ -154,7 +156,7 @@ $flagValue = isset($config[$flagName])?$config[$flagName]:null;
 <tr>
     <td class="first-column">行业动态 - 侧边栏推荐标记</td>
     <td class="second-column" width="33%">
-        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true))) ?>
+        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true)), ['id' => 'news3']) ?>
     </td>
     <td style="border-bottom: 1px dashed #efefef;">
         Yii::$app->params['<?=$flagName?>']

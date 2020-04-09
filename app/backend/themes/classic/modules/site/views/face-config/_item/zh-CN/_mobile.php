@@ -39,12 +39,13 @@ foreach ($list as $id => $item) {
     $columnArray[$id] = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $item['level']-1).(empty($item['level']-1)?'':'|-').($models[$id]->cname);
 }
 $selectOptions['options'] = $options;
+$selectOptions['onchange'] = "turen.com.linkedFlagList(this, ['".$flagName."']);";
 ?>
 <tr>
     <td class="first-column">移动首页车型展示</td>
     <td class="second-column" width="33%">
         <?= Html::dropDownList($name, $value, ArrayHelper::merge([null => '请选择一个配置'], $columnArray), $selectOptions) ?>
-        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true))) ?>
+        <?= Html::dropDownList($flagName, $flagValue, ArrayHelper::merge([null => '所有标记'], Flag::ColumnFlagList($value, true)), ['id' => $flagName]) ?>
     </td>
     <td style="border-bottom: 1px dashed #efefef;">
         Yii::$app->params['<?=$name?>']<br />

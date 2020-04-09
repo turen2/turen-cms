@@ -259,6 +259,39 @@ turen.com = (function($) {
             };
             commonRemote(CONFIG.cms.columnFlagListUrl, {columnid: columnid}, callback, _this);
         },
+        linkedFlagList: function(_this, ids) {
+            var _this = $(_this);
+
+            var columnid = _this.val();
+            var html = '<option value="">所有标记</option>';
+            if(columnid == '') {
+                for (var key in ids) {
+                    $('#'+ids[key]).html(html);
+                }
+                return false;
+            }
+            $.ajax({
+                url: CONFIG.cms.columnFlagRealListUrl,
+                type: 'POST',
+                dataType: 'json',
+                context: _this,
+                cache: false,
+                data: {columnid: columnid},
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    $.notify(XMLHttpRequest.responseText, 'error');
+                },
+                success: function(res) {
+                    if(res.state) {
+                        for (var key in res.msg.items) {
+                            html += '<option value="'+key+'">'+res.msg.items[key]+'</option>';
+                        }
+                    }
+                    for (var key in ids) {
+                        $('#'+ids[key]).html(html);
+                    }
+                }
+            });
+        },
         //生成链接
         pinyin: function(_this, name) {
         	var _this = $(_this);
