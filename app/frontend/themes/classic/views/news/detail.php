@@ -152,7 +152,7 @@ $dlength = 90;
                     'moreLink' => Url::to(['/news/list']),
 
                     'columnType' => 'article',
-                    'flagName' => Yii::$app->params['config_face_cn_sidebox_current_article_column_flag'],
+                    'flagName' => Yii::$app->params['config_face_cn_news_column_sidebox_flag'],
                     'columnId' => $model->columnid,
                     'listNum' => 6,
                     'route' => ['/news/detail'],

@@ -199,7 +199,7 @@ $this->registerJs($js);
                     'moreLink' => Url::to(['/case/list']),
 
                     'columnType' => 'photo',
-                    'flagName' => 	Yii::$app->params['config_face_cn_sidebox_current_photo_column_flag'],
+                    'flagName' => 	Yii::$app->params['config_face_cn_case_column_sidebox_flag'],
                     'columnId' => $model->columnid,//当前的栏目
                     'route' => ['/case/detail'],
                 ]); ?>

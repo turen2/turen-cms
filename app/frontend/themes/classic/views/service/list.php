@@ -99,7 +99,7 @@ $this->columnModel = $columnModel;
                     'moreLink' => Url::to(['/service/list']),
 
                     'columnType' => 'product',
-                    'flagName' => Yii::$app->params['config_face_cn_sidebox_current_product_column_flag'],
+                    'flagName' => Yii::$app->params['config_face_cn_product_column_sidebox_flag'],
                     'columnId' => $columnModel->id,//当前的栏目
                     'route' => ['/service/detail'],
                 ]); ?>

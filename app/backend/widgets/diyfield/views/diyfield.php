@@ -4,6 +4,8 @@
  * @copyright Copyright (c) 土人开源CMS
  * @author developer qq:980522557
  */
+
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\web\JsExpression;
 use yii\helpers\Url;
@@ -20,9 +22,10 @@ use backend\widgets\ueditor\UEditorWidget;
 <?php
 // $columnClass = get_class($model);
 // $isDisplay = false;
+$columnIds = ArrayHelper::getColumn($columnFieldModels, 'id');
 foreach ($fieldModels as $fieldModel) {
     // 编辑时，当前是显示？
-    $isDisplay = in_array($fieldModel, $columnFieldModels);
+    $isDisplay = in_array($fieldModel->id, $columnIds);
 ?>
 
 <tr class="diy-field-row" data-columnids="<?= $fieldModel->columnid_list ?>" style="display: <?= $isDisplay?'':'none' ?>;">

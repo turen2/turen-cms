@@ -96,7 +96,7 @@ $this->registerJs($js);
     'moreLink' => Url::to(['/company/list']),
 
     'columnType' => 'article',
-    'flagName' => 	Yii::$app->params['config_face_cn_sidebox_current_article_column_flag'],
+    'flagName' => 	Yii::$app->params['config_face_cn_comopany_column_sidebox_flag'],
     'columnId' => $model->columnid,//当前的栏目
     'route' => ['/company/detail'],
 ]); ?>
