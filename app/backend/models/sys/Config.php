@@ -102,11 +102,12 @@ class Config extends \backend\models\base\Sys
 
     /**
      * 获取指定语言和站点的配置
+     * @param boolean $noCache 是否使用数据库数据
      * @return array
      */
-    public static function ConfigArray()
+    public static function ConfigArray($noCache = false)
     {
-        if(empty(self::$_config)) {
+        if(empty(self::$_config) || $noCache) {
             self::$_config = self::find()->current()->orderBy(['orderid' => SORT_DESC])->asArray()->all();
         }
         

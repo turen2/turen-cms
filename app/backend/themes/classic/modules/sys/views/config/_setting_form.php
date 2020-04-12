@@ -118,7 +118,7 @@ echo Tips::widget([
     				<td class="second-column" width="33%">
     				<?php
     				//统计代码转义
-    				if($row['varname'] == 'config_countcode') {
+    				if(in_array($row['varname'], ['config_count_code', 'config_mobile_count_code'])) {
     					$row['varvalue'] = stripslashes($row['varvalue']);
     				}
     				
@@ -188,7 +188,7 @@ echo Tips::widget([
     					    break;
     
     					case 'textarea':
-    					    echo Html::textarea($row['varname'], htmlspecialchars($row['varvalue']), ['id' => $row['varname'], 'class' => 'textarea']);
+    					    echo Html::textarea($row['varname'], ($row['varvalue']), ['id' => $row['varname'], 'class' => 'textarea']);
     					break;
     
     					default:
