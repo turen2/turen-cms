@@ -59,7 +59,8 @@ class Column extends \common\components\ActiveRecord
         return [
             [['parentid', 'parentstr', 'type', 'cname', 'linkurl', 'picurl', 'picwidth', 'picheight', 'seotitle', 'keywords', 'description', 'orderid', 'lang'], 'required'],
             [['parentid', 'type', 'orderid', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['parentstr', 'keywords'], 'string', 'max' => 50],
+            [['parentstr'], 'string', 'max' => 50],
+            [['keywords'], 'string', 'max' => 100],
             [['cname'], 'string', 'max' => 30],
             [['linkurl', 'description'], 'string', 'max' => 255],
             [['picurl'], 'string', 'max' => 100],

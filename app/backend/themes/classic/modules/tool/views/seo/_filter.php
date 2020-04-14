@@ -20,9 +20,10 @@ $addRoutes = [
 ];
 
 $types = [];
-foreach (DiyModel::find()->select('dm_id')->asArray()->all() as $dm) {
-    $types[] = $dm['dm_id'];
-}
+// 自定义内容，不包括在CMS中，只是拓展，不需要优化
+//foreach (DiyModel::find()->select('dm_id')->asArray()->all() as $dm) {
+//    $types[] = $dm['dm_id'];
+//}
 $types = ArrayHelper::merge(array_values($types), [Column::COLUMN_TYPE_ARTICLE, Column::COLUMN_TYPE_FILE, Column::COLUMN_TYPE_PHOTO, Column::COLUMN_TYPE_PRODUCT, Column::COLUMN_TYPE_VIDEO]);
 
 
