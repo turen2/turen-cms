@@ -176,8 +176,8 @@ $webUrl = Yii::getAlias('@web/');
 
 <div class="main">
     <div class="maintitle">
-        <a href=""><p>业务范围</p></a>
-        <a class="more" href=""><img src="<?= $webUrl ?>images/yaqiao/more.png"></a>
+        <a href="<?= Url::to(['/service/list']) ?>"><p>业务范围</p></a>
+        <a class="more" href="<?= Url::to(['/service/list']) ?>"><img src="<?= $webUrl ?>images/yaqiao/more.png"></a>
     </div>
     <div class="beautify">
         <div class="swiper-container mylooptoo" id="meitu-3a">
@@ -204,7 +204,7 @@ $webUrl = Yii::getAlias('@web/');
 
 <div class="main">
     <div class="maintitle">
-        <a href=""><p>车型展示</p></a>
+        <a href="<?= Url::to(['/chexing/list']) ?>"><p>车型展示</p></a>
         <a class="more" href="<?= Url::to(['/chexing/list']) ?>"><img src="<?= $webUrl ?>images/yaqiao/more.png"></a>
     </div>
     <div class="designer">
@@ -234,7 +234,7 @@ $webUrl = Yii::getAlias('@web/');
 
 <div class="main case">
     <div class="maintitle">
-        <a href=""><p>现场案例</p></a>
+        <a href="<?= Url::to(['/case/list']) ?>"><p>现场案例</p></a>
         <a class="more" href="<?= Url::to(['/case/list']) ?>"><img src="<?= $webUrl ?>images/yaqiao/more.png"></a>
     </div>
     <div class="casewrap">
@@ -283,7 +283,7 @@ $webUrl = Yii::getAlias('@web/');
 
 <div class="main">
     <div class="maintitle">
-        <a href=""><p>客户好评</p></a>
+        <a href="<?= Url::to(['/faqs/list']) ?>"><p>客户好评</p></a>
         <a class="more" href="<?= Url::to(['/faqs/list']) ?>"><img src="<?= $webUrl ?>images/yaqiao/more.png"></a>
     </div>
     <div class="company">
@@ -331,7 +331,7 @@ $webUrl = Yii::getAlias('@web/');
 
 <div class="main">
     <div class="maintitle">
-        <p>资讯中心</p>
+        <a href="<?= Url::to(['/news/list']) ?>"><p>资讯中心</p></a>
         <a class="news-center more" href="<?= Url::to(['/news/list']) ?>"><img src="<?= $webUrl ?>images/yaqiao/more.png"></a>
     </div>
     <div class="maintab mainindex">

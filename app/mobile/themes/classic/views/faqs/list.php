@@ -34,7 +34,7 @@ $webUrl = Yii::getAlias('@web/');
     </a>
 </div>
 
-<div class="guide-question">
+<div class="main-box">
     <?= ListView::widget([
         'layout' => "<div class=\"question-wrap\"><ul>{items}</ul></div>",
         'dataProvider' => $dataProvider,

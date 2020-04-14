@@ -27,7 +27,7 @@ $webUrl = Yii::getAlias('@web/');
 
 <div class="public-box"></div>
 
-<div class="about-recommend">
+<div class="main-box" style="background: #FFFFFF;">
     <div class="price-banner">
         <a href="<?= Url::to(['/online/price']) ?>">
             <img src="<?= $webUrl ?>images/yaqiao/price-banner.png" />

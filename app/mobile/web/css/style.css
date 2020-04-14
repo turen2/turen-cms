@@ -3627,7 +3627,7 @@ a:active {
     text-overflow: ellipsis;
 }
 
-.about-recommend .about-title {
+.main-box .about-title {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -3635,13 +3635,13 @@ a:active {
     background-color: #f6f6f6;
 }
 
-.about-recommend .about-title span {
+.main-box .about-title span {
     display: block;
     width: 0.34rem;
     height: 0.04rem;
 }
 
-.about-recommend .about-title p {
+.main-box .about-title p {
     font-size: 0.26rem;
     color: #1B1D1D;
     margin: 0 0.16rem;
@@ -3851,7 +3851,7 @@ a:active {
     color: #1b1d1d;
 }
 
-.process-list {
+.main-box {
     margin-top: 0.16rem;
     background-color: #efefef;
     background-image: url(../images/yaqiao/render-bg.jpg);
@@ -4354,16 +4354,6 @@ a:active {
 
 
 /*========================================租赁问答页开始======================================*/
-
-.guide-question {
-    margin-top: 0.16rem;
-    background-color: #efefef;
-    background-image: url(../images/yaqiao/render-bg.jpg);
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-    background-position: 0 0;
-}
-
 .menu-move {
     padding: 0 0.5rem;
 }

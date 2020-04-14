@@ -28,7 +28,7 @@ $webUrl = Yii::getAlias('@web/');
 
 <div class="public-box"></div>
 
-<div class="process-list">
+<div class="main-box">
     <div class="process-options">
         <ul>
             <li>

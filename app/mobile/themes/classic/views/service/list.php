@@ -21,7 +21,7 @@ $webUrl = Yii::getAlias('@web/');
 
 <div class="public-box"></div>
 
-<div class="about-recommend">
+<div class="main-box">
     <?= ListView::widget([
         'layout' => "<div class=\"about-list\"><ul>{items}</ul></div>",
         'dataProvider' => $dataProvider,

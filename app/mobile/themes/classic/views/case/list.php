@@ -168,7 +168,7 @@ $this->registerJs($js);
 
 <div class="public-box"></div>
 
-<div class="guide-question">
+<div class="main-box">
     <div class="process-options">
         <ul>
             <li>
