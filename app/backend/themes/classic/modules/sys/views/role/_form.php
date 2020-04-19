@@ -605,7 +605,7 @@ $this->registerJs($js);
             </td>
         </tr>
         <tr>
-            <td class="first-column">日志与更新管理：</td>
+            <td class="first-column">日志管理：</td>
             <td class="second-column">
                 <div class="purview-title">
                     <strong>操作日志管理</strong>
@@ -613,51 +613,6 @@ $this->registerJs($js);
                 <div class="purview-list">
                     <span><?= BackCommonHelper::CheckPermBox($model, 'sys/log/index', '查看列表') ?></span>
                     <span><?= BackCommonHelper::CheckPermBox($model, 'sys/log/view', '详情') ?></span>
-                </div>
-                <div class="purview-title">
-                    <strong>开发日志管理</strong>
-                </div>
-                <div class="purview-list">
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'sys/dev-log/index', '查看列表') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'sys/dev-log/create', '新增') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'sys/dev-log/ueditor', '编辑器图片上传') ?></span>
-                </div>
-                <div class="purview-title">
-                    <strong>帮助类别管理</strong>
-                </div>
-                <div class="purview-list">
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help-cate/index', '查看列表') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help-cate/create', '新增') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help-cate/delete', '删除') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help-cate/update', '编辑') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help-cate/check', '修改状态') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help-cate/quick-move', '快捷移动') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help-cate/batch', '批量操作') ?></span>
-                </div>
-                <div class="purview-title">
-                    <strong>帮助信息管理</strong>
-                </div>
-                <div class="purview-list">
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help/index', '查看列表') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help/create', '新增') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help/delete', '删除') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help/update', '编辑') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help/check', '修改状态') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help/batch', '批量操作') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help/edit-item', '简单编辑') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help/fileupload', '缩略图上传') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help/multiple-fileupload', '多图上传') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help/ueditor', '编辑器图片上传') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help/get-tags', 'ajax标签列表') ?></span>
-                </div>
-                <div class="purview-title">
-                    <strong>帮助标记管理</strong>
-                </div>
-                <div class="purview-list">
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help-flag/index', '查看/新增/编辑') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help-flag/delete', '删除') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help-flag/batch', '批量操作') ?></span>
-                    <span><?= BackCommonHelper::CheckPermBox($model, 'site/help-flag/quick-move', '快捷移动') ?></span>
                 </div>
                 <div class="purviewSel">
                     <a href="javascript:;" class="selectall">全选</a>&nbsp;&nbsp;

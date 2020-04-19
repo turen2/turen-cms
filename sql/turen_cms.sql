@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2020-04-14 22:57:32
+Date: 2020-04-19 17:57:07
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -1279,7 +1279,7 @@ CREATE TABLE `ss_session` (
 -- ----------------------------
 -- Records of ss_session
 -- ----------------------------
-INSERT INTO `ss_session` VALUES ('gvukhalqs2kdl7kv31gf1b75u5', null, '', '1', '1586879774', 0x5F5F666C6173687C613A303A7B7D5F5F696E69745F706172616D737C613A323A7B733A31373A22636F6E6669675F696E69745F6C616E6773223B613A323A7B693A303B733A353A227A682D434E223B693A313B733A353A22656E2D5553223B7D733A32343A22636F6E6669675F696E69745F64656661756C745F6C616E67223B733A353A227A682D434E223B7D5F5F636170746368612F736974652F61646D696E2F636170746368617C733A343A22686D736F223B5F5F636170746368612F736974652F61646D696E2F63617074636861636F756E747C693A313B5F5F72657475726E5F75726C7C733A35323A22687474703A2F2F6C6F63616C686F73742F747572656E2D636D732F6170702F6261636B656E642F7765622F696E6465782E706870223B5F5F69647C693A31303B5F5F72657475726E5F75726C5F726F7574657C733A36313A222F747572656E2D636D732F6170702F6261636B656E642F7765622F696E6465782E7068703F723D75736572253246696E7175697279253246696E646578223B);
+INSERT INTO `ss_session` VALUES ('hn6raehssn033ofnindfm5g7p6', null, '', '1', '1587293779', 0x5F5F666C6173687C613A303A7B7D5F5F69647C693A31303B5F5F696E69745F706172616D737C613A323A7B733A31373A22636F6E6669675F696E69745F6C616E6773223B613A323A7B693A303B733A353A227A682D434E223B693A313B733A353A22656E2D5553223B7D733A32343A22636F6E6669675F696E69745F64656661756C745F6C616E67223B733A353A227A682D434E223B7D5F5F72657475726E5F75726C5F726F7574657C733A36303A222F747572656E2D636D732F6170702F6261636B656E642F7765622F696E6465782E7068703F723D73697465253246686F6D6525324664656661756C74223B);
 
 -- ----------------------------
 -- Table structure for ss_shop_attribute
@@ -1607,105 +1607,6 @@ INSERT INTO `ss_site_face_config` VALUES ('config_face_mobile_cn_home_chexing_sl
 INSERT INTO `ss_site_face_config` VALUES ('config_face_mobile_cn_main_nav_id', '93', 'zh-CN');
 
 -- ----------------------------
--- Table structure for ss_site_help
--- ----------------------------
-DROP TABLE IF EXISTS `ss_site_help`;
-CREATE TABLE `ss_site_help` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '列表信息id',
-  `cateid` int(11) unsigned DEFAULT NULL COMMENT '类别id',
-  `catepid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '类别父id',
-  `catepstr` varchar(80) NOT NULL DEFAULT '' COMMENT '所属类别上级id字符串',
-  `title` varchar(80) NOT NULL DEFAULT '' COMMENT '标题',
-  `colorval` char(10) NOT NULL DEFAULT '' COMMENT '字体颜色',
-  `boldval` char(10) NOT NULL DEFAULT '' COMMENT '字体加粗',
-  `flag` varchar(30) DEFAULT NULL COMMENT '属性',
-  `author` varchar(50) NOT NULL DEFAULT '' COMMENT '作者编辑',
-  `linkurl` varchar(255) NOT NULL DEFAULT '' COMMENT '跳转链接',
-  `keywords` varchar(50) NOT NULL DEFAULT '' COMMENT '关键词',
-  `description` varchar(255) NOT NULL DEFAULT '' COMMENT '摘要',
-  `content` mediumtext COMMENT '详细内容',
-  `picurl` varchar(100) NOT NULL DEFAULT '' COMMENT '缩略图片',
-  `picarr` text COMMENT '组图',
-  `base_hits` int(11) unsigned NOT NULL DEFAULT '100' COMMENT '虚拟点击量',
-  `hits` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '点击次数',
-  `orderid` int(10) unsigned NOT NULL DEFAULT '10' COMMENT '排列排序',
-  `posttime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '审核状态',
-  `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
-  `updated_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '编辑时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8 COMMENT='系统帮助表';
-
--- ----------------------------
--- Records of ss_site_help
--- ----------------------------
-INSERT INTO `ss_site_help` VALUES ('82', '16', '0', '0,', 'sssss', '', '', '', 'admin', '', '', '', '', '', '', '100', '100', '10', '1538755200', '1', '1538809349', '1539010078');
-INSERT INTO `ss_site_help` VALUES ('83', '17', '16', '0,16,', 'bbbbb', '', '', '', 'admin', 'd', 'd', 'ddd', '<p>dfdsfd</p>', 'cms-images/help/2018_11_22/90f00808c6fda3b448c62acd82cdbc7c.jpg', '', '100', '100', '11', '1538928000', '1', '1539009777', '1542877750');
-INSERT INTO `ss_site_help` VALUES ('84', '16', '0', '0,', 'ccccc', '', '', '', 'admin', '', '', '', '', '', '', '100', '100', '12', '1538928000', '1', '1539009782', '1539009782');
-INSERT INTO `ss_site_help` VALUES ('85', '16', '0', '0,', 'aaaaaa', '', '', '', 'admin', '', '', '', '', '', '', '100', '100', '13', '1538928000', '1', '1539009788', '1539009788');
-INSERT INTO `ss_site_help` VALUES ('86', '16', '0', '0,', 'dddddee', '', '', '', 'admin', '', '', '', '', '', '', '100', '100', '14', '1538928000', '1', '1539009794', '1539009794');
-INSERT INTO `ss_site_help` VALUES ('87', '16', '0', '0,', 'gggggg', '', '', '', 'admin', '', '', '', '', '', '', '100', '100', '15', '1538928000', '1', '1539009800', '1539009800');
-INSERT INTO `ss_site_help` VALUES ('88', '16', '0', '0,', 'eeeeeee', '', '', '', 'admin', '', '', '', '', '', '', '100', '100', '16', '1538928000', '1', '1539009806', '1539009806');
-INSERT INTO `ss_site_help` VALUES ('89', '17', '16', '0,16,', 'ddddd', '', '', 'ht,hd', 'admin', '', '', '', '', '', '', '100', '100', '170', '1542879340', '1', '1542879340', '1542879340');
-INSERT INTO `ss_site_help` VALUES ('90', '16', '0', '0,', 'fsdf', '', '', 'ht', 'admin', '', '', '', '', '', '', '100', '100', '171', '1542879507', '1', '1542879507', '1542879507');
-
--- ----------------------------
--- Table structure for ss_site_help_cate
--- ----------------------------
-DROP TABLE IF EXISTS `ss_site_help_cate`;
-CREATE TABLE `ss_site_help_cate` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '二级类别id',
-  `parentid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '类别上级id',
-  `parentstr` varchar(50) NOT NULL DEFAULT '' COMMENT '类别上级id字符串',
-  `catename` varchar(30) NOT NULL DEFAULT '' COMMENT '类别名称',
-  `linkurl` varchar(255) NOT NULL DEFAULT '' COMMENT '跳转链接',
-  `seotitle` varchar(80) NOT NULL DEFAULT '' COMMENT 'SEO标题',
-  `keywords` varchar(50) NOT NULL DEFAULT '' COMMENT 'SEO关键词',
-  `description` varchar(255) NOT NULL DEFAULT '' COMMENT 'SEO描述',
-  `orderid` int(11) unsigned NOT NULL DEFAULT '10' COMMENT '排列排序',
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '审核状态',
-  `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
-  `updated_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '编辑时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COMMENT='系统帮助分类表';
-
--- ----------------------------
--- Records of ss_site_help_cate
--- ----------------------------
-INSERT INTO `ss_site_help_cate` VALUES ('15', '0', '0,', '栏目内容管理', '', '', '', '', '80', '1', '1538805598', '1539005298');
-INSERT INTO `ss_site_help_cate` VALUES ('16', '0', '0,', '快速入门', '', '', '', '', '100', '1', '1538805736', '1539005292');
-INSERT INTO `ss_site_help_cate` VALUES ('17', '16', '0,16,', '前言', '', '', '', '', '10', '1', '1538805741', '1539182410');
-INSERT INTO `ss_site_help_cate` VALUES ('18', '0', '0,', '常见问题', '', '', '', '', '90', '1', '1538805744', '1539181072');
-INSERT INTO `ss_site_help_cate` VALUES ('19', '18', '0,18,', '系统使用问题', '', '', '', '', '102', '1', '1538990504', '1539182395');
-INSERT INTO `ss_site_help_cate` VALUES ('20', '18', '0,18,', '域名空间问题', '', '', '', '', '101', '1', '1538990513', '1539182402');
-INSERT INTO `ss_site_help_cate` VALUES ('21', '0', '0,', '扩展模块', '', '', '', '', '70', '1', '1538990642', '1539005299');
-INSERT INTO `ss_site_help_cate` VALUES ('22', '0', '0,', '服务与订单', '', '', '', '', '60', '1', '1538990649', '1540540421');
-INSERT INTO `ss_site_help_cate` VALUES ('23', '0', '0,', '系统管理', '', '', '', '', '400', '1', '1538990655', '1540537911');
-INSERT INTO `ss_site_help_cate` VALUES ('24', '0', '0,', '辅助工具', '', '', '', '', '400', '1', '1538990662', '1540537890');
-
--- ----------------------------
--- Table structure for ss_site_help_flag
--- ----------------------------
-DROP TABLE IF EXISTS `ss_site_help_flag`;
-CREATE TABLE `ss_site_help_flag` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '信息标记id',
-  `flag` varchar(30) NOT NULL DEFAULT '' COMMENT '标记值',
-  `flagname` varchar(30) NOT NULL DEFAULT '' COMMENT '标记名称',
-  `orderid` int(11) unsigned NOT NULL DEFAULT '10' COMMENT '排列排序',
-  `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
-  `updated_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '编辑时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COMMENT='系统帮助标签表';
-
--- ----------------------------
--- Records of ss_site_help_flag
--- ----------------------------
-INSERT INTO `ss_site_help_flag` VALUES ('19', 'tj', '推荐', '74', '1539960409', '1540006509');
-INSERT INTO `ss_site_help_flag` VALUES ('20', 'hd', '幻灯', '75', '1539960429', '1539960429');
-INSERT INTO `ss_site_help_flag` VALUES ('21', 'ht', '帮助标签测试01', '78', '1542876574', '1554009718');
-INSERT INTO `ss_site_help_flag` VALUES ('22', '系统问题', '系统问题', '50', '1554009450', '1554009994');
-
--- ----------------------------
 -- Table structure for ss_site_lnk
 -- ----------------------------
 DROP TABLE IF EXISTS `ss_site_lnk`;
@@ -1857,28 +1758,6 @@ INSERT INTO `ss_sys_config` VALUES ('258', 'config_site_telephone', '业务手�
 INSERT INTO `ss_sys_config` VALUES ('259', 'config_mobile_count_code', '移动流量统计代码', '1', 'textarea', '<script>\r\nvar _hmt = _hmt || [];\r\n(function() {\r\nvar hm = document.createElement(\"script\");\r\nhm.src = \"https://hm.baidu.com/hm.js?e189eb6395b23759c8866995930fde4a\";\r\nvar s = document.getElementsByTagName(\"script\")[0];\r\ns.parentNode.insertBefore(hm, s); })();\r\n</script>', '', '35', 'zh-CN', '1');
 
 -- ----------------------------
--- Table structure for ss_sys_devlog
--- ----------------------------
-DROP TABLE IF EXISTS `ss_sys_devlog`;
-CREATE TABLE `ss_sys_devlog` (
-  `log_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `log_name` varchar(50) NOT NULL DEFAULT '' COMMENT '更新描述',
-  `log_code` varchar(50) NOT NULL DEFAULT '' COMMENT '更新编码，与v版本号有关V+T',
-  `log_note` text COMMENT '更新详情',
-  `log_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间，手动选择，用于展示',
-  `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '实际增加时间',
-  PRIMARY KEY (`log_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='开发日志表';
-
--- ----------------------------
--- Records of ss_sys_devlog
--- ----------------------------
-INSERT INTO `ss_sys_devlog` VALUES ('1', '系统开发愿景', 'v1.2.1.20181005130302', '<p>-优化&nbsp;我作为一名开发者与他们这群非程序员都意识到我们之间应该有一个桥梁将我们连接起来，于是展开了一些讨论。</p><p>-优化&nbsp;本项目起源于几个高中同学的想法：开发一个营销性系统在网上做点什么。</p><p>-优化&nbsp;我是yii框架的粉丝，也热衷于使用此框架技术解决工作中的问题，也积累了一些开发经验带过各种中小型项目。</p><p>-优化&nbsp;本系统于2017年5月份开始构思，当年下半年与同学们展开讨论，边工作边开发，到2018年初突然发现系统存在极大的效率问题。</p><p>-优化&nbsp;又于2018年3月份决定重新开发，取名为：土人开源系统。定位为标准CMS内容系统+简单电商解决方案。</p><p>-优化&nbsp;直到写此开发日志时，已经7个月了，每天下班主要内容就是干这个，时间非常少，一天大概1小时左右，周末全天开发，重在坚持。</p>', '1538409600', '1538409600');
-INSERT INTO `ss_sys_devlog` VALUES ('2', '优化体验开发新功能跟进开发进度', 'v1.2.1.20181003124425', '<p>-新增 403、404页面显示提高操作体验</p><p>-新增&nbsp;开发日志展示功能有利于用户跟踪开发进度</p><p>-优化&nbsp;头部css将重点操作显示的更明显</p>', '1538496000', '1538496000');
-INSERT INTO `ss_sys_devlog` VALUES ('3', '统一全系统javascript为JWF模块', 'v1.2.1.20181005125814', '<p>-新增&nbsp;重点将后台js模块化提高开发效率、避免重复造轮子</p><p>-新增&nbsp;帮助系统：包括操作帮助和开发帮助，前期重点在操作上</p><p>-新增&nbsp;用户菜单，即创始人菜单和用户（包括普通权限受限用户和超级管理员）共用的权限菜单</p><p>-新增&nbsp;快捷菜单使用常用的操作汇集在后台首页，方便用户高效操作</p>', '1538668800', '1538668800');
-INSERT INTO `ss_sys_devlog` VALUES ('4', '分类过滤器前端优化用户菜单等优化', 'v1.2.1.20181006153753', '<p>-新增 实现CMS内容分类过滤</p><p>-优化&nbsp;前端css，js等代码的精简</p><p>-优化&nbsp;可视模板使用状态</p><p>-新增 增加用户菜单</p><p>-修复&nbsp;修改角色配置信息，操作日志信息</p><p>-新增&nbsp;专题功能</p><p>-新增&nbsp;界面管理</p>', '1538755200', '1538811718');
-
--- ----------------------------
 -- Table structure for ss_sys_log
 -- ----------------------------
 DROP TABLE IF EXISTS `ss_sys_log`;
@@ -1897,7 +1776,7 @@ CREATE TABLE `ss_sys_log` (
   `lang` varchar(8) NOT NULL DEFAULT '' COMMENT '多语言',
   `created_at` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   PRIMARY KEY (`log_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=757 DEFAULT CHARSET=utf8 COMMENT='操作日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=777 DEFAULT CHARSET=utf8 COMMENT='操作日志表';
 
 -- ----------------------------
 -- Records of ss_sys_log
@@ -2658,6 +2537,26 @@ INSERT INTO `ss_sys_log` VALUES ('753', '10', 'admin', 'ext/vote/index', '投票
 INSERT INTO `ss_sys_log` VALUES ('754', '10', 'admin', 'ext/nav/index', '导航菜单,查看列表', 'GET', '{\"r\":\"ext/nav/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '22d29f7ebb7cb150fb92588f857a4e970', 'zh-CN', '1586876169');
 INSERT INTO `ss_sys_log` VALUES ('755', '10', 'admin', 'user/comment/index', '用户留言,查看列表', 'GET', '{\"r\":\"user/comment/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'c14128a0856e9272559d37727543ae300', 'zh-CN', '1586876171');
 INSERT INTO `ss_sys_log` VALUES ('756', '10', 'admin', 'user/inquiry/index', '服务订单,查看列表', 'GET', '{\"r\":\"user/inquiry/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '01c5ab585cf07be7295d785fa1df45100', 'zh-CN', '1586876173');
+INSERT INTO `ss_sys_log` VALUES ('757', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '[]', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '4642e064ba6869dfee9df0ae250524630', 'zh-CN', '1587288726');
+INSERT INTO `ss_sys_log` VALUES ('758', '10', 'admin', 'site/home/default', '后台首页', 'GET', '{\"r\":\"site/home/default\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '722a97b7af81a0b5fa7c9fb103e9628e0', 'zh-CN', '1587289328');
+INSERT INTO `ss_sys_log` VALUES ('759', '10', 'admin', 'sys/dev-log/index', '开发日志,查看列表', 'GET', '{\"r\":\"sys/dev-log/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '4abceb8248910d37c61bdae378cbd5880', 'zh-CN', '1587289340');
+INSERT INTO `ss_sys_log` VALUES ('760', '10', 'admin', 'site/help-cate/index', '系统帮助分类,查看列表', 'GET', '{\"r\":\"site/help-cate/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'b80d51f5e75811ddae3d294b1a23a9e20', 'zh-CN', '1587289345');
+INSERT INTO `ss_sys_log` VALUES ('761', '10', 'admin', 'site/help-flag/index', '帮助标记,查看列表', 'GET', '{\"r\":\"site/help-flag/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '121f1b76c51ae85d09285a50a9544ae70', 'zh-CN', '1587289347');
+INSERT INTO `ss_sys_log` VALUES ('762', '10', 'admin', 'site/help/index', '系统帮助,查看列表', 'GET', '{\"r\":\"site/help/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '41103834b1b8ed32cbc6fdba6f5ae4750', 'zh-CN', '1587289349');
+INSERT INTO `ss_sys_log` VALUES ('763', '10', 'admin', 'sys/dev-log/index', '开发日志,查看列表', 'GET', '{\"r\":\"sys/dev-log/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '4abceb8248910d37c61bdae378cbd5880', 'zh-CN', '1587289352');
+INSERT INTO `ss_sys_log` VALUES ('764', '10', 'admin', 'site/help/index', '系统帮助,查看列表', 'GET', '{\"r\":\"site/help/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '41103834b1b8ed32cbc6fdba6f5ae4750', 'zh-CN', '1587289373');
+INSERT INTO `ss_sys_log` VALUES ('765', '10', 'admin', 'site/help-cate/index', '系统帮助分类,查看列表', 'GET', '{\"r\":\"site/help-cate/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'b80d51f5e75811ddae3d294b1a23a9e20', 'zh-CN', '1587289378');
+INSERT INTO `ss_sys_log` VALUES ('766', '10', 'admin', 'sys/dev-log/index', '开发日志,查看列表', 'GET', '{\"r\":\"sys/dev-log/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '4abceb8248910d37c61bdae378cbd5880', 'zh-CN', '1587289383');
+INSERT INTO `ss_sys_log` VALUES ('767', '10', 'admin', 'site/home/index', '框架刷新', 'POST', '{\"r\":\"site/home/index\"}', '{\"_csrf-backend\":\"EotvE1pwBN-piobsrva7q2GSvXveB2MI8plNvwtu1cUm6ARnABxytOHI6aSbjOqcPsvIP-4yEmaE3DX2byC7gA==\",\"lang\":\"zh-CN\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '4642e064ba6869dfee9df0ae250524631', 'zh-CN', '1587289563');
+INSERT INTO `ss_sys_log` VALUES ('768', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '{\"r\":\"site/home/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '4642e064ba6869dfee9df0ae250524630', 'zh-CN', '1587289680');
+INSERT INTO `ss_sys_log` VALUES ('769', '10', 'admin', 'site/face-config/setting', '查看界面配置', 'GET', '{\"r\":\"site/face-config/setting\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', 'a9481b69893a7de01da1cd54fd13723e0', 'zh-CN', '1587289765');
+INSERT INTO `ss_sys_log` VALUES ('770', '10', 'admin', 'site/home/default', '后台首页', 'GET', '{\"r\":\"site/home/default\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '722a97b7af81a0b5fa7c9fb103e9628e0', 'zh-CN', '1587289767');
+INSERT INTO `ss_sys_log` VALUES ('771', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '{\"r\":\"site/home/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '4642e064ba6869dfee9df0ae250524630', 'zh-CN', '1587289952');
+INSERT INTO `ss_sys_log` VALUES ('772', '10', 'admin', 'site/home/default', '后台首页', 'GET', '{\"r\":\"site/home/default\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '722a97b7af81a0b5fa7c9fb103e9628e0', 'zh-CN', '1587289993');
+INSERT INTO `ss_sys_log` VALUES ('773', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '{\"r\":\"site/home/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '4642e064ba6869dfee9df0ae250524630', 'zh-CN', '1587290061');
+INSERT INTO `ss_sys_log` VALUES ('774', '10', 'admin', 'site/home/default', '后台首页', 'GET', '{\"r\":\"site/home/default\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '722a97b7af81a0b5fa7c9fb103e9628e0', 'zh-CN', '1587290075');
+INSERT INTO `ss_sys_log` VALUES ('775', '10', 'admin', 'site/home/index', '框架刷新', 'GET', '{\"r\":\"site/home/index\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '4642e064ba6869dfee9df0ae250524630', 'zh-CN', '1587290090');
+INSERT INTO `ss_sys_log` VALUES ('776', '10', 'admin', 'site/home/default', '后台首页', 'GET', '{\"r\":\"site/home/default\"}', '', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36', '722a97b7af81a0b5fa7c9fb103e9628e0', 'zh-CN', '1587290179');
 
 -- ----------------------------
 -- Table structure for ss_sys_multilang

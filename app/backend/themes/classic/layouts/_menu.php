@@ -197,23 +197,12 @@ $diyModels = DiyModel::find()->active()->asArray()->all();
 			
 			<div class="hr_5"></div>
 			<div class="menubox">
-				<div class="title" onclick="DisplayMenu('leftmenu07');" title="点击切换显示或隐藏"><i class="fa fa-angle-right i1"></i><i class="fa fa-angle-down i2"></i> 日志与更新</div>
+				<div class="title" onclick="DisplayMenu('leftmenu07');" title="点击切换显示或隐藏"><i class="fa fa-angle-right i1"></i><i class="fa fa-angle-down i2"></i> 日志管理</div>
 				<div id="leftmenu07" style="display:none;">
                     <?= Menu::widget([
                         'linkTemplate' => '<a target="main" href="{url}">{label}</a>',
                         'items' => [
                             ['label' => '操作日志', 'url' => ['/sys/log/index'], 'visible' => $roleModel->checkPerm('sys/log/index', true)],
-                            ['label' => '开发日志', 'url' => ['/sys/dev-log/index'], 'visible' => $roleModel->checkPerm('sys/dev-log/index', true)],
-                        ],
-                    ]) ?>
-					<div class="hr_1"> </div>
-                    <?= Menu::widget([
-                        'linkTemplate' => '<a target="main" href="{url}">{label}</a>',
-                        'encodeLabels' => false,
-                        'items' => [
-                            ['label' => '教程分类', 'url' => ['/site/help-cate/index'], 'visible' => $roleModel->checkPerm('site/help-cate/index', true)],
-                            ['label' => '教程管理', 'url' => ['/site/help/index'], 'visible' => $roleModel->checkPerm('site/help/index', true)],
-                            ['label' => '<i class="fa fa-wrench"></i>', 'template' => '<a target="main" title="教程标签管理" class="menu-wrench help-flag" href="{url}">{label}</a>', 'url' => ['/site/help-flag/index'], 'visible' => $roleModel->checkPerm('site/help-flag/index', true)],
                         ],
                     ]) ?>
 				</div>

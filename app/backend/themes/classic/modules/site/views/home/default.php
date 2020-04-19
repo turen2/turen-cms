@@ -90,18 +90,6 @@ $baseUrl = Yii::getAlias('@web');
     			</table>
 			</div>
 		</div>
-		<div class="quick-box">
-			<h2 class="title">系统更新<span><a href="<?= Url::to(['/sys/dev-log/index']) ?>">更多 <i class="fa fa-angle-double-right"></i></a></span></h2>
-			<div class="box">
-    			<ul>
-    				<?php if($devLogModels) { ?>
-    				<?php foreach ($devLogModels as $devLogModel) { ?>
-    				<li><?= Yii::$app->getFormatter()->asDatetime($devLogModel->created_at, 'yyyy-MM-dd HH:mm') ?> 更新了新内容 “<?= $devLogModel->log_name ?>”</li>
-    				<?php } ?>
-        			<?php } ?>
-    			</ul>
-			</div>
-		</div>
 	</div>
 	
 	<div class="right-area">
@@ -166,18 +154,6 @@ $baseUrl = Yii::getAlias('@web');
                         </tr>
                     </tbody>
                 </table>
-			</div>
-		</div>
-		<div class="quick-box">
-			<h2 class="title">帮助中心<span><a href="<?= Url::to(['/site/help/index']) ?>">更多 <i class="fa fa-angle-double-right"></i></a></span></h2>
-			<div class="box">
-				<ul>
-				<?php if($helpModels) { ?>
-					<?php foreach ($helpModels as $helpModel) { ?>
-    				<li><?= Yii::$app->getFormatter()->asDatetime($logModel->created_at, 'yyyy-MM-dd HH:mm') ?> 发布了新的帮助 <?= $helpModel->title ?></li>
-    				<?php } ?>
-    			<?php } ?>
-    			</ul>
 			</div>
 		</div>
 	</div>

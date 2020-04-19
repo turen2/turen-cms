@@ -9,9 +9,7 @@ namespace backend\modules\site\controllers;
 use Yii;
 use yii\db\Query;
 use backend\models\sys\Log;
-use backend\models\sys\Devlog;
 use backend\models\site\Lnk;
-use backend\models\site\Help;
 
 class HomeController extends \backend\components\Controller
 {
@@ -59,14 +57,10 @@ class HomeController extends \backend\components\Controller
     {
         $lnkModels = Lnk::find()->orderBy('orderid DESC')->all();//快捷方式
         $logModels = Log::find()->orderBy('created_at DESC')->limit(3)->all();//操作日志
-        $devLogModels = Devlog::find()->orderBy('created_at DESC')->limit(5)->all();//更新日志
-        $helpModels = Help::find()->orderBy('created_at DESC')->limit(5)->all();//更新日志
         
         return $this->render('default', [
             'lnkModels' => $lnkModels,
             'logModels' => $logModels,
-            'devLogModels' => $devLogModels,
-            'helpModels' => $helpModels,
         ]);
     }
     
