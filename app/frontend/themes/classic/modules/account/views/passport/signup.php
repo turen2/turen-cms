@@ -313,13 +313,18 @@ $this->registerJs($js);
             <?php ActiveForm::end(); ?>
 
             <div class="login-short">
-                <h3>使用社交账号登录：</h3>
-                <?php
+                <?
                 $authAuthChoice = AuthChoice::begin([
                     'baseAuthUrl' => ['/account/passport/auth'],
                     'popupMode' => true,
                 ]);
-                foreach ($authAuthChoice->getClients() as $client) {
+
+                $clients = $authAuthChoice->getClients();
+                if(!empty($clients)) {
+                    echo '<h3>使用社交账号登录：</h3>';
+                }
+
+                foreach ($clients as $client) {
                     $clientId = $client->getId();
                     $htmlOptions = [];
                     $htmlOptions['popupWidth'] = 627;

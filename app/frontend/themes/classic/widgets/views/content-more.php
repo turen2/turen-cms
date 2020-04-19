@@ -12,7 +12,7 @@ use yii\helpers\Url;
 
 ?>
 
-<?php if($boxlist) {?>
+
 <div class="detail-box <?= $htmlClass ?> card">
     <h5>
         <b><?= $title ?></b>
@@ -20,6 +20,7 @@ use yii\helpers\Url;
             <a target="_blank" href="<?= $moreLink ?>">更多</a>
         <?php } ?>
     </h5>
+    <?php if($boxlist) {?>
     <ul>
         <?php
         foreach ($boxlist as $index => $item) {
@@ -31,5 +32,5 @@ use yii\helpers\Url;
         }
         ?>
     </ul>
+    <?php } ?>
 </div>
-<?php } ?>

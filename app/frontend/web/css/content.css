@@ -29,11 +29,11 @@
 }
 
 .turen-sort ul li a.asc {
-    background: url(../images/common/asc_desc.png) no-repeat 83% 300%;
+    background: url(../images/common/asc_desc.png?v=1) no-repeat 83% 300%;
 }
 
 .turen-sort ul li a.desc {
-    background: url(../images/common/asc_desc.png) no-repeat 83% -200%;
+    background: url(../images/common/asc_desc.png?v=1) no-repeat 83% -200%;
 }
 
 .turen-sort ul li a span {

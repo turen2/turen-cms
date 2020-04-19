@@ -104,12 +104,12 @@ $dlength = 90;
                             </li>
                             <li style="float: right;">
                                 <?php  if($nextModel) { ?>
-                                    <a style="float: right;" href="<?= Url::to(['/news/detail', 'slug' => $nextModel->slug]) ?>">
+                                    <a href="<?= Url::to(['/news/detail', 'slug' => $nextModel->slug]) ?>">
                                         <span class="ap9"></span>
                                         <b>下一篇：<?= $nextModel->title ?></b>
                                     </a>
                                 <?php } else { ?>
-                                    <a style="float: right;" href="javascript:;">
+                                    <a href="javascript:;">
                                         <span class="ap9"></span>
                                         <b>下一篇：没有了</b>
                                     </a>
@@ -125,7 +125,7 @@ $dlength = 90;
                         'htmlClass' => '',
                         'columnType' => 'article',
                         'columnId' => $model->columnid,
-                        'flagName' => '还看',
+                        'flagName' => Yii::$app->params['config_face_cn_company_column_seemore_flag'],
                         'listNum' => 6,
                         'route' => ['/news/detail'],
                     ]); ?>
@@ -135,7 +135,7 @@ $dlength = 90;
                         'htmlClass' => 'detail-add',
                         'columnType' => 'article',
                         'columnId' => $model->columnid,
-                        'flagName' => '相关',
+                        'flagName' => Yii::$app->params['config_face_cn_company_column_related_flag'],
                         'listNum' => 6,
                         'route' => ['/news/detail'],
                     ]); ?>

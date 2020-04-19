@@ -259,7 +259,7 @@ $this->registerJs($js);
             <div class="pagination"></div>
         </div>
         <div class="case-recommend">
-            <?php $topPhotoes = Photo::find()->where(['columnid' => Yii::$app->params['config_face_cn_home_case_column_id']])->andWhere(['like', 'flag', Yii::$app->params['config_face_cn_home_case_column_flag']])->orderBy(['orderid' => SORT_DESC])->limit(6)->asArray()->all(); ?>
+            <?php $topPhotoes = Photo::find()->where(['columnid' => Yii::$app->params['config_face_cn_home_case_column_id']])->orderBy(['updated_at' => SORT_DESC])->limit(6)->asArray()->all(); ?>
             <?php foreach ($topPhotoes as $index => $topPhoto) { ?>
             <div class="list-left<?= ($index%3 != 2)?'':' mr0' ?>">
                 <a href="<?= empty($topPhoto['linkurl'])?Url::to(['case/detail', 'slug' => $topPhoto['slug']]):$topPhoto['linkurl'] ?>"<?= empty($topPhoto['linkurl'])?'':' target="_blank"' ?>>
