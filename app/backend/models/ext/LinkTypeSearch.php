@@ -57,7 +57,7 @@ class LinkTypeSearch extends LinkType
             'query' => $query,
             'pagination' => [
                 //'class' => Pagination::class,
-                'defaultPageSize' => 300,
+                'pageSize' => 300,
             ],
             'sort' => [
                 //'class' => Sort::class,

@@ -313,7 +313,7 @@ $this->registerJs($js);
             <?php ActiveForm::end(); ?>
 
             <div class="login-short">
-                <?
+                <?php
                 $authAuthChoice = AuthChoice::begin([
                     'baseAuthUrl' => ['/account/passport/auth'],
                     'popupMode' => true,

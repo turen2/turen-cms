@@ -56,7 +56,7 @@ class NavSearch extends Nav
             'query' => $query,
             'pagination' => [
                 //'class' => Pagination::class,
-                'defaultPageSize' => 300,
+                'pageSize' => 300,
             ],
             'sort' => [
                 //'class' => Sort::class,

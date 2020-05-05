@@ -57,7 +57,7 @@ class ProductCateSearch extends ProductCate
             'query' => $query,
             'pagination' => [
                 //'class' => Pagination::class,
-                'defaultPageSize' => 300,//一次性全部查出
+                'pageSize' => 300,//一次性全部查出
             ],
             'sort' => [
                 //'class' => Sort::class,
