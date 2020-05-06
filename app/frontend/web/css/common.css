@@ -43,6 +43,10 @@ img {
     vertical-align: middle;
 }
 
+html {
+    min-width: 1190px;
+}
+
 body {
     position: relative;
 }
